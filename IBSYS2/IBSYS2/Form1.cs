@@ -7,16 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Data.OleDb;
 
 namespace IBSYS2
 {
     public partial class Form1 : Form
     {
+        private OleDbConnection myconn;
         public Form1()
         {
             InitializeComponent();
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=Database1.accdb";
+            myconn = new OleDbConnection(databasename);
         }
 
+       
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Mein Git funktioniert jetzt auch :) AC", "SPAGHETTIMONSTER");
@@ -31,5 +37,30 @@ namespace IBSYS2
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                String File = openFileDialog1.FileName;
+                if (File.Contains(".xml"))
+                {
+                    // Initialisierung DB-Verbindung
+                    OleDbCommand cmd = new OleDbCommand();
+                    cmd.CommandType = CommandType.Text;
+                    MessageBox.Show(System.Environment.CurrentDirectory + "");
+                    cmd.Connection = myconn;
+                    myconn.Open();
+                    XMLReaderClass xmlclass = new XMLReaderClass();
+                    xmlclass.XMLReader(cmd, File);
+                }
+                else
+                {
+                    MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                }
+
+            }
+        }
+
     }
 }

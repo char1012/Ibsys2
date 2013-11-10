@@ -1,0 +1,39 @@
+<UserControl x:Class="Visiblox.Charts.Examples.QuickStart.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:charts="clr-namespace:IBSYS2;assembly=IBSYS2"
+    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+    <!--<UserControl.Resources>-->
+        <!-- A simple brush -->
+        <!--<SolidColorBrush x:Key="RedBrush" Color="Red"/>-->
+
+        <!-- A simple style -->
+       <!-- <Style TargetType="charts:LineSeries" x:Key="BlueNormalStyle">
+            <Setter Property="LineStroke" Value="Blue" />
+            <Setter Property="LineStrokeThickness" Value="1" />
+        </Style>-->
+
+        <!-- A more complex style --><!--
+        <Style TargetType="charts:LineSeries" x:Key="DarkGreenNormalStyle">
+            <Setter Property="LineStroke">
+                <Setter.Value>
+                    <SolidColorBrush Color="DarkGreen"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="LineStrokeThickness" Value="2" />
+            <Setter Property="AreaFill">
+                <Setter.Value>
+                    <SolidColorBrush Color="#AFEDBB" Opacity="0.5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Margin="20">
+        <charts:Chart Name="exampleChart">
+        </charts:Chart>
+    </Grid>-->
+</UserControl>

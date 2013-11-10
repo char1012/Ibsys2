@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Data.OleDb;
+using Visiblox.Charts;
 
 namespace IBSYS2
 {
@@ -48,9 +49,10 @@ namespace IBSYS2
                     // Initialisierung DB-Verbindung
                     OleDbCommand cmd = new OleDbCommand();
                     cmd.CommandType = CommandType.Text;
-                    MessageBox.Show(System.Environment.CurrentDirectory + "");
+                    //MessageBox.Show(System.Environment.CurrentDirectory + "");
                     cmd.Connection = myconn;
                     myconn.Open();
+                    //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                     XMLReaderClass xmlclass = new XMLReaderClass();
                     xmlclass.XMLReader(cmd, File);
                 }

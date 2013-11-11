@@ -79,9 +79,13 @@ namespace IBSYS2
             public decimal Wageidletimecosts { get; set; }
             public decimal Wagecosts { get; set; }
             public decimal Machineidletimecosts { get; set; }
+            public int Item { get; set; }
+            public decimal Timeneed { get; set; }
+            public decimal Amount { get; set; }
 
 
-            public Idletime(int id, int setupevents, int idletimes, decimal wageidletimecosts, decimal wagecosts, decimal machineidletimecosts)
+
+            public Idletime(int id, int setupevents, int idletimes, decimal wageidletimecosts, decimal wagecosts, decimal machineidletimecosts, int item, int timeneed, int amount)
             {
                 Id = id;
                 Setupevents = setupevents;
@@ -89,6 +93,9 @@ namespace IBSYS2
                 Wageidletimecosts = wageidletimecosts;
                 Wagecosts = wagecosts;
                 Machineidletimecosts = machineidletimecosts;
+                Item = item;
+                Timeneed = timeneed;
+                Amount = amount;
 
             }
 
@@ -122,7 +129,6 @@ namespace IBSYS2
                                 switch (reader.Name)
                                 {
                                     case "Warehousestock":
-                                        //MessageBox.Show("Warehousestock");
                                         break;
                                     case "article":
                                         art = new Artikel();
@@ -148,7 +154,6 @@ namespace IBSYS2
                                         try
                                         {
                                             cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','7')";
-                                            //Console.WriteLine("SQL-Statement: \n" + cmd.CommandText);
                                             cmd.ExecuteNonQuery();
                                         }
                                         catch (Exception ex)
@@ -157,15 +162,12 @@ namespace IBSYS2
                                         }
                                         break;
                                     case "inwardstockmovement":
-                                        //MessageBox.Show("inwardstockmovement");
                                         Überelement = "inwardstockmovement";
                                         break;
                                     case "futureinwardstockmovement":
-                                        //MessageBox.Show("futureinwardstockmovement");
                                         Überelement = "futureinwardstockmovement";
                                         break;
                                     case "order":
-                                        //MessageBox.Show("order in " + Überelement);
                                         ord = new Order();
                                         orderliste.Add(ord);
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
@@ -195,34 +197,29 @@ namespace IBSYS2
                                         }
                                         if (Überelement == "inwardstockmovement")
                                         {
-                                            //cmd.CommandText = @"insert into Bestellung (B_Periode,LI_Art_FK,T_ID_FK,Menge,Liefer_Zeit,Materialkosten,Lieferkosten,Gesamtkosten, Stückkosten, Ausstehend) values (" + ord.Orderperiod + "," + ord.Id + "," + ord.Mode + "," + ord.Article + "," + ord.Time + "," + ord.Materialcosts + "," + ord.Ordercosts + "," + ord.Entirecosts + "," + ord.Piececosts + ",Nein)";
                                             cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','7'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
-                                            //System.Windows.Forms.MessageBox.Show("SQL-Statement inwardstockmovement \n+ " + cmd.CommandText);
 
                                         }
                                         else if (Überelement == "futureinwardstockmovement")
                                         {
-                                            //SQL-Statement noch anpassen
                                             cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','7'" + ",False,'" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
-                                            //System.Windows.Forms.MessageBox.Show("futureinwardstockmovement - SQL-Statement\n" + " " + cmd.CommandText);
 
                                         }
                                         cmd.ExecuteNonQuery();
-                                        //System.Windows.Forms.MessageBox.Show("Tabelle Bestellung erfolgreich erweitert ", "Caption", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
                                         break;
 
                                     case "idletimecosts":
-                                        //MessageBox.Show("futureinwardstockmovement");
                                         Überelement = "idletimecosts";
                                         break;
                                     case "waitinglistworkstations":
-                                        //MessageBox.Show("futureinwardstockmovement");
                                         Überelement = "waitinglistworkstations";
+                                        break;
+                                    case "ordersinwork":
+                                        Überelement = "ordersinwork";
                                         break;
                                     case "workplace":
                                         idle = new Idletime();
                                         idleliste.Add(idle);
-                                        //MessageBox.Show("idletimecosts");
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
                                         {
                                             while (reader.MoveToNextAttribute())
@@ -240,36 +237,37 @@ namespace IBSYS2
                                                     idle.Wagecosts = Convert.ToDecimal(reader.Value);
                                                 else if (reader.Name == "machineidletimecosts")
                                                     idle.Machineidletimecosts = Convert.ToDecimal(reader.Value);
+                                                else if (reader.Name == "Amount")
+                                                    idle.Amount = Convert.ToInt32(reader.Value);
+                                                else if (reader.Name == "item")
+                                                    idle.Item = Convert.ToInt32(reader.Value);
+                                                else if (reader.Name == "timeneed")
+                                                    idle.Timeneed = Convert.ToInt32(reader.Value);
+
+
                                             }
                                         }
                                         if (Überelement == "idletimecosts")
                                         {
                                             cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','7')";
-                                            System.Windows.Forms.MessageBox.Show("SQL-Statement idletime \n+ " + cmd.CommandText);
                                         }
-                                        else if (Überelement == "waitinglistworkstations")
-                                        {
+                                      //  else if (Überelement == "waitinglistworkstations")
+                                        //{
                                             //SQL-Statement anpassen
-                                            //cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','7')";
-                                            System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
+                                           // cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','7')";
+                                           // System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
+
+                                        //}
+                                        else if (Überelement == "ordersinwork")
+                                        {
+                                            //SQL-Statement anpassen, item und timeneed mit aufnehmen
+                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','7')";
+                                            System.Windows.Forms.MessageBox.Show("SQL-Statement Bearbeitung \n+ " + cmd.CommandText);
                                         }
                                         cmd.ExecuteNonQuery();
-                                        System.Windows.Forms.MessageBox.Show("Tabelle Leerzeitenkosten erfolgreich erweitert ", "Caption", System.Windows.Forms.MessageBoxButtons.OKCancel, System.Windows.Forms.MessageBoxIcon.Information);
-                                        break;
-                                    case "ordersinwork":
-                                        Überelement = "ordersinwork";
-                                        //MessageBox.Show("ordersinwork");
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-
-                                            }
-                                        }
                                         break;
                                     case "completedorders":
                                         Überelement = "completedorders";
-                                        //MessageBox.Show("completedorders");
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
                                         {
                                             while (reader.MoveToNextAttribute())
@@ -280,7 +278,6 @@ namespace IBSYS2
                                         break;
                                     case "result":
                                         Überelement = "result";
-                                        //MessageBox.Show("result ");
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
                                         {
                                             while (reader.MoveToNextAttribute())

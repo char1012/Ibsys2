@@ -19,7 +19,7 @@ namespace IBSYS2
         public Form1()
         {
             InitializeComponent();
-            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=Database1.accdb";
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
         }
 

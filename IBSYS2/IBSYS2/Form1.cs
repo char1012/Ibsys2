@@ -26,7 +26,7 @@ namespace IBSYS2
        
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Mein Git funktioniert jetzt auch :) AC", "SPAGHETTIMONSTER");
+            MessageBox.Show("Mein Git funktioniert jetzt auch :) AC", "SPAGHETTIMONSTER Test");
         }
 
         private void label1_Click(object sender, EventArgs e)

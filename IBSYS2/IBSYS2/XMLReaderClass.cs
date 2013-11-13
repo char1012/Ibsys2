@@ -82,7 +82,7 @@ namespace IBSYS2
             public decimal Machineidletimecosts { get; set; }
             public int Item { get; set; }
             public decimal Timeneed { get; set; }
-            public decimal Amount { get; set; }
+            public int Amount { get; set; }
 
 
 
@@ -186,6 +186,7 @@ namespace IBSYS2
                                     case "order":
                                         ord = new Order();
                                         orderliste.Add(ord);
+                                        
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
                                         {
                                             while (reader.MoveToNextAttribute())
@@ -242,7 +243,60 @@ namespace IBSYS2
                                             {
                                                 //cmd.CommandText = "";
                                                 if (reader.Name == "id")
+                                                {
                                                     idle.Id = Convert.ToInt32(reader.Value);
+                                                    
+                                     //-----------------------------------------------------------------------
+
+                                        while (reader.Read())
+                                        {
+                                            if (reader.NodeType == XmlNodeType.Element)
+                                            {
+                                                switch (reader.Name)
+                                                {
+                                                    case "waitinglist":
+                                                    reader.ReadToFollowing("waitinglist");
+                                                    do
+                                                    {
+                                                        System.Windows.Forms.MessageBox.Show("Waitinglist mit workstation " + idle.Id);
+
+
+
+
+                                                        int item = 0;
+                                                        int amount = 0;
+                                                        int timeneed = 0;
+                                                        if (reader.HasAttributes) //Attributsliste durchlaufen
+                                                        {
+                                                            while (reader.MoveToNextAttribute())
+                                                            {
+                                                                //<waitinglist period="7" order="7" firstbatch="14" lastbatch="16" item="54" amount="30" timeneed="180"/>
+                                                                if (reader.Name == "item")
+                                                                    item = Convert.ToInt32(reader.Value);
+                                                                else if (reader.Name == "amount")
+                                                                    amount = Convert.ToInt32(reader.Value);
+                                                                else if (reader.Name == "timeneed")
+                                                                    timeneed = Convert.ToInt32(reader.Value);
+                                                                else if (reader.Name == "wageidletimecosts")
+                                                                    idle.Wageidletimecosts = Convert.ToDecimal(reader.Value);
+                                                            }
+                                                        }
+                                                        cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('"+ idle.Id + "','" + item + "','" + amount + "','" + timeneed + "','" + period + "')";
+                                                        System.Windows.Forms.MessageBox.Show("Command "+cmd.CommandText);
+                                                        cmd.ExecuteNonQuery();
+
+
+                                                    }
+                                                    while (reader.Name == "waitinglist");
+                                                    //while (reader.ReadToNextSibling("waitinglist"));
+                                                    break;
+
+                                                }
+                                            }
+                                        }   
+ //---------------------------------------------------------------------------------------------------------------------------------
+                                                }
+
                                                 else if (reader.Name == "setupevents")
                                                     idle.Setupevents = Convert.ToInt32(reader.Value);
                                                 else if (reader.Name == "idletime")
@@ -253,7 +307,7 @@ namespace IBSYS2
                                                     idle.Wagecosts = Convert.ToDecimal(reader.Value);
                                                 else if (reader.Name == "machineidletimecosts")
                                                     idle.Machineidletimecosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "Amount")
+                                                else if (reader.Name == "amount")
                                                     idle.Amount = Convert.ToInt32(reader.Value);
                                                 else if (reader.Name == "item")
                                                     idle.Item = Convert.ToInt32(reader.Value);
@@ -267,44 +321,17 @@ namespace IBSYS2
                                         {
                                             cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
                                         }
-                                      //  else if (Überelement == "waitinglistworkstations")
-                                        //{
-                                            //SQL-Statement anpassen
-                                           // cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
-                                           // System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
-
-                                        //}
                                         else if (Überelement == "ordersinwork")
                                         {
                                             //SQL-Statement anpassen, item und timeneed mit aufnehmen
-                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','" + period + "')";
-                                            System.Windows.Forms.MessageBox.Show("SQL-Statement Bearbeitung \n+ " + cmd.CommandText);
+                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','" + period + "')";                                        
                                         }
                                         cmd.ExecuteNonQuery();
-                                        break;
-                                    case "completedorders":
-                                        Überelement = "completedorders";
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-
-                                            }
-                                        }
-                                        break;
-                                    case "result":
-                                        Überelement = "result";
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-
-                                            }
-                                        }
                                         break;
                                 }
                             }
                         }
+                        System.Windows.Forms.MessageBox.Show("Import ist abgeschlossen, Sie können nun auf die Daten zugreifen.");
                         reader.Close();
                     }
                     catch (Exception ex)
@@ -316,3 +343,9 @@ namespace IBSYS2
 
             }
         }
+                                        //else if (Überelement == "waitinglistworkstations")
+                                        //{
+                                        //    cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
+                                        //    System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
+
+                                        //}

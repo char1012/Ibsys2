@@ -51,7 +51,7 @@ namespace IBSYS2
         public decimal Piececosts { get; set; }
 
 
-        public Order(int orderperiod, int id, int mode, int article, int time, decimal materialcosts, decimal ordercosts, decimal entirecosts, decimal piececosts)
+        public Order(int orderperiod, int id, int mode, int article, int time, decimal materialcosts, decimal ordercosts, decimal entirecosts, decimal piececosts, int amount)
         {
             Orderperiod = orderperiod;
             Id = id;
@@ -62,6 +62,7 @@ namespace IBSYS2
             Ordercosts = ordercosts;
             Entirecosts = entirecosts;
             Piececosts = piececosts;
+            Amount = amount;
 
         }
     
@@ -121,6 +122,7 @@ namespace IBSYS2
                         List<Idletime> idleliste = new List<Idletime>();
                         Idletime idle = null;
                         System.Windows.Forms.MessageBox.Show("Anfang XMLReader");
+                        int period = 0;
 
                         while (reader.Read())
                         {
@@ -128,6 +130,20 @@ namespace IBSYS2
                             {
                                 switch (reader.Name)
                                 {
+                                    case "results":
+                                        System.Windows.Forms.MessageBox.Show("Results");
+                                        if (reader.HasAttributes)
+                                        {
+                                            while (reader.MoveToNextAttribute())
+                                            {
+                                                if (reader.Name == "period")
+                                                {
+                                                    period = Convert.ToInt32(reader.Value);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        break;
                                     case "Warehousestock":
                                         break;
                                     case "article":
@@ -153,7 +169,7 @@ namespace IBSYS2
                                         }
                                         try
                                         {
-                                            cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','7')";
+                                            cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','" + period + "')";
                                             cmd.ExecuteNonQuery();
                                         }
                                         catch (Exception ex)
@@ -197,12 +213,12 @@ namespace IBSYS2
                                         }
                                         if (Überelement == "inwardstockmovement")
                                         {
-                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','7'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
+                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
 
                                         }
                                         else if (Überelement == "futureinwardstockmovement")
                                         {
-                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','7'" + ",False,'" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
+                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",False,'" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
 
                                         }
                                         cmd.ExecuteNonQuery();
@@ -249,19 +265,19 @@ namespace IBSYS2
                                         }
                                         if (Überelement == "idletimecosts")
                                         {
-                                            cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','7')";
+                                            cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
                                         }
                                       //  else if (Überelement == "waitinglistworkstations")
                                         //{
                                             //SQL-Statement anpassen
-                                           // cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','7')";
+                                           // cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
                                            // System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
 
                                         //}
                                         else if (Überelement == "ordersinwork")
                                         {
                                             //SQL-Statement anpassen, item und timeneed mit aufnehmen
-                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','7')";
+                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','" + period + "')";
                                             System.Windows.Forms.MessageBox.Show("SQL-Statement Bearbeitung \n+ " + cmd.CommandText);
                                         }
                                         cmd.ExecuteNonQuery();

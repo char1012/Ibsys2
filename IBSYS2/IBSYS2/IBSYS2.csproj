@@ -48,18 +48,60 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Ergebnis.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Ergebnis.Designer.cs">
+      <DependentUpon>Ergebnis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportPrognose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportPrognose.Designer.cs">
+      <DependentUpon>ImportPrognose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kapazitaetsplan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kapazitaetsplan.Designer.cs">
+      <DependentUpon>Kapazitaetsplan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kaufteildisposition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kaufteildisposition.Designer.cs">
+      <DependentUpon>Kaufteildisposition.cs</DependentUpon>
     </Compile>
     <Compile Include="myconn.cs" />
+    <Compile Include="Produktion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produktion.Designer.cs">
+      <DependentUpon>Produktion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sicherheitsbestand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sicherheitsbestand.Designer.cs">
+      <DependentUpon>Sicherheitsbestand.cs</DependentUpon>
+    </Compile>
     <Compile Include="XMLReaderClass.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Ergebnis.resx">
+      <DependentUpon>Ergebnis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportPrognose.resx">
+      <DependentUpon>ImportPrognose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kapazitaetsplan.resx">
+      <DependentUpon>Kapazitaetsplan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kaufteildisposition.resx">
+      <DependentUpon>Kaufteildisposition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produktion.resx">
+      <DependentUpon>Produktion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -70,6 +112,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Sicherheitsbestand.resx">
+      <DependentUpon>Sicherheitsbestand.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

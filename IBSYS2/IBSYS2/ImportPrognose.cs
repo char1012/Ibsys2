@@ -13,31 +13,16 @@ using Visiblox.Charts;
 
 namespace IBSYS2
 {
-    public partial class Form1 : Form
+    public partial class ImportPrognose : Form
     {
         private OleDbConnection myconn;
-        public Form1()
+        public ImportPrognose()
         {
             InitializeComponent();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
         }
 
-       
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Mein Git funktioniert jetzt auch :) AC", "SPAGHETTIMONSTER Test");
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -62,6 +47,21 @@ namespace IBSYS2
                 }
 
             }
+        }
+
+        private void ImportPrognose_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

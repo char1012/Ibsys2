@@ -266,6 +266,7 @@
             this.comboBox1.Size = new System.Drawing.Size(236, 21);
             this.comboBox1.TabIndex = 53;
             this.comboBox1.Text = "Wählen Sie die zu bearbeitende Periode aus";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // textBox11
             // 
@@ -273,7 +274,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(84, 20);
             this.textBox11.TabIndex = 52;
-            this.textBox11.Text = "P2";
+            this.textBox11.Text = "0";
             // 
             // textBox12
             // 
@@ -281,7 +282,7 @@
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(84, 20);
             this.textBox12.TabIndex = 51;
-            this.textBox12.Text = "P3";
+            this.textBox12.Text = "0";
             // 
             // textBox10
             // 
@@ -289,7 +290,7 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(84, 20);
             this.textBox10.TabIndex = 50;
-            this.textBox10.Text = "P1";
+            this.textBox10.Text = "0";
             // 
             // textBox8
             // 
@@ -297,7 +298,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(84, 20);
             this.textBox8.TabIndex = 49;
-            this.textBox8.Text = "P2";
+            this.textBox8.Text = "0";
             // 
             // textBox9
             // 
@@ -305,7 +306,7 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(84, 20);
             this.textBox9.TabIndex = 48;
-            this.textBox9.Text = "P3";
+            this.textBox9.Text = "0";
             // 
             // textBox7
             // 
@@ -313,7 +314,7 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(84, 20);
             this.textBox7.TabIndex = 47;
-            this.textBox7.Text = "P1";
+            this.textBox7.Text = "0";
             // 
             // textBox5
             // 
@@ -321,7 +322,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(84, 20);
             this.textBox5.TabIndex = 46;
-            this.textBox5.Text = "P2";
+            this.textBox5.Text = "0";
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // textBox6
@@ -330,7 +331,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(84, 20);
             this.textBox6.TabIndex = 45;
-            this.textBox6.Text = "P3";
+            this.textBox6.Text = "0";
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // textBox4
@@ -339,7 +340,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(84, 20);
             this.textBox4.TabIndex = 44;
-            this.textBox4.Text = "P1";
+            this.textBox4.Text = "0";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label4
@@ -384,7 +385,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(84, 20);
             this.textBox2.TabIndex = 39;
-            this.textBox2.Text = "P2";
+            this.textBox2.Text = "0";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
@@ -393,7 +394,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(84, 20);
             this.textBox3.TabIndex = 38;
-            this.textBox3.Text = "P3";
+            this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox1
@@ -402,7 +403,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(84, 20);
             this.textBox1.TabIndex = 37;
-            this.textBox1.Text = "P1";
+            this.textBox1.Text = "0";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Periode3
@@ -440,6 +441,7 @@
             this.continue_btn.TabIndex = 33;
             this.continue_btn.Text = "Berechnung starten";
             this.continue_btn.UseVisualStyleBackColor = true;
+            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
             // button2
             // 
@@ -491,7 +493,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ImportPrognose";
-            this.Text = "Form1";
+            this.Text = "Name unseres glorreichen Programms";
             this.Load += new System.EventHandler(this.ImportPrognose_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

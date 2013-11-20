@@ -338,6 +338,7 @@ namespace IBSYS2
                         System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
                     }
 
+                    System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.","XML-Datensatz eingelesen");
                 }
 
             }

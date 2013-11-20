@@ -239,6 +239,7 @@ namespace IBSYS2
                                         idleliste.Add(idle);
                                         if (reader.HasAttributes) //Attributsliste durchlaufen
                                         {
+
                                             while (reader.MoveToNextAttribute())
                                             {
                                                 //cmd.CommandText = "";
@@ -248,52 +249,50 @@ namespace IBSYS2
                                                     
                                      //-----------------------------------------------------------------------
 
-                                        while (reader.Read())
-                                        {
-                                            if (reader.NodeType == XmlNodeType.Element)
-                                            {
-                                                switch (reader.Name)
-                                                {
-                                                    case "waitinglist":
-                                                    reader.ReadToFollowing("waitinglist");
-                                                    do
-                                                    {
-                                                        System.Windows.Forms.MessageBox.Show("Waitinglist mit workstation " + idle.Id);
+                                        //while (reader.Read())
+                                        //{
+                                        //    if (reader.NodeType == XmlNodeType.Element)
+                                        //    {
+                                        //        switch (reader.Name)
+                                        //        {
+                                        //            case "waitinglist":
+                                        //            reader.ReadToFollowing("waitinglist");
+                                        //            do
+                                        //            {
+                                        //                System.Windows.Forms.MessageBox.Show("Waitinglist mit workstation " + idle.Id);
 
 
+                                        //                int item = 0;
+                                        //                int amount = 0;
+                                        //                int timeneed = 0;
+                                        //                if (reader.HasAttributes) //Attributsliste durchlaufen
+                                        //                {
+                                        //                    while (reader.MoveToNextAttribute())
+                                        //                    {
+                                        //                        //<waitinglist period="7" order="7" firstbatch="14" lastbatch="16" item="54" amount="30" timeneed="180"/>
+                                        //                        if (reader.Name == "item")
+                                        //                            item = Convert.ToInt32(reader.Value);
+                                        //                        else if (reader.Name == "amount")
+                                        //                            amount = Convert.ToInt32(reader.Value);
+                                        //                        else if (reader.Name == "timeneed")
+                                        //                            timeneed = Convert.ToInt32(reader.Value);
+                                        //                        else if (reader.Name == "wageidletimecosts")
+                                        //                            idle.Wageidletimecosts = Convert.ToDecimal(reader.Value);
+                                        //                    }
+                                        //                }
+                                        //                cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('"+ idle.Id + "','" + item + "','" + amount + "','" + timeneed + "','" + period + "')";
+                                        //                System.Windows.Forms.MessageBox.Show("Command "+cmd.CommandText);
+                                        //                cmd.ExecuteNonQuery();
 
 
-                                                        int item = 0;
-                                                        int amount = 0;
-                                                        int timeneed = 0;
-                                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                                        {
-                                                            while (reader.MoveToNextAttribute())
-                                                            {
-                                                                //<waitinglist period="7" order="7" firstbatch="14" lastbatch="16" item="54" amount="30" timeneed="180"/>
-                                                                if (reader.Name == "item")
-                                                                    item = Convert.ToInt32(reader.Value);
-                                                                else if (reader.Name == "amount")
-                                                                    amount = Convert.ToInt32(reader.Value);
-                                                                else if (reader.Name == "timeneed")
-                                                                    timeneed = Convert.ToInt32(reader.Value);
-                                                                else if (reader.Name == "wageidletimecosts")
-                                                                    idle.Wageidletimecosts = Convert.ToDecimal(reader.Value);
-                                                            }
-                                                        }
-                                                        cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('"+ idle.Id + "','" + item + "','" + amount + "','" + timeneed + "','" + period + "')";
-                                                        System.Windows.Forms.MessageBox.Show("Command "+cmd.CommandText);
-                                                        cmd.ExecuteNonQuery();
+                                        //            }
+                                        //            while (reader.Name == "waitinglist");
+                                        //            //while (reader.ReadToNextSibling("waitinglist"));
+                                        //            break;
 
-
-                                                    }
-                                                    while (reader.Name == "waitinglist");
-                                                    //while (reader.ReadToNextSibling("waitinglist"));
-                                                    break;
-
-                                                }
-                                            }
-                                        }   
+                                        //        }
+                                        //    }
+                                        //}   
  //---------------------------------------------------------------------------------------------------------------------------------
                                                 }
 

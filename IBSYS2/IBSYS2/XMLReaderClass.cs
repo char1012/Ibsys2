@@ -114,224 +114,175 @@ namespace IBSYS2
                     {
                         XmlReader reader = XmlReader.Create(filename);
 
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filename);
+                        XmlNode data = doc.DocumentElement;
+
                         List<Artikel> artikelliste = new List<Artikel>();
                         Artikel art = null;
-                        String Überelement = "";
                         List<Order> orderliste = new List<Order>();
                         Order ord = null;
                         List<Idletime> idleliste = new List<Idletime>();
                         Idletime idle = null;
-                        System.Windows.Forms.MessageBox.Show("Anfang XMLReader");
                         int period = 0;
 
-                        while (reader.Read())
+                        //Aktuelle Periode auslesen aus XML-Dokument
+                        foreach (XmlNode node in data.SelectNodes("/results"))
                         {
-                            if (reader.NodeType == XmlNodeType.Element)
+                            period = Convert.ToInt32(node.Attributes["period"].InnerText);
+                        }
+
+                        art = new Artikel();
+                        artikelliste.Add(art);
+                        //Lagerbestand auslesen
+                        foreach (XmlNode node in data.SelectNodes("/results/warehousestock"))
+                        {
+                            // Das minus 1 wegen dem zusätzlichen Childnode "Totalstockvalue"...
+                            for (int i = 0; i < node.ChildNodes.Count-1; i++)
                             {
-                                switch (reader.Name)
+                                try
                                 {
-                                    case "results":
-                                        System.Windows.Forms.MessageBox.Show("Results");
-                                        if (reader.HasAttributes)
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-                                                if (reader.Name == "period")
-                                                {
-                                                    period = Convert.ToInt32(reader.Value);
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case "Warehousestock":
-                                        break;
-                                    case "article":
-                                        art = new Artikel();
-                                        artikelliste.Add(art);
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-                                                if (reader.Name == "id")
-                                                    art.Id = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "amount")
-                                                    art.Amount = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "startamount")
-                                                    art.Startamount = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "pct")
-                                                    art.Pct = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "price")
-                                                    art.Price = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "stockvalue")
-                                                    art.Stockvalue = Convert.ToDecimal(reader.Value);
-                                            }
-                                        }
-                                        try
-                                        {
-                                            cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','" + period + "')";
-                                            cmd.ExecuteNonQuery();
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
-                                        }
-                                        break;
-                                    case "inwardstockmovement":
-                                        Überelement = "inwardstockmovement";
-                                        break;
-                                    case "futureinwardstockmovement":
-                                        Überelement = "futureinwardstockmovement";
-                                        break;
-                                    case "order":
-                                        ord = new Order();
-                                        orderliste.Add(ord);
-                                        
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-                                            while (reader.MoveToNextAttribute())
-                                            {
-                                                cmd.CommandText = "";
-                                                if (reader.Name == "orderperiod")
-                                                    ord.Orderperiod = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "id")
-                                                    ord.Id = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "mode")
-                                                    ord.Mode = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "article")
-                                                    ord.Article = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "time")
-                                                    ord.Time = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "materialcosts")
-                                                    ord.Materialcosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "ordercosts")
-                                                    ord.Ordercosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "entirecosts")
-                                                    ord.Entirecosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "piececosts")
-                                                    ord.Piececosts = Convert.ToDecimal(reader.Value);
-                                            }
-                                        }
-                                        if (Überelement == "inwardstockmovement")
-                                        {
-                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
-
-                                        }
-                                        else if (Überelement == "futureinwardstockmovement")
-                                        {
-                                            cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",False,'" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
-
-                                        }
-                                        cmd.ExecuteNonQuery();
-                                        break;
-
-                                    case "idletimecosts":
-                                        Überelement = "idletimecosts";
-                                        break;
-                                    case "waitinglistworkstations":
-                                        Überelement = "waitinglistworkstations";
-                                        break;
-                                    case "ordersinwork":
-                                        Überelement = "ordersinwork";
-                                        break;
-                                    case "workplace":
-                                        idle = new Idletime();
-                                        idleliste.Add(idle);
-                                        if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        {
-
-                                            while (reader.MoveToNextAttribute())
-                                            {
-                                                //cmd.CommandText = "";
-                                                if (reader.Name == "id")
-                                                {
-                                                    idle.Id = Convert.ToInt32(reader.Value);
-                                                    
-                                     //-----------------------------------------------------------------------
-
-                                        //while (reader.Read())
-                                        //{
-                                        //    if (reader.NodeType == XmlNodeType.Element)
-                                        //    {
-                                        //        switch (reader.Name)
-                                        //        {
-                                        //            case "waitinglist":
-                                        //            reader.ReadToFollowing("waitinglist");
-                                        //            do
-                                        //            {
-                                        //                System.Windows.Forms.MessageBox.Show("Waitinglist mit workstation " + idle.Id);
-
-
-                                        //                int item = 0;
-                                        //                int amount = 0;
-                                        //                int timeneed = 0;
-                                        //                if (reader.HasAttributes) //Attributsliste durchlaufen
-                                        //                {
-                                        //                    while (reader.MoveToNextAttribute())
-                                        //                    {
-                                        //                        //<waitinglist period="7" order="7" firstbatch="14" lastbatch="16" item="54" amount="30" timeneed="180"/>
-                                        //                        if (reader.Name == "item")
-                                        //                            item = Convert.ToInt32(reader.Value);
-                                        //                        else if (reader.Name == "amount")
-                                        //                            amount = Convert.ToInt32(reader.Value);
-                                        //                        else if (reader.Name == "timeneed")
-                                        //                            timeneed = Convert.ToInt32(reader.Value);
-                                        //                        else if (reader.Name == "wageidletimecosts")
-                                        //                            idle.Wageidletimecosts = Convert.ToDecimal(reader.Value);
-                                        //                    }
-                                        //                }
-                                        //                cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('"+ idle.Id + "','" + item + "','" + amount + "','" + timeneed + "','" + period + "')";
-                                        //                System.Windows.Forms.MessageBox.Show("Command "+cmd.CommandText);
-                                        //                cmd.ExecuteNonQuery();
-
-
-                                        //            }
-                                        //            while (reader.Name == "waitinglist");
-                                        //            //while (reader.ReadToNextSibling("waitinglist"));
-                                        //            break;
-
-                                        //        }
-                                        //    }
-                                        //}   
- //---------------------------------------------------------------------------------------------------------------------------------
-                                                }
-
-                                                else if (reader.Name == "setupevents")
-                                                    idle.Setupevents = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "idletime")
-                                                    idle.Idletimes = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "wageidletimecosts")
-                                                    idle.Wageidletimecosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "wagecosts")
-                                                    idle.Wagecosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "machineidletimecosts")
-                                                    idle.Machineidletimecosts = Convert.ToDecimal(reader.Value);
-                                                else if (reader.Name == "amount")
-                                                    idle.Amount = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "item")
-                                                    idle.Item = Convert.ToInt32(reader.Value);
-                                                else if (reader.Name == "timeneed")
-                                                    idle.Timeneed = Convert.ToInt32(reader.Value);
-
-
-                                            }
-                                        }
-                                        if (Überelement == "idletimecosts")
-                                        {
-                                            cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
-                                        }
-                                        else if (Überelement == "ordersinwork")
-                                        {
-                                            //SQL-Statement anpassen, item und timeneed mit aufnehmen
-                                            cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Item + "','" + idle.Amount + "','" + idle.Timeneed + "','" + period + "')";                                        
-                                        }
-                                        cmd.ExecuteNonQuery();
-                                        break;
+                                    art.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                    art.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+                                    art.Startamount = Convert.ToInt32(node.ChildNodes[i].Attributes["startamount"].InnerText);
+                                    art.Pct = Convert.ToDecimal(node.ChildNodes[i].Attributes["pct"].InnerText);
+                                    art.Price = Convert.ToDecimal(node.ChildNodes[i].Attributes["price"].InnerText);
+                                    art.Stockvalue = Convert.ToDecimal(node.ChildNodes[i].Attributes["stockvalue"].InnerText);
+                                    cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','" + period + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
                                 }
                             }
                         }
-                        System.Windows.Forms.MessageBox.Show("Import ist abgeschlossen, Sie können nun auf die Daten zugreifen.");
-                        reader.Close();
+
+                        ord = new Order();
+                        orderliste.Add(ord);
+                        foreach (XmlNode node in data.SelectNodes("/results/inwardstockmovement"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count-5; i++)
+                            {
+                                ord.Orderperiod = Convert.ToInt32(node.ChildNodes[i].Attributes["orderperiod"].InnerText);
+                                ord.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                ord.Mode = Convert.ToInt32(node.ChildNodes[i].Attributes["mode"].InnerText);
+                                ord.Article = Convert.ToInt32(node.ChildNodes[i].Attributes["article"].InnerText);
+                                ord.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+                                ord.Time = Convert.ToInt32(node.ChildNodes[i].Attributes["time"].InnerText);
+                                ord.Materialcosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["materialcosts"].InnerText);
+                                ord.Ordercosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["ordercosts"].InnerText);
+                                ord.Entirecosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["entirecosts"].InnerText);
+                                ord.Piececosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["piececosts"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
+
+
+                        foreach (XmlNode node in data.SelectNodes("/results/futureinwardstockmovement"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                ord.Orderperiod = Convert.ToInt32(node.ChildNodes[i].Attributes["orderperiod"].InnerText);
+                                ord.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                ord.Mode = Convert.ToInt32(node.ChildNodes[i].Attributes["mode"].InnerText);
+                                ord.Article = Convert.ToInt32(node.ChildNodes[i].Attributes["article"].InnerText);
+                                ord.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",False)";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
+
+                        // ------------------------------------------------------------------------
+
+                        idle = new Idletime();
+                        idleliste.Add(idle);
+                        foreach (XmlNode node in data.SelectNodes("/results/idletimecosts"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count-1; i++)
+                            {
+                                idle.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                idle.Setupevents = Convert.ToInt32(node.ChildNodes[i].Attributes["setupevents"].InnerText);
+                                idle.Idletimes = Convert.ToInt32(node.ChildNodes[i].Attributes["idletime"].InnerText);
+                                idle.Wageidletimecosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["wageidletimecosts"].InnerText);
+                                idle.Wagecosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["wagecosts"].InnerText);
+                                idle.Machineidletimecosts = Convert.ToDecimal(node.ChildNodes[i].Attributes["machineidletimecosts"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Leerzeitenkosten (Arbeitsplatz_FK, Rüstvorgänge, Leerzeit_min, Lohnleerkosten, Lohnkosten, Maschinenstillstandskosten, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
+
+                        // Durchlauf der Arbeitsplätze sowie der Wartelisten der Arbeitsplätze
+                        foreach (XmlNode node in data.SelectNodes("/results/waitinglistworkstations/workplace"))
+                        {
+                            int workplace_id = Convert.ToInt32(node.Attributes["id"].InnerText);
+                            // Durchlauf der Arbeitsplatzspezifischen Wartelisten
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                int wl_period = Convert.ToInt32(node.ChildNodes[i].Attributes["period"].InnerText);
+                                int item = Convert.ToInt32(node.ChildNodes[i].Attributes["item"].InnerText);
+                                int amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+                                int timeneed = Convert.ToInt32(node.ChildNodes[i].Attributes["timeneed"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + workplace_id + "','" + item + "','" + amount + "','" + timeneed + "','" + wl_period + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
+
+                        foreach (XmlNode node in data.SelectNodes("/results/ordersinwork"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                int wp_ordersinwork = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                int wl_period = Convert.ToInt32(node.ChildNodes[i].Attributes["period"].InnerText);
+                                //int order = Convert.ToInt32(node.ChildNodes[i].Attributes["order"].InnerText);
+                                int item = Convert.ToInt32(node.ChildNodes[i].Attributes["item"].InnerText);
+                                int amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+                                int timeneed = Convert.ToInt32(node.ChildNodes[i].Attributes["timeneed"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Bearbeitung (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + wp_ordersinwork + "','" + item + "','" + amount + "','" + timeneed + "','" + wl_period + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -340,12 +291,5 @@ namespace IBSYS2
 
                     System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.","XML-Datensatz eingelesen");
                 }
-
             }
         }
-                                        //else if (Überelement == "waitinglistworkstations")
-                                        //{
-                                        //    cmd.CommandText = @"insert into Warteliste_Arbeitsplatz (Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf, Periode) values ('" + idle.Id + "','" + idle.Setupevents + "','" + idle.Idletimes + "','" + idle.Wageidletimecosts + "','" + idle.Wagecosts + "','" + idle.Machineidletimecosts + "','" + period + "')";
-                                        //    System.Windows.Forms.MessageBox.Show("SQL-Statement Warteliste_Arbeitsplatz \n+ " + cmd.CommandText);
-
-                                        //}

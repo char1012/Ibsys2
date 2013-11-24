@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Kaufteildispo = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Kaufteildisposition));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -149,16 +149,23 @@
             this.textBox77 = new System.Windows.Forms.TextBox();
             this.textBox78 = new System.Windows.Forms.TextBox();
             this.continue_btn = new System.Windows.Forms.Button();
+            this.label42 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Kaufteildispo
-            // 
-            this.Kaufteildispo.AutoSize = true;
-            this.Kaufteildispo.Location = new System.Drawing.Point(12, 21);
-            this.Kaufteildispo.Name = "Kaufteildispo";
-            this.Kaufteildispo.Size = new System.Drawing.Size(97, 13);
-            this.Kaufteildispo.TabIndex = 0;
-            this.Kaufteildispo.Text = "Kaufteiledisposition";
             // 
             // label1
             // 
@@ -1240,12 +1247,130 @@
             this.continue_btn.Text = "Fortfahren";
             this.continue_btn.UseVisualStyleBackColor = true;
             // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label42.Location = new System.Drawing.Point(538, 17);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(48, 13);
+            this.label42.TabIndex = 132;
+            this.label42.Text = "Ergebnis";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(512, 12);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(24, 32);
+            this.pictureBox6.TabIndex = 131;
+            this.pictureBox6.TabStop = false;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.label43.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label43.Location = new System.Drawing.Point(399, 17);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(110, 13);
+            this.label43.TabIndex = 130;
+            this.label43.Text = "Kaufteildisposition";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(75, 12);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(24, 32);
+            this.pictureBox5.TabIndex = 129;
+            this.pictureBox5.TabStop = false;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label44.Location = new System.Drawing.Point(297, 17);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(76, 13);
+            this.label44.TabIndex = 128;
+            this.label44.Text = "Kapazitätsplan";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(277, 12);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(24, 32);
+            this.pictureBox4.TabIndex = 127;
+            this.pictureBox4.TabStop = false;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label45.Location = new System.Drawing.Point(221, 17);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(58, 13);
+            this.label45.TabIndex = 126;
+            this.label45.Text = "Produktion";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(195, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(24, 32);
+            this.pictureBox3.TabIndex = 125;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label46.Location = new System.Drawing.Point(98, 17);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(97, 13);
+            this.label46.TabIndex = 124;
+            this.label46.Text = "Sicherheitsbestand";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.label47.Location = new System.Drawing.Point(23, 17);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(51, 13);
+            this.label47.TabIndex = 123;
+            this.label47.Text = "Startseite";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(375, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(24, 32);
+            this.pictureBox2.TabIndex = 122;
+            this.pictureBox2.TabStop = false;
+            // 
             // Kaufteildisposition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(426, 261);
+            this.ClientSize = new System.Drawing.Size(618, 572);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.label46);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.textBox40);
             this.Controls.Add(this.textBox41);
@@ -1366,10 +1491,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Kaufteildispo);
             this.Name = "Kaufteildisposition";
             this.Text = "Kaufteildisposition";
             this.Load += new System.EventHandler(this.Kaufteildisposition_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1377,7 +1506,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label Kaufteildispo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -1498,5 +1626,16 @@
         private System.Windows.Forms.TextBox textBox77;
         private System.Windows.Forms.TextBox textBox78;
         private System.Windows.Forms.Button continue_btn;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

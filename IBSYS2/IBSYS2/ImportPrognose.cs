@@ -37,6 +37,9 @@ namespace IBSYS2
             }
             else
             { 
+
+
+
                 openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
@@ -46,17 +49,35 @@ namespace IBSYS2
                         // Initialisierung DB-Verbindung
                         OleDbCommand cmd = new OleDbCommand();
                         cmd.CommandType = CommandType.Text;
-                        //MessageBox.Show(System.Environment.CurrentDirectory + "");
                         cmd.Connection = myconn;
-                        myconn.Open();
-                        int pos = File.IndexOf("result.xml");
-                        int per = Convert.ToInt32(File.Substring(pos - 1, 1));
+                        try
+                        {
+                            myconn.Open();
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                            myconn.Close();
+                            myconn.Open();
+                        }
                         int ausgewähltePeriode = comboBox1.SelectedIndex + 1;
                         cmd.CommandText = @"select Periode from Lager";
 
-                        if (ausgewähltePeriode != per)
+                        //Periode aus Datei auslesen sowie Kontrolle, ob es die richtige ist
+                        String filename = openFileDialog1.FileName;
+                        int period = 0;
+                        XmlReader reader = XmlReader.Create(filename);
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filename);
+                        XmlNode data = doc.DocumentElement;
+                        foreach (XmlNode node in data.SelectNodes("/results"))
                         {
-                            System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein, überprüfen Sie das bitte.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                            period = Convert.ToInt32(node.Attributes["period"].InnerText);
+                        }
+
+                        if (ausgewähltePeriode-1 != period )
+                        {
+                            System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                         }
                         else
                         {
@@ -67,7 +88,7 @@ namespace IBSYS2
                                 PeriodeDB = Convert.ToInt32(perReader["Periode"]);
                             }
                             myconn.Close();
-                            if (per == PeriodeDB)
+                            if (period == PeriodeDB)
                             {
                                 System.Windows.Forms.MessageBox.Show("Die XML-Datei wurde bereits in die Datenbank eingespeist, herzlichen Dank ;-)");
                                 continue_btn.Enabled = true;
@@ -415,6 +436,11 @@ namespace IBSYS2
                     return;
                 }
             }
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
 
         }
 

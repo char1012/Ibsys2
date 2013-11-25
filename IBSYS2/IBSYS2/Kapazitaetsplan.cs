@@ -102,6 +102,9 @@ namespace IBSYS2
             OleDbCommand cmd2 = new OleDbCommand();
             cmd2.CommandType = CommandType.Text;
             cmd2.Connection = myconn;
+            OleDbCommand cmd3 = new OleDbCommand();
+            cmd3.CommandType = CommandType.Text;
+            cmd3.Connection = myconn;
             try
             {
                 myconn.Open();
@@ -156,8 +159,11 @@ namespace IBSYS2
             int teilenummer = 0;
             int menge = 0;
             int zeitbedarf = 0;
+            int zeitbedarf2 = 0;
             int fehlteil = 0;
             int materialWarteliste = 0;
+            int andererPlatz = 0;
+            int reihenfolge = 0;
             bool vorgelagert = false;
             for (int i = 0; i < plaetze.Length; ++i)
             {
@@ -247,10 +253,59 @@ namespace IBSYS2
                 // Eintraege in den Tabellen Warteliste und Bearbeitung stehen
                 if (vorgelagert == true)
                 {
-                    
+                    // herausfinden, bei welchen Teilen es vorgelagerte Plaetze gibt
+                    cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Bearbeitungszeit, Rüstzeit, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr 
+                        + " AND Reihenfolge <> 1;";
+                    dbReader = cmd.ExecuteReader();
+                    while (dbReader.Read())
+                    {
+                        teilenummer = Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]);
+                        zeitbedarf = Convert.ToInt32(dbReader["Bearbeitungszeit"]);
+                        zeitbedarf2 = Convert.ToInt32(dbReader["Rüstzeit"]);
+                        reihenfolge = Convert.ToInt32(dbReader["Reihenfolge"]);
+                        // herausfinden, welche Plaetze dies sind (exkl. dem aktuellen Platz)
+                        cmd2.CommandText = @"SELECT Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis WHERE Erzeugnis_Teilenummer_FK = " + teilenummer 
+                            + " AND Arbeitsplatz_FK <> " + platznr + " AND Reihenfolge < " + reihenfolge + ";";
+                        OleDbDataReader dbReader2 = cmd2.ExecuteReader();
+                        while (dbReader2.Read())
+                        {
+                            andererPlatz = Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]);
+                            // kontrollieren, ob diese in der Warteliste Arbeitsplatz liegen
+                            // Menge wird benoetigt, um dies dann mit den eigenen Werten fuer B.zeit und R.zeit zu verrechnen
+                            cmd3.CommandText = @"SELECT Menge FROM Warteliste_Arbeitsplatz WHERE Teilenummer_FK = " + teilenummer 
+                                + " AND Arbeitsplatz_FK = " + andererPlatz + " AND periode = " + periode + ";";
+                            OleDbDataReader dbReader3 = cmd3.ExecuteReader();
+                            while (dbReader3.Read())
+                            {
+                                menge = Convert.ToInt32(dbReader3["Menge"]);
+                                rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + (zeitbedarf * menge);
+                                rueckstandRuestzeit = rueckstandRuestzeit + zeitbedarf2;
+                                menge = 0;
+                            }
+                            dbReader3.Close();
+                            // kontrollieren, ob diese in Bearbeitung liegen
+                            cmd3.CommandText = @"SELECT Menge FROM Bearbeitung WHERE Teilenummer_FK = " + teilenummer
+                                + " AND Arbeitsplatz_FK = " + andererPlatz + " AND periode = " + periode + ";";
+                            dbReader3 = cmd3.ExecuteReader();
+                            while (dbReader3.Read())
+                            {
+                                menge = Convert.ToInt32(dbReader3["Menge"]);
+                                rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + (zeitbedarf * menge);
+                                rueckstandRuestzeit = rueckstandRuestzeit + zeitbedarf2;
+                                menge = 0;
+                            }
+                            dbReader3.Close();
+                            andererPlatz = 0;
+                        }
+                        teilenummer = 0;
+                        zeitbedarf = 0;
+                        zeitbedarf2 = 0;
+                        reihenfolge = 0;
+                        dbReader2.Close();
+                    }
+                    dbReader.Close();
                 }
-                plaetze[i] = rueckstandBearbeitungszeit + rueckstandRuestzeit;
-                // spaeter eigentlich plaetze[i] = plaetze[i] + rueckstandBearbeitungszeit + rueckstandRuestzeit;
+                plaetze[i] = plaetze[i] + rueckstandBearbeitungszeit + rueckstandRuestzeit;
                 rueckstandBearbeitungszeit = 0;
                 rueckstandRuestzeit = 0;
                 vorgelagert = false;

@@ -42,6 +42,10 @@ namespace IBSYS2
             int[] BB_P25 = new int[] { prodP1 * 4 + prodP2 * 4 + prodP3 * 4, prodP1 * 4 + prodP2 * 4 + prodP3 * 4, prodP1 * 4 + prodP2 * 4 + prodP3 * 4 };
             int[] BB_P26 = new int[] { prodP1 * 2 + prodP2 * 2 + prodP3 * 2, prodP1 * 2 + prodP2 * 2 + prodP3 * 2, prodP1 * 2 + prodP2 * 2 + prodP3 * 2 };
             
+            //Bestellmenge berechnen
+            for (int i = 0; i < BB_P21.Length; ++i ) {
+                int min = ((BB_P21[0] + BB_P21[1] + BB_P21[2]) / 3 * (Convert.ToInt32(LFA_P21) * Convert.ToInt32(LF_P21)));
+            }
 
             /*
             * Errechnung des Produktionsbedarfs nach Produkt
@@ -79,11 +83,7 @@ namespace IBSYS2
         }
 
         //Bestellmenge ausrechnen
-        public int Bestellen(int prodP1, int prodP2, int prodP3)
-        {
-            int bestellmenge = 100;
-            return bestellmenge;
-        }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

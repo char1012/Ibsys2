@@ -31,7 +31,7 @@ namespace IBSYS2
             // Dieser Konstruktor soll in Zukunft von Produktion.cs mit den Parametern
             // int periode und eines zweidimensionales int-Array (Teilenummer, Produktionsmenge) aufgerufen.
             // Diese Werte werden momentan simuliert.
-            int periode = 7;
+            int periode = 6; // Periode des xmls
             int[,] teile = new int [30,2];
             teile[0,0] = 1;
             teile[0,1] = 90; // Teil p1 mit 90 Stueck Produktion
@@ -156,6 +156,8 @@ namespace IBSYS2
             int teilenummer = 0;
             int menge = 0;
             int zeitbedarf = 0;
+            int fehlteil = 0;
+            int materialWarteliste = 0;
             bool vorgelagert = false;
             for (int i = 0; i < plaetze.Length; ++i)
             {
@@ -176,7 +178,8 @@ namespace IBSYS2
                 // In jedem Fall die Tabellen Warteliste und Bearbeitung auf Eintraege fuer diesen Platz ueberpruefen
 
                 // 1. Warteliste Arbeitsplatz ueberpruefen -> Bearbeitungszeit und Ruestzeit
-                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr + ";";
+                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr 
+                    + " AND Periode = " + periode + ";";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
@@ -190,7 +193,6 @@ namespace IBSYS2
                     OleDbDataReader dbReader2 = cmd2.ExecuteReader();
                     while (dbReader2.Read()) // hier sollte nur eine Zeile herauskommen
                     {
-                        MessageBox.Show(platznr + " " + dbReader2["Rüstzeit"]);
                         rueckstandRuestzeit = rueckstandRuestzeit + Convert.ToInt32(dbReader2["Rüstzeit"]);
                     }
                     teilenummer = 0;
@@ -200,7 +202,8 @@ namespace IBSYS2
                 dbReader.Close();
 
                 // 2. In Bearbeitung ueberpruefen -> nur Bearbeitungszeit
-                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr + ";";
+                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr 
+                    + " AND Periode = " + periode + ";";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
@@ -209,6 +212,36 @@ namespace IBSYS2
                 dbReader.Close();
 
                 // 3. Warteliste Material ueberpruefen
+                // ueberpruefen, ob eines der noch nicht angestossenen Teile vor diesem Platz liegt
+                cmd.CommandText = @"SELECT Fehlteil_Teilenummer_FK, Erzeugnis_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    fehlteil = Convert.ToInt32(dbReader["Fehlteil_Teilenummer_FK"]);
+                    materialWarteliste = Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]);
+                    menge = Convert.ToInt32(dbReader["Menge"]);
+                    // Ich gehe an dieser Stelle davon aus, dass die Produktion von materialWarteliste
+                    // noch gar nicht angestossen wurde und es noch durch alle Plaetze durch muss.
+                    // -> alle Plaetze heraussuchen und kontrollieren, ob der aktuelle dazu gehoert
+                    cmd2.CommandText = @"SELECT Arbeitsplatz_FK, Bearbeitungszeit, Rüstzeit FROM Arbeitsplatz_Erzeugnis WHERE Erzeugnis_Teilenummer_FK = " + materialWarteliste + ";";
+                    OleDbDataReader dbReader2 = cmd2.ExecuteReader();
+                    while (dbReader2.Read())
+                    {
+                        if (platznr == Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]))
+                        {
+                            // Bearbeitungszeit mit der Menge multiplizieren
+                            int zeit = Convert.ToInt32(dbReader2["Bearbeitungszeit"]) * menge;
+                            // Bearbeitungszeit und Rüstzeit speichern
+                            rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + zeit;
+                            rueckstandRuestzeit = rueckstandRuestzeit + Convert.ToInt32(dbReader2["Rüstzeit"]);
+                        }
+                    }
+                    fehlteil = 0;
+                    materialWarteliste = 0;
+                    menge = 0;
+                    dbReader2.Close();
+                }
+                dbReader.Close();
 
                 // wenn vorgelagert == true, muess kontrolliert werden, ob fuer die vorgelagerten Plaetze
                 // Eintraege in den Tabellen Warteliste und Bearbeitung stehen

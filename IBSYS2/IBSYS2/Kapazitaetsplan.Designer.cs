@@ -62,21 +62,21 @@
             this.K15 = new System.Windows.Forms.TextBox();
             this.K14 = new System.Windows.Forms.TextBox();
             this.K13 = new System.Windows.Forms.TextBox();
-            this.UE15 = new System.Windows.Forms.TextBox();
-            this.UE14 = new System.Windows.Forms.TextBox();
-            this.UE13 = new System.Windows.Forms.TextBox();
-            this.UE12 = new System.Windows.Forms.TextBox();
-            this.UE11 = new System.Windows.Forms.TextBox();
-            this.UE10 = new System.Windows.Forms.TextBox();
-            this.UE9 = new System.Windows.Forms.TextBox();
-            this.UE8 = new System.Windows.Forms.TextBox();
-            this.UE7 = new System.Windows.Forms.TextBox();
-            this.UE6 = new System.Windows.Forms.TextBox();
-            this.UE5 = new System.Windows.Forms.TextBox();
-            this.UE4 = new System.Windows.Forms.TextBox();
-            this.UE3 = new System.Windows.Forms.TextBox();
-            this.UE2 = new System.Windows.Forms.TextBox();
-            this.UE1 = new System.Windows.Forms.TextBox();
+            this.UT15 = new System.Windows.Forms.TextBox();
+            this.UT14 = new System.Windows.Forms.TextBox();
+            this.UT13 = new System.Windows.Forms.TextBox();
+            this.UT12 = new System.Windows.Forms.TextBox();
+            this.UT11 = new System.Windows.Forms.TextBox();
+            this.UT10 = new System.Windows.Forms.TextBox();
+            this.UT9 = new System.Windows.Forms.TextBox();
+            this.UT8 = new System.Windows.Forms.TextBox();
+            this.UT7 = new System.Windows.Forms.TextBox();
+            this.UT6 = new System.Windows.Forms.TextBox();
+            this.UT5 = new System.Windows.Forms.TextBox();
+            this.UT4 = new System.Windows.Forms.TextBox();
+            this.UT3 = new System.Windows.Forms.TextBox();
+            this.UT2 = new System.Windows.Forms.TextBox();
+            this.UT1 = new System.Windows.Forms.TextBox();
             this.S15 = new System.Windows.Forms.TextBox();
             this.S14 = new System.Windows.Forms.TextBox();
             this.S13 = new System.Windows.Forms.TextBox();
@@ -107,21 +107,21 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.UeberstundenPeriode = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.UP1 = new System.Windows.Forms.TextBox();
+            this.UP2 = new System.Windows.Forms.TextBox();
+            this.UP3 = new System.Windows.Forms.TextBox();
+            this.UP15 = new System.Windows.Forms.TextBox();
+            this.UP14 = new System.Windows.Forms.TextBox();
+            this.UP13 = new System.Windows.Forms.TextBox();
+            this.UP12 = new System.Windows.Forms.TextBox();
+            this.UP11 = new System.Windows.Forms.TextBox();
+            this.UP10 = new System.Windows.Forms.TextBox();
+            this.UP9 = new System.Windows.Forms.TextBox();
+            this.UP8 = new System.Windows.Forms.TextBox();
+            this.UP4 = new System.Windows.Forms.TextBox();
+            this.UP5 = new System.Windows.Forms.TextBox();
+            this.UP6 = new System.Windows.Forms.TextBox();
+            this.UP7 = new System.Windows.Forms.TextBox();
             this.back_btn = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -417,112 +417,112 @@
             this.K13.Size = new System.Drawing.Size(30, 20);
             this.K13.TabIndex = 31;
             // 
-            // UE15
+            // UT15
             // 
-            this.UE15.Location = new System.Drawing.Point(636, 116);
-            this.UE15.Name = "UE15";
-            this.UE15.Size = new System.Drawing.Size(30, 20);
-            this.UE15.TabIndex = 48;
+            this.UT15.Location = new System.Drawing.Point(636, 116);
+            this.UT15.Name = "UT15";
+            this.UT15.Size = new System.Drawing.Size(30, 20);
+            this.UT15.TabIndex = 48;
             // 
-            // UE14
+            // UT14
             // 
-            this.UE14.Location = new System.Drawing.Point(600, 116);
-            this.UE14.Name = "UE14";
-            this.UE14.Size = new System.Drawing.Size(30, 20);
-            this.UE14.TabIndex = 47;
+            this.UT14.Location = new System.Drawing.Point(600, 116);
+            this.UT14.Name = "UT14";
+            this.UT14.Size = new System.Drawing.Size(30, 20);
+            this.UT14.TabIndex = 47;
             // 
-            // UE13
+            // UT13
             // 
-            this.UE13.Location = new System.Drawing.Point(564, 116);
-            this.UE13.Name = "UE13";
-            this.UE13.Size = new System.Drawing.Size(30, 20);
-            this.UE13.TabIndex = 46;
+            this.UT13.Location = new System.Drawing.Point(564, 116);
+            this.UT13.Name = "UT13";
+            this.UT13.Size = new System.Drawing.Size(30, 20);
+            this.UT13.TabIndex = 46;
             // 
-            // UE12
+            // UT12
             // 
-            this.UE12.Location = new System.Drawing.Point(528, 116);
-            this.UE12.Name = "UE12";
-            this.UE12.Size = new System.Drawing.Size(30, 20);
-            this.UE12.TabIndex = 45;
+            this.UT12.Location = new System.Drawing.Point(528, 116);
+            this.UT12.Name = "UT12";
+            this.UT12.Size = new System.Drawing.Size(30, 20);
+            this.UT12.TabIndex = 45;
             // 
-            // UE11
+            // UT11
             // 
-            this.UE11.Location = new System.Drawing.Point(492, 116);
-            this.UE11.Name = "UE11";
-            this.UE11.Size = new System.Drawing.Size(30, 20);
-            this.UE11.TabIndex = 44;
+            this.UT11.Location = new System.Drawing.Point(492, 116);
+            this.UT11.Name = "UT11";
+            this.UT11.Size = new System.Drawing.Size(30, 20);
+            this.UT11.TabIndex = 44;
             // 
-            // UE10
+            // UT10
             // 
-            this.UE10.Location = new System.Drawing.Point(456, 116);
-            this.UE10.Name = "UE10";
-            this.UE10.Size = new System.Drawing.Size(30, 20);
-            this.UE10.TabIndex = 43;
+            this.UT10.Location = new System.Drawing.Point(456, 116);
+            this.UT10.Name = "UT10";
+            this.UT10.Size = new System.Drawing.Size(30, 20);
+            this.UT10.TabIndex = 43;
             // 
-            // UE9
+            // UT9
             // 
-            this.UE9.Location = new System.Drawing.Point(420, 116);
-            this.UE9.Name = "UE9";
-            this.UE9.Size = new System.Drawing.Size(30, 20);
-            this.UE9.TabIndex = 42;
+            this.UT9.Location = new System.Drawing.Point(420, 116);
+            this.UT9.Name = "UT9";
+            this.UT9.Size = new System.Drawing.Size(30, 20);
+            this.UT9.TabIndex = 42;
             // 
-            // UE8
+            // UT8
             // 
-            this.UE8.Location = new System.Drawing.Point(384, 116);
-            this.UE8.Name = "UE8";
-            this.UE8.Size = new System.Drawing.Size(30, 20);
-            this.UE8.TabIndex = 41;
+            this.UT8.Location = new System.Drawing.Point(384, 116);
+            this.UT8.Name = "UT8";
+            this.UT8.Size = new System.Drawing.Size(30, 20);
+            this.UT8.TabIndex = 41;
             // 
-            // UE7
+            // UT7
             // 
-            this.UE7.Location = new System.Drawing.Point(348, 116);
-            this.UE7.Name = "UE7";
-            this.UE7.Size = new System.Drawing.Size(30, 20);
-            this.UE7.TabIndex = 40;
+            this.UT7.Location = new System.Drawing.Point(348, 116);
+            this.UT7.Name = "UT7";
+            this.UT7.Size = new System.Drawing.Size(30, 20);
+            this.UT7.TabIndex = 40;
             // 
-            // UE6
+            // UT6
             // 
-            this.UE6.Location = new System.Drawing.Point(312, 116);
-            this.UE6.Name = "UE6";
-            this.UE6.Size = new System.Drawing.Size(30, 20);
-            this.UE6.TabIndex = 39;
+            this.UT6.Location = new System.Drawing.Point(312, 116);
+            this.UT6.Name = "UT6";
+            this.UT6.Size = new System.Drawing.Size(30, 20);
+            this.UT6.TabIndex = 39;
             // 
-            // UE5
+            // UT5
             // 
-            this.UE5.BackColor = System.Drawing.SystemColors.Window;
-            this.UE5.Enabled = false;
-            this.UE5.Location = new System.Drawing.Point(276, 116);
-            this.UE5.Name = "UE5";
-            this.UE5.Size = new System.Drawing.Size(30, 20);
-            this.UE5.TabIndex = 38;
+            this.UT5.BackColor = System.Drawing.SystemColors.Window;
+            this.UT5.Enabled = false;
+            this.UT5.Location = new System.Drawing.Point(276, 116);
+            this.UT5.Name = "UT5";
+            this.UT5.Size = new System.Drawing.Size(30, 20);
+            this.UT5.TabIndex = 38;
             // 
-            // UE4
+            // UT4
             // 
-            this.UE4.Location = new System.Drawing.Point(240, 116);
-            this.UE4.Name = "UE4";
-            this.UE4.Size = new System.Drawing.Size(30, 20);
-            this.UE4.TabIndex = 37;
+            this.UT4.Location = new System.Drawing.Point(240, 116);
+            this.UT4.Name = "UT4";
+            this.UT4.Size = new System.Drawing.Size(30, 20);
+            this.UT4.TabIndex = 37;
             // 
-            // UE3
+            // UT3
             // 
-            this.UE3.Location = new System.Drawing.Point(204, 116);
-            this.UE3.Name = "UE3";
-            this.UE3.Size = new System.Drawing.Size(30, 20);
-            this.UE3.TabIndex = 36;
+            this.UT3.Location = new System.Drawing.Point(204, 116);
+            this.UT3.Name = "UT3";
+            this.UT3.Size = new System.Drawing.Size(30, 20);
+            this.UT3.TabIndex = 36;
             // 
-            // UE2
+            // UT2
             // 
-            this.UE2.Location = new System.Drawing.Point(168, 116);
-            this.UE2.Name = "UE2";
-            this.UE2.Size = new System.Drawing.Size(30, 20);
-            this.UE2.TabIndex = 35;
+            this.UT2.Location = new System.Drawing.Point(168, 116);
+            this.UT2.Name = "UT2";
+            this.UT2.Size = new System.Drawing.Size(30, 20);
+            this.UT2.TabIndex = 35;
             // 
-            // UE1
+            // UT1
             // 
-            this.UE1.Location = new System.Drawing.Point(132, 116);
-            this.UE1.Name = "UE1";
-            this.UE1.Size = new System.Drawing.Size(30, 20);
-            this.UE1.TabIndex = 34;
+            this.UT1.Location = new System.Drawing.Point(132, 116);
+            this.UT1.Name = "UT1";
+            this.UT1.Size = new System.Drawing.Size(30, 20);
+            this.UT1.TabIndex = 34;
             // 
             // S15
             // 
@@ -752,21 +752,21 @@
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.back_btn);
             this.groupBox1.Controls.Add(this.UeberstundenPeriode);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.textBox9);
-            this.groupBox1.Controls.Add(this.textBox10);
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.textBox12);
-            this.groupBox1.Controls.Add(this.textBox13);
-            this.groupBox1.Controls.Add(this.textBox14);
-            this.groupBox1.Controls.Add(this.textBox15);
+            this.groupBox1.Controls.Add(this.UP1);
+            this.groupBox1.Controls.Add(this.UP2);
+            this.groupBox1.Controls.Add(this.UP3);
+            this.groupBox1.Controls.Add(this.UP15);
+            this.groupBox1.Controls.Add(this.UP14);
+            this.groupBox1.Controls.Add(this.UP13);
+            this.groupBox1.Controls.Add(this.UP12);
+            this.groupBox1.Controls.Add(this.UP11);
+            this.groupBox1.Controls.Add(this.UP10);
+            this.groupBox1.Controls.Add(this.UP9);
+            this.groupBox1.Controls.Add(this.UP8);
+            this.groupBox1.Controls.Add(this.UP4);
+            this.groupBox1.Controls.Add(this.UP5);
+            this.groupBox1.Controls.Add(this.UP6);
+            this.groupBox1.Controls.Add(this.UP7);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.continue_btn);
             this.groupBox1.Controls.Add(this.KapBedarf);
@@ -778,10 +778,10 @@
             this.groupBox1.Controls.Add(this.A3);
             this.groupBox1.Controls.Add(this.K1);
             this.groupBox1.Controls.Add(this.K2);
-            this.groupBox1.Controls.Add(this.UE1);
-            this.groupBox1.Controls.Add(this.UE2);
+            this.groupBox1.Controls.Add(this.UT1);
+            this.groupBox1.Controls.Add(this.UT2);
             this.groupBox1.Controls.Add(this.S15);
-            this.groupBox1.Controls.Add(this.UE3);
+            this.groupBox1.Controls.Add(this.UT3);
             this.groupBox1.Controls.Add(this.S14);
             this.groupBox1.Controls.Add(this.S1);
             this.groupBox1.Controls.Add(this.S13);
@@ -794,36 +794,36 @@
             this.groupBox1.Controls.Add(this.A5);
             this.groupBox1.Controls.Add(this.S9);
             this.groupBox1.Controls.Add(this.A6);
-            this.groupBox1.Controls.Add(this.UE15);
+            this.groupBox1.Controls.Add(this.UT15);
             this.groupBox1.Controls.Add(this.S8);
-            this.groupBox1.Controls.Add(this.UE14);
+            this.groupBox1.Controls.Add(this.UT14);
             this.groupBox1.Controls.Add(this.A7);
-            this.groupBox1.Controls.Add(this.UE13);
+            this.groupBox1.Controls.Add(this.UT13);
             this.groupBox1.Controls.Add(this.S7);
-            this.groupBox1.Controls.Add(this.UE12);
+            this.groupBox1.Controls.Add(this.UT12);
             this.groupBox1.Controls.Add(this.K4);
-            this.groupBox1.Controls.Add(this.UE11);
+            this.groupBox1.Controls.Add(this.UT11);
             this.groupBox1.Controls.Add(this.S6);
-            this.groupBox1.Controls.Add(this.UE10);
+            this.groupBox1.Controls.Add(this.UT10);
             this.groupBox1.Controls.Add(this.K5);
-            this.groupBox1.Controls.Add(this.UE9);
+            this.groupBox1.Controls.Add(this.UT9);
             this.groupBox1.Controls.Add(this.S5);
             this.groupBox1.Controls.Add(this.K15);
             this.groupBox1.Controls.Add(this.K6);
             this.groupBox1.Controls.Add(this.K14);
             this.groupBox1.Controls.Add(this.S4);
             this.groupBox1.Controls.Add(this.K13);
-            this.groupBox1.Controls.Add(this.UE8);
+            this.groupBox1.Controls.Add(this.UT8);
             this.groupBox1.Controls.Add(this.K12);
             this.groupBox1.Controls.Add(this.K7);
             this.groupBox1.Controls.Add(this.K11);
-            this.groupBox1.Controls.Add(this.UE4);
+            this.groupBox1.Controls.Add(this.UT4);
             this.groupBox1.Controls.Add(this.K10);
-            this.groupBox1.Controls.Add(this.UE5);
+            this.groupBox1.Controls.Add(this.UT5);
             this.groupBox1.Controls.Add(this.A15);
-            this.groupBox1.Controls.Add(this.UE6);
+            this.groupBox1.Controls.Add(this.UT6);
             this.groupBox1.Controls.Add(this.A14);
-            this.groupBox1.Controls.Add(this.UE7);
+            this.groupBox1.Controls.Add(this.UT7);
             this.groupBox1.Controls.Add(this.A13);
             this.groupBox1.Controls.Add(this.A8);
             this.groupBox1.Controls.Add(this.A12);
@@ -857,112 +857,112 @@
             this.UeberstundenPeriode.TabIndex = 66;
             this.UeberstundenPeriode.Text = "Überstunden/Periode";
             // 
-            // textBox1
+            // UP1
             // 
-            this.textBox1.Location = new System.Drawing.Point(132, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(30, 20);
-            this.textBox1.TabIndex = 67;
+            this.UP1.Location = new System.Drawing.Point(132, 90);
+            this.UP1.Name = "UP1";
+            this.UP1.Size = new System.Drawing.Size(30, 20);
+            this.UP1.TabIndex = 67;
             // 
-            // textBox2
+            // UP2
             // 
-            this.textBox2.Location = new System.Drawing.Point(168, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(30, 20);
-            this.textBox2.TabIndex = 68;
+            this.UP2.Location = new System.Drawing.Point(168, 90);
+            this.UP2.Name = "UP2";
+            this.UP2.Size = new System.Drawing.Size(30, 20);
+            this.UP2.TabIndex = 68;
             // 
-            // textBox3
+            // UP3
             // 
-            this.textBox3.Location = new System.Drawing.Point(204, 90);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(30, 20);
-            this.textBox3.TabIndex = 69;
+            this.UP3.Location = new System.Drawing.Point(204, 90);
+            this.UP3.Name = "UP3";
+            this.UP3.Size = new System.Drawing.Size(30, 20);
+            this.UP3.TabIndex = 69;
             // 
-            // textBox4
+            // UP15
             // 
-            this.textBox4.Location = new System.Drawing.Point(636, 90);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(30, 20);
-            this.textBox4.TabIndex = 81;
+            this.UP15.Location = new System.Drawing.Point(636, 90);
+            this.UP15.Name = "UP15";
+            this.UP15.Size = new System.Drawing.Size(30, 20);
+            this.UP15.TabIndex = 81;
             // 
-            // textBox5
+            // UP14
             // 
-            this.textBox5.Location = new System.Drawing.Point(600, 90);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(30, 20);
-            this.textBox5.TabIndex = 80;
+            this.UP14.Location = new System.Drawing.Point(600, 90);
+            this.UP14.Name = "UP14";
+            this.UP14.Size = new System.Drawing.Size(30, 20);
+            this.UP14.TabIndex = 80;
             // 
-            // textBox6
+            // UP13
             // 
-            this.textBox6.Location = new System.Drawing.Point(564, 90);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(30, 20);
-            this.textBox6.TabIndex = 79;
+            this.UP13.Location = new System.Drawing.Point(564, 90);
+            this.UP13.Name = "UP13";
+            this.UP13.Size = new System.Drawing.Size(30, 20);
+            this.UP13.TabIndex = 79;
             // 
-            // textBox7
+            // UP12
             // 
-            this.textBox7.Location = new System.Drawing.Point(528, 90);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(30, 20);
-            this.textBox7.TabIndex = 78;
+            this.UP12.Location = new System.Drawing.Point(528, 90);
+            this.UP12.Name = "UP12";
+            this.UP12.Size = new System.Drawing.Size(30, 20);
+            this.UP12.TabIndex = 78;
             // 
-            // textBox8
+            // UP11
             // 
-            this.textBox8.Location = new System.Drawing.Point(492, 90);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(30, 20);
-            this.textBox8.TabIndex = 77;
+            this.UP11.Location = new System.Drawing.Point(492, 90);
+            this.UP11.Name = "UP11";
+            this.UP11.Size = new System.Drawing.Size(30, 20);
+            this.UP11.TabIndex = 77;
             // 
-            // textBox9
+            // UP10
             // 
-            this.textBox9.Location = new System.Drawing.Point(456, 90);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(30, 20);
-            this.textBox9.TabIndex = 76;
+            this.UP10.Location = new System.Drawing.Point(456, 90);
+            this.UP10.Name = "UP10";
+            this.UP10.Size = new System.Drawing.Size(30, 20);
+            this.UP10.TabIndex = 76;
             // 
-            // textBox10
+            // UP9
             // 
-            this.textBox10.Location = new System.Drawing.Point(420, 90);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(30, 20);
-            this.textBox10.TabIndex = 75;
+            this.UP9.Location = new System.Drawing.Point(420, 90);
+            this.UP9.Name = "UP9";
+            this.UP9.Size = new System.Drawing.Size(30, 20);
+            this.UP9.TabIndex = 75;
             // 
-            // textBox11
+            // UP8
             // 
-            this.textBox11.Location = new System.Drawing.Point(384, 90);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(30, 20);
-            this.textBox11.TabIndex = 74;
+            this.UP8.Location = new System.Drawing.Point(384, 90);
+            this.UP8.Name = "UP8";
+            this.UP8.Size = new System.Drawing.Size(30, 20);
+            this.UP8.TabIndex = 74;
             // 
-            // textBox12
+            // UP4
             // 
-            this.textBox12.Location = new System.Drawing.Point(240, 90);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(30, 20);
-            this.textBox12.TabIndex = 70;
+            this.UP4.Location = new System.Drawing.Point(240, 90);
+            this.UP4.Name = "UP4";
+            this.UP4.Size = new System.Drawing.Size(30, 20);
+            this.UP4.TabIndex = 70;
             // 
-            // textBox13
+            // UP5
             // 
-            this.textBox13.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(276, 90);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(30, 20);
-            this.textBox13.TabIndex = 71;
+            this.UP5.BackColor = System.Drawing.SystemColors.Window;
+            this.UP5.Enabled = false;
+            this.UP5.Location = new System.Drawing.Point(276, 90);
+            this.UP5.Name = "UP5";
+            this.UP5.Size = new System.Drawing.Size(30, 20);
+            this.UP5.TabIndex = 71;
             // 
-            // textBox14
+            // UP6
             // 
-            this.textBox14.Location = new System.Drawing.Point(312, 90);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(30, 20);
-            this.textBox14.TabIndex = 72;
+            this.UP6.Location = new System.Drawing.Point(312, 90);
+            this.UP6.Name = "UP6";
+            this.UP6.Size = new System.Drawing.Size(30, 20);
+            this.UP6.TabIndex = 72;
             // 
-            // textBox15
+            // UP7
             // 
-            this.textBox15.Location = new System.Drawing.Point(348, 90);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(30, 20);
-            this.textBox15.TabIndex = 73;
+            this.UP7.Location = new System.Drawing.Point(348, 90);
+            this.UP7.Name = "UP7";
+            this.UP7.Size = new System.Drawing.Size(30, 20);
+            this.UP7.TabIndex = 73;
             // 
             // back_btn
             // 
@@ -1051,21 +1051,21 @@
         private System.Windows.Forms.TextBox K15;
         private System.Windows.Forms.TextBox K14;
         private System.Windows.Forms.TextBox K13;
-        private System.Windows.Forms.TextBox UE15;
-        private System.Windows.Forms.TextBox UE14;
-        private System.Windows.Forms.TextBox UE13;
-        private System.Windows.Forms.TextBox UE12;
-        private System.Windows.Forms.TextBox UE11;
-        private System.Windows.Forms.TextBox UE10;
-        private System.Windows.Forms.TextBox UE9;
-        private System.Windows.Forms.TextBox UE8;
-        private System.Windows.Forms.TextBox UE7;
-        private System.Windows.Forms.TextBox UE6;
-        private System.Windows.Forms.TextBox UE5;
-        private System.Windows.Forms.TextBox UE4;
-        private System.Windows.Forms.TextBox UE3;
-        private System.Windows.Forms.TextBox UE2;
-        private System.Windows.Forms.TextBox UE1;
+        private System.Windows.Forms.TextBox UT15;
+        private System.Windows.Forms.TextBox UT14;
+        private System.Windows.Forms.TextBox UT13;
+        private System.Windows.Forms.TextBox UT12;
+        private System.Windows.Forms.TextBox UT11;
+        private System.Windows.Forms.TextBox UT10;
+        private System.Windows.Forms.TextBox UT9;
+        private System.Windows.Forms.TextBox UT8;
+        private System.Windows.Forms.TextBox UT7;
+        private System.Windows.Forms.TextBox UT6;
+        private System.Windows.Forms.TextBox UT5;
+        private System.Windows.Forms.TextBox UT4;
+        private System.Windows.Forms.TextBox UT3;
+        private System.Windows.Forms.TextBox UT2;
+        private System.Windows.Forms.TextBox UT1;
         private System.Windows.Forms.TextBox S15;
         private System.Windows.Forms.TextBox S14;
         private System.Windows.Forms.TextBox S13;
@@ -1096,21 +1096,21 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label UeberstundenPeriode;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox UP1;
+        private System.Windows.Forms.TextBox UP2;
+        private System.Windows.Forms.TextBox UP3;
+        private System.Windows.Forms.TextBox UP15;
+        private System.Windows.Forms.TextBox UP14;
+        private System.Windows.Forms.TextBox UP13;
+        private System.Windows.Forms.TextBox UP12;
+        private System.Windows.Forms.TextBox UP11;
+        private System.Windows.Forms.TextBox UP10;
+        private System.Windows.Forms.TextBox UP9;
+        private System.Windows.Forms.TextBox UP8;
+        private System.Windows.Forms.TextBox UP4;
+        private System.Windows.Forms.TextBox UP5;
+        private System.Windows.Forms.TextBox UP6;
+        private System.Windows.Forms.TextBox UP7;
         private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.PictureBox pictureBox7;
     }

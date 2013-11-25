@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Data.OleDb;
-using Visiblox.Charts;
 using System.Data.SqlClient;
 
 namespace IBSYS2

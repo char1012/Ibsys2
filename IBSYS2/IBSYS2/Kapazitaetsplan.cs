@@ -99,6 +99,9 @@ namespace IBSYS2
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = myconn;
+            OleDbCommand cmd2 = new OleDbCommand();
+            cmd2.CommandType = CommandType.Text;
+            cmd2.Connection = myconn;
             try
             {
                 myconn.Open();
@@ -111,6 +114,7 @@ namespace IBSYS2
             }
 
             // Berechnung des Kapazitaetsbedarfs
+
             // 1. Bearbeitungszeit + Ruestzeit
             int[] plaetze = new int[15];
             int bearbeitungszeit = 0;
@@ -145,8 +149,79 @@ namespace IBSYS2
                 ruestzeit = 0;
                 dbReader.Close();
             }
-            // 2. Rueckstand Bearbeitungszeit + Ruestzeit
 
+            // 2. Rueckstand Bearbeitungszeit + Ruestzeit
+            int rueckstandBearbeitungszeit = 0;
+            int rueckstandRuestzeit = 0;
+            int teilenummer = 0;
+            int menge = 0;
+            int zeitbedarf = 0;
+            bool vorgelagert = false;
+            for (int i = 0; i < plaetze.Length; ++i)
+            {
+                // ueberpruefen, ob es vrorgelagerte Arbeitsplaetze gibt (erstmal unabhaengig vom Teil)s
+                int platznr = i + 1;
+                cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Bearbeitungszeit, Rüstzeit, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr + ";";
+                OleDbDataReader dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    if (Convert.ToInt32(dbReader["Reihenfolge"]) != 1)
+                    {
+                        vorgelagert = true;
+                        break;
+                    }
+                }
+                dbReader.Close();
+
+                // In jedem Fall die Tabellen Warteliste und Bearbeitung auf Eintraege fuer diesen Platz ueberpruefen
+
+                // 1. Warteliste Arbeitsplatz ueberpruefen -> Bearbeitungszeit und Ruestzeit
+                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    teilenummer = Convert.ToInt32(dbReader["Teilenummer_FK"]);
+                    zeitbedarf = Convert.ToInt32(dbReader["Zeitbedarf"]);
+                    // Bearbeitungszeit
+                    rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + zeitbedarf;
+                    // Ruestzeit - neue DBAnfrage, um zu pruefen, welche Ruestzeit fuer diesen Platz und diesen Teil gilt
+                    cmd2.CommandText = @"SELECT Rüstzeit FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr 
+                        + " AND Erzeugnis_Teilenummer_FK = " + teilenummer + ";";
+                    OleDbDataReader dbReader2 = cmd2.ExecuteReader();
+                    while (dbReader2.Read()) // hier sollte nur eine Zeile herauskommen
+                    {
+                        MessageBox.Show(platznr + " " + dbReader2["Rüstzeit"]);
+                        rueckstandRuestzeit = rueckstandRuestzeit + Convert.ToInt32(dbReader2["Rüstzeit"]);
+                    }
+                    teilenummer = 0;
+                    zeitbedarf = 0;
+                    dbReader2.Close();
+                }
+                dbReader.Close();
+
+                // 2. In Bearbeitung ueberpruefen -> nur Bearbeitungszeit
+                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + Convert.ToInt32(dbReader["Zeitbedarf"]);
+                }
+                dbReader.Close();
+
+                // 3. Warteliste Material ueberpruefen
+
+                // wenn vorgelagert == true, muess kontrolliert werden, ob fuer die vorgelagerten Plaetze
+                // Eintraege in den Tabellen Warteliste und Bearbeitung stehen
+                if (vorgelagert == true)
+                {
+                    
+                }
+                plaetze[i] = rueckstandBearbeitungszeit + rueckstandRuestzeit;
+                // spaeter eigentlich plaetze[i] = plaetze[i] + rueckstandBearbeitungszeit + rueckstandRuestzeit;
+                rueckstandBearbeitungszeit = 0;
+                rueckstandRuestzeit = 0;
+                vorgelagert = false;
+            }
             myconn.Close();
 
             // Zeile Kapazitaetsbedarf fuellen

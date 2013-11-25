@@ -72,5 +72,15 @@ namespace IBSYS2
             
 
         }
+
+        private void textBox19_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox40_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

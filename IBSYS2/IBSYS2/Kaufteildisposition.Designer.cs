@@ -1248,6 +1248,7 @@
             this.continue_btn.TabIndex = 121;
             this.continue_btn.Text = "Fortfahren";
             this.continue_btn.UseVisualStyleBackColor = true;
+            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
             // label42
             // 

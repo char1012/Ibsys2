@@ -14,6 +14,8 @@ namespace IBSYS2
     public partial class Kapazitaetsplan : Form
     {
         private OleDbConnection myconn;
+        // Liste der zulaessigen Zeichen bei Benutzereingaben
+        private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         public Kapazitaetsplan()
         {
@@ -418,211 +420,511 @@ namespace IBSYS2
 
         private void UP1_TextChanged(object sender, EventArgs e)
         {
-            if (UP1.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP1.Text) / 5);
-                UT1.Text = zeit.ToString();
-            }
-            else
+            if (UP1.Text == "")
             {
                 UT1.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP1.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP1.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP1.Text) / 5);
+                    UT1.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP2_TextChanged(object sender, EventArgs e)
         {
-            if (UP2.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP2.Text) / 5);
-                UT2.Text = zeit.ToString();
-            }
-            else
+            if (UP2.Text == "")
             {
                 UT2.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP2.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP2.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP2.Text) / 5);
+                    UT2.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP3_TextChanged(object sender, EventArgs e)
         {
-            if (UP3.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP3.Text) / 5);
-                UT3.Text = zeit.ToString();
-            }
-            else
+            if (UP3.Text == "")
             {
                 UT3.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP3.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP3.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP3.Text) / 5);
+                    UT3.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP4_TextChanged(object sender, EventArgs e)
         {
-            if (UP4.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP4.Text) / 5);
-                UT4.Text = zeit.ToString();
-            }
-            else
+            if (UP4.Text == "")
             {
                 UT4.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP4.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP4.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP4.Text) / 5);
+                    UT4.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP5_TextChanged(object sender, EventArgs e)
         {
-            if (UP5.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP5.Text) / 5);
-                UT5.Text = zeit.ToString();
-            }
-            else
+            if (UP5.Text == "")
             {
                 UT5.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP5.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP5.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP5.Text) / 5);
+                    UT5.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP6_TextChanged(object sender, EventArgs e)
         {
-            if (UP6.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP6.Text) / 5);
-                UT6.Text = zeit.ToString();
-            }
-            else
+            if (UP6.Text == "")
             {
                 UT6.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP6.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP6.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP6.Text) / 5);
+                    UT6.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP7_TextChanged(object sender, EventArgs e)
         {
-            if (UP7.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP7.Text) / 5);
-                UT7.Text = zeit.ToString();
-            }
-            else
+            if (UP7.Text == "")
             {
                 UT7.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP7.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP7.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP7.Text) / 5);
+                    UT7.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP8_TextChanged(object sender, EventArgs e)
         {
-            if (UP8.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP8.Text) / 5);
-                UT8.Text = zeit.ToString();
-            }
-            else
+            if (UP8.Text == "")
             {
                 UT8.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP8.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP8.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP8.Text) / 5);
+                    UT8.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP9_TextChanged(object sender, EventArgs e)
         {
-            if (UP9.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP9.Text) / 5);
-                UT9.Text = zeit.ToString();
-            }
-            else
+            if (UP9.Text == "")
             {
                 UT9.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP9.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP9.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP9.Text) / 5);
+                    UT9.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP10_TextChanged(object sender, EventArgs e)
         {
-            if (UP10.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP10.Text) / 5);
-                UT10.Text = zeit.ToString();
-            }
-            else
+            if (UP10.Text == "")
             {
                 UT10.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP10.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP10.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP10.Text) / 5);
+                    UT10.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP11_TextChanged(object sender, EventArgs e)
         {
-            if (UP11.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP11.Text) / 5);
-                UT11.Text = zeit.ToString();
-            }
-            else
+            if (UP11.Text == "")
             {
                 UT11.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP11.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP11.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP11.Text) / 5);
+                    UT11.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP12_TextChanged(object sender, EventArgs e)
         {
-            if (UP12.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP12.Text) / 5);
-                UT12.Text = zeit.ToString();
-            }
-            else
+            if (UP12.Text == "")
             {
                 UT12.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP12.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP12.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP12.Text) / 5);
+                    UT12.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP13_TextChanged(object sender, EventArgs e)
         {
-            if (UP13.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP13.Text) / 5);
-                UT13.Text = zeit.ToString();
-            }
-            else
+            if (UP13.Text == "")
             {
                 UT13.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP13.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP13.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP13.Text) / 5);
+                    UT13.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP14_TextChanged(object sender, EventArgs e)
         {
-            if (UP14.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP14.Text) / 5);
-                UT14.Text = zeit.ToString();
-            }
-            else
+            if (UP14.Text == "")
             {
                 UT14.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP14.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP14.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP14.Text) / 5);
+                    UT14.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void UP15_TextChanged(object sender, EventArgs e)
         {
-            if (UP15.Text != "")
-            {
-                int zeit = (int)Math.Round(Convert.ToDouble(UP15.Text) / 5);
-                UT15.Text = zeit.ToString();
-            }
-            else
+            if (UP15.Text == "")
             {
                 UT15.Text = "";
                 continue_btn.Enabled = false;
+            }
+            else
+            {
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in UP15.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true && Convert.ToInt32(UP15.Text) <= 1200)
+                {
+                    int zeit = (int)Math.Round(Convert.ToDouble(UP15.Text) / 5);
+                    UT15.Text = zeit.ToString();
+                    continue_btn.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
@@ -630,7 +932,7 @@ namespace IBSYS2
         {
             if (S1.Text == "1" || S1.Text == "2" || S1.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S1.Text == "")
             {
@@ -647,7 +949,7 @@ namespace IBSYS2
         {
             if (S2.Text == "1" || S2.Text == "2" || S2.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S2.Text == "")
             {
@@ -664,7 +966,7 @@ namespace IBSYS2
         {
             if (S3.Text == "1" || S3.Text == "2" || S3.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S3.Text == "")
             {
@@ -681,7 +983,7 @@ namespace IBSYS2
         {
             if (S4.Text == "1" || S4.Text == "2" || S4.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S4.Text == "")
             {
@@ -698,7 +1000,7 @@ namespace IBSYS2
         {
             if (S5.Text == "1" || S5.Text == "2" || S5.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S5.Text == "")
             {
@@ -715,7 +1017,7 @@ namespace IBSYS2
         {
             if (S6.Text == "1" || S6.Text == "2" || S6.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S6.Text == "")
             {
@@ -732,7 +1034,7 @@ namespace IBSYS2
         {
             if (S7.Text == "1" || S7.Text == "2" || S7.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S7.Text == "")
             {
@@ -749,7 +1051,7 @@ namespace IBSYS2
         {
             if (S8.Text == "1" || S8.Text == "2" || S8.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S8.Text == "")
             {
@@ -766,7 +1068,7 @@ namespace IBSYS2
         {
             if (S9.Text == "1" || S9.Text == "2" || S9.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S9.Text == "")
             {
@@ -783,7 +1085,7 @@ namespace IBSYS2
         {
             if (S10.Text == "1" || S10.Text == "2" || S10.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S10.Text == "")
             {
@@ -800,7 +1102,7 @@ namespace IBSYS2
         {
             if (S11.Text == "1" || S11.Text == "2" || S11.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S11.Text == "")
             {
@@ -817,7 +1119,7 @@ namespace IBSYS2
         {
             if (S12.Text == "1" || S12.Text == "2" || S12.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S12.Text == "")
             {
@@ -834,7 +1136,7 @@ namespace IBSYS2
         {
             if (S13.Text == "1" || S13.Text == "2" || S13.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S13.Text == "")
             {
@@ -851,7 +1153,7 @@ namespace IBSYS2
         {
             if (S14.Text == "1" || S14.Text == "2" || S14.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S14.Text == "")
             {
@@ -868,7 +1170,7 @@ namespace IBSYS2
         {
             if (S15.Text == "1" || S15.Text == "2" || S15.Text == "3")
             {
-
+                continue_btn.Enabled = true;
             }
             else if (S15.Text == "")
             {

@@ -27,72 +27,75 @@ namespace IBSYS2
                 "und umgekehrt.\nWenn in der Zeile Schichten eine rote 3 angezeigt wird, " + 
                 "bedeutet dies, dass mehr als drei Schichten benötigt werden. In diesem Fall sollten Sie " + 
                 "ihre Produktionsmenge anpassen.\nDen Arbeitsplatz 5 gibt es nicht.");
+        }
 
+        public void calculate()
+        {
             // Dieser Konstruktor soll in Zukunft von Produktion.cs mit den Parametern
             // int periode und eines zweidimensionales int-Array (Teilenummer, Produktionsmenge) aufgerufen.
             // Diese Werte werden momentan simuliert.
             int periode = 6; // Periode des xmls
-            int[,] teile = new int [30,2];
-            teile[0,0] = 1;
-            teile[0,1] = 90; // Teil p1 mit 90 Stueck Produktion
-            teile[1,0] = 2;
-            teile[1,1] = 190;
-            teile[2,0] = 3;
-            teile[2,1] = 160;
-            teile[3,0] = 4;
-            teile[3,1] = 60;
-            teile[4,0] = 5;
-            teile[4,1] = 160;
-            teile[5,0] = 6;
-            teile[5,1] = -110;
-            teile[6,0] = 7;
-            teile[6,1] = 50;
-            teile[7,0] = 8;
-            teile[7,1] = 150;
-            teile[8,0] = 9;
-            teile[8,1] = -200;
-            teile[9,0] = 10;
-            teile[9,1] = 60;
-            teile[10,0] = 11;
-            teile[10,1] = 160;
-            teile[11,0] = 12;
-            teile[11,1] = -110;
-            teile[12,0] = 13;
-            teile[12,1] = 50;
-            teile[13,0] = 14;
-            teile[13,1] = 150;
-            teile[14,0] = 15;
-            teile[14,1] = -200;
-            teile[15,0] = 16;
-            teile[15,1] = 20+130+90;
-            teile[16,0] = 17;
-            teile[16,1] = 20+130+90;
-            teile[17,0] = 18;
-            teile[17,1] = 50;
-            teile[18,0] = 19;
-            teile[18,1] = 150;
-            teile[19,0] = 20;
-            teile[19,1] = -200;
-            teile[20,0] = 26;
-            teile[20,1] = 50+160+130;
-            teile[21,0] = 29;
-            teile[21,1] = -110;
-            teile[22,0] = 30;
-            teile[22,1] = -20;
-            teile[23,0] = 31;
-            teile[23,1] = 70;
-            teile[24,0] = 49;
-            teile[24,1] = 60;
-            teile[25,0] = 50;
-            teile[25,1] = 70;
-            teile[26,0] = 51;
-            teile[26,1] = 80;
-            teile[27,0] = 54;
-            teile[27,1] = 160;
-            teile[28,0] = 55;
-            teile[28,1] = 170;
-            teile[29,0] = 56;
-            teile[29,1] = 180;
+            int[,] teile = new int[30, 2];
+            teile[0, 0] = 1;
+            teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+            teile[1, 0] = 2;
+            teile[1, 1] = 190;
+            teile[2, 0] = 3;
+            teile[2, 1] = 160;
+            teile[3, 0] = 4;
+            teile[3, 1] = 60;
+            teile[4, 0] = 5;
+            teile[4, 1] = 160;
+            teile[5, 0] = 6;
+            teile[5, 1] = -110;
+            teile[6, 0] = 7;
+            teile[6, 1] = 50;
+            teile[7, 0] = 8;
+            teile[7, 1] = 150;
+            teile[8, 0] = 9;
+            teile[8, 1] = -200;
+            teile[9, 0] = 10;
+            teile[9, 1] = 60;
+            teile[10, 0] = 11;
+            teile[10, 1] = 160;
+            teile[11, 0] = 12;
+            teile[11, 1] = -110;
+            teile[12, 0] = 13;
+            teile[12, 1] = 50;
+            teile[13, 0] = 14;
+            teile[13, 1] = 150;
+            teile[14, 0] = 15;
+            teile[14, 1] = -200;
+            teile[15, 0] = 16;
+            teile[15, 1] = 20 + 130 + 90;
+            teile[16, 0] = 17;
+            teile[16, 1] = 20 + 130 + 90;
+            teile[17, 0] = 18;
+            teile[17, 1] = 50;
+            teile[18, 0] = 19;
+            teile[18, 1] = 150;
+            teile[19, 0] = 20;
+            teile[19, 1] = -200;
+            teile[20, 0] = 26;
+            teile[20, 1] = 50 + 160 + 130;
+            teile[21, 0] = 29;
+            teile[21, 1] = -110;
+            teile[22, 0] = 30;
+            teile[22, 1] = -20;
+            teile[23, 0] = 31;
+            teile[23, 1] = 70;
+            teile[24, 0] = 49;
+            teile[24, 1] = 60;
+            teile[25, 0] = 50;
+            teile[25, 1] = 70;
+            teile[26, 0] = 51;
+            teile[26, 1] = 80;
+            teile[27, 0] = 54;
+            teile[27, 1] = 160;
+            teile[28, 0] = 55;
+            teile[28, 1] = 170;
+            teile[29, 0] = 56;
+            teile[29, 1] = 180;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -115,8 +118,6 @@ namespace IBSYS2
                 myconn.Close();
                 myconn.Open();
             }
-
-            // Berechnung des Kapazitaetsbedarfs
 
             // 1. Bearbeitungszeit + Ruestzeit
             int[] plaetze = new int[15];
@@ -184,7 +185,7 @@ namespace IBSYS2
                 // In jedem Fall die Tabellen Warteliste und Bearbeitung auf Eintraege fuer diesen Platz ueberpruefen
 
                 // 1. Warteliste Arbeitsplatz ueberpruefen -> Bearbeitungszeit und Ruestzeit
-                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr 
+                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr
                     + " AND Periode = " + periode + ";";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
@@ -194,7 +195,7 @@ namespace IBSYS2
                     // Bearbeitungszeit
                     rueckstandBearbeitungszeit = rueckstandBearbeitungszeit + zeitbedarf;
                     // Ruestzeit - neue DBAnfrage, um zu pruefen, welche Ruestzeit fuer diesen Platz und diesen Teil gilt
-                    cmd2.CommandText = @"SELECT Rüstzeit FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr 
+                    cmd2.CommandText = @"SELECT Rüstzeit FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr
                         + " AND Erzeugnis_Teilenummer_FK = " + teilenummer + ";";
                     OleDbDataReader dbReader2 = cmd2.ExecuteReader();
                     while (dbReader2.Read()) // hier sollte nur eine Zeile herauskommen
@@ -208,7 +209,7 @@ namespace IBSYS2
                 dbReader.Close();
 
                 // 2. In Bearbeitung ueberpruefen -> nur Bearbeitungszeit
-                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr 
+                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr
                     + " AND Periode = " + periode + ";";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
@@ -254,7 +255,7 @@ namespace IBSYS2
                 if (vorgelagert == true)
                 {
                     // herausfinden, bei welchen Teilen es vorgelagerte Plaetze gibt
-                    cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Bearbeitungszeit, Rüstzeit, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr 
+                    cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Bearbeitungszeit, Rüstzeit, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr
                         + " AND Reihenfolge <> 1;";
                     dbReader = cmd.ExecuteReader();
                     while (dbReader.Read())
@@ -264,7 +265,7 @@ namespace IBSYS2
                         zeitbedarf2 = Convert.ToInt32(dbReader["Rüstzeit"]);
                         reihenfolge = Convert.ToInt32(dbReader["Reihenfolge"]);
                         // herausfinden, welche Plaetze dies sind (exkl. dem aktuellen Platz)
-                        cmd2.CommandText = @"SELECT Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis WHERE Erzeugnis_Teilenummer_FK = " + teilenummer 
+                        cmd2.CommandText = @"SELECT Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis WHERE Erzeugnis_Teilenummer_FK = " + teilenummer
                             + " AND Arbeitsplatz_FK <> " + platznr + " AND Reihenfolge < " + reihenfolge + ";";
                         OleDbDataReader dbReader2 = cmd2.ExecuteReader();
                         while (dbReader2.Read())
@@ -272,7 +273,7 @@ namespace IBSYS2
                             andererPlatz = Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]);
                             // kontrollieren, ob diese in der Warteliste Arbeitsplatz liegen
                             // Menge wird benoetigt, um dies dann mit den eigenen Werten fuer B.zeit und R.zeit zu verrechnen
-                            cmd3.CommandText = @"SELECT Menge FROM Warteliste_Arbeitsplatz WHERE Teilenummer_FK = " + teilenummer 
+                            cmd3.CommandText = @"SELECT Menge FROM Warteliste_Arbeitsplatz WHERE Teilenummer_FK = " + teilenummer
                                 + " AND Arbeitsplatz_FK = " + andererPlatz + " AND periode = " + periode + ";";
                             OleDbDataReader dbReader3 = cmd3.ExecuteReader();
                             while (dbReader3.Read())
@@ -323,12 +324,12 @@ namespace IBSYS2
             for (int i = 0; i < plaetze.Length; ++i)
             {
                 int up = i + 1;
-                TextBox kText = (TextBox) this.Controls.Find("K" + up.ToString(), true)[0];
+                TextBox kText = (TextBox)this.Controls.Find("K" + up.ToString(), true)[0];
                 int ueberstd = 0;
                 if (Convert.ToInt32(kText.Text) > 2400 && Convert.ToInt32(kText.Text) <= 3600)
                 {
                     int zuviel = Convert.ToInt32(kText.Text) - 2400; // Stunden, die mehr als 2400 sind
-                    ueberstd = zuviel + zuviel/5; // plus 1/5 mehr zur Sicherheit
+                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
                 }
                 else if (Convert.ToInt32(kText.Text) > 2300 && Convert.ToInt32(kText.Text) <= 2400)
                 {
@@ -337,7 +338,7 @@ namespace IBSYS2
                 else if (Convert.ToInt32(kText.Text) > 4800 && Convert.ToInt32(kText.Text) <= 6000)
                 {
                     int zuviel = Convert.ToInt32(kText.Text) - 4800; // Stunden, die mehr als 4800 sind
-                    ueberstd = zuviel + zuviel/5; // plus 1/5 mehr zur Sicherheit
+                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
                 }
                 else if (Convert.ToInt32(kText.Text) > 4700 && Convert.ToInt32(kText.Text) <= 4800)
                 {
@@ -355,7 +356,7 @@ namespace IBSYS2
             {
                 int ut = i + 1;
                 TextBox upText = (TextBox)this.Controls.Find("UP" + ut.ToString(), true)[0];
-                int ueberstd = (int) Math.Round(Convert.ToDouble(upText.Text) / 5);
+                int ueberstd = (int)Math.Round(Convert.ToDouble(upText.Text) / 5);
                 this.Controls.Find("UT" + ut.ToString(), true)[0].Text = ueberstd.ToString();
             }
 
@@ -386,9 +387,498 @@ namespace IBSYS2
             }
         }
 
-        private void A1_Click(object sender, EventArgs e)
+        private void default_btn_Click(object sender, EventArgs e)
         {
+            calculate();
+        }
 
+        private void continue_btn_Click(object sender, EventArgs e)
+        {
+            bool okay = true;
+            for (int i = 1; i <= 15; ++i)
+            {
+                if (this.Controls.Find("K" + i.ToString(), true)[0].Text == "" ||
+                    this.Controls.Find("UP" + i.ToString(), true)[0].Text == "" ||
+                    this.Controls.Find("UT" + i.ToString(), true)[0].Text == "" ||
+                    this.Controls.Find("S" + i.ToString(), true)[0].Text == "")
+                {
+                    okay = false;
+                }
+            }
+            if (okay == true)
+            {
+                MessageBox.Show("Hier ginge es eigentlich weiter zur Kaufteildisposition.");
+                // TODO Werte an naechsten Bildschirm uebergeben
+            }
+            else
+            {
+                MessageBox.Show("Bitte lassen Sie kein Feld leer.\nSie können jedoch eine 0 eintragen.");
+            }
+        }
+
+        private void UP1_TextChanged(object sender, EventArgs e)
+        {
+            if (UP1.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP1.Text) / 5);
+                UT1.Text = zeit.ToString();
+            }
+            else
+            {
+                UT1.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP2_TextChanged(object sender, EventArgs e)
+        {
+            if (UP2.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP2.Text) / 5);
+                UT2.Text = zeit.ToString();
+            }
+            else
+            {
+                UT2.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP3_TextChanged(object sender, EventArgs e)
+        {
+            if (UP3.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP3.Text) / 5);
+                UT3.Text = zeit.ToString();
+            }
+            else
+            {
+                UT3.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP4_TextChanged(object sender, EventArgs e)
+        {
+            if (UP4.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP4.Text) / 5);
+                UT4.Text = zeit.ToString();
+            }
+            else
+            {
+                UT4.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP5_TextChanged(object sender, EventArgs e)
+        {
+            if (UP5.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP5.Text) / 5);
+                UT5.Text = zeit.ToString();
+            }
+            else
+            {
+                UT5.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP6_TextChanged(object sender, EventArgs e)
+        {
+            if (UP6.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP6.Text) / 5);
+                UT6.Text = zeit.ToString();
+            }
+            else
+            {
+                UT6.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP7_TextChanged(object sender, EventArgs e)
+        {
+            if (UP7.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP7.Text) / 5);
+                UT7.Text = zeit.ToString();
+            }
+            else
+            {
+                UT7.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP8_TextChanged(object sender, EventArgs e)
+        {
+            if (UP8.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP8.Text) / 5);
+                UT8.Text = zeit.ToString();
+            }
+            else
+            {
+                UT8.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP9_TextChanged(object sender, EventArgs e)
+        {
+            if (UP9.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP9.Text) / 5);
+                UT9.Text = zeit.ToString();
+            }
+            else
+            {
+                UT9.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP10_TextChanged(object sender, EventArgs e)
+        {
+            if (UP10.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP10.Text) / 5);
+                UT10.Text = zeit.ToString();
+            }
+            else
+            {
+                UT10.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP11_TextChanged(object sender, EventArgs e)
+        {
+            if (UP11.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP11.Text) / 5);
+                UT11.Text = zeit.ToString();
+            }
+            else
+            {
+                UT11.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP12_TextChanged(object sender, EventArgs e)
+        {
+            if (UP12.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP12.Text) / 5);
+                UT12.Text = zeit.ToString();
+            }
+            else
+            {
+                UT12.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP13_TextChanged(object sender, EventArgs e)
+        {
+            if (UP13.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP13.Text) / 5);
+                UT13.Text = zeit.ToString();
+            }
+            else
+            {
+                UT13.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP14_TextChanged(object sender, EventArgs e)
+        {
+            if (UP14.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP14.Text) / 5);
+                UT14.Text = zeit.ToString();
+            }
+            else
+            {
+                UT14.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void UP15_TextChanged(object sender, EventArgs e)
+        {
+            if (UP15.Text != "")
+            {
+                int zeit = (int)Math.Round(Convert.ToDouble(UP15.Text) / 5);
+                UT15.Text = zeit.ToString();
+            }
+            else
+            {
+                UT15.Text = "";
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S1_TextChanged(object sender, EventArgs e)
+        {
+            if (S1.Text == "1" || S1.Text == "2" || S1.Text == "3")
+            {
+
+            }
+            else if (S1.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S2_TextChanged(object sender, EventArgs e)
+        {
+            if (S2.Text == "1" || S2.Text == "2" || S2.Text == "3")
+            {
+
+            }
+            else if (S2.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S3_TextChanged(object sender, EventArgs e)
+        {
+            if (S3.Text == "1" || S3.Text == "2" || S3.Text == "3")
+            {
+
+            }
+            else if (S3.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S4_TextChanged(object sender, EventArgs e)
+        {
+            if (S4.Text == "1" || S4.Text == "2" || S4.Text == "3")
+            {
+
+            }
+            else if (S4.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S5_TextChanged(object sender, EventArgs e)
+        {
+            if (S5.Text == "1" || S5.Text == "2" || S5.Text == "3")
+            {
+
+            }
+            else if (S5.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S6_TextChanged(object sender, EventArgs e)
+        {
+            if (S6.Text == "1" || S6.Text == "2" || S6.Text == "3")
+            {
+
+            }
+            else if (S6.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S7_TextChanged(object sender, EventArgs e)
+        {
+            if (S7.Text == "1" || S7.Text == "2" || S7.Text == "3")
+            {
+
+            }
+            else if (S7.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S8_TextChanged(object sender, EventArgs e)
+        {
+            if (S8.Text == "1" || S8.Text == "2" || S8.Text == "3")
+            {
+
+            }
+            else if (S8.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S9_TextChanged(object sender, EventArgs e)
+        {
+            if (S9.Text == "1" || S9.Text == "2" || S9.Text == "3")
+            {
+
+            }
+            else if (S9.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S10_TextChanged(object sender, EventArgs e)
+        {
+            if (S10.Text == "1" || S10.Text == "2" || S10.Text == "3")
+            {
+
+            }
+            else if (S10.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S11_TextChanged(object sender, EventArgs e)
+        {
+            if (S11.Text == "1" || S11.Text == "2" || S11.Text == "3")
+            {
+
+            }
+            else if (S11.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S12_TextChanged(object sender, EventArgs e)
+        {
+            if (S12.Text == "1" || S12.Text == "2" || S12.Text == "3")
+            {
+
+            }
+            else if (S12.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S13_TextChanged(object sender, EventArgs e)
+        {
+            if (S13.Text == "1" || S13.Text == "2" || S13.Text == "3")
+            {
+
+            }
+            else if (S13.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S14_TextChanged(object sender, EventArgs e)
+        {
+            if (S14.Text == "1" || S14.Text == "2" || S14.Text == "3")
+            {
+
+            }
+            else if (S14.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
+        }
+
+        private void S15_TextChanged(object sender, EventArgs e)
+        {
+            if (S15.Text == "1" || S15.Text == "2" || S15.Text == "3")
+            {
+
+            }
+            else if (S15.Text == "")
+            {
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                continue_btn.Enabled = false;
+            }
         }
     }
 }

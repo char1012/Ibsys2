@@ -105,7 +105,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.default_btn = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.back_btn = new System.Windows.Forms.Button();
             this.UeberstundenPeriode = new System.Windows.Forms.Label();
             this.UP1 = new System.Windows.Forms.TextBox();
             this.UP2 = new System.Windows.Forms.TextBox();
@@ -122,8 +124,7 @@
             this.UP5 = new System.Windows.Forms.TextBox();
             this.UP6 = new System.Windows.Forms.TextBox();
             this.UP7 = new System.Windows.Forms.TextBox();
-            this.back_btn = new System.Windows.Forms.Button();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -168,7 +169,6 @@
             this.A1.Size = new System.Drawing.Size(13, 13);
             this.A1.TabIndex = 4;
             this.A1.Text = "1";
-            this.A1.Click += new System.EventHandler(this.A1_Click);
             // 
             // A2
             // 
@@ -419,6 +419,7 @@
             // 
             // UT15
             // 
+            this.UT15.Enabled = false;
             this.UT15.Location = new System.Drawing.Point(636, 116);
             this.UT15.Name = "UT15";
             this.UT15.Size = new System.Drawing.Size(30, 20);
@@ -426,6 +427,7 @@
             // 
             // UT14
             // 
+            this.UT14.Enabled = false;
             this.UT14.Location = new System.Drawing.Point(600, 116);
             this.UT14.Name = "UT14";
             this.UT14.Size = new System.Drawing.Size(30, 20);
@@ -433,6 +435,7 @@
             // 
             // UT13
             // 
+            this.UT13.Enabled = false;
             this.UT13.Location = new System.Drawing.Point(564, 116);
             this.UT13.Name = "UT13";
             this.UT13.Size = new System.Drawing.Size(30, 20);
@@ -440,6 +443,7 @@
             // 
             // UT12
             // 
+            this.UT12.Enabled = false;
             this.UT12.Location = new System.Drawing.Point(528, 116);
             this.UT12.Name = "UT12";
             this.UT12.Size = new System.Drawing.Size(30, 20);
@@ -447,6 +451,7 @@
             // 
             // UT11
             // 
+            this.UT11.Enabled = false;
             this.UT11.Location = new System.Drawing.Point(492, 116);
             this.UT11.Name = "UT11";
             this.UT11.Size = new System.Drawing.Size(30, 20);
@@ -454,6 +459,7 @@
             // 
             // UT10
             // 
+            this.UT10.Enabled = false;
             this.UT10.Location = new System.Drawing.Point(456, 116);
             this.UT10.Name = "UT10";
             this.UT10.Size = new System.Drawing.Size(30, 20);
@@ -461,6 +467,7 @@
             // 
             // UT9
             // 
+            this.UT9.Enabled = false;
             this.UT9.Location = new System.Drawing.Point(420, 116);
             this.UT9.Name = "UT9";
             this.UT9.Size = new System.Drawing.Size(30, 20);
@@ -468,6 +475,7 @@
             // 
             // UT8
             // 
+            this.UT8.Enabled = false;
             this.UT8.Location = new System.Drawing.Point(384, 116);
             this.UT8.Name = "UT8";
             this.UT8.Size = new System.Drawing.Size(30, 20);
@@ -475,6 +483,7 @@
             // 
             // UT7
             // 
+            this.UT7.Enabled = false;
             this.UT7.Location = new System.Drawing.Point(348, 116);
             this.UT7.Name = "UT7";
             this.UT7.Size = new System.Drawing.Size(30, 20);
@@ -482,6 +491,7 @@
             // 
             // UT6
             // 
+            this.UT6.Enabled = false;
             this.UT6.Location = new System.Drawing.Point(312, 116);
             this.UT6.Name = "UT6";
             this.UT6.Size = new System.Drawing.Size(30, 20);
@@ -498,6 +508,7 @@
             // 
             // UT4
             // 
+            this.UT4.Enabled = false;
             this.UT4.Location = new System.Drawing.Point(240, 116);
             this.UT4.Name = "UT4";
             this.UT4.Size = new System.Drawing.Size(30, 20);
@@ -505,6 +516,7 @@
             // 
             // UT3
             // 
+            this.UT3.Enabled = false;
             this.UT3.Location = new System.Drawing.Point(204, 116);
             this.UT3.Name = "UT3";
             this.UT3.Size = new System.Drawing.Size(30, 20);
@@ -512,6 +524,7 @@
             // 
             // UT2
             // 
+            this.UT2.Enabled = false;
             this.UT2.Location = new System.Drawing.Point(168, 116);
             this.UT2.Name = "UT2";
             this.UT2.Size = new System.Drawing.Size(30, 20);
@@ -519,6 +532,7 @@
             // 
             // UT1
             // 
+            this.UT1.Enabled = false;
             this.UT1.Location = new System.Drawing.Point(132, 116);
             this.UT1.Name = "UT1";
             this.UT1.Size = new System.Drawing.Size(30, 20);
@@ -530,6 +544,7 @@
             this.S15.Name = "S15";
             this.S15.Size = new System.Drawing.Size(30, 20);
             this.S15.TabIndex = 63;
+            this.S15.TextChanged += new System.EventHandler(this.S15_TextChanged);
             // 
             // S14
             // 
@@ -537,6 +552,7 @@
             this.S14.Name = "S14";
             this.S14.Size = new System.Drawing.Size(30, 20);
             this.S14.TabIndex = 62;
+            this.S14.TextChanged += new System.EventHandler(this.S14_TextChanged);
             // 
             // S13
             // 
@@ -544,6 +560,7 @@
             this.S13.Name = "S13";
             this.S13.Size = new System.Drawing.Size(30, 20);
             this.S13.TabIndex = 61;
+            this.S13.TextChanged += new System.EventHandler(this.S13_TextChanged);
             // 
             // S12
             // 
@@ -551,6 +568,7 @@
             this.S12.Name = "S12";
             this.S12.Size = new System.Drawing.Size(30, 20);
             this.S12.TabIndex = 60;
+            this.S12.TextChanged += new System.EventHandler(this.S12_TextChanged);
             // 
             // S11
             // 
@@ -558,6 +576,7 @@
             this.S11.Name = "S11";
             this.S11.Size = new System.Drawing.Size(30, 20);
             this.S11.TabIndex = 59;
+            this.S11.TextChanged += new System.EventHandler(this.S11_TextChanged);
             // 
             // S10
             // 
@@ -565,6 +584,7 @@
             this.S10.Name = "S10";
             this.S10.Size = new System.Drawing.Size(30, 20);
             this.S10.TabIndex = 58;
+            this.S10.TextChanged += new System.EventHandler(this.S10_TextChanged);
             // 
             // S9
             // 
@@ -572,6 +592,7 @@
             this.S9.Name = "S9";
             this.S9.Size = new System.Drawing.Size(30, 20);
             this.S9.TabIndex = 57;
+            this.S9.TextChanged += new System.EventHandler(this.S9_TextChanged);
             // 
             // S8
             // 
@@ -579,6 +600,7 @@
             this.S8.Name = "S8";
             this.S8.Size = new System.Drawing.Size(30, 20);
             this.S8.TabIndex = 56;
+            this.S8.TextChanged += new System.EventHandler(this.S8_TextChanged);
             // 
             // S7
             // 
@@ -586,6 +608,7 @@
             this.S7.Name = "S7";
             this.S7.Size = new System.Drawing.Size(30, 20);
             this.S7.TabIndex = 55;
+            this.S7.TextChanged += new System.EventHandler(this.S7_TextChanged);
             // 
             // S6
             // 
@@ -593,6 +616,7 @@
             this.S6.Name = "S6";
             this.S6.Size = new System.Drawing.Size(30, 20);
             this.S6.TabIndex = 54;
+            this.S6.TextChanged += new System.EventHandler(this.S6_TextChanged);
             // 
             // S5
             // 
@@ -602,6 +626,7 @@
             this.S5.Name = "S5";
             this.S5.Size = new System.Drawing.Size(30, 20);
             this.S5.TabIndex = 53;
+            this.S5.TextChanged += new System.EventHandler(this.S5_TextChanged);
             // 
             // S4
             // 
@@ -609,6 +634,7 @@
             this.S4.Name = "S4";
             this.S4.Size = new System.Drawing.Size(30, 20);
             this.S4.TabIndex = 52;
+            this.S4.TextChanged += new System.EventHandler(this.S4_TextChanged);
             // 
             // S3
             // 
@@ -616,6 +642,7 @@
             this.S3.Name = "S3";
             this.S3.Size = new System.Drawing.Size(30, 20);
             this.S3.TabIndex = 51;
+            this.S3.TextChanged += new System.EventHandler(this.S3_TextChanged);
             // 
             // S2
             // 
@@ -623,6 +650,7 @@
             this.S2.Name = "S2";
             this.S2.Size = new System.Drawing.Size(30, 20);
             this.S2.TabIndex = 50;
+            this.S2.TextChanged += new System.EventHandler(this.S2_TextChanged);
             // 
             // S1
             // 
@@ -630,6 +658,7 @@
             this.S1.Name = "S1";
             this.S1.Size = new System.Drawing.Size(30, 20);
             this.S1.TabIndex = 49;
+            this.S1.TextChanged += new System.EventHandler(this.S1_TextChanged);
             // 
             // continue_btn
             // 
@@ -639,6 +668,7 @@
             this.continue_btn.TabIndex = 64;
             this.continue_btn.Text = "Fortfahren";
             this.continue_btn.UseVisualStyleBackColor = true;
+            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
             // label10
             // 
@@ -749,6 +779,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.default_btn);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.back_btn);
             this.groupBox1.Controls.Add(this.UeberstundenPeriode);
@@ -839,14 +870,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kapazitätsplan";
             // 
-            // label1
+            // default_btn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(339, 13);
-            this.label1.TabIndex = 65;
-            this.label1.Text = "Die hier berechneten Werte können von Ihnen überschrieben werden.";
+            this.default_btn.Location = new System.Drawing.Point(420, 179);
+            this.default_btn.Name = "default_btn";
+            this.default_btn.Size = new System.Drawing.Size(165, 23);
+            this.default_btn.TabIndex = 83;
+            this.default_btn.Text = "Berechnung wiederherstellen";
+            this.default_btn.UseVisualStyleBackColor = true;
+            this.default_btn.Click += new System.EventHandler(this.default_btn_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(362, 19);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 77;
+            this.pictureBox7.TabStop = false;
+            // 
+            // back_btn
+            // 
+            this.back_btn.Location = new System.Drawing.Point(19, 179);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 82;
+            this.back_btn.Text = "Zurück";
+            this.back_btn.UseVisualStyleBackColor = true;
             // 
             // UeberstundenPeriode
             // 
@@ -863,6 +914,7 @@
             this.UP1.Name = "UP1";
             this.UP1.Size = new System.Drawing.Size(30, 20);
             this.UP1.TabIndex = 67;
+            this.UP1.TextChanged += new System.EventHandler(this.UP1_TextChanged);
             // 
             // UP2
             // 
@@ -870,6 +922,7 @@
             this.UP2.Name = "UP2";
             this.UP2.Size = new System.Drawing.Size(30, 20);
             this.UP2.TabIndex = 68;
+            this.UP2.TextChanged += new System.EventHandler(this.UP2_TextChanged);
             // 
             // UP3
             // 
@@ -877,6 +930,7 @@
             this.UP3.Name = "UP3";
             this.UP3.Size = new System.Drawing.Size(30, 20);
             this.UP3.TabIndex = 69;
+            this.UP3.TextChanged += new System.EventHandler(this.UP3_TextChanged);
             // 
             // UP15
             // 
@@ -884,6 +938,7 @@
             this.UP15.Name = "UP15";
             this.UP15.Size = new System.Drawing.Size(30, 20);
             this.UP15.TabIndex = 81;
+            this.UP15.TextChanged += new System.EventHandler(this.UP15_TextChanged);
             // 
             // UP14
             // 
@@ -891,6 +946,7 @@
             this.UP14.Name = "UP14";
             this.UP14.Size = new System.Drawing.Size(30, 20);
             this.UP14.TabIndex = 80;
+            this.UP14.TextChanged += new System.EventHandler(this.UP14_TextChanged);
             // 
             // UP13
             // 
@@ -898,6 +954,7 @@
             this.UP13.Name = "UP13";
             this.UP13.Size = new System.Drawing.Size(30, 20);
             this.UP13.TabIndex = 79;
+            this.UP13.TextChanged += new System.EventHandler(this.UP13_TextChanged);
             // 
             // UP12
             // 
@@ -905,6 +962,7 @@
             this.UP12.Name = "UP12";
             this.UP12.Size = new System.Drawing.Size(30, 20);
             this.UP12.TabIndex = 78;
+            this.UP12.TextChanged += new System.EventHandler(this.UP12_TextChanged);
             // 
             // UP11
             // 
@@ -912,6 +970,7 @@
             this.UP11.Name = "UP11";
             this.UP11.Size = new System.Drawing.Size(30, 20);
             this.UP11.TabIndex = 77;
+            this.UP11.TextChanged += new System.EventHandler(this.UP11_TextChanged);
             // 
             // UP10
             // 
@@ -919,6 +978,7 @@
             this.UP10.Name = "UP10";
             this.UP10.Size = new System.Drawing.Size(30, 20);
             this.UP10.TabIndex = 76;
+            this.UP10.TextChanged += new System.EventHandler(this.UP10_TextChanged);
             // 
             // UP9
             // 
@@ -926,6 +986,7 @@
             this.UP9.Name = "UP9";
             this.UP9.Size = new System.Drawing.Size(30, 20);
             this.UP9.TabIndex = 75;
+            this.UP9.TextChanged += new System.EventHandler(this.UP9_TextChanged);
             // 
             // UP8
             // 
@@ -933,6 +994,7 @@
             this.UP8.Name = "UP8";
             this.UP8.Size = new System.Drawing.Size(30, 20);
             this.UP8.TabIndex = 74;
+            this.UP8.TextChanged += new System.EventHandler(this.UP8_TextChanged);
             // 
             // UP4
             // 
@@ -940,6 +1002,7 @@
             this.UP4.Name = "UP4";
             this.UP4.Size = new System.Drawing.Size(30, 20);
             this.UP4.TabIndex = 70;
+            this.UP4.TextChanged += new System.EventHandler(this.UP4_TextChanged);
             // 
             // UP5
             // 
@@ -949,6 +1012,7 @@
             this.UP5.Name = "UP5";
             this.UP5.Size = new System.Drawing.Size(30, 20);
             this.UP5.TabIndex = 71;
+            this.UP5.TextChanged += new System.EventHandler(this.UP5_TextChanged);
             // 
             // UP6
             // 
@@ -956,6 +1020,7 @@
             this.UP6.Name = "UP6";
             this.UP6.Size = new System.Drawing.Size(30, 20);
             this.UP6.TabIndex = 72;
+            this.UP6.TextChanged += new System.EventHandler(this.UP6_TextChanged);
             // 
             // UP7
             // 
@@ -963,25 +1028,16 @@
             this.UP7.Name = "UP7";
             this.UP7.Size = new System.Drawing.Size(30, 20);
             this.UP7.TabIndex = 73;
+            this.UP7.TextChanged += new System.EventHandler(this.UP7_TextChanged);
             // 
-            // back_btn
+            // label1
             // 
-            this.back_btn.Location = new System.Drawing.Point(19, 179);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
-            this.back_btn.TabIndex = 82;
-            this.back_btn.Text = "Zurück";
-            this.back_btn.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(362, 19);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 77;
-            this.pictureBox7.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(339, 13);
+            this.label1.TabIndex = 65;
+            this.label1.Text = "Die hier berechneten Werte können von Ihnen überschrieben werden.";
             // 
             // Kapazitaetsplan
             // 
@@ -1113,5 +1169,6 @@
         private System.Windows.Forms.TextBox UP7;
         private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button default_btn;
     }
 }

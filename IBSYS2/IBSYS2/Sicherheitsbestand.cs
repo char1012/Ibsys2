@@ -304,6 +304,27 @@ namespace IBSYS2
         }
         private void Eingabe_P1_TextChanged(object sender, EventArgs e)
         {
+            double number = 0;
+            if (String.IsNullOrEmpty(Eingabe_P1.Text))
+            {
+                Eingabe_P1.ForeColor = Color.Red;
+                Eingabe_P1.Text = "Ausstehend";
+            }
+            else
+            {
+                try
+                {
+                    number = Convert.ToDouble(Eingabe_P1.Text);
+                    Eingabe_P1.ForeColor = Color.Black;
+
+                }
+                catch
+                {
+                    Eingabe_P1.ForeColor = Color.Red;
+                    Eingabe_P1.Text = "Gültige Zahl";
+                    return;
+                }
+            }
         }
         private void Eingabe_P2_TextChanged(object sender, EventArgs e)
         {

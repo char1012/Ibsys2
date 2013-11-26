@@ -64,13 +64,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_aktP1 = new System.Windows.Forms.TextBox();
             this.Periode3 = new System.Windows.Forms.Label();
             this.Periode2 = new System.Windows.Forms.Label();
             this.Periode1 = new System.Windows.Forms.Label();
             this.continue_btn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -226,7 +227,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.tb_aktP1);
             this.groupBox1.Controls.Add(this.Periode3);
             this.groupBox1.Controls.Add(this.Periode2);
             this.groupBox1.Controls.Add(this.Periode1);
@@ -274,7 +275,6 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Periode 1",
             "Periode 2",
             "Periode 3",
             "Periode 4",
@@ -286,7 +286,7 @@
             this.comboBox1.Location = new System.Drawing.Point(75, 30);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(236, 21);
-            this.comboBox1.TabIndex = 53;
+            this.comboBox1.TabIndex = 1;
             this.comboBox1.Text = "Wählen Sie die zu bearbeitende Periode aus";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
@@ -295,55 +295,61 @@
             this.textBox11.Location = new System.Drawing.Point(403, 108);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(84, 20);
-            this.textBox11.TabIndex = 52;
+            this.textBox11.TabIndex = 13;
             this.textBox11.Text = "0";
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox12
             // 
             this.textBox12.Location = new System.Drawing.Point(403, 134);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(84, 20);
-            this.textBox12.TabIndex = 51;
+            this.textBox12.TabIndex = 14;
             this.textBox12.Text = "0";
+            this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(403, 82);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(84, 20);
-            this.textBox10.TabIndex = 50;
+            this.textBox10.TabIndex = 12;
             this.textBox10.Text = "0";
+            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
             // 
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(304, 108);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(84, 20);
-            this.textBox8.TabIndex = 49;
+            this.textBox8.TabIndex = 10;
             this.textBox8.Text = "0";
+            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(304, 134);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(84, 20);
-            this.textBox9.TabIndex = 48;
+            this.textBox9.TabIndex = 11;
             this.textBox9.Text = "0";
+            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(304, 82);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(84, 20);
-            this.textBox7.TabIndex = 47;
+            this.textBox7.TabIndex = 9;
             this.textBox7.Text = "0";
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(205, 108);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(84, 20);
-            this.textBox5.TabIndex = 46;
+            this.textBox5.TabIndex = 7;
             this.textBox5.Text = "0";
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
@@ -352,7 +358,7 @@
             this.textBox6.Location = new System.Drawing.Point(205, 134);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(84, 20);
-            this.textBox6.TabIndex = 45;
+            this.textBox6.TabIndex = 8;
             this.textBox6.Text = "0";
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
@@ -361,7 +367,7 @@
             this.textBox4.Location = new System.Drawing.Point(205, 82);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(84, 20);
-            this.textBox4.TabIndex = 44;
+            this.textBox4.TabIndex = 6;
             this.textBox4.Text = "0";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
@@ -406,7 +412,7 @@
             this.textBox2.Location = new System.Drawing.Point(106, 108);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(84, 20);
-            this.textBox2.TabIndex = 39;
+            this.textBox2.TabIndex = 4;
             this.textBox2.Text = "0";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -415,18 +421,19 @@
             this.textBox3.Location = new System.Drawing.Point(106, 134);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(84, 20);
-            this.textBox3.TabIndex = 38;
+            this.textBox3.TabIndex = 5;
             this.textBox3.Text = "0";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // textBox1
+            // tb_aktP1
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(84, 20);
-            this.textBox1.TabIndex = 37;
-            this.textBox1.Text = "0";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tb_aktP1.BackColor = System.Drawing.Color.White;
+            this.tb_aktP1.Location = new System.Drawing.Point(106, 82);
+            this.tb_aktP1.Name = "tb_aktP1";
+            this.tb_aktP1.Size = new System.Drawing.Size(84, 20);
+            this.tb_aktP1.TabIndex = 3;
+            this.tb_aktP1.Text = "0";
+            this.tb_aktP1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Periode3
             // 
@@ -460,7 +467,7 @@
             this.continue_btn.Location = new System.Drawing.Point(327, 166);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(138, 23);
-            this.continue_btn.TabIndex = 33;
+            this.continue_btn.TabIndex = 15;
             this.continue_btn.Text = "Berechnung starten";
             this.continue_btn.UseVisualStyleBackColor = true;
             this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
@@ -470,7 +477,7 @@
             this.button2.Location = new System.Drawing.Point(317, 28);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 23);
-            this.button2.TabIndex = 32;
+            this.button2.TabIndex = 2;
             this.button2.Text = "Datei auswählen";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
@@ -484,6 +491,11 @@
             this.button1.Text = "Sprung";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // ImportPrognose
             // 
@@ -555,7 +567,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_aktP1;
         private System.Windows.Forms.Label Periode3;
         private System.Windows.Forms.Label Periode2;
         private System.Windows.Forms.Label Periode1;
@@ -565,6 +577,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

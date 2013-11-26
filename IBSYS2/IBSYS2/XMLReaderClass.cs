@@ -142,6 +142,7 @@ namespace IBSYS2
                             {
                                 try
                                 {
+
                                     art.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
                                     art.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
                                     art.Startamount = Convert.ToInt32(node.ChildNodes[i].Attributes["startamount"].InnerText);

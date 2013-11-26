@@ -16,6 +16,8 @@ namespace IBSYS2
     public partial class ImportPrognose : Form
     {
         private OleDbConnection myconn;
+        private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
         public ImportPrognose()
         {
             InitializeComponent();
@@ -26,7 +28,27 @@ namespace IBSYS2
             ToolTip1.SetToolTip(this.pictureBox7, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei. \nIm Anschluss geben Sie bitte ihre Prognosen für die kommenden Perioden ein. \nAnschließend können Sie mit der Bearbeitung fortfahren.");
             ToolTip1.SetToolTip(this.label11, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei.");
             ToolTip1.SetToolTip(this.label12, "Geben Sie nun Ihre Prognose für die nächsten Perioden an.");
+            timer1.Interval = 1000;
+            timer1.Enabled = true; 
+
         }
+
+        //http://stackoverflow.com/questions/11445125/disabling-particular-items-in-a-combobox
+        //Font myFont = new Font("Aerial", 10, FontStyle.Regular);
+
+        //private void comboBox1_DrawItem(object sender, DrawItemEventArgs e)
+        //{
+        //    if (e.Index == 0)//We are disabling item based on Index, you can have your logic here
+        //    {
+        //        e.Graphics.DrawString(comboBox1.Items[e.Index].ToString(), myFont, Brushes.LightGray, e.Bounds);
+        //    }
+        //    else
+        //    {
+        //        e.DrawBackground();
+        //        e.Graphics.DrawString(comboBox1.Items[e.Index].ToString(), myFont, Brushes.Black, e.Bounds);
+        //        e.DrawFocusRectangle();
+        //    }
+        //} 
 
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -74,7 +96,7 @@ namespace IBSYS2
                             period = Convert.ToInt32(node.Attributes["period"].InnerText);
                         }
 
-                        if (ausgewähltePeriode-1 != period )
+                        if (ausgewähltePeriode != period )
                         {
                             System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                         }
@@ -161,280 +183,214 @@ namespace IBSYS2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+            if (tb_aktP1.Text == "")
+            {
+                tb_aktP1.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                tb_aktP1.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in tb_aktP1.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        tb_aktP1.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    tb_aktP1.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            if (textBox2.Text == "")
+            {
+                textBox2.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox2.ForeColor = Color.Black;
+                bool okay = true;
+                 //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox2.Text.ToCharArray())
+                {
+                     //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox2.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox2.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
+            if (textBox3.Text == "")
+            {
+                textBox3.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox3.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox3.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox3.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox3.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-
+            if (textBox6.Text == "")
+            {
+                textBox6.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox6.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox6.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox6.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox6.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-
+            if (textBox5.Text == "")
+            {
+                textBox5.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox5.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox5.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox5.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox5.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-
+            if (textBox4.Text == "")
+            {
+                textBox4.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox4.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox4.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox4.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox4.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             continue_btn.Enabled = false;
+            //if (comboBox1.SelectedIndex == 1)
+            //    comboBox1.SelectedIndex = -1;
         }
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(textBox1.Text))
-            {
-                textBox1.ForeColor = Color.Red;
-                textBox1.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox1.Text);
-                    textBox1.ForeColor = Color.Black;
 
-                }
-                catch
-                {
-                    textBox1.ForeColor = Color.Red;
-                    textBox1.Text = "Gültige Zahl"; 
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox2.Text))
-            {
-                textBox2.ForeColor = Color.Red;
-                textBox2.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox2.Text);
-                    textBox2.ForeColor = Color.Black;
-                }
-                catch
-                {
-                    textBox2.ForeColor = Color.Red;
-                    textBox2.Text = "Gültige Zahl";
-                    return;
-                }
-            }
+            //if (String.IsNullOrEmpty(textBox12.Text))
+            //{
+            //    textBox12.ForeColor = Color.Red;
+            //    textBox12.Text = "Ausstehend";
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        number = Convert.ToDouble(textBox12.Text);
+            //        textBox12.ForeColor = Color.Black;
 
-            if (String.IsNullOrEmpty(textBox3.Text))
-            {
-                textBox3.ForeColor = Color.Red;
-                textBox3.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox3.Text);
-                    textBox3.ForeColor = Color.Black;
-                }
-                catch
-                {
-                    textBox3.ForeColor = Color.Red;
-                    textBox3.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox4.Text))
-            {
-                textBox4.ForeColor = Color.Red;
-                textBox4.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox4.Text);
-                    textBox4.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox4.ForeColor = Color.Red;
-                    textBox4.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox5.Text))
-            {
-                textBox5.ForeColor = Color.Red;
-                textBox5.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox5.Text);
-                    textBox5.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox5.ForeColor = Color.Red;
-                    textBox5.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox6.Text))
-            {
-                textBox6.ForeColor = Color.Red;
-                textBox6.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox6.Text);
-                    textBox6.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox6.ForeColor = Color.Red;
-                    textBox6.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox7.Text))
-            {
-                textBox7.ForeColor = Color.Red;
-                textBox7.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox7.Text);
-                    textBox7.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox7.ForeColor = Color.Red;
-                    textBox7.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox8.Text))
-            {
-                textBox8.ForeColor = Color.Red;
-                textBox8.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox8.Text);
-                    textBox8.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox8.ForeColor = Color.Red;
-                    textBox8.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox9.Text))
-            {
-                textBox9.ForeColor = Color.Red;
-                textBox9.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox9.Text);
-                    textBox9.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox9.ForeColor = Color.Red;
-                    textBox9.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox10.Text))
-            {
-                textBox10.ForeColor = Color.Red;
-                textBox10.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox10.Text);
-                    textBox10.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox10.ForeColor = Color.Red;
-                    textBox10.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox11.Text))
-            {
-                textBox11.ForeColor = Color.Red;
-                textBox11.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox11.Text);
-                    textBox11.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox11.ForeColor = Color.Red;
-                    textBox11.Text = "Gültige Zahl";
-                    return;
-                }
-            }
-            if (String.IsNullOrEmpty(textBox12.Text))
-            {
-                textBox12.ForeColor = Color.Red;
-                textBox12.Text = "Ausstehend";
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(textBox12.Text);
-                    textBox12.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    textBox12.ForeColor = Color.Red;
-                    textBox12.Text = "Gültige Zahl";
-                    return;
-                }
-            }
+            //    }
+            //    catch
+            //    {
+            //        textBox12.ForeColor = Color.Red;
+            //        textBox12.Text = "Gültige Zahl";
+            //        return;
+            //    }
+            //}
 
         }
 
@@ -445,11 +401,522 @@ namespace IBSYS2
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            new ImportPrognose().Close();
-
+            new ImportPrognose().Hide();
+            new Kapazitaetsplan().Show();
             new Kaufteildisposition().Show();
         }
 
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox7.Text == "")
+            {
+                textBox7.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox7.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox7.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox7.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox7.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox8.Text == "")
+            {
+                textBox8.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox8.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox8.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox8.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox8.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox9.Text == "")
+            {
+                textBox9.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox9.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox9.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox9.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox9.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox10.Text == "")
+            {
+                textBox10.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox10.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox10.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox10.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox10.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox11.Text == "")
+            {
+                textBox11.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox11.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox11.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox11.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox11.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox12.Text == "")
+            {
+                textBox12.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                textBox12.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in textBox12.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        textBox12.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    textBox12.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        //    if (tb_aktP1.Text == "")
+        //    {
+        //        tb_aktP1.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        tb_aktP1.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in tb_aktP1.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                tb_aktP1.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            tb_aktP1.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox2.Text == "")
+        //    {
+        //        textBox2.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox2.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox2.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox2.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox2.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox3.Text == "")
+        //    {
+        //        textBox3.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox3.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox3.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox3.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox3.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox4.Text == "")
+        //    {
+        //        textBox4.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox4.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox4.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox4.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox4.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox5.Text == "")
+        //    {
+        //        textBox5.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox5.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox5.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox5.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox5.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox6.Text == "")
+        //    {
+        //        textBox6.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox6.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox6.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox6.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox6.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox7.Text == "")
+        //    {
+        //        textBox7.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox7.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox7.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox7.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox7.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+
+        //    if (textBox8.Text == "")
+        //    {
+        //        textBox8.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox8.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox8.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox8.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox8.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox9.Text == "")
+        //    {
+        //        textBox9.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox9.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox9.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox9.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox9.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox10.Text == "")
+        //    {
+        //        textBox10.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox10.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox10.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox10.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox10.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox11.Text == "")
+        //    {
+        //        textBox11.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox11.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox11.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox11.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox11.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+
+        //    if (textBox12.Text == "")
+        //    {
+        //        textBox12.ForeColor = Color.Red;
+        //        continue_btn.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        textBox12.ForeColor = Color.Black;
+        //        bool okay = true;
+        //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+        //        foreach (char c in textBox12.Text.ToCharArray())
+        //        {
+        //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+        //            if (!digits.Contains<char>(c))
+        //            {
+        //                textBox12.ForeColor = Color.Red;
+        //                okay = false;
+        //                break;
+        //            }
+        //        }
+        //        if (okay == true)
+        //        {
+        //            textBox12.ForeColor = Color.Black;
+        //            continue_btn.Enabled = true;
+        //        }
+        //    }
+        }
+
+
+      
 
 
     }

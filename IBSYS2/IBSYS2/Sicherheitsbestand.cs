@@ -24,6 +24,11 @@ namespace IBSYS2
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
+            System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+            ToolTipP.SetToolTip(this.infoP, "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.");
+            System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+            ToolTipE.SetToolTip(this.infoE, "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.");
+
             E261.Enabled = false;
             E511.Enabled = false;
             E161.Enabled = false;

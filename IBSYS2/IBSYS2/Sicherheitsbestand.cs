@@ -8,13 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
-using System.Data.OleDb;
 
 
 namespace IBSYS2
@@ -22,12 +16,56 @@ namespace IBSYS2
     public partial class Sicherheitsbestand : Form
     {
         private OleDbConnection myconn;
+
         public Sicherheitsbestand()
         {
             InitializeComponent();
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
+
+            System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+            ToolTipP.SetToolTip(this.infoP, "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.");
+            System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+            ToolTipE.SetToolTip(this.infoE, "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.");
+
+            E261.Enabled = false;
+            E511.Enabled = false;
+            E161.Enabled = false;
+            E171.Enabled = false;
+            E501.Enabled = false;
+            E041.Enabled = false;
+            E101.Enabled = false;
+            E491.Enabled = false;
+            E071.Enabled = false;
+            E131.Enabled = false;
+            E181.Enabled = false;
+            E262.Enabled = false;
+            E562.Enabled = false;
+            E162.Enabled = false;
+            E172.Enabled = false;
+            E552.Enabled = false;
+            E052.Enabled = false;
+            E112.Enabled = false;
+            E542.Enabled = false;
+            E082.Enabled = false;
+            E142.Enabled = false;
+            E192.Enabled = false;
+            E263.Enabled = false;
+            E313.Enabled = false;
+            E163.Enabled = false;
+            E173.Enabled = false;
+            E303.Enabled = false;
+            E063.Enabled = false;
+            E123.Enabled = false;
+            E293.Enabled = false;
+            E093.Enabled = false;
+            E153.Enabled = false;
+            E203.Enabled = false;
+
+            Ausgabe_P1.Enabled = false;
+            Ausgabe_P2.Enabled = false;
+            Ausgabe_P3.Enabled = false;
         }
 
         private void continue_btn_Click_1(object sender, EventArgs e)
@@ -113,17 +151,13 @@ namespace IBSYS2
             E153.Text = Convert.ToString(gLE15P3);
             int gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 70);
             E203.Text = Convert.ToString(gLE20P3);
-
-            //MessageBox.Show(Convert.ToString("P1: " + sicherheitsbestandP1 + " P2: " + sicherheitsbestandP2 + " P3: " + sicherheitsbestandP3));
-            //MessageBox.Show(Convert.ToString("E26: " + gLE26));
-            //MessageBox.Show(Convert.ToString(gLE26));
+            textfeldFreigeben();
         }
 
         public int geplanterLagerbestand(int sicherheitsbestand, int ver)
         {
             int geplanterLagerbestand = 0;
             geplanterLagerbestand = (sicherheitsbestand / 100) * ver;
-            // MessageBox.Show(Convert.ToString(sicherheitsbestand));
             return geplanterLagerbestand;
         }
 
@@ -136,6 +170,7 @@ namespace IBSYS2
             int wArbMenge = datenHolen(teilenummer_FK, "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz");
             return sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;
         }
+
         public int datenHolen(string teilenummer_FK, string spalte, string spalte1, string tabelle)
         {
             // Initialisierung DB-Verbindung
@@ -164,7 +199,6 @@ namespace IBSYS2
             while (dr.Read())
             {
                 datum = dr[spalte].ToString();
-                //    MessageBox.Show(drP3["Bestand"].ToString());
             }
             int datumint = 0;
             if (datum != null)
@@ -194,44 +228,70 @@ namespace IBSYS2
 
         private void groupBox1_Enter(object sender, System.EventArgs e)
         {
-
         }
 
         private void Sicherheitsbestand_Load(object sender, System.EventArgs e)
         {
-
         }
 
         private void label3_Click(object sender, System.EventArgs e)
         {
-
         }
 
         private void groupBox2_Enter(object sender, System.EventArgs e)
         {
-
         }
 
         private void textBox1_TextChanged(object sender, System.EventArgs e)
         {
-
         }
 
         private void textBox5_TextChanged(object sender, System.EventArgs e)
         {
-
         }
 
         private void label11_Click(object sender, System.EventArgs e)
         {
-
         }
 
         private void textBox3_TextChanged(object sender, System.EventArgs e)
         {
-
         }
-
-
+                
+        public void textfeldFreigeben(){
+            E261.Enabled = true;
+            E511.Enabled = true;
+            E161.Enabled = true;
+            E171.Enabled = true;
+            E501.Enabled = true;
+            E041.Enabled = true;
+            E101.Enabled = true;
+            E491.Enabled = true;
+            E071.Enabled = true;
+            E131.Enabled = true;
+            E181.Enabled = true;
+            E262.Enabled = true;
+            E562.Enabled = true;
+            E162.Enabled = true;
+            E172.Enabled = true;
+            E552.Enabled = true;
+            E052.Enabled = true;
+            E112.Enabled = true;
+            E542.Enabled = true;
+            E082.Enabled = true;
+            E142.Enabled = true;
+            E192.Enabled = true;
+            E263.Enabled = true;
+            E313.Enabled = true;
+            E163.Enabled = true;
+            E173.Enabled = true;
+            E303.Enabled = true;
+            E063.Enabled = true;
+            E123.Enabled = true;
+            E293.Enabled = true;
+            E093.Enabled = true;
+            E153.Enabled = true;
+            E203.Enabled = true;
+        }
     }
 }

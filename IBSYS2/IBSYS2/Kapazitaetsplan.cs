@@ -20,13 +20,13 @@ namespace IBSYS2
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
             System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-            ToolTip1.SetToolTip(this.pictureBox7, "Der berechnete Kapazitätsbedarf ist nicht änderbar." +
-                "\nSie können jedoch für jeden Arbeitsplatz die Überstunden pro Periode, " + 
-                "die Überstunden pro Tag und die Anzahl der Schichten anpassen." + 
-                "\nEine Änderung bei Überstunden/Periode bewirkt eine Neuberechnung von Überstunden/Tag " +
-                "und umgekehrt.\nWenn in der Zeile Schichten eine rote 3 angezeigt wird, " + 
-                "bedeutet dies, dass mehr als drei Schichten benötigt werden. In diesem Fall sollten Sie " + 
-                "ihre Produktionsmenge anpassen.\nDen Arbeitsplatz 5 gibt es nicht.");
+            ToolTip1.SetToolTip(this.pictureBox7, "- Der berechnete Kapazitätsbedarf ist nicht änderbar. " +
+                "Sie können jedoch für jeden Arbeitsplatz die Überstunden pro Periode " + 
+                "\n   und die Anzahl der Schichten anpassen. " + 
+                "Eine Änderung bei Überstunden/Periode bewirkt eine Neuberechnung von Überstunden/Tag. " +
+                "\n- Wenn in der Zeile Schichten eine rote 3 angezeigt wird, " + 
+                "bedeutet dies, dass mehr als drei Schichten benötigt werden.\n   In diesem Fall sollten Sie " + 
+                "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.");
         }
 
         public void calculate()

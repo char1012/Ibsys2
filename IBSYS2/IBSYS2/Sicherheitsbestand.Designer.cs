@@ -280,7 +280,7 @@
             this.groupBox1.Size = new System.Drawing.Size(729, 73);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Sicherheitsbestand P-Teile";
+            this.groupBox1.Text = "P-Teile - Geplanter Lagerbestand am Ende dieser Periode";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button1
@@ -366,7 +366,7 @@
             this.groupBox3.Size = new System.Drawing.Size(533, 309);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Sicherheitsbestand E-Teile";
+            this.groupBox3.Text = "E-Teile - Geplanter Lagerbestand am Ende dieser Periode";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // E203

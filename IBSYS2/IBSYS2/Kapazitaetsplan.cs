@@ -215,7 +215,6 @@ namespace IBSYS2
 
                 // 0. um weniger DB-Abfragen zu machen (vorher 11), werden hier häufig ben. Infos gespeichert
                 // a) Infos aus Arbeitsplatz_Erzeugnis zum aktuellen Arbeitsplatz
-                //    = alle Zeilen, in denen dieser Arbeitsplatz vorkommt
                 int a = 0;
                 List<List<int>> arbeitsplatz_erzeugnis = new List<List<int>>();
                 // in diesem Fall eine Liste, weil nicht sicher ist, wie viele Zeilen es gibt
@@ -228,6 +227,36 @@ namespace IBSYS2
                     arbeitsplatz_erzeugnis[a].Add(Convert.ToInt32(dbReader["Bearbeitungszeit"]));
                     arbeitsplatz_erzeugnis[a].Add(Convert.ToInt32(dbReader["Rüstzeit"]));
                     arbeitsplatz_erzeugnis[a].Add(Convert.ToInt32(dbReader["Reihenfolge"]));
+                    ++a;
+                }
+                dbReader.Close();
+                // b) Infos aus Warteliste_Arbeitsplatz zur aktuellen Periode
+                a = 0;
+                List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
+                cmd.CommandText = @"SELECT Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    warteliste_arbeitsplatz.Add(new List<int>());
+                    warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Arbeitsplatz_FK"]));
+                    warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                    warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                    warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Zeitbedarf"]));
+                    ++a;
+                }
+                dbReader.Close();
+                // c) Infos aus Bearbeitung zur aktuellen Periode
+                a = 0;
+                List<List<int>> bearbeitung = new List<List<int>>();
+                cmd.CommandText = @"SELECT Arbeitsplatz_FK, Teilenummer_FK, Menge, Zeitbedarf FROM Bearbeitung WHERE Periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    bearbeitung.Add(new List<int>());
+                    bearbeitung[a].Add(Convert.ToInt32(dbReader["Arbeitsplatz_FK"]));
+                    bearbeitung[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                    bearbeitung[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                    bearbeitung[a].Add(Convert.ToInt32(dbReader["Zeitbedarf"]));
                     ++a;
                 }
                 dbReader.Close();
@@ -265,34 +294,32 @@ namespace IBSYS2
                 // In jedem Fall die Tabellen Warteliste und Bearbeitung auf Eintraege fuer diesen Platz ueberpruefen
 
                 // 2.1. Warteliste Arbeitsplatz ueberpruefen -> Bearbeitungszeit und Ruestzeit
-                cmd.CommandText = @"SELECT Teilenummer_FK, Zeitbedarf FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + platznr
-                    + " AND Periode = " + periode + ";";
-                dbReader = cmd.ExecuteReader();
-                while (dbReader.Read())
+                for (int n = 0; n < warteliste_arbeitsplatz.Count; ++n)
                 {
-                    int teilenummer = Convert.ToInt32(dbReader["Teilenummer_FK"]);
-                    // Bearbeitungszeit
-                    rueckstandBearbeitungszeit += Convert.ToInt32(dbReader["Zeitbedarf"]);
-                    // Ruestzeit
-                    for (int n = 0; n < arbeitsplatz_erzeugnis.Count; ++n)
+                    if (warteliste_arbeitsplatz[n][0] == platznr)
                     {
-                        if (arbeitsplatz_erzeugnis[n][0] == teilenummer)
+                        int teilenummer = warteliste_arbeitsplatz[n][1];
+                        // Bearbeitungszeit
+                        rueckstandBearbeitungszeit += warteliste_arbeitsplatz[n][3];
+                        // Ruestzeit
+                        for (int no = 0; no < arbeitsplatz_erzeugnis.Count; ++no)
                         {
-                            rueckstandRuestzeit += arbeitsplatz_erzeugnis[n][2];
+                            if (arbeitsplatz_erzeugnis[no][0] == teilenummer)
+                            {
+                                rueckstandRuestzeit += arbeitsplatz_erzeugnis[no][2];
+                            }
                         }
                     }
                 }
-                dbReader.Close();
 
                 // 2.2. In Bearbeitung ueberpruefen -> nur Bearbeitungszeit, keine Rüstzeit
-                cmd.CommandText = @"SELECT Zeitbedarf FROM Bearbeitung WHERE Arbeitsplatz_FK = " + platznr
-                    + " AND Periode = " + periode + ";";
-                dbReader = cmd.ExecuteReader();
-                while (dbReader.Read())
+                for (int n = 0; n < bearbeitung.Count; ++n)
                 {
-                    rueckstandBearbeitungszeit += Convert.ToInt32(dbReader["Zeitbedarf"]);
+                    if (bearbeitung[n][0] == platznr)
+                    {
+                        rueckstandBearbeitungszeit += bearbeitung[n][3];
+                    }
                 }
-                dbReader.Close();
 
                 // 2.3. Warteliste Material ueberpruefen
                 cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
@@ -340,25 +367,25 @@ namespace IBSYS2
                                 int andererPlatz = Convert.ToInt32(dbReader["Arbeitsplatz_FK"]);
                                 // kontrollieren, ob diese in der Warteliste Arbeitsplatz liegen
                                 // Menge wird benoetigt, um dies dann mit den eigenen Werten fuer B.zeit und R.zeit zu verrechnen
-                                cmd2.CommandText = @"SELECT Menge FROM Warteliste_Arbeitsplatz WHERE Teilenummer_FK = " + teilenummer
-                                    + " AND Arbeitsplatz_FK = " + andererPlatz + " AND periode = " + periode + ";";
-                                OleDbDataReader dbReader2 = cmd2.ExecuteReader();
-                                while (dbReader2.Read()) // hier sollte nur eine Zeile herauskommen
+                                for (int no = 0; no < warteliste_arbeitsplatz.Count; ++no)
                                 {
-                                    rueckstandBearbeitungszeit += bzeit * Convert.ToInt32(dbReader2["Menge"]);
-                                    rueckstandRuestzeit += rzeit;
+                                    if (warteliste_arbeitsplatz[no][0] == andererPlatz
+                                            && warteliste_arbeitsplatz[no][1] == teilenummer)
+                                    {
+                                        rueckstandBearbeitungszeit += bzeit * warteliste_arbeitsplatz[no][2];
+                                        rueckstandRuestzeit += rzeit;
+                                    }
                                 }
-                                dbReader2.Close();
                                 // kontrollieren, ob diese in Bearbeitung liegen
-                                cmd2.CommandText = @"SELECT Menge FROM Bearbeitung WHERE Teilenummer_FK = " + teilenummer
-                                    + " AND Arbeitsplatz_FK = " + andererPlatz + " AND periode = " + periode + ";";
-                                dbReader2 = cmd2.ExecuteReader();
-                                while (dbReader2.Read())
+                                for (int no = 0; no < bearbeitung.Count; ++no)
                                 {
-                                    rueckstandBearbeitungszeit += bzeit * Convert.ToInt32(dbReader2["Menge"]);
-                                    rueckstandRuestzeit += rzeit;
+                                    if (bearbeitung[no][0] == andererPlatz
+                                            && bearbeitung[no][1] == teilenummer)
+                                    {
+                                        rueckstandBearbeitungszeit += bzeit * bearbeitung[no][2];
+                                        rueckstandRuestzeit += rzeit;
+                                    }
                                 }
-                                dbReader2.Close();
                             }
                             dbReader.Close();
                         }

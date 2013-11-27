@@ -33,12 +33,9 @@ namespace IBSYS2
                 "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.");
         }
 
-        public void calculate()
+        public void setValues()
         {
-            // Die Werte in schichten sollen wieder auf 0 gesetzt werden
-            schichten = new int[15];
-
-            // Dieser Konstruktor soll in Zukunft von Produktion.cs mit den Parametern
+            // Diese Methode wird in Zukunft von Produktion.cs mit den Parametern
             // int periode und eines zweidimensionales int-Array (Teilenummer, Produktionsmenge) aufgerufen.
             // Diese Werte werden momentan simuliert.
             int periode = 6; // Periode des xmls
@@ -103,6 +100,90 @@ namespace IBSYS2
             teile[28, 1] = 170;
             teile[29, 0] = 56;
             teile[29, 1] = 180;
+
+            // Methode zur Berechnung der Werte aufrufen
+            int[] plaetze = calculate(periode, teile);
+
+            // Zeile Kapazitaetsbedarf fuellen
+            for (int i = 0; i < plaetze.Length; ++i)
+            {
+                int k = i + 1;
+                this.Controls.Find("K" + k.ToString(), true)[0].Text = plaetze[i].ToString();
+            }
+
+            // Zeile Ueberstunden/Periode fuellen -> Kalkulation der Ueberstd auf Grundlage des Kap.bedarfs
+            for (int i = 0; i < plaetze.Length; ++i)
+            {
+                int up = i + 1;
+                TextBox kText = (TextBox)this.Controls.Find("K" + up.ToString(), true)[0];
+                int ueberstd = 0;
+                if (Convert.ToInt32(kText.Text) > 2400 && Convert.ToInt32(kText.Text) <= 3600)
+                {
+                    int zuviel = Convert.ToInt32(kText.Text) - 2400; // Stunden, die mehr als 2400 sind
+                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
+                }
+                else if (Convert.ToInt32(kText.Text) > 2300 && Convert.ToInt32(kText.Text) <= 2400)
+                {
+                    ueberstd = Convert.ToInt32(kText.Text) - 2300;
+                }
+                else if (Convert.ToInt32(kText.Text) > 4800 && Convert.ToInt32(kText.Text) <= 6000)
+                {
+                    int zuviel = Convert.ToInt32(kText.Text) - 4800; // Stunden, die mehr als 4800 sind
+                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
+                }
+                else if (Convert.ToInt32(kText.Text) > 4700 && Convert.ToInt32(kText.Text) <= 4800)
+                {
+                    ueberstd = Convert.ToInt32(kText.Text) - 4700;
+                }
+                if (ueberstd > 1200)
+                {
+                    ueberstd = 1200;
+                }
+                this.Controls.Find("UP" + up.ToString(), true)[0].Text = ueberstd.ToString();
+            }
+
+            // Zeile Ueberstunden/Tag fuellen -> 1/5 von Ueberstunden/Periode
+            for (int i = 0; i < plaetze.Length; ++i)
+            {
+                int ut = i + 1;
+                TextBox upText = (TextBox)this.Controls.Find("UP" + ut.ToString(), true)[0];
+                int ueberstd = (int)Math.Round(Convert.ToDouble(upText.Text) / 5);
+                this.Controls.Find("UT" + ut.ToString(), true)[0].Text = ueberstd.ToString();
+            }
+
+            // Zeile Schichten fuellen
+            for (int i = 0; i < plaetze.Length; ++i)
+            {
+                int s = i + 1;
+                TextBox kText = (TextBox)this.Controls.Find("K" + s.ToString(), true)[0];
+                int schicht = 1;
+                if (Convert.ToInt32(kText.Text) <= 3600)
+                {
+                    schicht = 1;
+                }
+                else if (Convert.ToInt32(kText.Text) > 3600 && Convert.ToInt32(kText.Text) <= 6000)
+                {
+                    schicht = 2;
+                }
+                else if (Convert.ToInt32(kText.Text) > 6000 && Convert.ToInt32(kText.Text) <= 7200)
+                {
+                    schicht = 3;
+                }
+                else if (Convert.ToInt32(kText.Text) > 7200) // Wenn mehr als 3 Schichten benoetigt werden
+                {
+                    schicht = 3;
+                    this.Controls.Find("S" + s.ToString(), true)[0].ForeColor = Color.Red;
+                }
+                this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
+                schichten[i] = schicht; // Startwert der Zeile Schichten speichern
+            }
+
+        }
+
+        public int[] calculate(int periode, int[,] teile)
+        {
+            // Die Werte in schichten sollen wieder auf 0 gesetzt werden
+            schichten = new int[15];
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -319,85 +400,12 @@ namespace IBSYS2
                 vorgelagert = false;
             }
             myconn.Close();
-
-            // Zeile Kapazitaetsbedarf fuellen
-            for (int i = 0; i < plaetze.Length; ++i)
-            {
-                int k = i + 1;
-                this.Controls.Find("K" + k.ToString(), true)[0].Text = plaetze[i].ToString();
-            }
-
-            // Zeile Ueberstunden/Periode fuellen -> Kalkulation der Ueberstd auf Grundlage des Kap.bedarfs
-            for (int i = 0; i < plaetze.Length; ++i)
-            {
-                int up = i + 1;
-                TextBox kText = (TextBox)this.Controls.Find("K" + up.ToString(), true)[0];
-                int ueberstd = 0;
-                if (Convert.ToInt32(kText.Text) > 2400 && Convert.ToInt32(kText.Text) <= 3600)
-                {
-                    int zuviel = Convert.ToInt32(kText.Text) - 2400; // Stunden, die mehr als 2400 sind
-                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
-                }
-                else if (Convert.ToInt32(kText.Text) > 2300 && Convert.ToInt32(kText.Text) <= 2400)
-                {
-                    ueberstd = Convert.ToInt32(kText.Text) - 2300;
-                }
-                else if (Convert.ToInt32(kText.Text) > 4800 && Convert.ToInt32(kText.Text) <= 6000)
-                {
-                    int zuviel = Convert.ToInt32(kText.Text) - 4800; // Stunden, die mehr als 4800 sind
-                    ueberstd = zuviel + zuviel / 5; // plus 1/5 mehr zur Sicherheit
-                }
-                else if (Convert.ToInt32(kText.Text) > 4700 && Convert.ToInt32(kText.Text) <= 4800)
-                {
-                    ueberstd = Convert.ToInt32(kText.Text) - 4700;
-                }
-                if (ueberstd > 1200)
-                {
-                    ueberstd = 1200;
-                }
-                this.Controls.Find("UP" + up.ToString(), true)[0].Text = ueberstd.ToString();
-            }
-
-            // Zeile Ueberstunden/Tag fuellen -> 1/5 von Ueberstunden/Periode
-            for (int i = 0; i < plaetze.Length; ++i)
-            {
-                int ut = i + 1;
-                TextBox upText = (TextBox)this.Controls.Find("UP" + ut.ToString(), true)[0];
-                int ueberstd = (int)Math.Round(Convert.ToDouble(upText.Text) / 5);
-                this.Controls.Find("UT" + ut.ToString(), true)[0].Text = ueberstd.ToString();
-            }
-
-            // Zeile Schichten fuellen
-            for (int i = 0; i < plaetze.Length; ++i)
-            {
-                int s = i + 1;
-                TextBox kText = (TextBox)this.Controls.Find("K" + s.ToString(), true)[0];
-                int schicht = 1;
-                if (Convert.ToInt32(kText.Text) <= 3600)
-                {
-                    schicht = 1;
-                }
-                else if (Convert.ToInt32(kText.Text) > 3600 && Convert.ToInt32(kText.Text) <= 6000)
-                {
-                    schicht = 2;
-                }
-                else if (Convert.ToInt32(kText.Text) > 6000 && Convert.ToInt32(kText.Text) <= 7200)
-                {
-                    schicht = 3;
-                }
-                else if (Convert.ToInt32(kText.Text) > 7200) // Wenn mehr als 3 Schichten benoetigt werden
-                {
-                    schicht = 3;
-                    this.Controls.Find("S" + s.ToString(), true)[0].ForeColor = Color.Red;
-                }
-                this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
-                schichten[i] = schicht; // Startwert der Zeile Schichten speichern
-            }
+            return plaetze;
         }
 
         private void default_btn_Click(object sender, EventArgs e)
         {
-            calculate();
+            setValues();
         }
 
         private void continue_btn_Click(object sender, EventArgs e)

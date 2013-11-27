@@ -16,6 +16,8 @@ namespace IBSYS2
         private OleDbConnection myconn;
         // Liste der zulaessigen Zeichen bei Benutzereingaben
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        // Listen zum Speichern der Startwerte (Aenderungen nachvollziehen + Feststellen, ob initiale Belegung)
+        private int[] schichten;
 
         public Kapazitaetsplan()
         {
@@ -33,6 +35,9 @@ namespace IBSYS2
 
         public void calculate()
         {
+            // Die Werte in schichten sollen wieder auf 0 gesetzt werden
+            schichten = new int[15];
+
             // Dieser Konstruktor soll in Zukunft von Produktion.cs mit den Parametern
             // int periode und eines zweidimensionales int-Array (Teilenummer, Produktionsmenge) aufgerufen.
             // Diese Werte werden momentan simuliert.
@@ -386,6 +391,7 @@ namespace IBSYS2
                     this.Controls.Find("S" + s.ToString(), true)[0].ForeColor = Color.Red;
                 }
                 this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
+                schichten[i] = schicht; // Startwert der Zeile Schichten speichern
             }
         }
 
@@ -930,256 +936,541 @@ namespace IBSYS2
 
         private void S1_TextChanged(object sender, EventArgs e)
         {
-            if (S1.Text == "1" || S1.Text == "2" || S1.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[0];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S1.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S1.Text == "1" || S1.Text == "2" || S1.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S1.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP1.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP1.Text = "1200";
+                    }
+                    schichten[0] = neu;
+                }
+                else if (S1.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S2_TextChanged(object sender, EventArgs e)
         {
-            if (S2.Text == "1" || S2.Text == "2" || S2.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[1];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S2.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S2.Text == "1" || S2.Text == "2" || S2.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S2.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP2.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP2.Text = "1200";
+                    }
+                    schichten[1] = neu;
+                }
+                else if (S2.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S3_TextChanged(object sender, EventArgs e)
         {
-            if (S3.Text == "1" || S3.Text == "2" || S3.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[2];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S3.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S3.Text == "1" || S3.Text == "2" || S3.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S3.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP3.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP3.Text = "1200";
+                    }
+                    schichten[2] = neu;
+                }
+                else if (S3.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S4_TextChanged(object sender, EventArgs e)
         {
-            if (S4.Text == "1" || S4.Text == "2" || S4.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[3];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S4.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S4.Text == "1" || S4.Text == "2" || S4.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S4.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP4.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP4.Text = "1200";
+                    }
+                    schichten[3] = neu;
+                }
+                else if (S4.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S5_TextChanged(object sender, EventArgs e)
         {
-            if (S5.Text == "1" || S5.Text == "2" || S5.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[4];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S5.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S5.Text == "1" || S5.Text == "2" || S5.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S5.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP5.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP5.Text = "1200";
+                    }
+                    schichten[4] = neu;
+                }
+                else if (S5.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S6_TextChanged(object sender, EventArgs e)
         {
-            if (S6.Text == "1" || S6.Text == "2" || S6.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[5];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S6.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S6.Text == "1" || S6.Text == "2" || S6.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S6.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP6.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP6.Text = "1200";
+                    }
+                    schichten[5] = neu;
+                }
+                else if (S6.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S7_TextChanged(object sender, EventArgs e)
         {
-            if (S7.Text == "1" || S7.Text == "2" || S7.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[6];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S7.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S7.Text == "1" || S7.Text == "2" || S7.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S7.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP7.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP7.Text = "1200";
+                    }
+                    schichten[6] = neu;
+                }
+                else if (S7.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S8_TextChanged(object sender, EventArgs e)
         {
-            if (S8.Text == "1" || S8.Text == "2" || S8.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[7];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S8.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S8.Text == "1" || S8.Text == "2" || S8.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S8.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP8.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP8.Text = "1200";
+                    }
+                    schichten[7] = neu;
+                }
+                else if (S8.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S9_TextChanged(object sender, EventArgs e)
         {
-            if (S9.Text == "1" || S9.Text == "2" || S9.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[8];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S9.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S9.Text == "1" || S9.Text == "2" || S9.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S9.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP9.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP9.Text = "1200";
+                    }
+                    schichten[8] = neu;
+                }
+                else if (S9.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S10_TextChanged(object sender, EventArgs e)
         {
-            if (S10.Text == "1" || S10.Text == "2" || S10.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[9];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S10.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S10.Text == "1" || S10.Text == "2" || S10.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S10.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP10.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP10.Text = "1200";
+                    }
+                    schichten[9] = neu;
+                }
+                else if (S10.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S11_TextChanged(object sender, EventArgs e)
         {
-            if (S11.Text == "1" || S11.Text == "2" || S11.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[10];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S11.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S11.Text == "1" || S11.Text == "2" || S11.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S11.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP11.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP11.Text = "1200";
+                    }
+                    schichten[10] = neu;
+                }
+                else if (S11.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S12_TextChanged(object sender, EventArgs e)
         {
-            if (S12.Text == "1" || S12.Text == "2" || S12.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[11];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S12.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S12.Text == "1" || S12.Text == "2" || S12.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S12.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP12.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP12.Text = "1200";
+                    }
+                    schichten[11] = neu;
+                }
+                else if (S12.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S13_TextChanged(object sender, EventArgs e)
         {
-            if (S13.Text == "1" || S13.Text == "2" || S13.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[12];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S13.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S13.Text == "1" || S13.Text == "2" || S13.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S13.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP13.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP13.Text = "1200";
+                    }
+                    schichten[12] = neu;
+                }
+                else if (S13.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S14_TextChanged(object sender, EventArgs e)
         {
-            if (S14.Text == "1" || S14.Text == "2" || S14.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[13];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S14.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S14.Text == "1" || S14.Text == "2" || S14.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S14.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP14.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP14.Text = "1200";
+                    }
+                    schichten[13] = neu;
+                }
+                else if (S14.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
 
         private void S15_TextChanged(object sender, EventArgs e)
         {
-            if (S15.Text == "1" || S15.Text == "2" || S15.Text == "3")
+            // Achtung: erstmaliges Belegen der TextBoxen mit Werten loest ein TextChanged aus,
+            // in diesem Fall ist der alte Werte 0 und es muss nichts geprueft werden
+            int alt = schichten[14];
+            if (alt != 0)
             {
-                continue_btn.Enabled = true;
-            }
-            else if (S15.Text == "")
-            {
-                continue_btn.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
-                continue_btn.Enabled = false;
+                if (S15.Text == "1" || S15.Text == "2" || S15.Text == "3")
+                {
+                    continue_btn.Enabled = true;
+                    // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
+                    int neu = Convert.ToInt32(S15.Text);
+                    // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
+                    if (neu > alt)
+                    {
+                        UP15.Text = "0";
+                    }
+                    // Wenn die Periode nach unten gesetzt wird, soll Ueberstd/Periode auf 1200 gesetzt werden
+                    else if (neu < alt)
+                    {
+                        UP15.Text = "1200";
+                    }
+                    schichten[14] = neu;
+                }
+                else if (S15.Text == "")
+                {
+                    continue_btn.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    continue_btn.Enabled = false;
+                }
             }
         }
     }

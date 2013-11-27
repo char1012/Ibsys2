@@ -402,26 +402,9 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            bool okay = true;
-            for (int i = 1; i <= 15; ++i)
-            {
-                if (this.Controls.Find("K" + i.ToString(), true)[0].Text == "" ||
-                    this.Controls.Find("UP" + i.ToString(), true)[0].Text == "" ||
-                    this.Controls.Find("UT" + i.ToString(), true)[0].Text == "" ||
-                    this.Controls.Find("S" + i.ToString(), true)[0].Text == "")
-                {
-                    okay = false;
-                }
-            }
-            if (okay == true)
-            {
-                MessageBox.Show("Hier ginge es eigentlich weiter zur Kaufteildisposition.");
-                // TODO Werte an naechsten Bildschirm uebergeben
-            }
-            else
-            {
-                MessageBox.Show("Bitte lassen Sie kein Feld leer.\nSie können jedoch eine 0 eintragen.");
-            }
+            // Pruefung gestrichen, weil es dem Benutzer nicht moeglich ist,
+            // mit falschen Werten diese Methode aufzurufen
+            MessageBox.Show("Hier ginge es eigentlich weiter zur Kaufteildisposition.");
         }
 
         private void UP1_TextChanged(object sender, EventArgs e)
@@ -965,6 +948,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S1.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1001,6 +985,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S2.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1037,6 +1022,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S3.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1073,6 +1059,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S4.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1109,6 +1096,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S5.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1145,6 +1133,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S6.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1181,6 +1170,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S7.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1217,6 +1207,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S8.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1253,6 +1244,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S9.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1289,6 +1281,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S10.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1325,6 +1318,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S11.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1361,6 +1355,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S12.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1397,6 +1392,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S13.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1433,6 +1429,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S14.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }
@@ -1469,6 +1466,7 @@ namespace IBSYS2
                 else
                 {
                     MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
+                    S15.Text = alt.ToString();
                     continue_btn.Enabled = false;
                 }
             }

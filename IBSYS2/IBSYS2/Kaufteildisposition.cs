@@ -21,69 +21,107 @@ namespace IBSYS2
         {
             
             InitializeComponent();
-            //Annahme Produktion P1/P2/P3 wie folgt, Daten müssen später aus entsprechendem Feld ausgelesen werden, sobald programmiert von Zuständigen
 
-            int prodP1 = 90;
-            int prodP2 = 190;
-            int prodP3 = 160;
-
-            //Lagerbestand zukünftig aus DB
-            int LB_P21 = 300; 
-            //Lieferfrist zukünftig aus DB
-            double LF_P21 = 1.8;
-            //Abweichung zukünftig aus DB
-            double LFA_P21 = 0.2;
-
-            //Berechnung des Bruttobedarfs
-            int[] BB_P21 = new int[] { prodP1 * 1, prodP1 * 1, prodP1 * 1 };
-            int[] BB_P22 = new int[] { prodP2 * 1, prodP2 * 1, prodP2 * 1 };
-            int[] BB_P23 = new int[] { prodP3 * 1, prodP3 * 1, prodP3 * 1 };
-            int[] BB_P24 = new int[] { prodP1 * 7 + prodP2 * 7 + prodP3 * 7, prodP1 * 7 + prodP2 * 7 + prodP3 * 7, prodP1 * 7 + prodP2 * 7 + prodP3 * 7 };
-            int[] BB_P25 = new int[] { prodP1 * 4 + prodP2 * 4 + prodP3 * 4, prodP1 * 4 + prodP2 * 4 + prodP3 * 4, prodP1 * 4 + prodP2 * 4 + prodP3 * 4 };
-            int[] BB_P26 = new int[] { prodP1 * 2 + prodP2 * 2 + prodP3 * 2, prodP1 * 2 + prodP2 * 2 + prodP3 * 2, prodP1 * 2 + prodP2 * 2 + prodP3 * 2 };
-            
-            //Bestellmenge berechnen
-            for (int i = 0; i < BB_P21.Length; ++i ) {
-                int min = ((BB_P21[0] + BB_P21[1] + BB_P21[2]) / 3 * (Convert.ToInt32(LFA_P21) * Convert.ToInt32(LF_P21)));
-            }
-
-            /*
-            * Errechnung des Produktionsbedarfs nach Produkt
-            * Formel Excel - =$E$4*'Eingabe Aufträge'!Z$8 - Rechnung
-            * Zugriff auf DB-Tabelle "Verwendung"
-             * 
-            * */
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            MessageBox.Show("Neue Form");
-
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = myconn;
+            OleDbCommand cmd2 = new OleDbCommand();
+            cmd2.CommandType = CommandType.Text;
+            cmd2.Connection = myconn;
+            OleDbCommand cmd3 = new OleDbCommand();
+            cmd3.CommandType = CommandType.Text;
+            cmd3.Connection = myconn;
             try
             {
                 myconn.Open();
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();
                 myconn.Open();
             }
-            cmd.CommandText = @"select Periode from Lager";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
+
+            int[,] Prognosen = { {90,190,160},{160,160,160},{160,160,160},{150,150,200}};
+            int[,] Verwendung = { {1,0,0}, {0,1,0}, {0,0,1}, {7,7,7 }, { 4,4,4 }, { 2,2,2 }, {4,5,6}, {3,3,3}, {0,0,2}, {0,0,72}, {4,4,4}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {3,3,3}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {2,0,0}, {72,0,0}, {0,2,0}, {0,72,0}, {2,2,2} };
+            double[,] mengeProdukte = new double[29,29];
+
+            double[] lieferfrist = new double[] {1.8, 1.7, 1.2, 3.2, 0.9, 0.9, 1.7, 2.1, 1.9, 1.6, 2.2, 1.2, 1.5, 1.7, 1.5, 1.7, 0.9, 1.2, 2.0, 1.0, 1.7, 0.9, 1.1, 1.0, 1.6, 1.6, 1.7, 1.6, 0.7};
+            double[] abweichung = new double[] {0.4, 0.4, 0.2, 0.3, 0.2, 0.2, 0.4, 0.5, 0.5, 0.3, 0.4, 0.1, 0.3, 0.4, 0.3, 0.2, 0.2, 0.3, 0.5, 0.2, 0.3, 0.3, 0.1, 0.2, 0.4, 0.2, 0.3, 0.5, 0.2};
+            
+            //Aus DB
+            double[] Lager = new double[] { 570, 60, 250, 18490, 4300, 250, 2305, 5500, 735, 21960, 5380, 400, 720, 690, 0, 985, 1440, 1080, 850, 3640, 1650, 1350, 580, 2410, 1210, 34480, 990, 36840, 1100 };
+
+
+            //Rechnung
+            double test = 0;
+            int i = 0;
+            int t = 0;
+            for (int zaehler = 0; zaehler < 29; zaehler++)
             {
-                //PeriodeDB = Convert.ToInt32(dbReader["Periode"]);
-                //MessageBox.Show("dbReader " + dbReader["K_Teil"]);
+                for (i = 0; i < 4; i++) //Iteration der Produkte P21, P22, P23, ...
+                {
+                    for (int x = 0; x < 3; x++) //Iteration durch Verwendung 
+                    {
+                        test = test + (Prognosen[i, x] * Verwendung[zaehler, x]);
+                    }
+                    mengeProdukte[zaehler,i] = test;
+                    test = 0;
+                }
+
+
             }
-            myconn.Close();
+            double[] minMenge = new double[30];
+            double[] bruttosumme = new double[30];
+            double testvalue = 0;
+            for (int ramba = 0; ramba < 29; ramba++)
+            {
+                
+                for (int zamba = 0; zamba < 4; zamba++)
+                {
+                    testvalue = testvalue + mengeProdukte[ramba,zamba];
+                }
+                bruttosumme[ramba] = testvalue;
+                testvalue = 0;
+                minMenge[ramba] = bruttosumme[ramba] / 4 * (lieferfrist[ramba] + abweichung[ramba]);
+                //MessageBox.Show(" minmenge" + ramba + " " + minMenge[ramba]);
+                
+            }
 
-           
+
+            M1.Text = "" + minMenge[0];
+            M2.Text = "" + minMenge[1];
+            M3.Text = "" + minMenge[2];
+            M4.Text = "" + minMenge[3];
+            M5.Text = "" + minMenge[4];
+            M7.Text = "" + minMenge[5];
+            M8.Text = "" + minMenge[6];
+            M12.Text = "" + minMenge[7];
+            M13.Text = "" + minMenge[8];
+            M14.Text = "" + minMenge[9];
+            M15.Text = "" + minMenge[10];
+            M16.Text = "" + minMenge[11];
+            M17.Text = "" + minMenge[12];
+            M18.Text = "" + minMenge[13];
+            M19.Text = "" + minMenge[14];
+            M20.Text = "" + minMenge[15];
+            M21.Text = "" + minMenge[16];
+            M22.Text = "" + minMenge[17];
+            M23.Text = "" + minMenge[18];
+            M24.Text = "" + minMenge[19];
+            M25.Text = "" + minMenge[20];
+            M26.Text = "" + minMenge[21];
+            M27.Text = "" + minMenge[22];
+            M28.Text = "" + minMenge[23];
+            M32.Text = "" + minMenge[24];
+            M33.Text = "" + minMenge[25];
+            M37.Text = "" + minMenge[26];
+            M38.Text = "" + minMenge[27];
+            M39.Text = "" + minMenge[28];
+
         }
-
-        //Bestellmenge ausrechnen
-
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -109,6 +147,16 @@ namespace IBSYS2
         private void continue_btn_Click(object sender, EventArgs e)
         {
             M1.Text = "test";
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void M20_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

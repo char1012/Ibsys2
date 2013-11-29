@@ -28,8 +28,8 @@ namespace IBSYS2
             ToolTip1.SetToolTip(this.pictureBox7, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei. \nIm Anschluss geben Sie bitte ihre Prognosen für die kommenden Perioden ein. \nAnschließend können Sie mit der Bearbeitung fortfahren.");
             ToolTip1.SetToolTip(this.label11, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei.");
             ToolTip1.SetToolTip(this.label12, "Geben Sie nun Ihre Prognose für die nächsten Perioden an.");
-            timer1.Interval = 1000;
-            timer1.Enabled = true; 
+            //timer1.Interval = 1000;
+            //timer1.Enabled = true; 
 
         }
 
@@ -402,7 +402,7 @@ namespace IBSYS2
         private void button1_Click_1(object sender, EventArgs e)
         {
             new ImportPrognose().Hide();
-            new Kapazitaetsplan().Show();
+            //new Kapazitaetsplan().Show();
             new Kaufteildisposition().Show();
         }
 

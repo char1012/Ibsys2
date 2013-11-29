@@ -36,7 +36,7 @@ namespace IBSYS2
             Ausgabe_P2.Enabled = false;
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
-          //  eteileberechnen_btn.Enabled = false;
+           eteileberechnen_btn.Enabled = false;
         }
         public void ConvertToString()
         {
@@ -54,7 +54,10 @@ namespace IBSYS2
                 Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
                 int sicherheitsbestandP3 = sicherheitsbestandBerechnen(gLagerbestandP3, "3");
                 Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
-
+                p1_label.Text = Convert.ToString(sicherheitsbestandP1) + " St.";
+                p2_label.Text = Convert.ToString(sicherheitsbestandP2) + " St.";
+                p3_label.Text = Convert.ToString(sicherheitsbestandP3) + " St.";
+            
                 int gLE26P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
                 E261.Text = Convert.ToString(gLE26P1);
                 int gLE51P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
@@ -124,7 +127,6 @@ namespace IBSYS2
                 int gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
                 E203.Text = Convert.ToString(gLE20P3);
 
-
                     textfeldFreigeben();
 
 
@@ -132,6 +134,7 @@ namespace IBSYS2
                 
             
         }
+
                  
 
         public int geplanterLagerbestand(int sicherheitsbestand, int ver)
@@ -275,6 +278,8 @@ namespace IBSYS2
         private void Eingabe_P2_TextChanged_1(object sender, EventArgs e)
         {
 
+
+
                 double number = 0;
                 if (String.IsNullOrEmpty(Eingabe_P2.Text))
                 {
@@ -295,9 +300,7 @@ namespace IBSYS2
                         Eingabe_P2.Text = "Gültige Zahl";
                         return;
                     }
-                
             }
-
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -410,6 +413,7 @@ namespace IBSYS2
                     return;
                 }
             }
+            eteileberechnen_btn.Enabled = true;
         
         }
 

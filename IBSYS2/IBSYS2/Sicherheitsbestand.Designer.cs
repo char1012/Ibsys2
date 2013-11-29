@@ -131,6 +131,9 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.p2_label = new System.Windows.Forms.Label();
+            this.p1_label = new System.Windows.Forms.Label();
+            this.p3_label = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -148,7 +151,7 @@
             this.Eingabe_P1.Location = new System.Drawing.Point(40, 33);
             this.Eingabe_P1.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P1.Name = "Eingabe_P1";
-            this.Eingabe_P1.Size = new System.Drawing.Size(132, 22);
+            this.Eingabe_P1.Size = new System.Drawing.Size(69, 22);
             this.Eingabe_P1.TabIndex = 1;
             this.Eingabe_P1.TextChanged += new System.EventHandler(this.Eingabe_P1_TextChanged);
             // 
@@ -157,7 +160,7 @@
             this.Eingabe_P2.Location = new System.Drawing.Point(220, 33);
             this.Eingabe_P2.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P2.Name = "Eingabe_P2";
-            this.Eingabe_P2.Size = new System.Drawing.Size(132, 22);
+            this.Eingabe_P2.Size = new System.Drawing.Size(69, 22);
             this.Eingabe_P2.TabIndex = 2;
             this.Eingabe_P2.TextChanged += new System.EventHandler(this.Eingabe_P2_TextChanged_1);
             // 
@@ -166,7 +169,7 @@
             this.Eingabe_P3.Location = new System.Drawing.Point(395, 33);
             this.Eingabe_P3.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P3.Name = "Eingabe_P3";
-            this.Eingabe_P3.Size = new System.Drawing.Size(132, 22);
+            this.Eingabe_P3.Size = new System.Drawing.Size(69, 22);
             this.Eingabe_P3.TabIndex = 3;
             this.Eingabe_P3.TextChanged += new System.EventHandler(this.Eingabe_P3_TextChanged_1);
             // 
@@ -281,6 +284,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.p3_label);
+            this.groupBox1.Controls.Add(this.p1_label);
+            this.groupBox1.Controls.Add(this.p2_label);
             this.groupBox1.Controls.Add(this.infoP);
             this.groupBox1.Controls.Add(this.P3);
             this.groupBox1.Controls.Add(this.P2);
@@ -1221,6 +1227,33 @@
             this.label9.TabIndex = 65;
             this.label9.Text = "* E-Teile werden zur Weiterberechnung summiert";
             // 
+            // p2_label
+            // 
+            this.p2_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2_label.AutoSize = true;
+            this.p2_label.Location = new System.Drawing.Point(296, 36);
+            this.p2_label.Name = "p2_label";
+            this.p2_label.Size = new System.Drawing.Size(0, 17);
+            this.p2_label.TabIndex = 81;
+            // 
+            // p1_label
+            // 
+            this.p1_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1_label.AutoSize = true;
+            this.p1_label.Location = new System.Drawing.Point(116, 36);
+            this.p1_label.Name = "p1_label";
+            this.p1_label.Size = new System.Drawing.Size(0, 17);
+            this.p1_label.TabIndex = 82;
+            // 
+            // p3_label
+            // 
+            this.p3_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p3_label.AutoSize = true;
+            this.p3_label.Location = new System.Drawing.Point(471, 36);
+            this.p3_label.Name = "p3_label";
+            this.p3_label.Size = new System.Drawing.Size(0, 17);
+            this.p3_label.TabIndex = 83;
+            // 
             // Sicherheitsbestand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1371,5 +1404,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label p1_label;
+        private System.Windows.Forms.Label p2_label;
+        private System.Windows.Forms.Label p3_label;
     }
 }

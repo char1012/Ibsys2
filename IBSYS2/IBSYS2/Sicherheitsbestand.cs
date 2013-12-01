@@ -34,6 +34,7 @@ namespace IBSYS2
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
            eteileberechnen_btn.Enabled = false;
+           radioButton1.Checked = true;
 
         }
         public void ConvertToString()

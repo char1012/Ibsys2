@@ -36,13 +36,16 @@
             this.P2 = new System.Windows.Forms.Label();
             this.P3 = new System.Windows.Forms.Label();
             this.continue_btn = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lbl_Ergebnis = new System.Windows.Forms.Label();
+            this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
+            this.lbl_Kapazitaetsplan = new System.Windows.Forms.Label();
+            this.lbl_Auftraege = new System.Windows.Forms.Label();
+            this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
+            this.lbl_Startseite = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.p3_label = new System.Windows.Forms.Label();
+            this.p1_label = new System.Windows.Forms.Label();
+            this.p2_label = new System.Windows.Forms.Label();
             this.infoP = new System.Windows.Forms.PictureBox();
             this.eteileberechnen_btn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -129,11 +132,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_back = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.p2_label = new System.Windows.Forms.Label();
-            this.p1_label = new System.Windows.Forms.Label();
-            this.p3_label = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -210,77 +212,77 @@
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(154, 28);
             this.continue_btn.TabIndex = 7;
-            this.continue_btn.Text = "Fortfahren";
+            this.continue_btn.Text = "Weiter";
             this.continue_btn.UseVisualStyleBackColor = true;
             this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
-            // label18
+            // lbl_Ergebnis
             // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label18.Location = new System.Drawing.Point(694, 20);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(64, 17);
-            this.label18.TabIndex = 54;
-            this.label18.Text = "Ergebnis";
+            this.lbl_Ergebnis.AutoSize = true;
+            this.lbl_Ergebnis.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(694, 20);
+            this.lbl_Ergebnis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Ergebnis.Name = "lbl_Ergebnis";
+            this.lbl_Ergebnis.Size = new System.Drawing.Size(64, 17);
+            this.lbl_Ergebnis.TabIndex = 54;
+            this.lbl_Ergebnis.Text = "Ergebnis";
             // 
-            // label17
+            // lbl_Kaufteiledisposition
             // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label17.Location = new System.Drawing.Point(537, 20);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(122, 17);
-            this.label17.TabIndex = 52;
-            this.label17.Text = "Kaufteildisposition";
+            this.lbl_Kaufteiledisposition.AutoSize = true;
+            this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(537, 20);
+            this.lbl_Kaufteiledisposition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
+            this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(122, 17);
+            this.lbl_Kaufteiledisposition.TabIndex = 52;
+            this.lbl_Kaufteiledisposition.Text = "Kaufteildisposition";
             // 
-            // label16
+            // lbl_Kapazitaetsplan
             // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label16.Location = new System.Drawing.Point(402, 20);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(101, 17);
-            this.label16.TabIndex = 50;
-            this.label16.Text = "Kapazitätsplan";
+            this.lbl_Kapazitaetsplan.AutoSize = true;
+            this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(402, 20);
+            this.lbl_Kapazitaetsplan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
+            this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(101, 17);
+            this.lbl_Kapazitaetsplan.TabIndex = 50;
+            this.lbl_Kapazitaetsplan.Text = "Kapazitätsplan";
             // 
-            // label15
+            // lbl_Auftraege
             // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label15.Location = new System.Drawing.Point(301, 20);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(62, 17);
-            this.label15.TabIndex = 48;
-            this.label15.Text = "Aufträge";
+            this.lbl_Auftraege.AutoSize = true;
+            this.lbl_Auftraege.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Auftraege.Location = new System.Drawing.Point(301, 20);
+            this.lbl_Auftraege.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Auftraege.Name = "lbl_Auftraege";
+            this.lbl_Auftraege.Size = new System.Drawing.Size(62, 17);
+            this.lbl_Auftraege.TabIndex = 48;
+            this.lbl_Auftraege.Text = "Aufträge";
             // 
-            // label14
+            // lbl_Sicherheitsbestand
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label14.Location = new System.Drawing.Point(137, 20);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(112, 17);
-            this.label14.TabIndex = 46;
-            this.label14.Text = "Sicherheitsbe.";
+            this.lbl_Sicherheitsbestand.AutoSize = true;
+            this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(137, 20);
+            this.lbl_Sicherheitsbestand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
+            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(112, 17);
+            this.lbl_Sicherheitsbestand.TabIndex = 46;
+            this.lbl_Sicherheitsbestand.Text = "Sicherheitsbe.";
             // 
-            // label13
+            // lbl_Startseite
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label13.Location = new System.Drawing.Point(26, 20);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 17);
-            this.label13.TabIndex = 45;
-            this.label13.Text = "Startseite";
+            this.lbl_Startseite.AutoSize = true;
+            this.lbl_Startseite.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Startseite.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lbl_Startseite.Location = new System.Drawing.Point(26, 20);
+            this.lbl_Startseite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Startseite.Name = "lbl_Startseite";
+            this.lbl_Startseite.Size = new System.Drawing.Size(68, 17);
+            this.lbl_Startseite.TabIndex = 45;
+            this.lbl_Startseite.Text = "Startseite";
             // 
             // groupBox1
             // 
@@ -301,6 +303,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "P-Teile - Sicherheitsbestand";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // p3_label
+            // 
+            this.p3_label.AutoSize = true;
+            this.p3_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p3_label.Location = new System.Drawing.Point(471, 36);
+            this.p3_label.Name = "p3_label";
+            this.p3_label.Size = new System.Drawing.Size(0, 17);
+            this.p3_label.TabIndex = 83;
+            // 
+            // p1_label
+            // 
+            this.p1_label.AutoSize = true;
+            this.p1_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p1_label.Location = new System.Drawing.Point(116, 36);
+            this.p1_label.Name = "p1_label";
+            this.p1_label.Size = new System.Drawing.Size(0, 17);
+            this.p1_label.TabIndex = 82;
+            // 
+            // p2_label
+            // 
+            this.p2_label.AutoSize = true;
+            this.p2_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p2_label.Location = new System.Drawing.Point(296, 36);
+            this.p2_label.Name = "p2_label";
+            this.p2_label.Size = new System.Drawing.Size(0, 17);
+            this.p2_label.TabIndex = 81;
             // 
             // infoP
             // 
@@ -1208,15 +1237,15 @@
             this.pictureBox5.TabIndex = 63;
             this.pictureBox5.TabStop = false;
             // 
-            // button1
+            // btn_back
             // 
-            this.button1.Location = new System.Drawing.Point(603, 477);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 28);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "Zurück";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_back.Location = new System.Drawing.Point(603, 477);
+            this.btn_back.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_back.Name = "btn_back";
+            this.btn_back.Size = new System.Drawing.Size(154, 28);
+            this.btn_back.TabIndex = 64;
+            this.btn_back.Text = "Zurück";
+            this.btn_back.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -1227,32 +1256,29 @@
             this.label9.TabIndex = 65;
             this.label9.Text = "* E-Teile werden zur Weiterberechnung summiert";
             // 
-            // p2_label
+            // radioButton1
             // 
-            this.p2_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p2_label.AutoSize = true;
-            this.p2_label.Location = new System.Drawing.Point(296, 36);
-            this.p2_label.Name = "p2_label";
-            this.p2_label.Size = new System.Drawing.Size(0, 17);
-            this.p2_label.TabIndex = 81;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(493, 59);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(81, 21);
+            this.radioButton1.TabIndex = 66;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Deutsch";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // p1_label
+            // radioButton2
             // 
-            this.p1_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p1_label.AutoSize = true;
-            this.p1_label.Location = new System.Drawing.Point(116, 36);
-            this.p1_label.Name = "p1_label";
-            this.p1_label.Size = new System.Drawing.Size(0, 17);
-            this.p1_label.TabIndex = 82;
-            // 
-            // p3_label
-            // 
-            this.p3_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.p3_label.AutoSize = true;
-            this.p3_label.Location = new System.Drawing.Point(471, 36);
-            this.p3_label.Name = "p3_label";
-            this.p3_label.Size = new System.Drawing.Size(0, 17);
-            this.p3_label.TabIndex = 83;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(580, 59);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(75, 21);
+            this.radioButton2.TabIndex = 67;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "English";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // Sicherheitsbestand
             // 
@@ -1260,8 +1286,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(770, 541);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_back);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox1);
@@ -1271,12 +1299,12 @@
             this.Controls.Add(this.eteileberechnen_btn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.lbl_Ergebnis);
+            this.Controls.Add(this.lbl_Kaufteiledisposition);
+            this.Controls.Add(this.lbl_Kapazitaetsplan);
+            this.Controls.Add(this.lbl_Auftraege);
+            this.Controls.Add(this.lbl_Sicherheitsbestand);
+            this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.continue_btn);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Sicherheitsbestand";
@@ -1309,12 +1337,12 @@
         private System.Windows.Forms.Label P2;
         private System.Windows.Forms.Label P3;
         private System.Windows.Forms.Button continue_btn;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lbl_Ergebnis;
+        private System.Windows.Forms.Label lbl_Kaufteiledisposition;
+        private System.Windows.Forms.Label lbl_Kapazitaetsplan;
+        private System.Windows.Forms.Label lbl_Auftraege;
+        private System.Windows.Forms.Label lbl_Sicherheitsbestand;
+        private System.Windows.Forms.Label lbl_Startseite;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button eteileberechnen_btn;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -1402,10 +1430,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label p1_label;
         private System.Windows.Forms.Label p2_label;
         private System.Windows.Forms.Label p3_label;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

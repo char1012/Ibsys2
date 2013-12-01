@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Xml;
+using System.Resources;
 
 
 namespace IBSYS2
@@ -16,20 +17,16 @@ namespace IBSYS2
     public partial class Sicherheitsbestand : Form
     {
         private OleDbConnection myconn;
-        private bool tmp = false;
 
         public Sicherheitsbestand()
         {
+
+
             InitializeComponent();
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-
-            System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-            ToolTipP.SetToolTip(this.infoP, "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.");
-            System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
-            ToolTipE.SetToolTip(this.infoE, "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.");
-
+      
             textfeldSperren();
             
             Ausgabe_P1.Enabled = false;
@@ -37,6 +34,7 @@ namespace IBSYS2
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
            eteileberechnen_btn.Enabled = false;
+
         }
         public void ConvertToString()
         {
@@ -1223,8 +1221,83 @@ namespace IBSYS2
         }
 
 
+        public void sprachen(String sprache)
+        {
+            if (sprache != "de")
+            {  
+                //EN Brotkrumenleiste
+                lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
+                lbl_Sicherheitsbestand.Text = (Sprachen.EN_LBL_SICHERHEITSBESTAND);
+                lbl_Auftraege.Text = (Sprachen.EN_LBL_AUFTRAEGE);
+                lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
 
+                //EN Buttons
+                eteileberechnen_btn.Text = (Sprachen.EN_BTN_ETEILEBERECHNEN);
+                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                btn_back.Text = (Sprachen.EN_BTN_BACK);
 
+                //EN Groupboxen
+                groupBox1.Text = (Sprachen.EN_GROUPBOX1);
+                groupBox3.Text = (Sprachen.EN_GROUPBOX3);
+                groupBox2.Text = (Sprachen.EN_GROUPBOX2);
+
+                //EN Labels
+                label4.Text = (Sprachen.EN_LABEL4);
+                label9.Text = (Sprachen.EN_LABLE9);
+
+                //EN Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+            }
+            else
+            {
+                //DE Brotkrumenleiste
+                lbl_Sicherheitsbestand.Text = (Sprachen.DE_LBL_SICHERHEITSBESTAND);
+                lbl_Startseite.Text = (Sprachen.DE_LBL_STARTSEITE);
+                lbl_Auftraege.Text = (Sprachen.DE_LBL_AUFTRAEGE);
+                lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
+
+                //DE Buttons
+                eteileberechnen_btn.Text = (Sprachen.DE_BTN_ETEILEBERECHNEN);
+                continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
+                btn_back.Text = (Sprachen.DE_BTN_BACK);
+
+                //DE Groupboxen
+                groupBox1.Text = (Sprachen.DE_GROUPBOX1);
+                groupBox3.Text = (Sprachen.DE_GROUPBOX3);
+                groupBox2.Text = (Sprachen.DE_GROUPBOX2);
+
+                //DE Labels
+                label4.Text = (Sprachen.DE_LABEL4);
+                label9.Text = (Sprachen.DE_LABLE9);
+
+                //DE Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButton2.Checked = false;
+            string sprache = "de";
+            sprachen(sprache);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            radioButton1.Checked = false;
+            string sprache = "en";
+            sprachen(sprache);
+        }
 
     }
 }

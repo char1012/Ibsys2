@@ -33,8 +33,8 @@ namespace IBSYS2
             Ausgabe_P2.Enabled = false;
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
-           eteileberechnen_btn.Enabled = false;
-           radioButton1.Checked = true;
+            eteileberechnen_btn.Enabled = false;
+            radioButton1.Checked = true;
 
         }
         public void ConvertToString()
@@ -1288,16 +1288,30 @@ namespace IBSYS2
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton2.Checked = false;
             string sprache = "de";
             sprachen(sprache);
+            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
+            {
+                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
+            }
+            else
+            {
+                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
+            }
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            radioButton1.Checked = false;
             string sprache = "en";
             sprachen(sprache);
+            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
+            {
+                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
+            }
+            else
+            {
+                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
+            }
         }
 
     }

@@ -141,6 +141,7 @@
     <EmbeddedResource Include="Sicherheitsbestand.resx">
       <DependentUpon>Sicherheitsbestand.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Kapazitaetsplan.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

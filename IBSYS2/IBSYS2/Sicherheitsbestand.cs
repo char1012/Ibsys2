@@ -1245,7 +1245,7 @@ namespace IBSYS2
                 groupBox2.Text = (Sprachen.EN_GROUPBOX2);
 
                 //EN Labels
-                label4.Text = (Sprachen.EN_LABEL4);
+                //label4.Text = (Sprachen.EN_LABEL4);
                 label9.Text = (Sprachen.EN_LABLE9);
 
                 //EN Tooltip
@@ -1275,7 +1275,7 @@ namespace IBSYS2
                 groupBox2.Text = (Sprachen.DE_GROUPBOX2);
 
                 //DE Labels
-                label4.Text = (Sprachen.DE_LABEL4);
+                //label4.Text = (Sprachen.DE_LABEL4);
                 label9.Text = (Sprachen.DE_LABLE9);
 
                 //DE Tooltip

@@ -46,7 +46,7 @@
             this.p3_label = new System.Windows.Forms.Label();
             this.p1_label = new System.Windows.Forms.Label();
             this.p2_label = new System.Windows.Forms.Label();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.infoP = new System.Windows.Forms.PictureBox();
             this.eteileberechnen_btn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -136,7 +136,7 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoE)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -286,7 +286,7 @@
             this.groupBox1.Controls.Add(this.Eingabe_P3);
             this.groupBox1.Controls.Add(this.Eingabe_P2);
             this.groupBox1.Controls.Add(this.Eingabe_P1);
-            this.groupBox1.Controls.Add(this.pictureBox7);
+            this.groupBox1.Controls.Add(this.infoP);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(41, 79);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -328,15 +328,15 @@
             this.p2_label.Size = new System.Drawing.Size(0, 13);
             this.p2_label.TabIndex = 81;
             // 
-            // pictureBox7
+            // infoP
             // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(440, 9);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(45, 41);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 84;
-            this.pictureBox7.TabStop = false;
+            this.infoP.Image = ((System.Drawing.Image)(resources.GetObject("infoP.Image")));
+            this.infoP.Location = new System.Drawing.Point(440, 9);
+            this.infoP.Name = "infoP";
+            this.infoP.Size = new System.Drawing.Size(45, 41);
+            this.infoP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.infoP.TabIndex = 84;
+            this.infoP.TabStop = false;
             // 
             // eteileberechnen_btn
             // 
@@ -1242,7 +1242,7 @@
             this.Load += new System.EventHandler(this.Sicherheitsbestand_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.infoP)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoE)).EndInit();
@@ -1365,6 +1365,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox infoP;
     }
 }

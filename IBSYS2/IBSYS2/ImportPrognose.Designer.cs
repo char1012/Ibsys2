@@ -530,7 +530,6 @@
             this.ForeColor = System.Drawing.SystemColors.WindowText;
             this.Name = "ImportPrognose";
             this.Text = "SCMPlus";
-            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.ImportPrognose_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

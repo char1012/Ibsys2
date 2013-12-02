@@ -133,10 +133,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.back_btn = new System.Windows.Forms.Button();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.back_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -807,6 +807,7 @@
             this.B25.Size = new System.Drawing.Size(58, 20);
             this.B25.TabIndex = 106;
             this.B25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.B25.TextChanged += new System.EventHandler(this.B25_TextChanged);
             // 
             // B24
             // 
@@ -1253,15 +1254,23 @@
             this.groupBox1.Text = "Kaufteildisposition";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // back_btn
+            // label13
             // 
-            this.back_btn.BackColor = System.Drawing.Color.Lavender;
-            this.back_btn.Location = new System.Drawing.Point(24, 415);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
-            this.back_btn.TabIndex = 83;
-            this.back_btn.Text = "Zurück";
-            this.back_btn.UseVisualStyleBackColor = false;
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(407, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(61, 14);
+            this.label13.TabIndex = 137;
+            this.label13.Text = "Bestellart";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(361, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 14);
+            this.label12.TabIndex = 136;
+            this.label12.Text = "Menge";
             // 
             // pictureBox7
             // 
@@ -1273,23 +1282,15 @@
             this.pictureBox7.TabIndex = 135;
             this.pictureBox7.TabStop = false;
             // 
-            // label12
+            // back_btn
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(361, 32);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(44, 14);
-            this.label12.TabIndex = 136;
-            this.label12.Text = "Menge";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(407, 32);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(61, 14);
-            this.label13.TabIndex = 137;
-            this.label13.Text = "Bestellart";
+            this.back_btn.BackColor = System.Drawing.Color.Lavender;
+            this.back_btn.Location = new System.Drawing.Point(24, 415);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 83;
+            this.back_btn.Text = "Zurück";
+            this.back_btn.UseVisualStyleBackColor = false;
             // 
             // Kaufteildisposition
             // 

@@ -238,6 +238,28 @@ namespace IBSYS2
                             }
                         }
 
+                        foreach (XmlNode node in data.SelectNodes("/results/waitingliststock/missingpart"))
+                        {
+                            int missingpart_id = Convert.ToInt32(node.Attributes["id"].InnerText);
+                            for (int i = 0; i < node.ChildNodes.Count - 1; i++)
+                            {
+                                int wl_period = Convert.ToInt32(node.ChildNodes[i].Attributes["period"].InnerText);
+                                int order = Convert.ToInt32(node.ChildNodes[i].Attributes["order"].InnerText);
+                                int item = Convert.ToInt32(node.ChildNodes[i].Attributes["item"].InnerText);
+                                int wl_amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+
+                                try
+                                {
+                                    cmd.CommandText = @"insert into Warteliste_Material (Fehlteil_Teilenummer_FK, Erzeugnis_Teilenummer_FK, Menge, Periode) values ('" + missingpart_id + "','" + item + "','" + wl_amount + "','" + wl_period + "')";
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
+                                }
+                            }
+                        }
+
                         // Durchlauf der Arbeitsplätze sowie der Wartelisten der Arbeitsplätze
                         foreach (XmlNode node in data.SelectNodes("/results/waitinglistworkstations/workplace"))
                         {

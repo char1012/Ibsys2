@@ -241,6 +241,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "Periode 1",
             "Periode 2",
             "Periode 3",
             "Periode 4",

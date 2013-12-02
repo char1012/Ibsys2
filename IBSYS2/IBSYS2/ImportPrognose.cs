@@ -365,6 +365,8 @@ namespace IBSYS2
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             continue_btn.Enabled = false;
+            if (comboBox1.SelectedText == "Periode 1")
+                button2.Enabled = false;
             //if (comboBox1.SelectedIndex == 1)
             //    comboBox1.SelectedIndex = -1;
         }

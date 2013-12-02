@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExportXMLClass.cs" />
     <Compile Include="Produktion.cs">
       <SubType>Form</SubType>
     </Compile>

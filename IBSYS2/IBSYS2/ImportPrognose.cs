@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Resources;
 
 namespace IBSYS2
 {
@@ -373,6 +374,16 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+            int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
+            int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
+            int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
+            int aPP1 = Convert.ToInt32(tb_aktP1.Text);
+            int aPP2 = Convert.ToInt32(textBox2.Text);
+            int aPP3 = Convert.ToInt32(textBox3.Text);
+            int mengeP1 = zLAP1 + aPP1;
+            int mengeP2 = zLAP2 + aPP2;
+            int mengeP3 = zLAP3 + aPP3;
+         //   System.Windows.Forms.MessageBox.Show("Menge P1: " + mengeP1 + " Menge P2: " + mengeP2 + " Menge P3: " + mengeP3);
 
             //if (String.IsNullOrEmpty(textBox12.Text))
             //{
@@ -916,6 +927,96 @@ namespace IBSYS2
         //            continue_btn.Enabled = true;
         //        }
         //    }
+        }
+
+        private void txt_zLAP1_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_zLAP1.Text == "")
+            {
+                txt_zLAP1.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                txt_zLAP1.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in txt_zLAP1.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        txt_zLAP1.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    txt_zLAP1.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void txt_zLAP2_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_zLAP2.Text == "")
+            {
+                txt_zLAP2.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                txt_zLAP2.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in txt_zLAP2.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        txt_zLAP2.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    txt_zLAP2.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
+        }
+
+        private void txt_zLAP3_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_zLAP3.Text == "")
+            {
+                txt_zLAP3.ForeColor = Color.Red;
+                continue_btn.Enabled = false;
+            }
+            else
+            {
+                txt_zLAP3.ForeColor = Color.Black;
+                bool okay = true;
+                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in txt_zLAP3.Text.ToCharArray())
+                {
+                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        txt_zLAP3.ForeColor = Color.Red;
+                        okay = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    txt_zLAP3.ForeColor = Color.Black;
+                    continue_btn.Enabled = true;
+                }
+            }
         }
 
 

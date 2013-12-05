@@ -49,13 +49,34 @@ namespace IBSYS2
         public static String DE_KD_GROUPBOX1 = "Kaufteildisposition";
 
         //Labels
-        public static String DE_LBL_KP_MENGE = "Menge";
-        public static String DE_LBL_KP_BESTELLART = "Bestellart";
+        public static String DE_LBL_KD_MENGE = "Menge";
+        public static String DE_LBL_KD_BESTELLART = "Bestellart";
 
         //ToolTip
         public static String DE_KD_INFO = " ";
 
+        //Kapazitätsplan
+        //Button
+        public static String DE_BTN_DEFAULT = "Berechnung wiederherstellen";
 
+        //Groupbox
+        public static String DE_KP_GROUPBOX1 = "Kapazitätsplan";
+
+        //Label
+        public static String DE_LBL_KD_INFO = "Die hier berechneten Werte können von Ihnen überschrieben werden.";
+        public static String DE_LBL_KD_KBEDARF = "Kapazitätsbedarf";
+        public static String DE_LBL_KD_UEBERSTUNDENP = "Überstunden/Periode";
+        public static String DE_LBL_KD_UEBERSTUNDENT = "UeberstundenTag";
+        public static String DE_LBL_KD_SCHICHTEN = "Schichten";
+
+        //ToolTip
+        public static String DE_KP_INFO = "- Der berechnete Kapazitätsbedarf ist nicht änderbar. " +
+                "Sie können jedoch für jeden Arbeitsplatz die Überstunden pro Periode " +
+                "\n   und die Anzahl der Schichten anpassen. " +
+                "Eine Änderung bei Überstunden/Periode bewirkt eine Neuberechnung von Überstunden/Tag. " +
+                "\n- Wenn in der Zeile Schichten eine rote 3 angezeigt wird, " +
+                "bedeutet dies, dass mehr als drei Schichten benötigt werden.\n   In diesem Fall sollten Sie " +
+                "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.";
 
         //Sicherheitsbestand
         //Buttons
@@ -118,11 +139,33 @@ namespace IBSYS2
         public static String EN_KD_GROUPBOX1 = "Disposition of bought-out components";
 
         //Labels
-        public static String EN_LBL_KP_MENGE = "Amount";
-        public static String EN_LBL_KP_BESTELLART = "Order type";
+        public static String EN_LBL_KD_MENGE = "Amount";
+        public static String EN_LBL_KD_BESTELLART = "Order type";
 
         //ToolTip
         public static String EN_KD_INFO = " ";
+
+        //Kapazitätsplan
+        //Button
+        public static String EN_BTN_DEFAULT = "restor calculation";
+
+        //Groupbox
+        public static String EN_KP_GROUPBOX1 = "Capacity Plan";
+
+        //Label
+        public static String EN_LBL_KD_INFO = "The calculated values can be override";
+        public static String EN_LBL_KD_KBEDARF = "capacity requirements";
+        public static String EN_LBL_KD_UEBERSTUNDENP = "Overtime/Period";
+        public static String EN_LBL_KD_UEBERSTUNDENT = "Overtime/Day";
+        public static String EN_LBL_KD_SCHICHTEN = "Shift";
+
+        //ToolTip
+        public static String EN_KP_INFO = "- The calculated capacity requirements can not be changed. " +
+            "You can customize for each workplace the overtime per period " + "/n and the number of shifts." +
+                "A change in Overtime/Period causes a recalculation of Overtime/Day." +
+                "\n- If a red line appears in the 3. shift, " +
+                "this means that more than three shifts are required.\n   In this case, " +
+                " you should adjust their production amounts.\n- The workplace 5 does not exist.";
 
         //Sicherheitsbestand
         //Buttons

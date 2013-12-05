@@ -1224,32 +1224,16 @@ namespace IBSYS2
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void pic_de_Click(object sender, EventArgs e)
         {
             string sprache = "de";
             sprachen(sprache);
-            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
-            }
-            else
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
-            }
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void pic_en_Click(object sender, EventArgs e)
         {
             string sprache = "en";
             sprachen(sprache);
-            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
-            }
-            else
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
-            }
         }
 
     }

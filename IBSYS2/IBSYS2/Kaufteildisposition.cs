@@ -556,12 +556,12 @@ namespace IBSYS2
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
 
                 //EN Labels
-                lbl_menge1.Text = (Sprachen.EN_LBL_KP_MENGE);
-                lbl_menge2.Text = (Sprachen.EN_LBL_KP_MENGE);
-                lbl_menge3.Text = (Sprachen.EN_LBL_KP_MENGE);
-                lbl_bestellart1.Text = (Sprachen.EN_LBL_KP_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.EN_LBL_KP_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.EN_LBL_KP_BESTELLART);
+                lbl_menge1.Text = (Sprachen.EN_LBL_KD_MENGE);
+                lbl_menge2.Text = (Sprachen.EN_LBL_KD_MENGE);
+                lbl_menge3.Text = (Sprachen.EN_LBL_KD_MENGE);
+                lbl_bestellart1.Text = (Sprachen.EN_LBL_KD_BESTELLART);
+                lbl_bestellart2.Text = (Sprachen.EN_LBL_KD_BESTELLART);
+                lbl_bestellart3.Text = (Sprachen.EN_LBL_KD_BESTELLART);
 
 
                 //EN Tooltip
@@ -587,12 +587,12 @@ namespace IBSYS2
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
 
                 //DE Labels
-                lbl_menge1.Text = (Sprachen.DE_LBL_KP_MENGE);
-                lbl_menge2.Text = (Sprachen.DE_LBL_KP_MENGE);
-                lbl_menge3.Text = (Sprachen.DE_LBL_KP_MENGE);
-                lbl_bestellart1.Text = (Sprachen.DE_LBL_KP_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.DE_LBL_KP_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.DE_LBL_KP_BESTELLART);
+                lbl_menge1.Text = (Sprachen.DE_LBL_KD_MENGE);
+                lbl_menge2.Text = (Sprachen.DE_LBL_KD_MENGE);
+                lbl_menge3.Text = (Sprachen.DE_LBL_KD_MENGE);
+                lbl_bestellart1.Text = (Sprachen.DE_LBL_KD_BESTELLART);
+                lbl_bestellart2.Text = (Sprachen.DE_LBL_KD_BESTELLART);
+                lbl_bestellart3.Text = (Sprachen.DE_LBL_KD_BESTELLART);
 
 
                 //DE Tooltip

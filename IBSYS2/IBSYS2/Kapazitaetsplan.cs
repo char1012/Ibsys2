@@ -24,13 +24,6 @@ namespace IBSYS2
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
             System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-            ToolTip1.SetToolTip(this.pictureBox7, "- Der berechnete Kapazitätsbedarf ist nicht änderbar. " +
-                "Sie können jedoch für jeden Arbeitsplatz die Überstunden pro Periode " + 
-                "\n   und die Anzahl der Schichten anpassen. " + 
-                "Eine Änderung bei Überstunden/Periode bewirkt eine Neuberechnung von Überstunden/Tag. " +
-                "\n- Wenn in der Zeile Schichten eine rote 3 angezeigt wird, " + 
-                "bedeutet dies, dass mehr als drei Schichten benötigt werden.\n   In diesem Fall sollten Sie " + 
-                "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.");
         }
 
         public void setValues()
@@ -1472,6 +1465,79 @@ namespace IBSYS2
                     continue_btn.Enabled = false;
                 }
             }
+        }
+        public void sprachen(String sprache)
+        {
+            if (sprache != "de")
+            {
+                //EN Brotkrumenleiste
+                lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
+                lbl_Sicherheitsbestand.Text = (Sprachen.EN_LBL_SICHERHEITSBESTAND);
+                lbl_Produktion.Text = (Sprachen.EN_LBL_PRODUKTION);
+                lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
+
+                //EN Buttons
+                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                back_btn.Text = (Sprachen.EN_BTN_BACK);
+                default_btn.Text = (Sprachen.EN_BTN_DEFAULT);
+
+                //EN Groupboxen
+                groupBox1.Text = (Sprachen.EN_KP_GROUPBOX1);
+
+                //EN Labels
+                label1.Text = (Sprachen.EN_LBL_KD_INFO);
+                KapBedarf.Text = (Sprachen.EN_LBL_KD_KBEDARF);
+                UeberstundenPeriode.Text = (Sprachen.EN_LBL_KD_UEBERSTUNDENP);
+                UeberstundenTag.Text = (Sprachen.EN_LBL_KD_UEBERSTUNDENT);
+                Schichten.Text = (Sprachen.EN_LBL_KD_SCHICHTEN);
+
+                //EN Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
+
+            }
+            else
+            {
+                //DE Brotkrumenleiste
+                lbl_Startseite.Text = (Sprachen.DE_LBL_STARTSEITE);
+                lbl_Sicherheitsbestand.Text = (Sprachen.DE_LBL_SICHERHEITSBESTAND);
+                lbl_Produktion.Text = (Sprachen.DE_LBL_PRODUKTION);
+                lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
+
+                //DE Buttons
+                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                back_btn.Text = (Sprachen.DE_BTN_BACK);
+                default_btn.Text = (Sprachen.DE_BTN_DEFAULT);
+
+                //DE Groupboxen
+                groupBox1.Text = (Sprachen.DE_KP_GROUPBOX1);
+
+                //DE Labels
+                label1.Text = (Sprachen.DE_LBL_KD_INFO);
+                KapBedarf.Text = (Sprachen.DE_LBL_KD_KBEDARF);
+                UeberstundenPeriode.Text = (Sprachen.DE_LBL_KD_UEBERSTUNDENP);
+                UeberstundenTag.Text = (Sprachen.DE_LBL_KD_UEBERSTUNDENT);
+                Schichten.Text = (Sprachen.DE_LBL_KD_SCHICHTEN);
+
+                //EN Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
+            }
+        }
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            string sprache = "en";
+            sprachen(sprache);
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            string sprache = "de";
+            sprachen(sprache);
         }
 
     }

@@ -44,6 +44,19 @@ namespace IBSYS2
         //ComboBox
         public static String DE_CB_IP_PERIODE_AUSWAEHLEN = "Wählen Sie die zu bearbeitende Periode aus";
 
+        //Kaufteiledisposition
+        //Groupboxen
+        public static String DE_KD_GROUPBOX1 = "Kaufteildisposition";
+
+        //Labels
+        public static String DE_LBL_KP_MENGE = "Menge";
+        public static String DE_LBL_KP_BESTELLART = "Bestellart";
+
+        //ToolTip
+        public static String DE_KD_INFO = " ";
+
+
+
         //Sicherheitsbestand
         //Buttons
         public static String DE_BTN_ETEILEBERECHNEN = "E-Teile Berechnen";
@@ -99,6 +112,17 @@ namespace IBSYS2
 
         //ComboBox
         public static String EN_CB_IP_PERIODE_AUSWAEHLEN = "Select the period to edit";
+
+        //Kaufteiledisposition
+        //Groupboxen
+        public static String EN_KD_GROUPBOX1 = "Disposition of bought-out components";
+
+        //Labels
+        public static String EN_LBL_KP_MENGE = "Amount";
+        public static String EN_LBL_KP_BESTELLART = "Order type";
+
+        //ToolTip
+        public static String EN_KD_INFO = " ";
 
         //Sicherheitsbestand
         //Buttons

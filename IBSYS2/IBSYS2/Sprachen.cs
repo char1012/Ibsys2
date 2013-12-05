@@ -144,7 +144,7 @@ namespace IBSYS2
         public static String EN_LBL_IP_SCHRITT2 = "2. Step:";
         public static String EN_LBL_IP_SCHRITT3 = "3. Step:";
         public static String EN_LBL_IP_OPTIONAL = "(optional)";
-        public static String EN_LBL_IP_AKTUELLE_PERIODE = "current period";
+        public static String EN_LBL_IP_AKTUELLE_PERIODE = "Current period";
         public static String EN_LBL_IP_PERIODEX = "Period X";
         public static String EN_LBL_IP_PERIODEX1 = "Period X+1";
         public static String EN_LBL_IP_PERIODEX2 = "Period X+2";
@@ -170,14 +170,14 @@ namespace IBSYS2
 
         /*---------Kapazitätsplan----------*/
         //Button
-        public static String EN_BTN_DEFAULT = "restor calculation";
+        public static String EN_BTN_DEFAULT = "Restor calculation";
 
         //Groupbox
         public static String EN_KP_GROUPBOX1 = "Capacity Plan";
 
         //Label
         public static String EN_LBL_KD_INFO = "The calculated values can be override";
-        public static String EN_LBL_KD_KBEDARF = "capacity requirements";
+        public static String EN_LBL_KD_KBEDARF = "Capacity requirements";
         public static String EN_LBL_KD_UEBERSTUNDENP = "Overtime/Period";
         public static String EN_LBL_KD_UEBERSTUNDENT = "Overtime/Day";
         public static String EN_LBL_KD_SCHICHTEN = "Shift";

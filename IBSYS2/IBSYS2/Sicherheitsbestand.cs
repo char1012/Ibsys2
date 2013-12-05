@@ -14,19 +14,31 @@ using System.Resources;
 
 namespace IBSYS2
 {
-    public partial class Sicherheitsbestand : Form
+    public partial class Sicherheitsbestand : UserControl
     {
         private OleDbConnection myconn;
 
         public Sicherheitsbestand()
         {
-
-
             InitializeComponent();
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-      
+            String sprache = "de";
+            if (sprache == "de")
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+            }
             textfeldSperren();
             
             Ausgabe_P1.Enabled = false;
@@ -34,14 +46,9 @@ namespace IBSYS2
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
-            radioButton1.Checked = true;
-
         }
-        public void ConvertToString()
-        {
 
-        }
-        private void eteileberechnen_btn_Click_1(object sender, EventArgs e)
+        private void eteileberechnen_btn_Click(object sender, EventArgs e)
         {
                 int gLagerbestandP1 = Convert.ToInt32(Eingabe_P1.Text);
                 int gLagerbestandP2 = Convert.ToInt32(Eingabe_P2.Text);
@@ -126,15 +133,10 @@ namespace IBSYS2
                 int gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
                 E203.Text = Convert.ToString(gLE20P3);
 
-                    textfeldFreigeben();
-
-
-                    continue_btn.Enabled = true;
+                textfeldFreigeben();
                 
-            
+                continue_btn.Enabled = true;
         }
-
-                 
 
         public int geplanterLagerbestand(int sicherheitsbestand, int ver)
         {
@@ -145,7 +147,7 @@ namespace IBSYS2
 
         public int sicherheitsbestandBerechnen(int gLagerbestand, string teilenummer_FK)
         {
-            //Wird zukünftig aus ersterm Schritt übergeben
+            //TODO Wird zukünftig aus ersterm Schritt übergeben (Prognose)
             int prognose = 100;
             int sicherheitsbestand = 0;
             int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
@@ -196,7 +198,6 @@ namespace IBSYS2
             myconn.Close();
             return datumint;
         }
-
 
         public void textfeldSperren()
         {
@@ -270,15 +271,8 @@ namespace IBSYS2
             E203.Enabled = true;
         }
 
-        private void continue_btn_Click(object sender, EventArgs e)
+        private void Eingabe_P2_TextChanged(object sender, EventArgs e)
         {
-        }
-
-        private void Eingabe_P2_TextChanged_1(object sender, EventArgs e)
-        {
-
-
-
                 double number = 0;
                 if (String.IsNullOrEmpty(Eingabe_P2.Text))
                 {
@@ -301,9 +295,7 @@ namespace IBSYS2
                     }
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
+
         private void Eingabe_P1_TextChanged(object sender, EventArgs e)
         {
             double number = 0;
@@ -327,41 +319,6 @@ namespace IBSYS2
                     return;
                 }
             }
-        }
-        private void Eingabe_P2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void Eingabe_P3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox1_Enter(object sender, System.EventArgs e)
-        {
-        }
-
-        private void Sicherheitsbestand_Load(object sender, System.EventArgs e)
-        {
-        }
-
-        private void label3_Click(object sender, System.EventArgs e)
-        {
-        }
-
-        private void groupBox2_Enter(object sender, System.EventArgs e)
-        {
-        }
-
-        private void textBox1_TextChanged(object sender, System.EventArgs e)
-        {
-        }
-
-        private void textBox5_TextChanged(object sender, System.EventArgs e)
-        {
-        }
-
-        private void label11_Click(object sender, System.EventArgs e)
-        {
         }
 
         private void textBox3_TextChanged(object sender, System.EventArgs e)
@@ -1216,12 +1173,6 @@ namespace IBSYS2
             }
         }
 
-        private void groupBox2_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-
         public void sprachen(String sprache)
         {
             if (sprache != "de")
@@ -1229,7 +1180,7 @@ namespace IBSYS2
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
                 lbl_Sicherheitsbestand.Text = (Sprachen.EN_LBL_SICHERHEITSBESTAND);
-                lbl_Auftraege.Text = (Sprachen.EN_LBL_AUFTRAEGE);
+                lbl_Auftraege.Text = (Sprachen.EN_LBL_PRODUKTION);
                 lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
@@ -1259,7 +1210,7 @@ namespace IBSYS2
                 //DE Brotkrumenleiste
                 lbl_Sicherheitsbestand.Text = (Sprachen.DE_LBL_SICHERHEITSBESTAND);
                 lbl_Startseite.Text = (Sprachen.DE_LBL_STARTSEITE);
-                lbl_Auftraege.Text = (Sprachen.DE_LBL_AUFTRAEGE);
+                lbl_Auftraege.Text = (Sprachen.DE_LBL_PRODUKTION);
                 lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
@@ -1286,37 +1237,16 @@ namespace IBSYS2
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void pic_de_Click(object sender, EventArgs e)
         {
             string sprache = "de";
             sprachen(sprache);
-            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
-            }
-            else
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
-            }
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void pic_en_Click(object sender, EventArgs e)
         {
             string sprache = "en";
             sprachen(sprache);
-            if (radioButton1.CheckAlign == ContentAlignment.MiddleLeft)
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleRight;
-            }
-            else
-            {
-                radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
-            }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

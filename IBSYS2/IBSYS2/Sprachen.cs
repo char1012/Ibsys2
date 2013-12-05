@@ -78,6 +78,16 @@ namespace IBSYS2
                 "bedeutet dies, dass mehr als drei Schichten benötigt werden.\n   In diesem Fall sollten Sie " +
                 "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.";
 
+        //Produktion
+        //Button
+        public static String DE_BTN_ETEILE = "E-Teile";
+
+        //Groupbox
+        public static String DE_PR_GROUPBOX1 = "Produktion planen";
+
+        //ToolTip
+        public static String DE_PR_INFO = " ";
+
         //Sicherheitsbestand
         //Buttons
         public static String DE_BTN_ETEILEBERECHNEN = "E-Teile Berechnen";
@@ -166,6 +176,16 @@ namespace IBSYS2
                 "\n- If a red line appears in the 3. shift, " +
                 "this means that more than three shifts are required.\n   In this case, " +
                 " you should adjust their production amounts.\n- The workplace 5 does not exist.";
+
+        //Produktion
+        //Button
+        public static String EN_BTN_ETEILE = "E-Parts";
+
+        //Groupbox
+        public static String EN_PR_GROUPBOX1 = "Production planning";
+
+        //ToolTip
+        public static String EN_PR_INFO = " ";
 
         //Sicherheitsbestand
         //Buttons

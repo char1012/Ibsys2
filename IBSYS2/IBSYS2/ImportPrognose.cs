@@ -22,14 +22,13 @@ namespace IBSYS2
 
         public ImportPrognose()
         {
+            
             InitializeComponent();
             continue_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-            ToolTip1.SetToolTip(this.pictureBox7, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei. \nIm Anschluss geben Sie bitte ihre Prognosen für die kommenden Perioden ein. \nAnschließend können Sie mit der Bearbeitung fortfahren.");
-            ToolTip1.SetToolTip(this.label11, "Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei.");
-            ToolTip1.SetToolTip(this.label12, "Geben Sie nun Ihre Prognose für die nächsten Perioden an.");
+
             //timer1.Interval = 1000;
             //timer1.Enabled = true; 
 
@@ -1020,6 +1019,102 @@ namespace IBSYS2
         }
 
 
+        public void sprachen(String sprache)
+        {
+            if (sprache != "de")
+            {
+                //EN Brotkrumenleiste
+                lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
+                lbl_Sicherheitsbestand.Text = (Sprachen.EN_LBL_SICHERHEITSBESTAND);
+                lbl_Produktion.Text = (Sprachen.EN_LBL_PRODUKTION);
+                lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
+
+                //EN Buttons
+                continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
+                button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
+                button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
+                
+                //EN Groupboxen
+                groupBox1.Text = (Sprachen.EN_IP_GROUPBOX1);
+
+                //EN Labels
+                lbl_schritt1.Text = (Sprachen.EN_LBL_IP_SCHRITT1);
+                lbl_schritt2.Text = (Sprachen.EN_LBL_IP_SCHRITT2);
+                lbl_schritt3.Text = (Sprachen.EN_LBL_IP_SCHRITT3);
+                lbl_aktuellePeriode.Text = (Sprachen.EN_LBL_IP_AKTUELLE_PERIODE);
+                lbl_periodeX.Text = (Sprachen.EN_LBL_IP_PERIODEX);
+                lbl_periodeX1.Text = (Sprachen.EN_LBL_IP_PERIODEX1);
+                lbl_periodeX2.Text = (Sprachen.EN_LBL_IP_PERIODEX2);
+
+                //EN Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+
+                //EN ComboBox
+                comboBox1.Text = (Sprachen.EN_CB_IP_PERIODE_AUSWAEHLEN);
+            }
+            else
+            {
+                //DE Brotkrumenleiste
+                lbl_Sicherheitsbestand.Text = (Sprachen.DE_LBL_SICHERHEITSBESTAND);
+                lbl_Startseite.Text = (Sprachen.DE_LBL_STARTSEITE);
+                lbl_Produktion.Text = (Sprachen.DE_LBL_PRODUKTION);
+                lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
+                lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
+                lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
+
+                //DE Buttons
+                continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
+                button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
+                button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
+
+
+                //DE Groupboxen
+                groupBox1.Text = (Sprachen.DE_IP_GROUPBOX1);
+
+                //DE Labels
+                lbl_schritt1.Text = (Sprachen.DE_LBL_IP_SCHRITT1);
+                lbl_schritt2.Text = (Sprachen.DE_LBL_IP_SCHRITT2);
+                lbl_schritt3.Text = (Sprachen.DE_LBL_IP_SCHRITT3);
+                lbl_optional.Text = (Sprachen.DE_LBL_IP_OPTIONAL);
+                lbl_aktuellePeriode.Text = (Sprachen.DE_LBL_IP_AKTUELLE_PERIODE);
+                lbl_periodeX.Text = (Sprachen.DE_LBL_IP_PERIODEX);
+                lbl_periodeX1.Text = (Sprachen.DE_LBL_IP_PERIODEX1);
+                lbl_periodeX2.Text = (Sprachen.DE_LBL_IP_PERIODEX2);
+
+                //DE Tooltip
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+
+                //DE ComboBox
+                comboBox1.Text = (Sprachen.DE_CB_IP_PERIODE_AUSWAEHLEN);
+
+
+
+            }
+        }
+
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            string sprache = "en";
+            sprachen(sprache);
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            string sprache = "de";
+            sprachen(sprache);
+        }
       
 
 

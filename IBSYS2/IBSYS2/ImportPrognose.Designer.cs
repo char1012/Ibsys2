@@ -33,15 +33,15 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbl_Startseite = new System.Windows.Forms.Label();
+            this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
+            this.lbl_Produktion = new System.Windows.Forms.Label();
+            this.lbl_Kapazitaetsplan = new System.Windows.Forms.Label();
+            this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
+            this.lbl_Ergebnis = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lbl_schritt2 = new System.Windows.Forms.Label();
+            this.lbl_schritt1 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -56,13 +56,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_aktuellePeriode = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tb_aktP1 = new System.Windows.Forms.TextBox();
-            this.Periode3 = new System.Windows.Forms.Label();
-            this.Periode2 = new System.Windows.Forms.Label();
-            this.Periode1 = new System.Windows.Forms.Label();
+            this.lbl_periodeX2 = new System.Windows.Forms.Label();
+            this.lbl_periodeX1 = new System.Windows.Forms.Label();
+            this.lbl_periodeX = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.continue_btn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -72,14 +72,16 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lbl_schritt3 = new System.Windows.Forms.Label();
+            this.lbl_optional = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txt_zLAP1 = new System.Windows.Forms.TextBox();
             this.txt_zLAP2 = new System.Windows.Forms.TextBox();
             this.txt_zLAP3 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.pic_de = new System.Windows.Forms.PictureBox();
+            this.pic_en = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -88,6 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -108,78 +112,78 @@
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
-            // label5
+            // lbl_Startseite
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(48, 36);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 24);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Startseite";
+            this.lbl_Startseite.AutoSize = true;
+            this.lbl_Startseite.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Startseite.Location = new System.Drawing.Point(48, 36);
+            this.lbl_Startseite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Startseite.Name = "lbl_Startseite";
+            this.lbl_Startseite.Size = new System.Drawing.Size(96, 24);
+            this.lbl_Startseite.TabIndex = 34;
+            this.lbl_Startseite.Text = "Startseite";
             // 
-            // label6
+            // lbl_Sicherheitsbestand
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label6.Location = new System.Drawing.Point(189, 36);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(175, 24);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Sicherheitsbestand";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.lbl_Sicherheitsbestand.AutoSize = true;
+            this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(189, 36);
+            this.lbl_Sicherheitsbestand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
+            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(175, 24);
+            this.lbl_Sicherheitsbestand.TabIndex = 35;
+            this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
+            this.lbl_Sicherheitsbestand.Click += new System.EventHandler(this.label6_Click);
             // 
-            // label7
+            // lbl_Produktion
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label7.Location = new System.Drawing.Point(411, 36);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 24);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Produktion";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.lbl_Produktion.AutoSize = true;
+            this.lbl_Produktion.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Produktion.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Produktion.Location = new System.Drawing.Point(411, 36);
+            this.lbl_Produktion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Produktion.Name = "lbl_Produktion";
+            this.lbl_Produktion.Size = new System.Drawing.Size(104, 24);
+            this.lbl_Produktion.TabIndex = 37;
+            this.lbl_Produktion.Text = "Produktion";
+            this.lbl_Produktion.Click += new System.EventHandler(this.label7_Click);
             // 
-            // label8
+            // lbl_Kapazitaetsplan
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label8.Location = new System.Drawing.Point(564, 36);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(136, 24);
-            this.label8.TabIndex = 39;
-            this.label8.Text = "Kapazitätsplan";
+            this.lbl_Kapazitaetsplan.AutoSize = true;
+            this.lbl_Kapazitaetsplan.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(564, 36);
+            this.lbl_Kapazitaetsplan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
+            this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(136, 24);
+            this.lbl_Kapazitaetsplan.TabIndex = 39;
+            this.lbl_Kapazitaetsplan.Text = "Kapazitätsplan";
             // 
-            // label9
+            // lbl_Kaufteiledisposition
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label9.Location = new System.Drawing.Point(745, 36);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(168, 24);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "Kaufteildisposition";
+            this.lbl_Kaufteiledisposition.AutoSize = true;
+            this.lbl_Kaufteiledisposition.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(745, 36);
+            this.lbl_Kaufteiledisposition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
+            this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(168, 24);
+            this.lbl_Kaufteiledisposition.TabIndex = 41;
+            this.lbl_Kaufteiledisposition.Text = "Kaufteildisposition";
             // 
-            // label10
+            // lbl_Ergebnis
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.Location = new System.Drawing.Point(963, 36);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 24);
-            this.label10.TabIndex = 43;
-            this.label10.Text = "Ergebnis";
+            this.lbl_Ergebnis.AutoSize = true;
+            this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Ergebnis.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(963, 36);
+            this.lbl_Ergebnis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Ergebnis.Name = "lbl_Ergebnis";
+            this.lbl_Ergebnis.Size = new System.Drawing.Size(84, 24);
+            this.lbl_Ergebnis.TabIndex = 43;
+            this.lbl_Ergebnis.Text = "Ergebnis";
             // 
             // groupBox1
             // 
@@ -191,10 +195,10 @@
             this.groupBox1.Controls.Add(this.txt_zLAP2);
             this.groupBox1.Controls.Add(this.txt_zLAP1);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.lbl_optional);
+            this.groupBox1.Controls.Add(this.lbl_schritt3);
+            this.groupBox1.Controls.Add(this.lbl_schritt2);
+            this.groupBox1.Controls.Add(this.lbl_schritt1);
             this.groupBox1.Controls.Add(this.pictureBox7);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.textBox11);
@@ -209,13 +213,13 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lbl_aktuellePeriode);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.tb_aktP1);
-            this.groupBox1.Controls.Add(this.Periode3);
-            this.groupBox1.Controls.Add(this.Periode2);
-            this.groupBox1.Controls.Add(this.Periode1);
+            this.groupBox1.Controls.Add(this.lbl_periodeX2);
+            this.groupBox1.Controls.Add(this.lbl_periodeX1);
+            this.groupBox1.Controls.Add(this.lbl_periodeX);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -229,29 +233,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Import der XML-Datei und Prognose - Zusätzliche Lieferanfragen (optional)";
             // 
-            // label12
+            // lbl_schritt2
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Blue;
-            this.label12.Location = new System.Drawing.Point(44, 127);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(86, 23);
-            this.label12.TabIndex = 55;
-            this.label12.Text = "2. Schritt:";
+            this.lbl_schritt2.AutoSize = true;
+            this.lbl_schritt2.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_schritt2.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_schritt2.Location = new System.Drawing.Point(44, 127);
+            this.lbl_schritt2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_schritt2.Name = "lbl_schritt2";
+            this.lbl_schritt2.Size = new System.Drawing.Size(86, 23);
+            this.lbl_schritt2.TabIndex = 55;
+            this.lbl_schritt2.Text = "2. Schritt:";
             // 
-            // label11
+            // lbl_schritt1
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Blue;
-            this.label11.Location = new System.Drawing.Point(44, 50);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(85, 23);
-            this.label11.TabIndex = 54;
-            this.label11.Text = "1. Schritt:";
+            this.lbl_schritt1.AutoSize = true;
+            this.lbl_schritt1.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_schritt1.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_schritt1.Location = new System.Drawing.Point(44, 50);
+            this.lbl_schritt1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_schritt1.Name = "lbl_schritt1";
+            this.lbl_schritt1.Size = new System.Drawing.Size(85, 23);
+            this.lbl_schritt1.TabIndex = 54;
+            this.lbl_schritt1.Text = "1. Schritt:";
             // 
             // pictureBox7
             // 
@@ -406,15 +410,15 @@
             this.label2.TabIndex = 41;
             this.label2.Text = "P1";
             // 
-            // label1
+            // lbl_aktuellePeriode
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(193, 127);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 18);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Aktuelle Periode";
+            this.lbl_aktuellePeriode.AutoSize = true;
+            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(193, 127);
+            this.lbl_aktuellePeriode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_aktuellePeriode.Name = "lbl_aktuellePeriode";
+            this.lbl_aktuellePeriode.Size = new System.Drawing.Size(113, 18);
+            this.lbl_aktuellePeriode.TabIndex = 40;
+            this.lbl_aktuellePeriode.Text = "Aktuelle Periode";
             // 
             // textBox2
             // 
@@ -447,35 +451,35 @@
             this.tb_aktP1.Text = "0";
             this.tb_aktP1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // Periode3
+            // lbl_periodeX2
             // 
-            this.Periode3.AutoSize = true;
-            this.Periode3.Location = new System.Drawing.Point(705, 127);
-            this.Periode3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Periode3.Name = "Periode3";
-            this.Periode3.Size = new System.Drawing.Size(82, 18);
-            this.Periode3.TabIndex = 36;
-            this.Periode3.Text = "Periode X+2";
+            this.lbl_periodeX2.AutoSize = true;
+            this.lbl_periodeX2.Location = new System.Drawing.Point(705, 127);
+            this.lbl_periodeX2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_periodeX2.Name = "lbl_periodeX2";
+            this.lbl_periodeX2.Size = new System.Drawing.Size(82, 18);
+            this.lbl_periodeX2.TabIndex = 36;
+            this.lbl_periodeX2.Text = "Periode X+2";
             // 
-            // Periode2
+            // lbl_periodeX1
             // 
-            this.Periode2.AutoSize = true;
-            this.Periode2.Location = new System.Drawing.Point(531, 127);
-            this.Periode2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Periode2.Name = "Periode2";
-            this.Periode2.Size = new System.Drawing.Size(82, 18);
-            this.Periode2.TabIndex = 35;
-            this.Periode2.Text = "Periode X+1";
+            this.lbl_periodeX1.AutoSize = true;
+            this.lbl_periodeX1.Location = new System.Drawing.Point(531, 127);
+            this.lbl_periodeX1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_periodeX1.Name = "lbl_periodeX1";
+            this.lbl_periodeX1.Size = new System.Drawing.Size(82, 18);
+            this.lbl_periodeX1.TabIndex = 35;
+            this.lbl_periodeX1.Text = "Periode X+1";
             // 
-            // Periode1
+            // lbl_periodeX
             // 
-            this.Periode1.AutoSize = true;
-            this.Periode1.Location = new System.Drawing.Point(363, 127);
-            this.Periode1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Periode1.Name = "Periode1";
-            this.Periode1.Size = new System.Drawing.Size(68, 18);
-            this.Periode1.TabIndex = 34;
-            this.Periode1.Text = "Periode X";
+            this.lbl_periodeX.AutoSize = true;
+            this.lbl_periodeX.Location = new System.Drawing.Point(363, 127);
+            this.lbl_periodeX.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_periodeX.Name = "lbl_periodeX";
+            this.lbl_periodeX.Size = new System.Drawing.Size(68, 18);
+            this.lbl_periodeX.TabIndex = 34;
+            this.lbl_periodeX.Text = "Periode X";
             // 
             // button2
             // 
@@ -562,29 +566,29 @@
             this.pictureBox6.TabIndex = 50;
             this.pictureBox6.TabStop = false;
             // 
-            // label13
+            // lbl_schritt3
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Blue;
-            this.label13.Location = new System.Drawing.Point(44, 310);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(85, 23);
-            this.label13.TabIndex = 56;
-            this.label13.Text = "3. Schritt:";
+            this.lbl_schritt3.AutoSize = true;
+            this.lbl_schritt3.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_schritt3.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_schritt3.Location = new System.Drawing.Point(44, 310);
+            this.lbl_schritt3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_schritt3.Name = "lbl_schritt3";
+            this.lbl_schritt3.Size = new System.Drawing.Size(85, 23);
+            this.lbl_schritt3.TabIndex = 56;
+            this.lbl_schritt3.Text = "3. Schritt:";
             // 
-            // label14
+            // lbl_optional
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(43, 333);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(86, 23);
-            this.label14.TabIndex = 57;
-            this.label14.Text = "(optional)";
+            this.lbl_optional.AutoSize = true;
+            this.lbl_optional.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_optional.ForeColor = System.Drawing.Color.Blue;
+            this.lbl_optional.Location = new System.Drawing.Point(43, 333);
+            this.lbl_optional.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_optional.Name = "lbl_optional";
+            this.lbl_optional.Size = new System.Drawing.Size(86, 23);
+            this.lbl_optional.TabIndex = 57;
+            this.lbl_optional.Text = "(optional)";
             // 
             // label15
             // 
@@ -649,12 +653,34 @@
             this.label17.TabIndex = 63;
             this.label17.Text = "P3";
             // 
+            // pic_de
+            // 
+            this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
+            this.pic_de.Location = new System.Drawing.Point(1010, 105);
+            this.pic_de.Name = "pic_de";
+            this.pic_de.Size = new System.Drawing.Size(40, 23);
+            this.pic_de.TabIndex = 57;
+            this.pic_de.TabStop = false;
+            this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
+            // 
+            // pic_en
+            // 
+            this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
+            this.pic_en.Location = new System.Drawing.Point(965, 105);
+            this.pic_en.Name = "pic_en";
+            this.pic_en.Size = new System.Drawing.Size(40, 23);
+            this.pic_en.TabIndex = 58;
+            this.pic_en.TabStop = false;
+            this.pic_en.Click += new System.EventHandler(this.pic_en_Click);
+            // 
             // ImportPrognose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 569);
+            this.Controls.Add(this.pic_en);
+            this.Controls.Add(this.pic_de);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
@@ -662,12 +688,12 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbl_Ergebnis);
+            this.Controls.Add(this.lbl_Kaufteiledisposition);
+            this.Controls.Add(this.lbl_Kapazitaetsplan);
+            this.Controls.Add(this.lbl_Produktion);
+            this.Controls.Add(this.lbl_Sicherheitsbestand);
+            this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.continue_btn);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -684,6 +710,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -694,12 +722,12 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbl_Startseite;
+        private System.Windows.Forms.Label lbl_Sicherheitsbestand;
+        private System.Windows.Forms.Label lbl_Produktion;
+        private System.Windows.Forms.Label lbl_Kapazitaetsplan;
+        private System.Windows.Forms.Label lbl_Kaufteiledisposition;
+        private System.Windows.Forms.Label lbl_Ergebnis;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox11;
@@ -714,18 +742,18 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_aktuellePeriode;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox tb_aktP1;
-        private System.Windows.Forms.Label Periode3;
-        private System.Windows.Forms.Label Periode2;
-        private System.Windows.Forms.Label Periode1;
+        private System.Windows.Forms.Label lbl_periodeX2;
+        private System.Windows.Forms.Label lbl_periodeX1;
+        private System.Windows.Forms.Label lbl_periodeX;
         private System.Windows.Forms.Button continue_btn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbl_schritt2;
+        private System.Windows.Forms.Label lbl_schritt1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -733,14 +761,16 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lbl_optional;
+        private System.Windows.Forms.Label lbl_schritt3;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txt_zLAP3;
         private System.Windows.Forms.TextBox txt_zLAP2;
         private System.Windows.Forms.TextBox txt_zLAP1;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.PictureBox pic_de;
+        private System.Windows.Forms.PictureBox pic_en;
     }
 }
 

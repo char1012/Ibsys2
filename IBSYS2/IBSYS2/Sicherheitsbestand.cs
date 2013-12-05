@@ -14,14 +14,12 @@ using System.Resources;
 
 namespace IBSYS2
 {
-    public partial class Sicherheitsbestand : Form
+    public partial class Sicherheitsbestand : UserControl
     {
         private OleDbConnection myconn;
 
         public Sicherheitsbestand()
         {
-
-
             InitializeComponent();
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -35,13 +33,9 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
             radioButton1.Checked = true;
-
         }
-        public void ConvertToString()
-        {
 
-        }
-        private void eteileberechnen_btn_Click_1(object sender, EventArgs e)
+        private void eteileberechnen_btn_Click(object sender, EventArgs e)
         {
                 int gLagerbestandP1 = Convert.ToInt32(Eingabe_P1.Text);
                 int gLagerbestandP2 = Convert.ToInt32(Eingabe_P2.Text);
@@ -126,15 +120,10 @@ namespace IBSYS2
                 int gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
                 E203.Text = Convert.ToString(gLE20P3);
 
-                    textfeldFreigeben();
-
-
-                    continue_btn.Enabled = true;
+                textfeldFreigeben();
                 
-            
+                continue_btn.Enabled = true;
         }
-
-                 
 
         public int geplanterLagerbestand(int sicherheitsbestand, int ver)
         {
@@ -196,7 +185,6 @@ namespace IBSYS2
             myconn.Close();
             return datumint;
         }
-
 
         public void textfeldSperren()
         {
@@ -270,15 +258,8 @@ namespace IBSYS2
             E203.Enabled = true;
         }
 
-        private void continue_btn_Click(object sender, EventArgs e)
+        private void Eingabe_P2_TextChanged(object sender, EventArgs e)
         {
-        }
-
-        private void Eingabe_P2_TextChanged_1(object sender, EventArgs e)
-        {
-
-
-
                 double number = 0;
                 if (String.IsNullOrEmpty(Eingabe_P2.Text))
                 {
@@ -301,9 +282,7 @@ namespace IBSYS2
                     }
             }
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
+
         private void Eingabe_P1_TextChanged(object sender, EventArgs e)
         {
             double number = 0;
@@ -327,41 +306,6 @@ namespace IBSYS2
                     return;
                 }
             }
-        }
-        private void Eingabe_P2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void Eingabe_P3_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox1_Enter(object sender, System.EventArgs e)
-        {
-        }
-
-        private void Sicherheitsbestand_Load(object sender, System.EventArgs e)
-        {
-        }
-
-        private void label3_Click(object sender, System.EventArgs e)
-        {
-        }
-
-        private void groupBox2_Enter(object sender, System.EventArgs e)
-        {
-        }
-
-        private void textBox1_TextChanged(object sender, System.EventArgs e)
-        {
-        }
-
-        private void textBox5_TextChanged(object sender, System.EventArgs e)
-        {
-        }
-
-        private void label11_Click(object sender, System.EventArgs e)
-        {
         }
 
         private void textBox3_TextChanged(object sender, System.EventArgs e)
@@ -1216,12 +1160,6 @@ namespace IBSYS2
             }
         }
 
-        private void groupBox2_Enter_1(object sender, EventArgs e)
-        {
-
-        }
-
-
         public void sprachen(String sprache)
         {
             if (sprache != "de")
@@ -1312,11 +1250,6 @@ namespace IBSYS2
             {
                 radioButton1.CheckAlign = ContentAlignment.MiddleLeft;
             }
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

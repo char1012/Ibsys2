@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IBSYS2
 {
-    public partial class Kapazitaetsplan : Form
+    public partial class Kapazitaetsplan : UserControl
     {
         private OleDbConnection myconn;
         // Liste der zulaessigen Zeichen bei Benutzereingaben

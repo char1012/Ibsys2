@@ -108,10 +108,6 @@
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
             // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
-            // 
             // lbl_Startseite
             // 
             this.lbl_Startseite.AutoSize = true;
@@ -134,7 +130,6 @@
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(175, 24);
             this.lbl_Sicherheitsbestand.TabIndex = 35;
             this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
-            this.lbl_Sicherheitsbestand.Click += new System.EventHandler(this.label6_Click);
             // 
             // lbl_Produktion
             // 
@@ -147,7 +142,6 @@
             this.lbl_Produktion.Size = new System.Drawing.Size(104, 24);
             this.lbl_Produktion.TabIndex = 37;
             this.lbl_Produktion.Text = "Produktion";
-            this.lbl_Produktion.Click += new System.EventHandler(this.label7_Click);
             // 
             // lbl_Kapazitaetsplan
             // 
@@ -354,7 +348,6 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 45;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // comboBox1
             // 
@@ -375,7 +368,7 @@
             this.comboBox1.Size = new System.Drawing.Size(369, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.Text = "Wählen Sie die zu bearbeitende Periode aus";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBox11
             // 
@@ -578,7 +571,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Datei auswählen";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // continue_btn
             // 
@@ -601,7 +594,7 @@
             this.button1.TabIndex = 56;
             this.button1.Text = "Sprung";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox3
             // 
@@ -700,7 +693,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ImportPrognose";
             this.Text = "SCMPlus";
-            this.Load += new System.EventHandler(this.ImportPrognose_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace IBSYS2
 {
-    public partial class Produktion : Form
+    public partial class Produktion : UserControl
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };

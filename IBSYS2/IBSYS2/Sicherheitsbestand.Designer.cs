@@ -161,7 +161,7 @@
             this.Eingabe_P2.Name = "Eingabe_P2";
             this.Eingabe_P2.Size = new System.Drawing.Size(72, 22);
             this.Eingabe_P2.TabIndex = 2;
-            this.Eingabe_P2.TextChanged += new System.EventHandler(this.Eingabe_P2_TextChanged_1);
+            this.Eingabe_P2.TextChanged += new System.EventHandler(this.Eingabe_P2_TextChanged);
             // 
             // Eingabe_P3
             // 
@@ -207,7 +207,6 @@
             this.continue_btn.TabIndex = 7;
             this.continue_btn.Text = "Weiter";
             this.continue_btn.UseVisualStyleBackColor = false;
-            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
             // lbl_Ergebnis
             // 
@@ -296,7 +295,6 @@
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "P-Teile - Sicherheitsbestand";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // p3_label
             // 
@@ -347,7 +345,7 @@
             this.eteileberechnen_btn.TabIndex = 57;
             this.eteileberechnen_btn.Text = "E-Teile Berechnen";
             this.eteileberechnen_btn.UseVisualStyleBackColor = false;
-            this.eteileberechnen_btn.Click += new System.EventHandler(this.eteileberechnen_btn_Click_1);
+            this.eteileberechnen_btn.Click += new System.EventHandler(this.eteileberechnen_btn_Click);
             // 
             // groupBox3
             // 
@@ -432,7 +430,6 @@
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "E-Teile - Sicherheitsbestand";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label12
             // 
@@ -965,7 +962,6 @@
             this.label20.Size = new System.Drawing.Size(31, 14);
             this.label20.TabIndex = 17;
             this.label20.Text = "E17*";
-            this.label20.Click += new System.EventHandler(this.label11_Click);
             // 
             // label24
             // 
@@ -1043,7 +1039,6 @@
             this.label28.Size = new System.Drawing.Size(31, 14);
             this.label28.TabIndex = 4;
             this.label28.Text = "E26*";
-            this.label28.Click += new System.EventHandler(this.label3_Click);
             // 
             // E261
             // 
@@ -1069,7 +1064,6 @@
             this.groupBox2.TabIndex = 59;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Produktion";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter_1);
             // 
             // Ausgabe_P3
             // 
@@ -1193,7 +1187,6 @@
             this.pictureBox4.Size = new System.Drawing.Size(30, 33);
             this.pictureBox4.TabIndex = 70;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox5
             // 
@@ -1239,7 +1232,6 @@
             this.Controls.Add(this.lbl_Startseite);
             this.Name = "Sicherheitsbestand";
             this.Text = "Sicherheitsbestand";
-            this.Load += new System.EventHandler(this.Sicherheitsbestand_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).EndInit();

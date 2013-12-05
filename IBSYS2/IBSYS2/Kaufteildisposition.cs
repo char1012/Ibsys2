@@ -47,6 +47,7 @@ namespace IBSYS2
 
             double[,] entnehmen = new double[58,58];
             //Warteliste Material
+            /*
             cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Bearbeitungszeit, Rüstzeit, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE Arbeitsplatz_FK = " + platznr + ";";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -57,7 +58,7 @@ namespace IBSYS2
                 }
             }
             dbReader.Close();
-
+            */
             int[,] Prognosen = { {90,190,160},{160,160,160},{160,160,160},{150,150,200}};
             int[,] Verwendung = { {1,0,0}, {0,1,0}, {0,0,1}, {7,7,7 }, { 4,4,4 }, { 2,2,2 }, {4,5,6}, {3,3,3}, {0,0,2}, {0,0,72}, {4,4,4}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {3,3,3}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {2,0,0}, {72,0,0}, {0,2,0}, {0,72,0}, {2,2,2} };
             double[,] mengeProdukte = new double[29,29];

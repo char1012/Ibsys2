@@ -8,7 +8,9 @@ namespace IBSYS2
 {
     class Sprachen
     {
-        //DEUTSCH
+        /*--------------------------------------------------------------------------------------------------------*/
+        /*---------------------DEUTSCH----------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------------------------------*/
         // Brotkrumenleiste
         public static String DE_LBL_STARTSEITE = "Startseite";
         public static String DE_LBL_SICHERHEITSBESTAND = "Sicherheitsbestand";
@@ -17,7 +19,7 @@ namespace IBSYS2
         public static String DE_LBL_KAUFTEILEDISPOSITION = "Kaufteildisposition";
         public static String DE_LBL_ERGEBNIS = "Ergebnis";
 
-        //ImportProgress
+        /*---------ImportProgress----------*/
         //Buttons
         public static String DE_BTN_IP_BERECHNUNG_STARTEN = "Berechnung starten";
         public static String DE_BTN_IP_SPRUNG = "Sprung";
@@ -44,7 +46,7 @@ namespace IBSYS2
         //ComboBox
         public static String DE_CB_IP_PERIODE_AUSWAEHLEN = "Wählen Sie die zu bearbeitende Periode aus";
 
-        //Kaufteiledisposition
+        /*---------Kaufteiledisposition----------*/
         //Groupboxen
         public static String DE_KD_GROUPBOX1 = "Kaufteildisposition";
 
@@ -55,7 +57,7 @@ namespace IBSYS2
         //ToolTip
         public static String DE_KD_INFO = " ";
 
-        //Kapazitätsplan
+        /*---------Kapazitätsplan----------*/
         //Button
         public static String DE_BTN_DEFAULT = "Berechnung wiederherstellen";
 
@@ -78,7 +80,7 @@ namespace IBSYS2
                 "bedeutet dies, dass mehr als drei Schichten benötigt werden.\n   In diesem Fall sollten Sie " +
                 "ihre Produktionsmengen anpassen.\n- Den Arbeitsplatz 5 gibt es nicht.";
 
-        //Produktion
+        /*---------Produktion----------*/
         //Button
         public static String DE_BTN_ETEILE = "E-Teile";
 
@@ -88,7 +90,7 @@ namespace IBSYS2
         //ToolTip
         public static String DE_PR_INFO = " ";
 
-        //Sicherheitsbestand
+        /*---------Sicherheitsbestand----------*/
         //Buttons
         public static String DE_BTN_ETEILEBERECHNEN = "E-Teile Berechnen";
         public static String DE_BTN_CONTINUE = "Weiter";
@@ -107,7 +109,7 @@ namespace IBSYS2
         public static String DE_INFOP = "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.";
         public static String DE_INFOE = "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.";
 
-        //Ergebnis
+        /*---------Ergebnis----------*/
         //Buttons
         public static String DE_BTN_XML_EXPORT = "XML export";
 
@@ -117,7 +119,9 @@ namespace IBSYS2
         public static String DE_ER_GROUPBOX4 = "Produktionskapazitäten";
         public static String DE_ER_GROUPBOX1 = "Direktverkäufe";
 
-        //ENGLISH
+        /*--------------------------------------------------------------------------------------------------------*/
+        /*---------------------ENGLISH----------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------------------------------*/
         // Brotkrumenleiste
         public static String EN_LBL_STARTSEITE = "Homepage";
         public static String EN_LBL_SICHERHEITSBESTAND = "Safty Stock";
@@ -126,7 +130,7 @@ namespace IBSYS2
         public static String EN_LBL_KAUFTEILEDISPOSITION = "Purchased parts dispostion";
         public static String EN_LBL_ERGEBNIS = "Result";
 
-        //ImportProgress
+        /*---------ImportProgress----------*/
         //Buttons
         public static String EN_BTN_IP_BERECHNUNG_STARTEN = "Calculation Start";
         public static String EN_BTN_IP_SPRUNG = "Jump";
@@ -153,7 +157,7 @@ namespace IBSYS2
         //ComboBox
         public static String EN_CB_IP_PERIODE_AUSWAEHLEN = "Select the period to edit";
 
-        //Kaufteiledisposition
+        /*---------Kaufteiledisposition----------*/
         //Groupboxen
         public static String EN_KD_GROUPBOX1 = "Disposition of bought-out components";
 
@@ -164,7 +168,7 @@ namespace IBSYS2
         //ToolTip
         public static String EN_KD_INFO = " ";
 
-        //Kapazitätsplan
+        /*---------Kapazitätsplan----------*/
         //Button
         public static String EN_BTN_DEFAULT = "restor calculation";
 
@@ -186,7 +190,7 @@ namespace IBSYS2
                 "this means that more than three shifts are required.\n   In this case, " +
                 " you should adjust their production amounts.\n- The workplace 5 does not exist.";
 
-        //Produktion
+        /*---------Produktion----------*/
         //Button
         public static String EN_BTN_ETEILE = "E-Parts";
 
@@ -196,12 +200,11 @@ namespace IBSYS2
         //ToolTip
         public static String EN_PR_INFO = " ";
 
-        //Sicherheitsbestand
+        /*---------Sicherheitsbestand----------*/
         //Buttons
         public static String EN_BTN_ETEILEBERECHNEN = "E-Items calculate";
         public static String EN_BTN_CONTINUE = "Continue";
         public static String EN_BTN_BACK = "Back";
-
 
         //Groupboxen
         public static String EN_GROUPBOX1 = "P-Items - Safty Stock";
@@ -216,7 +219,7 @@ namespace IBSYS2
         public static String EN_INFOP = "Please enter the Safty-Stock for the P-Items.";
         public static String EN_INFOE = "- These fields of safety stocks for the E-Items is not maintainable before calculation of the P-Items. \n "+" - The result showing the security holdings of the E-Items is calculated by the system, but can be changed manually as needed. \n "+" - to continue on 'Continue' button.";
         
-        //Ergebnis
+        /*---------Ergebnis----------*/
         //Buttons
         public static String EN_BTN_XML_EXPORT = "XML export";
 
@@ -225,6 +228,5 @@ namespace IBSYS2
         public static String EN_ER_GROUPBOX3 = "Production orders";
         public static String EN_ER_GROUPBOX4 = "Production capacity";
         public static String EN_ER_GROUPBOX1 = "Direct sales";
-
     }
 }

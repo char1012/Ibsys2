@@ -32,7 +32,6 @@ namespace IBSYS2
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
-            radioButton1.Checked = true;
         }
 
         private void eteileberechnen_btn_Click(object sender, EventArgs e)

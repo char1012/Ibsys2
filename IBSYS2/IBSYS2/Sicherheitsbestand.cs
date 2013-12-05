@@ -24,7 +24,21 @@ namespace IBSYS2
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-      
+            String sprache = "de";
+            if (sprache == "de")
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
+                ToolTipE.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+            }
             textfeldSperren();
             
             Ausgabe_P1.Enabled = false;
@@ -133,7 +147,7 @@ namespace IBSYS2
 
         public int sicherheitsbestandBerechnen(int gLagerbestand, string teilenummer_FK)
         {
-            //Wird zukünftig aus ersterm Schritt übergeben
+            //TODO Wird zukünftig aus ersterm Schritt übergeben (Prognose)
             int prognose = 100;
             int sicherheitsbestand = 0;
             int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");

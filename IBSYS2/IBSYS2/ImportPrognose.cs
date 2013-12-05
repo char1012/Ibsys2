@@ -26,7 +26,26 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+           
+            String sprache = "de";
+            if (sprache == "de") { 
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+            }
+       //     System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
 
             // Arne: kannd as weg? Ungenutzter Code macht Klasse furchtbar unuebersichtlich...
             //timer1.Interval = 1000;

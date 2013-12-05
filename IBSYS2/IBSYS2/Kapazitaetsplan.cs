@@ -23,7 +23,18 @@ namespace IBSYS2
         {
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
-            System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
+            String sprache = "de";
+            if (sprache == "de")
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
+                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
+            }
+
         }
 
         public void setValues()

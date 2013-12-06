@@ -5,23 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Data.OleDb;
+using System.Xml.Linq;
 
 namespace IBSYS2
 {
     class ExportXMLClass
     {
         //Übergabe von mehrdimensionalen Array der anderen Parteien
-        public void XMLExport(OleDbCommand cmd)
+        public void XMLExport() //OleDbCommand cmd
         {
 
             XmlDocument doc = new XmlDocument();
             XmlNode myRoot, myNode;
             XmlAttribute attrib;
 
-            myRoot = doc.CreateElement("results");
+            myRoot = doc.CreateElement("input");
             doc.AppendChild(myRoot);
             //Array mit den Überelementen
-            string[] childnodesXML = new string[] { "warehousestock", "inwardstockmovement","futureinwardstockmovement", "idletimecosts", "waitinglistworkstations", "waitingliststock", "ordersinwork", "completedorders", "cycletimes", "result" };
+            //string[] childnodesXML = new string[] { "warehousestock", "inwardstockmovement","futureinwardstockmovement", "idletimecosts", "waitinglistworkstations", "waitingliststock", "ordersinwork", "completedorders", "cycletimes", "result" };
             //Arrays für Attribute der jeweiligen Überelemente inklusive InnerText
             string[] resultsAttributes = new string[] {"game", "group", "period"};
             //warehousestock/article
@@ -44,11 +45,30 @@ namespace IBSYS2
             string[] cycletimesXML = new string[] { "startedorders", "waitingorders", "id", "period", "starttime", "finishtime", "cycletimemin", "cycletimefactor" };
             string[] resultXML = new string[] {  };
 
-            
 
-            for (int i = 0; i < childnodesXML.Length; i++)
+            string[] childNodesXML = new string[] { "qualitycontrol", "sellwish", "selldirect", "orderlist", "productionlist", "workingtimelist" };
+
+            myNode = doc.CreateElement("qualitycontrol");
+            myRoot.AppendChild(myNode);
+
+            XElement contacts =
+                new XElement("Contacts",
+                    new XElement("Contact",
+                        new XElement("Name", "Patrick Hines"),
+                        new XElement("Phone", "206-555-0144"),
+                        new XElement("Address",
+                            new XElement("Street1", "123 Main St"),
+                            new XElement("City", "Mercer Island"),
+                            new XElement("State", "WA"),
+                            new XElement("Postal", "68042")
+                        )
+                    )
+                );
+
+
+            for (int i = 0; i < childNodesXML.Length; i++)
             {
-                myNode = doc.CreateElement(childnodesXML[i]);
+                myNode = doc.CreateElement(childNodesXML[i]);
                 myRoot.AppendChild(myNode);
             }
 
@@ -59,11 +79,120 @@ namespace IBSYS2
             attrib.InnerText = "AttributeText1";
             myNode.Attributes.Append(attrib);
 
+
+
             myRoot.AppendChild(doc.CreateElement("Test2"));
-            doc.Save(@"c:\TestAppendXML.xml");
+            doc.Save(@"C:\XML\TestAppendXML.xml");
+
+
+            string[] art = new string[] { "1", "2", "3" };
+            string[] sellwishArr = new string[] { "article", "quantity" };
+
+            XmlTextWriter myXmlTextWriter = new XmlTextWriter(@"C:\XML\TestAppendXML1.xml", null);
+            myXmlTextWriter.Formatting = Formatting.Indented;
+            myXmlTextWriter.WriteStartDocument(false);
+
+            myXmlTextWriter.WriteStartElement("input");
+            myXmlTextWriter.WriteStartElement("qualitycontrol", null);
+            myXmlTextWriter.WriteAttributeString("type", "no");
+            myXmlTextWriter.WriteAttributeString("losequantity", "0");
+            myXmlTextWriter.WriteAttributeString("delay", "0");
+            myXmlTextWriter.WriteEndElement();
+            //Bereich sellwish
+            myXmlTextWriter.WriteStartElement("sellwish", null);
+            for (int i = 0; i < 3; i++)
+            {
+                myXmlTextWriter.WriteStartElement("item", null);
+                myXmlTextWriter.WriteAttributeString("article", art[i]);
+                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+                myXmlTextWriter.WriteEndElement();
+
+            }
+            myXmlTextWriter.WriteEndElement();
+
+            //Bereich selldirect
+            string[] selldirectArr = new string[] { "article", "quantity", "price", "penalty" };
+
+            myXmlTextWriter.WriteStartElement("selldirect", null);
+            for (int i = 0; i < 3; i++ )
+            {
+                myXmlTextWriter.WriteStartElement("item", null);
+                for (int x = 0; x<selldirectArr.Length;x++)
+                {
+                    myXmlTextWriter.WriteAttributeString("article", art[i]);
+                    myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+                    myXmlTextWriter.WriteAttributeString("price", "Wert muss übergeben werden");
+                    myXmlTextWriter.WriteAttributeString("penalty", "Wert muss übergeben werden");
+                }
+                myXmlTextWriter.WriteEndElement();
+            }
+            myXmlTextWriter.WriteEndElement();
+
+            myXmlTextWriter.WriteStartElement("orderlist", null);
+            for (int i = 0; i < 3; i++)
+            {
+                myXmlTextWriter.WriteStartElement("order", null);
+                myXmlTextWriter.WriteAttributeString("article", art[i]);
+                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+                myXmlTextWriter.WriteAttributeString("modus", "Wert muss übergeben werden");
+
+                myXmlTextWriter.WriteEndElement();
+
+            }
+            myXmlTextWriter.WriteEndElement();
+
+            myXmlTextWriter.WriteStartElement("productionlist", null);
+            for (int i = 0; i < 3; i++)
+            {
+                myXmlTextWriter.WriteStartElement("production", null);
+                myXmlTextWriter.WriteAttributeString("article", art[i]);
+                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+
+                myXmlTextWriter.WriteEndElement();
+
+            }
+            myXmlTextWriter.WriteEndElement();
 
 
 
+            myXmlTextWriter.WriteStartElement("workingtimelist", null);
+            for (int i = 0; i < 3; i++)
+            {
+                myXmlTextWriter.WriteStartElement("workingtime", null);
+                myXmlTextWriter.WriteAttributeString("station", art[i]);
+                myXmlTextWriter.WriteAttributeString("shift", "Wert muss übergeben werden");
+                myXmlTextWriter.WriteAttributeString("overtime", "Wert muss übergeben werden");
+                myXmlTextWriter.WriteEndElement();
+
+            }
+            myXmlTextWriter.WriteEndElement();
+
+
+
+
+            myXmlTextWriter.WriteEndElement();
+
+
+
+            //myXmlTextWriter.WriteElementString("title", null, "The Autobiography of Mark Twain");
+            //myXmlTextWriter.WriteStartElement("Author", null);
+
+            //myXmlTextWriter.WriteElementString("first-name", "Mark");
+            //myXmlTextWriter.WriteElementString("last-name", "Twain");
+            //myXmlTextWriter.WriteEndElement();
+            //myXmlTextWriter.WriteElementString("price", "7.99");
+            //myXmlTextWriter.WriteEndElement();
+
+            //myXmlTextWriter.Flush();
+            //myXmlTextWriter.WriteStartElement("book", null);
+            //myXmlTextWriter.WriteAttributeString("genre", "autobiography");
+            //myXmlTextWriter.WriteAttributeString("publicationdate", "1979");
+            //myXmlTextWriter.WriteAttributeString("ISBN", "0-7356-0562-9");
+            //myXmlTextWriter.WriteEndElement();
+            //myXmlTextWriter.WriteEndElement();
+
+            myXmlTextWriter.Flush();
+            myXmlTextWriter.Close();
         }
     }
 }

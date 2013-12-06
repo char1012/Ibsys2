@@ -18,6 +18,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, fileselected = true;
 
         public ImportPrognose()
         {
@@ -45,30 +46,7 @@ namespace IBSYS2
                 System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
                 ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
             }
-       //     System.Windows.Forms.ToolTip ToolTip1 = new System.Windows.Forms.ToolTip();
-
-            // Arne: kannd as weg? Ungenutzter Code macht Klasse furchtbar unuebersichtlich...
-            //timer1.Interval = 1000;
-            //timer1.Enabled = true; 
         }
-
-        // Arne: kann das weg?
-        //http://stackoverflow.com/questions/11445125/disabling-particular-items-in-a-combobox
-        //Font myFont = new Font("Aerial", 10, FontStyle.Regular);
-
-        //private void comboBox1_DrawItem(object sender, DrawItemEventArgs e)
-        //{
-        //    if (e.Index == 0)//We are disabling item based on Index, you can have your logic here
-        //    {
-        //        e.Graphics.DrawString(comboBox1.Items[e.Index].ToString(), myFont, Brushes.LightGray, e.Bounds);
-        //    }
-        //    else
-        //    {
-        //        e.DrawBackground();
-        //        e.Graphics.DrawString(comboBox1.Items[e.Index].ToString(), myFont, Brushes.Black, e.Bounds);
-        //        e.DrawFocusRectangle();
-        //    }
-        //}
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -80,7 +58,6 @@ namespace IBSYS2
             continue_btn.Enabled = false;
         }
 
-        // Sprung-Button, kann spaeter entfernt werden
         private void button1_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
@@ -99,6 +76,7 @@ namespace IBSYS2
                 openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
+                    fileselected = false;
                     String File = openFileDialog1.FileName;
                     if (File.Contains(".xml"))
                     {
@@ -116,7 +94,8 @@ namespace IBSYS2
                             myconn.Close();
                             myconn.Open();
                         }
-                        int ausgewähltePeriode = comboBox1.SelectedIndex + 1;
+                        int ausgewähltePeriode = comboBox1.SelectedIndex+1;
+                        MessageBox.Show(""+ausgewähltePeriode + " " + comboBox1.SelectedText);
                         cmd.CommandText = @"select Periode from Lager";
 
                         //Periode aus Datei auslesen sowie Kontrolle, ob es die richtige ist
@@ -131,12 +110,13 @@ namespace IBSYS2
                             period = Convert.ToInt32(node.Attributes["period"].InnerText);
                         }
 
-                        if (ausgewähltePeriode != period)
+                        if ((ausgewähltePeriode-1) != period)
                         {
                             System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                         }
                         else
                         {
+                            fileselected = true;
                             int PeriodeDB = '0';
                             OleDbDataReader perReader = cmd.ExecuteReader();
                             while (perReader.Read())
@@ -147,7 +127,11 @@ namespace IBSYS2
                             if (period == PeriodeDB)
                             {
                                 System.Windows.Forms.MessageBox.Show("Die XML-Datei wurde bereits in die Datenbank eingespeist, herzlichen Dank ;-)");
-                                continue_btn.Enabled = true;
+                                //Aufruf Funktion Validierung Werte in Feldern enthalten?
+                                if (tB1 & tB2 & tB3 & fileselected) // & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 
+                                {
+                                    continue_btn.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -155,10 +139,12 @@ namespace IBSYS2
                                 //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                 XMLReaderClass xmlclass = new XMLReaderClass();
                                 xmlclass.XMLReader(cmd, File);
-                                continue_btn.Enabled = true;
+                                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                                {
+                                    continue_btn.Enabled = true;
+                                }
                                 myconn.Close();
                             }
-
                         }
                     }
                     else
@@ -174,43 +160,32 @@ namespace IBSYS2
         {
             // Achtung: in button2_click wird der continue_btn bereits enabled,
             // obwohl noch keine Eingabe in den Textfeldern vorgenommen wurde
+            if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" |  textBox5.Text == "0" |  textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
+            {
+                valueZero();
+                DialogResult dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Uebergabe:
+                    // aktuelle Periode (Integer)
+                    // 12 Integer fuer die Auftraege
+                    // 3 Integer fuer Zusatzauftraege
+                    int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
+                    int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
+                    int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
+                    int aPP1 = Convert.ToInt32(tb_aktP1.Text);
+                    int aPP2 = Convert.ToInt32(textBox2.Text);
+                    int aPP3 = Convert.ToInt32(textBox3.Text);
+                    int mengeP1 = zLAP1 + aPP1;
+                    int mengeP2 = zLAP2 + aPP2;
+                    int mengeP3 = zLAP3 + aPP3;
 
-            // Uebergabe:
-            // aktuelle Periode (Integer)
-            // 12 Integer fuer die Auftraege
-            // 3 Integer fuer Zusatzauftraege
-            int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
-            int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
-            int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
-            int aPP1 = Convert.ToInt32(tb_aktP1.Text);
-            int aPP2 = Convert.ToInt32(textBox2.Text);
-            int aPP3 = Convert.ToInt32(textBox3.Text);
-            int mengeP1 = zLAP1 + aPP1;
-            int mengeP2 = zLAP2 + aPP2;
-            int mengeP3 = zLAP3 + aPP3;
-            //   System.Windows.Forms.MessageBox.Show("Menge P1: " + mengeP1 + " Menge P2: " + mengeP2 + " Menge P3: " + mengeP3);
-
-            //if (String.IsNullOrEmpty(textBox12.Text))
-            //{
-            //    textBox12.ForeColor = Color.Red;
-            //    textBox12.Text = "Ausstehend";
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        number = Convert.ToDouble(textBox12.Text);
-            //        textBox12.ForeColor = Color.Black;
-
-            //    }
-            //    catch
-            //    {
-            //        textBox12.ForeColor = Color.Red;
-            //        textBox12.Text = "Gültige Zahl";
-            //        return;
-            //    }
-            //}
-
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //do something else
+                }
+            }
         }
 
         private void pic_en_Click(object sender, EventArgs e)
@@ -231,7 +206,8 @@ namespace IBSYS2
             if (tb_aktP1.Text == "")
             {
                 tb_aktP1.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                tb_aktP1.Text = "Geben Sie einen Wert ein";
+                tB1 = false;
             }
             else
             {
@@ -245,13 +221,22 @@ namespace IBSYS2
                     {
                         tb_aktP1.ForeColor = Color.Red;
                         okay = false;
+                        tB1 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     tb_aktP1.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB1 = true;
+                    if (tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)  
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -261,7 +246,8 @@ namespace IBSYS2
             if (textBox2.Text == "")
             {
                 textBox2.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox2.Text = "Geben Sie einen Wert ein";
+                tB2 = false;
             }
             else
             {
@@ -275,13 +261,22 @@ namespace IBSYS2
                     {
                         textBox2.ForeColor = Color.Red;
                         okay = false;
+                        tB2 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox2.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB2 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -291,7 +286,8 @@ namespace IBSYS2
             if (textBox3.Text == "")
             {
                 textBox3.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox3.Text = "Geben Sie einen Wert ein";
+                tB3 = false;
             }
             else
             {
@@ -305,13 +301,22 @@ namespace IBSYS2
                     {
                         textBox3.ForeColor = Color.Red;
                         okay = false;
+                        tB3 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox3.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB3 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -321,7 +326,8 @@ namespace IBSYS2
             if (textBox4.Text == "")
             {
                 textBox4.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox4.Text = "Geben Sie einen Wert ein";
+                tB4 = false;
             }
             else
             {
@@ -335,13 +341,22 @@ namespace IBSYS2
                     {
                         textBox4.ForeColor = Color.Red;
                         okay = false;
+                        tB4 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox4.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB4 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -351,7 +366,8 @@ namespace IBSYS2
             if (textBox5.Text == "")
             {
                 textBox5.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox5.Text = "Geben Sie einen Wert ein";
+                tB5 = false;
             }
             else
             {
@@ -365,13 +381,22 @@ namespace IBSYS2
                     {
                         textBox5.ForeColor = Color.Red;
                         okay = false;
+                        tB5 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox5.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB5 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -381,7 +406,8 @@ namespace IBSYS2
             if (textBox6.Text == "")
             {
                 textBox6.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox6.Text = "Geben Sie einen Wert ein";
+                tB6 = false;
             }
             else
             {
@@ -395,13 +421,22 @@ namespace IBSYS2
                     {
                         textBox6.ForeColor = Color.Red;
                         okay = false;
+                        tB6 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox6.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB6 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -411,7 +446,8 @@ namespace IBSYS2
             if (textBox7.Text == "")
             {
                 textBox7.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox7.Text = "Geben Sie einen Wert ein";
+                tB7 = false;
             }
             else
             {
@@ -425,13 +461,22 @@ namespace IBSYS2
                     {
                         textBox7.ForeColor = Color.Red;
                         okay = false;
+                        tB7 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox7.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB7 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -441,7 +486,8 @@ namespace IBSYS2
             if (textBox8.Text == "")
             {
                 textBox8.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox8.Text = "Geben Sie einen Wert ein";
+                tB8 = false;
             }
             else
             {
@@ -455,13 +501,22 @@ namespace IBSYS2
                     {
                         textBox8.ForeColor = Color.Red;
                         okay = false;
+                        tB8 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox8.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB8 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -471,7 +526,8 @@ namespace IBSYS2
             if (textBox9.Text == "")
             {
                 textBox9.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox9.Text = "Geben Sie einen Wert ein";
+                tB9 = false;
             }
             else
             {
@@ -485,13 +541,22 @@ namespace IBSYS2
                     {
                         textBox9.ForeColor = Color.Red;
                         okay = false;
+                        tB9 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox9.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB9 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -501,7 +566,8 @@ namespace IBSYS2
             if (textBox10.Text == "")
             {
                 textBox10.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox10.Text = "Geben Sie einen Wert ein";
+                tB10 = false;
             }
             else
             {
@@ -515,13 +581,22 @@ namespace IBSYS2
                     {
                         textBox10.ForeColor = Color.Red;
                         okay = false;
+                        tB10 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox10.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB10 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -531,7 +606,8 @@ namespace IBSYS2
             if (textBox11.Text == "")
             {
                 textBox11.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox11.Text = "Geben Sie einen Wert ein";
+                tB11 = false;
             }
             else
             {
@@ -545,13 +621,22 @@ namespace IBSYS2
                     {
                         textBox11.ForeColor = Color.Red;
                         okay = false;
+                        tB11 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox11.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB11 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -561,7 +646,8 @@ namespace IBSYS2
             if (textBox12.Text == "")
             {
                 textBox12.ForeColor = Color.Red;
-                continue_btn.Enabled = false;
+                textBox12.Text = "Geben Sie einen Wert ein";
+                tB12 = false;
             }
             else
             {
@@ -575,352 +661,34 @@ namespace IBSYS2
                     {
                         textBox12.ForeColor = Color.Red;
                         okay = false;
+                        tB12 = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     textBox12.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB12 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
-        // Arne: kann das weg?
-        private void timer1_Tick(object sender, EventArgs e)
-        {
 
-            //    if (tb_aktP1.Text == "")
-            //    {
-            //        tb_aktP1.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        tb_aktP1.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in tb_aktP1.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                tb_aktP1.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            tb_aktP1.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox2.Text == "")
-            //    {
-            //        textBox2.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox2.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox2.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox2.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox2.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox3.Text == "")
-            //    {
-            //        textBox3.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox3.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox3.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox3.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox3.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox4.Text == "")
-            //    {
-            //        textBox4.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox4.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox4.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox4.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox4.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox5.Text == "")
-            //    {
-            //        textBox5.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox5.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox5.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox5.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox5.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox6.Text == "")
-            //    {
-            //        textBox6.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox6.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox6.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox6.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox6.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox7.Text == "")
-            //    {
-            //        textBox7.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox7.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox7.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox7.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox7.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-
-            //    if (textBox8.Text == "")
-            //    {
-            //        textBox8.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox8.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox8.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox8.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox8.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox9.Text == "")
-            //    {
-            //        textBox9.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox9.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox9.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox9.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox9.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox10.Text == "")
-            //    {
-            //        textBox10.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox10.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox10.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox10.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox10.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox11.Text == "")
-            //    {
-            //        textBox11.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox11.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox11.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox11.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox11.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-
-            //    if (textBox12.Text == "")
-            //    {
-            //        textBox12.ForeColor = Color.Red;
-            //        continue_btn.Enabled = false;
-            //    }
-            //    else
-            //    {
-            //        textBox12.ForeColor = Color.Black;
-            //        bool okay = true;
-            //        // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-            //        foreach (char c in textBox12.Text.ToCharArray())
-            //        {
-            //            // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-            //            if (!digits.Contains<char>(c))
-            //            {
-            //                textBox12.ForeColor = Color.Red;
-            //                okay = false;
-            //                break;
-            //            }
-            //        }
-            //        if (okay == true)
-            //        {
-            //            textBox12.ForeColor = Color.Black;
-            //            continue_btn.Enabled = true;
-            //        }
-            //    }
-        }
 
         private void txt_zLAP1_TextChanged(object sender, EventArgs e)
         {
             if (txt_zLAP1.Text == "")
             {
                 txt_zLAP1.ForeColor = Color.Red;
+                txt_zLAP1.Text = "Geben Sie einen Wert ein";
                 continue_btn.Enabled = false;
             }
             else
@@ -951,6 +719,7 @@ namespace IBSYS2
             if (txt_zLAP2.Text == "")
             {
                 txt_zLAP2.ForeColor = Color.Red;
+                txt_zLAP2.Text = "Geben Sie einen Wert ein";
                 continue_btn.Enabled = false;
             }
             else
@@ -981,6 +750,7 @@ namespace IBSYS2
             if (txt_zLAP3.Text == "")
             {
                 txt_zLAP3.ForeColor = Color.Red;
+                txt_zLAP3.Text = "Geben Sie einen Wert ein";
                 continue_btn.Enabled = false;
             }
             else
@@ -1006,6 +776,60 @@ namespace IBSYS2
             }
         }
 
+        private void valueZero()
+        {
+            if (tb_aktP1.Text == "0")
+            {
+                tb_aktP1.ForeColor = Color.Red;
+            }
+            if (textBox2.Text == "0")
+            {
+                textBox2.ForeColor = Color.Red;
+            }
+            if (textBox3.Text == "0")
+            {
+                textBox3.ForeColor = Color.Red;
+            }
+            if (textBox4.Text == "0")
+            {
+                textBox4.ForeColor = Color.Red;
+            }
+            if (textBox5.Text == "0")
+            {
+                textBox5.ForeColor = Color.Red;
+            }
+            if (textBox6.Text == "0")
+            {
+                textBox6.ForeColor = Color.Red;
+            }
+            if (textBox7.Text == "0")
+            {
+                textBox7.ForeColor = Color.Red;
+            }
+            if (textBox8.Text == "0")
+            {
+                textBox8.ForeColor = Color.Red;
+            }
+            if (textBox9.Text == "0")
+            {
+                textBox9.ForeColor = Color.Red;
+            }
+            if (textBox10.Text == "0")
+            {
+                textBox10.ForeColor = Color.Red;
+            }
+            if (textBox11.Text == "0")
+            {
+                textBox11.ForeColor = Color.Red;
+            }
+            if (textBox12.Text == "0")
+            {
+                textBox12.ForeColor = Color.Red;
+            }
+
+        }
+
+       
         public void sprachen(String sprache)
         {
             if (sprache != "de")

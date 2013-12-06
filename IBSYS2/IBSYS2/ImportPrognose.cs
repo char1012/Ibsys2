@@ -60,13 +60,10 @@ namespace IBSYS2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ExportXMLClass exportXML = new ExportXMLClass();
-            exportXML.XMLExport();
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand();
             this.Controls.Add(sicherheit);
         }
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -91,7 +88,7 @@ namespace IBSYS2
                         {
                             myconn.Open();
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                             myconn.Close();

@@ -18,7 +18,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, fileselected = true;
+        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
 
         public ImportPrognose()
         {
@@ -128,7 +128,7 @@ namespace IBSYS2
                             {
                                 System.Windows.Forms.MessageBox.Show("Die XML-Datei wurde bereits in die Datenbank eingespeist, herzlichen Dank ;-)");
                                 //Aufruf Funktion Validierung Werte in Feldern enthalten?
-                                if (tB1 & tB2 & tB3 & fileselected) // & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 
+                                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
                                 }
@@ -139,7 +139,7 @@ namespace IBSYS2
                                 //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                 XMLReaderClass xmlclass = new XMLReaderClass();
                                 xmlclass.XMLReader(cmd, File);
-                                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
                                 }
@@ -222,6 +222,7 @@ namespace IBSYS2
                         tb_aktP1.ForeColor = Color.Red;
                         okay = false;
                         tB1 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -229,7 +230,7 @@ namespace IBSYS2
                 {
                     tb_aktP1.ForeColor = Color.Black;
                     tB1 = true;
-                    if (tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)  
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)  
                     {
                         continue_btn.Enabled = true;
                     }
@@ -262,6 +263,7 @@ namespace IBSYS2
                         textBox2.ForeColor = Color.Red;
                         okay = false;
                         tB2 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -269,7 +271,7 @@ namespace IBSYS2
                 {
                     textBox2.ForeColor = Color.Black;
                     tB2 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -302,6 +304,7 @@ namespace IBSYS2
                         textBox3.ForeColor = Color.Red;
                         okay = false;
                         tB3 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -309,7 +312,7 @@ namespace IBSYS2
                 {
                     textBox3.ForeColor = Color.Black;
                     tB3 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -342,6 +345,7 @@ namespace IBSYS2
                         textBox4.ForeColor = Color.Red;
                         okay = false;
                         tB4 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -349,7 +353,7 @@ namespace IBSYS2
                 {
                     textBox4.ForeColor = Color.Black;
                     tB4 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -382,6 +386,7 @@ namespace IBSYS2
                         textBox5.ForeColor = Color.Red;
                         okay = false;
                         tB5 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -389,7 +394,7 @@ namespace IBSYS2
                 {
                     textBox5.ForeColor = Color.Black;
                     tB5 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -422,6 +427,7 @@ namespace IBSYS2
                         textBox6.ForeColor = Color.Red;
                         okay = false;
                         tB6 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -429,7 +435,7 @@ namespace IBSYS2
                 {
                     textBox6.ForeColor = Color.Black;
                     tB6 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -462,6 +468,7 @@ namespace IBSYS2
                         textBox7.ForeColor = Color.Red;
                         okay = false;
                         tB7 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -469,7 +476,7 @@ namespace IBSYS2
                 {
                     textBox7.ForeColor = Color.Black;
                     tB7 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -502,6 +509,7 @@ namespace IBSYS2
                         textBox8.ForeColor = Color.Red;
                         okay = false;
                         tB8 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -509,7 +517,7 @@ namespace IBSYS2
                 {
                     textBox8.ForeColor = Color.Black;
                     tB8 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -542,6 +550,7 @@ namespace IBSYS2
                         textBox9.ForeColor = Color.Red;
                         okay = false;
                         tB9 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -549,7 +558,7 @@ namespace IBSYS2
                 {
                     textBox9.ForeColor = Color.Black;
                     tB9 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -582,6 +591,7 @@ namespace IBSYS2
                         textBox10.ForeColor = Color.Red;
                         okay = false;
                         tB10 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -589,7 +599,7 @@ namespace IBSYS2
                 {
                     textBox10.ForeColor = Color.Black;
                     tB10 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -622,6 +632,7 @@ namespace IBSYS2
                         textBox11.ForeColor = Color.Red;
                         okay = false;
                         tB11 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -629,7 +640,7 @@ namespace IBSYS2
                 {
                     textBox11.ForeColor = Color.Black;
                     tB11 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -662,6 +673,7 @@ namespace IBSYS2
                         textBox12.ForeColor = Color.Red;
                         okay = false;
                         tB12 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
@@ -669,7 +681,7 @@ namespace IBSYS2
                 {
                     textBox12.ForeColor = Color.Black;
                     tB12 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & fileselected)
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
                     }
@@ -689,7 +701,7 @@ namespace IBSYS2
             {
                 txt_zLAP1.ForeColor = Color.Red;
                 txt_zLAP1.Text = "Geben Sie einen Wert ein";
-                continue_btn.Enabled = false;
+                tB13 = false;
             }
             else
             {
@@ -703,13 +715,23 @@ namespace IBSYS2
                     {
                         txt_zLAP1.ForeColor = Color.Red;
                         okay = false;
+                        tB13 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     txt_zLAP1.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB13 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -720,7 +742,7 @@ namespace IBSYS2
             {
                 txt_zLAP2.ForeColor = Color.Red;
                 txt_zLAP2.Text = "Geben Sie einen Wert ein";
-                continue_btn.Enabled = false;
+                tB14 = false;
             }
             else
             {
@@ -734,13 +756,23 @@ namespace IBSYS2
                     {
                         txt_zLAP2.ForeColor = Color.Red;
                         okay = false;
+                        tB14 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     txt_zLAP2.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB14 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -751,7 +783,7 @@ namespace IBSYS2
             {
                 txt_zLAP3.ForeColor = Color.Red;
                 txt_zLAP3.Text = "Geben Sie einen Wert ein";
-                continue_btn.Enabled = false;
+                tB15 = false;
             }
             else
             {
@@ -765,13 +797,23 @@ namespace IBSYS2
                     {
                         txt_zLAP3.ForeColor = Color.Red;
                         okay = false;
+                        tB15 = false;
+                        continue_btn.Enabled = false;
                         break;
                     }
                 }
                 if (okay == true)
                 {
                     txt_zLAP3.ForeColor = Color.Black;
-                    continue_btn.Enabled = true;
+                    tB15 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
+                    {
+                        continue_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }

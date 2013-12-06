@@ -30,13 +30,13 @@ namespace IBSYS2
             InitializeComponent();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            
+
             this.periode = per;
             this.produktionp1 = Convert.ToInt32(p1);
             this.produktionp2 = Convert.ToInt32(p2);
             this.produktionp3 = Convert.ToInt32(p3);
             this.sicherheitsbe = sicherheitsbestand;
-            
+
             berechneProduktion();
         }
 
@@ -227,7 +227,7 @@ namespace IBSYS2
 
             p7 = p49 + sicherheitsbe[8] - lagerbestand[8] - wartelisteAr[8] - wartelisteMa[8] - bearbeitung[8];
             p13 = p49 + sicherheitsbe[9] - lagerbestand[9] - wartelisteAr[9] - wartelisteMa[9] - bearbeitung[9];
-            p18 = p49 + sicherheitsbe[10] - lagerbestand[10] - wartelisteAr[10] - wartelisteMa[10] - bearbeitung[10]; 
+            p18 = p49 + sicherheitsbe[10] - lagerbestand[10] - wartelisteAr[10] - wartelisteMa[10] - bearbeitung[10];
 
 
             //Berechnung P2
@@ -241,8 +241,8 @@ namespace IBSYS2
 
             p8 = p54 + sicherheitsbe[19] - lagerbestand[16] - wartelisteAr[16] - wartelisteMa[16] - bearbeitung[16];
             p14 = p54 + sicherheitsbe[20] - lagerbestand[17] - wartelisteAr[17] - wartelisteMa[17] - bearbeitung[17];
-            p19 = p54 + sicherheitsbe[21] - lagerbestand[18] - wartelisteAr[18] - wartelisteMa[18] - bearbeitung[18]; 
- 
+            p19 = p54 + sicherheitsbe[21] - lagerbestand[18] - wartelisteAr[18] - wartelisteMa[18] - bearbeitung[18];
+
 
             //Berechnung P3
             p31 = produktionp3 + sicherheitsbe[23] - lagerbestand[19] - wartelisteAr[19] - wartelisteMa[19] - bearbeitung[19];
@@ -255,7 +255,7 @@ namespace IBSYS2
 
             p9 = p29 + sicherheitsbe[30] - lagerbestand[24] - wartelisteAr[24] - wartelisteMa[24] - bearbeitung[24];
             p15 = p29 + sicherheitsbe[31] - lagerbestand[25] - wartelisteAr[25] - wartelisteMa[25] - bearbeitung[25];
-            p20 = p29 + sicherheitsbe[32] - lagerbestand[26] - wartelisteAr[26] - wartelisteMa[26] - bearbeitung[26]; 
+            p20 = p29 + sicherheitsbe[32] - lagerbestand[26] - wartelisteAr[26] - wartelisteMa[26] - bearbeitung[26];
 
             #region In textBox
             textBox1.Text = p4.ToString();
@@ -293,7 +293,7 @@ namespace IBSYS2
         {
             this.Hide();
         }
-        
+
         #region Textboxen
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -1061,7 +1061,7 @@ namespace IBSYS2
                     textBox27.ForeColor = Color.Black;
                 }
             }
-        }  
+        }
         #endregion
 
         private void button2_Click(object sender, EventArgs e)

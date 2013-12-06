@@ -11,48 +11,42 @@ namespace IBSYS2
 {
     class ExportXMLClass
     {
+
+        /*TO-DO
+         * Benötige folgende Daten aus den Forms davor bzw. der Ergebnis-Form:
+         * Jeweils zweidimensionale Arrays:
+         * * sellwish: jeweiliger Artikel (P1, P2, P3) und die dazugehörige Anzahl
+         * * selldirect: jeweiliger Artikel (P1, P2, P3) dazugehörige Anzahl, der Preis dazu sowie mögliche Sanktionen
+         * * orderlist: welcher Artikel bestellt wird in welcher Menge und welchem Modus
+         * * productionlist: welcher Artikel in welcher Menge hergestellt wird
+         * * workingtimelist: an welchem Arbeitsplatz mit welcher Schicht mit wieviel Überstunden in Minuten gearbeitet wird
+         * */
+
+
         //Übergabe von mehrdimensionalen Array der anderen Parteien
         public void XMLExport() //OleDbCommand cmd
         {
 
             XmlDocument doc = new XmlDocument();
             XmlNode myRoot; //, myNode;
-            //XmlAttribute attrib;
 
             myRoot = doc.CreateElement("input");
             doc.AppendChild(myRoot);
-            //Array mit den Überelementen
-            //string[] childnodesXML = new string[] { "warehousestock", "inwardstockmovement","futureinwardstockmovement", "idletimecosts", "waitinglistworkstations", "waitingliststock", "ordersinwork", "completedorders", "cycletimes", "result" };
-            //Arrays für Attribute der jeweiligen Überelemente inklusive InnerText
-            string[] resultsAttributes = new string[] {"game", "group", "period"};
-            //warehousestock/article
-            string[] warehousestockXML = new string[] { "id", "amount", "startamount", "pct", "price", "stockvalue"};
-            //inwardstockmovement/order
-            string[] inwardstockmovementXML = new string[] { "orderperiod", "id", "mode", "article", "amount", "time", "materialcosts", "ordercosts", "entirecosts", "piececosts" };
-            //futureinwardstockmovement\order
-            string[] futureinwardstockmovementXML = new string[] { "orderperiod", "id", "mode", "article", "amount" };
-            //idletimecosts/workplace
-            string[] idletimecostsXML = new string[] { "id", "setupevents", "idletime", "wageidletimecosts", "wagecosts", "machineidletimecosts" };
-            //Ersten beiden Elemente von Oberlement waitinglistworkstations\workplace, die restlichen Elemente von ...\waitinglist 
-            string[] waitinglistworkstationsXML = new string[] { "id", "timeneed", "period", "order", "firstbatch", "lastbatch", "item", "amount", "timeneed" };
-            //ID von Oberlement, der rest von waitinglist(Kindelelement)
-            string[] waitingliststockXML = new string[] { "id", "period", "order", "item", "amount" };
-            //<workplace id="1" period="7" order="7" batch="13" item="54" amount="10" timeneed="30"/>
-            string[] ordersinworkXML = new string[] { "id", "period", "order", "batch", "item", "amount", "timeneed" };
-            //Ersten sechs Paramter von <order/>, die anderen von <batch/>
-            string[] completedordersXML = new string[] { "period", "id", "item", "quantity", "cost", "averageunitcosts", "id", "amount", "cycletime", "cost" };
-            //Ersten zwei Paramter von <cycletimes/>, Rest von <order/>
-            string[] cycletimesXML = new string[] { "startedorders", "waitingorders", "id", "period", "starttime", "finishtime", "cycletimemin", "cycletimefactor" };
-            string[] resultXML = new string[] {  };
-
 
             string[] childNodesXML = new string[] { "qualitycontrol", "sellwish", "selldirect", "orderlist", "productionlist", "workingtimelist" };
             string[] art = new string[] { "1", "2", "3" };
             string[] sellwishArr = new string[] { "article", "quantity" };
 
+            //Mockupdaten für die angeforderten Daten
+            String[] sellwish_Array_Fields = { "article", "quantity" };
+            String[,] sellwish_Array_Values = new string[,] { { "1", "200" }, { "2", "200" }, { "3", "100" } };
+            String[] selldirect_Array_Fields = { "article", "quantity", "price", "penalty" };
+            String[,] selldirect_Array_Values = new string[,] { { "1", "0", "0.0", "0.0" }, { "2", "0", "0.0", "0.0" }, { "3", "150", "210.0", "20.0" } };
+            String[] orderlist_Array_Fields = {"article", "quantity", "modus" };
+            String[,] orderlist_Array_Values = {{"25", "3600", "5"}, {"32", "3730", "5"},{"33", "820", "4"},{"34", "23300", "4"},{"36", "625", "5"}};
+
             XmlTextWriter myXmlTextWriter = new XmlTextWriter(@"C:\XML\TestAppendXML1.xml", null);
             myXmlTextWriter.Formatting = Formatting.Indented;
-            myXmlTextWriter.WriteStartDocument(false);
 
             myXmlTextWriter.WriteStartElement("input");
             myXmlTextWriter.WriteStartElement("qualitycontrol", null);
@@ -65,37 +59,34 @@ namespace IBSYS2
             for (int i = 0; i < 3; i++)
             {
                 myXmlTextWriter.WriteStartElement("item", null);
-                myXmlTextWriter.WriteAttributeString("article", art[i]);
-                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+                for (int t = 0; t < 2; t++)
+                {
+                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], sellwish_Array_Values[i,t]);
+                }
                 myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();
-
-            //Bereich selldirect
-            string[] selldirectArr = new string[] { "article", "quantity", "price", "penalty" };
-
             myXmlTextWriter.WriteStartElement("selldirect", null);
             for (int i = 0; i < 3; i++ )
             {
                 myXmlTextWriter.WriteStartElement("item", null);
-                for (int x = 0; x<selldirectArr.Length;x++)
+                for (int x = 0; x<4;x++)
                 {
-                    myXmlTextWriter.WriteAttributeString("article", art[i]);
-                    myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
-                    myXmlTextWriter.WriteAttributeString("price", "Wert muss übergeben werden");
-                    myXmlTextWriter.WriteAttributeString("penalty", "Wert muss übergeben werden");
+                    myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], selldirect_Array_Values[i, x]);
                 }
                 myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();
 
             myXmlTextWriter.WriteStartElement("orderlist", null);
-            for (int i = 0; i < 3; i++)
+            System.Windows.Forms.MessageBox.Show(orderlist_Array_Values.Length + " Länge");
+            for (int i = 0; i < (orderlist_Array_Values.Length/3); i++)
             {
                 myXmlTextWriter.WriteStartElement("order", null);
-                myXmlTextWriter.WriteAttributeString("article", art[i]);
-                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
-                myXmlTextWriter.WriteAttributeString("modus", "Wert muss übergeben werden");
+                for (int x = 0; x < 3; x++)
+                {
+                    myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], orderlist_Array_Values[i, x]);
+                }
                 myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();

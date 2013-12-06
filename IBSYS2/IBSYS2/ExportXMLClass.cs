@@ -84,7 +84,6 @@ namespace IBSYS2
                 myXmlTextWriter.WriteAttributeString("article", art[i]);
                 myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
                 myXmlTextWriter.WriteEndElement();
-
             }
             myXmlTextWriter.WriteEndElement();
 
@@ -113,9 +112,7 @@ namespace IBSYS2
                 myXmlTextWriter.WriteAttributeString("article", art[i]);
                 myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
                 myXmlTextWriter.WriteAttributeString("modus", "Wert muss übergeben werden");
-
                 myXmlTextWriter.WriteEndElement();
-
             }
             myXmlTextWriter.WriteEndElement();
 
@@ -127,11 +124,8 @@ namespace IBSYS2
                 myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
 
                 myXmlTextWriter.WriteEndElement();
-
             }
             myXmlTextWriter.WriteEndElement();
-
-
 
             myXmlTextWriter.WriteStartElement("workingtimelist", null);
             for (int i = 0; i < 3; i++)
@@ -141,34 +135,10 @@ namespace IBSYS2
                 myXmlTextWriter.WriteAttributeString("shift", "Wert muss übergeben werden");
                 myXmlTextWriter.WriteAttributeString("overtime", "Wert muss übergeben werden");
                 myXmlTextWriter.WriteEndElement();
-
             }
-            myXmlTextWriter.WriteEndElement();
-
-
-
 
             myXmlTextWriter.WriteEndElement();
-
-
-
-            //myXmlTextWriter.WriteElementString("title", null, "The Autobiography of Mark Twain");
-            //myXmlTextWriter.WriteStartElement("Author", null);
-
-            //myXmlTextWriter.WriteElementString("first-name", "Mark");
-            //myXmlTextWriter.WriteElementString("last-name", "Twain");
-            //myXmlTextWriter.WriteEndElement();
-            //myXmlTextWriter.WriteElementString("price", "7.99");
-            //myXmlTextWriter.WriteEndElement();
-
-            //myXmlTextWriter.Flush();
-            //myXmlTextWriter.WriteStartElement("book", null);
-            //myXmlTextWriter.WriteAttributeString("genre", "autobiography");
-            //myXmlTextWriter.WriteAttributeString("publicationdate", "1979");
-            //myXmlTextWriter.WriteAttributeString("ISBN", "0-7356-0562-9");
-            //myXmlTextWriter.WriteEndElement();
-            //myXmlTextWriter.WriteEndElement();
-
+            myXmlTextWriter.WriteEndElement();
             myXmlTextWriter.Flush();
             myXmlTextWriter.Close();
         }

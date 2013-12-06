@@ -47,22 +47,6 @@ namespace IBSYS2
 
 
             string[] childNodesXML = new string[] { "qualitycontrol", "sellwish", "selldirect", "orderlist", "productionlist", "workingtimelist" };
-
-
-            //for (int i = 0; i < childNodesXML.Length; i++)
-            //{
-            //    myNode = doc.CreateElement(childNodesXML[i]);
-            //    myRoot.AppendChild(myNode);
-            //}
-
-            //attrib = doc.CreateAttribute("Attribute1");
-            //attrib.InnerText = "AttributeText1";
-            //myNode.Attributes.Append(attrib);
-
-            //myRoot.AppendChild(doc.CreateElement("Test2"));
-            //doc.Save(@"C:\XML\TestAppendXML.xml");
-
-
             string[] art = new string[] { "1", "2", "3" };
             string[] sellwishArr = new string[] { "article", "quantity" };
 

@@ -201,7 +201,7 @@ namespace IBSYS2
             {
                 myconn.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();

@@ -16,8 +16,8 @@ namespace IBSYS2
         {
 
             XmlDocument doc = new XmlDocument();
-            XmlNode myRoot, myNode;
-            XmlAttribute attrib;
+            XmlNode myRoot; //, myNode;
+            //XmlAttribute attrib;
 
             myRoot = doc.CreateElement("input");
             doc.AppendChild(myRoot);
@@ -48,41 +48,19 @@ namespace IBSYS2
 
             string[] childNodesXML = new string[] { "qualitycontrol", "sellwish", "selldirect", "orderlist", "productionlist", "workingtimelist" };
 
-            myNode = doc.CreateElement("qualitycontrol");
-            myRoot.AppendChild(myNode);
 
-            XElement contacts =
-                new XElement("Contacts",
-                    new XElement("Contact",
-                        new XElement("Name", "Patrick Hines"),
-                        new XElement("Phone", "206-555-0144"),
-                        new XElement("Address",
-                            new XElement("Street1", "123 Main St"),
-                            new XElement("City", "Mercer Island"),
-                            new XElement("State", "WA"),
-                            new XElement("Postal", "68042")
-                        )
-                    )
-                );
+            //for (int i = 0; i < childNodesXML.Length; i++)
+            //{
+            //    myNode = doc.CreateElement(childNodesXML[i]);
+            //    myRoot.AppendChild(myNode);
+            //}
 
+            //attrib = doc.CreateAttribute("Attribute1");
+            //attrib.InnerText = "AttributeText1";
+            //myNode.Attributes.Append(attrib);
 
-            for (int i = 0; i < childNodesXML.Length; i++)
-            {
-                myNode = doc.CreateElement(childNodesXML[i]);
-                myRoot.AppendChild(myNode);
-            }
-
-            myNode = doc.CreateElement("Test1");
-            myRoot.AppendChild(myNode);
-
-            attrib = doc.CreateAttribute("Attribute1");
-            attrib.InnerText = "AttributeText1";
-            myNode.Attributes.Append(attrib);
-
-
-
-            myRoot.AppendChild(doc.CreateElement("Test2"));
-            doc.Save(@"C:\XML\TestAppendXML.xml");
+            //myRoot.AppendChild(doc.CreateElement("Test2"));
+            //doc.Save(@"C:\XML\TestAppendXML.xml");
 
 
             string[] art = new string[] { "1", "2", "3" };

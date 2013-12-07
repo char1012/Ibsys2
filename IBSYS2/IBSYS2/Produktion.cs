@@ -15,8 +15,16 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        //TO DO: Periode wird später aus Import geholt
+        //TO DO Periode wird später aus Import geholt
         int periode = 6;
+
+        // TO DO Listen für Sicherheitsbestand von ETeilen
+        List<int> sicherheitsbe = new List<int>();
+
+        List<int> lagerbestand = new List<int>();
+        List<int> bearbeitung = new List<int>();
+        List<int> wartelisteAr = new List<int>();
+        List<int> wartelisteMa = new List<int>();
 
         public Produktion()
         {
@@ -26,6 +34,11 @@ namespace IBSYS2
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
+
+            // TO DO Sicherheitsbestand von ETeilen
+            sicherheitsbe.AddRange(new int[] { 20, 10, 30,15,15,10,25,19,25,16,20,
+                20,10,30,15,15,10,25,19,25,16,20,20,10,30,15,15,10,25,19,25,16,20});
+
             berechneProduktion();
         }
 
@@ -57,13 +70,13 @@ namespace IBSYS2
         private void berechneProduktion()
         {
             //für aktuelle Periode
-            // TO DOEingabe Aufträge zukünftig aus ImportPrognose
+            // TO DO Eingabe Aufträge zukünftig aus ImportPrognose
             double p1 = 100;
             double p2 = 100;
             double p3 = 100;
 
             //+ eingabe Sicherheitsbestand 
-            // TO DOZukünftig aus Sicherheitsbestand
+            // TO DO Zukünftig aus Sicherheitsbestand
             double sp1 = 50;
             double sp2 = 50;
             double sp3 = 50;
@@ -118,7 +131,9 @@ namespace IBSYS2
             textBox9.Text = prognosep3;
             textBox12.Text = prognosep3; 
             #endregion
+
         }
+
 
         private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
         {
@@ -129,7 +144,7 @@ namespace IBSYS2
             {
                 myconn.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();
@@ -556,7 +571,7 @@ namespace IBSYS2
 
         private void ETeile_Click(object sender, EventArgs e)
         {
-            new Produktion_ETeile().Show();
+            new Produktion_ETeile(periode, textBox1.Text, textBox2.Text, textBox3.Text, sicherheitsbe).Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

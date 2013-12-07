@@ -11,26 +11,65 @@ using System.Windows.Forms;
 
 namespace IBSYS2
 {
-    public partial class Produktion_ETeile : UserControl
+    public partial class Produktion_ETeile : Form
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        
-        //TO DO periode aus Import
-        int periode = 6;
-        public Produktion_ETeile()
+        int periode;
+        int produktionp1;
+        int produktionp2;
+        int produktionp3;
+        List<int> sicherheitsbe = new List<int>();
+        List<int> lagerbestand = new List<int>();
+        List<int> bearbeitung = new List<int>();
+        List<int> wartelisteAr = new List<int>();
+        List<int> wartelisteMa = new List<int>();
+
+        public Produktion_ETeile(int per, string p1, string p2, string p3, List<int> sicherheitsbestand)
         {
             InitializeComponent();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
+
+            this.periode = per;
+            this.produktionp1 = Convert.ToInt32(p1);
+            this.produktionp2 = Convert.ToInt32(p2);
+            this.produktionp3 = Convert.ToInt32(p3);
+            this.sicherheitsbe = sicherheitsbestand;
+
             berechneProduktion();
+        }
+
+        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = myconn;
+            try
+            {
+                myconn.Open();
+            }
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                myconn.Close();
+                myconn.Open();
+            }
+            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
+            OleDbDataReader dr = cmd.ExecuteReader();
+            int laa = 0;
+            while (dr.Read())
+            {
+                laa = Convert.ToInt32(dr[spalte]);
+                return laa;
+            }
+            dr.Close();
+            myconn.Close();
+            return laa;
         }
 
         private void berechneProduktion()
         {
-            #region P1 berechnen
-		
-            #region Daten
 
             int p26;
             int p51;
@@ -44,101 +83,7 @@ namespace IBSYS2
             int p13;
             int p18;
 
-            //Produktion
-            //TO DO int produktionp1 aus Produktion
-            int produktionp1 = 150;
-
-            //Lagerbestand 
-            int bestande26 = Daten("26", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande51 = Daten("51", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande16 = Daten("16", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande17 = Daten("17", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande50 = Daten("50", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande4 = Daten("4", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande10 = Daten("10", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande49 = Daten("49", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande7 = Daten("7", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande13 = Daten("13", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande18 = Daten("18", "Bestand", "Teilenummer_FK", "Lager", periode);
-
-            //Sicherheitsbestand
-            // TO DO aus Sicherheitsbestand
-            int sb26 = 20;
-            int sb51 = 10;
-            int sb16 = 30;
-            int sb17 = 15;
-            int sb50 = 15;
-            int sb4 = 10;
-            int sb10 = 25;
-            int sb49 = 19;
-            int sb7 = 25;
-            int sb13 = 16;
-            int sb18 = 20;
-
-            //Warteliste
-            int wa26 = Daten("26", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa51 = Daten("51", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa16 = Daten("16", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa17 = Daten("17", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa50 = Daten("50", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa4 = Daten("4", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa10 = Daten("10", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa49 = Daten("49", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa7 = Daten("7", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa13 = Daten("13", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa18 = Daten("18", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-
-            int wm26 = Daten("26", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm51 = Daten("51", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm16 = Daten("16", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm17 = Daten("17", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm50 = Daten("50", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm4 = Daten("4", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm10 = Daten("10", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm49 = Daten("49", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm7 = Daten("7", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm13 = Daten("13", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm18 = Daten("18", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-
-            //Bearbeitung
-            int b26 = Daten("26", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b51 = Daten("51", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b16 = Daten("16", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b17 = Daten("17", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b50 = Daten("50", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b4 = Daten("4", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b10 = Daten("10", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b49 = Daten("49", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b7 = Daten("7", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b13 = Daten("13", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b18 = Daten("18", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-
-            #endregion
-            
-            //Eigentliche Berechnung
-            p26 = produktionp1 + sb26 - bestande26 - wa26 - wm26 - b26;
-            p51 = produktionp1 + sb51 - bestande51 - wa51 - wm51 - b51;
-
-            p16 = p51 + sb16 - bestande16 - wa16 - wm16 - b16;
-            p17 = p51 + sb17 - bestande17 - wa17 - wm17 - b17;
-            p50 = p51 + sb50 - bestande50 - wa50 - wm50 - b50;
-
-            p4 = p50 + sb4 - bestande4 - wa4 - wm4 - b4;
-            p10 = p50 + sb10 - bestande10 - wa10 - wm10 - b10;
-            p49 = p50 + sb49 - bestande49 - wa49 - wm49 - b49;
-
-            p7 = p49 + sb7 - bestande7 - wa7 - wm7 - b7;
-            p13 = p49 + sb13 - bestande13 - wa13 - wm13 - b13;
-            p18 = p49 + sb18 - bestande18 - wa18 - wm18 - b18; 
-	#endregion
-
-            #region P2 berechnen
-            #region Daten
-
-            int p26_2;
             int p56;
-            int p16_2;
-            int p17_2;
             int p55;
             int p5;
             int p11;
@@ -147,89 +92,7 @@ namespace IBSYS2
             int p14;
             int p19;
 
-            //Produktion
-            //TO DO int produktionp1 aus Produktion
-            int produktionp2 = 100;
-
-            //Lagerbestand 
-            int bestande56 = Daten("56", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande55 = Daten("55", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande5 = Daten("5", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande11 = Daten("11", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande54 = Daten("54", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande8 = Daten("8", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande14 = Daten("14", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande19 = Daten("19", "Bestand", "Teilenummer_FK", "Lager", periode);
-
-            //Sicherheitsbestand
-            // TO DO aus Sicherheitsbestand
-            int sb26_2 = 20;
-            int sb56 = 10;
-            int sb16_2 = 30;
-            int sb17_2 = 15;
-            int sb55 = 15;
-            int sb5 = 10;
-            int sb11 = 25;
-            int sb54 = 19;
-            int sb8 = 25;
-            int sb14 = 16;
-            int sb19 = 20;
-
-            //Warteliste
-            int wa56 = Daten("56", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa55 = Daten("55", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa5 = Daten("5", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa11 = Daten("11", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa54 = Daten("54", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa8 = Daten("8", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa14 = Daten("14", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa19 = Daten("19", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-
-            int wm56 = Daten("56", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm55 = Daten("55", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm5 = Daten("5", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm11 = Daten("11", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm54 = Daten("54", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm8 = Daten("8", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm14 = Daten("14", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm19 = Daten("19", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-
-            //Bearbeitung
-            int b56 = Daten("56", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b55 = Daten("55", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b5 = Daten("5", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b11 = Daten("11", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b54 = Daten("54", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b8 = Daten("8", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b14 = Daten("14", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b19 = Daten("19", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-
-            #endregion
-
-            //Eigentliche Berechnung
-            p26_2 = produktionp2 + sb26_2 - bestande26 - wa26 - wm26 - b26;
-            p56 = produktionp2 + sb56 - bestande56 - wa56 - wm56 - b56;
-
-            p16_2 = p56 + sb16_2 - bestande16 - wa16 - wm16 - b16;
-            p17_2 = p56 + sb17_2 - bestande17 - wa17 - wm17 - b17;
-            p55 = p56 + sb55 - bestande55 - wa55 - wm55 - b55;
-
-            p5 = p55 + sb5 - bestande5 - wa5 - wm5 - b5;
-            p11 = p55 + sb11 - bestande11 - wa11 - wm11 - b11;
-            p54 = p55 + sb54 - bestande54 - wa54 - wm54 - b54;
-
-            p8 = p54 + sb8 - bestande8 - wa8 - wm8 - b8;
-            p14 = p54 + sb14 - bestande14 - wa14 - wm14 - b14;
-            p19 = p54 + sb19 - bestande19 - wa19 - wm19 - b19; 
-            #endregion
-
-            #region P3 berechnen
-            #region Daten
-
-            int p26_3;
             int p31;
-            int p16_3;
-            int p17_3;
             int p30;
             int p6;
             int p12;
@@ -238,83 +101,163 @@ namespace IBSYS2
             int p15;
             int p20;
 
-            //Produktion
-            //TO DO int produktionp1 aus Produktion
-            int produktionp3 = 200;
+            lagerbestand.Add(Daten("26", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("51", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("16", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("17", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("50", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("4", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("10", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("49", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("7", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("13", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("18", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("56", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("55", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("5", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("11", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("54", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("8", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("14", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("19", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("31", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("30", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("6", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("12", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("29", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("9", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("15", "Bestand", "Teilenummer_FK", "Lager", periode));
+            lagerbestand.Add(Daten("20", "Bestand", "Teilenummer_FK", "Lager", periode));
 
-            //Lagerbestand 
-            int bestande31 = Daten("31", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande30 = Daten("30", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande6 = Daten("6", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande12 = Daten("12", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande29 = Daten("29", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande9 = Daten("9", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande15 = Daten("15", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int bestande20 = Daten("20", "Bestand", "Teilenummer_FK", "Lager", periode);
+            bearbeitung.Add(Daten("26", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("51", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("16", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("17", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("50", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("4", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("10", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("49", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("7", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("13", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("18", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("56", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("55", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("5", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("11", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("54", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("8", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("14", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("19", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("31", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("30", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("6", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("12", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("29", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("9", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("15", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            bearbeitung.Add(Daten("20", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
 
-            //Sicherheitsbestand
-            // TO DO aus Sicherheitsbestand
-            int sb26_3 = 20;
-            int sb31 = 10;
-            int sb16_3 = 30;
-            int sb17_3 = 15;
-            int sb30 = 15;
-            int sb6 = 10;
-            int sb12 = 25;
-            int sb29 = 19;
-            int sb9 = 25;
-            int sb15 = 16;
-            int sb20 = 20;
+            wartelisteAr.Add(Daten("26", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("51", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("16", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("17", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("50", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("4", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("10", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("49", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("7", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("13", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("18", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("56", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("55", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("5", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("11", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("54", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("8", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("14", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("19", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("31", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("30", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("6", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("12", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("29", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("9", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("15", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            wartelisteAr.Add(Daten("20", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
 
-            //Warteliste
-            int wa31 = Daten("31", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa30 = Daten("30", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa6 = Daten("6", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa12 = Daten("12", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa29 = Daten("29", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa9 = Daten("9", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa15 = Daten("15", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int wa20 = Daten("20", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
+            wartelisteMa.Add(Daten("26", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("51", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("16", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("17", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("50", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("4", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("10", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("49", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("7", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("13", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("18", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("56", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("55", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("5", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("11", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("54", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("8", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("14", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("19", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("31", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("30", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("6", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("12", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("29", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("9", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("15", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            wartelisteMa.Add(Daten("20", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
 
-            int wm31 = Daten("31", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm30 = Daten("30", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm6 = Daten("6", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm12 = Daten("12", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm29 = Daten("29", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm9 = Daten("9", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm15 = Daten("15", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int wm20 = Daten("20", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
+            //Berechnung P1
+            p26 = produktionp1 + sicherheitsbe[0] + sicherheitsbe[11] + sicherheitsbe[22] - lagerbestand[0] - wartelisteAr[0] - wartelisteMa[0] - bearbeitung[0];
+            p51 = produktionp1 + sicherheitsbe[1] - lagerbestand[1] - wartelisteAr[1] - wartelisteMa[1] - bearbeitung[1];
 
-            //Bearbeitung
-            int b31 = Daten("31", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b30 = Daten("30", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b6 = Daten("6", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b12 = Daten("12", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b29 = Daten("29", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b9 = Daten("9", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b15 = Daten("15", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int b20 = Daten("20", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
+            p16 = p51 + sicherheitsbe[2] + sicherheitsbe[13] + sicherheitsbe[24] - lagerbestand[2] - wartelisteAr[2] - wartelisteMa[2] - bearbeitung[2];
+            p17 = p51 + sicherheitsbe[3] + sicherheitsbe[14] + sicherheitsbe[25] - lagerbestand[3] - wartelisteAr[3] - wartelisteMa[3] - bearbeitung[3];
+            p50 = p51 + sicherheitsbe[4] - lagerbestand[4] - wartelisteAr[4] - wartelisteMa[4] - bearbeitung[4];
 
-            #endregion
+            p4 = p50 + sicherheitsbe[5] - lagerbestand[5] - wartelisteAr[5] - wartelisteMa[5] - bearbeitung[5];
+            p10 = p50 + sicherheitsbe[6] - lagerbestand[6] - wartelisteAr[6] - wartelisteMa[6] - bearbeitung[6];
+            p49 = p50 + sicherheitsbe[7] - lagerbestand[7] - wartelisteAr[7] - wartelisteMa[7] - bearbeitung[7];
 
-            //Eigentliche Berechnung
-            p26_3 = produktionp3 + sb26_3 - bestande26 - wa26 - wm26 - b26;
-            p31 = produktionp3 + sb31 - bestande31 - wa31 - wm31 - b31;
+            p7 = p49 + sicherheitsbe[8] - lagerbestand[8] - wartelisteAr[8] - wartelisteMa[8] - bearbeitung[8];
+            p13 = p49 + sicherheitsbe[9] - lagerbestand[9] - wartelisteAr[9] - wartelisteMa[9] - bearbeitung[9];
+            p18 = p49 + sicherheitsbe[10] - lagerbestand[10] - wartelisteAr[10] - wartelisteMa[10] - bearbeitung[10];
 
-            p16_3 = p31 + sb16_3 - bestande16 - wa16 - wm16 - b16;
-            p17_3 = p31 + sb17_3 - bestande17 - wa17 - wm17 - b17;
-            p30 = p31 + sb30 - bestande30 - wa30 - wm30 - b30;
 
-            p6 = p30 + sb6 - bestande6 - wa6 - wm6 - b6;
-            p12 = p30 + sb12 - bestande12 - wa12 - wm12 - b12;
-            p29 = p30 + sb29 - bestande29 - wa29 - wm29 - b29;
+            //Berechnung P2
+            p56 = produktionp2 + sicherheitsbe[12] - lagerbestand[11] - wartelisteAr[11] - wartelisteMa[11] - bearbeitung[11];
 
-            p9 = p29 + sb9 - bestande9 - wa9 - wm9 - b9;
-            p15 = p29 + sb15 - bestande15 - wa15 - wm15 - b15;
-            p20 = p29 + sb20 - bestande20 - wa20 - wm20 - b20; 
-            #endregion
+            p55 = p56 + sicherheitsbe[15] - lagerbestand[12] - wartelisteAr[12] - wartelisteMa[12] - bearbeitung[12];
 
-            #region Zusammenrechnen und in textBox
+            p5 = p55 + sicherheitsbe[16] - lagerbestand[13] - wartelisteAr[13] - wartelisteMa[13] - bearbeitung[13];
+            p11 = p55 + sicherheitsbe[17] - lagerbestand[14] - wartelisteAr[14] - wartelisteMa[14] - bearbeitung[14];
+            p54 = p55 + sicherheitsbe[18] - lagerbestand[15] - wartelisteAr[15] - wartelisteMa[15] - bearbeitung[15];
+
+            p8 = p54 + sicherheitsbe[19] - lagerbestand[16] - wartelisteAr[16] - wartelisteMa[16] - bearbeitung[16];
+            p14 = p54 + sicherheitsbe[20] - lagerbestand[17] - wartelisteAr[17] - wartelisteMa[17] - bearbeitung[17];
+            p19 = p54 + sicherheitsbe[21] - lagerbestand[18] - wartelisteAr[18] - wartelisteMa[18] - bearbeitung[18];
+
+
+            //Berechnung P3
+            p31 = produktionp3 + sicherheitsbe[23] - lagerbestand[19] - wartelisteAr[19] - wartelisteMa[19] - bearbeitung[19];
+
+            p30 = p31 + sicherheitsbe[26] - lagerbestand[20] - wartelisteAr[20] - wartelisteMa[20] - bearbeitung[20];
+
+            p6 = p30 + sicherheitsbe[27] - lagerbestand[21] - wartelisteAr[21] - wartelisteMa[21] - bearbeitung[21];
+            p12 = p30 + sicherheitsbe[28] - lagerbestand[22] - wartelisteAr[22] - wartelisteMa[22] - bearbeitung[22];
+            p29 = p30 + sicherheitsbe[29] - lagerbestand[23] - wartelisteAr[23] - wartelisteMa[23] - bearbeitung[23];
+
+            p9 = p29 + sicherheitsbe[30] - lagerbestand[24] - wartelisteAr[24] - wartelisteMa[24] - bearbeitung[24];
+            p15 = p29 + sicherheitsbe[31] - lagerbestand[25] - wartelisteAr[25] - wartelisteMa[25] - bearbeitung[25];
+            p20 = p29 + sicherheitsbe[32] - lagerbestand[26] - wartelisteAr[26] - wartelisteMa[26] - bearbeitung[26];
+
+            #region In textBox
             textBox1.Text = p4.ToString();
             textBox2.Text = p5.ToString();
             textBox3.Text = p6.ToString();
@@ -346,39 +289,11 @@ namespace IBSYS2
             #endregion
         }
 
-        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
-        {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = myconn;
-            try
-            {
-                myconn.Open();
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                myconn.Close();
-                myconn.Open();
-            }
-            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
-            OleDbDataReader dr = cmd.ExecuteReader();
-            int laa = 0;
-            while (dr.Read())
-            {
-                laa = Convert.ToInt32(dr[spalte]);
-                return laa;
-            }
-            dr.Close();
-            myconn.Close();
-            return laa;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
         }
-        
+
         #region Textboxen
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -1146,7 +1061,7 @@ namespace IBSYS2
                     textBox27.ForeColor = Color.Black;
                 }
             }
-        }  
+        }
         #endregion
 
         private void button2_Click(object sender, EventArgs e)

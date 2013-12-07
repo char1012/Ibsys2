@@ -64,9 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ExportXMLClass.cs" />
     <Compile Include="Produktion.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Produktion.Designer.cs">
       <DependentUpon>Produktion.cs</DependentUpon>
@@ -85,7 +88,7 @@
       <DependentUpon>ImportPrognose.cs</DependentUpon>
     </Compile>
     <Compile Include="Kapazitaetsplan.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Kapazitaetsplan.Designer.cs">
       <DependentUpon>Kapazitaetsplan.cs</DependentUpon>
@@ -106,7 +109,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sicherheitsbestand.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Sicherheitsbestand.Designer.cs">
       <DependentUpon>Sicherheitsbestand.cs</DependentUpon>

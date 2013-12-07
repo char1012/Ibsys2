@@ -1,39 +1,76 @@
-<UserControl x:Class="Visiblox.Charts.Examples.QuickStart.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+<UserControl x:Class="Visiblox.Charts.Examples.LineChart.LineChartExample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:charts="clr-namespace:IBSYS2;assembly=IBSYS2"
-    mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:charts="clr-namespace:Visiblox.Charts;assembly=Visiblox.Charts"
+    xmlns:local="clr-namespace:Visiblox.Charts.Examples.LineChart">
 
-    <!--<UserControl.Resources>-->
-        <!-- A simple brush -->
-        <!--<SolidColorBrush x:Key="RedBrush" Color="Red"/>-->
-
-        <!-- A simple style -->
-       <!-- <Style TargetType="charts:LineSeries" x:Key="BlueNormalStyle">
-            <Setter Property="LineStroke" Value="Blue" />
-            <Setter Property="LineStrokeThickness" Value="1" />
-        </Style>-->
-
-        <!-- A more complex style --><!--
-        <Style TargetType="charts:LineSeries" x:Key="DarkGreenNormalStyle">
-            <Setter Property="LineStroke">
-                <Setter.Value>
-                    <SolidColorBrush Color="DarkGreen"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="LineStrokeThickness" Value="2" />
-            <Setter Property="AreaFill">
-                <Setter.Value>
-                    <SolidColorBrush Color="#AFEDBB" Opacity="0.5" />
-                </Setter.Value>
-            </Setter>
+    <UserControl.Resources>
+        <Style x:Key="NoBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Black" />
         </Style>
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Margin="20">
-        <charts:Chart Name="exampleChart">
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+        <charts:Chart Name="chart" Width="600" Height="350" Title="Exchange Rates 2006-2010" HorizontalAlignment="Center" Background="Transparent"
+                       PlotAreaBorderStyle="{StaticResource NoBorder}" LegendVisibility="Collapsed" >
+
+            <!-- Add zooming and a trackball -->
+            <charts:Chart.Behaviour>
+                <charts:BehaviourManager x:Name="behaviourManager" AllowMultipleEnabled="True">
+                    <charts:TrackballBehaviour x:Name="track" />
+                    <charts:ZoomBehaviour />
+                </charts:BehaviourManager>
+            </charts:Chart.Behaviour>
+
+            <!-- Define x and y axes. -->
+            <charts:Chart.XAxis>
+                <charts:DateTimeAxis ShowMinorTicks="False" ShowMajorGridlines="False">
+                    <charts:DateTimeAxis.Range>
+                        <charts:DateTimeRange Minimum="01/01/2006" Maximum="04/03/2010"/>
+                    </charts:DateTimeAxis.Range>
+                </charts:DateTimeAxis>
+            </charts:Chart.XAxis>
+            <charts:Chart.YAxis>
+                <charts:LinearAxis LabelFormatString="0'%" ShowMinorTicks="False" ShowMajorGridlines="False" Title="Change">
+                    <charts:LinearAxis.Range>
+                        <charts:DoubleRange Minimum="-30" Maximum="40"/>
+                    </charts:LinearAxis.Range>
+                </charts:LinearAxis>
+            </charts:Chart.YAxis>
         </charts:Chart>
-    </Grid>-->
+
+        <!-- Define display below chart -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,50,0">
+            <!-- Date display -->
+            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].X, StringFormat='dd/MM/yyyy'}" Margin="0,0,10,0"/>
+
+            <!-- Series data display -->
+            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[0].LineStroke}" VerticalAlignment="Center" />
+            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[0].DataSeries.Title}"/>
+            <TextBlock Margin="4,0,0,0"  Text="(" />
+            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[0].Y, StringFormat=0.00}" Width="38" />
+            <TextBlock Text="%)" />
+
+            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[1].LineStroke}" VerticalAlignment="Center" />
+            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[1].DataSeries.Title}"  />
+            <TextBlock Margin="4,0,0,0"  Text="(" />
+            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[1].Y, StringFormat=0.00}" Width="38" />
+            <TextBlock Text="%)" />
+
+            <Rectangle Margin="20,0,0,5" Height="10" Width="10" Fill="{Binding ElementName=chart, Path=Series[2].LineStroke}" VerticalAlignment="Center" />
+            <TextBlock Margin="4,0,0,0" Text="{Binding ElementName=chart, Path=Series[2].DataSeries.Title}" />
+            <TextBlock Margin="4,0,0,0"  Text="(" />
+            <TextBlock Text="{Binding ElementName=chart, Path=Behaviour.Behaviours[0].CurrentPoints[2].Y, StringFormat=0.00}" Width="38" />
+            <TextBlock Text="%)" />
+        </StackPanel>
+    </Grid>
 </UserControl>

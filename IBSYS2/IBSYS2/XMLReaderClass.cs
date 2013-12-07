@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Data.OleDb;
+using System.Windows.Forms;
 
 
 namespace IBSYS2
@@ -286,6 +287,7 @@ namespace IBSYS2
 
                         foreach (XmlNode node in data.SelectNodes("/results/ordersinwork"))
                         {
+                            
                             for (int i = 0; i < node.ChildNodes.Count; i++)
                             {
                                 int wp_ordersinwork = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
@@ -305,6 +307,139 @@ namespace IBSYS2
                                     System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
                                 }
                             }
+                        }
+
+                        //Deklaration oberhalb der For-Schleifen für gemeinsames Schreiben in DB
+                        string eff_current = "0";
+                        string eff_average = "0";
+                        double sellw_current = 0.0;
+                        double sellw_average = 0;
+                        double sellw_all = 0;
+                        string del_current = "0";
+                        string dell_average = "0";
+                        double idletime_current = 0;
+                        double idletime_average = 0;
+                        double itc_current = 0;
+                        double itc_average = 0;
+                        double sv_current = 0;
+                        double sv_average = 0;
+                        double scosts_current = 0;
+                        double scosts_average = 0;
+                        double ns_prof_current = 0;
+                        double ns_prof_average = 0;
+                        double ds_prof_current = 0;
+                        double ds_prof_average = 0;
+                        double mps_prof_current = 0;
+                        double mps_prof_average = 0;
+                        double sum_current = 0;
+                        double sum_average = 0.0;
+
+
+
+                        //Auslesen der einzelnen Elemente unter <result/>
+                        foreach (XmlNode node in data.SelectNodes("/results//result/general"))
+                        {
+
+
+                            for (int i = 0; i < node.ChildNodes.Count; i++ )
+                            {
+                                if (node.ChildNodes[i].Name == "effiency")
+                                {
+                                    eff_current = Convert.ToString(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    eff_average = Convert.ToString(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "sellwish")
+                                {
+                                    sellw_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    sellw_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                    sellw_all = Convert.ToDouble(node.ChildNodes[i].Attributes["all"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "deliveryreliability")
+                                {
+                                    del_current = Convert.ToString(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    dell_average = Convert.ToString(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "idletime")
+                                {
+                                    idletime_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    idletime_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "idletimecosts")
+                                {
+                                    itc_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    itc_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "storevalue")
+                                {
+                                    sv_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    sv_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                                if (node.ChildNodes[i].Name == "storagecosts")
+                                {
+                                    scosts_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    scosts_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+
+                                 
+                            }
+
+                        
+                        }
+
+                        foreach (XmlNode node in data.SelectNodes("/results//result/normalsale"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                if (node.ChildNodes[i].Name == "profit")
+                                {
+                                    ns_prof_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    ns_prof_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                            }
+                        }
+
+                        foreach (XmlNode node in data.SelectNodes("/results//result/directsale"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                if (node.ChildNodes[i].Name == "profit")
+                                {
+                                    ds_prof_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    ds_prof_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                            }
+                        }
+                        foreach (XmlNode node in data.SelectNodes("/results//result/marketplacesale"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                if (node.ChildNodes[i].Name == "profit")
+                                {
+                                    mps_prof_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    mps_prof_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                            }
+                        }
+                        foreach (XmlNode node in data.SelectNodes("/results//result/summary"))
+                        {
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
+                            {
+                                if (node.ChildNodes[i].Name == "profit")
+                                {
+                                    sum_current = Convert.ToDouble(node.ChildNodes[i].Attributes["current"].InnerText);
+                                    sum_average = Convert.ToDouble(node.ChildNodes[i].Attributes["average"].InnerText);
+                                }
+                            }
+                        }
+                        try
+                        {
+                            //MessageBox.Show("insert into Informationen (Periode, Eff_Current, EFF_Average, Sellwish_Current, Sellwish_Average, Sellwish_All, Del_reliability_Current, Del_reliability_Average, Idletime_Current, Idletime_Average, IdletimeCosts_Current , IdletimeCosts_Average, Storevalue_Current, Storevalue_Average, Storacecosts_Current, Storagecosts_Average, Normalsale_Current, Normalsale_Average, Directsale_Current, Directsale_Average, MPSale_Current, MPSale_Average, Summary_Current, Summary_Average) values ('" + period + "','" + eff_current + "','" + eff_average + "','" + sellw_current + "','" + sellw_average + "','" + sellw_all + "','" + del_current + "','" + dell_average + "','" + idletime_current + "','" + idletime_average + "','" + itc_current + "','" + itc_average + "','" + sv_current + "','" + sv_average + "','" + scosts_current + "','" + scosts_average + "','" + ns_prof_current + "','" + ns_prof_average + "','" + ds_prof_current + "','" + ds_prof_average + "','" + mps_prof_current + "','" + mps_prof_average + "','" + sum_current + "','" + sum_average + "')");
+                            cmd.CommandText = @"insert into Informationen (Periode, Eff_Current, EFF_Average, Sellwish_Current, Sellwish_Average, Sellwish_All, Del_reliability_Current, Del_reliability_Average, Idletime_Current, Idletime_Average, IdletimeCosts_Current , IdletimeCosts_Average, Storevalue_Current, Storevalue_Average, Storacecosts_Current, Storagecosts_Average, Normalsale_Current, Normalsale_Average, Directsale_Current, Directsale_Average, MPSale_Current, MPSale_Average, Summary_Current, Summary_Average) values ('" + period + "','" + eff_current + "','" + eff_average + "','" + sellw_current + "','" + sellw_average + "','" + sellw_all + "','" + del_current + "','" + dell_average + "','" + idletime_current + "','" + idletime_average + "','" + itc_current + "','" + itc_average + "','" + sv_current + "','" + sv_average + "','" + scosts_current + "','" + scosts_average + "','" + ns_prof_current + "','" + ns_prof_average + "','" + ds_prof_current + "','" + ds_prof_average + "','" + mps_prof_current + "','" + mps_prof_average + "','" + sum_current + "','" + sum_average + "')";
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Exception : \n" + ex);
                         }
 
                     }

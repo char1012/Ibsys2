@@ -242,7 +242,7 @@ namespace IBSYS2
                         foreach (XmlNode node in data.SelectNodes("/results/waitingliststock/missingpart"))
                         {
                             int missingpart_id = Convert.ToInt32(node.Attributes["id"].InnerText);
-                            for (int i = 0; i < node.ChildNodes.Count - 1; i++)
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
                             {
                                 int wl_period = Convert.ToInt32(node.ChildNodes[i].Attributes["period"].InnerText);
                                 int order = Convert.ToInt32(node.ChildNodes[i].Attributes["order"].InnerText);

@@ -404,7 +404,56 @@ namespace IBSYS2
                     }
                 }
             }
-            // TODO: Wartelisten Arbeitsplaetze, Material und in Bearbeitung
+            int[,] produktion2 = new int[30, 2];
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            n = 0;
+            while (dbReader.Read())
+            {
+                for (int no = 0; no < teilewerte.GetLength(0); no++)
+                {
+                    if (teilewerte[no, 0] == Convert.ToInt32(dbReader["Teilenummer_FK"]))
+                    {
+                        wertProduktion += (Convert.ToInt32(dbReader["Menge"]) * teilewerte[no, 1]);
+                        produktion2[n, 0] = Convert.ToInt32(dbReader["Teilenummer_FK"]);
+                        produktion2[n, 1] = Convert.ToInt32(dbReader["Menge"]);
+                        n++;
+                    }
+                }
+            }
+            dbReader.Close();
+            cmd.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                for (int no = 0; no < teilewerte.GetLength(0); no++)
+                {
+                    if (teilewerte[no, 0] == Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]))
+                    {
+                        wertProduktion += (Convert.ToInt32(dbReader["Menge"]) * teilewerte[no, 1]);
+                        produktion2[n, 0] = Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]);
+                        produktion2[n, 1] = Convert.ToInt32(dbReader["Menge"]);
+                        n++;
+                    }
+                }
+            }
+            dbReader.Close();
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                for (int no = 0; no < teilewerte.GetLength(0); no++)
+                {
+                    if (teilewerte[no, 0] == Convert.ToInt32(dbReader["Teilenummer_FK"]))
+                    {
+                        wertProduktion += (Convert.ToInt32(dbReader["Menge"]) * teilewerte[no, 1]);
+                        produktion2[n, 0] = Convert.ToInt32(dbReader["Teilenummer_FK"]);
+                        produktion2[n, 1] = Convert.ToInt32(dbReader["Menge"]);
+                        n++;
+                    }
+                }
+            }
+            dbReader.Close();
 
             // 3. verkaufte Endprodukte abziehen (unter Annahme, dass Verkauf planmaessig stattfindet)
             // 1/5 der Endprodukte gehen pro Tag ab
@@ -468,13 +517,22 @@ namespace IBSYS2
                         {
                             if (produktion[i, 0] == Convert.ToInt32(dbReader["Produziert_FK"]))
                             {
-                                menge = produktion[i, 1]; // jedes Teil fliesst genau einmal ein
+                                menge += produktion[i, 1]; // jedes Teil fliesst genau einmal ein
+                            }
+                        }
+                        // Produktion der Warteliste_Arbeitsplatz, Warteliste_Material, Bearbeitung
+                        for (int i = 0; i < produktion2.GetLength(0); i++)
+                        {
+                            if (produktion2[i, 0] == Convert.ToInt32(dbReader["Produziert_FK"]))
+                            {
+                                menge += produktion2[i, 1]; // jedes Teil fliesst genau einmal ein
                             }
                         }
                         wertVerwendung += (menge * teilewerte[no, 1]);
                     }
                 }
             }
+            dbReader.Close();
 
             // 5. Zusammenrechnen
             // tageswerte berechnen
@@ -496,7 +554,6 @@ namespace IBSYS2
             // c) geschatzter Mittelwert berechnen - wichtig, weil sprungfixe Kosten aus Basis des Mittelwertes berechnet werden
             storevalue[2] = tageswerte.Sum() / 5;
 
-            MessageBox.Show(wertBestellungen + " " + wertProduktion + " " + wertVerkaeufe + " " + wertVerwendung);
             MessageBox.Show(storevalue[0] + " " + storevalue[1] + " " + storevalue[2]);    
 
             return storevalue;

@@ -179,7 +179,7 @@ namespace IBSYS2
 
                                 try
                                 {
-                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
+                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen, Lieferzeit, Materialkosten, Lieferkosten, Gesamtkosten, Stückkosten) values ('" + ord.Article + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",True,'" + ord.Time + "','" + ord.Materialcosts + "','" + ord.Ordercosts + "','" + ord.Entirecosts + "','" + ord.Piececosts + "')";
                                     cmd.ExecuteNonQuery();
                                 }
                                 catch (Exception ex)
@@ -202,7 +202,7 @@ namespace IBSYS2
 
                                 try
                                 {
-                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen) values ('" + ord.Id + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",False)";
+                                    cmd.CommandText = @"insert into Bestellung (Teilenummer_FK, Menge, Modus_FK, Bestellperiode, Eingegangen) values ('" + ord.Article + "','" + ord.Amount + "','" + ord.Mode + "','" + period + "'" + ",False)";
                                     cmd.ExecuteNonQuery();
                                 }
                                 catch (Exception ex)

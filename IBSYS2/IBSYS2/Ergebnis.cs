@@ -423,7 +423,58 @@ namespace IBSYS2
 
             // 4. verwendete E- und K-Teile abziehen (auf Basis der Planproduktion)
             double wertVerwendung = 0;
-
+            int prod1 = 0;
+            int prod2 = 0;
+            int prod3 = 0;
+            for (int no = 0; no < produktion.GetLength(0); no++)
+            {
+                if (produktion[no, 0] == 1)
+                    prod1 = produktion[no, 1];
+                else if (produktion[no, 0] == 2)
+                    prod2 = produktion[no, 1];
+                else if (produktion[no, 0] == 3)
+                    prod3 = produktion[no, 1];
+            }
+            // K-Teile
+            cmd.CommandText = @"SELECT K_Teil, P1, P2, P3 FROM Verwendung;";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                for (int no = 0; no < teilewerte.GetLength(0); no++)
+                {
+                    if (teilewerte[no,0] == Convert.ToInt32(dbReader["K_Teil"]))
+                    {
+                        int menge = (Convert.ToInt32(dbReader["P1"]) * prod1)
+                            + (Convert.ToInt32(dbReader["P2"]) * prod2) 
+                            + (Convert.ToInt32(dbReader["P3"]) * prod3);
+                        wertVerwendung += (menge * teilewerte[no, 1]);
+                    }
+                }
+            }
+            dbReader.Close();
+            // E-Teile
+            cmd.CommandText = @"SELECT E_Teil_FK, Produziert_FK FROM VerwendungETeile;";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                for (int no = 0; no < teilewerte.GetLength(0); no++)
+                {
+                    if (teilewerte[no, 0] == Convert.ToInt32(dbReader["E_Teil_FK"]))
+                    {
+                        int menge = 0;
+                        // herausfinden, wieviel vom aktuellen Teil verwendet wird
+                        // dafuer die Produktionsmenge fuer Produziert_FK herausfinden
+                        for (int i = 0; i < produktion.GetLength(0); i++)
+                        {
+                            if (produktion[i, 0] == Convert.ToInt32(dbReader["Produziert_FK"]))
+                            {
+                                menge = produktion[i, 1]; // jedes Teil fliesst genau einmal ein
+                            }
+                        }
+                        wertVerwendung += (menge * teilewerte[no, 1]);
+                    }
+                }
+            }
 
             // 5. Zusammenrechnen
             // tageswerte berechnen

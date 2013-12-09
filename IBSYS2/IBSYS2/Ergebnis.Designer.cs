@@ -732,7 +732,6 @@
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.End_btn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Ergebnis";
             this.Text = "Ergebnis";

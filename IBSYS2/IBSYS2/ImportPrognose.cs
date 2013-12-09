@@ -60,8 +60,10 @@ namespace IBSYS2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ExportXMLClass exportXML = new ExportXMLClass();
-            exportXML.XMLExport();
+            //ExportXMLClass exportXML = new ExportXMLClass();
+            //exportXML.XMLExport();
+            Kaufteildisposition ktdispo = new Kaufteildisposition();
+            ktdispo.ShowDialog();
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand();
             this.Controls.Add(sicherheit);

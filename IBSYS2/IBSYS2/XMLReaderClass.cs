@@ -126,6 +126,8 @@ namespace IBSYS2
                         List<Idletime> idleliste = new List<Idletime>();
                         Idletime idle = null;
                         int period = 0;
+                        double lagerbestand = 0.0;
+
 
                         //Aktuelle Periode auslesen aus XML-Dokument
                         foreach (XmlNode node in data.SelectNodes("/results"))
@@ -139,19 +141,26 @@ namespace IBSYS2
                         foreach (XmlNode node in data.SelectNodes("/results/warehousestock"))
                         {
                             // Das minus 1 wegen dem zusätzlichen Childnode "Totalstockvalue"...
-                            for (int i = 0; i < node.ChildNodes.Count-1; i++)
+                            for (int i = 0; i < node.ChildNodes.Count; i++)
                             {
                                 try
                                 {
-
-                                    art.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
-                                    art.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
-                                    art.Startamount = Convert.ToInt32(node.ChildNodes[i].Attributes["startamount"].InnerText);
-                                    art.Pct = Convert.ToDecimal(node.ChildNodes[i].Attributes["pct"].InnerText);
-                                    art.Price = Convert.ToDecimal(node.ChildNodes[i].Attributes["price"].InnerText);
-                                    art.Stockvalue = Convert.ToDecimal(node.ChildNodes[i].Attributes["stockvalue"].InnerText);
-                                    cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','" + period + "')";
-                                    cmd.ExecuteNonQuery();
+                                    if (node.ChildNodes[i].Name == "totalstockvalue")
+                                    {
+                                        lagerbestand = Convert.ToDouble(node.ChildNodes[i].InnerText);
+                                        MessageBox.Show("Lagerbestand " + lagerbestand);
+                                    }
+                                    else
+                                    {
+                                        art.Id = Convert.ToInt32(node.ChildNodes[i].Attributes["id"].InnerText);
+                                        art.Amount = Convert.ToInt32(node.ChildNodes[i].Attributes["amount"].InnerText);
+                                        art.Startamount = Convert.ToInt32(node.ChildNodes[i].Attributes["startamount"].InnerText);
+                                        art.Pct = Convert.ToDecimal(node.ChildNodes[i].Attributes["pct"].InnerText);
+                                        art.Price = Convert.ToDecimal(node.ChildNodes[i].Attributes["price"].InnerText);
+                                        art.Stockvalue = Convert.ToDecimal(node.ChildNodes[i].Attributes["stockvalue"].InnerText);
+                                        cmd.CommandText = @"insert into Lager (Teilenummer_FK, Bestand, Prozent, Teilewert, Lagerwert, Periode) values ('" + art.Id + "','" + art.Amount + "','" + art.Pct + "','" + art.Price + "','" + art.Stockvalue + "','" + period + "')";
+                                        cmd.ExecuteNonQuery();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
@@ -434,7 +443,7 @@ namespace IBSYS2
                         try
                         {
                             //MessageBox.Show("insert into Informationen (Periode, Eff_Current, EFF_Average, Sellwish_Current, Sellwish_Average, Sellwish_All, Del_reliability_Current, Del_reliability_Average, Idletime_Current, Idletime_Average, IdletimeCosts_Current , IdletimeCosts_Average, Storevalue_Current, Storevalue_Average, Storacecosts_Current, Storagecosts_Average, Normalsale_Current, Normalsale_Average, Directsale_Current, Directsale_Average, MPSale_Current, MPSale_Average, Summary_Current, Summary_Average) values ('" + period + "','" + eff_current + "','" + eff_average + "','" + sellw_current + "','" + sellw_average + "','" + sellw_all + "','" + del_current + "','" + dell_average + "','" + idletime_current + "','" + idletime_average + "','" + itc_current + "','" + itc_average + "','" + sv_current + "','" + sv_average + "','" + scosts_current + "','" + scosts_average + "','" + ns_prof_current + "','" + ns_prof_average + "','" + ds_prof_current + "','" + ds_prof_average + "','" + mps_prof_current + "','" + mps_prof_average + "','" + sum_current + "','" + sum_average + "')");
-                            cmd.CommandText = @"insert into Informationen (Periode, Eff_Current, EFF_Average, Sellwish_Current, Sellwish_Average, Sellwish_All, Del_reliability_Current, Del_reliability_Average, Idletime_Current, Idletime_Average, IdletimeCosts_Current , IdletimeCosts_Average, Storevalue_Current, Storevalue_Average, Storacecosts_Current, Storagecosts_Average, Normalsale_Current, Normalsale_Average, Directsale_Current, Directsale_Average, MPSale_Current, MPSale_Average, Summary_Current, Summary_Average) values ('" + period + "','" + eff_current + "','" + eff_average + "','" + sellw_current + "','" + sellw_average + "','" + sellw_all + "','" + del_current + "','" + dell_average + "','" + idletime_current + "','" + idletime_average + "','" + itc_current + "','" + itc_average + "','" + sv_current + "','" + sv_average + "','" + scosts_current + "','" + scosts_average + "','" + ns_prof_current + "','" + ns_prof_average + "','" + ds_prof_current + "','" + ds_prof_average + "','" + mps_prof_current + "','" + mps_prof_average + "','" + sum_current + "','" + sum_average + "')";
+                            cmd.CommandText = @"insert into Informationen (Periode, Eff_Current, EFF_Average, Sellwish_Current, Sellwish_Average, Sellwish_All, Del_reliability_Current, Del_reliability_Average, Idletime_Current, Idletime_Average, IdletimeCosts_Current , IdletimeCosts_Average, Durchschnitt_Storevalue_aktuell, Durchschnitt_Storevalue_Gesamt, Storacecosts_Current, Storagecosts_Average, Normalsale_Current, Normalsale_Average, Directsale_Current, Directsale_Average, MPSale_Current, MPSale_Average, Summary_Current, Summary_Average, Aktueller_Lagerbestand) values ('" + period + "','" + eff_current + "','" + eff_average + "','" + sellw_current + "','" + sellw_average + "','" + sellw_all + "','" + del_current + "','" + dell_average + "','" + idletime_current + "','" + idletime_average + "','" + itc_current + "','" + itc_average + "','" + sv_current + "','" + sv_average + "','" + scosts_current + "','" + scosts_average + "','" + ns_prof_current + "','" + ns_prof_average + "','" + ds_prof_current + "','" + ds_prof_average + "','" + mps_prof_current + "','" + mps_prof_average + "','" + sum_current + "','" + sum_average + "','" + lagerbestand + "')";
                             cmd.ExecuteNonQuery();
                         }
                         catch (Exception ex)

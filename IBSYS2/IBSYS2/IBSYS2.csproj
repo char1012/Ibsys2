@@ -64,6 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Begrüßungsseite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Begrüßungsseite.Designer.cs">
+      <DependentUpon>Begrüßungsseite.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -74,9 +80,15 @@
     <Compile Include="Produktion.Designer.cs">
       <DependentUpon>Produktion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Produktionsreihenfolge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Produktionsreihenfolge.Designer.cs">
+      <DependentUpon>Produktionsreihenfolge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sprachen.cs" />
     <Compile Include="Ergebnis.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Ergebnis.Designer.cs">
       <DependentUpon>Ergebnis.cs</DependentUpon>

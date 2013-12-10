@@ -334,12 +334,11 @@ namespace IBSYS2
             }
 
             // a) Anfangslagerwert aus der DB lesen
-            // TODO Storevalue_Current muss nach neuester DB-Anpassung evtl. abgeaendert werden
-            cmd.CommandText = @"SELECT Storevalue_Current FROM Informationen WHERE Periode = " + periode + ";";
+            cmd.CommandText = @"SELECT Aktueller_Lagerbestand FROM Informationen WHERE Periode = " + periode + ";";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read()) // hier sollte nur eine Zeile herauskommen
             {
-                storevalue[0] = Convert.ToInt32(dbReader["Storevalue_Current"]);
+                storevalue[0] = Convert.ToInt32(dbReader["Aktueller_Lagerbestand"]);
             }
             dbReader.Close();
 

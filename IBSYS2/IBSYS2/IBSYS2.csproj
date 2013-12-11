@@ -70,9 +70,6 @@
     <Compile Include="Begrüßungsseite.Designer.cs">
       <DependentUpon>Begrüßungsseite.cs</DependentUpon>
     </Compile>
-    <Compile Include="DrawChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="ExportXMLClass.cs" />
     <Compile Include="Produktion.cs">
       <SubType>UserControl</SubType>

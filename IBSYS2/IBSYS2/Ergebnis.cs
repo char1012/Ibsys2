@@ -582,7 +582,6 @@ namespace IBSYS2
                 groupBox2.Text = (Sprachen.EN_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.EN_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.EN_ER_GROUPBOX4);
-                groupBox1.Text = (Sprachen.EN_ER_GROUPBOX1);
             }
             else
             {
@@ -601,7 +600,6 @@ namespace IBSYS2
                 groupBox2.Text = (Sprachen.DE_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.DE_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.DE_ER_GROUPBOX4);
-                groupBox1.Text = (Sprachen.DE_ER_GROUPBOX1);
             }
         }
 

@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Begrüßungsseite));
             this.Logo = new System.Windows.Forms.PictureBox();
+            this.Starten = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Starten)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo
@@ -43,16 +45,29 @@
             this.Logo.TabIndex = 85;
             this.Logo.TabStop = false;
             // 
+            // Starten
+            // 
+            this.Starten.Image = ((System.Drawing.Image)(resources.GetObject("Starten.Image")));
+            this.Starten.Location = new System.Drawing.Point(384, 191);
+            this.Starten.Name = "Starten";
+            this.Starten.Size = new System.Drawing.Size(134, 117);
+            this.Starten.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Starten.TabIndex = 86;
+            this.Starten.TabStop = false;
+            this.Starten.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Begrüßungsseite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(984, 462);
+            this.ClientSize = new System.Drawing.Size(984, 512);
+            this.Controls.Add(this.Starten);
             this.Controls.Add(this.Logo);
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Starten)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -60,5 +75,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox Logo;
+        private System.Windows.Forms.PictureBox Starten;
     }
 }

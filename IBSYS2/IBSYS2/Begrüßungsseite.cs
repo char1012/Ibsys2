@@ -16,5 +16,12 @@ namespace IBSYS2
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
+        }
     }
 }

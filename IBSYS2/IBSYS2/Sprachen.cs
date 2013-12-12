@@ -117,7 +117,6 @@ namespace IBSYS2
         public static String DE_ER_GROUPBOX2 = "Einkaufsaufträge";
         public static String DE_ER_GROUPBOX3 = "Produktionsaufträge";
         public static String DE_ER_GROUPBOX4 = "Produktionskapazitäten";
-        public static String DE_ER_GROUPBOX1 = "Direktverkäufe";
 
         /*--------------------------------------------------------------------------------------------------------*/
         /*---------------------ENGLISH----------------------------------------------------------------------------*/

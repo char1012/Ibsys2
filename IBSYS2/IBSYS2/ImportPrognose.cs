@@ -14,7 +14,7 @@ using System.Resources;
 
 namespace IBSYS2
 {
-    public partial class ImportPrognose : Form
+    public partial class ImportPrognose : UserControl
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -62,11 +62,13 @@ namespace IBSYS2
         {
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
-            Kaufteildisposition ktdispo = new Kaufteildisposition();
-            ktdispo.ShowDialog();
+           // Kaufteildisposition ktdispo = new Kaufteildisposition();
+            UserControl p = new Produktion();
+            p.Show();
+            //ktdispo.ShowDialog();
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
-            this.Controls.Add(sicherheit);
+            //UserControl sicherheit = new Sicherheitsbestand();
+            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)

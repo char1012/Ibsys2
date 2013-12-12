@@ -32,19 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ergebnis));
             this.End_btn = new System.Windows.Forms.Button();
             this.lbl_Startseite = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbl_Produktion = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lbl_Kapazitaetsplan = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Ergebnis = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Teilenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Anzahl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.ProduktionTeilenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProduktionAnzahl = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,10 +49,6 @@
             this.EinkaufTeilenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EinkaufAnzahl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Express = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.autoSizeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.autoSizeModeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.autoValidateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,32 +85,30 @@
             this.visibleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.paddingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imeModeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // End_btn
             // 
-            this.End_btn.Location = new System.Drawing.Point(893, 503);
-            this.End_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.End_btn.Location = new System.Drawing.Point(777, 429);
             this.End_btn.Name = "End_btn";
-            this.End_btn.Size = new System.Drawing.Size(163, 28);
+            this.End_btn.Size = new System.Drawing.Size(122, 23);
             this.End_btn.TabIndex = 1;
             this.End_btn.Text = "XML exportieren";
             this.End_btn.UseVisualStyleBackColor = true;
@@ -130,154 +116,74 @@
             // lbl_Startseite
             // 
             this.lbl_Startseite.AutoSize = true;
+            this.lbl_Startseite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Startseite.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Startseite.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Startseite.Location = new System.Drawing.Point(48, 36);
-            this.lbl_Startseite.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Startseite.Location = new System.Drawing.Point(22, 60);
             this.lbl_Startseite.Name = "lbl_Startseite";
-            this.lbl_Startseite.Size = new System.Drawing.Size(92, 24);
+            this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 124;
             this.lbl_Startseite.Text = "Startseite";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(156, 32);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(32, 39);
-            this.pictureBox5.TabIndex = 130;
-            this.pictureBox5.TabStop = false;
             // 
             // lbl_Sicherheitsbestand
             // 
             this.lbl_Sicherheitsbestand.AutoSize = true;
+            this.lbl_Sicherheitsbestand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(193, 36);
-            this.lbl_Sicherheitsbestand.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(119, 60);
             this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
-            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(172, 24);
+            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 131;
             this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(377, 32);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 39);
-            this.pictureBox3.TabIndex = 132;
-            this.pictureBox3.TabStop = false;
             // 
             // lbl_Produktion
             // 
             this.lbl_Produktion.AutoSize = true;
+            this.lbl_Produktion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktion.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Produktion.Location = new System.Drawing.Point(411, 36);
-            this.lbl_Produktion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Produktion.Location = new System.Drawing.Point(276, 60);
             this.lbl_Produktion.Name = "lbl_Produktion";
-            this.lbl_Produktion.Size = new System.Drawing.Size(104, 24);
+            this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 133;
             this.lbl_Produktion.Text = "Produktion";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(527, 32);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 39);
-            this.pictureBox4.TabIndex = 134;
-            this.pictureBox4.TabStop = false;
             // 
             // lbl_Kapazitaetsplan
             // 
             this.lbl_Kapazitaetsplan.AutoSize = true;
+            this.lbl_Kapazitaetsplan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kapazitaetsplan.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(564, 36);
-            this.lbl_Kapazitaetsplan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(570, 60);
             this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
-            this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(136, 24);
+            this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(110, 19);
             this.lbl_Kapazitaetsplan.TabIndex = 135;
             this.lbl_Kapazitaetsplan.Text = "Kapazitätsplan";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(709, 32);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 39);
-            this.pictureBox2.TabIndex = 136;
-            this.pictureBox2.TabStop = false;
             // 
             // lbl_Kaufteiledisposition
             // 
             this.lbl_Kaufteiledisposition.AutoSize = true;
+            this.lbl_Kaufteiledisposition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kaufteiledisposition.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(745, 36);
-            this.lbl_Kaufteiledisposition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(712, 60);
             this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
-            this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(168, 24);
+            this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 137;
             this.lbl_Kaufteiledisposition.Text = "Kaufteildisposition";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(931, 32);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 39);
-            this.pictureBox1.TabIndex = 138;
-            this.pictureBox1.TabStop = false;
             // 
             // lbl_Ergebnis
             // 
             this.lbl_Ergebnis.AutoSize = true;
-            this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Ergebnis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
+            this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F);
             this.lbl_Ergebnis.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Ergebnis.Location = new System.Drawing.Point(963, 36);
-            this.lbl_Ergebnis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(902, 60);
             this.lbl_Ergebnis.Name = "lbl_Ergebnis";
-            this.lbl_Ergebnis.Size = new System.Drawing.Size(84, 24);
+            this.lbl_Ergebnis.Size = new System.Drawing.Size(67, 19);
             this.lbl_Ergebnis.TabIndex = 139;
             this.lbl_Ergebnis.Text = "Ergebnis";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Teilenr,
-            this.Anzahl});
-            this.dataGridView1.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(83, 23);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(191, 87);
-            this.dataGridView1.TabIndex = 140;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Teilenr
-            // 
-            this.Teilenr.HeaderText = "Teilenr";
-            this.Teilenr.Name = "Teilenr";
-            this.Teilenr.ReadOnly = true;
-            this.Teilenr.Width = 50;
-            // 
-            // Anzahl
-            // 
-            this.Anzahl.HeaderText = "Anzahl";
-            this.Anzahl.Name = "Anzahl";
-            this.Anzahl.ReadOnly = true;
-            this.Anzahl.Width = 50;
             // 
             // dataGridView2
             // 
@@ -288,10 +194,9 @@
             this.ProduktionTeilenr,
             this.ProduktionAnzahl});
             this.dataGridView2.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView2.Location = new System.Drawing.Point(23, 30);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Location = new System.Drawing.Point(17, 24);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(191, 288);
+            this.dataGridView2.Size = new System.Drawing.Size(143, 234);
             this.dataGridView2.TabIndex = 141;
             // 
             // ProduktionTeilenr
@@ -322,10 +227,9 @@
             this.Schichten,
             this.Überstunden});
             this.dataGridView3.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView3.Location = new System.Drawing.Point(19, 30);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Location = new System.Drawing.Point(14, 24);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(320, 96);
+            this.dataGridView3.Size = new System.Drawing.Size(240, 78);
             this.dataGridView3.TabIndex = 142;
             // 
             // KapazitätArbeitsplatz
@@ -396,10 +300,9 @@
             this.imeModeDataGridViewTextBoxColumn});
             this.dataGridView4.DataSource = this.kapazitaetsplanBindingSource;
             this.dataGridView4.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView4.Location = new System.Drawing.Point(24, 30);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView4.Location = new System.Drawing.Point(18, 24);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(265, 288);
+            this.dataGridView4.Size = new System.Drawing.Size(199, 234);
             this.dataGridView4.TabIndex = 143;
             // 
             // EinkaufTeilenr
@@ -422,54 +325,6 @@
             this.Express.Name = "Express";
             this.Express.ReadOnly = true;
             this.Express.Width = 50;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(672, 260);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(376, 133);
-            this.groupBox1.TabIndex = 144;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Direktverkäufe";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(53, 95);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(239, 356);
-            this.groupBox2.TabIndex = 145;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Einkaufsaufträge";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dataGridView4);
-            this.groupBox3.Location = new System.Drawing.Point(319, 95);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(316, 356);
-            this.groupBox3.TabIndex = 146;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Produktionsaufträge";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(668, 95);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(380, 158);
-            this.groupBox4.TabIndex = 147;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Produktionskapazitäten";
             // 
             // autoSizeDataGridViewCheckBoxColumn
             // 
@@ -688,12 +543,43 @@
             this.imeModeDataGridViewTextBoxColumn.HeaderText = "ImeMode";
             this.imeModeDataGridViewTextBoxColumn.Name = "imeModeDataGridViewTextBoxColumn";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView2);
+            this.groupBox2.Location = new System.Drawing.Point(54, 128);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(179, 289);
+            this.groupBox2.TabIndex = 145;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Einkaufsaufträge";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView4);
+            this.groupBox3.Location = new System.Drawing.Point(258, 128);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(237, 289);
+            this.groupBox3.TabIndex = 146;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Produktionsaufträge";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dataGridView3);
+            this.groupBox4.Location = new System.Drawing.Point(524, 141);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(285, 128);
+            this.groupBox4.TabIndex = 147;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Produktionskapazitäten";
+            // 
             // pic_en
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(1007, 1);
+            this.pic_en.Location = new System.Drawing.Point(908, 10);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_en.Name = "pic_en";
-            this.pic_en.Size = new System.Drawing.Size(40, 23);
+            this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 149;
             this.pic_en.TabStop = false;
             this.pic_en.Click += new System.EventHandler(this.pic_en_Click);
@@ -701,56 +587,66 @@
             // pic_de
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(1052, 1);
+            this.pic_de.Location = new System.Drawing.Point(942, 10);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_de.Name = "pic_de";
-            this.pic_de.Size = new System.Drawing.Size(40, 23);
+            this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.TabIndex = 148;
             this.pic_de.TabStop = false;
             this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(13, 40);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(969, 65);
+            this.pictureBox5.TabIndex = 130;
+            this.pictureBox5.TabStop = false;
+            // 
+            // lbl_Produktionsreihenfolge
+            // 
+            this.lbl_Produktionsreihenfolge.AutoSize = true;
+            this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
+            this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.Black;
+            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(388, 60);
+            this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
+            this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
+            this.lbl_Produktionsreihenfolge.TabIndex = 150;
+            this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
+            // 
             // Ergebnis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1105, 569);
+            this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbl_Ergebnis);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbl_Kaufteiledisposition);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbl_Kapazitaetsplan);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.lbl_Produktion);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.lbl_Sicherheitsbestand);
-            this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.End_btn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.pictureBox5);
             this.Name = "Ergebnis";
-            this.Text = "Ergebnis";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Size = new System.Drawing.Size(1000, 500);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -760,21 +656,13 @@
 
         private System.Windows.Forms.Button End_btn;
         private System.Windows.Forms.Label lbl_Startseite;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lbl_Sicherheitsbestand;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lbl_Produktion;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lbl_Kapazitaetsplan;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbl_Kaufteiledisposition;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_Ergebnis;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource kapazitaetsplanBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teilenr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Anzahl;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProduktionTeilenr;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProduktionAnzahl;
         private System.Windows.Forms.DataGridView dataGridView3;
@@ -785,7 +673,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EinkaufTeilenr;
         private System.Windows.Forms.DataGridViewTextBoxColumn EinkaufAnzahl;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Express;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -827,5 +714,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn imeModeDataGridViewTextBoxColumn;
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
     }
 }

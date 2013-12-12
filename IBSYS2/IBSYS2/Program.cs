@@ -16,7 +16,7 @@ namespace IBSYS2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ImportPrognose());
+            Application.Run(new Begrüßungsseite());
         }
     }
 }

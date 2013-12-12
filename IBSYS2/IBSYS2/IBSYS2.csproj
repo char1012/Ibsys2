@@ -91,7 +91,7 @@
       <DependentUpon>Ergebnis.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportPrognose.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ImportPrognose.Designer.cs">
       <DependentUpon>ImportPrognose.cs</DependentUpon>
@@ -103,7 +103,7 @@
       <DependentUpon>Kapazitaetsplan.cs</DependentUpon>
     </Compile>
     <Compile Include="Kaufteildisposition.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Kaufteildisposition.Designer.cs">
       <DependentUpon>Kaufteildisposition.cs</DependentUpon>
@@ -124,6 +124,9 @@
       <DependentUpon>Sicherheitsbestand.cs</DependentUpon>
     </Compile>
     <Compile Include="XMLReaderClass.cs" />
+    <EmbeddedResource Include="Begrüßungsseite.resx">
+      <DependentUpon>Begrüßungsseite.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ergebnis.resx">
       <DependentUpon>Ergebnis.cs</DependentUpon>
     </EmbeddedResource>

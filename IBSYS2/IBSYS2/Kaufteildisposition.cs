@@ -14,7 +14,7 @@ using System.Data.OleDb;
 
 namespace IBSYS2
 {
-    public partial class Kaufteildisposition : Form
+    public partial class Kaufteildisposition : UserControl
     {
         private OleDbConnection myconn;
 

@@ -1037,7 +1037,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(908, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 141;
@@ -1048,7 +1048,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(942, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.TabIndex = 140;
@@ -1058,7 +1058,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(13, 40);
+            this.pictureBox5.Location = new System.Drawing.Point(13, 42);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(973, 65);
             this.pictureBox5.TabIndex = 72;

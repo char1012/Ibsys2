@@ -142,6 +142,9 @@
     <EmbeddedResource Include="Produktion.resx">
       <DependentUpon>Produktion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produktionsreihenfolge.resx">
+      <DependentUpon>Produktionsreihenfolge.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Produktion_ETeile.resx">
       <DependentUpon>Produktion_ETeile.cs</DependentUpon>
     </EmbeddedResource>

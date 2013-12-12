@@ -209,7 +209,7 @@
             this.lbl_Ergebnis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Ergebnis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbl_Ergebnis.Location = new System.Drawing.Point(907, 63);
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(903, 63);
             this.lbl_Ergebnis.Name = "lbl_Ergebnis";
             this.lbl_Ergebnis.Size = new System.Drawing.Size(67, 19);
             this.lbl_Ergebnis.TabIndex = 54;
@@ -257,7 +257,7 @@
             this.lbl_Sicherheitsbestand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F);
             this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(122, 63);
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(121, 63);
             this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 46;
@@ -289,9 +289,9 @@
             this.groupBox1.Controls.Add(this.infoP);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(50, 117);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(746, 59);
             this.groupBox1.TabIndex = 55;
             this.groupBox1.TabStop = false;
@@ -424,9 +424,9 @@
             this.groupBox3.Controls.Add(this.E261);
             this.groupBox3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(50, 180);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(628, 271);
             this.groupBox3.TabIndex = 56;
             this.groupBox3.TabStop = false;
@@ -1058,9 +1058,9 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(691, 203);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(105, 106);
             this.groupBox2.TabIndex = 59;
             this.groupBox2.TabStop = false;
@@ -1071,7 +1071,7 @@
             this.Ausgabe_P3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ausgabe_P3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.Ausgabe_P3.Location = new System.Drawing.Point(34, 73);
-            this.Ausgabe_P3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ausgabe_P3.Margin = new System.Windows.Forms.Padding(2);
             this.Ausgabe_P3.Name = "Ausgabe_P3";
             this.Ausgabe_P3.Size = new System.Drawing.Size(66, 19);
             this.Ausgabe_P3.TabIndex = 5;
@@ -1081,7 +1081,7 @@
             this.Ausgabe_P2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ausgabe_P2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.Ausgabe_P2.Location = new System.Drawing.Point(34, 49);
-            this.Ausgabe_P2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ausgabe_P2.Margin = new System.Windows.Forms.Padding(2);
             this.Ausgabe_P2.Name = "Ausgabe_P2";
             this.Ausgabe_P2.Size = new System.Drawing.Size(66, 19);
             this.Ausgabe_P2.TabIndex = 4;
@@ -1091,7 +1091,7 @@
             this.Ausgabe_P1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ausgabe_P1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.Ausgabe_P1.Location = new System.Drawing.Point(34, 22);
-            this.Ausgabe_P1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ausgabe_P1.Margin = new System.Windows.Forms.Padding(2);
             this.Ausgabe_P1.Name = "Ausgabe_P1";
             this.Ausgabe_P1.Size = new System.Drawing.Size(66, 19);
             this.Ausgabe_P1.TabIndex = 3;
@@ -1139,9 +1139,9 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(13, 40);
+            this.pictureBox4.Location = new System.Drawing.Point(13, 42);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(971, 73);
+            this.pictureBox4.Size = new System.Drawing.Size(957, 63);
             this.pictureBox4.TabIndex = 70;
             this.pictureBox4.TabStop = false;
             // 
@@ -1149,7 +1149,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(908, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 139;
@@ -1160,7 +1160,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(942, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.TabIndex = 138;
@@ -1173,7 +1173,7 @@
             this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(394, 63);
+            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(390, 63);
             this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
             this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
             this.lbl_Produktionsreihenfolge.TabIndex = 140;

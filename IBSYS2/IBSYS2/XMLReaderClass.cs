@@ -148,7 +148,6 @@ namespace IBSYS2
                                     if (node.ChildNodes[i].Name == "totalstockvalue")
                                     {
                                         lagerbestand = Convert.ToDouble(node.ChildNodes[i].InnerText);
-                                        MessageBox.Show("Lagerbestand " + lagerbestand);
                                     }
                                     else
                                     {

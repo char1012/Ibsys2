@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Begrüßungsseite));
             this.Logo = new System.Windows.Forms.PictureBox();
             this.Starten = new System.Windows.Forms.PictureBox();
+            this.clear_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).BeginInit();
             this.SuspendLayout();
@@ -56,12 +57,23 @@
             this.Starten.TabStop = false;
             this.Starten.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // clear_btn
+            // 
+            this.clear_btn.Location = new System.Drawing.Point(384, 332);
+            this.clear_btn.Name = "clear_btn";
+            this.clear_btn.Size = new System.Drawing.Size(134, 23);
+            this.clear_btn.TabIndex = 87;
+            this.clear_btn.Text = "Datenbank leeren";
+            this.clear_btn.UseVisualStyleBackColor = true;
+            this.clear_btn.Click += new System.EventHandler(this.Clear_btn_Click);
+            // 
             // Begrüßungsseite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(984, 512);
+            this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.Starten);
             this.Controls.Add(this.Logo);
             this.Name = "Begrüßungsseite";
@@ -76,5 +88,6 @@
 
         private System.Windows.Forms.PictureBox Logo;
         private System.Windows.Forms.PictureBox Starten;
+        private System.Windows.Forms.Button clear_btn;
     }
 }

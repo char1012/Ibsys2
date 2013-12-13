@@ -100,5 +100,16 @@ namespace IBSYS2
         {
             clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
         }
+
+        private void Begrüßungsseite_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result2 = MessageBox.Show("Sind Sie sicher, dass Sie die Anwendung schließen möchten?\n"
+                + "Dadurch werden alle Änderungen verworfen.", "Anwendung schließen", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (result2 == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

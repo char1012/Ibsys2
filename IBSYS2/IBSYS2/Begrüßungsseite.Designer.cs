@@ -110,6 +110,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Begrüßungsseite_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();

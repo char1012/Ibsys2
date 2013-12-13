@@ -93,22 +93,38 @@ namespace IBSYS2
         private void pic_en_Click(object sender, EventArgs e)
         {
             clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
-
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
         }
+
 
         private void Begrüßungsseite_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result2 = MessageBox.Show("Sind Sie sicher, dass Sie die Anwendung schließen möchten?\n"
-                + "Dadurch werden alle Änderungen verworfen.", "Anwendung schließen", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (result2 == DialogResult.No)
+
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
             {
-                e.Cancel = true;
+                DialogResult result2 = MessageBox.Show(Sprachen.DE_MSG_INFO1, Sprachen.DE_MSG_INFO2, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result2 == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                DialogResult result2 = MessageBox.Show(Sprachen.EN_MSG_INFO1, Sprachen.EN_MSG_INFO2, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result2 == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

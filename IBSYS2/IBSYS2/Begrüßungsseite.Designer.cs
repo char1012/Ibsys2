@@ -44,7 +44,7 @@
             // 
             this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
             this.Logo.Location = new System.Drawing.Point(469, 87);
-            this.Logo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Logo.Margin = new System.Windows.Forms.Padding(4);
             this.Logo.Name = "Logo";
             this.Logo.Size = new System.Drawing.Size(289, 98);
             this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -55,7 +55,7 @@
             // 
             this.Starten.Image = ((System.Drawing.Image)(resources.GetObject("Starten.Image")));
             this.Starten.Location = new System.Drawing.Point(512, 235);
-            this.Starten.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Starten.Margin = new System.Windows.Forms.Padding(4);
             this.Starten.Name = "Starten";
             this.Starten.Size = new System.Drawing.Size(179, 144);
             this.Starten.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -66,7 +66,7 @@
             // clear_btn
             // 
             this.clear_btn.Location = new System.Drawing.Point(512, 409);
-            this.clear_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clear_btn.Margin = new System.Windows.Forms.Padding(4);
             this.clear_btn.Name = "clear_btn";
             this.clear_btn.Size = new System.Drawing.Size(179, 28);
             this.clear_btn.TabIndex = 87;
@@ -92,6 +92,7 @@
             this.pic_de.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(40, 23);
+            this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_de.TabIndex = 150;
             this.pic_de.TabStop = false;
             this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
@@ -107,7 +108,7 @@
             this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.Starten);
             this.Controls.Add(this.Logo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Begrüßungsseite_FormClosing);

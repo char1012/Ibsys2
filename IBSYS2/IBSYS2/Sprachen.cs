@@ -23,6 +23,8 @@ namespace IBSYS2
         /*---------Begruessungsseite----------*/
         //Button
         public static String DE_BTN_CLEAR = "Datenbank leeren";
+        public static String DE_MSG_INFO1 = "Sind Sie sicher, dass Sie die Anwendung schließen möchten?\nDadurch werden alle Änderungen verworfen.";
+        public static String DE_MSG_INFO2 = "Anwendung schließen";
 
         /*---------ImportProgress----------*/
         //Buttons
@@ -138,6 +140,8 @@ namespace IBSYS2
         /*---------Begruessungsseite----------*/
         //Button
         public static String EN_BTN_CLEAR = "Empty database";
+        public static String EN_MSG_INFO1 = "Are you sure to close the application?\nBy that all changes are discarded.";
+        public static String EN_MSG_INFO2 = "Close application";
 
         /*---------ImportProgress----------*/
         //Buttons

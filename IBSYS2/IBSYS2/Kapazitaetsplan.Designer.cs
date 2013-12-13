@@ -721,6 +721,7 @@
             this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 73;
             this.lbl_Kaufteiledisposition.Text = "Kaufteildisposition";
+            this.lbl_Kaufteiledisposition.Click += new System.EventHandler(this.lbl_Kaufteiledisposition_Click);
             // 
             // lbl_Kapazitaetsplan
             // 
@@ -745,6 +746,7 @@
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 69;
             this.lbl_Produktion.Text = "Produktion";
+            this.lbl_Produktion.Click += new System.EventHandler(this.lbl_Produktion_Click);
             // 
             // lbl_Sicherheitsbestand
             // 
@@ -757,6 +759,7 @@
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(124, 18);
             this.lbl_Sicherheitsbestand.TabIndex = 67;
             this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
+            this.lbl_Sicherheitsbestand.Click += new System.EventHandler(this.lbl_Sicherheitsbestand_Click);
             // 
             // lbl_Startseite
             // 
@@ -769,6 +772,7 @@
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 66;
             this.lbl_Startseite.Text = "Startseite";
+            this.lbl_Startseite.Click += new System.EventHandler(this.lbl_Startseite_Click);
             // 
             // groupBox1
             // 
@@ -1032,6 +1036,7 @@
             this.back_btn.TabIndex = 33;
             this.back_btn.Text = "Zurück";
             this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // pic_en
             // 
@@ -1075,6 +1080,7 @@
             this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
             this.lbl_Produktionsreihenfolge.TabIndex = 142;
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
+            this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
             // 
             // Kapazitaetsplan
             // 

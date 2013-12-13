@@ -202,6 +202,7 @@
             this.continue_btn.TabIndex = 7;
             this.continue_btn.Text = "Weiter";
             this.continue_btn.UseVisualStyleBackColor = false;
+            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
             // lbl_Ergebnis
             // 
@@ -250,6 +251,7 @@
             this.lbl_Auftraege.Size = new System.Drawing.Size(84, 19);
             this.lbl_Auftraege.TabIndex = 48;
             this.lbl_Auftraege.Text = "Produktion";
+            this.lbl_Auftraege.Click += new System.EventHandler(this.lbl_Auftraege_Click);
             // 
             // lbl_Sicherheitsbestand
             // 
@@ -274,6 +276,7 @@
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 45;
             this.lbl_Startseite.Text = "Startseite";
+            this.lbl_Startseite.Click += new System.EventHandler(this.lbl_Startseite_Click);
             // 
             // groupBox1
             // 
@@ -1135,6 +1138,7 @@
             this.btn_back.TabIndex = 64;
             this.btn_back.Text = "Zurück";
             this.btn_back.UseVisualStyleBackColor = false;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // pictureBox4
             // 

@@ -1251,5 +1251,33 @@ namespace IBSYS2
             sprachen(sprache);
         }
 
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
+        }
+
+        private void continue_btn_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prod = new Produktion();
+            this.Controls.Add(prod);
+        }
+
+        private void lbl_Startseite_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
+        }
+
+        private void lbl_Auftraege_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prod = new Produktion();
+            this.Controls.Add(prod);
+        }
+
     }
 }

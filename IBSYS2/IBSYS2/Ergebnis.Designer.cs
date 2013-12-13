@@ -92,6 +92,7 @@
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
+            this.back_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -112,6 +113,7 @@
             this.End_btn.TabIndex = 1;
             this.End_btn.Text = "XML exportieren";
             this.End_btn.UseVisualStyleBackColor = true;
+            this.End_btn.Click += new System.EventHandler(this.End_btn_Click);
             // 
             // lbl_Startseite
             // 
@@ -124,6 +126,7 @@
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 124;
             this.lbl_Startseite.Text = "Startseite";
+            this.lbl_Startseite.Click += new System.EventHandler(this.lbl_Startseite_Click);
             // 
             // lbl_Sicherheitsbestand
             // 
@@ -136,6 +139,7 @@
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 131;
             this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
+            this.lbl_Sicherheitsbestand.Click += new System.EventHandler(this.lbl_Sicherheitsbestand_Click);
             // 
             // lbl_Produktion
             // 
@@ -148,6 +152,7 @@
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 133;
             this.lbl_Produktion.Text = "Produktion";
+            this.lbl_Produktion.Click += new System.EventHandler(this.lbl_Produktion_Click);
             // 
             // lbl_Kapazitaetsplan
             // 
@@ -160,6 +165,7 @@
             this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(110, 19);
             this.lbl_Kapazitaetsplan.TabIndex = 135;
             this.lbl_Kapazitaetsplan.Text = "Kapazitätsplan";
+            this.lbl_Kapazitaetsplan.Click += new System.EventHandler(this.lbl_Kapazitaetsplan_Click);
             // 
             // lbl_Kaufteiledisposition
             // 
@@ -172,6 +178,7 @@
             this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 137;
             this.lbl_Kaufteiledisposition.Text = "Kaufteildisposition";
+            this.lbl_Kaufteiledisposition.Click += new System.EventHandler(this.lbl_Kaufteiledisposition_Click);
             // 
             // lbl_Ergebnis
             // 
@@ -577,7 +584,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(908, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 149;
@@ -588,7 +595,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(942, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.TabIndex = 148;
@@ -615,12 +622,25 @@
             this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
             this.lbl_Produktionsreihenfolge.TabIndex = 150;
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
+            this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
+            // 
+            // back_btn
+            // 
+            this.back_btn.BackColor = System.Drawing.Color.Lavender;
+            this.back_btn.Location = new System.Drawing.Point(41, 429);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 151;
+            this.back_btn.Text = "Zurück";
+            this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // Ergebnis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.back_btn);
             this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
@@ -716,5 +736,6 @@
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
+        private System.Windows.Forms.Button back_btn;
     }
 }

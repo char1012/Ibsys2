@@ -518,7 +518,6 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            //TO DO zu Kapazitätsplan
             for (int i = 1; i <= 12; ++i)
             {
                 if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "0")
@@ -532,7 +531,9 @@ namespace IBSYS2
 
                     if (result == DialogResult.Yes)
                     {
-                        System.Windows.Forms.MessageBox.Show("Weiter gehts", "Riiiiiiesen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                        this.Controls.Clear();
+                        UserControl prodreihe = new Produktionsreihenfolge();
+                        this.Controls.Add(prodreihe);
                         break;
                     }
                     break;
@@ -541,7 +542,9 @@ namespace IBSYS2
                 {
                     if (i == 12)
                     {
-                        System.Windows.Forms.MessageBox.Show("Weiter gehts", "Riiiiiiesen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                        this.Controls.Clear();
+                        UserControl prodreihe = new Produktionsreihenfolge();
+                        this.Controls.Add(prodreihe);
                     }
                     else { continue; }
                 }
@@ -551,21 +554,23 @@ namespace IBSYS2
 
         private void back_Click(object sender, EventArgs e)
         {
-            //TO Do zu Sicherheitsbestand
-        }
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            //TO DO zu Kapazitätsplan
+            this.Controls.Clear();
+            UserControl sicherheit = new Sicherheitsbestand();
+            this.Controls.Add(sicherheit);
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
-            //TO DO zu Sicherheitsbestand
+            this.Controls.Clear();
+            UserControl sicherheit = new Sicherheitsbestand();
+            this.Controls.Add(sicherheit);
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            //TO DO zu Startseite
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
         } 
         #endregion
 
@@ -655,6 +660,13 @@ namespace IBSYS2
         {
             string sprache = "de";
             sprachen(sprache);
+        }
+
+        private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
+        {
+             this.Controls.Clear();
+            UserControl prodreihe = new Produktionsreihenfolge();
+            this.Controls.Add(prodreihe);
         }
     }
 

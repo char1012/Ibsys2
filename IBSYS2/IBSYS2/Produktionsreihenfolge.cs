@@ -54,5 +54,47 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
             }
         }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prod = new Produktion();
+            this.Controls.Add(prod);
+        }
+
+        private void continue_btn_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl kapazitaet = new Kapazitaetsplan();
+            this.Controls.Add(kapazitaet);
+        }
+
+        private void lbl_Startseite_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
+        }
+
+        private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl sicherheit = new Sicherheitsbestand();
+            this.Controls.Add(sicherheit);
+        }
+
+        private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl kapazitaet = new Kapazitaetsplan();
+            this.Controls.Add(kapazitaet);
+        }
+
+        private void lbl_Produktion_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prod = new Produktion();
+            this.Controls.Add(prod);
+        }
     }
 }

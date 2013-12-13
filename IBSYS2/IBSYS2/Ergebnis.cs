@@ -615,5 +615,59 @@ namespace IBSYS2
             string sprache = "de";
             sprachen(sprache);
         }
+
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl kaufteile = new Kaufteildisposition();
+            this.Controls.Add(kaufteile);
+        }
+
+        private void lbl_Startseite_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl import = new ImportPrognose();
+            this.Controls.Add(import);
+        }
+
+        private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl sicherheit = new Sicherheitsbestand();
+            this.Controls.Add(sicherheit);
+        }
+
+        private void lbl_Produktion_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prod = new Produktion();
+            this.Controls.Add(prod);
+        }
+
+        private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            this.Controls.Add(prodreihenfolge);
+        }
+
+        private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl kapazitaet = new Kapazitaetsplan();
+            this.Controls.Add(kapazitaet);
+        }
+
+        private void lbl_Kaufteiledisposition_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            UserControl kaufteile = new Kaufteildisposition();
+            this.Controls.Add(kaufteile);
+        }
+
+        private void End_btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Hier wird dann exportiert.");
+        }
     }
 }

@@ -123,8 +123,23 @@
   <metadata name="ProduktionAnzahl.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="ProduktionTeilenr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ProduktionAnzahl.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="kapazitaetsplanBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="KapazitätArbeitsplatz.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Schichten.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Überstunden.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="KapazitätArbeitsplatz.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -144,11 +159,20 @@
   <metadata name="Express.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="EinkaufTeilenr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EinkaufAnzahl.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Express.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pic_en.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAASCAIAAADDkPmOAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        cwAAEnMBjCK5BwAAA8FJREFUOE+1lNtvVEUcx3/nzMy57p7dbsO6t0JMKP4fvvmEvhBE0DRKIhGJpbGB
+        cgAAEnIBXmVb4wAAA8FJREFUOE+1lNtvVEUcx3/nzMy57p7dbsO6t0JMKP4fvvmEvhBE0DRKIhGJpbGB
         utuSdq20UMDeDMor+gTxRowxBW1KaRXdhKCJviqkiG3d7uVcZ8Y5u7QuUosvJt9Mzpz5zef8zszv+4NZ
         QMsrd3zu2vd9ExUN5aghvWPg/hYVdHKMUncORLDMuRchx3Q88HDMgEF6QR2iNX4Zx0oEU38FeLU8p6LB
         WNxmVGy7Nn/PIAUDFQRxfduWaNSvNyIVvG9x7MQMQr+eOl3hnDIKSBl65eCF6WTyG1XmnlOhAeU0SvZF
@@ -170,7 +194,7 @@
   <data name="pic_de.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAASCAIAAADDkPmOAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
-        cwAAEnMBjCK5BwAAAChJREFUOE9jGAWjAD94K6NCIzRqNBoaokb/P8lHIzRqNBoaikaf5AMA+SweO8eZ
+        cgAAEnIBXmVb4wAAAChJREFUOE9jGAWjAD94K6NCIzRqNBoaokb/P8lHIzRqNBoaikaf5AMA+SweO8eZ
         KNUAAAAASUVORK5CYII=
 </value>
   </data>

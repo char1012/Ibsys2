@@ -15,9 +15,14 @@ namespace IBSYS2
         public static String DE_LBL_STARTSEITE = "Startseite";
         public static String DE_LBL_SICHERHEITSBESTAND = "Sicherheitsbestand";
         public static String DE_LBL_PRODUKTION = "Produktion";
+        public static String DE_LBL_PRODUKTIONSREIHENFOLGE = "Produktionsreihenfolge";
         public static String DE_LBL_KAPATITAETSPLAN = "Kapazitätsplan"; //Umlaut
         public static String DE_LBL_KAUFTEILEDISPOSITION = "Kaufteildisposition";
         public static String DE_LBL_ERGEBNIS = "Ergebnis";
+
+        /*---------Begruessungsseite----------*/
+        //Button
+        public static String DE_BTN_CLEAR = "Datenbank leeren";
 
         /*---------ImportProgress----------*/
         //Buttons
@@ -124,10 +129,15 @@ namespace IBSYS2
         // Brotkrumenleiste
         public static String EN_LBL_STARTSEITE = "Homepage";
         public static String EN_LBL_SICHERHEITSBESTAND = "Safty Stock";
+        public static String EN_LBL_PRODUKTIONSREIHENFOLGE = "Production sequence";
         public static String EN_LBL_PRODUKTION = "Production";
         public static String EN_LBL_KAPATITAETSPLAN = "Capacity Plan";
-        public static String EN_LBL_KAUFTEILEDISPOSITION = "Purchased parts dispostion";
+        public static String EN_LBL_KAUFTEILEDISPOSITION = "Purchased parts disposition";
         public static String EN_LBL_ERGEBNIS = "Result";
+
+        /*---------Begruessungsseite----------*/
+        //Button
+        public static String EN_BTN_CLEAR = "Empty database";
 
         /*---------ImportProgress----------*/
         //Buttons

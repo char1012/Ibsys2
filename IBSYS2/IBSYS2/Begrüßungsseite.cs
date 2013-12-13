@@ -90,6 +90,17 @@ namespace IBSYS2
             }
         }
 
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
+
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
+        }
+
         private void Begrüßungsseite_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult result2 = MessageBox.Show("Sind Sie sicher, dass Sie die Anwendung schließen möchten?\n"

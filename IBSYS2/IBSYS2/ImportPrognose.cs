@@ -63,12 +63,13 @@ namespace IBSYS2
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Ergebnis();
+            UserControl p = new Produktion();
             p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();
             //UserControl sicherheit = new Sicherheitsbestand();
-            this.Controls.Add(p);
+            UserControl ergebnis = new Ergebnis();
+            this.Controls.Add(ergebnis);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -101,7 +102,6 @@ namespace IBSYS2
                             myconn.Open();
                         }
                         int ausgewähltePeriode = comboBox1.SelectedIndex+1;
-                        MessageBox.Show(""+ausgewähltePeriode + " " + comboBox1.SelectedText);
                         cmd.CommandText = @"select Periode from Lager";
 
                         //Periode aus Datei auslesen sowie Kontrolle, ob es die richtige ist
@@ -132,7 +132,46 @@ namespace IBSYS2
                             myconn.Close();
                             if (period == PeriodeDB)
                             {
-                                System.Windows.Forms.MessageBox.Show("Die XML-Datei wurde bereits in die Datenbank eingespeist, herzlichen Dank ;-)");
+                                // Beim Benutzer nachfragen, ob er das wirklich moechte
+                                DialogResult result = MessageBox.Show("In der Datenbank sind bereits Daten für diese Periode gespeichert.\n"
+                                    + "Wollen Sie die gespeicherten Daten überschreiben?\n"
+                                    + "Wenn Sie nein wählen, werden die vorhandenen Daten verwendet.", "Periode bereits vorhanden", MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                                if (result == DialogResult.Yes)
+                                {
+                                    myconn.Open();
+
+                                    // vorhandene Daten der Periode loeschen
+                                    cmd.CommandText = @"DELETE * FROM Lager WHERE Periode = " + period + ";";
+                                    OleDbDataReader dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Bestellung WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Warteliste_Arbeitsplatz WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Warteliste_Material WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Bearbeitung WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Leerzeitenkosten WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+                                    cmd.CommandText = @"DELETE * FROM Informationen WHERE Periode = " + period + ";";
+                                    dbReader = cmd.ExecuteReader();
+                                    dbReader.Close();
+
+                                    // XMLReaderClass aufrufen
+                                    //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
+                                    XMLReaderClass xmlclass = new XMLReaderClass();
+                                    xmlclass.XMLReader(cmd, File);
+                                    myconn.Close();
+                                }
+
                                 //Aufruf Funktion Validierung Werte in Feldern enthalten?
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {

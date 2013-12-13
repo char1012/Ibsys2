@@ -364,10 +364,9 @@ namespace IBSYS2
             // weil sowohl im xml als auch in der Bestellliste keine Ankunftsdaten vorhanden sind,
             // gehe ich davon aus, dass alle ausstehenden Bestellungen in dieser Periode ankommen und
             // die neuen Bestellungen nicht in dieser Periode ankommen
-            // TODO: ich haette gerne zusaetzlich zu Bestellperiode auch noch Periode
             double wertBestellungen = 0;
             List<List<int>> bestellungen = new List<List<int>>();
-            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bestellung WHERE Bestellperiode = " + periode
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bestellung WHERE Periode = " + periode
                     + " AND Eingegangen = False;";
             dbReader = cmd.ExecuteReader();
             n = 0;

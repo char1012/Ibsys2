@@ -27,24 +27,18 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-           
-            String sprache = "de";
-            if (sprache == "de") { 
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
-                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
-                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal) { 
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
             }
             else
             {
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
-                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
-                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                ToolTipEN.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
             }
         }
 
@@ -76,11 +70,27 @@ namespace IBSYS2
         {
             if (comboBox1.SelectedItem == null)
             {
-                System.Windows.Forms.MessageBox.Show("Wählen Sie zuerst die Periode aus.", "Keine Periode ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    System.Windows.Forms.MessageBox.Show("Wählen Sie zuerst die Periode aus.", "Keine Periode ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("First, select the period.", "No period selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+
+                }
             }
+
             else
             {
-                openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
+                }
+                else
+                {
+                    openFileDialog1.Title = "Select your XML file";
+                }
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     fileselected = false;
@@ -97,11 +107,18 @@ namespace IBSYS2
                         }
                         catch (Exception)
                         {
-                            System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                            {
+                                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                            }
+                            else
+                            {
+                                System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                            }
                             myconn.Close();
                             myconn.Open();
                         }
-                        int ausgewähltePeriode = comboBox1.SelectedIndex+1;
+                        int ausgewähltePeriode = comboBox1.SelectedIndex + 1;
                         cmd.CommandText = @"select Periode from Lager";
 
                         //Periode aus Datei auslesen sowie Kontrolle, ob es die richtige ist
@@ -116,9 +133,16 @@ namespace IBSYS2
                             period = Convert.ToInt32(node.Attributes["period"].InnerText);
                         }
 
-                        if ((ausgewähltePeriode-1) != period)
+                        if ((ausgewähltePeriode - 1) != period)
                         {
-                            System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                            }
+                            else
+                            {
+                                System.Windows.Forms.MessageBox.Show("The selected file does not match to its selected period.For the calculation of the new period the XML file from the previous period is required.", "Wrong periode/file selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                            }
                         }
                         else
                         {
@@ -133,10 +157,21 @@ namespace IBSYS2
                             if (period == PeriodeDB)
                             {
                                 // Beim Benutzer nachfragen, ob er das wirklich moechte
-                                DialogResult result = MessageBox.Show("In der Datenbank sind bereits Daten für diese Periode gespeichert.\n"
-                                    + "Wollen Sie die gespeicherten Daten überschreiben?\n"
-                                    + "Wenn Sie nein wählen, werden die vorhandenen Daten verwendet.", "Periode bereits vorhanden", MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                DialogResult result;
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                {
+                                    result = MessageBox.Show("In der Datenbank sind bereits Daten für diese Periode gespeichert.\n"
+                                       + "Wollen Sie die gespeicherten Daten überschreiben?\n"
+                                       + "Wenn Sie nein wählen, werden die vorhandenen Daten verwendet.", "Periode bereits vorhanden", MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                }
+                                else
+                                {
+                                    result = MessageBox.Show("Data for this period are already stored in the database d.\n"
+                                        + "Do you want to overwrite the stored data?\n"
+                                        + "If you select No, the existing data will be used.", "Period already exists", MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                }
 
                                 if (result == DialogResult.Yes)
                                 {
@@ -194,7 +229,14 @@ namespace IBSYS2
                     }
                     else
                     {
-                        MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                        {
+                            MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Select a *. XML file to import the data. \nThis can be downloaded from scsim.", "Wrong format");
+                        }
                     }
                 }
 
@@ -208,7 +250,15 @@ namespace IBSYS2
             if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" |  textBox5.Text == "0" |  textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
             {
                 valueZero();
-                DialogResult dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                DialogResult dialogResult;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
+                }
                 if (dialogResult == DialogResult.Yes)
                 {
                     // Uebergabe:
@@ -235,14 +285,16 @@ namespace IBSYS2
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
-            sprachen(sprache);
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
-            sprachen(sprache);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -917,9 +969,9 @@ namespace IBSYS2
         }
 
        
-        public void sprachen(String sprache)
+        public void sprachen()
         {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -948,12 +1000,10 @@ namespace IBSYS2
                 lbl_periodeX2.Text = (Sprachen.EN_LBL_IP_PERIODEX2);
 
                 //EN Tooltip
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
-                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
-                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                ToolTipEN.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
 
                 //EN ComboBox
                 comboBox1.Text = (Sprachen.EN_CB_IP_PERIODE_AUSWAEHLEN);
@@ -989,12 +1039,10 @@ namespace IBSYS2
                 lbl_periodeX2.Text = (Sprachen.DE_LBL_IP_PERIODEX2);
 
                 //DE Tooltip
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
-                System.Windows.Forms.ToolTip ToolTipP1 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
-                System.Windows.Forms.ToolTip ToolTipP2 = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
 
                 //DE ComboBox
                 comboBox1.Text = (Sprachen.DE_CB_IP_PERIODE_AUSWAEHLEN);

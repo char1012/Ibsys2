@@ -89,5 +89,16 @@ namespace IBSYS2
                 MessageBox.Show("Alle importierten Daten wurden gelöscht.");
             }
         }
+
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
+
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
+        }
     }
 }

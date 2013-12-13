@@ -78,6 +78,7 @@
             this.Controls.Add(this.Logo);
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Begrüßungsseite_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).EndInit();
             this.ResumeLayout(false);

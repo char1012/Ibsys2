@@ -19,19 +19,21 @@ namespace IBSYS2
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
-            sprachen(sprache);
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();  
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
-            sprachen(sprache);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();  
         }
 
-        public void sprachen(String sprache)
+        public void sprachen()
         {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);

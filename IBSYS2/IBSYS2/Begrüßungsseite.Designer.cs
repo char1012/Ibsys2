@@ -34,6 +34,7 @@
             this.clear_btn = new System.Windows.Forms.Button();
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
@@ -43,9 +44,9 @@
             // Logo
             // 
             this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
-            this.Logo.Location = new System.Drawing.Point(352, 71);
+            this.Logo.Location = new System.Drawing.Point(875, 461);
             this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(217, 80);
+            this.Logo.Size = new System.Drawing.Size(125, 51);
             this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Logo.TabIndex = 85;
             this.Logo.TabStop = false;
@@ -53,9 +54,9 @@
             // Starten
             // 
             this.Starten.Image = ((System.Drawing.Image)(resources.GetObject("Starten.Image")));
-            this.Starten.Location = new System.Drawing.Point(384, 191);
+            this.Starten.Location = new System.Drawing.Point(369, 201);
             this.Starten.Name = "Starten";
-            this.Starten.Size = new System.Drawing.Size(134, 117);
+            this.Starten.Size = new System.Drawing.Size(237, 182);
             this.Starten.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Starten.TabIndex = 86;
             this.Starten.TabStop = false;
@@ -63,9 +64,9 @@
             // 
             // clear_btn
             // 
-            this.clear_btn.Location = new System.Drawing.Point(384, 332);
+            this.clear_btn.Location = new System.Drawing.Point(430, 437);
             this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(134, 23);
+            this.clear_btn.Size = new System.Drawing.Size(108, 27);
             this.clear_btn.TabIndex = 87;
             this.clear_btn.Text = "Datenbank leeren";
             this.clear_btn.UseVisualStyleBackColor = true;
@@ -94,12 +95,23 @@
             this.pic_de.TabStop = false;
             this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(196, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(612, 65);
+            this.label1.TabIndex = 152;
+            this.label1.Text = "Willkommen beim SCMPlus";
+            // 
             // Begrüßungsseite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(999, 512);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
             this.Controls.Add(this.clear_btn);
@@ -114,6 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -124,5 +137,6 @@
         private System.Windows.Forms.Button clear_btn;
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
+        private System.Windows.Forms.Label label1;
     }
 }

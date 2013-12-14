@@ -1068,5 +1068,18 @@ namespace IBSYS2
         {
             berechneProduktion();
         }
+
+        public void sprachen()
+        {
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
+                button2.Text = Sprachen.EN_BTN_DEFAULT;
+            }
+            else
+            {
+                button2.Text = Sprachen.DE_BTN_DEFAULT;
+            }
+        }
+
     }
 }

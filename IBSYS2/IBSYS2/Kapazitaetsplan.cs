@@ -23,6 +23,7 @@ namespace IBSYS2
         {
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
+            setValues();
             if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();

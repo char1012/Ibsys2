@@ -146,7 +146,14 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -584,9 +591,9 @@ namespace IBSYS2
             berechneProduktion();
         }
 
-        public void sprachen(String sprache)
+        public void sprachen()
         {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -652,14 +659,16 @@ namespace IBSYS2
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
-            sprachen(sprache);
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
-            sprachen(sprache);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)

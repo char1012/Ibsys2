@@ -24,20 +24,17 @@ namespace IBSYS2
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            String sprache = "de";
-            if (sprache == "de")
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
             {
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.infoP, Sprachen.DE_INFOP);
-                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
-                ToolTipE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
             }
             else
             {
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.infoP, Sprachen.EN_INFOP);
-                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
-                ToolTipE.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
             }
             textfeldSperren();
             
@@ -60,9 +57,9 @@ namespace IBSYS2
                 Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
                 int sicherheitsbestandP3 = sicherheitsbestandBerechnen(gLagerbestandP3, "3");
                 Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
-                p1_label.Text = Convert.ToString(sicherheitsbestandP1) + " St.";
-                p2_label.Text = Convert.ToString(sicherheitsbestandP2) + " St.";
-                p3_label.Text = Convert.ToString(sicherheitsbestandP3) + " St.";
+                //p1_label.Text = Convert.ToString(sicherheitsbestandP1) + " St.";
+                //p2_label.Text = Convert.ToString(sicherheitsbestandP2) + " St.";
+                //p3_label.Text = Convert.ToString(sicherheitsbestandP3) + " St.";
             
                 int gLE26P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
                 E261.Text = Convert.ToString(gLE26P1);
@@ -169,7 +166,14 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -277,7 +281,14 @@ namespace IBSYS2
                 if (String.IsNullOrEmpty(Eingabe_P2.Text))
                 {
                     Eingabe_P2.ForeColor = Color.Red;
-                    Eingabe_P2.Text = "Ausstehend";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        Eingabe_P2.Text = "Ausstehend";
+                    }
+                    else
+                    {
+                        Eingabe_P2.Text = "Outstanding";
+                    }
                 }
                 else
                 {
@@ -290,7 +301,14 @@ namespace IBSYS2
                     catch
                     {
                         Eingabe_P2.ForeColor = Color.Red;
-                        Eingabe_P2.Text = "Gültige Zahl";
+                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                        {
+                            Eingabe_P2.Text = "Gültige Zahl";
+                        }
+                        else
+                        {
+                            Eingabe_P2.Text = "Valid number";
+                        }
                         return;
                     }
             }
@@ -302,7 +320,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(Eingabe_P1.Text))
             {
                 Eingabe_P1.ForeColor = Color.Red;
-                Eingabe_P1.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    Eingabe_P1.Text = "Ausstehend";
+                }
+                else
+                {
+                    Eingabe_P1.Text = "Outstanding";
+                }
             }
             else
             {
@@ -315,7 +340,14 @@ namespace IBSYS2
                 catch
                 {
                     Eingabe_P1.ForeColor = Color.Red;
-                    Eingabe_P1.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        Eingabe_P1.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        Eingabe_P1.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -327,7 +359,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E261.Text))
             {
                 E261.ForeColor = Color.Red;
-                E261.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E261.Text = "Ausstehend";
+                }
+                else
+                {
+                    E261.Text = "Outstanding";
+                }
             }
             else
             {
@@ -340,7 +379,14 @@ namespace IBSYS2
                 catch
                 {
                     E261.ForeColor = Color.Red;
-                    E261.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E261.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E261.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -352,7 +398,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(Eingabe_P3.Text))
             {
                 Eingabe_P3.ForeColor = Color.Red;
-                Eingabe_P3.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    Eingabe_P3.Text = "Ausstehend";
+                }
+                else
+                {
+                    Eingabe_P3.Text = "Outstanding";
+                }
             }
             else
             {
@@ -365,7 +418,14 @@ namespace IBSYS2
                 catch
                 {
                     Eingabe_P3.ForeColor = Color.Red;
-                    Eingabe_P3.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        Eingabe_P3.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        Eingabe_P3.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -379,7 +439,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E511.Text))
             {
                 E511.ForeColor = Color.Red;
-                E511.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E511.Text = "Ausstehend";
+                }
+                else
+                {
+                    E511.Text = "Outstanding";
+                }
             }
             else
             {
@@ -392,7 +459,14 @@ namespace IBSYS2
                 catch
                 {
                     E511.ForeColor = Color.Red;
-                    E511.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E511.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E511.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -404,7 +478,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E161.Text))
             {
                 E161.ForeColor = Color.Red;
-                E161.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E161.Text = "Ausstehend";
+                }
+                else
+                {
+                    E161.Text = "Outstanding";
+                }
             }
             else
             {
@@ -417,7 +498,14 @@ namespace IBSYS2
                 catch
                 {
                     E161.ForeColor = Color.Red;
-                    E161.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E161.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E161.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -429,7 +517,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E171.Text))
             {
                 E171.ForeColor = Color.Red;
-                E171.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E171.Text = "Ausstehend";
+                }
+                else
+                {
+                    E171.Text = "Outstanding";
+                }
             }
             else
             {
@@ -442,7 +537,14 @@ namespace IBSYS2
                 catch
                 {
                     E171.ForeColor = Color.Red;
-                    E171.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E171.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E171.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -454,7 +556,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E501.Text))
             {
                 E501.ForeColor = Color.Red;
-                E501.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E501.Text = "Ausstehend";
+                }
+                else
+                {
+                    E501.Text = "Outstanding";
+                }
             }
             else
             {
@@ -467,7 +576,14 @@ namespace IBSYS2
                 catch
                 {
                     E501.ForeColor = Color.Red;
-                    E501.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E501.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E501.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -479,7 +595,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E041.Text))
             {
                 E041.ForeColor = Color.Red;
-                E041.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E041.Text = "Ausstehend";
+                }
+                else
+                {
+                    E041.Text = "Outstanding";
+                }
             }
             else
             {
@@ -492,7 +615,14 @@ namespace IBSYS2
                 catch
                 {
                     E041.ForeColor = Color.Red;
-                    E041.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E041.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E041.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -504,7 +634,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E101.Text))
             {
                 E101.ForeColor = Color.Red;
-                E101.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E101.Text = "Ausstehend";
+                }
+                else
+                {
+                    E101.Text = "Outstanding";
+                }
             }
             else
             {
@@ -517,7 +654,14 @@ namespace IBSYS2
                 catch
                 {
                     E101.ForeColor = Color.Red;
-                    E101.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E101.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E101.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -529,7 +673,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E491.Text))
             {
                 E491.ForeColor = Color.Red;
-                E491.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E491.Text = "Ausstehend";
+                }
+                else
+                {
+                    E491.Text = "Outstanding";
+                }
             }
             else
             {
@@ -542,7 +693,14 @@ namespace IBSYS2
                 catch
                 {
                     E491.ForeColor = Color.Red;
-                    E491.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E491.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E491.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -554,7 +712,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E071.Text))
             {
                 E071.ForeColor = Color.Red;
-                E071.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E071.Text = "Ausstehend";
+                }
+                else
+                {
+                    E071.Text = "Outstanding";
+                }
             }
             else
             {
@@ -567,7 +732,14 @@ namespace IBSYS2
                 catch
                 {
                     E071.ForeColor = Color.Red;
-                    E071.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E071.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E071.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -579,7 +751,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E131.Text))
             {
                 E131.ForeColor = Color.Red;
-                E131.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E131.Text = "Ausstehend";
+                }
+                else
+                {
+                    E131.Text = "Outstanding";
+                }
             }
             else
             {
@@ -592,7 +771,14 @@ namespace IBSYS2
                 catch
                 {
                     E131.ForeColor = Color.Red;
-                    E131.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E131.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E131.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -604,7 +790,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E181.Text))
             {
                 E181.ForeColor = Color.Red;
-                E181.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E181.Text = "Ausstehend";
+                }
+                else
+                {
+                    E181.Text = "Outstanding";
+                }
             }
             else
             {
@@ -617,7 +810,14 @@ namespace IBSYS2
                 catch
                 {
                     E181.ForeColor = Color.Red;
-                    E181.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E181.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E181.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -629,7 +829,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E262.Text))
             {
                 E262.ForeColor = Color.Red;
-                E262.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E262.Text = "Ausstehend";
+                }
+                else
+                {
+                    E262.Text = "Outstanding";
+                }
             }
             else
             {
@@ -642,7 +849,14 @@ namespace IBSYS2
                 catch
                 {
                     E262.ForeColor = Color.Red;
-                    E262.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E262.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E262.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -654,7 +868,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E562.Text))
             {
                 E562.ForeColor = Color.Red;
-                E562.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E562.Text = "Ausstehend";
+                }
+                else
+                {
+                    E562.Text = "Outstanding";
+                }
             }
             else
             {
@@ -667,7 +888,14 @@ namespace IBSYS2
                 catch
                 {
                     E562.ForeColor = Color.Red;
-                    E562.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E562.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E562.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -679,7 +907,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E162.Text))
             {
                 E162.ForeColor = Color.Red;
-                E162.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E162.Text = "Ausstehend";
+                }
+                else
+                {
+                    E162.Text = "Outstanding";
+                }
             }
             else
             {
@@ -692,7 +927,14 @@ namespace IBSYS2
                 catch
                 {
                     E162.ForeColor = Color.Red;
-                    E162.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E162.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E162.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -704,7 +946,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E172.Text))
             {
                 E172.ForeColor = Color.Red;
-                E172.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E172.Text = "Ausstehend";
+                }
+                else
+                {
+                    E172.Text = "Outstanding";
+                }
             }
             else
             {
@@ -717,7 +966,14 @@ namespace IBSYS2
                 catch
                 {
                     E172.ForeColor = Color.Red;
-                    E172.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E172.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E172.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -729,7 +985,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E552.Text))
             {
                 E552.ForeColor = Color.Red;
-                E552.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E552.Text = "Ausstehend";
+                }
+                else
+                {
+                    E552.Text = "Outstanding";
+                }
             }
             else
             {
@@ -742,7 +1005,14 @@ namespace IBSYS2
                 catch
                 {
                     E552.ForeColor = Color.Red;
-                    E552.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E552.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E552.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -754,7 +1024,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E052.Text))
             {
                 E052.ForeColor = Color.Red;
-                E052.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E052.Text = "Ausstehend";
+                }
+                else
+                {
+                    E052.Text = "Outstanding";
+                }
             }
             else
             {
@@ -767,7 +1044,14 @@ namespace IBSYS2
                 catch
                 {
                     E052.ForeColor = Color.Red;
-                    E052.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E052.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E052.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -779,7 +1063,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E112.Text))
             {
                 E112.ForeColor = Color.Red;
-                E112.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E112.Text = "Ausstehend";
+                }
+                else
+                {
+                    E112.Text = "Outstanding";
+                }
             }
             else
             {
@@ -792,7 +1083,14 @@ namespace IBSYS2
                 catch
                 {
                     E112.ForeColor = Color.Red;
-                    E112.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E112.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E112.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -804,7 +1102,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E542.Text))
             {
                 E542.ForeColor = Color.Red;
-                E542.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E542.Text = "Ausstehend";
+                }
+                else
+                {
+                    E542.Text = "Outstanding";
+                }
             }
             else
             {
@@ -817,7 +1122,14 @@ namespace IBSYS2
                 catch
                 {
                     E542.ForeColor = Color.Red;
-                    E542.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E542.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E542.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -829,7 +1141,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E082.Text))
             {
                 E082.ForeColor = Color.Red;
-                E082.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E082.Text = "Ausstehend";
+                }
+                else
+                {
+                    E082.Text = "Outstanding";
+                }
             }
             else
             {
@@ -842,7 +1161,14 @@ namespace IBSYS2
                 catch
                 {
                     E082.ForeColor = Color.Red;
-                    E082.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E082.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E082.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -854,7 +1180,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E142.Text))
             {
                 E142.ForeColor = Color.Red;
-                E142.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E142.Text = "Ausstehend";
+                }
+                else
+                {
+                    E142.Text = "Outstanding";
+                }
             }
             else
             {
@@ -867,7 +1200,14 @@ namespace IBSYS2
                 catch
                 {
                     E142.ForeColor = Color.Red;
-                    E142.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E142.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E142.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -879,7 +1219,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E192.Text))
             {
                 E192.ForeColor = Color.Red;
-                E192.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E192.Text = "Ausstehend";
+                }
+                else
+                {
+                    E192.Text = "Outstanding";
+                }
             }
             else
             {
@@ -892,7 +1239,14 @@ namespace IBSYS2
                 catch
                 {
                     E192.ForeColor = Color.Red;
-                    E192.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E192.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E192.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -904,7 +1258,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E263.Text))
             {
                 E263.ForeColor = Color.Red;
-                E263.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E263.Text = "Ausstehend";
+                }
+                else
+                {
+                    E263.Text = "Outstanding";
+                }
             }
             else
             {
@@ -917,7 +1278,14 @@ namespace IBSYS2
                 catch
                 {
                     E263.ForeColor = Color.Red;
-                    E263.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E263.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E263.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -929,7 +1297,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E313.Text))
             {
                 E313.ForeColor = Color.Red;
-                E313.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E313.Text = "Ausstehend";
+                }
+                else
+                {
+                    E313.Text = "Outstanding";
+                }
             }
             else
             {
@@ -942,7 +1317,14 @@ namespace IBSYS2
                 catch
                 {
                     E313.ForeColor = Color.Red;
-                    E313.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E313.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E313.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -954,7 +1336,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E163.Text))
             {
                 E163.ForeColor = Color.Red;
-                E163.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E163.Text = "Ausstehend";
+                }
+                else
+                {
+                    E163.Text = "Outstanding";
+                }
             }
             else
             {
@@ -967,7 +1356,14 @@ namespace IBSYS2
                 catch
                 {
                     E163.ForeColor = Color.Red;
-                    E163.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E163.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E163.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -979,7 +1375,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E173.Text))
             {
                 E173.ForeColor = Color.Red;
-                E173.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E173.Text = "Ausstehend";
+                }
+                else
+                {
+                    E173.Text = "Outstanding";
+                }
             }
             else
             {
@@ -992,7 +1395,14 @@ namespace IBSYS2
                 catch
                 {
                     E173.ForeColor = Color.Red;
-                    E173.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E173.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E173.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1004,7 +1414,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E303.Text))
             {
                 E303.ForeColor = Color.Red;
-                E303.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E303.Text = "Ausstehend";
+                }
+                else
+                {
+                    E303.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1017,7 +1434,14 @@ namespace IBSYS2
                 catch
                 {
                     E303.ForeColor = Color.Red;
-                    E303.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E303.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E303.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1029,7 +1453,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E063.Text))
             {
                 E063.ForeColor = Color.Red;
-                E063.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E063.Text = "Ausstehend";
+                }
+                else
+                {
+                    E063.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1042,7 +1473,14 @@ namespace IBSYS2
                 catch
                 {
                     E063.ForeColor = Color.Red;
-                    E063.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E063.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E063.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1054,7 +1492,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E123.Text))
             {
                 E123.ForeColor = Color.Red;
-                E123.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E123.Text = "Ausstehend";
+                }
+                else
+                {
+                    E123.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1067,7 +1512,14 @@ namespace IBSYS2
                 catch
                 {
                     E123.ForeColor = Color.Red;
-                    E123.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E123.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E123.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1079,7 +1531,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E293.Text))
             {
                 E293.ForeColor = Color.Red;
-                E293.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E293.Text = "Ausstehend";
+                }
+                else
+                {
+                    E293.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1092,7 +1551,14 @@ namespace IBSYS2
                 catch
                 {
                     E293.ForeColor = Color.Red;
-                    E293.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E293.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E293.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1104,7 +1570,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E093.Text))
             {
                 E093.ForeColor = Color.Red;
-                E093.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E093.Text = "Ausstehend";
+                }
+                else
+                {
+                    E093.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1117,7 +1590,14 @@ namespace IBSYS2
                 catch
                 {
                     E093.ForeColor = Color.Red;
-                    E093.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E093.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E093.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1129,7 +1609,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E153.Text))
             {
                 E153.ForeColor = Color.Red;
-                E153.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E153.Text = "Ausstehend";
+                }
+                else
+                {
+                    E153.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1142,7 +1629,14 @@ namespace IBSYS2
                 catch
                 {
                     E153.ForeColor = Color.Red;
-                    E153.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E153.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E153.Text = "Valid number";
+                    } 
                     return;
                 }
             }
@@ -1154,7 +1648,14 @@ namespace IBSYS2
             if (String.IsNullOrEmpty(E203.Text))
             {
                 E203.ForeColor = Color.Red;
-                E203.Text = "Ausstehend";
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    E203.Text = "Ausstehend";
+                }
+                else
+                {
+                    E203.Text = "Outstanding";
+                }
             }
             else
             {
@@ -1167,16 +1668,23 @@ namespace IBSYS2
                 catch
                 {
                     E203.ForeColor = Color.Red;
-                    E203.Text = "Gültige Zahl";
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        E203.Text = "Gültige Zahl";
+                    }
+                    else
+                    {
+                        E203.Text = "Valid number";
+                    } 
                     return;
                 }
             }
         }
 
-        public void sprachen(String sprache)
+        public void sprachen()
         {
-            if (sprache != "de")
-            {  
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
                 lbl_Sicherheitsbestand.Text = (Sprachen.EN_LBL_SICHERHEITSBESTAND);
@@ -1201,10 +1709,9 @@ namespace IBSYS2
                 label9.Text = (Sprachen.EN_LABLE9);
 
                 //EN Tooltip
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.infoP, Sprachen.EN_INFOP);
-                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
-                ToolTipE.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
             }
             else
             {
@@ -1232,23 +1739,24 @@ namespace IBSYS2
                 label9.Text = (Sprachen.DE_LABLE9);
 
                 //DE Tooltip
-                System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
-                ToolTipP.SetToolTip(this.infoP, Sprachen.DE_INFOP);
-                System.Windows.Forms.ToolTip ToolTipE = new System.Windows.Forms.ToolTip();
-                ToolTipE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
             }
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
-            sprachen(sprache);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
         }
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
-            sprachen(sprache);
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
         }
 
         private void btn_back_Click(object sender, EventArgs e)

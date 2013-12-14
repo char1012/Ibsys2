@@ -96,6 +96,8 @@ namespace IBSYS2
 
         //ToolTip
         public static String DE_PR_INFO = " ";
+        /*---------Produktion E-Teile----------*/
+        public static String DE_PRE_GB_ETEILE = "Produktion der Eigenprodukte";
 
         /*---------Sicherheitsbestand----------*/
         //Buttons
@@ -212,6 +214,9 @@ namespace IBSYS2
 
         //ToolTip
         public static String EN_PR_INFO = " ";
+        /*---------Produktion E-Teile----------*/
+        public static String EN_PRE_GB_ETEILE = "Production of own products";
+
 
         /*---------Sicherheitsbestand----------*/
         //Buttons

@@ -1074,11 +1074,28 @@ namespace IBSYS2
             if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 button2.Text = Sprachen.EN_BTN_DEFAULT;
+                groupBox1.Text = Sprachen.EN_PRE_GB_ETEILE;
             }
             else
             {
                 button2.Text = Sprachen.DE_BTN_DEFAULT;
+                groupBox1.Text = Sprachen.DE_PRE_GB_ETEILE;
+
             }
+        }
+
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen(); 
         }
 
     }

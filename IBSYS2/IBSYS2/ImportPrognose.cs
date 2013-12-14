@@ -298,7 +298,37 @@ namespace IBSYS2
                     this.Controls.Add(sicherheit);
                 }
             }
+            else
+            {
+                // Uebergabe:
+                // aktuelle Periode (Integer)
+                // 12 Integer fuer die Auftraege
+                // 3 Integer fuer Zusatzauftraege
+                // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
+                int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
+                int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
+                int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
+                int aPP1 = Convert.ToInt32(tb_aktP1.Text);
+                int aPP2 = Convert.ToInt32(textBox2.Text);
+                int aPP3 = Convert.ToInt32(textBox3.Text);
+                int p2P1 = Convert.ToInt32(textBox4.Text);
+                int p2P2 = Convert.ToInt32(textBox5.Text);
+                int p2P3 = Convert.ToInt32(textBox6.Text);
+                int p3P1 = Convert.ToInt32(textBox7.Text);
+                int p3P2 = Convert.ToInt32(textBox8.Text);
+                int p3P3 = Convert.ToInt32(textBox9.Text);
+                int p4P1 = Convert.ToInt32(textBox10.Text);
+                int p4P2 = Convert.ToInt32(textBox11.Text);
+                int p4P3 = Convert.ToInt32(textBox12.Text);
+                int mengeP1 = zLAP1 + aPP1;
+                int mengeP2 = zLAP2 + aPP2;
+                int mengeP3 = zLAP3 + aPP3;
+                this.Controls.Clear();
+                UserControl sicherheit = new Sicherheitsbestand();
+                this.Controls.Add(sicherheit);
+            }
         }
+
 
         private void pic_en_Click(object sender, EventArgs e)
         {

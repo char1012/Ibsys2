@@ -31,9 +31,19 @@ namespace IBSYS2
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             // Beim Benutzer nachfragen, ob er das wirklich moechte
-            DialogResult result = MessageBox.Show("Sind Sie sich sicher, dass Sie die Datenbank leeren möchten?\n"
-                + "Dadurch werden alle importierten Daten unwiderruflich gelöscht.", "Datenbank leeren", MessageBoxButtons.YesNo,
+            DialogResult result;
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
+                result = MessageBox.Show("Sind Sie sich sicher, dass Sie die Datenbank leeren möchten?\n"
+                    + "Dadurch werden alle importierten Daten unwiderruflich gelöscht.", "Datenbank leeren", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            }
+            else
+            {
+                result = MessageBox.Show("Are you sure, that you want to clear the database??\n"
+                + "All the imported data will be deleted.", "Clear database", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            }
 
             // wenn ja, die entsprechenden Tabellen der DB leeren
             if (result == DialogResult.Yes)
@@ -50,7 +60,14 @@ namespace IBSYS2
                 }
                 catch (Exception)
                 {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                    } 
                     myconn.Close();
                     myconn.Open();
                 }
@@ -86,7 +103,15 @@ namespace IBSYS2
 
                 message.Close();
                 this.Enabled = true;
-                MessageBox.Show("Alle importierten Daten wurden gelöscht.");
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    MessageBox.Show("Alle importierten Daten wurden gelöscht.");
+                }
+                else
+                {
+                    MessageBox.Show("All imported data has been cleared.");
+
+                }
             }
         }
 

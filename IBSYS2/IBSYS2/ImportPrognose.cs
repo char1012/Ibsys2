@@ -56,14 +56,14 @@ namespace IBSYS2
         {
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
-           // Kaufteildisposition ktdispo = new Kaufteildisposition();
+            Kaufteildisposition ktdispo = new Kaufteildisposition();
             UserControl p = new Produktion();
             p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();
             //UserControl sicherheit = new Sicherheitsbestand();
-            UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(ergebnis);
+            //UserControl ergebnis = new Ergebnis();
+            this.Controls.Add(ktdispo);
         }
 
         private void button2_Click(object sender, EventArgs e)

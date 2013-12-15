@@ -98,7 +98,7 @@ namespace IBSYS2
             int[,] verbrauch = calculateVerbrauch(produktion);
 
             // berechnen, wie lange das Lager noch reicht
-            // TODO
+            double[,] reichweite = calculateReichweite(bestand, verbrauch);
 
             // Spalte Bestellart fuellen
             // TODO
@@ -281,6 +281,47 @@ namespace IBSYS2
             }
 
             return verbrauch;
+        }
+
+        private double[,] calculateReichweite(int[,] bestand, int[,] verbrauch)
+        {
+            double[,] reichweite = new double[29, 2];
+
+            for (int i = 0; i < bestand.GetLength(0); i++)
+            {
+                reichweite[i, 0] = bestand[i, 0];
+                double teilBestand = bestand[i, 1];
+                double teilReichweite = 0;
+                for (int no = 1; no < verbrauch.GetLength(1); no++)
+                {
+                    if (teilBestand < verbrauch[i, no])
+                    {
+                        teilReichweite = (no - 1) + (teilBestand / verbrauch[i, no]);
+                        break;
+                    }
+                    else if (no == verbrauch.GetLength(1) - 1)
+                    {
+                        // wegen Teil 24 kontrollieren, ob es auch eine 5. Periode reichen wuerde
+                        // Durchschnitt der Perioden errechnen
+                        int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
+                        if ((teilBestand - verbrauch[i, no]) < durchschnitt)
+                        {
+                            teilReichweite = 4;
+                        }
+                        else
+                        {
+                            teilReichweite = 5;
+                        }
+                    }
+                    else
+                    {
+                        teilBestand -= verbrauch[i, no];
+                    }
+                }
+                reichweite[i, 1] = teilReichweite;
+            }
+
+            return reichweite;
         }
 
         private void lukasMethode()

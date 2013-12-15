@@ -27,7 +27,7 @@ namespace IBSYS2
                 Control[] found = this.Controls.Find("M" + teil.ToString(), true);
                 ((TextBox)found[0]).Text = menge.ToString();
             }
-        
+            
         
         }
 
@@ -113,6 +113,47 @@ namespace IBSYS2
             this.Controls.Clear();
             UserControl prod = new Produktion();
             this.Controls.Add(prod);
+        }
+
+        private void Plus7_Click(object sender, EventArgs e)
+        {
+            int[] Feld_nummern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56 };
+            int zahl = Convert.ToInt32(P7.Text);
+            if (Convert.ToInt32(P7.Text) < 30)
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    Control[] found = this.Controls.Find("P" + Feld_nummern[i].ToString(), true);
+                    int InhaltTextbox = Convert.ToInt32(((TextBox)found[0]).Text);
+                    if (InhaltTextbox == zahl + 1)
+                    {
+                        ((TextBox)found[0]).Text = zahl.ToString();
+                    }
+                }
+                P7.Text = (zahl + 1).ToString();
+            }
+            else { int joern1 = 30; } //message
+        }
+
+        private void Minus7_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(P7.Text) > 1)
+            {
+                int[] Feld_nummern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56 };
+                int zahl = Convert.ToInt32(P7.Text);
+
+                for (int i = 0; i < 30; i++)
+                {
+                    Control[] found = this.Controls.Find("P" + Feld_nummern[i].ToString(), true);
+                    int InhaltTextbox = Convert.ToInt32(((TextBox)found[0]).Text);
+                    if (InhaltTextbox == zahl - 1)
+                    {
+                        ((TextBox)found[0]).Text = zahl.ToString();
+                    }
+                }
+                P7.Text = (zahl - 1).ToString();
+            }
+            else { int joern = 1; }//message
         }
     }
 }

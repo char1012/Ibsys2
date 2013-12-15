@@ -786,6 +786,7 @@
             // 
             this.M7.Location = new System.Drawing.Point(54, 42);
             this.M7.Name = "M7";
+            this.M7.ReadOnly = true;
             this.M7.Size = new System.Drawing.Size(41, 20);
             this.M7.TabIndex = 30;
             // 
@@ -793,6 +794,7 @@
             // 
             this.M13.Location = new System.Drawing.Point(54, 65);
             this.M13.Name = "M13";
+            this.M13.ReadOnly = true;
             this.M13.Size = new System.Drawing.Size(41, 20);
             this.M13.TabIndex = 31;
             // 
@@ -800,6 +802,7 @@
             // 
             this.M18.Location = new System.Drawing.Point(54, 88);
             this.M18.Name = "M18";
+            this.M18.ReadOnly = true;
             this.M18.Size = new System.Drawing.Size(41, 20);
             this.M18.TabIndex = 32;
             // 
@@ -807,6 +810,7 @@
             // 
             this.M8.Location = new System.Drawing.Point(54, 112);
             this.M8.Name = "M8";
+            this.M8.ReadOnly = true;
             this.M8.Size = new System.Drawing.Size(41, 20);
             this.M8.TabIndex = 33;
             // 
@@ -814,6 +818,7 @@
             // 
             this.M14.Location = new System.Drawing.Point(54, 135);
             this.M14.Name = "M14";
+            this.M14.ReadOnly = true;
             this.M14.Size = new System.Drawing.Size(41, 20);
             this.M14.TabIndex = 34;
             // 
@@ -821,6 +826,7 @@
             // 
             this.M19.Location = new System.Drawing.Point(54, 157);
             this.M19.Name = "M19";
+            this.M19.ReadOnly = true;
             this.M19.Size = new System.Drawing.Size(41, 20);
             this.M19.TabIndex = 35;
             // 
@@ -828,6 +834,7 @@
             // 
             this.M9.Location = new System.Drawing.Point(54, 180);
             this.M9.Name = "M9";
+            this.M9.ReadOnly = true;
             this.M9.Size = new System.Drawing.Size(41, 20);
             this.M9.TabIndex = 36;
             // 
@@ -835,6 +842,7 @@
             // 
             this.M15.Location = new System.Drawing.Point(54, 202);
             this.M15.Name = "M15";
+            this.M15.ReadOnly = true;
             this.M15.Size = new System.Drawing.Size(41, 20);
             this.M15.TabIndex = 37;
             // 
@@ -842,6 +850,7 @@
             // 
             this.M20.Location = new System.Drawing.Point(54, 224);
             this.M20.Name = "M20";
+            this.M20.ReadOnly = true;
             this.M20.Size = new System.Drawing.Size(41, 20);
             this.M20.TabIndex = 38;
             // 
@@ -849,6 +858,7 @@
             // 
             this.M49.Location = new System.Drawing.Point(54, 246);
             this.M49.Name = "M49";
+            this.M49.ReadOnly = true;
             this.M49.Size = new System.Drawing.Size(41, 20);
             this.M49.TabIndex = 39;
             // 
@@ -856,6 +866,7 @@
             // 
             this.M4.Location = new System.Drawing.Point(367, 42);
             this.M4.Name = "M4";
+            this.M4.ReadOnly = true;
             this.M4.Size = new System.Drawing.Size(41, 20);
             this.M4.TabIndex = 40;
             // 
@@ -863,6 +874,7 @@
             // 
             this.M10.Location = new System.Drawing.Point(367, 65);
             this.M10.Name = "M10";
+            this.M10.ReadOnly = true;
             this.M10.Size = new System.Drawing.Size(41, 20);
             this.M10.TabIndex = 41;
             // 
@@ -870,6 +882,7 @@
             // 
             this.M54.Location = new System.Drawing.Point(367, 88);
             this.M54.Name = "M54";
+            this.M54.ReadOnly = true;
             this.M54.Size = new System.Drawing.Size(41, 20);
             this.M54.TabIndex = 42;
             // 
@@ -877,6 +890,7 @@
             // 
             this.M5.Location = new System.Drawing.Point(367, 112);
             this.M5.Name = "M5";
+            this.M5.ReadOnly = true;
             this.M5.Size = new System.Drawing.Size(41, 20);
             this.M5.TabIndex = 43;
             // 
@@ -884,6 +898,7 @@
             // 
             this.M11.Location = new System.Drawing.Point(367, 135);
             this.M11.Name = "M11";
+            this.M11.ReadOnly = true;
             this.M11.Size = new System.Drawing.Size(41, 20);
             this.M11.TabIndex = 44;
             // 
@@ -891,6 +906,7 @@
             // 
             this.M29.Location = new System.Drawing.Point(367, 157);
             this.M29.Name = "M29";
+            this.M29.ReadOnly = true;
             this.M29.Size = new System.Drawing.Size(41, 20);
             this.M29.TabIndex = 45;
             // 
@@ -898,6 +914,7 @@
             // 
             this.M6.Location = new System.Drawing.Point(367, 180);
             this.M6.Name = "M6";
+            this.M6.ReadOnly = true;
             this.M6.Size = new System.Drawing.Size(41, 20);
             this.M6.TabIndex = 46;
             // 
@@ -905,6 +922,7 @@
             // 
             this.M12.Location = new System.Drawing.Point(367, 202);
             this.M12.Name = "M12";
+            this.M12.ReadOnly = true;
             this.M12.Size = new System.Drawing.Size(41, 20);
             this.M12.TabIndex = 47;
             // 
@@ -912,6 +930,7 @@
             // 
             this.M16.Location = new System.Drawing.Point(367, 224);
             this.M16.Name = "M16";
+            this.M16.ReadOnly = true;
             this.M16.Size = new System.Drawing.Size(41, 20);
             this.M16.TabIndex = 48;
             // 
@@ -919,6 +938,7 @@
             // 
             this.M17.Location = new System.Drawing.Point(367, 246);
             this.M17.Name = "M17";
+            this.M17.ReadOnly = true;
             this.M17.Size = new System.Drawing.Size(41, 20);
             this.M17.TabIndex = 49;
             // 
@@ -926,6 +946,7 @@
             // 
             this.M50.Location = new System.Drawing.Point(682, 42);
             this.M50.Name = "M50";
+            this.M50.ReadOnly = true;
             this.M50.Size = new System.Drawing.Size(41, 20);
             this.M50.TabIndex = 50;
             // 
@@ -933,6 +954,7 @@
             // 
             this.M55.Location = new System.Drawing.Point(682, 65);
             this.M55.Name = "M55";
+            this.M55.ReadOnly = true;
             this.M55.Size = new System.Drawing.Size(41, 20);
             this.M55.TabIndex = 51;
             // 
@@ -940,6 +962,7 @@
             // 
             this.M30.Location = new System.Drawing.Point(682, 88);
             this.M30.Name = "M30";
+            this.M30.ReadOnly = true;
             this.M30.Size = new System.Drawing.Size(41, 20);
             this.M30.TabIndex = 52;
             // 
@@ -947,6 +970,7 @@
             // 
             this.M26.Location = new System.Drawing.Point(682, 112);
             this.M26.Name = "M26";
+            this.M26.ReadOnly = true;
             this.M26.Size = new System.Drawing.Size(41, 20);
             this.M26.TabIndex = 53;
             // 
@@ -954,6 +978,7 @@
             // 
             this.M51.Location = new System.Drawing.Point(682, 135);
             this.M51.Name = "M51";
+            this.M51.ReadOnly = true;
             this.M51.Size = new System.Drawing.Size(41, 20);
             this.M51.TabIndex = 54;
             // 
@@ -961,6 +986,7 @@
             // 
             this.M56.Location = new System.Drawing.Point(682, 157);
             this.M56.Name = "M56";
+            this.M56.ReadOnly = true;
             this.M56.Size = new System.Drawing.Size(41, 20);
             this.M56.TabIndex = 55;
             // 
@@ -968,6 +994,7 @@
             // 
             this.M31.Location = new System.Drawing.Point(682, 180);
             this.M31.Name = "M31";
+            this.M31.ReadOnly = true;
             this.M31.Size = new System.Drawing.Size(41, 20);
             this.M31.TabIndex = 56;
             // 
@@ -975,6 +1002,7 @@
             // 
             this.M1.Location = new System.Drawing.Point(682, 202);
             this.M1.Name = "M1";
+            this.M1.ReadOnly = true;
             this.M1.Size = new System.Drawing.Size(41, 20);
             this.M1.TabIndex = 57;
             // 
@@ -982,6 +1010,7 @@
             // 
             this.M2.Location = new System.Drawing.Point(682, 224);
             this.M2.Name = "M2";
+            this.M2.ReadOnly = true;
             this.M2.Size = new System.Drawing.Size(41, 20);
             this.M2.TabIndex = 58;
             // 
@@ -989,6 +1018,7 @@
             // 
             this.M3.Location = new System.Drawing.Point(682, 246);
             this.M3.Name = "M3";
+            this.M3.ReadOnly = true;
             this.M3.Size = new System.Drawing.Size(41, 20);
             this.M3.TabIndex = 59;
             // 
@@ -996,6 +1026,7 @@
             // 
             this.P7.Location = new System.Drawing.Point(101, 42);
             this.P7.Name = "P7";
+            this.P7.ReadOnly = true;
             this.P7.Size = new System.Drawing.Size(29, 20);
             this.P7.TabIndex = 60;
             this.P7.Text = "1";
@@ -1004,6 +1035,7 @@
             // 
             this.P13.Location = new System.Drawing.Point(101, 65);
             this.P13.Name = "P13";
+            this.P13.ReadOnly = true;
             this.P13.Size = new System.Drawing.Size(29, 20);
             this.P13.TabIndex = 61;
             this.P13.Text = "2";
@@ -1012,6 +1044,7 @@
             // 
             this.P18.Location = new System.Drawing.Point(101, 88);
             this.P18.Name = "P18";
+            this.P18.ReadOnly = true;
             this.P18.Size = new System.Drawing.Size(29, 20);
             this.P18.TabIndex = 62;
             this.P18.Text = "3";
@@ -1020,6 +1053,7 @@
             // 
             this.P8.Location = new System.Drawing.Point(101, 112);
             this.P8.Name = "P8";
+            this.P8.ReadOnly = true;
             this.P8.Size = new System.Drawing.Size(29, 20);
             this.P8.TabIndex = 63;
             this.P8.Text = "4";
@@ -1028,6 +1062,7 @@
             // 
             this.P14.Location = new System.Drawing.Point(101, 135);
             this.P14.Name = "P14";
+            this.P14.ReadOnly = true;
             this.P14.Size = new System.Drawing.Size(29, 20);
             this.P14.TabIndex = 64;
             this.P14.Text = "5";
@@ -1036,6 +1071,7 @@
             // 
             this.P19.Location = new System.Drawing.Point(101, 157);
             this.P19.Name = "P19";
+            this.P19.ReadOnly = true;
             this.P19.Size = new System.Drawing.Size(29, 20);
             this.P19.TabIndex = 65;
             this.P19.Text = "6";
@@ -1044,6 +1080,7 @@
             // 
             this.P9.Location = new System.Drawing.Point(101, 180);
             this.P9.Name = "P9";
+            this.P9.ReadOnly = true;
             this.P9.Size = new System.Drawing.Size(29, 20);
             this.P9.TabIndex = 66;
             this.P9.Text = "7";
@@ -1052,6 +1089,7 @@
             // 
             this.P15.Location = new System.Drawing.Point(101, 202);
             this.P15.Name = "P15";
+            this.P15.ReadOnly = true;
             this.P15.Size = new System.Drawing.Size(29, 20);
             this.P15.TabIndex = 67;
             this.P15.Text = "8";
@@ -1060,6 +1098,7 @@
             // 
             this.P20.Location = new System.Drawing.Point(101, 224);
             this.P20.Name = "P20";
+            this.P20.ReadOnly = true;
             this.P20.Size = new System.Drawing.Size(29, 20);
             this.P20.TabIndex = 68;
             this.P20.Text = "9";
@@ -1068,6 +1107,7 @@
             // 
             this.P49.Location = new System.Drawing.Point(101, 246);
             this.P49.Name = "P49";
+            this.P49.ReadOnly = true;
             this.P49.Size = new System.Drawing.Size(29, 20);
             this.P49.TabIndex = 69;
             this.P49.Text = "10";
@@ -1076,6 +1116,7 @@
             // 
             this.P4.Location = new System.Drawing.Point(414, 42);
             this.P4.Name = "P4";
+            this.P4.ReadOnly = true;
             this.P4.Size = new System.Drawing.Size(29, 20);
             this.P4.TabIndex = 70;
             this.P4.Text = "11";
@@ -1084,6 +1125,7 @@
             // 
             this.P10.Location = new System.Drawing.Point(414, 65);
             this.P10.Name = "P10";
+            this.P10.ReadOnly = true;
             this.P10.Size = new System.Drawing.Size(29, 20);
             this.P10.TabIndex = 71;
             this.P10.Text = "12";
@@ -1092,6 +1134,7 @@
             // 
             this.P54.Location = new System.Drawing.Point(414, 88);
             this.P54.Name = "P54";
+            this.P54.ReadOnly = true;
             this.P54.Size = new System.Drawing.Size(29, 20);
             this.P54.TabIndex = 72;
             this.P54.Text = "13";
@@ -1100,6 +1143,7 @@
             // 
             this.P5.Location = new System.Drawing.Point(414, 112);
             this.P5.Name = "P5";
+            this.P5.ReadOnly = true;
             this.P5.Size = new System.Drawing.Size(29, 20);
             this.P5.TabIndex = 73;
             this.P5.Text = "14";
@@ -1108,6 +1152,7 @@
             // 
             this.P11.Location = new System.Drawing.Point(414, 135);
             this.P11.Name = "P11";
+            this.P11.ReadOnly = true;
             this.P11.Size = new System.Drawing.Size(29, 20);
             this.P11.TabIndex = 74;
             this.P11.Text = "15";
@@ -1116,6 +1161,7 @@
             // 
             this.P29.Location = new System.Drawing.Point(414, 157);
             this.P29.Name = "P29";
+            this.P29.ReadOnly = true;
             this.P29.Size = new System.Drawing.Size(29, 20);
             this.P29.TabIndex = 75;
             this.P29.Text = "16";
@@ -1124,6 +1170,7 @@
             // 
             this.P6.Location = new System.Drawing.Point(414, 180);
             this.P6.Name = "P6";
+            this.P6.ReadOnly = true;
             this.P6.Size = new System.Drawing.Size(29, 20);
             this.P6.TabIndex = 76;
             this.P6.Text = "17";
@@ -1132,6 +1179,7 @@
             // 
             this.P12.Location = new System.Drawing.Point(414, 202);
             this.P12.Name = "P12";
+            this.P12.ReadOnly = true;
             this.P12.Size = new System.Drawing.Size(29, 20);
             this.P12.TabIndex = 77;
             this.P12.Text = "18";
@@ -1140,6 +1188,7 @@
             // 
             this.P16.Location = new System.Drawing.Point(414, 224);
             this.P16.Name = "P16";
+            this.P16.ReadOnly = true;
             this.P16.Size = new System.Drawing.Size(29, 20);
             this.P16.TabIndex = 78;
             this.P16.Text = "19";
@@ -1148,6 +1197,7 @@
             // 
             this.P17.Location = new System.Drawing.Point(414, 246);
             this.P17.Name = "P17";
+            this.P17.ReadOnly = true;
             this.P17.Size = new System.Drawing.Size(29, 20);
             this.P17.TabIndex = 79;
             this.P17.Text = "20";
@@ -1156,6 +1206,7 @@
             // 
             this.P50.Location = new System.Drawing.Point(729, 42);
             this.P50.Name = "P50";
+            this.P50.ReadOnly = true;
             this.P50.Size = new System.Drawing.Size(29, 20);
             this.P50.TabIndex = 80;
             this.P50.Text = "21";
@@ -1164,6 +1215,7 @@
             // 
             this.P55.Location = new System.Drawing.Point(729, 65);
             this.P55.Name = "P55";
+            this.P55.ReadOnly = true;
             this.P55.Size = new System.Drawing.Size(29, 20);
             this.P55.TabIndex = 81;
             this.P55.Text = "22";
@@ -1172,6 +1224,7 @@
             // 
             this.P30.Location = new System.Drawing.Point(729, 88);
             this.P30.Name = "P30";
+            this.P30.ReadOnly = true;
             this.P30.Size = new System.Drawing.Size(29, 20);
             this.P30.TabIndex = 82;
             this.P30.Text = "23";
@@ -1180,6 +1233,7 @@
             // 
             this.P26.Location = new System.Drawing.Point(729, 112);
             this.P26.Name = "P26";
+            this.P26.ReadOnly = true;
             this.P26.Size = new System.Drawing.Size(29, 20);
             this.P26.TabIndex = 83;
             this.P26.Text = "24";
@@ -1188,6 +1242,7 @@
             // 
             this.P51.Location = new System.Drawing.Point(729, 135);
             this.P51.Name = "P51";
+            this.P51.ReadOnly = true;
             this.P51.Size = new System.Drawing.Size(29, 20);
             this.P51.TabIndex = 84;
             this.P51.Text = "25";
@@ -1196,6 +1251,7 @@
             // 
             this.P56.Location = new System.Drawing.Point(729, 157);
             this.P56.Name = "P56";
+            this.P56.ReadOnly = true;
             this.P56.Size = new System.Drawing.Size(29, 20);
             this.P56.TabIndex = 85;
             this.P56.Text = "26";
@@ -1204,6 +1260,7 @@
             // 
             this.P31.Location = new System.Drawing.Point(729, 180);
             this.P31.Name = "P31";
+            this.P31.ReadOnly = true;
             this.P31.Size = new System.Drawing.Size(29, 20);
             this.P31.TabIndex = 86;
             this.P31.Text = "27";
@@ -1212,6 +1269,7 @@
             // 
             this.P1.Location = new System.Drawing.Point(729, 202);
             this.P1.Name = "P1";
+            this.P1.ReadOnly = true;
             this.P1.Size = new System.Drawing.Size(29, 20);
             this.P1.TabIndex = 87;
             this.P1.Text = "28";
@@ -1220,6 +1278,7 @@
             // 
             this.P2.Location = new System.Drawing.Point(729, 224);
             this.P2.Name = "P2";
+            this.P2.ReadOnly = true;
             this.P2.Size = new System.Drawing.Size(29, 20);
             this.P2.TabIndex = 88;
             this.P2.Text = "29";
@@ -1228,6 +1287,7 @@
             // 
             this.P3.Location = new System.Drawing.Point(729, 246);
             this.P3.Name = "P3";
+            this.P3.ReadOnly = true;
             this.P3.Size = new System.Drawing.Size(29, 20);
             this.P3.TabIndex = 89;
             this.P3.Text = "30";
@@ -1294,6 +1354,7 @@
             this.Plus7.TabIndex = 154;
             this.Plus7.Text = "+";
             this.Plus7.UseVisualStyleBackColor = true;
+            this.Plus7.Click += new System.EventHandler(this.Plus7_Click);
             // 
             // Minus7
             // 
@@ -1303,6 +1364,7 @@
             this.Minus7.TabIndex = 155;
             this.Minus7.Text = "-";
             this.Minus7.UseVisualStyleBackColor = true;
+            this.Minus7.Click += new System.EventHandler(this.Minus7_Click);
             // 
             // Minus13
             // 

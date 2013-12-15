@@ -135,12 +135,54 @@ namespace IBSYS2
                     // Spalte optimale Bestellmenge fuellen
                     // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
                     int jahresbedarf = 52 * durchschnitt;
-                    //int optimaleMenge = Convert.ToInt32(Math.Sqrt(200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30));
-                    double optimaleMenge = Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30));
+                    double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
                     this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
 
                     // Spalte Bestellmenge fuellen
-                    // TODO
+                    double bestellmenge = 0;
+
+                    // Diskont-Menge
+                    int diskont = Convert.ToInt32(teildaten[i, 1]);
+
+                    // Lagerwerte zum Vergleich
+                    double lagerMindest = 0;
+                    if (mindestbestellwert >= diskont)
+                    {
+                        lagerMindest = mindestbestellwert * (teildaten[i, 5] / 100 * 90);
+                    }
+                    else
+                    {
+                        lagerMindest = mindestbestellwert * teildaten[i, 5];
+                    }
+                    double lagerOptimal = 0;
+                    if (optimaleMenge >= diskont)
+                    {
+                        lagerOptimal = optimaleMenge * (teildaten[i, 5] / 100 * 90);
+                    }
+                    else
+                    {
+                        lagerOptimal = optimaleMenge * teildaten[i, 5];
+                    }
+                    double lagerDiskont = diskont * (teildaten[i, 5] / 100 * 90);
+
+                    // optimale Bestellmenge außer die Diskontmenge ist hoeher und insgesamt günstiger
+                    if ((diskont > optimaleMenge) && (lagerDiskont ==
+                            Math.Min(Math.Min(lagerMindest, lagerOptimal), lagerDiskont)))
+                    {
+                        bestellmenge = diskont;
+                    }
+                    else
+                    {
+                        bestellmenge = optimaleMenge;
+                    }
+
+                    // die Bestellmenge darf nicht kleiner sein als die Mindestbestellmenge
+                    if (mindestbestellwert > bestellmenge)
+                    {
+                        bestellmenge = mindestbestellwert;
+                    }
+                    
+                    this.Controls.Find("BM" + k.ToString(), true)[0].Text = bestellmenge.ToString();
                 }
             }
 

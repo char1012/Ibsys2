@@ -998,6 +998,7 @@
             this.P7.Name = "P7";
             this.P7.Size = new System.Drawing.Size(29, 20);
             this.P7.TabIndex = 60;
+            this.P7.Text = "1";
             // 
             // P13
             // 
@@ -1005,6 +1006,7 @@
             this.P13.Name = "P13";
             this.P13.Size = new System.Drawing.Size(29, 20);
             this.P13.TabIndex = 61;
+            this.P13.Text = "2";
             // 
             // P18
             // 
@@ -1012,6 +1014,7 @@
             this.P18.Name = "P18";
             this.P18.Size = new System.Drawing.Size(29, 20);
             this.P18.TabIndex = 62;
+            this.P18.Text = "3";
             // 
             // P8
             // 
@@ -1019,6 +1022,7 @@
             this.P8.Name = "P8";
             this.P8.Size = new System.Drawing.Size(29, 20);
             this.P8.TabIndex = 63;
+            this.P8.Text = "4";
             // 
             // P14
             // 
@@ -1026,6 +1030,7 @@
             this.P14.Name = "P14";
             this.P14.Size = new System.Drawing.Size(29, 20);
             this.P14.TabIndex = 64;
+            this.P14.Text = "5";
             // 
             // P19
             // 
@@ -1033,6 +1038,7 @@
             this.P19.Name = "P19";
             this.P19.Size = new System.Drawing.Size(29, 20);
             this.P19.TabIndex = 65;
+            this.P19.Text = "6";
             // 
             // P9
             // 
@@ -1040,6 +1046,7 @@
             this.P9.Name = "P9";
             this.P9.Size = new System.Drawing.Size(29, 20);
             this.P9.TabIndex = 66;
+            this.P9.Text = "7";
             // 
             // P15
             // 
@@ -1047,6 +1054,7 @@
             this.P15.Name = "P15";
             this.P15.Size = new System.Drawing.Size(29, 20);
             this.P15.TabIndex = 67;
+            this.P15.Text = "8";
             // 
             // P20
             // 
@@ -1054,6 +1062,7 @@
             this.P20.Name = "P20";
             this.P20.Size = new System.Drawing.Size(29, 20);
             this.P20.TabIndex = 68;
+            this.P20.Text = "9";
             // 
             // P49
             // 
@@ -1061,6 +1070,7 @@
             this.P49.Name = "P49";
             this.P49.Size = new System.Drawing.Size(29, 20);
             this.P49.TabIndex = 69;
+            this.P49.Text = "10";
             // 
             // P4
             // 
@@ -1068,6 +1078,7 @@
             this.P4.Name = "P4";
             this.P4.Size = new System.Drawing.Size(29, 20);
             this.P4.TabIndex = 70;
+            this.P4.Text = "11";
             // 
             // P10
             // 
@@ -1075,6 +1086,7 @@
             this.P10.Name = "P10";
             this.P10.Size = new System.Drawing.Size(29, 20);
             this.P10.TabIndex = 71;
+            this.P10.Text = "12";
             // 
             // P54
             // 
@@ -1082,6 +1094,7 @@
             this.P54.Name = "P54";
             this.P54.Size = new System.Drawing.Size(29, 20);
             this.P54.TabIndex = 72;
+            this.P54.Text = "13";
             // 
             // P5
             // 
@@ -1089,6 +1102,7 @@
             this.P5.Name = "P5";
             this.P5.Size = new System.Drawing.Size(29, 20);
             this.P5.TabIndex = 73;
+            this.P5.Text = "14";
             // 
             // P11
             // 
@@ -1096,6 +1110,7 @@
             this.P11.Name = "P11";
             this.P11.Size = new System.Drawing.Size(29, 20);
             this.P11.TabIndex = 74;
+            this.P11.Text = "15";
             // 
             // P29
             // 
@@ -1103,6 +1118,7 @@
             this.P29.Name = "P29";
             this.P29.Size = new System.Drawing.Size(29, 20);
             this.P29.TabIndex = 75;
+            this.P29.Text = "16";
             // 
             // P6
             // 
@@ -1110,6 +1126,7 @@
             this.P6.Name = "P6";
             this.P6.Size = new System.Drawing.Size(29, 20);
             this.P6.TabIndex = 76;
+            this.P6.Text = "17";
             // 
             // P12
             // 
@@ -1117,6 +1134,7 @@
             this.P12.Name = "P12";
             this.P12.Size = new System.Drawing.Size(29, 20);
             this.P12.TabIndex = 77;
+            this.P12.Text = "18";
             // 
             // P16
             // 
@@ -1124,6 +1142,7 @@
             this.P16.Name = "P16";
             this.P16.Size = new System.Drawing.Size(29, 20);
             this.P16.TabIndex = 78;
+            this.P16.Text = "19";
             // 
             // P17
             // 
@@ -1131,6 +1150,7 @@
             this.P17.Name = "P17";
             this.P17.Size = new System.Drawing.Size(29, 20);
             this.P17.TabIndex = 79;
+            this.P17.Text = "20";
             // 
             // P50
             // 
@@ -1138,6 +1158,7 @@
             this.P50.Name = "P50";
             this.P50.Size = new System.Drawing.Size(29, 20);
             this.P50.TabIndex = 80;
+            this.P50.Text = "21";
             // 
             // P55
             // 
@@ -1145,6 +1166,7 @@
             this.P55.Name = "P55";
             this.P55.Size = new System.Drawing.Size(29, 20);
             this.P55.TabIndex = 81;
+            this.P55.Text = "22";
             // 
             // P30
             // 
@@ -1152,6 +1174,7 @@
             this.P30.Name = "P30";
             this.P30.Size = new System.Drawing.Size(29, 20);
             this.P30.TabIndex = 82;
+            this.P30.Text = "23";
             // 
             // P26
             // 
@@ -1159,6 +1182,7 @@
             this.P26.Name = "P26";
             this.P26.Size = new System.Drawing.Size(29, 20);
             this.P26.TabIndex = 83;
+            this.P26.Text = "24";
             // 
             // P51
             // 
@@ -1166,6 +1190,7 @@
             this.P51.Name = "P51";
             this.P51.Size = new System.Drawing.Size(29, 20);
             this.P51.TabIndex = 84;
+            this.P51.Text = "25";
             // 
             // P56
             // 
@@ -1173,6 +1198,7 @@
             this.P56.Name = "P56";
             this.P56.Size = new System.Drawing.Size(29, 20);
             this.P56.TabIndex = 85;
+            this.P56.Text = "26";
             // 
             // P31
             // 
@@ -1180,6 +1206,7 @@
             this.P31.Name = "P31";
             this.P31.Size = new System.Drawing.Size(29, 20);
             this.P31.TabIndex = 86;
+            this.P31.Text = "27";
             // 
             // P1
             // 
@@ -1187,6 +1214,7 @@
             this.P1.Name = "P1";
             this.P1.Size = new System.Drawing.Size(29, 20);
             this.P1.TabIndex = 87;
+            this.P1.Text = "28";
             // 
             // P2
             // 
@@ -1194,6 +1222,7 @@
             this.P2.Name = "P2";
             this.P2.Size = new System.Drawing.Size(29, 20);
             this.P2.TabIndex = 88;
+            this.P2.Text = "29";
             // 
             // P3
             // 
@@ -1201,6 +1230,7 @@
             this.P3.Name = "P3";
             this.P3.Size = new System.Drawing.Size(29, 20);
             this.P3.TabIndex = 89;
+            this.P3.Text = "30";
             // 
             // label31
             // 

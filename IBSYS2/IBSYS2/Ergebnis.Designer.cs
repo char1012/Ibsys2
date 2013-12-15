@@ -93,14 +93,14 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             this.back_btn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Lagerwerte = new System.Windows.Forms.GroupBox();
             this.Lageranfangswert = new System.Windows.Forms.Label();
             this.Lagerzwischenwert = new System.Windows.Forms.Label();
             this.Lagerendwert = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.infoP = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -111,14 +111,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
+            this.Lagerwerte.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // End_btn
             // 
             this.End_btn.BackColor = System.Drawing.Color.Lavender;
-            this.End_btn.Location = new System.Drawing.Point(837, 444);
+            this.End_btn.Location = new System.Drawing.Point(862, 446);
             this.End_btn.Name = "End_btn";
             this.End_btn.Size = new System.Drawing.Size(122, 23);
             this.End_btn.TabIndex = 1;
@@ -132,7 +132,7 @@
             this.lbl_Startseite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Startseite.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Startseite.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Startseite.Location = new System.Drawing.Point(15, 59);
+            this.lbl_Startseite.Location = new System.Drawing.Point(16, 60);
             this.lbl_Startseite.Name = "lbl_Startseite";
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 124;
@@ -145,7 +145,7 @@
             this.lbl_Sicherheitsbestand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(115, 59);
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(115, 60);
             this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 131;
@@ -158,7 +158,7 @@
             this.lbl_Produktion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktion.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Produktion.Location = new System.Drawing.Point(273, 59);
+            this.lbl_Produktion.Location = new System.Drawing.Point(272, 60);
             this.lbl_Produktion.Name = "lbl_Produktion";
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 133;
@@ -171,7 +171,7 @@
             this.lbl_Kapazitaetsplan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kapazitaetsplan.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(567, 59);
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(567, 60);
             this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
             this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(110, 19);
             this.lbl_Kapazitaetsplan.TabIndex = 135;
@@ -184,7 +184,7 @@
             this.lbl_Kaufteiledisposition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kaufteiledisposition.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(708, 59);
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(709, 60);
             this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
             this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 137;
@@ -197,7 +197,7 @@
             this.lbl_Ergebnis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F);
             this.lbl_Ergebnis.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Ergebnis.Location = new System.Drawing.Point(918, 59);
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(917, 60);
             this.lbl_Ergebnis.Name = "lbl_Ergebnis";
             this.lbl_Ergebnis.Size = new System.Drawing.Size(67, 19);
             this.lbl_Ergebnis.TabIndex = 139;
@@ -214,7 +214,7 @@
             this.dataGridView2.GridColor = System.Drawing.Color.CornflowerBlue;
             this.dataGridView2.Location = new System.Drawing.Point(17, 24);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(143, 246);
+            this.dataGridView2.Size = new System.Drawing.Size(143, 234);
             this.dataGridView2.TabIndex = 141;
             // 
             // ProduktionTeilenr
@@ -247,7 +247,7 @@
             this.dataGridView3.GridColor = System.Drawing.Color.CornflowerBlue;
             this.dataGridView3.Location = new System.Drawing.Point(14, 24);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(240, 116);
+            this.dataGridView3.Size = new System.Drawing.Size(240, 111);
             this.dataGridView3.TabIndex = 142;
             // 
             // KapazitätArbeitsplatz
@@ -320,7 +320,7 @@
             this.dataGridView4.GridColor = System.Drawing.Color.CornflowerBlue;
             this.dataGridView4.Location = new System.Drawing.Point(18, 24);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(199, 246);
+            this.dataGridView4.Size = new System.Drawing.Size(199, 234);
             this.dataGridView4.TabIndex = 143;
             // 
             // EinkaufTeilenr
@@ -564,7 +564,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(50, 128);
+            this.groupBox2.Location = new System.Drawing.Point(54, 128);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(179, 289);
             this.groupBox2.TabIndex = 145;
@@ -574,7 +574,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dataGridView4);
-            this.groupBox3.Location = new System.Drawing.Point(261, 128);
+            this.groupBox3.Location = new System.Drawing.Point(258, 128);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(237, 289);
             this.groupBox3.TabIndex = 146;
@@ -584,9 +584,9 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(531, 258);
+            this.groupBox4.Location = new System.Drawing.Point(520, 251);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(285, 159);
+            this.groupBox4.Size = new System.Drawing.Size(285, 166);
             this.groupBox4.TabIndex = 147;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Produktionskapazitäten";
@@ -594,7 +594,7 @@
             // pic_en
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(908, 10);
+            this.pic_en.Location = new System.Drawing.Point(921, 10);
             this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
@@ -605,7 +605,7 @@
             // pic_de
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(942, 10);
+            this.pic_de.Location = new System.Drawing.Point(955, 10);
             this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
@@ -616,9 +616,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(7, 40);
+            this.pictureBox5.Location = new System.Drawing.Point(8, 41);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(984, 65);
+            this.pictureBox5.Size = new System.Drawing.Size(980, 65);
             this.pictureBox5.TabIndex = 130;
             this.pictureBox5.TabStop = false;
             // 
@@ -628,7 +628,7 @@
             this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.Black;
-            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(385, 59);
+            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(386, 60);
             this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
             this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
             this.lbl_Produktionsreihenfolge.TabIndex = 150;
@@ -638,7 +638,7 @@
             // back_btn
             // 
             this.back_btn.BackColor = System.Drawing.Color.Lavender;
-            this.back_btn.Location = new System.Drawing.Point(28, 444);
+            this.back_btn.Location = new System.Drawing.Point(20, 446);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(75, 23);
             this.back_btn.TabIndex = 151;
@@ -646,25 +646,25 @@
             this.back_btn.UseVisualStyleBackColor = false;
             this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
-            // groupBox1
+            // Lagerwerte
             // 
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.Lagerendwert);
-            this.groupBox1.Controls.Add(this.Lagerzwischenwert);
-            this.groupBox1.Controls.Add(this.Lageranfangswert);
-            this.groupBox1.Location = new System.Drawing.Point(531, 128);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(182, 109);
-            this.groupBox1.TabIndex = 152;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lagerwerte";
+            this.Lagerwerte.Controls.Add(this.textBox3);
+            this.Lagerwerte.Controls.Add(this.textBox2);
+            this.Lagerwerte.Controls.Add(this.textBox1);
+            this.Lagerwerte.Controls.Add(this.Lagerendwert);
+            this.Lagerwerte.Controls.Add(this.Lagerzwischenwert);
+            this.Lagerwerte.Controls.Add(this.Lageranfangswert);
+            this.Lagerwerte.Location = new System.Drawing.Point(520, 128);
+            this.Lagerwerte.Name = "Lagerwerte";
+            this.Lagerwerte.Size = new System.Drawing.Size(185, 100);
+            this.Lagerwerte.TabIndex = 152;
+            this.Lagerwerte.TabStop = false;
+            this.Lagerwerte.Text = "Lagerwerte";
             // 
             // Lageranfangswert
             // 
             this.Lageranfangswert.AutoSize = true;
-            this.Lageranfangswert.Location = new System.Drawing.Point(15, 27);
+            this.Lageranfangswert.Location = new System.Drawing.Point(15, 24);
             this.Lageranfangswert.Name = "Lageranfangswert";
             this.Lageranfangswert.Size = new System.Drawing.Size(66, 13);
             this.Lageranfangswert.TabIndex = 0;
@@ -673,7 +673,7 @@
             // Lagerzwischenwert
             // 
             this.Lagerzwischenwert.AutoSize = true;
-            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 51);
+            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
             this.Lagerzwischenwert.Name = "Lagerzwischenwert";
             this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
             this.Lagerzwischenwert.TabIndex = 1;
@@ -682,7 +682,7 @@
             // Lagerendwert
             // 
             this.Lagerendwert.AutoSize = true;
-            this.Lagerendwert.Location = new System.Drawing.Point(15, 75);
+            this.Lagerendwert.Location = new System.Drawing.Point(15, 73);
             this.Lagerendwert.Name = "Lagerendwert";
             this.Lagerendwert.Size = new System.Drawing.Size(46, 13);
             this.Lagerendwert.TabIndex = 2;
@@ -690,42 +690,42 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(99, 24);
+            this.textBox1.Location = new System.Drawing.Point(94, 21);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 20);
+            this.textBox1.Size = new System.Drawing.Size(57, 20);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(99, 48);
+            this.textBox2.Location = new System.Drawing.Point(94, 46);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(48, 20);
+            this.textBox2.Size = new System.Drawing.Size(57, 20);
             this.textBox2.TabIndex = 4;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(99, 72);
+            this.textBox3.Location = new System.Drawing.Point(94, 70);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 20);
+            this.textBox3.Size = new System.Drawing.Size(57, 20);
             this.textBox3.TabIndex = 5;
             // 
-            // infoP
+            // pictureBox7
             // 
-            this.infoP.Image = ((System.Drawing.Image)(resources.GetObject("infoP.Image")));
-            this.infoP.Location = new System.Drawing.Point(743, 151);
-            this.infoP.Name = "infoP";
-            this.infoP.Size = new System.Drawing.Size(42, 45);
-            this.infoP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.infoP.TabIndex = 153;
-            this.infoP.TabStop = false;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(736, 151);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(38, 39);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 153;
+            this.pictureBox7.TabStop = false;
             // 
             // Ergebnis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.infoP);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.Lagerwerte);
             this.Controls.Add(this.back_btn);
             this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
@@ -753,9 +753,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.infoP)).EndInit();
+            this.Lagerwerte.ResumeLayout(false);
+            this.Lagerwerte.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,13 +826,13 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
         private System.Windows.Forms.Button back_btn;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox Lagerwerte;
         private System.Windows.Forms.Label Lagerendwert;
         private System.Windows.Forms.Label Lagerzwischenwert;
         private System.Windows.Forms.Label Lageranfangswert;
-        private System.Windows.Forms.PictureBox infoP;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

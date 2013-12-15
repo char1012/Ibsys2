@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Begrüßungsseite));
             this.Logo = new System.Windows.Forms.PictureBox();
             this.Starten = new System.Windows.Forms.PictureBox();
-            this.clear_btn = new System.Windows.Forms.Button();
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,20 +61,10 @@
             this.Starten.TabStop = false;
             this.Starten.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // clear_btn
-            // 
-            this.clear_btn.Location = new System.Drawing.Point(430, 437);
-            this.clear_btn.Name = "clear_btn";
-            this.clear_btn.Size = new System.Drawing.Size(108, 27);
-            this.clear_btn.TabIndex = 87;
-            this.clear_btn.Text = "Datenbank leeren";
-            this.clear_btn.UseVisualStyleBackColor = true;
-            this.clear_btn.Click += new System.EventHandler(this.Clear_btn_Click);
-            // 
             // pic_en
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(908, 10);
+            this.pic_en.Location = new System.Drawing.Point(924, 10);
             this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
@@ -86,7 +75,7 @@
             // pic_de
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(942, 10);
+            this.pic_de.Location = new System.Drawing.Point(958, 10);
             this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
@@ -114,10 +103,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
-            this.Controls.Add(this.clear_btn);
             this.Controls.Add(this.Starten);
             this.Controls.Add(this.Logo);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Begrüßungsseite_FormClosing);
@@ -134,7 +121,6 @@
 
         private System.Windows.Forms.PictureBox Logo;
         private System.Windows.Forms.PictureBox Starten;
-        private System.Windows.Forms.Button clear_btn;
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.Label label1;

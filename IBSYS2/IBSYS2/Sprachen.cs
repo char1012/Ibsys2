@@ -95,7 +95,7 @@ namespace IBSYS2
         public static String DE_PR_GROUPBOX1 = "Produktion planen";
 
         //ToolTip
-        public static String DE_PR_INFO = " ";
+        public static String DE_PR_INFO = "Sie können die hier berechneten Produktionswerte überschreiben. \nUm die Produktion der E-Teile zu überprüfen, klicken Sie auf den Button E-Teile.";
         /*---------Produktion E-Teile----------*/
         public static String DE_PRE_GB_ETEILE = "Produktion der Eigenprodukte";
 

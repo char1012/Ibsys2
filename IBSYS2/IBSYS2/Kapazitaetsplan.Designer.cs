@@ -690,7 +690,7 @@
             // continue_btn
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
-            this.continue_btn.Location = new System.Drawing.Point(887, 442);
+            this.continue_btn.Location = new System.Drawing.Point(912, 451);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(75, 23);
             this.continue_btn.TabIndex = 31;
@@ -704,7 +704,7 @@
             this.lbl_Ergebnis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
             this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Ergebnis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lbl_Ergebnis.Location = new System.Drawing.Point(918, 60);
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(920, 62);
             this.lbl_Ergebnis.Name = "lbl_Ergebnis";
             this.lbl_Ergebnis.Size = new System.Drawing.Size(67, 19);
             this.lbl_Ergebnis.TabIndex = 75;
@@ -716,7 +716,7 @@
             this.lbl_Kaufteiledisposition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.lbl_Kaufteiledisposition.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(712, 60);
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(710, 62);
             this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
             this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 73;
@@ -729,7 +729,7 @@
             this.lbl_Kapazitaetsplan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kapazitaetsplan.Font = new System.Drawing.Font("Corbel", 12F);
             this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(566, 60);
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(568, 63);
             this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
             this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(110, 19);
             this.lbl_Kapazitaetsplan.TabIndex = 71;
@@ -741,7 +741,7 @@
             this.lbl_Produktion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktion.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Produktion.Location = new System.Drawing.Point(273, 60);
+            this.lbl_Produktion.Location = new System.Drawing.Point(274, 63);
             this.lbl_Produktion.Name = "lbl_Produktion";
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 69;
@@ -752,11 +752,11 @@
             // 
             this.lbl_Sicherheitsbestand.AutoSize = true;
             this.lbl_Sicherheitsbestand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
-            this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(118, 61);
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(116, 63);
             this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
-            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(124, 18);
+            this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 67;
             this.lbl_Sicherheitsbestand.Text = "Sicherheitsbestand";
             this.lbl_Sicherheitsbestand.Click += new System.EventHandler(this.lbl_Sicherheitsbestand_Click);
@@ -767,7 +767,7 @@
             this.lbl_Startseite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Startseite.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Startseite.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Startseite.Location = new System.Drawing.Point(15, 60);
+            this.lbl_Startseite.Location = new System.Drawing.Point(15, 63);
             this.lbl_Startseite.Name = "lbl_Startseite";
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 66;
@@ -1030,7 +1030,7 @@
             // back_btn
             // 
             this.back_btn.BackColor = System.Drawing.Color.Lavender;
-            this.back_btn.Location = new System.Drawing.Point(25, 442);
+            this.back_btn.Location = new System.Drawing.Point(19, 451);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(75, 23);
             this.back_btn.TabIndex = 33;
@@ -1041,7 +1041,7 @@
             // pic_en
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(908, 10);
+            this.pic_en.Location = new System.Drawing.Point(924, 10);
             this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
@@ -1052,7 +1052,7 @@
             // pic_de
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(942, 10);
+            this.pic_de.Location = new System.Drawing.Point(959, 10);
             this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
@@ -1064,9 +1064,9 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(5, 39);
+            this.pictureBox5.Location = new System.Drawing.Point(6, 42);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(987, 68);
+            this.pictureBox5.Size = new System.Drawing.Size(987, 65);
             this.pictureBox5.TabIndex = 72;
             this.pictureBox5.TabStop = false;
             // 
@@ -1076,7 +1076,7 @@
             this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.Black;
-            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(385, 60);
+            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(386, 63);
             this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
             this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
             this.lbl_Produktionsreihenfolge.TabIndex = 142;

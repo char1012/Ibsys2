@@ -35,18 +35,24 @@ namespace IBSYS2
             OleDbCommand cmd3 = new OleDbCommand();
             OleDbCommand cmd4 = new OleDbCommand();
             OleDbCommand cmd5 = new OleDbCommand();
+            OleDbCommand cmd6 = new OleDbCommand();
+            OleDbCommand cmd7 = new OleDbCommand();
 
             cmd1.CommandType = CommandType.Text;
             cmd2.CommandType = CommandType.Text;
             cmd3.CommandType = CommandType.Text;
             cmd4.CommandType = CommandType.Text;
             cmd5.CommandType = CommandType.Text;
+            cmd6.CommandType = CommandType.Text;
+            cmd7.CommandType = CommandType.Text;
 
             cmd1.Connection = myconn;
             cmd2.Connection = myconn;
             cmd3.Connection = myconn;
             cmd4.Connection = myconn;
             cmd5.Connection = myconn;
+            cmd6.Connection = myconn;
+            cmd7.Connection = myconn;
 
             OleDbDataReader dbReader;
             OleDbDataReader dbReader1;
@@ -69,17 +75,16 @@ namespace IBSYS2
                 myconn.Open();      
             }
 
-
-            double[,] entnehmen = new double[58,58];
-
-            int[] kteile_ap = new int[200];
-            cmd1.CommandText = @"SELECT Arbeitszeit_Erzeugnis_FK, Anzahl FROM Kaufteil_Arbeitszeit_Erzeugnis;";
+            int komplett = 0;
+            int[,] Warteliste_ohne_Mat = new int[99,2];
+            cmd1.CommandText = @"SELECT Arbeitszeit_Erzeugnis_FK, Anzahl, Kaufteil_Teilenummer_FK FROM Kaufteil_Arbeitszeit_Erzeugnis;";
             dbReader = cmd1.ExecuteReader();
             while (dbReader.Read())
             {
 
                 int K_TNR_FK = Convert.ToInt32(dbReader["Arbeitszeit_Erzeugnis_FK"]);
                 int anz_t = Convert.ToInt32(dbReader["Anzahl"]);
+                int kaufteil = Convert.ToInt32(dbReader["Kaufteil_Teilenummer_FK"]);
                 cmd2.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE ID = " + K_TNR_FK + ";";
 
                     dbReader1 = cmd2.ExecuteReader();
@@ -92,7 +97,7 @@ namespace IBSYS2
                             int erzeugnis = Convert.ToInt32(dbReader1["Erzeugnis_Teilenummer_FK"]);
                             //Alle Plätze ermitteln, an denen das Erzeugnis-Teil durchkommt
                             int menge = 0;
-                            cmd3.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis where Erzeugnis_Teilenummer_FK = " + erzeugnis + ";";
+                            cmd3.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis where Erzeugnis_Teilenummer_FK = " + erzeugnis + " AND Reihenfolge <>" + 1 + ";";
 
                             OleDbDataReader dbReader2 = cmd3.ExecuteReader();
                             while (dbReader2.Read())
@@ -100,7 +105,7 @@ namespace IBSYS2
                                 int erzeugnis_teil = Convert.ToInt32(dbReader2["Erzeugnis_Teilenummer_FK"]);
                                 int arbeitsplatz_fk = Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]);
                                 //Suche in Warteliste des jeweiligen Arbeitsplatzes, ob Erzeugnis vorhanden
-                                cmd4.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Warteliste_Arbeitsplatz where Arbeitsplatz_FK = " + arbeitsplatz_fk + ";";
+                                cmd4.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Warteliste_Arbeitsplatz where Teilenummer_FK = " + erzeugnis_teil + " AND Arbeitsplatz_FK =" + arbeitsplatz_fk +";";
                                 OleDbDataReader dbReader3 = cmd4.ExecuteReader();
                                 while (dbReader3.Read())
                                 {
@@ -108,7 +113,6 @@ namespace IBSYS2
                                     try
                                     {
                                         menge += Convert.ToInt32(dbReader3["Menge"]);
-                                        MessageBox.Show("Warteliste_Arbeitsplatz für Arbeitsplatz_FK: " + arbeitsplatz_fk + ", Menge: " + menge);
                                     }
                                     catch(Exception)
                                     {
@@ -117,14 +121,13 @@ namespace IBSYS2
                                 }
                                 dbReader3.Close();
                                 //Suche in Bearbeitung nach den Teilen + eventuelle Addition zur Menge aus Warteliste_Arbeitsplatz
-                                cmd5.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Bearbeitung where Arbeitsplatz_FK = " + arbeitsplatz_fk + ";";
+                                cmd5.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Bearbeitung where Teilenummer_FK = " + erzeugnis_teil + "and Arbeitsplatz_FK =" + arbeitsplatz_fk + ";";
                                 OleDbDataReader dbReader4 = cmd5.ExecuteReader();
                                 while (dbReader4.Read())
                                 {
                                     try
                                     {
                                         menge += Convert.ToInt32(dbReader4["Menge"]);
-                                        MessageBox.Show("Bearbeitung für Arbeitsplatz_FK: " + arbeitsplatz_fk + ", Menge: " + menge);
 
                                     }
                                     catch (Exception)
@@ -133,23 +136,53 @@ namespace IBSYS2
                                     }
                                 }
                                 dbReader4.Close();
-
-                                MessageBox.Show("Menge des Teils: " + erzeugnis_teil + "  :" + menge);
-                                //Zugriff auf Anzahl in Kaufteil_Arbeitszeit_Erzeugnis für  die Multiplikation mit der Menge zur Ermittlung des Gesamtbedarfs
                             }
                             dbReader2.Close();
-                            int komplett = menge * anz_t;
-                            MessageBox.Show("Komplette Menge ist: " + komplett);
+                            komplett = menge * anz_t;
+                            menge = 0;
                         }
-                }
-                dbReader1.Close();
+
+                    }
+                    int a = 0;
+                    if (komplett > 0)
+                    {
+                        Warteliste_ohne_Mat[a, 0] = kaufteil;
+                        Warteliste_ohne_Mat[a, 1] = komplett;
+                        MessageBox.Show("Kautteil: " + Warteliste_ohne_Mat[a, 0] + " Menge: " + Warteliste_ohne_Mat[a, 1]);
+                    }
+                    a++;
+                    komplett = 0;
+                    dbReader1.Close();
             }
             dbReader.Close();
 
+            /*
+            cmd6.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Teilenummer_FK = " + erzeugnis_teil + ";";
+            OleDbDataReader dbReader5 = cmd4.ExecuteReader();
+            while (dbReader5.Read())
+            {
+                //Sichern der Ergebnisse
+                try
+                {
+                    int materialWarteliste = Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]);
+                    int mengeWarteliste = Convert.ToInt32(dbReader["Menge"]);
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            dbReader5.Close();
+            */
+
+            // Muss übergeben werden
             int[,] Prognosen = { {90,190,160},{160,160,160},{160,160,160},{150,150,200}};
+            //Die Verwendung der Teile, fix
             int[,] Verwendung = { {1,0,0}, {0,1,0}, {0,0,1}, {7,7,7 }, { 4,4,4 }, { 2,2,2 }, {4,5,6}, {3,3,3}, {0,0,2}, {0,0,72}, {4,4,4}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {1,1,1}, {2,2,2}, {1,1,1}, {3,3,3}, {1,1,1}, {1,1,1}, {1,1,1}, {2,2,2}, {2,0,0}, {72,0,0}, {0,2,0}, {0,72,0}, {2,2,2} };
             double[,] mengeProdukte = new double[29,29];
 
+            //Lieferfrist und Lieferabweichung, fix
             double[] lieferfrist = new double[] {1.8, 1.7, 1.2, 3.2, 0.9, 0.9, 1.7, 2.1, 1.9, 1.6, 2.2, 1.2, 1.5, 1.7, 1.5, 1.7, 0.9, 1.2, 2.0, 1.0, 1.7, 0.9, 1.1, 1.0, 1.6, 1.6, 1.7, 1.6, 0.7};
             double[] abweichung = new double[] {0.4, 0.4, 0.2, 0.3, 0.2, 0.2, 0.4, 0.5, 0.5, 0.3, 0.4, 0.1, 0.3, 0.4, 0.3, 0.2, 0.2, 0.3, 0.5, 0.2, 0.3, 0.3, 0.1, 0.2, 0.4, 0.2, 0.3, 0.5, 0.2};
             
@@ -595,6 +628,46 @@ namespace IBSYS2
             if (B38.Text != "") M38.Text = "" + minMenge[27];
             if (B39.Text != "") M39.Text = "" + minMenge[28];
 
+      
+        // Dicountmenge
+        int iks = 0;
+        int[] discountmenge = new int[29];
+        cmd7.CommandText = @"SELECT Teilenummer, Diskontmenge FROM Teil where Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+        OleDbDataReader dbReader6 = cmd7.ExecuteReader();
+        while (dbReader6.Read())
+        {
+            discountmenge[iks] = Convert.ToInt32(dbReader6["Diskontmenge"]);
+            iks++;
+        }
+        D1.Text = "" + discountmenge[0];
+        D2.Text = "" + discountmenge[1];
+        D3.Text = "" + discountmenge[2];
+        D4.Text = "" + discountmenge[3];
+        D5.Text = "" + discountmenge[4];
+        D6.Text = "" + discountmenge[5];
+        D7.Text = "" + discountmenge[6];
+        D8.Text = "" + discountmenge[7];
+        D9.Text = "" + discountmenge[8];
+        D10.Text = "" + discountmenge[9];
+        D11.Text = "" + discountmenge[10];
+        D12.Text = "" + discountmenge[11];
+        D13.Text = "" + discountmenge[12];
+        D14.Text = "" + discountmenge[13];
+        D15.Text = "" + discountmenge[14];
+        D16.Text = "" + discountmenge[15];
+        D17.Text = "" + discountmenge[16];
+        D18.Text = "" + discountmenge[17];
+        D19.Text = "" + discountmenge[18];
+        D20.Text = "" + discountmenge[19];
+        D21.Text = "" + discountmenge[20];
+        D22.Text = "" + discountmenge[21];
+        D23.Text = "" + discountmenge[22];
+        D24.Text = "" + discountmenge[23];
+        D25.Text = "" + discountmenge[24];
+        D26.Text = "" + discountmenge[25];
+        D27.Text = "" + discountmenge[26];
+        D28.Text = "" + discountmenge[27];
+        D29.Text = "" + discountmenge[28];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -659,15 +732,16 @@ namespace IBSYS2
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
-
+                
                 //EN Labels
+                /*
                 lbl_menge1.Text = (Sprachen.EN_LBL_KD_MENGE);
                 lbl_menge2.Text = (Sprachen.EN_LBL_KD_MENGE);
                 lbl_menge3.Text = (Sprachen.EN_LBL_KD_MENGE);
                 lbl_bestellart1.Text = (Sprachen.EN_LBL_KD_BESTELLART);
                 lbl_bestellart2.Text = (Sprachen.EN_LBL_KD_BESTELLART);
                 lbl_bestellart3.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-
+                */
 
                 //EN Tooltip
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
@@ -693,13 +767,14 @@ namespace IBSYS2
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
 
                 //DE Labels
+                /*
                 lbl_menge1.Text = (Sprachen.DE_LBL_KD_MENGE);
                 lbl_menge2.Text = (Sprachen.DE_LBL_KD_MENGE);
                 lbl_menge3.Text = (Sprachen.DE_LBL_KD_MENGE);
                 lbl_bestellart1.Text = (Sprachen.DE_LBL_KD_BESTELLART);
                 lbl_bestellart2.Text = (Sprachen.DE_LBL_KD_BESTELLART);
                 lbl_bestellart3.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-
+                */
 
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -769,6 +844,11 @@ namespace IBSYS2
             this.Controls.Clear();
             UserControl ergebnis = new Ergebnis();
             this.Controls.Add(ergebnis);
+        }
+
+        private void D11_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -125,69 +125,39 @@
             this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
             this.lbl_Startseite = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.back_btn = new System.Windows.Forms.Button();
-            this.pic_en = new System.Windows.Forms.PictureBox();
-            this.pic_de = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
-            this.D1 = new System.Windows.Forms.TextBox();
-            this.D2 = new System.Windows.Forms.TextBox();
-            this.D3 = new System.Windows.Forms.TextBox();
-            this.D4 = new System.Windows.Forms.TextBox();
-            this.D5 = new System.Windows.Forms.TextBox();
-            this.D6 = new System.Windows.Forms.TextBox();
-            this.D7 = new System.Windows.Forms.TextBox();
-            this.D8 = new System.Windows.Forms.TextBox();
-            this.D9 = new System.Windows.Forms.TextBox();
-            this.D10 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.O1 = new System.Windows.Forms.TextBox();
-            this.O2 = new System.Windows.Forms.TextBox();
-            this.O3 = new System.Windows.Forms.TextBox();
-            this.O4 = new System.Windows.Forms.TextBox();
-            this.O5 = new System.Windows.Forms.TextBox();
-            this.O6 = new System.Windows.Forms.TextBox();
-            this.O7 = new System.Windows.Forms.TextBox();
-            this.O8 = new System.Windows.Forms.TextBox();
-            this.O9 = new System.Windows.Forms.TextBox();
-            this.O10 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.BM1 = new System.Windows.Forms.TextBox();
-            this.BM2 = new System.Windows.Forms.TextBox();
-            this.BM3 = new System.Windows.Forms.TextBox();
-            this.BM4 = new System.Windows.Forms.TextBox();
-            this.BM5 = new System.Windows.Forms.TextBox();
-            this.BM6 = new System.Windows.Forms.TextBox();
-            this.BM7 = new System.Windows.Forms.TextBox();
-            this.BM8 = new System.Windows.Forms.TextBox();
-            this.BM9 = new System.Windows.Forms.TextBox();
-            this.BM10 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.D20 = new System.Windows.Forms.TextBox();
-            this.D19 = new System.Windows.Forms.TextBox();
-            this.D18 = new System.Windows.Forms.TextBox();
-            this.D17 = new System.Windows.Forms.TextBox();
-            this.D16 = new System.Windows.Forms.TextBox();
-            this.D15 = new System.Windows.Forms.TextBox();
-            this.D14 = new System.Windows.Forms.TextBox();
-            this.D13 = new System.Windows.Forms.TextBox();
-            this.D12 = new System.Windows.Forms.TextBox();
-            this.D11 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.O20 = new System.Windows.Forms.TextBox();
-            this.O19 = new System.Windows.Forms.TextBox();
-            this.O18 = new System.Windows.Forms.TextBox();
-            this.O17 = new System.Windows.Forms.TextBox();
-            this.O16 = new System.Windows.Forms.TextBox();
-            this.O15 = new System.Windows.Forms.TextBox();
-            this.O14 = new System.Windows.Forms.TextBox();
-            this.O13 = new System.Windows.Forms.TextBox();
-            this.O12 = new System.Windows.Forms.TextBox();
-            this.O11 = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.BM29 = new System.Windows.Forms.TextBox();
+            this.BM28 = new System.Windows.Forms.TextBox();
+            this.BM27 = new System.Windows.Forms.TextBox();
+            this.BM26 = new System.Windows.Forms.TextBox();
+            this.BM25 = new System.Windows.Forms.TextBox();
+            this.BM24 = new System.Windows.Forms.TextBox();
+            this.BM23 = new System.Windows.Forms.TextBox();
+            this.BM22 = new System.Windows.Forms.TextBox();
+            this.BM21 = new System.Windows.Forms.TextBox();
+            this.O29 = new System.Windows.Forms.TextBox();
+            this.O28 = new System.Windows.Forms.TextBox();
+            this.O27 = new System.Windows.Forms.TextBox();
+            this.O26 = new System.Windows.Forms.TextBox();
+            this.O25 = new System.Windows.Forms.TextBox();
+            this.O24 = new System.Windows.Forms.TextBox();
+            this.O23 = new System.Windows.Forms.TextBox();
+            this.O22 = new System.Windows.Forms.TextBox();
+            this.O21 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.D29 = new System.Windows.Forms.TextBox();
+            this.D28 = new System.Windows.Forms.TextBox();
+            this.D27 = new System.Windows.Forms.TextBox();
+            this.D26 = new System.Windows.Forms.TextBox();
+            this.D25 = new System.Windows.Forms.TextBox();
+            this.D24 = new System.Windows.Forms.TextBox();
+            this.D23 = new System.Windows.Forms.TextBox();
+            this.D22 = new System.Windows.Forms.TextBox();
+            this.D21 = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
             this.BM20 = new System.Windows.Forms.TextBox();
             this.BM19 = new System.Windows.Forms.TextBox();
             this.BM18 = new System.Windows.Forms.TextBox();
@@ -199,39 +169,69 @@
             this.BM12 = new System.Windows.Forms.TextBox();
             this.BM11 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.D29 = new System.Windows.Forms.TextBox();
-            this.D28 = new System.Windows.Forms.TextBox();
-            this.D27 = new System.Windows.Forms.TextBox();
-            this.D26 = new System.Windows.Forms.TextBox();
-            this.D25 = new System.Windows.Forms.TextBox();
-            this.D24 = new System.Windows.Forms.TextBox();
-            this.D23 = new System.Windows.Forms.TextBox();
-            this.D22 = new System.Windows.Forms.TextBox();
-            this.D21 = new System.Windows.Forms.TextBox();
-            this.O29 = new System.Windows.Forms.TextBox();
-            this.O28 = new System.Windows.Forms.TextBox();
-            this.O27 = new System.Windows.Forms.TextBox();
-            this.O26 = new System.Windows.Forms.TextBox();
-            this.O25 = new System.Windows.Forms.TextBox();
-            this.O24 = new System.Windows.Forms.TextBox();
-            this.O23 = new System.Windows.Forms.TextBox();
-            this.O22 = new System.Windows.Forms.TextBox();
-            this.O21 = new System.Windows.Forms.TextBox();
-            this.BM29 = new System.Windows.Forms.TextBox();
-            this.BM28 = new System.Windows.Forms.TextBox();
-            this.BM27 = new System.Windows.Forms.TextBox();
-            this.BM26 = new System.Windows.Forms.TextBox();
-            this.BM25 = new System.Windows.Forms.TextBox();
-            this.BM24 = new System.Windows.Forms.TextBox();
-            this.BM23 = new System.Windows.Forms.TextBox();
-            this.BM22 = new System.Windows.Forms.TextBox();
-            this.BM21 = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.O20 = new System.Windows.Forms.TextBox();
+            this.O19 = new System.Windows.Forms.TextBox();
+            this.O18 = new System.Windows.Forms.TextBox();
+            this.O17 = new System.Windows.Forms.TextBox();
+            this.O16 = new System.Windows.Forms.TextBox();
+            this.O15 = new System.Windows.Forms.TextBox();
+            this.O14 = new System.Windows.Forms.TextBox();
+            this.O13 = new System.Windows.Forms.TextBox();
+            this.O12 = new System.Windows.Forms.TextBox();
+            this.O11 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.D20 = new System.Windows.Forms.TextBox();
+            this.D19 = new System.Windows.Forms.TextBox();
+            this.D18 = new System.Windows.Forms.TextBox();
+            this.D17 = new System.Windows.Forms.TextBox();
+            this.D16 = new System.Windows.Forms.TextBox();
+            this.D15 = new System.Windows.Forms.TextBox();
+            this.D14 = new System.Windows.Forms.TextBox();
+            this.D13 = new System.Windows.Forms.TextBox();
+            this.D12 = new System.Windows.Forms.TextBox();
+            this.D11 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.BM10 = new System.Windows.Forms.TextBox();
+            this.BM9 = new System.Windows.Forms.TextBox();
+            this.BM8 = new System.Windows.Forms.TextBox();
+            this.BM7 = new System.Windows.Forms.TextBox();
+            this.BM6 = new System.Windows.Forms.TextBox();
+            this.BM5 = new System.Windows.Forms.TextBox();
+            this.BM4 = new System.Windows.Forms.TextBox();
+            this.BM3 = new System.Windows.Forms.TextBox();
+            this.BM2 = new System.Windows.Forms.TextBox();
+            this.BM1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.O10 = new System.Windows.Forms.TextBox();
+            this.O9 = new System.Windows.Forms.TextBox();
+            this.O8 = new System.Windows.Forms.TextBox();
+            this.O7 = new System.Windows.Forms.TextBox();
+            this.O6 = new System.Windows.Forms.TextBox();
+            this.O5 = new System.Windows.Forms.TextBox();
+            this.O4 = new System.Windows.Forms.TextBox();
+            this.O3 = new System.Windows.Forms.TextBox();
+            this.O2 = new System.Windows.Forms.TextBox();
+            this.O1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.D10 = new System.Windows.Forms.TextBox();
+            this.D9 = new System.Windows.Forms.TextBox();
+            this.D8 = new System.Windows.Forms.TextBox();
+            this.D7 = new System.Windows.Forms.TextBox();
+            this.D6 = new System.Windows.Forms.TextBox();
+            this.D5 = new System.Windows.Forms.TextBox();
+            this.D4 = new System.Windows.Forms.TextBox();
+            this.D3 = new System.Windows.Forms.TextBox();
+            this.D2 = new System.Windows.Forms.TextBox();
+            this.D1 = new System.Windows.Forms.TextBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.back_btn = new System.Windows.Forms.Button();
+            this.pic_en = new System.Windows.Forms.PictureBox();
+            this.pic_de = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
@@ -1097,7 +1097,7 @@
             // continue_btn
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
-            this.continue_btn.Location = new System.Drawing.Point(874, 461);
+            this.continue_btn.Location = new System.Drawing.Point(910, 461);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(75, 23);
             this.continue_btn.TabIndex = 121;
@@ -1111,7 +1111,7 @@
             this.lbl_Ergebnis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(227)))), ((int)(((byte)(243)))));
             this.lbl_Ergebnis.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Ergebnis.ForeColor = System.Drawing.Color.Black;
-            this.lbl_Ergebnis.Location = new System.Drawing.Point(905, 61);
+            this.lbl_Ergebnis.Location = new System.Drawing.Point(918, 61);
             this.lbl_Ergebnis.Name = "lbl_Ergebnis";
             this.lbl_Ergebnis.Size = new System.Drawing.Size(67, 19);
             this.lbl_Ergebnis.TabIndex = 132;
@@ -1124,7 +1124,7 @@
             this.lbl_Kaufteiledisposition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kaufteiledisposition.Font = new System.Drawing.Font("Corbel", 12F);
             this.lbl_Kaufteiledisposition.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(712, 61);
+            this.lbl_Kaufteiledisposition.Location = new System.Drawing.Point(706, 61);
             this.lbl_Kaufteiledisposition.Name = "lbl_Kaufteiledisposition";
             this.lbl_Kaufteiledisposition.Size = new System.Drawing.Size(136, 19);
             this.lbl_Kaufteiledisposition.TabIndex = 130;
@@ -1136,7 +1136,7 @@
             this.lbl_Kapazitaetsplan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Kapazitaetsplan.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Kapazitaetsplan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(571, 61);
+            this.lbl_Kapazitaetsplan.Location = new System.Drawing.Point(567, 61);
             this.lbl_Kapazitaetsplan.Name = "lbl_Kapazitaetsplan";
             this.lbl_Kapazitaetsplan.Size = new System.Drawing.Size(110, 19);
             this.lbl_Kapazitaetsplan.TabIndex = 128;
@@ -1149,7 +1149,7 @@
             this.lbl_Produktion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Produktion.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Produktion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Produktion.Location = new System.Drawing.Point(281, 61);
+            this.lbl_Produktion.Location = new System.Drawing.Point(273, 61);
             this.lbl_Produktion.Name = "lbl_Produktion";
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 126;
@@ -1162,7 +1162,7 @@
             this.lbl_Sicherheitsbestand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Sicherheitsbestand.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Sicherheitsbestand.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(120, 61);
+            this.lbl_Sicherheitsbestand.Location = new System.Drawing.Point(113, 61);
             this.lbl_Sicherheitsbestand.Name = "lbl_Sicherheitsbestand";
             this.lbl_Sicherheitsbestand.Size = new System.Drawing.Size(138, 19);
             this.lbl_Sicherheitsbestand.TabIndex = 124;
@@ -1175,7 +1175,7 @@
             this.lbl_Startseite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
             this.lbl_Startseite.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_Startseite.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_Startseite.Location = new System.Drawing.Point(24, 61);
+            this.lbl_Startseite.Location = new System.Drawing.Point(14, 61);
             this.lbl_Startseite.Name = "lbl_Startseite";
             this.lbl_Startseite.Size = new System.Drawing.Size(75, 19);
             this.lbl_Startseite.TabIndex = 123;
@@ -1383,492 +1383,254 @@
             this.groupBox1.Text = "Kaufteildisposition";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(813, 21);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(38, 39);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 135;
-            this.pictureBox7.TabStop = false;
-            // 
-            // back_btn
-            // 
-            this.back_btn.BackColor = System.Drawing.Color.Lavender;
-            this.back_btn.Location = new System.Drawing.Point(28, 461);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
-            this.back_btn.TabIndex = 83;
-            this.back_btn.Text = "Zurück";
-            this.back_btn.UseVisualStyleBackColor = false;
-            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
-            // 
-            // pic_en
-            // 
-            this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(908, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pic_en.Name = "pic_en";
-            this.pic_en.Size = new System.Drawing.Size(30, 19);
-            this.pic_en.TabIndex = 137;
-            this.pic_en.TabStop = false;
-            this.pic_en.Click += new System.EventHandler(this.pic_en_Click);
-            // 
-            // pic_de
-            // 
-            this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(942, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pic_de.Name = "pic_de";
-            this.pic_de.Size = new System.Drawing.Size(30, 19);
-            this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_de.TabIndex = 136;
-            this.pic_de.TabStop = false;
-            this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 40);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(960, 70);
-            this.pictureBox1.TabIndex = 138;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbl_Produktionsreihenfolge
-            // 
-            this.lbl_Produktionsreihenfolge.AutoSize = true;
-            this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
-            this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.Black;
-            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(389, 61);
-            this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
-            this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
-            this.lbl_Produktionsreihenfolge.TabIndex = 143;
-            this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
-            this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
-            // 
-            // D1
-            // 
-            this.D1.Location = new System.Drawing.Point(33, 54);
-            this.D1.Name = "D1";
-            this.D1.Size = new System.Drawing.Size(37, 22);
-            this.D1.TabIndex = 138;
-            // 
-            // D2
-            // 
-            this.D2.Location = new System.Drawing.Point(33, 81);
-            this.D2.Name = "D2";
-            this.D2.Size = new System.Drawing.Size(37, 22);
-            this.D2.TabIndex = 139;
-            // 
-            // D3
-            // 
-            this.D3.Location = new System.Drawing.Point(33, 107);
-            this.D3.Name = "D3";
-            this.D3.Size = new System.Drawing.Size(37, 22);
-            this.D3.TabIndex = 140;
-            // 
-            // D4
-            // 
-            this.D4.Location = new System.Drawing.Point(33, 133);
-            this.D4.Name = "D4";
-            this.D4.Size = new System.Drawing.Size(37, 22);
-            this.D4.TabIndex = 141;
-            // 
-            // D5
-            // 
-            this.D5.Location = new System.Drawing.Point(33, 159);
-            this.D5.Name = "D5";
-            this.D5.Size = new System.Drawing.Size(37, 22);
-            this.D5.TabIndex = 142;
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label37.Location = new System.Drawing.Point(707, 33);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 10);
+            this.label37.TabIndex = 241;
+            this.label37.Text = "Bestellart";
+            // 
+            // label41
             // 
-            // D6
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label41.Location = new System.Drawing.Point(660, 33);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(49, 10);
+            this.label41.TabIndex = 240;
+            this.label41.Text = "Bestellmenge";
             // 
-            this.D6.Location = new System.Drawing.Point(33, 185);
-            this.D6.Name = "D6";
-            this.D6.Size = new System.Drawing.Size(37, 22);
-            this.D6.TabIndex = 143;
+            // label42
             // 
-            // D7
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label42.Location = new System.Drawing.Point(618, 33);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(44, 10);
+            this.label42.TabIndex = 239;
+            this.label42.Text = "Opt. Menge";
             // 
-            this.D7.Location = new System.Drawing.Point(33, 210);
-            this.D7.Name = "D7";
-            this.D7.Size = new System.Drawing.Size(37, 22);
-            this.D7.TabIndex = 144;
+            // label43
             // 
-            // D8
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label43.Location = new System.Drawing.Point(575, 33);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(45, 10);
+            this.label43.TabIndex = 238;
+            this.label43.Text = "Min. Menge";
             // 
-            this.D8.Location = new System.Drawing.Point(33, 236);
-            this.D8.Name = "D8";
-            this.D8.Size = new System.Drawing.Size(37, 22);
-            this.D8.TabIndex = 145;
+            // BM29
             // 
-            // D9
+            this.BM29.Location = new System.Drawing.Point(662, 256);
+            this.BM29.Name = "BM29";
+            this.BM29.Size = new System.Drawing.Size(38, 22);
+            this.BM29.TabIndex = 237;
             // 
-            this.D9.Location = new System.Drawing.Point(33, 262);
-            this.D9.Name = "D9";
-            this.D9.Size = new System.Drawing.Size(37, 22);
-            this.D9.TabIndex = 146;
+            // BM28
             // 
-            // D10
+            this.BM28.Location = new System.Drawing.Point(662, 230);
+            this.BM28.Name = "BM28";
+            this.BM28.Size = new System.Drawing.Size(38, 22);
+            this.BM28.TabIndex = 236;
             // 
-            this.D10.Location = new System.Drawing.Point(33, 288);
-            this.D10.Name = "D10";
-            this.D10.Size = new System.Drawing.Size(37, 22);
-            this.D10.TabIndex = 147;
+            // BM27
             // 
-            // label6
+            this.BM27.Location = new System.Drawing.Point(662, 204);
+            this.BM27.Name = "BM27";
+            this.BM27.Size = new System.Drawing.Size(38, 22);
+            this.BM27.TabIndex = 235;
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label6.Location = new System.Drawing.Point(35, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 10);
-            this.label6.TabIndex = 148;
-            this.label6.Text = "Discount";
+            // BM26
             // 
-            // O1
+            this.BM26.Location = new System.Drawing.Point(662, 179);
+            this.BM26.Name = "BM26";
+            this.BM26.Size = new System.Drawing.Size(38, 22);
+            this.BM26.TabIndex = 234;
             // 
-            this.O1.Location = new System.Drawing.Point(119, 54);
-            this.O1.Name = "O1";
-            this.O1.Size = new System.Drawing.Size(34, 22);
-            this.O1.TabIndex = 149;
+            // BM25
             // 
-            // O2
+            this.BM25.Location = new System.Drawing.Point(662, 153);
+            this.BM25.Name = "BM25";
+            this.BM25.Size = new System.Drawing.Size(38, 22);
+            this.BM25.TabIndex = 233;
             // 
-            this.O2.Location = new System.Drawing.Point(119, 80);
-            this.O2.Name = "O2";
-            this.O2.Size = new System.Drawing.Size(34, 22);
-            this.O2.TabIndex = 150;
+            // BM24
             // 
-            // O3
+            this.BM24.Location = new System.Drawing.Point(662, 127);
+            this.BM24.Name = "BM24";
+            this.BM24.Size = new System.Drawing.Size(38, 22);
+            this.BM24.TabIndex = 232;
             // 
-            this.O3.Location = new System.Drawing.Point(119, 106);
-            this.O3.Name = "O3";
-            this.O3.Size = new System.Drawing.Size(34, 22);
-            this.O3.TabIndex = 151;
+            // BM23
             // 
-            // O4
+            this.BM23.Location = new System.Drawing.Point(662, 101);
+            this.BM23.Name = "BM23";
+            this.BM23.Size = new System.Drawing.Size(38, 22);
+            this.BM23.TabIndex = 231;
             // 
-            this.O4.Location = new System.Drawing.Point(119, 132);
-            this.O4.Name = "O4";
-            this.O4.Size = new System.Drawing.Size(34, 22);
-            this.O4.TabIndex = 152;
+            // BM22
             // 
-            // O5
+            this.BM22.Location = new System.Drawing.Point(662, 75);
+            this.BM22.Name = "BM22";
+            this.BM22.Size = new System.Drawing.Size(38, 22);
+            this.BM22.TabIndex = 230;
             // 
-            this.O5.Location = new System.Drawing.Point(119, 158);
-            this.O5.Name = "O5";
-            this.O5.Size = new System.Drawing.Size(34, 22);
-            this.O5.TabIndex = 153;
+            // BM21
             // 
-            // O6
+            this.BM21.Location = new System.Drawing.Point(662, 49);
+            this.BM21.Name = "BM21";
+            this.BM21.Size = new System.Drawing.Size(38, 22);
+            this.BM21.TabIndex = 229;
             // 
-            this.O6.Location = new System.Drawing.Point(119, 184);
-            this.O6.Name = "O6";
-            this.O6.Size = new System.Drawing.Size(34, 22);
-            this.O6.TabIndex = 154;
+            // O29
             // 
-            // O7
+            this.O29.Location = new System.Drawing.Point(622, 257);
+            this.O29.Name = "O29";
+            this.O29.Size = new System.Drawing.Size(34, 22);
+            this.O29.TabIndex = 226;
             // 
-            this.O7.Location = new System.Drawing.Point(119, 209);
-            this.O7.Name = "O7";
-            this.O7.Size = new System.Drawing.Size(34, 22);
-            this.O7.TabIndex = 155;
+            // O28
             // 
-            // O8
+            this.O28.Location = new System.Drawing.Point(622, 231);
+            this.O28.Name = "O28";
+            this.O28.Size = new System.Drawing.Size(34, 22);
+            this.O28.TabIndex = 225;
             // 
-            this.O8.Location = new System.Drawing.Point(119, 235);
-            this.O8.Name = "O8";
-            this.O8.Size = new System.Drawing.Size(34, 22);
-            this.O8.TabIndex = 156;
+            // O27
             // 
-            // O9
+            this.O27.Location = new System.Drawing.Point(622, 205);
+            this.O27.Name = "O27";
+            this.O27.Size = new System.Drawing.Size(34, 22);
+            this.O27.TabIndex = 224;
             // 
-            this.O9.Location = new System.Drawing.Point(119, 261);
-            this.O9.Name = "O9";
-            this.O9.Size = new System.Drawing.Size(34, 22);
-            this.O9.TabIndex = 157;
+            // O26
             // 
-            // O10
+            this.O26.Location = new System.Drawing.Point(622, 180);
+            this.O26.Name = "O26";
+            this.O26.Size = new System.Drawing.Size(34, 22);
+            this.O26.TabIndex = 223;
             // 
-            this.O10.Location = new System.Drawing.Point(119, 287);
-            this.O10.Name = "O10";
-            this.O10.Size = new System.Drawing.Size(34, 22);
-            this.O10.TabIndex = 158;
+            // O25
             // 
-            // label9
+            this.O25.Location = new System.Drawing.Point(622, 154);
+            this.O25.Name = "O25";
+            this.O25.Size = new System.Drawing.Size(34, 22);
+            this.O25.TabIndex = 222;
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label9.Location = new System.Drawing.Point(115, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 10);
-            this.label9.TabIndex = 159;
-            this.label9.Text = "Opt. Menge";
+            // O24
             // 
-            // label12
+            this.O24.Location = new System.Drawing.Point(622, 128);
+            this.O24.Name = "O24";
+            this.O24.Size = new System.Drawing.Size(34, 22);
+            this.O24.TabIndex = 221;
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label12.Location = new System.Drawing.Point(157, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 10);
-            this.label12.TabIndex = 160;
-            this.label12.Text = "Bestellmenge";
+            // O23
             // 
-            // BM1
+            this.O23.Location = new System.Drawing.Point(622, 102);
+            this.O23.Name = "O23";
+            this.O23.Size = new System.Drawing.Size(34, 22);
+            this.O23.TabIndex = 220;
             // 
-            this.BM1.Location = new System.Drawing.Point(159, 53);
-            this.BM1.Name = "BM1";
-            this.BM1.Size = new System.Drawing.Size(38, 22);
-            this.BM1.TabIndex = 161;
+            // O22
             // 
-            // BM2
+            this.O22.Location = new System.Drawing.Point(622, 76);
+            this.O22.Name = "O22";
+            this.O22.Size = new System.Drawing.Size(34, 22);
+            this.O22.TabIndex = 219;
             // 
-            this.BM2.Location = new System.Drawing.Point(159, 79);
-            this.BM2.Name = "BM2";
-            this.BM2.Size = new System.Drawing.Size(38, 22);
-            this.BM2.TabIndex = 162;
+            // O21
             // 
-            // BM3
+            this.O21.Location = new System.Drawing.Point(622, 50);
+            this.O21.Name = "O21";
+            this.O21.Size = new System.Drawing.Size(34, 22);
+            this.O21.TabIndex = 218;
             // 
-            this.BM3.Location = new System.Drawing.Point(159, 105);
-            this.BM3.Name = "BM3";
-            this.BM3.Size = new System.Drawing.Size(38, 22);
-            this.BM3.TabIndex = 163;
+            // label36
             // 
-            // BM4
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label36.Location = new System.Drawing.Point(538, 33);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(33, 10);
+            this.label36.TabIndex = 217;
+            this.label36.Text = "Discount";
             // 
-            this.BM4.Location = new System.Drawing.Point(159, 131);
-            this.BM4.Name = "BM4";
-            this.BM4.Size = new System.Drawing.Size(38, 22);
-            this.BM4.TabIndex = 164;
+            // D29
             // 
-            // BM5
+            this.D29.Location = new System.Drawing.Point(536, 259);
+            this.D29.Name = "D29";
+            this.D29.Size = new System.Drawing.Size(37, 22);
+            this.D29.TabIndex = 215;
             // 
-            this.BM5.Location = new System.Drawing.Point(159, 157);
-            this.BM5.Name = "BM5";
-            this.BM5.Size = new System.Drawing.Size(38, 22);
-            this.BM5.TabIndex = 165;
+            // D28
             // 
-            // BM6
+            this.D28.Location = new System.Drawing.Point(536, 233);
+            this.D28.Name = "D28";
+            this.D28.Size = new System.Drawing.Size(37, 22);
+            this.D28.TabIndex = 214;
             // 
-            this.BM6.Location = new System.Drawing.Point(159, 183);
-            this.BM6.Name = "BM6";
-            this.BM6.Size = new System.Drawing.Size(38, 22);
-            this.BM6.TabIndex = 166;
+            // D27
             // 
-            // BM7
+            this.D27.Location = new System.Drawing.Point(536, 207);
+            this.D27.Name = "D27";
+            this.D27.Size = new System.Drawing.Size(37, 22);
+            this.D27.TabIndex = 213;
             // 
-            this.BM7.Location = new System.Drawing.Point(159, 208);
-            this.BM7.Name = "BM7";
-            this.BM7.Size = new System.Drawing.Size(38, 22);
-            this.BM7.TabIndex = 167;
+            // D26
             // 
-            // BM8
+            this.D26.Location = new System.Drawing.Point(536, 182);
+            this.D26.Name = "D26";
+            this.D26.Size = new System.Drawing.Size(37, 22);
+            this.D26.TabIndex = 212;
             // 
-            this.BM8.Location = new System.Drawing.Point(159, 234);
-            this.BM8.Name = "BM8";
-            this.BM8.Size = new System.Drawing.Size(38, 22);
-            this.BM8.TabIndex = 168;
+            // D25
             // 
-            // BM9
+            this.D25.Location = new System.Drawing.Point(536, 156);
+            this.D25.Name = "D25";
+            this.D25.Size = new System.Drawing.Size(37, 22);
+            this.D25.TabIndex = 211;
             // 
-            this.BM9.Location = new System.Drawing.Point(159, 260);
-            this.BM9.Name = "BM9";
-            this.BM9.Size = new System.Drawing.Size(38, 22);
-            this.BM9.TabIndex = 169;
+            // D24
             // 
-            // BM10
+            this.D24.Location = new System.Drawing.Point(536, 130);
+            this.D24.Name = "D24";
+            this.D24.Size = new System.Drawing.Size(37, 22);
+            this.D24.TabIndex = 210;
             // 
-            this.BM10.Location = new System.Drawing.Point(159, 287);
-            this.BM10.Name = "BM10";
-            this.BM10.Size = new System.Drawing.Size(38, 22);
-            this.BM10.TabIndex = 170;
+            // D23
             // 
-            // label13
+            this.D23.Location = new System.Drawing.Point(536, 104);
+            this.D23.Name = "D23";
+            this.D23.Size = new System.Drawing.Size(37, 22);
+            this.D23.TabIndex = 209;
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label13.Location = new System.Drawing.Point(203, 36);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 10);
-            this.label13.TabIndex = 171;
-            this.label13.Text = "Bestellart";
+            // D22
             // 
-            // label20
+            this.D22.Location = new System.Drawing.Point(536, 78);
+            this.D22.Name = "D22";
+            this.D22.Size = new System.Drawing.Size(37, 22);
+            this.D22.TabIndex = 208;
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label20.Location = new System.Drawing.Point(291, 34);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(33, 10);
-            this.label20.TabIndex = 182;
-            this.label20.Text = "Discount";
+            // D21
             // 
-            // D20
+            this.D21.Location = new System.Drawing.Point(536, 51);
+            this.D21.Name = "D21";
+            this.D21.Size = new System.Drawing.Size(37, 22);
+            this.D21.TabIndex = 207;
             // 
-            this.D20.Location = new System.Drawing.Point(289, 286);
-            this.D20.Name = "D20";
-            this.D20.Size = new System.Drawing.Size(37, 22);
-            this.D20.TabIndex = 181;
+            // label35
             // 
-            // D19
-            // 
-            this.D19.Location = new System.Drawing.Point(289, 260);
-            this.D19.Name = "D19";
-            this.D19.Size = new System.Drawing.Size(37, 22);
-            this.D19.TabIndex = 180;
-            // 
-            // D18
-            // 
-            this.D18.Location = new System.Drawing.Point(289, 234);
-            this.D18.Name = "D18";
-            this.D18.Size = new System.Drawing.Size(37, 22);
-            this.D18.TabIndex = 179;
-            // 
-            // D17
-            // 
-            this.D17.Location = new System.Drawing.Point(289, 208);
-            this.D17.Name = "D17";
-            this.D17.Size = new System.Drawing.Size(37, 22);
-            this.D17.TabIndex = 178;
-            // 
-            // D16
-            // 
-            this.D16.Location = new System.Drawing.Point(289, 183);
-            this.D16.Name = "D16";
-            this.D16.Size = new System.Drawing.Size(37, 22);
-            this.D16.TabIndex = 177;
-            // 
-            // D15
-            // 
-            this.D15.Location = new System.Drawing.Point(289, 157);
-            this.D15.Name = "D15";
-            this.D15.Size = new System.Drawing.Size(37, 22);
-            this.D15.TabIndex = 176;
-            // 
-            // D14
-            // 
-            this.D14.Location = new System.Drawing.Point(289, 131);
-            this.D14.Name = "D14";
-            this.D14.Size = new System.Drawing.Size(37, 22);
-            this.D14.TabIndex = 175;
-            // 
-            // D13
-            // 
-            this.D13.Location = new System.Drawing.Point(289, 105);
-            this.D13.Name = "D13";
-            this.D13.Size = new System.Drawing.Size(37, 22);
-            this.D13.TabIndex = 174;
-            // 
-            // D12
-            // 
-            this.D12.Location = new System.Drawing.Point(289, 79);
-            this.D12.Name = "D12";
-            this.D12.Size = new System.Drawing.Size(37, 22);
-            this.D12.TabIndex = 173;
-            // 
-            // D11
-            // 
-            this.D11.Location = new System.Drawing.Point(289, 52);
-            this.D11.Name = "D11";
-            this.D11.Size = new System.Drawing.Size(37, 22);
-            this.D11.TabIndex = 172;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label30.Location = new System.Drawing.Point(326, 34);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 10);
-            this.label30.TabIndex = 183;
-            this.label30.Text = "Min. Menge";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label31.Location = new System.Drawing.Point(369, 34);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 10);
-            this.label31.TabIndex = 194;
-            this.label31.Text = "Opt. Menge";
-            // 
-            // O20
-            // 
-            this.O20.Location = new System.Drawing.Point(374, 284);
-            this.O20.Name = "O20";
-            this.O20.Size = new System.Drawing.Size(34, 22);
-            this.O20.TabIndex = 193;
-            // 
-            // O19
-            // 
-            this.O19.Location = new System.Drawing.Point(374, 258);
-            this.O19.Name = "O19";
-            this.O19.Size = new System.Drawing.Size(34, 22);
-            this.O19.TabIndex = 192;
-            // 
-            // O18
-            // 
-            this.O18.Location = new System.Drawing.Point(374, 232);
-            this.O18.Name = "O18";
-            this.O18.Size = new System.Drawing.Size(34, 22);
-            this.O18.TabIndex = 191;
-            // 
-            // O17
-            // 
-            this.O17.Location = new System.Drawing.Point(374, 206);
-            this.O17.Name = "O17";
-            this.O17.Size = new System.Drawing.Size(34, 22);
-            this.O17.TabIndex = 190;
-            // 
-            // O16
-            // 
-            this.O16.Location = new System.Drawing.Point(374, 181);
-            this.O16.Name = "O16";
-            this.O16.Size = new System.Drawing.Size(34, 22);
-            this.O16.TabIndex = 189;
-            // 
-            // O15
-            // 
-            this.O15.Location = new System.Drawing.Point(374, 155);
-            this.O15.Name = "O15";
-            this.O15.Size = new System.Drawing.Size(34, 22);
-            this.O15.TabIndex = 188;
-            // 
-            // O14
-            // 
-            this.O14.Location = new System.Drawing.Point(374, 129);
-            this.O14.Name = "O14";
-            this.O14.Size = new System.Drawing.Size(34, 22);
-            this.O14.TabIndex = 187;
-            // 
-            // O13
-            // 
-            this.O13.Location = new System.Drawing.Point(374, 103);
-            this.O13.Name = "O13";
-            this.O13.Size = new System.Drawing.Size(34, 22);
-            this.O13.TabIndex = 186;
-            // 
-            // O12
-            // 
-            this.O12.Location = new System.Drawing.Point(374, 77);
-            this.O12.Name = "O12";
-            this.O12.Size = new System.Drawing.Size(34, 22);
-            this.O12.TabIndex = 185;
-            // 
-            // O11
-            // 
-            this.O11.Location = new System.Drawing.Point(374, 51);
-            this.O11.Name = "O11";
-            this.O11.Size = new System.Drawing.Size(34, 22);
-            this.O11.TabIndex = 184;
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label35.Location = new System.Drawing.Point(458, 34);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(37, 10);
+            this.label35.TabIndex = 206;
+            this.label35.Text = "Bestellart";
             // 
             // BM20
             // 
@@ -1950,254 +1712,492 @@
             this.label32.TabIndex = 195;
             this.label32.Text = "Bestellmenge";
             // 
-            // label35
+            // label31
             // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label35.Location = new System.Drawing.Point(458, 34);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(37, 10);
-            this.label35.TabIndex = 206;
-            this.label35.Text = "Bestellart";
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label31.Location = new System.Drawing.Point(369, 34);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(44, 10);
+            this.label31.TabIndex = 194;
+            this.label31.Text = "Opt. Menge";
             // 
-            // label36
+            // O20
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label36.Location = new System.Drawing.Point(538, 33);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(33, 10);
-            this.label36.TabIndex = 217;
-            this.label36.Text = "Discount";
+            this.O20.Location = new System.Drawing.Point(374, 284);
+            this.O20.Name = "O20";
+            this.O20.Size = new System.Drawing.Size(34, 22);
+            this.O20.TabIndex = 193;
             // 
-            // D29
+            // O19
             // 
-            this.D29.Location = new System.Drawing.Point(536, 259);
-            this.D29.Name = "D29";
-            this.D29.Size = new System.Drawing.Size(37, 22);
-            this.D29.TabIndex = 215;
+            this.O19.Location = new System.Drawing.Point(374, 258);
+            this.O19.Name = "O19";
+            this.O19.Size = new System.Drawing.Size(34, 22);
+            this.O19.TabIndex = 192;
             // 
-            // D28
+            // O18
             // 
-            this.D28.Location = new System.Drawing.Point(536, 233);
-            this.D28.Name = "D28";
-            this.D28.Size = new System.Drawing.Size(37, 22);
-            this.D28.TabIndex = 214;
+            this.O18.Location = new System.Drawing.Point(374, 232);
+            this.O18.Name = "O18";
+            this.O18.Size = new System.Drawing.Size(34, 22);
+            this.O18.TabIndex = 191;
             // 
-            // D27
+            // O17
             // 
-            this.D27.Location = new System.Drawing.Point(536, 207);
-            this.D27.Name = "D27";
-            this.D27.Size = new System.Drawing.Size(37, 22);
-            this.D27.TabIndex = 213;
+            this.O17.Location = new System.Drawing.Point(374, 206);
+            this.O17.Name = "O17";
+            this.O17.Size = new System.Drawing.Size(34, 22);
+            this.O17.TabIndex = 190;
             // 
-            // D26
+            // O16
             // 
-            this.D26.Location = new System.Drawing.Point(536, 182);
-            this.D26.Name = "D26";
-            this.D26.Size = new System.Drawing.Size(37, 22);
-            this.D26.TabIndex = 212;
+            this.O16.Location = new System.Drawing.Point(374, 181);
+            this.O16.Name = "O16";
+            this.O16.Size = new System.Drawing.Size(34, 22);
+            this.O16.TabIndex = 189;
             // 
-            // D25
+            // O15
             // 
-            this.D25.Location = new System.Drawing.Point(536, 156);
-            this.D25.Name = "D25";
-            this.D25.Size = new System.Drawing.Size(37, 22);
-            this.D25.TabIndex = 211;
+            this.O15.Location = new System.Drawing.Point(374, 155);
+            this.O15.Name = "O15";
+            this.O15.Size = new System.Drawing.Size(34, 22);
+            this.O15.TabIndex = 188;
             // 
-            // D24
+            // O14
             // 
-            this.D24.Location = new System.Drawing.Point(536, 130);
-            this.D24.Name = "D24";
-            this.D24.Size = new System.Drawing.Size(37, 22);
-            this.D24.TabIndex = 210;
+            this.O14.Location = new System.Drawing.Point(374, 129);
+            this.O14.Name = "O14";
+            this.O14.Size = new System.Drawing.Size(34, 22);
+            this.O14.TabIndex = 187;
             // 
-            // D23
+            // O13
             // 
-            this.D23.Location = new System.Drawing.Point(536, 104);
-            this.D23.Name = "D23";
-            this.D23.Size = new System.Drawing.Size(37, 22);
-            this.D23.TabIndex = 209;
+            this.O13.Location = new System.Drawing.Point(374, 103);
+            this.O13.Name = "O13";
+            this.O13.Size = new System.Drawing.Size(34, 22);
+            this.O13.TabIndex = 186;
             // 
-            // D22
+            // O12
             // 
-            this.D22.Location = new System.Drawing.Point(536, 78);
-            this.D22.Name = "D22";
-            this.D22.Size = new System.Drawing.Size(37, 22);
-            this.D22.TabIndex = 208;
+            this.O12.Location = new System.Drawing.Point(374, 77);
+            this.O12.Name = "O12";
+            this.O12.Size = new System.Drawing.Size(34, 22);
+            this.O12.TabIndex = 185;
             // 
-            // D21
+            // O11
             // 
-            this.D21.Location = new System.Drawing.Point(536, 51);
-            this.D21.Name = "D21";
-            this.D21.Size = new System.Drawing.Size(37, 22);
-            this.D21.TabIndex = 207;
+            this.O11.Location = new System.Drawing.Point(374, 51);
+            this.O11.Name = "O11";
+            this.O11.Size = new System.Drawing.Size(34, 22);
+            this.O11.TabIndex = 184;
             // 
-            // O29
+            // label30
             // 
-            this.O29.Location = new System.Drawing.Point(622, 257);
-            this.O29.Name = "O29";
-            this.O29.Size = new System.Drawing.Size(34, 22);
-            this.O29.TabIndex = 226;
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label30.Location = new System.Drawing.Point(326, 34);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(45, 10);
+            this.label30.TabIndex = 183;
+            this.label30.Text = "Min. Menge";
             // 
-            // O28
+            // label20
             // 
-            this.O28.Location = new System.Drawing.Point(622, 231);
-            this.O28.Name = "O28";
-            this.O28.Size = new System.Drawing.Size(34, 22);
-            this.O28.TabIndex = 225;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label20.Location = new System.Drawing.Point(291, 34);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(33, 10);
+            this.label20.TabIndex = 182;
+            this.label20.Text = "Discount";
             // 
-            // O27
+            // D20
             // 
-            this.O27.Location = new System.Drawing.Point(622, 205);
-            this.O27.Name = "O27";
-            this.O27.Size = new System.Drawing.Size(34, 22);
-            this.O27.TabIndex = 224;
+            this.D20.Location = new System.Drawing.Point(289, 286);
+            this.D20.Name = "D20";
+            this.D20.Size = new System.Drawing.Size(37, 22);
+            this.D20.TabIndex = 181;
             // 
-            // O26
+            // D19
             // 
-            this.O26.Location = new System.Drawing.Point(622, 180);
-            this.O26.Name = "O26";
-            this.O26.Size = new System.Drawing.Size(34, 22);
-            this.O26.TabIndex = 223;
+            this.D19.Location = new System.Drawing.Point(289, 260);
+            this.D19.Name = "D19";
+            this.D19.Size = new System.Drawing.Size(37, 22);
+            this.D19.TabIndex = 180;
             // 
-            // O25
+            // D18
             // 
-            this.O25.Location = new System.Drawing.Point(622, 154);
-            this.O25.Name = "O25";
-            this.O25.Size = new System.Drawing.Size(34, 22);
-            this.O25.TabIndex = 222;
+            this.D18.Location = new System.Drawing.Point(289, 234);
+            this.D18.Name = "D18";
+            this.D18.Size = new System.Drawing.Size(37, 22);
+            this.D18.TabIndex = 179;
             // 
-            // O24
+            // D17
             // 
-            this.O24.Location = new System.Drawing.Point(622, 128);
-            this.O24.Name = "O24";
-            this.O24.Size = new System.Drawing.Size(34, 22);
-            this.O24.TabIndex = 221;
+            this.D17.Location = new System.Drawing.Point(289, 208);
+            this.D17.Name = "D17";
+            this.D17.Size = new System.Drawing.Size(37, 22);
+            this.D17.TabIndex = 178;
             // 
-            // O23
+            // D16
             // 
-            this.O23.Location = new System.Drawing.Point(622, 102);
-            this.O23.Name = "O23";
-            this.O23.Size = new System.Drawing.Size(34, 22);
-            this.O23.TabIndex = 220;
+            this.D16.Location = new System.Drawing.Point(289, 183);
+            this.D16.Name = "D16";
+            this.D16.Size = new System.Drawing.Size(37, 22);
+            this.D16.TabIndex = 177;
             // 
-            // O22
+            // D15
             // 
-            this.O22.Location = new System.Drawing.Point(622, 76);
-            this.O22.Name = "O22";
-            this.O22.Size = new System.Drawing.Size(34, 22);
-            this.O22.TabIndex = 219;
+            this.D15.Location = new System.Drawing.Point(289, 157);
+            this.D15.Name = "D15";
+            this.D15.Size = new System.Drawing.Size(37, 22);
+            this.D15.TabIndex = 176;
             // 
-            // O21
+            // D14
             // 
-            this.O21.Location = new System.Drawing.Point(622, 50);
-            this.O21.Name = "O21";
-            this.O21.Size = new System.Drawing.Size(34, 22);
-            this.O21.TabIndex = 218;
+            this.D14.Location = new System.Drawing.Point(289, 131);
+            this.D14.Name = "D14";
+            this.D14.Size = new System.Drawing.Size(37, 22);
+            this.D14.TabIndex = 175;
             // 
-            // BM29
+            // D13
             // 
-            this.BM29.Location = new System.Drawing.Point(662, 256);
-            this.BM29.Name = "BM29";
-            this.BM29.Size = new System.Drawing.Size(38, 22);
-            this.BM29.TabIndex = 237;
+            this.D13.Location = new System.Drawing.Point(289, 105);
+            this.D13.Name = "D13";
+            this.D13.Size = new System.Drawing.Size(37, 22);
+            this.D13.TabIndex = 174;
             // 
-            // BM28
+            // D12
             // 
-            this.BM28.Location = new System.Drawing.Point(662, 230);
-            this.BM28.Name = "BM28";
-            this.BM28.Size = new System.Drawing.Size(38, 22);
-            this.BM28.TabIndex = 236;
+            this.D12.Location = new System.Drawing.Point(289, 79);
+            this.D12.Name = "D12";
+            this.D12.Size = new System.Drawing.Size(37, 22);
+            this.D12.TabIndex = 173;
             // 
-            // BM27
+            // D11
             // 
-            this.BM27.Location = new System.Drawing.Point(662, 204);
-            this.BM27.Name = "BM27";
-            this.BM27.Size = new System.Drawing.Size(38, 22);
-            this.BM27.TabIndex = 235;
+            this.D11.Location = new System.Drawing.Point(289, 52);
+            this.D11.Name = "D11";
+            this.D11.Size = new System.Drawing.Size(37, 22);
+            this.D11.TabIndex = 172;
             // 
-            // BM26
+            // label13
             // 
-            this.BM26.Location = new System.Drawing.Point(662, 179);
-            this.BM26.Name = "BM26";
-            this.BM26.Size = new System.Drawing.Size(38, 22);
-            this.BM26.TabIndex = 234;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label13.Location = new System.Drawing.Point(203, 36);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 10);
+            this.label13.TabIndex = 171;
+            this.label13.Text = "Bestellart";
             // 
-            // BM25
+            // BM10
             // 
-            this.BM25.Location = new System.Drawing.Point(662, 153);
-            this.BM25.Name = "BM25";
-            this.BM25.Size = new System.Drawing.Size(38, 22);
-            this.BM25.TabIndex = 233;
+            this.BM10.Location = new System.Drawing.Point(159, 287);
+            this.BM10.Name = "BM10";
+            this.BM10.Size = new System.Drawing.Size(38, 22);
+            this.BM10.TabIndex = 170;
             // 
-            // BM24
+            // BM9
             // 
-            this.BM24.Location = new System.Drawing.Point(662, 127);
-            this.BM24.Name = "BM24";
-            this.BM24.Size = new System.Drawing.Size(38, 22);
-            this.BM24.TabIndex = 232;
+            this.BM9.Location = new System.Drawing.Point(159, 260);
+            this.BM9.Name = "BM9";
+            this.BM9.Size = new System.Drawing.Size(38, 22);
+            this.BM9.TabIndex = 169;
             // 
-            // BM23
+            // BM8
             // 
-            this.BM23.Location = new System.Drawing.Point(662, 101);
-            this.BM23.Name = "BM23";
-            this.BM23.Size = new System.Drawing.Size(38, 22);
-            this.BM23.TabIndex = 231;
+            this.BM8.Location = new System.Drawing.Point(159, 234);
+            this.BM8.Name = "BM8";
+            this.BM8.Size = new System.Drawing.Size(38, 22);
+            this.BM8.TabIndex = 168;
             // 
-            // BM22
+            // BM7
             // 
-            this.BM22.Location = new System.Drawing.Point(662, 75);
-            this.BM22.Name = "BM22";
-            this.BM22.Size = new System.Drawing.Size(38, 22);
-            this.BM22.TabIndex = 230;
+            this.BM7.Location = new System.Drawing.Point(159, 208);
+            this.BM7.Name = "BM7";
+            this.BM7.Size = new System.Drawing.Size(38, 22);
+            this.BM7.TabIndex = 167;
             // 
-            // BM21
+            // BM6
             // 
-            this.BM21.Location = new System.Drawing.Point(662, 49);
-            this.BM21.Name = "BM21";
-            this.BM21.Size = new System.Drawing.Size(38, 22);
-            this.BM21.TabIndex = 229;
+            this.BM6.Location = new System.Drawing.Point(159, 183);
+            this.BM6.Name = "BM6";
+            this.BM6.Size = new System.Drawing.Size(38, 22);
+            this.BM6.TabIndex = 166;
             // 
-            // label37
+            // BM5
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label37.Location = new System.Drawing.Point(707, 33);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(37, 10);
-            this.label37.TabIndex = 241;
-            this.label37.Text = "Bestellart";
+            this.BM5.Location = new System.Drawing.Point(159, 157);
+            this.BM5.Name = "BM5";
+            this.BM5.Size = new System.Drawing.Size(38, 22);
+            this.BM5.TabIndex = 165;
             // 
-            // label41
+            // BM4
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label41.Location = new System.Drawing.Point(660, 33);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(49, 10);
-            this.label41.TabIndex = 240;
-            this.label41.Text = "Bestellmenge";
+            this.BM4.Location = new System.Drawing.Point(159, 131);
+            this.BM4.Name = "BM4";
+            this.BM4.Size = new System.Drawing.Size(38, 22);
+            this.BM4.TabIndex = 164;
             // 
-            // label42
+            // BM3
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label42.Location = new System.Drawing.Point(618, 33);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(44, 10);
-            this.label42.TabIndex = 239;
-            this.label42.Text = "Opt. Menge";
+            this.BM3.Location = new System.Drawing.Point(159, 105);
+            this.BM3.Name = "BM3";
+            this.BM3.Size = new System.Drawing.Size(38, 22);
+            this.BM3.TabIndex = 163;
             // 
-            // label43
+            // BM2
             // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label43.Location = new System.Drawing.Point(575, 33);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(45, 10);
-            this.label43.TabIndex = 238;
-            this.label43.Text = "Min. Menge";
+            this.BM2.Location = new System.Drawing.Point(159, 79);
+            this.BM2.Name = "BM2";
+            this.BM2.Size = new System.Drawing.Size(38, 22);
+            this.BM2.TabIndex = 162;
+            // 
+            // BM1
+            // 
+            this.BM1.Location = new System.Drawing.Point(159, 53);
+            this.BM1.Name = "BM1";
+            this.BM1.Size = new System.Drawing.Size(38, 22);
+            this.BM1.TabIndex = 161;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label12.Location = new System.Drawing.Point(157, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 10);
+            this.label12.TabIndex = 160;
+            this.label12.Text = "Bestellmenge";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label9.Location = new System.Drawing.Point(115, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 10);
+            this.label9.TabIndex = 159;
+            this.label9.Text = "Opt. Menge";
+            // 
+            // O10
+            // 
+            this.O10.Location = new System.Drawing.Point(119, 287);
+            this.O10.Name = "O10";
+            this.O10.Size = new System.Drawing.Size(34, 22);
+            this.O10.TabIndex = 158;
+            // 
+            // O9
+            // 
+            this.O9.Location = new System.Drawing.Point(119, 261);
+            this.O9.Name = "O9";
+            this.O9.Size = new System.Drawing.Size(34, 22);
+            this.O9.TabIndex = 157;
+            // 
+            // O8
+            // 
+            this.O8.Location = new System.Drawing.Point(119, 235);
+            this.O8.Name = "O8";
+            this.O8.Size = new System.Drawing.Size(34, 22);
+            this.O8.TabIndex = 156;
+            // 
+            // O7
+            // 
+            this.O7.Location = new System.Drawing.Point(119, 209);
+            this.O7.Name = "O7";
+            this.O7.Size = new System.Drawing.Size(34, 22);
+            this.O7.TabIndex = 155;
+            // 
+            // O6
+            // 
+            this.O6.Location = new System.Drawing.Point(119, 184);
+            this.O6.Name = "O6";
+            this.O6.Size = new System.Drawing.Size(34, 22);
+            this.O6.TabIndex = 154;
+            // 
+            // O5
+            // 
+            this.O5.Location = new System.Drawing.Point(119, 158);
+            this.O5.Name = "O5";
+            this.O5.Size = new System.Drawing.Size(34, 22);
+            this.O5.TabIndex = 153;
+            // 
+            // O4
+            // 
+            this.O4.Location = new System.Drawing.Point(119, 132);
+            this.O4.Name = "O4";
+            this.O4.Size = new System.Drawing.Size(34, 22);
+            this.O4.TabIndex = 152;
+            // 
+            // O3
+            // 
+            this.O3.Location = new System.Drawing.Point(119, 106);
+            this.O3.Name = "O3";
+            this.O3.Size = new System.Drawing.Size(34, 22);
+            this.O3.TabIndex = 151;
+            // 
+            // O2
+            // 
+            this.O2.Location = new System.Drawing.Point(119, 80);
+            this.O2.Name = "O2";
+            this.O2.Size = new System.Drawing.Size(34, 22);
+            this.O2.TabIndex = 150;
+            // 
+            // O1
+            // 
+            this.O1.Location = new System.Drawing.Point(119, 54);
+            this.O1.Name = "O1";
+            this.O1.Size = new System.Drawing.Size(34, 22);
+            this.O1.TabIndex = 149;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label6.Location = new System.Drawing.Point(35, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 10);
+            this.label6.TabIndex = 148;
+            this.label6.Text = "Discount";
+            // 
+            // D10
+            // 
+            this.D10.Location = new System.Drawing.Point(33, 288);
+            this.D10.Name = "D10";
+            this.D10.Size = new System.Drawing.Size(37, 22);
+            this.D10.TabIndex = 147;
+            // 
+            // D9
+            // 
+            this.D9.Location = new System.Drawing.Point(33, 262);
+            this.D9.Name = "D9";
+            this.D9.Size = new System.Drawing.Size(37, 22);
+            this.D9.TabIndex = 146;
+            // 
+            // D8
+            // 
+            this.D8.Location = new System.Drawing.Point(33, 236);
+            this.D8.Name = "D8";
+            this.D8.Size = new System.Drawing.Size(37, 22);
+            this.D8.TabIndex = 145;
+            // 
+            // D7
+            // 
+            this.D7.Location = new System.Drawing.Point(33, 210);
+            this.D7.Name = "D7";
+            this.D7.Size = new System.Drawing.Size(37, 22);
+            this.D7.TabIndex = 144;
+            // 
+            // D6
+            // 
+            this.D6.Location = new System.Drawing.Point(33, 185);
+            this.D6.Name = "D6";
+            this.D6.Size = new System.Drawing.Size(37, 22);
+            this.D6.TabIndex = 143;
+            // 
+            // D5
+            // 
+            this.D5.Location = new System.Drawing.Point(33, 159);
+            this.D5.Name = "D5";
+            this.D5.Size = new System.Drawing.Size(37, 22);
+            this.D5.TabIndex = 142;
+            // 
+            // D4
+            // 
+            this.D4.Location = new System.Drawing.Point(33, 133);
+            this.D4.Name = "D4";
+            this.D4.Size = new System.Drawing.Size(37, 22);
+            this.D4.TabIndex = 141;
+            // 
+            // D3
+            // 
+            this.D3.Location = new System.Drawing.Point(33, 107);
+            this.D3.Name = "D3";
+            this.D3.Size = new System.Drawing.Size(37, 22);
+            this.D3.TabIndex = 140;
+            // 
+            // D2
+            // 
+            this.D2.Location = new System.Drawing.Point(33, 81);
+            this.D2.Name = "D2";
+            this.D2.Size = new System.Drawing.Size(37, 22);
+            this.D2.TabIndex = 139;
+            // 
+            // D1
+            // 
+            this.D1.Location = new System.Drawing.Point(33, 54);
+            this.D1.Name = "D1";
+            this.D1.Size = new System.Drawing.Size(37, 22);
+            this.D1.TabIndex = 138;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(813, 21);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(38, 39);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 135;
+            this.pictureBox7.TabStop = false;
+            // 
+            // back_btn
+            // 
+            this.back_btn.BackColor = System.Drawing.Color.Lavender;
+            this.back_btn.Location = new System.Drawing.Point(18, 461);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 83;
+            this.back_btn.Text = "Zurück";
+            this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
+            // pic_en
+            // 
+            this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
+            this.pic_en.Location = new System.Drawing.Point(925, 10);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
+            this.pic_en.Name = "pic_en";
+            this.pic_en.Size = new System.Drawing.Size(30, 19);
+            this.pic_en.TabIndex = 137;
+            this.pic_en.TabStop = false;
+            this.pic_en.Click += new System.EventHandler(this.pic_en_Click);
+            // 
+            // pic_de
+            // 
+            this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
+            this.pic_de.Location = new System.Drawing.Point(959, 10);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
+            this.pic_de.Name = "pic_de";
+            this.pic_de.Size = new System.Drawing.Size(30, 19);
+            this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_de.TabIndex = 136;
+            this.pic_de.TabStop = false;
+            this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 41);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(987, 70);
+            this.pictureBox1.TabIndex = 138;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lbl_Produktionsreihenfolge
+            // 
+            this.lbl_Produktionsreihenfolge.AutoSize = true;
+            this.lbl_Produktionsreihenfolge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(170)))), ((int)(((byte)(220)))));
+            this.lbl_Produktionsreihenfolge.Font = new System.Drawing.Font("Corbel", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Produktionsreihenfolge.ForeColor = System.Drawing.Color.Black;
+            this.lbl_Produktionsreihenfolge.Location = new System.Drawing.Point(385, 61);
+            this.lbl_Produktionsreihenfolge.Name = "lbl_Produktionsreihenfolge";
+            this.lbl_Produktionsreihenfolge.Size = new System.Drawing.Size(167, 19);
+            this.lbl_Produktionsreihenfolge.TabIndex = 143;
+            this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
+            this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
             // 
             // Kaufteildisposition
             // 

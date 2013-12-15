@@ -71,6 +71,11 @@
       <DependentUpon>Begrüßungsseite.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportXMLClass.cs" />
+    <Compile Include="IBSYS_DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IBSYS_DB.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ProcessMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,7 +174,17 @@
     <EmbeddedResource Include="Sicherheitsbestand.resx">
       <DependentUpon>Sicherheitsbestand.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\Kapazitaetsplan.datasource" />
+    <None Include="IBSYS_DB.xsc">
+      <DependentUpon>IBSYS_DB.xsd</DependentUpon>
+    </None>
+    <None Include="IBSYS_DB.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IBSYS_DB.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="IBSYS_DB.xss">
+      <DependentUpon>IBSYS_DB.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +217,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

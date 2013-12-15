@@ -39,6 +39,19 @@ namespace IBSYS2
             sicherheitsbe.AddRange(new int[] { 20, 10, 30,15,15,10,25,19,25,16,20,
                 20,10,30,15,15,10,25,19,25,16,20,20,10,30,15,15,10,25,19,25,16,20});
 
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            {
+                ToolTipEN.RemoveAll();
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
+            }
+            else
+            {
+                ToolTipDE.RemoveAll();
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
+            }
+
             berechneProduktion();
         }
 

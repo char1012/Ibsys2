@@ -20,10 +20,6 @@ namespace IBSYS2
         int produktionp2;
         int produktionp3;
         List<int> sicherheitsbe = new List<int>();
-        List<int> lagerbestand = new List<int>();
-        List<int> bearbeitung = new List<int>();
-        List<int> wartelisteAr = new List<int>();
-        List<int> wartelisteMa = new List<int>();
 
         public Produktion_ETeile(int per, string p1, string p2, string p3, List<int> sicherheitsbestand)
         {
@@ -38,34 +34,6 @@ namespace IBSYS2
             this.sicherheitsbe = sicherheitsbestand;
 
             berechneProduktion();
-        }
-
-        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
-        {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = myconn;
-            try
-            {
-                myconn.Open();
-            }
-            catch (Exception)
-            {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                myconn.Close();
-                myconn.Open();
-            }
-            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
-            OleDbDataReader dr = cmd.ExecuteReader();
-            int laa = 0;
-            while (dr.Read())
-            {
-                laa = Convert.ToInt32(dr[spalte]);
-                return laa;
-            }
-            dr.Close();
-            myconn.Close();
-            return laa;
         }
 
         private void berechneProduktion()
@@ -101,197 +69,618 @@ namespace IBSYS2
             int p15;
             int p20;
 
-            lagerbestand.Add(Daten("26", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("51", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("16", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("17", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("50", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("4", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("10", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("49", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("7", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("13", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("18", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("56", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("55", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("5", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("11", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("54", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("8", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("14", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("19", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("31", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("30", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("6", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("12", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("29", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("9", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("15", "Bestand", "Teilenummer_FK", "Lager", periode));
-            lagerbestand.Add(Daten("20", "Bestand", "Teilenummer_FK", "Lager", periode));
+             #region DB
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = myconn;
 
-            bearbeitung.Add(Daten("26", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("51", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("16", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("17", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("50", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("4", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("10", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("49", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("7", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("13", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("18", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("56", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("55", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("5", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("11", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("54", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("8", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("14", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("19", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("31", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("30", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("6", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("12", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("29", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("9", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("15", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
-            bearbeitung.Add(Daten("20", "Menge", "Teilenummer_FK", "Bearbeitung", periode));
+            try
+            {
+                myconn.Open();
+            }
+            catch (Exception)
+            {
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                }
+                myconn.Close();
+                myconn.Open();
+            } 
+            #endregion
 
-            wartelisteAr.Add(Daten("26", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("51", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("16", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("17", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("50", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("4", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("10", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("49", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("7", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("13", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("18", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("56", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("55", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("5", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("11", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("54", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("8", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("14", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("19", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("31", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("30", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("6", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("12", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("29", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("9", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("15", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
-            wartelisteAr.Add(Daten("20", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode));
+            #region Daten aus DB
+            int a = 0;
+            List<List<int>> lagerbestand = new List<List<int>>();
+            cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
+            OleDbDataReader dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                lagerbestand.Add(new List<int>());
+                lagerbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                lagerbestand[a].Add(Convert.ToInt32(dbReader["Bestand"]));
+                ++a;
+            }
+            dbReader.Close();
 
-            wartelisteMa.Add(Daten("26", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("51", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("16", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("17", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("50", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("4", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("10", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("49", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("7", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("13", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("18", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("56", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("55", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("5", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("11", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("54", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("8", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("14", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("19", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("31", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("30", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("6", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("12", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("29", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("9", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("15", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
-            wartelisteMa.Add(Daten("20", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode));
+            a = 0;
+            List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                warteliste_arbeitsplatz.Add(new List<int>());
+                warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                ++a;
+            }
+            dbReader.Close();
 
-            //Berechnung P1
-            p26 = produktionp1 + sicherheitsbe[0] + sicherheitsbe[11] + sicherheitsbe[22] - lagerbestand[0] - wartelisteAr[0] - wartelisteMa[0] - bearbeitung[0];
-            p51 = produktionp1 + sicherheitsbe[1] - lagerbestand[1] - wartelisteAr[1] - wartelisteMa[1] - bearbeitung[1];
+            a = 0;
+            List<List<int>> warteliste_material = new List<List<int>>();
+            cmd.CommandText = @"SELECT Fehlteil_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                warteliste_material.Add(new List<int>());
+                warteliste_material[a].Add(Convert.ToInt32(dbReader["Fehlteil_Teilenummer_FK"]));
+                warteliste_material[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                ++a;
+            }
+            dbReader.Close();
 
-            p16 = p51 + sicherheitsbe[2] + sicherheitsbe[13] + sicherheitsbe[24] - lagerbestand[2] - wartelisteAr[2] - wartelisteMa[2] - bearbeitung[2];
-            p17 = p51 + sicherheitsbe[3] + sicherheitsbe[14] + sicherheitsbe[25] - lagerbestand[3] - wartelisteAr[3] - wartelisteMa[3] - bearbeitung[3];
-            p50 = p51 + sicherheitsbe[4] - lagerbestand[4] - wartelisteAr[4] - wartelisteMa[4] - bearbeitung[4];
+            a = 0;
+            List<List<int>> bearbeitung = new List<List<int>>();
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                bearbeitung.Add(new List<int>());
+                bearbeitung[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                bearbeitung[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                ++a;
+            }
+            dbReader.Close(); 
+            #endregion
 
-            p4 = p50 + sicherheitsbe[5] - lagerbestand[5] - wartelisteAr[5] - wartelisteMa[5] - bearbeitung[5];
-            p10 = p50 + sicherheitsbe[6] - lagerbestand[6] - wartelisteAr[6] - wartelisteMa[6] - bearbeitung[6];
-            p49 = p50 + sicherheitsbe[7] - lagerbestand[7] - wartelisteAr[7] - wartelisteMa[7] - bearbeitung[7];
+            #region Daten zur Berechnung
+		    p26 = produktionp1 + sicherheitsbe[0] + sicherheitsbe[11] + sicherheitsbe[22];
+            p51 = produktionp1 + sicherheitsbe[1];
 
-            p7 = p49 + sicherheitsbe[8] - lagerbestand[8] - wartelisteAr[8] - wartelisteMa[8] - bearbeitung[8];
-            p13 = p49 + sicherheitsbe[9] - lagerbestand[9] - wartelisteAr[9] - wartelisteMa[9] - bearbeitung[9];
-            p18 = p49 + sicherheitsbe[10] - lagerbestand[10] - wartelisteAr[10] - wartelisteMa[10] - bearbeitung[10];
+            p16 = p51 + sicherheitsbe[2] + sicherheitsbe[13] + sicherheitsbe[24];
+            p17 = p51 + sicherheitsbe[3] + sicherheitsbe[14] + sicherheitsbe[25];
+            p50 = p51 + sicherheitsbe[4];
 
+            p4 = p50 + sicherheitsbe[5];
+            p10 = p50 + sicherheitsbe[6];
+            p49 = p50 + sicherheitsbe[7];
 
-            //Berechnung P2
-            p56 = produktionp2 + sicherheitsbe[12] - lagerbestand[11] - wartelisteAr[11] - wartelisteMa[11] - bearbeitung[11];
+            p7 = p49 + sicherheitsbe[8];
+            p13 = p49 + sicherheitsbe[9];
+            p18 = p49 + sicherheitsbe[10];
 
-            p55 = p56 + sicherheitsbe[15] - lagerbestand[12] - wartelisteAr[12] - wartelisteMa[12] - bearbeitung[12];
+            p56 = produktionp2 + sicherheitsbe[12];
 
-            p5 = p55 + sicherheitsbe[16] - lagerbestand[13] - wartelisteAr[13] - wartelisteMa[13] - bearbeitung[13];
-            p11 = p55 + sicherheitsbe[17] - lagerbestand[14] - wartelisteAr[14] - wartelisteMa[14] - bearbeitung[14];
-            p54 = p55 + sicherheitsbe[18] - lagerbestand[15] - wartelisteAr[15] - wartelisteMa[15] - bearbeitung[15];
+            p55 = p56 + sicherheitsbe[15];
 
-            p8 = p54 + sicherheitsbe[19] - lagerbestand[16] - wartelisteAr[16] - wartelisteMa[16] - bearbeitung[16];
-            p14 = p54 + sicherheitsbe[20] - lagerbestand[17] - wartelisteAr[17] - wartelisteMa[17] - bearbeitung[17];
-            p19 = p54 + sicherheitsbe[21] - lagerbestand[18] - wartelisteAr[18] - wartelisteMa[18] - bearbeitung[18];
+            p5 = p55 + sicherheitsbe[16];
+            p11 = p55 + sicherheitsbe[17];
+            p54 = p55 + sicherheitsbe[18];
 
+            p8 = p54 + sicherheitsbe[19];
+            p14 = p54 + sicherheitsbe[20];
+            p19 = p54 + sicherheitsbe[21];
 
-            //Berechnung P3
-            p31 = produktionp3 + sicherheitsbe[23] - lagerbestand[19] - wartelisteAr[19] - wartelisteMa[19] - bearbeitung[19];
+            p31 = produktionp3 + sicherheitsbe[23];
 
-            p30 = p31 + sicherheitsbe[26] - lagerbestand[20] - wartelisteAr[20] - wartelisteMa[20] - bearbeitung[20];
+            p30 = p31 + sicherheitsbe[26];
 
-            p6 = p30 + sicherheitsbe[27] - lagerbestand[21] - wartelisteAr[21] - wartelisteMa[21] - bearbeitung[21];
-            p12 = p30 + sicherheitsbe[28] - lagerbestand[22] - wartelisteAr[22] - wartelisteMa[22] - bearbeitung[22];
-            p29 = p30 + sicherheitsbe[29] - lagerbestand[23] - wartelisteAr[23] - wartelisteMa[23] - bearbeitung[23];
+            p6 = p30 + sicherheitsbe[27];
+            p12 = p30 + sicherheitsbe[28];
+            p29 = p30 + sicherheitsbe[29];
 
-            p9 = p29 + sicherheitsbe[30] - lagerbestand[24] - wartelisteAr[24] - wartelisteMa[24] - bearbeitung[24];
-            p15 = p29 + sicherheitsbe[31] - lagerbestand[25] - wartelisteAr[25] - wartelisteMa[25] - bearbeitung[25];
-            p20 = p29 + sicherheitsbe[32] - lagerbestand[26] - wartelisteAr[26] - wartelisteMa[26] - bearbeitung[26];
+            p9 = p29 + sicherheitsbe[30];
+            p15 = p29 + sicherheitsbe[31];
+            p20 = p29 + sicherheitsbe[32]; 
+	#endregion
+           
+             int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
+                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
-            #region In textBox
-            textBox1.Text = p4.ToString();
-            textBox2.Text = p5.ToString();
-            textBox3.Text = p6.ToString();
-            textBox4.Text = p7.ToString();
-            textBox5.Text = p8.ToString();
-            textBox6.Text = p9.ToString();
-            textBox7.Text = p10.ToString();
-            textBox8.Text = p11.ToString();
-            textBox9.Text = p12.ToString();
-            textBox10.Text = p13.ToString();
-            textBox11.Text = p14.ToString();
-            textBox12.Text = p15.ToString();
-            textBox13.Text = p16.ToString();
-            textBox14.Text = p17.ToString();
-            textBox15.Text = p18.ToString();
-            textBox16.Text = p19.ToString();
-            textBox17.Text = p20.ToString();
-            textBox18.Text = p26.ToString();
-            textBox19.Text = p29.ToString();
-            textBox20.Text = p30.ToString();
-            textBox21.Text = p31.ToString();
-            textBox22.Text = p49.ToString();
-            textBox23.Text = p50.ToString();
-            textBox24.Text = p51.ToString();
-            textBox25.Text = p54.ToString();
-            textBox26.Text = p54.ToString();
-            textBox27.Text = p56.ToString();
+             for (int i = 0; i < teilenummer.Count(); i++)
+             {
+                 #region Bearbeitung
+                 for (int e = 0; e < bearbeitung.Count; e++)
+                 {
+                     if (bearbeitung[e][0] == teilenummer[0])
+                     {
+                         p26 -= bearbeitung[e][1];
+                     }
+                     if (bearbeitung[e][0] == teilenummer[1])
+                     {
+                         p51 -= bearbeitung[e][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[2])
+                     {
+                         p16 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[3])
+                     {
+                         p17 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[4])
+                     {
+                         p50 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[5])
+                     {
+                         p4 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[6])
+                     {
+                         p10 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[7])
+                     {
+                         p49 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[8])
+                     {
+                         p7 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[9])
+                     {
+                         p13 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[10])
+                     {
+                         p18 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[11])
+                     {
+                         p56 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[12])
+                     {
+                         p55 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[13])
+                     {
+                         p5 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[14])
+                     {
+                         p11 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[15])
+                     {
+                         p54 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[16])
+                     {
+                         p8 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[17])
+                     {
+                         p14 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[18])
+                     {
+                         p19 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[19])
+                     {
+                         p31 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[20])
+                     {
+                         p30 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[21])
+                     {
+                         p6 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[22])
+                     {
+                         p12 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[23])
+                     {
+                         p29 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[24])
+                     {
+                         p9 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[25])
+                     {
+                         p15 -= bearbeitung[i][1];
+                     }
+                     if (bearbeitung[i][0] == teilenummer[26])
+                     {
+                         p20 -= bearbeitung[i][1];
+                     }
+                 }
+                 #endregion
+                 #region Lagerbestand
+                 for (int l = 0; l < lagerbestand.Count; l++)
+                 {
+                     if (lagerbestand[l][0] == teilenummer[0])
+                     {
+                         p26 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[1])
+                     {
+                         p51 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[2])
+                     {
+                         p16 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[3])
+                     {
+                         p17 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[4])
+                     {
+                         p50 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[5])
+                     {
+                         p4 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[6])
+                     {
+                         p10 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[7])
+                     {
+                         p49 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[8])
+                     {
+                         p7 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[9])
+                     {
+                         p13 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[10])
+                     {
+                         p18 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[11])
+                     {
+                         p56 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[12])
+                     {
+                         p55 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[13])
+                     {
+                         p5 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[14])
+                     {
+                         p11 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[15])
+                     {
+                         p54 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[16])
+                     {
+                         p8 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[17])
+                     {
+                         p14 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[18])
+                     {
+                         p19 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[19])
+                     {
+                         p31 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[20])
+                     {
+                         p30 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[21])
+                     {
+                         p6 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[22])
+                     {
+                         p12 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[23])
+                     {
+                         p29 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[24])
+                     {
+                         p9 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[25])
+                     {
+                         p15 -= lagerbestand[l][1];
+                     }
+                     if (lagerbestand[l][0] == teilenummer[26])
+                     {
+                         p20 -= lagerbestand[l][1];
+                     }
+                 }
+                 #endregion
+                 #region Wartelisten
+                 for (int k = 0; k < warteliste_material.Count; k++)
+                 {
+                     if (warteliste_material[k][0] == teilenummer[0])
+                     {
+                         p26 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[1])
+                     {
+                         p51 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[2])
+                     {
+                         p16 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[3])
+                     {
+                         p17 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[4])
+                     {
+                         p50 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[5])
+                     {
+                         p4 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[6])
+                     {
+                         p10 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[7])
+                     {
+                         p49 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[8])
+                     {
+                         p7 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[9])
+                     {
+                         p13 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[10])
+                     {
+                         p18 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[11])
+                     {
+                         p56 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[12])
+                     {
+                         p55 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[13])
+                     {
+                         p5 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[14])
+                     {
+                         p11 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[15])
+                     {
+                         p54 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[16])
+                     {
+                         p8 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[17])
+                     {
+                         p14 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[18])
+                     {
+                         p19 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[19])
+                     {
+                         p31 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[20])
+                     {
+                         p30 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[21])
+                     {
+                         p6 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[22])
+                     {
+                         p12 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[23])
+                     {
+                         p29 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[24])
+                     {
+                         p9 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[25])
+                     {
+                         p15 -= warteliste_material[k][1];
+                     }
+                     if (warteliste_material[k][0] == teilenummer[26])
+                     {
+                         p20 -= warteliste_material[k][1];
+                     }
+                 }
+                 for (int m = 0; m < warteliste_arbeitsplatz.Count; m++)
+                 {
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[0])
+                     {
+                         p26 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[1])
+                     {
+                         p51 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[2])
+                     {
+                         p16 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[3])
+                     {
+                         p17 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[4])
+                     {
+                         p50 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[5])
+                     {
+                         p4 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[6])
+                     {
+                         p10 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[7])
+                     {
+                         p49 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[8])
+                     {
+                         p7 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[9])
+                     {
+                         p13 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[10])
+                     {
+                         p18 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[11])
+                     {
+                         p56 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[12])
+                     {
+                         p55 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[13])
+                     {
+                         p5 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[14])
+                     {
+                         p11 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[15])
+                     {
+                         p54 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[16])
+                     {
+                         p8 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[17])
+                     {
+                         p14 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[18])
+                     {
+                         p19 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[19])
+                     {
+                         p31 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[20])
+                     {
+                         p30 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[21])
+                     {
+                         p6 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[22])
+                     {
+                         p12 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[23])
+                     {
+                         p29 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[24])
+                     {
+                         p9 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[25])
+                     {
+                         p15 -= warteliste_arbeitsplatz[m][1];
+                     }
+                     if (warteliste_arbeitsplatz[m][0] == teilenummer[26])
+                     {
+                         p20 -= warteliste_arbeitsplatz[m][1];
+                     }
+                 }
+                 #endregion
 
+                 #region In textBox
+                 textBox1.Text = p4.ToString();
+                 textBox2.Text = p5.ToString();
+                 textBox3.Text = p6.ToString();
+                 textBox4.Text = p7.ToString();
+                 textBox5.Text = p8.ToString();
+                 textBox6.Text = p9.ToString();
+                 textBox7.Text = p10.ToString();
+                 textBox8.Text = p11.ToString();
+                 textBox9.Text = p12.ToString();
+                 textBox10.Text = p13.ToString();
+                 textBox11.Text = p14.ToString();
+                 textBox12.Text = p15.ToString();
+                 textBox13.Text = p16.ToString();
+                 textBox14.Text = p17.ToString();
+                 textBox15.Text = p18.ToString();
+                 textBox16.Text = p19.ToString();
+                 textBox17.Text = p20.ToString();
+                 textBox18.Text = p26.ToString();
+                 textBox19.Text = p29.ToString();
+                 textBox20.Text = p30.ToString();
+                 textBox21.Text = p31.ToString();
+                 textBox22.Text = p49.ToString();
+                 textBox23.Text = p50.ToString();
+                 textBox24.Text = p51.ToString();
+                 textBox25.Text = p54.ToString();
+                 textBox26.Text = p54.ToString();
+                 textBox27.Text = p56.ToString();
+             }
             #endregion
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         #region Textboxen

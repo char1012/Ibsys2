@@ -56,14 +56,14 @@ namespace IBSYS2
         {
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
-            Kaufteildisposition ktdispo = new Kaufteildisposition();
+           // Kaufteildisposition ktdispo = new Kaufteildisposition();
             UserControl p = new Produktion();
-            p.Show();
+            //p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();
             //UserControl sicherheit = new Sicherheitsbestand();
             //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(ktdispo);
+            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1000,6 +1000,7 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
 
                 //EN Buttons
+                clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
                 button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
@@ -1037,6 +1038,7 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
 
                 //DE Buttons
+                clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
                 button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
@@ -1071,6 +1073,93 @@ namespace IBSYS2
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand();
             this.Controls.Add(sicherheit);
+        }
+
+        private void clear_btn_Click(object sender, EventArgs e)
+        {
+            // Beim Benutzer nachfragen, ob er das wirklich moechte
+            DialogResult result;
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
+                result = MessageBox.Show("Sind Sie sich sicher, dass Sie die Datenbank leeren möchten?\n"
+                    + "Dadurch werden alle importierten Daten unwiderruflich gelöscht.", "Datenbank leeren", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            }
+            else
+            {
+                result = MessageBox.Show("Are you sure, that you want to clear the database??\n"
+                + "All the imported data will be deleted.", "Clear database", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            }
+
+            // wenn ja, die entsprechenden Tabellen der DB leeren
+            if (result == DialogResult.Yes)
+            {
+                // DB-Verbindung
+                string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+                myconn = new OleDbConnection(databasename);
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = myconn;
+                try
+                {
+                    myconn.Open();
+                }
+                catch (Exception)
+                {
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                    }
+                    myconn.Close();
+                    myconn.Open();
+                }
+
+                // Mitteilung einblenden
+                ProcessMessage message = new ProcessMessage();
+                message.Show(this);
+                message.Update();
+                this.Enabled = false;
+
+                // alle Import-Tabellen leeren und Ids zuruecksetzen (7 Tabellen betroffen)
+                cmd.CommandText = @"DELETE * FROM Lager";
+                OleDbDataReader dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Bestellung";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Warteliste_Arbeitsplatz";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Warteliste_Material";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Bearbeitung";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Leerzeitenkosten";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+                cmd.CommandText = @"DELETE * FROM Informationen";
+                dbReader = cmd.ExecuteReader();
+                dbReader.Close();
+
+                message.Close();
+                this.Enabled = true;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    MessageBox.Show("Alle importierten Daten wurden gelöscht.");
+                }
+                else
+                {
+                    MessageBox.Show("All imported data has been cleared.");
+
+                }
+            }
         }
 
     }

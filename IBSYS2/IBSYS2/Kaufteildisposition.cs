@@ -36,6 +36,7 @@ namespace IBSYS2
             OleDbCommand cmd4 = new OleDbCommand();
             OleDbCommand cmd5 = new OleDbCommand();
             OleDbCommand cmd6 = new OleDbCommand();
+            OleDbCommand cmd7 = new OleDbCommand();
 
             cmd1.CommandType = CommandType.Text;
             cmd2.CommandType = CommandType.Text;
@@ -43,6 +44,7 @@ namespace IBSYS2
             cmd4.CommandType = CommandType.Text;
             cmd5.CommandType = CommandType.Text;
             cmd6.CommandType = CommandType.Text;
+            cmd7.CommandType = CommandType.Text;
 
             cmd1.Connection = myconn;
             cmd2.Connection = myconn;
@@ -50,6 +52,7 @@ namespace IBSYS2
             cmd4.Connection = myconn;
             cmd5.Connection = myconn;
             cmd6.Connection = myconn;
+            cmd7.Connection = myconn;
 
             OleDbDataReader dbReader;
             OleDbDataReader dbReader1;
@@ -625,6 +628,46 @@ namespace IBSYS2
             if (B38.Text != "") M38.Text = "" + minMenge[27];
             if (B39.Text != "") M39.Text = "" + minMenge[28];
 
+      
+        // Dicountmenge
+        int iks = 0;
+        int[] discountmenge = new int[29];
+        cmd7.CommandText = @"SELECT Teilenummer, Diskontmenge FROM Teil where Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+        OleDbDataReader dbReader6 = cmd7.ExecuteReader();
+        while (dbReader6.Read())
+        {
+            discountmenge[iks] = Convert.ToInt32(dbReader6["Diskontmenge"]);
+            iks++;
+        }
+        D1.Text = "" + discountmenge[0];
+        D2.Text = "" + discountmenge[1];
+        D3.Text = "" + discountmenge[2];
+        D4.Text = "" + discountmenge[3];
+        D5.Text = "" + discountmenge[4];
+        D6.Text = "" + discountmenge[5];
+        D7.Text = "" + discountmenge[6];
+        D8.Text = "" + discountmenge[7];
+        D9.Text = "" + discountmenge[8];
+        D10.Text = "" + discountmenge[9];
+        D11.Text = "" + discountmenge[10];
+        D12.Text = "" + discountmenge[11];
+        D13.Text = "" + discountmenge[12];
+        D14.Text = "" + discountmenge[13];
+        D15.Text = "" + discountmenge[14];
+        D16.Text = "" + discountmenge[15];
+        D17.Text = "" + discountmenge[16];
+        D18.Text = "" + discountmenge[17];
+        D19.Text = "" + discountmenge[18];
+        D20.Text = "" + discountmenge[19];
+        D21.Text = "" + discountmenge[20];
+        D22.Text = "" + discountmenge[21];
+        D23.Text = "" + discountmenge[22];
+        D24.Text = "" + discountmenge[23];
+        D25.Text = "" + discountmenge[24];
+        D26.Text = "" + discountmenge[25];
+        D27.Text = "" + discountmenge[26];
+        D28.Text = "" + discountmenge[27];
+        D29.Text = "" + discountmenge[28];
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -801,6 +844,11 @@ namespace IBSYS2
             this.Controls.Clear();
             UserControl ergebnis = new Ergebnis();
             this.Controls.Add(ergebnis);
+        }
+
+        private void D11_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1712,6 +1712,65 @@
             this.label32.TabIndex = 195;
             this.label32.Text = "Bestellmenge";
             // 
+            // D17
+            // 
+            this.D17.Location = new System.Drawing.Point(289, 208);
+            this.D17.Name = "D17";
+            this.D17.Size = new System.Drawing.Size(37, 22);
+            this.D17.TabIndex = 178;
+            // 
+            // D16
+            // 
+            this.D16.Location = new System.Drawing.Point(289, 183);
+            this.D16.Name = "D16";
+            this.D16.Size = new System.Drawing.Size(37, 22);
+            this.D16.TabIndex = 177;
+            // 
+            // D15
+            // 
+            this.D15.Location = new System.Drawing.Point(289, 157);
+            this.D15.Name = "D15";
+            this.D15.Size = new System.Drawing.Size(37, 22);
+            this.D15.TabIndex = 176;
+            // 
+            // D14
+            // 
+            this.D14.Location = new System.Drawing.Point(289, 131);
+            this.D14.Name = "D14";
+            this.D14.Size = new System.Drawing.Size(37, 22);
+            this.D14.TabIndex = 175;
+            // 
+            // D13
+            // 
+            this.D13.Location = new System.Drawing.Point(289, 105);
+            this.D13.Name = "D13";
+            this.D13.Size = new System.Drawing.Size(37, 22);
+            this.D13.TabIndex = 174;
+            // 
+            // D12
+            // 
+            this.D12.Location = new System.Drawing.Point(289, 79);
+            this.D12.Name = "D12";
+            this.D12.Size = new System.Drawing.Size(37, 22);
+            this.D12.TabIndex = 173;
+            // 
+            // D11
+            // 
+            this.D11.Location = new System.Drawing.Point(289, 52);
+            this.D11.Name = "D11";
+            this.D11.Size = new System.Drawing.Size(37, 22);
+            this.D11.TabIndex = 172;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Calibri", 6F);
+            this.label30.Location = new System.Drawing.Point(326, 34);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(45, 10);
+            this.label30.TabIndex = 183;
+            this.label30.Text = "Min. Menge";
+            // 
             // label31
             // 
             this.label31.AutoSize = true;

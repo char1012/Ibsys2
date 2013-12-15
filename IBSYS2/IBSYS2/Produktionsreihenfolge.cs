@@ -27,11 +27,7 @@ namespace IBSYS2
                 Control[] found = this.Controls.Find("M" + teil.ToString(), true);
                 ((TextBox)found[0]).Text = menge.ToString();
             }
-            
-        
         }
-
-
 
         private void pic_en_Click(object sender, EventArgs e)
         {

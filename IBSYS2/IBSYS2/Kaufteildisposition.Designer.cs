@@ -512,6 +512,7 @@
             // 
             // M1
             // 
+            this.M1.Enabled = false;
             this.M1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M1.Location = new System.Drawing.Point(76, 55);
             this.M1.Multiline = true;
@@ -522,6 +523,7 @@
             // 
             // M2
             // 
+            this.M2.Enabled = false;
             this.M2.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M2.Location = new System.Drawing.Point(76, 81);
             this.M2.Multiline = true;
@@ -532,6 +534,7 @@
             // 
             // M3
             // 
+            this.M3.Enabled = false;
             this.M3.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M3.Location = new System.Drawing.Point(76, 107);
             this.M3.Multiline = true;
@@ -542,6 +545,7 @@
             // 
             // M4
             // 
+            this.M4.Enabled = false;
             this.M4.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M4.Location = new System.Drawing.Point(76, 133);
             this.M4.Multiline = true;
@@ -552,6 +556,7 @@
             // 
             // M5
             // 
+            this.M5.Enabled = false;
             this.M5.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M5.Location = new System.Drawing.Point(76, 159);
             this.M5.Multiline = true;
@@ -562,6 +567,7 @@
             // 
             // M7
             // 
+            this.M7.Enabled = false;
             this.M7.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M7.Location = new System.Drawing.Point(76, 185);
             this.M7.Multiline = true;
@@ -572,6 +578,7 @@
             // 
             // M8
             // 
+            this.M8.Enabled = false;
             this.M8.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M8.Location = new System.Drawing.Point(76, 210);
             this.M8.Multiline = true;
@@ -582,6 +589,7 @@
             // 
             // M12
             // 
+            this.M12.Enabled = false;
             this.M12.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M12.Location = new System.Drawing.Point(76, 236);
             this.M12.Multiline = true;
@@ -592,6 +600,7 @@
             // 
             // M13
             // 
+            this.M13.Enabled = false;
             this.M13.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M13.Location = new System.Drawing.Point(76, 262);
             this.M13.Multiline = true;
@@ -602,6 +611,7 @@
             // 
             // M14
             // 
+            this.M14.Enabled = false;
             this.M14.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M14.Location = new System.Drawing.Point(76, 288);
             this.M14.Multiline = true;
@@ -612,6 +622,7 @@
             // 
             // M15
             // 
+            this.M15.Enabled = false;
             this.M15.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M15.Location = new System.Drawing.Point(331, 53);
             this.M15.Multiline = true;
@@ -622,6 +633,7 @@
             // 
             // M16
             // 
+            this.M16.Enabled = false;
             this.M16.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M16.Location = new System.Drawing.Point(331, 79);
             this.M16.Multiline = true;
@@ -632,6 +644,7 @@
             // 
             // M17
             // 
+            this.M17.Enabled = false;
             this.M17.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M17.Location = new System.Drawing.Point(331, 105);
             this.M17.Multiline = true;
@@ -642,6 +655,7 @@
             // 
             // M18
             // 
+            this.M18.Enabled = false;
             this.M18.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M18.Location = new System.Drawing.Point(331, 131);
             this.M18.Multiline = true;
@@ -652,6 +666,7 @@
             // 
             // M19
             // 
+            this.M19.Enabled = false;
             this.M19.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M19.Location = new System.Drawing.Point(331, 157);
             this.M19.Multiline = true;
@@ -659,10 +674,10 @@
             this.M19.Size = new System.Drawing.Size(37, 19);
             this.M19.TabIndex = 61;
             this.M19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.M19.TextChanged += new System.EventHandler(this.textBox19_TextChanged);
             // 
             // M20
             // 
+            this.M20.Enabled = false;
             this.M20.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M20.Location = new System.Drawing.Point(331, 181);
             this.M20.Multiline = true;
@@ -670,10 +685,10 @@
             this.M20.Size = new System.Drawing.Size(37, 20);
             this.M20.TabIndex = 62;
             this.M20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.M20.TextChanged += new System.EventHandler(this.M20_TextChanged);
             // 
             // M21
             // 
+            this.M21.Enabled = false;
             this.M21.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M21.Location = new System.Drawing.Point(331, 208);
             this.M21.Multiline = true;
@@ -684,6 +699,7 @@
             // 
             // M22
             // 
+            this.M22.Enabled = false;
             this.M22.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M22.Location = new System.Drawing.Point(331, 234);
             this.M22.Multiline = true;
@@ -694,6 +710,7 @@
             // 
             // M23
             // 
+            this.M23.Enabled = false;
             this.M23.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M23.Location = new System.Drawing.Point(331, 260);
             this.M23.Multiline = true;
@@ -704,6 +721,7 @@
             // 
             // M24
             // 
+            this.M24.Enabled = false;
             this.M24.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M24.Location = new System.Drawing.Point(331, 286);
             this.M24.Multiline = true;
@@ -714,6 +732,7 @@
             // 
             // M25
             // 
+            this.M25.Enabled = false;
             this.M25.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M25.Location = new System.Drawing.Point(579, 52);
             this.M25.Multiline = true;
@@ -724,6 +743,7 @@
             // 
             // M26
             // 
+            this.M26.Enabled = false;
             this.M26.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M26.Location = new System.Drawing.Point(579, 78);
             this.M26.Multiline = true;
@@ -734,6 +754,7 @@
             // 
             // M27
             // 
+            this.M27.Enabled = false;
             this.M27.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M27.Location = new System.Drawing.Point(579, 104);
             this.M27.Multiline = true;
@@ -744,6 +765,7 @@
             // 
             // M28
             // 
+            this.M28.Enabled = false;
             this.M28.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M28.Location = new System.Drawing.Point(579, 129);
             this.M28.Multiline = true;
@@ -754,6 +776,7 @@
             // 
             // M32
             // 
+            this.M32.Enabled = false;
             this.M32.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M32.Location = new System.Drawing.Point(579, 155);
             this.M32.Multiline = true;
@@ -764,6 +787,7 @@
             // 
             // M33
             // 
+            this.M33.Enabled = false;
             this.M33.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M33.Location = new System.Drawing.Point(579, 182);
             this.M33.Multiline = true;
@@ -774,6 +798,7 @@
             // 
             // M37
             // 
+            this.M37.Enabled = false;
             this.M37.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M37.Location = new System.Drawing.Point(579, 207);
             this.M37.Multiline = true;
@@ -784,6 +809,7 @@
             // 
             // M38
             // 
+            this.M38.Enabled = false;
             this.M38.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M38.Location = new System.Drawing.Point(579, 233);
             this.M38.Multiline = true;
@@ -794,6 +820,7 @@
             // 
             // M39
             // 
+            this.M39.Enabled = false;
             this.M39.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F);
             this.M39.Location = new System.Drawing.Point(579, 259);
             this.M39.Multiline = true;
@@ -811,7 +838,6 @@
             this.B39.Size = new System.Drawing.Size(32, 20);
             this.B39.TabIndex = 120;
             this.B39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.B39.TextChanged += new System.EventHandler(this.textBox40_TextChanged);
             // 
             // B38
             // 
@@ -892,7 +918,6 @@
             this.B25.Size = new System.Drawing.Size(32, 20);
             this.B25.TabIndex = 106;
             this.B25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.B25.TextChanged += new System.EventHandler(this.B25_TextChanged);
             // 
             // B24
             // 
@@ -1381,7 +1406,6 @@
             this.groupBox1.TabIndex = 135;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kaufteildisposition";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label37
             // 
@@ -1488,6 +1512,7 @@
             // 
             // O29
             // 
+            this.O29.Enabled = false;
             this.O29.Location = new System.Drawing.Point(622, 257);
             this.O29.Name = "O29";
             this.O29.Size = new System.Drawing.Size(34, 22);
@@ -1495,6 +1520,7 @@
             // 
             // O28
             // 
+            this.O28.Enabled = false;
             this.O28.Location = new System.Drawing.Point(622, 231);
             this.O28.Name = "O28";
             this.O28.Size = new System.Drawing.Size(34, 22);
@@ -1502,6 +1528,7 @@
             // 
             // O27
             // 
+            this.O27.Enabled = false;
             this.O27.Location = new System.Drawing.Point(622, 205);
             this.O27.Name = "O27";
             this.O27.Size = new System.Drawing.Size(34, 22);
@@ -1509,6 +1536,7 @@
             // 
             // O26
             // 
+            this.O26.Enabled = false;
             this.O26.Location = new System.Drawing.Point(622, 180);
             this.O26.Name = "O26";
             this.O26.Size = new System.Drawing.Size(34, 22);
@@ -1516,6 +1544,7 @@
             // 
             // O25
             // 
+            this.O25.Enabled = false;
             this.O25.Location = new System.Drawing.Point(622, 154);
             this.O25.Name = "O25";
             this.O25.Size = new System.Drawing.Size(34, 22);
@@ -1523,6 +1552,7 @@
             // 
             // O24
             // 
+            this.O24.Enabled = false;
             this.O24.Location = new System.Drawing.Point(622, 128);
             this.O24.Name = "O24";
             this.O24.Size = new System.Drawing.Size(34, 22);
@@ -1530,6 +1560,7 @@
             // 
             // O23
             // 
+            this.O23.Enabled = false;
             this.O23.Location = new System.Drawing.Point(622, 102);
             this.O23.Name = "O23";
             this.O23.Size = new System.Drawing.Size(34, 22);
@@ -1537,6 +1568,7 @@
             // 
             // O22
             // 
+            this.O22.Enabled = false;
             this.O22.Location = new System.Drawing.Point(622, 76);
             this.O22.Name = "O22";
             this.O22.Size = new System.Drawing.Size(34, 22);
@@ -1544,6 +1576,7 @@
             // 
             // O21
             // 
+            this.O21.Enabled = false;
             this.O21.Location = new System.Drawing.Point(622, 50);
             this.O21.Name = "O21";
             this.O21.Size = new System.Drawing.Size(34, 22);
@@ -1555,12 +1588,13 @@
             this.label36.Font = new System.Drawing.Font("Calibri", 6F);
             this.label36.Location = new System.Drawing.Point(538, 33);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(33, 10);
+            this.label36.Size = new System.Drawing.Size(30, 10);
             this.label36.TabIndex = 217;
-            this.label36.Text = "Discount";
+            this.label36.Text = "Diskont";
             // 
             // D29
             // 
+            this.D29.Enabled = false;
             this.D29.Location = new System.Drawing.Point(536, 259);
             this.D29.Name = "D29";
             this.D29.Size = new System.Drawing.Size(37, 22);
@@ -1568,6 +1602,7 @@
             // 
             // D28
             // 
+            this.D28.Enabled = false;
             this.D28.Location = new System.Drawing.Point(536, 233);
             this.D28.Name = "D28";
             this.D28.Size = new System.Drawing.Size(37, 22);
@@ -1575,6 +1610,7 @@
             // 
             // D27
             // 
+            this.D27.Enabled = false;
             this.D27.Location = new System.Drawing.Point(536, 207);
             this.D27.Name = "D27";
             this.D27.Size = new System.Drawing.Size(37, 22);
@@ -1582,6 +1618,7 @@
             // 
             // D26
             // 
+            this.D26.Enabled = false;
             this.D26.Location = new System.Drawing.Point(536, 182);
             this.D26.Name = "D26";
             this.D26.Size = new System.Drawing.Size(37, 22);
@@ -1589,6 +1626,7 @@
             // 
             // D25
             // 
+            this.D25.Enabled = false;
             this.D25.Location = new System.Drawing.Point(536, 156);
             this.D25.Name = "D25";
             this.D25.Size = new System.Drawing.Size(37, 22);
@@ -1596,6 +1634,7 @@
             // 
             // D24
             // 
+            this.D24.Enabled = false;
             this.D24.Location = new System.Drawing.Point(536, 130);
             this.D24.Name = "D24";
             this.D24.Size = new System.Drawing.Size(37, 22);
@@ -1603,6 +1642,7 @@
             // 
             // D23
             // 
+            this.D23.Enabled = false;
             this.D23.Location = new System.Drawing.Point(536, 104);
             this.D23.Name = "D23";
             this.D23.Size = new System.Drawing.Size(37, 22);
@@ -1610,6 +1650,7 @@
             // 
             // D22
             // 
+            this.D22.Enabled = false;
             this.D22.Location = new System.Drawing.Point(536, 78);
             this.D22.Name = "D22";
             this.D22.Size = new System.Drawing.Size(37, 22);
@@ -1617,6 +1658,7 @@
             // 
             // D21
             // 
+            this.D21.Enabled = false;
             this.D21.Location = new System.Drawing.Point(536, 51);
             this.D21.Name = "D21";
             this.D21.Size = new System.Drawing.Size(37, 22);
@@ -1712,65 +1754,6 @@
             this.label32.TabIndex = 195;
             this.label32.Text = "Bestellmenge";
             // 
-            // D17
-            // 
-            this.D17.Location = new System.Drawing.Point(289, 208);
-            this.D17.Name = "D17";
-            this.D17.Size = new System.Drawing.Size(37, 22);
-            this.D17.TabIndex = 178;
-            // 
-            // D16
-            // 
-            this.D16.Location = new System.Drawing.Point(289, 183);
-            this.D16.Name = "D16";
-            this.D16.Size = new System.Drawing.Size(37, 22);
-            this.D16.TabIndex = 177;
-            // 
-            // D15
-            // 
-            this.D15.Location = new System.Drawing.Point(289, 157);
-            this.D15.Name = "D15";
-            this.D15.Size = new System.Drawing.Size(37, 22);
-            this.D15.TabIndex = 176;
-            // 
-            // D14
-            // 
-            this.D14.Location = new System.Drawing.Point(289, 131);
-            this.D14.Name = "D14";
-            this.D14.Size = new System.Drawing.Size(37, 22);
-            this.D14.TabIndex = 175;
-            // 
-            // D13
-            // 
-            this.D13.Location = new System.Drawing.Point(289, 105);
-            this.D13.Name = "D13";
-            this.D13.Size = new System.Drawing.Size(37, 22);
-            this.D13.TabIndex = 174;
-            // 
-            // D12
-            // 
-            this.D12.Location = new System.Drawing.Point(289, 79);
-            this.D12.Name = "D12";
-            this.D12.Size = new System.Drawing.Size(37, 22);
-            this.D12.TabIndex = 173;
-            // 
-            // D11
-            // 
-            this.D11.Location = new System.Drawing.Point(289, 52);
-            this.D11.Name = "D11";
-            this.D11.Size = new System.Drawing.Size(37, 22);
-            this.D11.TabIndex = 172;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label30.Location = new System.Drawing.Point(326, 34);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 10);
-            this.label30.TabIndex = 183;
-            this.label30.Text = "Min. Menge";
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -1783,6 +1766,7 @@
             // 
             // O20
             // 
+            this.O20.Enabled = false;
             this.O20.Location = new System.Drawing.Point(374, 284);
             this.O20.Name = "O20";
             this.O20.Size = new System.Drawing.Size(34, 22);
@@ -1790,6 +1774,7 @@
             // 
             // O19
             // 
+            this.O19.Enabled = false;
             this.O19.Location = new System.Drawing.Point(374, 258);
             this.O19.Name = "O19";
             this.O19.Size = new System.Drawing.Size(34, 22);
@@ -1797,6 +1782,7 @@
             // 
             // O18
             // 
+            this.O18.Enabled = false;
             this.O18.Location = new System.Drawing.Point(374, 232);
             this.O18.Name = "O18";
             this.O18.Size = new System.Drawing.Size(34, 22);
@@ -1804,6 +1790,7 @@
             // 
             // O17
             // 
+            this.O17.Enabled = false;
             this.O17.Location = new System.Drawing.Point(374, 206);
             this.O17.Name = "O17";
             this.O17.Size = new System.Drawing.Size(34, 22);
@@ -1811,6 +1798,7 @@
             // 
             // O16
             // 
+            this.O16.Enabled = false;
             this.O16.Location = new System.Drawing.Point(374, 181);
             this.O16.Name = "O16";
             this.O16.Size = new System.Drawing.Size(34, 22);
@@ -1818,6 +1806,7 @@
             // 
             // O15
             // 
+            this.O15.Enabled = false;
             this.O15.Location = new System.Drawing.Point(374, 155);
             this.O15.Name = "O15";
             this.O15.Size = new System.Drawing.Size(34, 22);
@@ -1825,6 +1814,7 @@
             // 
             // O14
             // 
+            this.O14.Enabled = false;
             this.O14.Location = new System.Drawing.Point(374, 129);
             this.O14.Name = "O14";
             this.O14.Size = new System.Drawing.Size(34, 22);
@@ -1832,6 +1822,7 @@
             // 
             // O13
             // 
+            this.O13.Enabled = false;
             this.O13.Location = new System.Drawing.Point(374, 103);
             this.O13.Name = "O13";
             this.O13.Size = new System.Drawing.Size(34, 22);
@@ -1839,6 +1830,7 @@
             // 
             // O12
             // 
+            this.O12.Enabled = false;
             this.O12.Location = new System.Drawing.Point(374, 77);
             this.O12.Name = "O12";
             this.O12.Size = new System.Drawing.Size(34, 22);
@@ -1846,6 +1838,7 @@
             // 
             // O11
             // 
+            this.O11.Enabled = false;
             this.O11.Location = new System.Drawing.Point(374, 51);
             this.O11.Name = "O11";
             this.O11.Size = new System.Drawing.Size(34, 22);
@@ -1867,12 +1860,13 @@
             this.label20.Font = new System.Drawing.Font("Calibri", 6F);
             this.label20.Location = new System.Drawing.Point(291, 34);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(33, 10);
+            this.label20.Size = new System.Drawing.Size(30, 10);
             this.label20.TabIndex = 182;
-            this.label20.Text = "Discount";
+            this.label20.Text = "Diskont";
             // 
             // D20
             // 
+            this.D20.Enabled = false;
             this.D20.Location = new System.Drawing.Point(289, 286);
             this.D20.Name = "D20";
             this.D20.Size = new System.Drawing.Size(37, 22);
@@ -1880,6 +1874,7 @@
             // 
             // D19
             // 
+            this.D19.Enabled = false;
             this.D19.Location = new System.Drawing.Point(289, 260);
             this.D19.Name = "D19";
             this.D19.Size = new System.Drawing.Size(37, 22);
@@ -1887,6 +1882,7 @@
             // 
             // D18
             // 
+            this.D18.Enabled = false;
             this.D18.Location = new System.Drawing.Point(289, 234);
             this.D18.Name = "D18";
             this.D18.Size = new System.Drawing.Size(37, 22);
@@ -1894,6 +1890,7 @@
             // 
             // D17
             // 
+            this.D17.Enabled = false;
             this.D17.Location = new System.Drawing.Point(289, 208);
             this.D17.Name = "D17";
             this.D17.Size = new System.Drawing.Size(37, 22);
@@ -1901,6 +1898,7 @@
             // 
             // D16
             // 
+            this.D16.Enabled = false;
             this.D16.Location = new System.Drawing.Point(289, 183);
             this.D16.Name = "D16";
             this.D16.Size = new System.Drawing.Size(37, 22);
@@ -1908,6 +1906,7 @@
             // 
             // D15
             // 
+            this.D15.Enabled = false;
             this.D15.Location = new System.Drawing.Point(289, 157);
             this.D15.Name = "D15";
             this.D15.Size = new System.Drawing.Size(37, 22);
@@ -1915,6 +1914,7 @@
             // 
             // D14
             // 
+            this.D14.Enabled = false;
             this.D14.Location = new System.Drawing.Point(289, 131);
             this.D14.Name = "D14";
             this.D14.Size = new System.Drawing.Size(37, 22);
@@ -1922,6 +1922,7 @@
             // 
             // D13
             // 
+            this.D13.Enabled = false;
             this.D13.Location = new System.Drawing.Point(289, 105);
             this.D13.Name = "D13";
             this.D13.Size = new System.Drawing.Size(37, 22);
@@ -1929,6 +1930,7 @@
             // 
             // D12
             // 
+            this.D12.Enabled = false;
             this.D12.Location = new System.Drawing.Point(289, 79);
             this.D12.Name = "D12";
             this.D12.Size = new System.Drawing.Size(37, 22);
@@ -1936,6 +1938,7 @@
             // 
             // D11
             // 
+            this.D11.Enabled = false;
             this.D11.Location = new System.Drawing.Point(289, 52);
             this.D11.Name = "D11";
             this.D11.Size = new System.Drawing.Size(37, 22);
@@ -2043,6 +2046,7 @@
             // 
             // O10
             // 
+            this.O10.Enabled = false;
             this.O10.Location = new System.Drawing.Point(119, 287);
             this.O10.Name = "O10";
             this.O10.Size = new System.Drawing.Size(34, 22);
@@ -2050,6 +2054,7 @@
             // 
             // O9
             // 
+            this.O9.Enabled = false;
             this.O9.Location = new System.Drawing.Point(119, 261);
             this.O9.Name = "O9";
             this.O9.Size = new System.Drawing.Size(34, 22);
@@ -2057,6 +2062,7 @@
             // 
             // O8
             // 
+            this.O8.Enabled = false;
             this.O8.Location = new System.Drawing.Point(119, 235);
             this.O8.Name = "O8";
             this.O8.Size = new System.Drawing.Size(34, 22);
@@ -2064,6 +2070,7 @@
             // 
             // O7
             // 
+            this.O7.Enabled = false;
             this.O7.Location = new System.Drawing.Point(119, 209);
             this.O7.Name = "O7";
             this.O7.Size = new System.Drawing.Size(34, 22);
@@ -2071,6 +2078,7 @@
             // 
             // O6
             // 
+            this.O6.Enabled = false;
             this.O6.Location = new System.Drawing.Point(119, 184);
             this.O6.Name = "O6";
             this.O6.Size = new System.Drawing.Size(34, 22);
@@ -2078,6 +2086,7 @@
             // 
             // O5
             // 
+            this.O5.Enabled = false;
             this.O5.Location = new System.Drawing.Point(119, 158);
             this.O5.Name = "O5";
             this.O5.Size = new System.Drawing.Size(34, 22);
@@ -2085,6 +2094,7 @@
             // 
             // O4
             // 
+            this.O4.Enabled = false;
             this.O4.Location = new System.Drawing.Point(119, 132);
             this.O4.Name = "O4";
             this.O4.Size = new System.Drawing.Size(34, 22);
@@ -2092,6 +2102,7 @@
             // 
             // O3
             // 
+            this.O3.Enabled = false;
             this.O3.Location = new System.Drawing.Point(119, 106);
             this.O3.Name = "O3";
             this.O3.Size = new System.Drawing.Size(34, 22);
@@ -2099,6 +2110,7 @@
             // 
             // O2
             // 
+            this.O2.Enabled = false;
             this.O2.Location = new System.Drawing.Point(119, 80);
             this.O2.Name = "O2";
             this.O2.Size = new System.Drawing.Size(34, 22);
@@ -2106,6 +2118,7 @@
             // 
             // O1
             // 
+            this.O1.Enabled = false;
             this.O1.Location = new System.Drawing.Point(119, 54);
             this.O1.Name = "O1";
             this.O1.Size = new System.Drawing.Size(34, 22);
@@ -2117,12 +2130,13 @@
             this.label6.Font = new System.Drawing.Font("Calibri", 6F);
             this.label6.Location = new System.Drawing.Point(35, 36);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 10);
+            this.label6.Size = new System.Drawing.Size(30, 10);
             this.label6.TabIndex = 148;
-            this.label6.Text = "Discount";
+            this.label6.Text = "Diskont";
             // 
             // D10
             // 
+            this.D10.Enabled = false;
             this.D10.Location = new System.Drawing.Point(33, 288);
             this.D10.Name = "D10";
             this.D10.Size = new System.Drawing.Size(37, 22);
@@ -2130,6 +2144,7 @@
             // 
             // D9
             // 
+            this.D9.Enabled = false;
             this.D9.Location = new System.Drawing.Point(33, 262);
             this.D9.Name = "D9";
             this.D9.Size = new System.Drawing.Size(37, 22);
@@ -2137,6 +2152,7 @@
             // 
             // D8
             // 
+            this.D8.Enabled = false;
             this.D8.Location = new System.Drawing.Point(33, 236);
             this.D8.Name = "D8";
             this.D8.Size = new System.Drawing.Size(37, 22);
@@ -2144,6 +2160,7 @@
             // 
             // D7
             // 
+            this.D7.Enabled = false;
             this.D7.Location = new System.Drawing.Point(33, 210);
             this.D7.Name = "D7";
             this.D7.Size = new System.Drawing.Size(37, 22);
@@ -2151,6 +2168,7 @@
             // 
             // D6
             // 
+            this.D6.Enabled = false;
             this.D6.Location = new System.Drawing.Point(33, 185);
             this.D6.Name = "D6";
             this.D6.Size = new System.Drawing.Size(37, 22);
@@ -2158,6 +2176,7 @@
             // 
             // D5
             // 
+            this.D5.Enabled = false;
             this.D5.Location = new System.Drawing.Point(33, 159);
             this.D5.Name = "D5";
             this.D5.Size = new System.Drawing.Size(37, 22);
@@ -2165,6 +2184,7 @@
             // 
             // D4
             // 
+            this.D4.Enabled = false;
             this.D4.Location = new System.Drawing.Point(33, 133);
             this.D4.Name = "D4";
             this.D4.Size = new System.Drawing.Size(37, 22);
@@ -2172,6 +2192,7 @@
             // 
             // D3
             // 
+            this.D3.Enabled = false;
             this.D3.Location = new System.Drawing.Point(33, 107);
             this.D3.Name = "D3";
             this.D3.Size = new System.Drawing.Size(37, 22);
@@ -2179,6 +2200,7 @@
             // 
             // D2
             // 
+            this.D2.Enabled = false;
             this.D2.Location = new System.Drawing.Point(33, 81);
             this.D2.Name = "D2";
             this.D2.Size = new System.Drawing.Size(37, 22);
@@ -2186,6 +2208,7 @@
             // 
             // D1
             // 
+            this.D1.Enabled = false;
             this.D1.Location = new System.Drawing.Point(33, 54);
             this.D1.Name = "D1";
             this.D1.Size = new System.Drawing.Size(37, 22);
@@ -2279,7 +2302,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Kaufteildisposition";
             this.Size = new System.Drawing.Size(1000, 500);
-            this.Load += new System.EventHandler(this.Kaufteildisposition_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();

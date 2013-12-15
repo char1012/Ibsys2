@@ -17,11 +17,15 @@ namespace IBSYS2
     public partial class Sicherheitsbestand : UserControl
     {
         private OleDbConnection myconn;
+        private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        bool tP1 = true, tP2 = true, tP3 = true;
+
 
         public Sicherheitsbestand()
         {
             InitializeComponent();
             continue_btn.Enabled = true;
+            default_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
@@ -47,106 +51,127 @@ namespace IBSYS2
 
         private void eteileberechnen_btn_Click(object sender, EventArgs e)
         {
-                int gLagerbestandP1 = Convert.ToInt32(Eingabe_P1.Text);
-                int gLagerbestandP2 = Convert.ToInt32(Eingabe_P2.Text);
-                int gLagerbestandP3 = Convert.ToInt32(Eingabe_P3.Text);
-
-                int sicherheitsbestandP1 = sicherheitsbestandBerechnen(gLagerbestandP1, "1");
-                Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-                int sicherheitsbestandP2 = sicherheitsbestandBerechnen(gLagerbestandP2, "2");
-                Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-                int sicherheitsbestandP3 = sicherheitsbestandBerechnen(gLagerbestandP3, "3");
-                Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
-                //p1_label.Text = Convert.ToString(sicherheitsbestandP1) + " St.";
-                //p2_label.Text = Convert.ToString(sicherheitsbestandP2) + " St.";
-                //p3_label.Text = Convert.ToString(sicherheitsbestandP3) + " St.";
-            
-                int gLE26P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E261.Text = Convert.ToString(gLE26P1);
-                int gLE51P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E511.Text = Convert.ToString(gLE51P1);
-                int gLE16P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E161.Text = Convert.ToString(gLE16P1);
-                int gLE17P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E171.Text = Convert.ToString(gLE17P1);
-                int gLE50P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E501.Text = Convert.ToString(gLE50P1);
-                int gLE4P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E041.Text = Convert.ToString(gLE4P1);
-                int gLE10P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E101.Text = Convert.ToString(gLE10P1);
-                int gLE49P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E491.Text = Convert.ToString(gLE49P1);
-                int gLE7P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E071.Text = Convert.ToString(gLE7P1);
-                int gLE13P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E131.Text = Convert.ToString(gLE13P1);
-                int gLE18P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
-                E181.Text = Convert.ToString(gLE18P1);
-
-                int gLE26P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E262.Text = Convert.ToString(gLE26P2);
-                int gLE56P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E562.Text = Convert.ToString(gLE56P2);
-                int gLE16P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E162.Text = Convert.ToString(gLE16P2);
-                int gLE17P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E172.Text = Convert.ToString(gLE17P2);
-                int gLE55P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E552.Text = Convert.ToString(gLE55P2);
-                int gLE5P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E052.Text = Convert.ToString(gLE5P2);
-                int gLE11P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E112.Text = Convert.ToString(gLE11P2);
-                int gLE54P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E542.Text = Convert.ToString(gLE54P2);
-                int gLE8P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E082.Text = Convert.ToString(gLE8P2);
-                int gLE14P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E142.Text = Convert.ToString(gLE14P2);
-                int gLE19P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
-                E192.Text = Convert.ToString(gLE19P2);
-
-                int gLE26P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E263.Text = Convert.ToString(gLE26P3);
-                int gLE31P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E313.Text = Convert.ToString(gLE31P3);
-                int gLE16P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E163.Text = Convert.ToString(gLE16P3);
-                int gLE17P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E173.Text = Convert.ToString(gLE17P3);
-                int gLE30P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E303.Text = Convert.ToString(gLE30P3);
-                int gLE6P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E063.Text = Convert.ToString(gLE6P3);
-                int gLE12P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E123.Text = Convert.ToString(gLE12P3);
-                int gLE29P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E293.Text = Convert.ToString(gLE29P3);
-                int gLE9P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E093.Text = Convert.ToString(gLE9P3);
-                int gLE15P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E153.Text = Convert.ToString(gLE15P3);
-                int gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
-                E203.Text = Convert.ToString(gLE20P3);
-
-                textfeldFreigeben();
-                
-                continue_btn.Enabled = true;
+            if (Eingabe_P1.Text == "0" | Eingabe_P2.Text == "0" | Eingabe_P3.Text == "0")
+            {
+                valueZero();
+                DialogResult dialogResult;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
+                }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    berechnen();
+                }
+            } 
+            else 
+            {
+                berechnen();
+            }
         }
 
-        public int geplanterLagerbestand(int sicherheitsbestand, int ver)
+        public void berechnen()
         {
-            int geplanterLagerbestand = 0;
+            double gLagerbestandP1 = Convert.ToDouble(Eingabe_P1.Text);
+            double gLagerbestandP2 = Convert.ToDouble(Eingabe_P2.Text);
+            double gLagerbestandP3 = Convert.ToDouble(Eingabe_P3.Text);
+            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(gLagerbestandP1, "1");
+            Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
+            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(gLagerbestandP2, "2");
+            Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
+            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(gLagerbestandP3, "3");
+            Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
+
+
+            double gLE26P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E261.Text = Convert.ToString(gLE26P1);
+            double gLE51P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E511.Text = Convert.ToString(gLE51P1);
+            double gLE16P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E161.Text = Convert.ToString(gLE16P1);
+            double gLE17P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E171.Text = Convert.ToString(gLE17P1);
+            double gLE50P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E501.Text = Convert.ToString(gLE50P1);
+            double gLE4P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E041.Text = Convert.ToString(gLE4P1);
+            double gLE10P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E101.Text = Convert.ToString(gLE10P1);
+            double gLE49P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E491.Text = Convert.ToString(gLE49P1);
+            double gLE7P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E071.Text = Convert.ToString(gLE7P1);
+            double gLE13P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E131.Text = Convert.ToString(gLE13P1);
+            double gLE18P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            E181.Text = Convert.ToString(gLE18P1);
+
+            double gLE26P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E262.Text = Convert.ToString(gLE26P2);
+            double gLE56P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E562.Text = Convert.ToString(gLE56P2);
+            double gLE16P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E162.Text = Convert.ToString(gLE16P2);
+            double gLE17P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E172.Text = Convert.ToString(gLE17P2);
+            double gLE55P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E552.Text = Convert.ToString(gLE55P2);
+            double gLE5P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E052.Text = Convert.ToString(gLE5P2);
+            double gLE11P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E112.Text = Convert.ToString(gLE11P2);
+            double gLE54P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E542.Text = Convert.ToString(gLE54P2);
+            double gLE8P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E082.Text = Convert.ToString(gLE8P2);
+            double gLE14P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E142.Text = Convert.ToString(gLE14P2);
+            double gLE19P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            E192.Text = Convert.ToString(gLE19P2);
+
+            double gLE26P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E263.Text = Convert.ToString(gLE26P3);
+            double gLE31P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E313.Text = Convert.ToString(gLE31P3);
+            double gLE16P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E163.Text = Convert.ToString(gLE16P3);
+            double gLE17P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E173.Text = Convert.ToString(gLE17P3);
+            double gLE30P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E303.Text = Convert.ToString(gLE30P3);
+            double gLE6P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E063.Text = Convert.ToString(gLE6P3);
+            double gLE12P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E123.Text = Convert.ToString(gLE12P3);
+            double gLE29P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E293.Text = Convert.ToString(gLE29P3);
+            double gLE9P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E093.Text = Convert.ToString(gLE9P3);
+            double gLE15P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E153.Text = Convert.ToString(gLE15P3);
+            double gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            E203.Text = Convert.ToString(gLE20P3);
+
+            textfeldFreigeben();
+
+            continue_btn.Enabled = true;
+        }
+        public double geplanterLagerbestand(double sicherheitsbestand, int ver)
+        {
+            double geplanterLagerbestand = 0.0;
             geplanterLagerbestand = (sicherheitsbestand / 100) * ver;
             return geplanterLagerbestand;
         }
 
-        public int sicherheitsbestandBerechnen(int gLagerbestand, string teilenummer_FK)
+        public double sicherheitsbestandBerechnen(double gLagerbestand, string teilenummer_FK)
         {
             //TODO Wird zukünftig aus ersterm Schritt übergeben (Prognose)
             int prognose = 100;
-            int sicherheitsbestand = 0;
+            double sicherheitsbestand = 0;
             int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
             int wMatMenge = datenHolen(teilenummer_FK, "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material");
             int wArbMenge = datenHolen(teilenummer_FK, "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz");
@@ -277,78 +302,144 @@ namespace IBSYS2
 
         private void Eingabe_P2_TextChanged(object sender, EventArgs e)
         {
-                double number = 0;
-                if (String.IsNullOrEmpty(Eingabe_P2.Text))
+            if (Eingabe_P2.Text == "")
+            {
+                Eingabe_P2.ForeColor = Color.Red;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                 {
-                    Eingabe_P2.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        Eingabe_P2.Text = "Ausstehend";
-                    }
-                    else
-                    {
-                        Eingabe_P2.Text = "Outstanding";
-                    }
+                    Eingabe_P2.Text = "Geben Sie einen Wert ein";
                 }
                 else
                 {
-                    try
-                    {
-                        number = Convert.ToDouble(Eingabe_P2.Text);
-                        Eingabe_P2.ForeColor = Color.Black;
-
-                    }
-                    catch
+                    Eingabe_P2.Text = "Enter a value";
+                }
+                tP3 = false;
+            }
+            else
+            {
+                Eingabe_P2.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in Eingabe_P2.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
                         Eingabe_P2.ForeColor = Color.Red;
-                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                        {
-                            Eingabe_P2.Text = "Gültige Zahl";
-                        }
-                        else
-                        {
-                            Eingabe_P2.Text = "Valid number";
-                        }
-                        return;
+                        okay = false;
+                        tP2 = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
                     }
+                }
+                if (okay == true)
+                {
+                    Eingabe_P2.ForeColor = Color.Black;
+                    tP2 = true;
+                    if (tP1 & tP2 & tP3)
+                    {
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        eteileberechnen_btn.Enabled = false;
+                    }
+                }
             }
         }
 
         private void Eingabe_P1_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(Eingabe_P1.Text))
+            if (Eingabe_P1.Text == "")
             {
                 Eingabe_P1.ForeColor = Color.Red;
                 if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                 {
-                    Eingabe_P1.Text = "Ausstehend";
+                    Eingabe_P1.Text = "Geben Sie einen Wert ein";
                 }
                 else
                 {
-                    Eingabe_P1.Text = "Outstanding";
-                }
+                    Eingabe_P1.Text = "Enter a value";
+                } 
+                tP1 = false;
             }
             else
             {
-                try
+                Eingabe_P1.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in Eingabe_P1.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(Eingabe_P1.Text);
-                    Eingabe_P1.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    Eingabe_P1.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        Eingabe_P1.Text = "Gültige Zahl";
+                        Eingabe_P1.ForeColor = Color.Red;
+                        okay = false;
+                        tP1 = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    Eingabe_P1.ForeColor = Color.Black;
+                    tP1 = true;
+                    if (tP1 & tP2 & tP3)
+                    {
+                        eteileberechnen_btn.Enabled = true;
                     }
                     else
                     {
-                        Eingabe_P1.Text = "Valid number";
-                    } 
-                    return;
+                        eteileberechnen_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void Eingabe_P3_TextChanged_1(object sender, EventArgs e)
+        {
+            if (Eingabe_P3.Text == "")
+            {
+                Eingabe_P3.ForeColor = Color.Red;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    Eingabe_P3.Text = "Geben Sie einen Wert ein";
+                }
+                else
+                {
+                    Eingabe_P3.Text = "Enter a value";
+                } 
+                tP3 = false;
+            }
+            else
+            {
+                Eingabe_P3.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in Eingabe_P3.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        Eingabe_P3.ForeColor = Color.Red;
+                        okay = false;
+                        tP3 = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    Eingabe_P3.ForeColor = Color.Black;
+                    tP3 = true;
+                    if (tP1 & tP2 & tP3)
+                    {
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        eteileberechnen_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -386,51 +477,10 @@ namespace IBSYS2
                     else
                     {
                         E261.Text = "Valid number";
-                    } 
-                    return;
-                }
-            }
-        }
-
-        private void Eingabe_P3_TextChanged_1(object sender, EventArgs e)
-        {
-            double number = 0;
-            if (String.IsNullOrEmpty(Eingabe_P3.Text))
-            {
-                Eingabe_P3.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    Eingabe_P3.Text = "Ausstehend";
-                }
-                else
-                {
-                    Eingabe_P3.Text = "Outstanding";
-                }
-            }
-            else
-            {
-                try
-                {
-                    number = Convert.ToDouble(Eingabe_P3.Text);
-                    Eingabe_P3.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    Eingabe_P3.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        Eingabe_P3.Text = "Gültige Zahl";
                     }
-                    else
-                    {
-                        Eingabe_P3.Text = "Valid number";
-                    } 
                     return;
                 }
             }
-            eteileberechnen_btn.Enabled = true;
-        
         }
 
         private void E511_TextChanged(object sender, EventArgs e)
@@ -1698,6 +1748,7 @@ namespace IBSYS2
                 eteileberechnen_btn.Text = (Sprachen.EN_BTN_ETEILEBERECHNEN);
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
                 btn_back.Text = (Sprachen.EN_BTN_BACK);
+                default_btn.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_GROUPBOX1);
@@ -1728,6 +1779,7 @@ namespace IBSYS2
                 eteileberechnen_btn.Text = (Sprachen.DE_BTN_ETEILEBERECHNEN);
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 btn_back.Text = (Sprachen.DE_BTN_BACK);
+                default_btn.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_GROUPBOX1);
@@ -1775,17 +1827,78 @@ namespace IBSYS2
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            UserControl import = new ImportPrognose();
-            this.Controls.Add(import);
+            if (String.IsNullOrEmpty(Eingabe_P1.Text) == false)
+            {
+                if (String.IsNullOrEmpty(Eingabe_P2.Text) == false)
+                {
+                    if (String.IsNullOrEmpty(Eingabe_P3.Text) == false)
+                    {
+                        this.Controls.Clear();
+                        UserControl import = new ImportPrognose();
+                        this.Controls.Add(import);
+                    }
+
+                }
+            }
         }
 
         private void lbl_Auftraege_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            UserControl prod = new Produktion();
-            this.Controls.Add(prod);
+            if (String.IsNullOrEmpty(Eingabe_P1.Text) == false)
+            {
+                if (String.IsNullOrEmpty(Eingabe_P2.Text) == false)
+                {
+                    if (String.IsNullOrEmpty(Eingabe_P3.Text) == false)
+                    {
+                        if (continue_btn.Enabled == true)
+                        {
+                            this.Controls.Clear();
+                            UserControl prod = new Produktion();
+                            this.Controls.Add(prod);
+                        }
+                    }
+                }
+            }
+        }
+        private void valueZero()
+        {
+            if (Eingabe_P1.Text == "0")
+            {
+                Eingabe_P1.ForeColor = Color.Red;
+            }
+            if (Eingabe_P2.Text == "0")
+            {
+                Eingabe_P2.ForeColor = Color.Red;
+            }
+            if (Eingabe_P3.Text == "0")
+            {
+                Eingabe_P3.ForeColor = Color.Red;
+            }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Eingabe_P1.Text == "0" | Eingabe_P2.Text == "0" | Eingabe_P3.Text == "0")
+            {
+                valueZero();
+                DialogResult dialogResult;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
+                }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    berechnen();
+                }
+            }
+            else
+            {
+                berechnen();
+            }
+        }
     }
 }

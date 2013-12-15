@@ -75,7 +75,7 @@ namespace IBSYS2
             //1.  Dicountmengen ermitteln
             int a = 0;
             int[,] discountmenge = new int[29,2];
-            cmd.CommandText = @"SELECT Teilenummer, Diskontmenge FROM Teil where Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+            cmd.CommandText = @"SELECT Teilenummer, Diskontmenge FROM Teil WHERE Diskontmenge > 0 ORDER BY Teilenummer ASC;";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
             {
@@ -83,6 +83,7 @@ namespace IBSYS2
                 discountmenge[a, 1] = Convert.ToInt32(dbReader["Diskontmenge"]);
                 a++;
             }
+            dbReader.Close();
             // 2. Zellen fuellen
             for (int i = 0; i < discountmenge.GetLength(0); ++i)
             {
@@ -113,6 +114,13 @@ namespace IBSYS2
             // Spalte Bestellmenge fuellen
             // TODO
 
+            // Spalte Bestellmenge zum Testen benutzen:
+            for (int i = 0; i < bestand.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                this.Controls.Find("BM" + k.ToString(), true)[0].Text = bestand[i, 1].ToString();
+            }
+
         }
 
         // Methode, um Bestand (Anfangsbest. + eingeh. Best. - noch zu entnehmen) zu ermitteln
@@ -120,7 +128,116 @@ namespace IBSYS2
         {
             int[,] teile = new int[29, 2];
 
-            // TODO
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = myconn;
+            OleDbCommand cmd2 = new OleDbCommand();
+            cmd2.CommandType = CommandType.Text;
+            cmd2.Connection = myconn;
+            OleDbCommand cmd3 = new OleDbCommand();
+            cmd3.CommandType = CommandType.Text;
+            cmd3.Connection = myconn;
+
+            // 1. Anfangsbestand aus DB lesen
+            int a = 0;
+            cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE Teilenummer_FK IN (SELECT Teilenummer FROM Teil WHERE Diskontmenge > 0) AND Periode = " + periode + " ORDER BY Teilenummer_FK ASC;";
+            OleDbDataReader dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                teile[a, 0] = Convert.ToInt32(dbReader["Teilenummer_FK"]);
+                teile[a, 1] += Convert.ToInt32(dbReader["Bestand"]);
+                a++;
+            }
+            dbReader.Close();
+
+            // 2. noch eingehende Bestellungen aus der DB lesen
+            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bestellung WHERE Eingegangen = False AND Periode = " + periode + " ORDER BY Teilenummer_FK ASC;";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                for (int i = 0; i < teile.GetLength(0); i++)
+                {
+                    if (teile[i, 0] == Convert.ToInt32(dbReader["Teilenummer_FK"]))
+                    {
+                        teile[i, 1] += Convert.ToInt32(dbReader["Menge"]);
+                    }
+                }
+            }
+            dbReader.Close();
+
+            // 3. noch zu entnehmen berechnen
+            for (int i = 0; i < teile.GetLength(0); i++)
+            {
+                cmd.CommandText = @"SELECT Arbeitszeit_Erzeugnis_FK, Anzahl FROM Kaufteil_Arbeitszeit_Erzeugnis WHERE Kaufteil_Teilenummer_FK = " + teile[i,0] + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    cmd2.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE ID = " + dbReader["Arbeitszeit_Erzeugnis_FK"] + ";";
+                    OleDbDataReader dbReader2 = cmd2.ExecuteReader();
+                    while (dbReader2.Read()) // hier sollte eine Zeile herauskommen
+                    {
+                        OleDbDataReader dbReader3;
+
+                        // wenn es bei Reihenfolge = 1 einfliesst, muss nur der aktuelle Platz beruecksichtigt werden
+                        int[] plaetze = new int[Convert.ToInt32(dbReader2["Reihenfolge"])];
+                        plaetze[0] = Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]);
+                        a = 1;
+                        // wenn die Reihenfolge > 1, muessen alle Plaetze beachtet werden, die kleiner der RF sind
+                        if (Convert.ToInt32(dbReader2["Reihenfolge"]) > 1)
+                        {
+                            cmd3.CommandText = @"SELECT Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis WHERE Erzeugnis_Teilenummer_FK = " + dbReader2["Erzeugnis_Teilenummer_FK"] + " AND Reihenfolge < " + dbReader2["Reihenfolge"] + ";";
+                            dbReader3 = cmd3.ExecuteReader();
+                            while (dbReader3.Read())
+                            {
+                                plaetze[a] = Convert.ToInt32(dbReader3["Arbeitsplatz_FK"]);
+                                a++;
+                            }
+                            dbReader3.Close();
+                        }
+
+                        // fuer diese Arbeitsplaetze muss nun Warteliste_Arbeitsplatz geprueft werden
+                        for (int no = 0; no < plaetze.Length; no++)
+                        {
+                            cmd3.CommandText = @"SELECT Menge FROM Warteliste_Arbeitsplatz WHERE Arbeitsplatz_FK = " + plaetze[no] + " AND Teilenummer_FK = " + dbReader2["Erzeugnis_Teilenummer_FK"] + " AND Periode = " + periode + ";";
+                            dbReader3 = cmd3.ExecuteReader();
+                            while (dbReader3.Read())
+                            {
+                                // Menge mit Anzahl multiplizieren und von Bestand abziehen
+                                int menge = Convert.ToInt32(dbReader3["Menge"]) * Convert.ToInt32(dbReader["Anzahl"]);
+                                teile[i, 1] -= menge;
+                            }
+                            dbReader3.Close();
+
+                            // die Teile in Bearbeitung nicht fuer den Platz beachten, in den es einfliesst
+                            if(no >= 1)
+                            {
+                                cmd3.CommandText = @"SELECT Menge FROM Bearbeitung WHERE Arbeitsplatz_FK = " + plaetze[no] + " AND Teilenummer_FK = " + dbReader2["Erzeugnis_Teilenummer_FK"] + " AND Periode = " + periode + ";";
+                                dbReader3 = cmd3.ExecuteReader();
+                                while (dbReader3.Read())
+                                {
+                                    // Menge mit Anzahl multiplizieren und von Bestand abziehen
+                                    int menge = Convert.ToInt32(dbReader3["Menge"]) * Convert.ToInt32(dbReader["Anzahl"]);
+                                    teile[i, 1] -= menge;
+                                }
+                                dbReader3.Close();
+                            }
+                        }
+
+                        // pruefen, ob Erzeugnis_Teilenummer_FK in Warteliste_Material zu finden ist
+                        cmd3.CommandText = @"SELECT Menge FROM Warteliste_Material WHERE Erzeugnis_Teilenummer_FK = " + dbReader2["Erzeugnis_Teilenummer_FK"] + " AND Periode = " + periode + ";";
+                        dbReader3 = cmd3.ExecuteReader();
+                        while (dbReader3.Read())
+                        {
+                            // Menge mit Anzahl multiplizieren und von Bestand abziehen
+                            int menge = Convert.ToInt32(dbReader3["Menge"]) * Convert.ToInt32(dbReader["Anzahl"]);
+                            teile[i, 1] -= menge;
+                        }
+                        dbReader3.Close();
+                    }
+                    dbReader2.Close();
+                }
+                dbReader.Close();
+            }
 
             return teile;
         }
@@ -183,107 +300,6 @@ namespace IBSYS2
                 myconn.Close();
                 myconn.Open();
             }
-
-            int komplett = 0;
-            int[,] Warteliste_ohne_Mat = new int[99, 2];
-            cmd1.CommandText = @"SELECT Arbeitszeit_Erzeugnis_FK, Anzahl, Kaufteil_Teilenummer_FK FROM Kaufteil_Arbeitszeit_Erzeugnis;";
-            dbReader = cmd1.ExecuteReader();
-            while (dbReader.Read())
-            {
-
-                int K_TNR_FK = Convert.ToInt32(dbReader["Arbeitszeit_Erzeugnis_FK"]);
-                int anz_t = Convert.ToInt32(dbReader["Anzahl"]);
-                int kaufteil = Convert.ToInt32(dbReader["Kaufteil_Teilenummer_FK"]);
-                cmd2.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK, Reihenfolge FROM Arbeitsplatz_Erzeugnis WHERE ID = " + K_TNR_FK + ";";
-
-                dbReader1 = cmd2.ExecuteReader();
-                while (dbReader1.Read())
-                {
-                    int reihenfolge = Convert.ToInt32(dbReader1["Reihenfolge"]);
-
-                    if (reihenfolge != 1)
-                    {
-                        int erzeugnis = Convert.ToInt32(dbReader1["Erzeugnis_Teilenummer_FK"]);
-                        //Alle Plätze ermitteln, an denen das Erzeugnis-Teil durchkommt
-                        int menge = 0;
-                        cmd3.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Arbeitsplatz_FK FROM Arbeitsplatz_Erzeugnis where Erzeugnis_Teilenummer_FK = " + erzeugnis + " AND Reihenfolge <>" + 1 + ";";
-
-                        OleDbDataReader dbReader2 = cmd3.ExecuteReader();
-                        while (dbReader2.Read())
-                        {
-                            int erzeugnis_teil = Convert.ToInt32(dbReader2["Erzeugnis_Teilenummer_FK"]);
-                            int arbeitsplatz_fk = Convert.ToInt32(dbReader2["Arbeitsplatz_FK"]);
-                            //Suche in Warteliste des jeweiligen Arbeitsplatzes, ob Erzeugnis vorhanden
-                            cmd4.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Warteliste_Arbeitsplatz where Teilenummer_FK = " + erzeugnis_teil + " AND Arbeitsplatz_FK =" + arbeitsplatz_fk + ";";
-                            OleDbDataReader dbReader3 = cmd4.ExecuteReader();
-                            while (dbReader3.Read())
-                            {
-                                //Sichern der Ergebnisse
-                                try
-                                {
-                                    menge += Convert.ToInt32(dbReader3["Menge"]);
-                                }
-                                catch (Exception)
-                                {
-
-                                }
-                            }
-                            dbReader3.Close();
-                            //Suche in Bearbeitung nach den Teilen + eventuelle Addition zur Menge aus Warteliste_Arbeitsplatz
-                            cmd5.CommandText = @"SELECT Arbeitsplatz_FK, Menge FROM Bearbeitung where Teilenummer_FK = " + erzeugnis_teil + "and Arbeitsplatz_FK =" + arbeitsplatz_fk + ";";
-                            OleDbDataReader dbReader4 = cmd5.ExecuteReader();
-                            while (dbReader4.Read())
-                            {
-                                try
-                                {
-                                    menge += Convert.ToInt32(dbReader4["Menge"]);
-
-                                }
-                                catch (Exception)
-                                {
-
-                                }
-                            }
-                            dbReader4.Close();
-                        }
-                        dbReader2.Close();
-                        komplett = menge * anz_t;
-                        menge = 0;
-                    }
-
-                }
-                int a = 0;
-                if (komplett > 0)
-                {
-                    Warteliste_ohne_Mat[a, 0] = kaufteil;
-                    Warteliste_ohne_Mat[a, 1] = komplett;
-                    MessageBox.Show("Kautteil: " + Warteliste_ohne_Mat[a, 0] + " Menge: " + Warteliste_ohne_Mat[a, 1]);
-                }
-                a++;
-                komplett = 0;
-                dbReader1.Close();
-            }
-            dbReader.Close();
-
-            /*
-            cmd6.CommandText = @"SELECT Erzeugnis_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Teilenummer_FK = " + erzeugnis_teil + ";";
-            OleDbDataReader dbReader5 = cmd4.ExecuteReader();
-            while (dbReader5.Read())
-            {
-                //Sichern der Ergebnisse
-                try
-                {
-                    int materialWarteliste = Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]);
-                    int mengeWarteliste = Convert.ToInt32(dbReader["Menge"]);
-                }
-                catch (Exception)
-                {
-
-                }
-
-            }
-            dbReader5.Close();
-            */
 
             // Muss übergeben werden
             int[,] Prognosen = { { 90, 190, 160 }, { 160, 160, 160 }, { 160, 160, 160 }, { 150, 150, 200 } };

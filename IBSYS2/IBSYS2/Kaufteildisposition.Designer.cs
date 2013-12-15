@@ -1779,6 +1779,7 @@
             this.D11.Name = "D11";
             this.D11.Size = new System.Drawing.Size(37, 22);
             this.D11.TabIndex = 172;
+            this.D11.TextChanged += new System.EventHandler(this.D11_TextChanged);
             // 
             // label30
             // 

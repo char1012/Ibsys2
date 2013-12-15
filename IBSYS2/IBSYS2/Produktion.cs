@@ -60,7 +60,7 @@ namespace IBSYS2
             bool weiter = true;
             for (int i = 1; i <= 12; ++i)
             {
-                if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "" )
+                if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "" || this.Controls.Find("textBox" + i.ToString(), true)[0].ForeColor == Color.Red)
                 {
                     weiter = false;
                     
@@ -686,9 +686,12 @@ namespace IBSYS2
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
-             this.Controls.Clear();
-            UserControl prodreihe = new Produktionsreihenfolge();
-            this.Controls.Add(prodreihe);
+            if (continue_btn.Enabled == true)
+            {
+                this.Controls.Clear();
+                UserControl prodreihe = new Produktionsreihenfolge();
+                this.Controls.Add(prodreihe);
+            }
         }
     }
 

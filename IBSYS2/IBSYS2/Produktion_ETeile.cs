@@ -33,6 +33,8 @@ namespace IBSYS2
             this.produktionp3 = Convert.ToInt32(p3);
             this.sicherheitsbe = sicherheitsbestand;
 
+            button1.Enabled = false;
+
             berechneProduktion();
         }
 
@@ -678,6 +680,30 @@ namespace IBSYS2
             #endregion
         }
 
+        private void check()
+        {
+            bool weiter = true;
+            for (int i = 1; i <= 27; ++i)
+            {
+                if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "" || this.Controls.Find("textBox" + i.ToString(), true)[0].ForeColor == Color.Red)
+                {
+                    weiter = false;
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (weiter == true)
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -710,6 +736,7 @@ namespace IBSYS2
                     textBox1.ForeColor = Color.Black; ;
                 }
             }
+            check();
 
         }
 
@@ -739,7 +766,7 @@ namespace IBSYS2
                     textBox2.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -768,7 +795,7 @@ namespace IBSYS2
                     textBox3.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -797,7 +824,7 @@ namespace IBSYS2
                     textBox6.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -826,7 +853,7 @@ namespace IBSYS2
                     textBox4.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -855,7 +882,7 @@ namespace IBSYS2
                     textBox5.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -884,7 +911,7 @@ namespace IBSYS2
                     textBox7.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
@@ -913,7 +940,7 @@ namespace IBSYS2
                     textBox8.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -942,7 +969,7 @@ namespace IBSYS2
                     textBox9.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox10_TextChanged(object sender, EventArgs e)
@@ -971,7 +998,7 @@ namespace IBSYS2
                     textBox10.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox11_TextChanged(object sender, EventArgs e)
@@ -1000,7 +1027,7 @@ namespace IBSYS2
                     textBox11.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
@@ -1029,7 +1056,7 @@ namespace IBSYS2
                     textBox12.ForeColor = Color.Black;
                 }
             }
-
+            check();
         }
 
         private void textBox13_TextChanged(object sender, EventArgs e)
@@ -1058,6 +1085,7 @@ namespace IBSYS2
                     textBox13.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox14_TextChanged(object sender, EventArgs e)
@@ -1086,6 +1114,7 @@ namespace IBSYS2
                     textBox14.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox15_TextChanged(object sender, EventArgs e)
@@ -1114,6 +1143,7 @@ namespace IBSYS2
                     textBox15.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox16_TextChanged(object sender, EventArgs e)
@@ -1142,6 +1172,7 @@ namespace IBSYS2
                     textBox16.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox17_TextChanged(object sender, EventArgs e)
@@ -1170,6 +1201,7 @@ namespace IBSYS2
                     textBox17.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox18_TextChanged(object sender, EventArgs e)
@@ -1198,6 +1230,7 @@ namespace IBSYS2
                     textBox18.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox19_TextChanged(object sender, EventArgs e)
@@ -1226,6 +1259,7 @@ namespace IBSYS2
                     textBox19.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox20_TextChanged(object sender, EventArgs e)
@@ -1254,6 +1288,7 @@ namespace IBSYS2
                     textBox20.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox21_TextChanged(object sender, EventArgs e)
@@ -1282,6 +1317,7 @@ namespace IBSYS2
                     textBox21.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox22_TextChanged(object sender, EventArgs e)
@@ -1310,6 +1346,7 @@ namespace IBSYS2
                     textBox22.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox23_TextChanged(object sender, EventArgs e)
@@ -1338,6 +1375,7 @@ namespace IBSYS2
                     textBox23.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox24_TextChanged(object sender, EventArgs e)
@@ -1366,6 +1404,7 @@ namespace IBSYS2
                     textBox24.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox25_TextChanged(object sender, EventArgs e)
@@ -1394,6 +1433,7 @@ namespace IBSYS2
                     textBox25.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox26_TextChanged(object sender, EventArgs e)
@@ -1422,6 +1462,7 @@ namespace IBSYS2
                     textBox26.ForeColor = Color.Black;
                 }
             }
+            check();
         }
 
         private void textBox27_TextChanged(object sender, EventArgs e)
@@ -1450,6 +1491,7 @@ namespace IBSYS2
                     textBox27.ForeColor = Color.Black;
                 }
             }
+            check();
         }
         #endregion
 

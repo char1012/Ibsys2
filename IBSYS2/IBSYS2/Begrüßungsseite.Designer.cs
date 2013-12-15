@@ -105,6 +105,7 @@
             this.Controls.Add(this.pic_de);
             this.Controls.Add(this.Starten);
             this.Controls.Add(this.Logo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Begrüßungsseite";
             this.Text = "SCMPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Begrüßungsseite_FormClosing);

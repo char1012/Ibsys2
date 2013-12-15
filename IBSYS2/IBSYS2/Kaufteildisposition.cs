@@ -246,7 +246,39 @@ namespace IBSYS2
         {
             int[,] verbrauch = new int[29, 5];
 
-            // TODO
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = myconn;
+
+            int a = 0;
+            int[,] verwendung = new int[29,4];
+            cmd.CommandText = @"SELECT K_Teil, P1, P2, P3 FROM Verwendung ORDER BY K_Teil ASC;";
+            OleDbDataReader dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                verwendung[a, 0] = Convert.ToInt32(dbReader["K_Teil"]);
+                verwendung[a, 1] = Convert.ToInt32(dbReader["P1"]);
+                verwendung[a, 2] = Convert.ToInt32(dbReader["P2"]);
+                verwendung[a, 3] = Convert.ToInt32(dbReader["P3"]);
+                a++;
+            }
+
+            for (int i = 0; i < verbrauch.GetLength(0); i++)
+            {
+                verbrauch[i, 0] = verwendung[i, 0];
+                verbrauch[i, 1] = // Verbrauch aktuelle Periode
+                    (produktion[0, 1] * verwendung[i, 1]) + (produktion[1, 1] * verwendung[i, 2])
+                    + (produktion[2, 1] * verwendung[i, 3]);
+                verbrauch[i, 2] = // Verbrauch Periode akt+1
+                    (produktion[0, 2] * verwendung[i, 1]) + (produktion[1, 2] * verwendung[i, 2])
+                    + (produktion[2, 2] * verwendung[i, 3]);
+                verbrauch[i, 3] = // Verbrauch Periode akt+2
+                    (produktion[0, 3] * verwendung[i, 1]) + (produktion[1, 3] * verwendung[i, 2])
+                    + (produktion[2, 3] * verwendung[i, 3]);
+                verbrauch[i, 4] = // Verbrauch Periode akt+3
+                    (produktion[0, 4] * verwendung[i, 1]) + (produktion[1, 4] * verwendung[i, 2])
+                    + (produktion[2, 4] * verwendung[i, 3]);
+            }
 
             return verbrauch;
         }

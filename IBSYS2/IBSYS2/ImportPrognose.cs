@@ -57,7 +57,7 @@ namespace IBSYS2
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktion();
+            UserControl p = new Produktionsreihenfolge();
             //p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();

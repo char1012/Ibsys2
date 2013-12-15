@@ -17,14 +17,14 @@ namespace IBSYS2
             InitializeComponent();
 
             //Produktionsmengen die übergeben werden müssen
-            int[,] produktionsmengen = { {1, 150 }, {2, 150 }, { 3, 150}, {4, 50 }, {5, 60 }, {7, 90 }, {8, 100 }, {9, 200 }, {10, 60 }, {11, 130 }, {12, 33333}, {13, 343}, {14, 120}, {15, 90}, {16,70}, {17,34}, {18,60}, {19,300}, {20,70}, {26,100},{29,120},{30,70},{31,190},{49,51},{50,45},{51,37},{55,130}, {54,100}, {56,200} };
+            int[,] produktionsmengen = { {1, 150 }, {2, 150 }, { 3, 150}, {4, 50 }, {5, 60 }, {6, 100},{7, 90 }, {8, 100 }, {9, 200 }, {10, 60 }, {11, 130 }, {12, 33333}, {13, 343}, {14, 120}, {15, 90}, {16,70}, {17,34}, {18,60}, {19,300}, {20,70}, {26,100},{29,120},{30,70},{31,190},{49,51},{50,45},{51,37},{55,130}, {54,100}, {56,200} };
 
             //Produktionsmengen Textboxen befüllen
-            for (int i = 1; i < 30; i++)
+            for (int i = 0; i < 30; i++)
             {
                 int teil = produktionsmengen[i, 0];
                 int menge = produktionsmengen[i, 1];
-                Control[] found = this.Controls.Find("P" + teil.ToString(), true);
+                Control[] found = this.Controls.Find("M" + teil.ToString(), true);
                 ((TextBox)found[0]).Text = menge.ToString();
             }
         

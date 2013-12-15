@@ -74,8 +74,8 @@ namespace IBSYS2
             // Spalte Diskont
             //1.  Dicountmengen ermitteln
             int a = 0;
-            double[,] teildaten = new double[29,5];
-            cmd.CommandText = @"SELECT Teilenummer, Diskontmenge, Bestellkosten, Wiederbeschaffunszeit, Abweichung FROM Teil WHERE Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+            double[,] teildaten = new double[29,6];
+            cmd.CommandText = @"SELECT Teilenummer, Startteilewert, Diskontmenge, Bestellkosten, Wiederbeschaffunszeit, Abweichung FROM Teil WHERE Diskontmenge > 0 ORDER BY Teilenummer ASC;";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
             {
@@ -84,6 +84,7 @@ namespace IBSYS2
                 teildaten[a, 2] = Convert.ToInt32(dbReader["Bestellkosten"]);
                 teildaten[a, 3] = Convert.ToDouble(dbReader["Wiederbeschaffunszeit"]);
                 teildaten[a, 4] = Convert.ToDouble(dbReader["Abweichung"]);
+                teildaten[a, 5] = Convert.ToDouble(dbReader["Startteilewert"]);
                 a++;
             }
             dbReader.Close();
@@ -132,7 +133,11 @@ namespace IBSYS2
                     this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
 
                     // Spalte optimale Bestellmenge fuellen
-                    // TODO
+                    // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
+                    int jahresbedarf = 52 * durchschnitt;
+                    //int optimaleMenge = Convert.ToInt32(Math.Sqrt(200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30));
+                    double optimaleMenge = Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30));
+                    this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
 
                     // Spalte Bestellmenge fuellen
                     // TODO

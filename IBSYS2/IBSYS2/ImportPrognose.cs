@@ -227,6 +227,14 @@ namespace IBSYS2
                                 //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                 XMLReaderClass xmlclass = new XMLReaderClass();
                                 xmlclass.XMLReader(cmd, File);
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                {
+                                    System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
+                                }
+                                else
+                                {
+                                    System.Windows.Forms.MessageBox.Show("The files were imported successfully, thank you for your patience.", "XML-dataset imported");
+                                }
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;

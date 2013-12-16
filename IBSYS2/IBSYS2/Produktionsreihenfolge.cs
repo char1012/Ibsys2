@@ -12,6 +12,9 @@ namespace IBSYS2
 {
     public partial class Produktionsreihenfolge : UserControl
     {
+        List<List<int>> teile_liste = new List<List<int>>();
+
+        public void tabelle_erstellen(List<List<int>> teile_liste) { }
         public Produktionsreihenfolge()
         {
             InitializeComponent();
@@ -83,7 +86,6 @@ namespace IBSYS2
   
             //Array in zweidimensionale Liste überführt
             List<List<int>> teile_liste_unsortiert = new List<List<int>>();
-            List<List<int>> teile_liste = new List<List<int>>();
             int[] reihenfolge = {7,13,18,8,14,19,9,15,20,49,4,10,54,5,11,29,6,12,16,17,50,55,30,26,51,56,31,1,2,3};
             for (int x = 0; x < 29; x++)
             {
@@ -120,7 +122,7 @@ namespace IBSYS2
                 //First add a column
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                for (int y = 0; y < teile.GetLength(0); y++)
+                for (int y = 0; y < teile.GetLength(0)+1; y++)
                 {
                     Label label = new Label();
                     Button buttonUp = new Button();
@@ -193,12 +195,20 @@ namespace IBSYS2
             Button button = (Button)sender;
             if (button.Tag.ToString() == "1")
             {
-                MessageBox.Show("joern");
+                MessageBox.Show("Bereits auf Position 1");
             }
             else
             {
-                string listitem = button.Tag.ToString();
-                
+                int listitem = (int) button.Tag;
+                int teil1 = teile_liste[listitem][0];
+                int menge1 = teile_liste[listitem][1];
+                int teil2 = teile_liste[listitem + 1][0];
+                int menge2 = teile_liste[listitem + 1][1];
+
+                teile_liste[listitem][0] = teil2;
+                teile_liste[listitem][1] = menge2;
+                teile_liste[listitem+1][0] = teil1;
+                teile_liste[listitem+1][1] = menge1;
             }
         }
 

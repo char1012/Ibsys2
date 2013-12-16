@@ -93,12 +93,30 @@ namespace IBSYS2
             // TODO: array in eine Produktionsreihenfolge sortieren
   
             //Array in zweidimensionale Liste überführt
+            List<List<int>> teile_liste_unsortiert = new List<List<int>>();
             List<List<int>> teile_liste = new List<List<int>>();
+            int[] reihenfolge = {7,13,18,8,14,19,9,15,20,49,4,10,54,5,11,29,6,12,16,17,50,55,30,26,51,56,31,1,2,3};
             for (int x = 0; x < 29; x++)
             {
-                teile_liste.Add(new List<int>());
-                teile_liste[x].Add(teile[x, 0]);
-                teile_liste[x].Add(teile[x, 1]);
+                teile_liste_unsortiert.Add(new List<int>());
+                teile_liste_unsortiert[x].Add(teile[x, 0]);
+                teile_liste_unsortiert[x].Add(teile[x, 1]);
+            }
+
+            //Produktionsreihenfolge in List sortieren 
+            for (int joern = 0; joern <= 29; joern++)
+            {
+                int teil = reihenfolge[joern];
+                for(int fred = 0; fred <= 29; fred++)
+                    {
+                        if (teile[fred, 0] == teil)
+                        {
+                            int menge = teile[fred, 1];
+                            teile_liste.Add(new List<int>());
+                            teile_liste[joern].Add(teil);
+                            teile_liste[joern].Add(menge);
+                        }
+                    }
             }
 
             List<Button> button_liste = new List<Button>();
@@ -184,7 +202,15 @@ namespace IBSYS2
         void buttonUp_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            MessageBox.Show("Button:" + " " + button.Tag);
+            if (button.Tag.ToString() == "1")
+            {
+                MessageBox.Show("joern");
+            }
+            else
+            {
+                string listitem = button.Tag.ToString();
+                
+            }
         }
 
         private void pic_en_Click(object sender, EventArgs e)

@@ -11,7 +11,7 @@ using System.Windows;
 namespace IBSYS2
 {
 
-    public partial class BarChartExample : Window
+    public partial class BarChartExample : UserControl
     {
         public BarChartExample()
         {

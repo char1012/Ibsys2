@@ -11,6 +11,7 @@ using System.Xml;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Resources;
+using Visiblox.Charts;
 
 namespace IBSYS2
 {
@@ -23,6 +24,16 @@ namespace IBSYS2
         public ImportPrognose()
         {
             InitializeComponent();
+
+
+            ////----------------
+            ////Change HighlightedStyle to Normal style and add mouse enter and leave events on series
+            //foreach (BarSeries series in MainChart.Series)
+            //{
+            //    series.MouseEnter += new MouseEventHandler(series_MouseEnter);
+            //    series.MouseLeave += new MouseEventHandler(series_MouseLeave);
+            //}
+            //// ------------------
             button2.Enabled = false;
             continue_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -41,6 +52,24 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
             }
         }
+
+
+        //--------------------------------
+        ///// Mouse has entered one of the bar datapoints - set cursor to hand
+        //void series_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    this.Cursor = Cursors.Hand;
+        //}
+
+        ///// <summary>
+        ///// Mouse has left one of the bar datapoints - set cursor to arrow
+        ///// </summary>
+        //void series_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    this.Cursor = Cursors.Arrow;
+        //}
+
+        //----------------------------
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1201,4 +1230,27 @@ namespace IBSYS2
         }
 
     }
+
+    //// Data model
+
+    ///// <summary>
+    ///// A list of debt levels
+    ///// </summary>
+    //public class DebtLevelList : List<DebtLevel> { }
+
+    ///// <summary>
+    ///// A debt level object
+    ///// </summary>
+    //public class DebtLevel
+    //{
+    //    /// <summary>
+    //    /// The Country, as a string, that this debt data point applies to
+    //    /// </summary>
+    //    public string Country { get; set; }
+
+    //    /// <summary>
+    //    /// The Percent of GDP value for this country
+    //    /// </summary>
+    //    public double PercentGDP { get; set; }
+    //}
 }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="IBSYS2.BarChartExample"
+﻿<UserControl x:Class="IBSYS2.BarChartExample"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,7 +9,7 @@
 
     <!-- Defining data series and data points in the XAML -->
     <!-- Note that these data points and data series could be created in the code behind as well -->
-    <Window.Resources>
+    <UserControl.Resources>
         <!-- Define data to use on chart -->
         <local:DebtLevelList x:Key="Y2007">
             <local:DebtLevel Country="P1" PercentGDP="101.21"/>
@@ -59,7 +59,7 @@
             </Border>
         </ControlTemplate>
 
-    </Window.Resources>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White">
 
@@ -118,4 +118,4 @@
         </charts:Chart>
     </Grid>
 
-</Window>
+</UserControl>

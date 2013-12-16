@@ -16,17 +16,150 @@ namespace IBSYS2
         {
             InitializeComponent();
 
-            //Produktionsmengen die übergeben werden müssen
-            int[,] produktionsmengen = { {1, 150 }, {2, 150 }, { 3, 150}, {4, 50 }, {5, 60 }, {6, 100},{7, 90 }, {8, 100 }, {9, 200 }, {10, 60 }, {11, 130 }, {12, 33333}, {13, 343}, {14, 120}, {15, 90}, {16,70}, {17,34}, {18,60}, {19,300}, {20,70}, {26,100},{29,120},{30,70},{31,190},{49,51},{50,45},{51,37},{55,130}, {54,100}, {56,200} };
+            // simulieren
+            int[,] teile = new int[30, 2];
+            teile[0, 0] = 1;
+            teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+            teile[1, 0] = 2;
+            teile[1, 1] = 190;
+            teile[2, 0] = 3;
+            teile[2, 1] = 160;
+            teile[3, 0] = 4;
+            teile[3, 1] = 60;
+            teile[4, 0] = 5;
+            teile[4, 1] = 160;
+            teile[5, 0] = 6;
+            teile[5, 1] = -110;
+            teile[6, 0] = 7;
+            teile[6, 1] = 50;
+            teile[7, 0] = 8;
+            teile[7, 1] = 150;
+            teile[8, 0] = 9;
+            teile[8, 1] = -200;
+            teile[9, 0] = 10;
+            teile[9, 1] = 60;
+            teile[10, 0] = 11;
+            teile[10, 1] = 160;
+            teile[11, 0] = 12;
+            teile[11, 1] = -110;
+            teile[12, 0] = 13;
+            teile[12, 1] = 50;
+            teile[13, 0] = 14;
+            teile[13, 1] = 150;
+            teile[14, 0] = 15;
+            teile[14, 1] = -200;
+            teile[15, 0] = 16;
+            teile[15, 1] = 20 + 130 + 90;
+            teile[16, 0] = 17;
+            teile[16, 1] = 20 + 130 + 90;
+            teile[17, 0] = 18;
+            teile[17, 1] = 50;
+            teile[18, 0] = 19;
+            teile[18, 1] = 150;
+            teile[19, 0] = 20;
+            teile[19, 1] = -200;
+            teile[20, 0] = 26;
+            teile[20, 1] = 50 + 160 + 130;
+            teile[21, 0] = 29;
+            teile[21, 1] = -110;
+            teile[22, 0] = 30;
+            teile[22, 1] = -20;
+            teile[23, 0] = 31;
+            teile[23, 1] = 70;
+            teile[24, 0] = 49;
+            teile[24, 1] = 60;
+            teile[25, 0] = 50;
+            teile[25, 1] = 70;
+            teile[26, 0] = 51;
+            teile[26, 1] = 80;
+            teile[27, 0] = 54;
+            teile[27, 1] = 160;
+            teile[28, 0] = 55;
+            teile[28, 1] = 170;
+            teile[29, 0] = 56;
+            teile[29, 1] = 180;
 
-            //Produktionsmengen Textboxen befüllen
-            for (int i = 0; i < 30; i++)
+            // TODO: array in eine Produktionsreihenfolge sortieren
+            // Achtung: das obige Array muss in eine zweidimensionale List ueberfuehrt werden,
+            // weil einem Array beim Splitten keine neue Zeile hinzugefuegt werden kann
+
+            // Beispiel fuer eine zweidim. List:
+            // List<List<int>> arbeitsplatz_erzeugnis = new List<List<int>>();
+            // arbeitsplatz_erzeugnis.Add(new List<int>());
+            // arbeitsplatz_erzeugnis[a].Add(Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]));
+
+            tableLayoutPanel.Controls.Clear();
+            tableLayoutPanel.ColumnStyles.Clear();
+            tableLayoutPanel.RowStyles.Clear();
+            tableLayoutPanel.ColumnCount = 5;
+            tableLayoutPanel.RowCount = teile.GetLength(0)+1;
+            tableLayoutPanel.AutoScroll = true;
+            for (int x = 0; x < 5; x++)
             {
-                int teil = produktionsmengen[i, 0];
-                int menge = produktionsmengen[i, 1];
-                Control[] found = this.Controls.Find("M" + teil.ToString(), true);
-                ((TextBox)found[0]).Text = menge.ToString();
-            }
+                //First add a column
+                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                for (int y = 0; y < teile.GetLength(0)+1; y++)
+                {
+                    Label label = new Label();
+                    Button buttonUp = new Button();
+                    buttonUp.Text = "hoch";
+                    Button buttonDown = new Button();
+                    buttonDown.Text = "runter";
+                    //Next, add a row.  Only do this when once, when creating the first column
+                    if (x == 0)
+                    {
+                        tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    }
+                    if (y == 0)
+                    {
+                        if (x == 0)
+                        {
+                            label.Text = "Position";
+                        }
+                        else if (x == 1)
+                        {
+                            label.Text = "Teil";
+                        }
+                        else if (x == 2)
+                        {
+                            label.Text = "Menge";
+                        }
+                        else if (x == 3)
+                        {
+                            label.Text = "Sortieren";
+                        }
+                        // keine Ueberschrift fuer Spalte 5
+                        tableLayoutPanel.Controls.Add(label, x, y);
+                    }
+                    else {
+                        int i = y - 1;
+                        if (x == 0)
+                        {
+                            label.Text = y.ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 1)
+                        {
+                            label.Text = teile[i, 0].ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 2)
+                        {
+                            label.Text = teile[i, 1].ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 3)
+                        {
+                            tableLayoutPanel.Controls.Add(buttonUp, x, y);
+                        }
+                        else if (x == 4)
+                        {
+                            tableLayoutPanel.Controls.Add(buttonDown, x, y);
+                        }
+                    }
+              }
+           }
         }
 
         private void pic_en_Click(object sender, EventArgs e)
@@ -110,7 +243,7 @@ namespace IBSYS2
             UserControl prod = new Produktion();
             this.Controls.Add(prod);
         }
-
+        /*
         private void Plus7_Click(object sender, EventArgs e)
         {
             int[] Feld_nummern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56 };
@@ -150,6 +283,6 @@ namespace IBSYS2
                 P7.Text = (zahl - 1).ToString();
             }
             else { int joern = 1; }//message
-        }
+        }*/
     }
 }

@@ -1833,9 +1833,12 @@ namespace IBSYS2
                 {
                     if (String.IsNullOrEmpty(Eingabe_P3.Text) == false)
                     {
-                        this.Controls.Clear();
-                        UserControl import = new ImportPrognose();
-                        this.Controls.Add(import);
+                        if (continue_btn.Enabled == true)
+                        {
+                            this.Controls.Clear();
+                            UserControl import = new ImportPrognose();
+                            this.Controls.Add(import);
+                        }
                     }
 
                 }

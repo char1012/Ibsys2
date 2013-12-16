@@ -208,105 +208,105 @@ namespace IBSYS2
                      {
                          p51 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[2])
+                     if (bearbeitung[e][0] == teilenummer[2])
                      {
-                         p16 -= bearbeitung[i][1];
+                         p16 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[3])
+                     if (bearbeitung[e][0] == teilenummer[3])
                      {
-                         p17 -= bearbeitung[i][1];
+                         p17 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[4])
+                     if (bearbeitung[e][0] == teilenummer[4])
                      {
-                         p50 -= bearbeitung[i][1];
+                         p50 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[5])
+                     if (bearbeitung[e][0] == teilenummer[5])
                      {
-                         p4 -= bearbeitung[i][1];
+                         p4 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[6])
+                     if (bearbeitung[e][0] == teilenummer[6])
                      {
-                         p10 -= bearbeitung[i][1];
+                         p10 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[7])
+                     if (bearbeitung[e][0] == teilenummer[7])
                      {
-                         p49 -= bearbeitung[i][1];
+                         p49 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[8])
+                     if (bearbeitung[e][0] == teilenummer[8])
                      {
-                         p7 -= bearbeitung[i][1];
+                         p7 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[9])
+                     if (bearbeitung[e][0] == teilenummer[9])
                      {
-                         p13 -= bearbeitung[i][1];
+                         p13 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[10])
+                     if (bearbeitung[e][0] == teilenummer[10])
                      {
-                         p18 -= bearbeitung[i][1];
+                         p18 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[11])
+                     if (bearbeitung[e][0] == teilenummer[11])
                      {
-                         p56 -= bearbeitung[i][1];
+                         p56 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[12])
+                     if (bearbeitung[e][0] == teilenummer[12])
                      {
-                         p55 -= bearbeitung[i][1];
+                         p55 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[13])
+                     if (bearbeitung[e][0] == teilenummer[13])
                      {
-                         p5 -= bearbeitung[i][1];
+                         p5 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[14])
+                     if (bearbeitung[e][0] == teilenummer[14])
                      {
-                         p11 -= bearbeitung[i][1];
+                         p11 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[15])
+                     if (bearbeitung[e][0] == teilenummer[15])
                      {
-                         p54 -= bearbeitung[i][1];
+                         p54 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[16])
+                     if (bearbeitung[e][0] == teilenummer[16])
                      {
-                         p8 -= bearbeitung[i][1];
+                         p8 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[17])
+                     if (bearbeitung[e][0] == teilenummer[17])
                      {
-                         p14 -= bearbeitung[i][1];
+                         p14 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[18])
+                     if (bearbeitung[e][0] == teilenummer[18])
                      {
-                         p19 -= bearbeitung[i][1];
+                         p19 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[19])
+                     if (bearbeitung[e][0] == teilenummer[19])
                      {
-                         p31 -= bearbeitung[i][1];
+                         p31 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[20])
+                     if (bearbeitung[e][0] == teilenummer[20])
                      {
-                         p30 -= bearbeitung[i][1];
+                         p30 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[21])
+                     if (bearbeitung[e][0] == teilenummer[21])
                      {
-                         p6 -= bearbeitung[i][1];
+                         p6 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[22])
+                     if (bearbeitung[e][0] == teilenummer[22])
                      {
-                         p12 -= bearbeitung[i][1];
+                         p12 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[23])
+                     if (bearbeitung[e][0] == teilenummer[23])
                      {
-                         p29 -= bearbeitung[i][1];
+                         p29 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[24])
+                     if (bearbeitung[e][0] == teilenummer[24])
                      {
-                         p9 -= bearbeitung[i][1];
+                         p9 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[25])
+                     if (bearbeitung[e][0] == teilenummer[25])
                      {
-                         p15 -= bearbeitung[i][1];
+                         p15 -= bearbeitung[e][1];
                      }
-                     if (bearbeitung[i][0] == teilenummer[26])
+                     if (bearbeitung[e][0] == teilenummer[26])
                      {
-                         p20 -= bearbeitung[i][1];
+                         p20 -= bearbeitung[e][1];
                      }
                  }
                  #endregion

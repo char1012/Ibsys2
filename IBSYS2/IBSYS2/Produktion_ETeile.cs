@@ -20,9 +20,14 @@ namespace IBSYS2
         int produktionp2;
         int produktionp3;
         List<int> sicherheitsbe = new List<int>();
+        int[,] berProduktion = new int[30, 2];
 
         public Produktion_ETeile(int per, string p1, string p2, string p3, List<int> sicherheitsbestand)
         {
+            // TODO hier zusaetzlich berProduktion aus Produktion uebergeben
+            // und berProduktion hier befuellen
+            // dafuer Berechnung hier streichen
+
             InitializeComponent();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -939,6 +944,8 @@ namespace IBSYS2
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            // TODO hier zusaetzlich zu Close eine neue Methode in Produktion aufrufen,
+            // berProduktion von hier uebergeben und berProduktion in Produktion setzen
             this.Close();
         }
 

@@ -17,7 +17,6 @@ namespace IBSYS2
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         // Datenweitergabe:
-        // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
@@ -30,13 +29,15 @@ namespace IBSYS2
         
         int periode;
 
-        // TO DO Listen für Sicherheitsbestand von ETeilen
         List<int> sicherheitsbe = new List<int>();
 
         List<int> lagerbestand = new List<int>();
         List<int> bearbeitung = new List<int>();
         List<int> wartelisteAr = new List<int>();
         List<int> wartelisteMa = new List<int>();
+
+        // Array fuer berechnete Produktionsmengen
+        int[,] berProduktion = new int[30, 2];
 
         public Produktion()
         {
@@ -195,6 +196,7 @@ namespace IBSYS2
             string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
             string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
             string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
+            
             if (prod1.StartsWith("-"))
             {
                 textBox1.Text = "0";
@@ -219,6 +221,8 @@ namespace IBSYS2
             {
                 textBox3.Text = prod3;
             }
+
+            // TODO alle Produktionsmengen berechnen und berProduktion befuellen
 
             #region Produktion der Prognosen
             double prognose1p1 = auftraege[3];
@@ -681,8 +685,13 @@ namespace IBSYS2
 
                     if (result == DialogResult.Yes)
                     {
+                        // Datenweitergabe
+
+                        produktion = berProduktion;
+
                         this.Controls.Clear();
-                        UserControl prodreihe = new Produktionsreihenfolge();
+                        UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                         this.Controls.Add(prodreihe);
                         break;
                     }
@@ -692,8 +701,13 @@ namespace IBSYS2
                 {
                     if (i == 12)
                     {
+                        // Datenweitergabe
+
+                        produktion = berProduktion;
+
                         this.Controls.Clear();
-                        UserControl prodreihe = new Produktionsreihenfolge();
+                        UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                         this.Controls.Add(prodreihe);
                     }
                     else { continue; }
@@ -726,6 +740,7 @@ namespace IBSYS2
 
         private void ETeile_Click(object sender, EventArgs e)
         {
+            // TODO hier zusaetzlich berProduktion uebergeben
             new Produktion_ETeile(periode, textBox1.Text, textBox2.Text, textBox3.Text, sicherheitsbe).Show();
         }
 

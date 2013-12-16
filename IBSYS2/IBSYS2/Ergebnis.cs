@@ -14,15 +14,21 @@ namespace IBSYS2
     public partial class Ergebnis : UserControl
     {
         private OleDbConnection myconn;
-        int periode;
-        int[] auftraege;
-        int[] direktverkaeufe;
-        int[,] sicherheitsbest;
-        int[,] produktion;
-        int[] produktionProg;
-        int[,] kapazitaet;
-        int[,] kaufauftraege;
+
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[] produktionProg = new int[9];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 3];
+        int[,] kaufauftraege = new int[29, 3];
         int[] storevalues;
+
+        // simulieren
+        int periode;
 
         public Ergebnis()
         {
@@ -41,7 +47,6 @@ namespace IBSYS2
             // Direktverkaeufe
             direktverkaeufe = new int[3]{0,0,0};
             // Sicherheitsbestaende (nicht fuer XML-Export benoetigt)
-            sicherheitsbest = new int[30, 2];
             sicherheitsbest[0, 0] = 1;
             sicherheitsbest[0, 1] = 70; // Teil p1 mit 70 Stueck Sicherheitsbestand
             sicherheitsbest[1, 0] = 2;
@@ -103,7 +108,6 @@ namespace IBSYS2
             sicherheitsbest[29, 0] = 56;
             sicherheitsbest[29, 1] = 80;
             // Produktion aktuelle Periode (P- und E-Teile) - in korrekter Produktionsreihenfolge
-            produktion = new int[30, 2];
             produktion[0, 0] = 1;
             produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
             produktion[1, 0] = 2;
@@ -168,7 +172,6 @@ namespace IBSYS2
             // {n+1P1, n+1P2, n+1P3, n+2P1, n+2P2, ...}
             produktionProg = new int[9]{160,160,160,160,160,160,150,150,200};
             // Schichten und Ueberstunden
-            kapazitaet = new int[14, 3];
             kapazitaet[0, 0] = 1;
             kapazitaet[0, 1] = 1;
             kapazitaet[0, 2] = 110;
@@ -213,7 +216,6 @@ namespace IBSYS2
             kapazitaet[13, 2] = 14;
             // Kaufauftraege
             // 5 = normal, 4 = express, 0 = keine Bestellung
-            kaufauftraege = new int[29, 3];
             kaufauftraege[0, 0] = 21;
             kaufauftraege[0, 1] = 0;
             kaufauftraege[0, 2] = 0;

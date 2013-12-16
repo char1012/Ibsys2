@@ -12,6 +12,17 @@ namespace IBSYS2
 {
     public partial class Produktionsreihenfolge : UserControl
     {
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[] produktionProg = new int[9];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 3];
+        int[,] kaufauftraege = new int[29, 3];
+
         public Produktionsreihenfolge()
         {
             InitializeComponent();

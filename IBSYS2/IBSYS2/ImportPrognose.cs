@@ -263,7 +263,7 @@ namespace IBSYS2
         {
             // Achtung: in button2_click wird der continue_btn bereits enabled,
             // obwohl noch keine Eingabe in den Textfeldern vorgenommen wurde
-            if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" |  textBox5.Text == "0" |  textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
+            if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" | textBox5.Text == "0" | textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
             {
                 valueZero();
                 DialogResult dialogResult;
@@ -305,6 +305,36 @@ namespace IBSYS2
                     UserControl sicherheit = new Sicherheitsbestand();
                     this.Controls.Add(sicherheit);
                 }
+            }
+            else
+            {
+                // Uebergabe:
+                // aktuelle Periode (Integer)
+                // 12 Integer fuer die Auftraege
+                // 3 Integer fuer Zusatzauftraege
+                // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
+                int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
+                int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
+                int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
+                int aPP1 = Convert.ToInt32(tb_aktP1.Text);
+                int aPP2 = Convert.ToInt32(textBox2.Text);
+                int aPP3 = Convert.ToInt32(textBox3.Text);
+                int p2P1 = Convert.ToInt32(textBox4.Text);
+                int p2P2 = Convert.ToInt32(textBox5.Text);
+                int p2P3 = Convert.ToInt32(textBox6.Text);
+                int p3P1 = Convert.ToInt32(textBox7.Text);
+                int p3P2 = Convert.ToInt32(textBox8.Text);
+                int p3P3 = Convert.ToInt32(textBox9.Text);
+                int p4P1 = Convert.ToInt32(textBox10.Text);
+                int p4P2 = Convert.ToInt32(textBox11.Text);
+                int p4P3 = Convert.ToInt32(textBox12.Text);
+                int mengeP1 = zLAP1 + aPP1;
+                int mengeP2 = zLAP2 + aPP2;
+                int mengeP3 = zLAP3 + aPP3;
+
+                this.Controls.Clear();
+                UserControl sicherheit = new Sicherheitsbestand();
+                this.Controls.Add(sicherheit);
             }
         }
 

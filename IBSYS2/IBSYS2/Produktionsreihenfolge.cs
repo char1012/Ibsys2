@@ -93,10 +93,10 @@ namespace IBSYS2
             }
 
             //Produktionsreihenfolge in List sortieren 
-            for (int joern = 0; joern < 29; joern++)
+            for (int joern = 0; joern <= 29; joern++)
             {
                 int teil = reihenfolge[joern];
-                for(int fred = 0; fred < 29; fred++)
+                for(int fred = 0; fred <= 29; fred++)
                     {
                         if (teile[fred, 0] == teil)
                         {
@@ -104,7 +104,6 @@ namespace IBSYS2
                             teile_liste.Add(new List<int>());
                             teile_liste[joern].Add(teil);
                             teile_liste[joern].Add(menge);
-                            MessageBox.Show(""+teile_liste[joern][0] + " "+teile_liste[joern][1] );
                         }
                     }
             }
@@ -192,8 +191,15 @@ namespace IBSYS2
         void buttonUp_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            MessageBox.Show("Button:" + " " + button.Tag);
-
+            if (button.Tag.ToString() == "1")
+            {
+                MessageBox.Show("joern");
+            }
+            else
+            {
+                string listitem = button.Tag.ToString();
+                
+            }
         }
 
         private void pic_en_Click(object sender, EventArgs e)

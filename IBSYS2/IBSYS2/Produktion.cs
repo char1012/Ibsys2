@@ -113,10 +113,34 @@ namespace IBSYS2
             int Bearbeitungp3 = Daten("3", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
 
            // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
-            textBox1.Text = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
-            textBox2.Text = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
-            textBox3.Text = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
-            
+            string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
+            string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
+            string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
+            if (prod1.StartsWith("-"))
+            {
+                textBox1.Text = "0";
+            }
+            else
+            {
+                textBox1.Text = prod1;
+            }
+            if (prod2.StartsWith("-"))
+            {
+                textBox2.Text = "0";
+            }
+            else
+            {
+                textBox2.Text = prod2;
+            }
+            if (prod3.StartsWith("-"))
+            {
+                textBox3.Text = "0";
+            }
+            else
+            {
+                textBox3.Text = prod3;
+            }
+
             #region Produktion der Prognosen
             // TO DO Daten aus Import verwenden, dies sind nur Testdaten
             double prognose1p1 = 200;
@@ -130,19 +154,47 @@ namespace IBSYS2
             double prognose3p3 = 300;
 
             string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
-            textBox6.Text = prognosep1;
-            textBox7.Text = prognosep1;
-            textBox10.Text = prognosep1;
+            if (prognosep1.StartsWith("-"))
+            {
+                textBox6.Text = "0";
+                textBox7.Text = "0";
+                textBox10.Text = "0";
+            }
+            else
+            {
+                textBox6.Text = prognosep1;
+                textBox7.Text = prognosep1;
+                textBox10.Text = prognosep1;
+            }
 
             string prognosep2 = Convert.ToInt32((prognose1p2 + prognose2p2 + prognose3p2) / 3 * 1.1).ToString();
-            textBox4.Text = prognosep2;
-            textBox8.Text = prognosep2;
-            textBox11.Text = prognosep2;
+            if (prognosep2.StartsWith("-"))
+            {
+                textBox4.Text = "0";
+                textBox8.Text = "0";
+                textBox11.Text = "0";
+            }
+            else
+            {
+                textBox4.Text = prognosep2;
+                textBox8.Text = prognosep2;
+                textBox11.Text = prognosep2;
+            }
 
             string prognosep3 = Convert.ToInt32((prognose1p3 + prognose2p3 + prognose3p3) / 3 * 1.1).ToString();
-            textBox5.Text = prognosep3;
-            textBox9.Text = prognosep3;
-            textBox12.Text = prognosep3; 
+            if (prognosep3.StartsWith("-"))
+            {
+                textBox5.Text = "0";
+                textBox9.Text = "0";
+                textBox12.Text = "0";
+            }
+            else
+            {
+                textBox5.Text = prognosep3;
+                textBox9.Text = prognosep3;
+                textBox12.Text = prognosep3; 
+            }
+
             #endregion
 
         }

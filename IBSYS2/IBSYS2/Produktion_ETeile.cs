@@ -649,33 +649,266 @@ namespace IBSYS2
                  #endregion
 
                  #region In textBox
-                 textBox1.Text = p4.ToString();
-                 textBox2.Text = p5.ToString();
-                 textBox3.Text = p6.ToString();
-                 textBox4.Text = p7.ToString();
-                 textBox5.Text = p8.ToString();
-                 textBox6.Text = p9.ToString();
-                 textBox7.Text = p10.ToString();
-                 textBox8.Text = p11.ToString();
-                 textBox9.Text = p12.ToString();
-                 textBox10.Text = p13.ToString();
-                 textBox11.Text = p14.ToString();
-                 textBox12.Text = p15.ToString();
-                 textBox13.Text = p16.ToString();
-                 textBox14.Text = p17.ToString();
-                 textBox15.Text = p18.ToString();
-                 textBox16.Text = p19.ToString();
-                 textBox17.Text = p20.ToString();
-                 textBox18.Text = p26.ToString();
-                 textBox19.Text = p29.ToString();
-                 textBox20.Text = p30.ToString();
-                 textBox21.Text = p31.ToString();
-                 textBox22.Text = p49.ToString();
-                 textBox23.Text = p50.ToString();
-                 textBox24.Text = p51.ToString();
-                 textBox25.Text = p54.ToString();
-                 textBox26.Text = p54.ToString();
-                 textBox27.Text = p56.ToString();
+                 if (p4.ToString().StartsWith("-"))
+                 {
+                     textBox1.Text = "0";
+                 }
+                 else
+                 {
+                     textBox1.Text = p4.ToString();
+                 }
+
+                 if (p5.ToString().StartsWith("-"))
+                 {
+                     textBox2.Text = "0";
+                 }
+                 else
+                 {
+                     textBox2.Text = p5.ToString();
+                 }
+
+                 if (p6.ToString().StartsWith("-"))
+                 {
+                     textBox3.Text = "0";
+                 }
+                 else
+                 {
+                     textBox3.Text = p6.ToString();
+                 }
+
+                 if (p7.ToString().StartsWith("-"))
+                 {
+                     textBox4.Text = "0";
+                 }
+                 else
+                 {
+                     textBox4.Text = p7.ToString();
+                 }
+
+                 if (p8.ToString().StartsWith("-"))
+                 {
+                     textBox5.Text = "0";
+                 }
+                 else
+                 {
+                     textBox5.Text = p8.ToString();
+                 }
+
+                 if (p9.ToString().StartsWith("-"))
+                 {
+                     textBox6.Text = "0";
+                 }
+                 else
+                 {
+                     textBox6.Text = p9.ToString();
+                 }
+
+                 if (p10.ToString().StartsWith("-"))
+                 {
+                     textBox7.Text = "0";
+                 }
+                 else
+                 {
+                     textBox7.Text = p10.ToString();
+                 }
+
+                 if (p11.ToString().StartsWith("-"))
+                 {
+                     textBox8.Text = "0";
+                 }
+                 else
+                 {
+                     textBox8.Text = p11.ToString();
+                 }
+
+                 if (p12.ToString().StartsWith("-"))
+                 {
+                     textBox9.Text = "0";
+                 }
+                 else
+                 {
+                     textBox9.Text = p12.ToString();
+                 }
+
+                 if (p13.ToString().StartsWith("-"))
+                 {
+                     textBox10.Text = "0";
+                 }
+                 else
+                 {
+                     textBox10.Text = p13.ToString();
+                 }
+
+                 if (p14.ToString().StartsWith("-"))
+                 {
+                     textBox11.Text = "0";
+                 }
+                 else
+                 {
+                     textBox11.Text = p14.ToString();
+                 }
+
+                 if (p15.ToString().StartsWith("-"))
+                 {
+                     textBox12.Text = "0";
+                 }
+                 else
+                 {
+                     textBox12.Text = p15.ToString();
+                 }
+
+                 if (p16.ToString().StartsWith("-"))
+                 {
+                     textBox13.Text = "0";
+                 }
+                 else
+                 {
+                     textBox13.Text = p16.ToString();
+                 }
+
+                 if (p17.ToString().StartsWith("-"))
+                 {
+                     textBox14.Text = "0";
+                 }
+                 else
+                 {
+                     textBox14.Text = p17.ToString();
+                 }
+
+                 if (p17.ToString().StartsWith("-"))
+                 {
+                     textBox14.Text = "0";
+                 }
+                 else
+                 {
+                     textBox14.Text = p17.ToString();
+                 }
+
+                 if (p18.ToString().StartsWith("-"))
+                 {
+                     textBox15.Text = "0";
+                 }
+                 else
+                 {
+                     textBox15.Text = p18.ToString();
+                 }
+
+                 if (p19.ToString().StartsWith("-"))
+                 {
+                     textBox16.Text = "0";
+                 }
+                 else
+                 {
+                     textBox16.Text = p19.ToString();
+                 }
+
+                 if (p20.ToString().StartsWith("-"))
+                 {
+                     textBox17.Text = "0";
+                 }
+                 else
+                 {
+                     textBox17.Text = p20.ToString();
+                 }
+
+                 if (p26.ToString().StartsWith("-"))
+                 {
+                     textBox18.Text = "0";
+                 }
+                 else
+                 {
+                     textBox18.Text = p26.ToString();
+                 }
+
+                 if (p26.ToString().StartsWith("-"))
+                 {
+                     textBox18.Text = "0";
+                 }
+                 else
+                 {
+                     textBox18.Text = p26.ToString();
+                 }
+
+                 if (p29.ToString().StartsWith("-"))
+                 {
+                     textBox19.Text = "0";
+                 }
+                 else
+                 {
+                     textBox19.Text = p29.ToString();
+                 }
+
+                 if (p30.ToString().StartsWith("-"))
+                 {
+                     textBox20.Text = "0";
+                 }
+                 else
+                 {
+                     textBox20.Text = p30.ToString();
+                 }
+
+                 if (p31.ToString().StartsWith("-"))
+                 {
+                     textBox21.Text = "0";
+                 }
+                 else
+                 {
+                     textBox21.Text = p31.ToString();
+                 }
+
+                 if (p49.ToString().StartsWith("-"))
+                 {
+                     textBox22.Text = "0";
+                 }
+                 else
+                 {
+                     textBox22.Text = p49.ToString();
+                 }
+
+                 if (p50.ToString().StartsWith("-"))
+                 {
+                     textBox23.Text = "0";
+                 }
+                 else
+                 {
+                     textBox23.Text = p50.ToString();
+                 }
+
+                 if (p51.ToString().StartsWith("-"))
+                 {
+                     textBox24.Text = "0";
+                 }
+                 else
+                 {
+                     textBox24.Text = p51.ToString();
+                 }
+
+                 if (p54.ToString().StartsWith("-"))
+                 {
+                     textBox25.Text = "0";
+                 }
+                 else
+                 {
+                     textBox25.Text = p54.ToString();
+                 }
+
+                 if (p54.ToString().StartsWith("-"))
+                 {
+                     textBox26.Text = "0";
+                 }
+                 else
+                 {
+                     textBox26.Text = p54.ToString();
+                 }
+
+                 if (p56.ToString().StartsWith("-"))
+                 {
+                     textBox27.Text = "0";
+                 }
+                 else
+                 {
+                     textBox27.Text = p56.ToString();
+                 }
              }
             #endregion
         }

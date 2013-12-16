@@ -13,8 +13,92 @@ namespace IBSYS2
     public partial class Produktionsreihenfolge : UserControl
     {
         List<List<int>> teile_liste = new List<List<int>>();
+        int[,] teile = new int[30, 2];
 
-        public void tabelle_erstellen(List<List<int>> teile_liste) { }
+        public void tabelle_erstellen(List<List<int>> teile_liste) {
+            List<Button> button_liste = new List<Button>();
+            tableLayoutPanel.Controls.Clear();
+            tableLayoutPanel.ColumnStyles.Clear();
+            tableLayoutPanel.RowStyles.Clear();
+            tableLayoutPanel.ColumnCount = 5;
+            tableLayoutPanel.RowCount = teile.GetLength(0) + 1;
+            tableLayoutPanel.AutoScroll = true;
+            for (int x = 0; x < 5; x++)
+            {
+                //First add a column
+                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+
+                for (int y = 0; y < teile.GetLength(0) + 1; y++)
+                {
+                    Label label = new Label();
+                    Button buttonUp = new Button();
+                    buttonUp.Text = "hoch";
+                    Button buttonDown = new Button();
+                    buttonDown.Text = "runter";
+
+                    //Next, add a row.  Only do this when once, when creating the first column
+                    if (x == 0)
+                    {
+                        tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                    }
+                    if (y == 0)
+                    {
+                        if (x == 0)
+                        {
+                            label.Text = "Position";
+                        }
+                        else if (x == 1)
+                        {
+                            label.Text = "Teil";
+                        }
+                        else if (x == 2)
+                        {
+                            label.Text = "Menge";
+                        }
+                        else if (x == 3)
+                        {
+                            label.Text = "Sortieren";
+                        }
+                        // keine Ueberschrift fuer Spalte 5
+                        tableLayoutPanel.Controls.Add(label, x, y);
+                    }
+                    else
+                    {
+                        int i = y - 1;
+                        if (x == 0)
+                        {
+                            label.Text = y.ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 1)
+                        {
+                            label.Text = teile_liste[i][0].ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 2)
+                        {
+                            label.Text = teile_liste[i][1].ToString();
+                            tableLayoutPanel.Controls.Add(label, x, y);
+                        }
+                        else if (x == 3)
+                        {
+                            tableLayoutPanel.Controls.Add(buttonUp, x, y);
+                            buttonUp.Tag = y;
+                            button_liste.Add(buttonUp);
+                            buttonUp.Click += new EventHandler(buttonUp_click);
+
+                        }
+                        else if (x == 4)
+                        {
+                            tableLayoutPanel.Controls.Add(buttonDown, x, y);
+                            buttonDown.Tag = y;
+                            button_liste.Add(buttonDown);
+                            buttonDown.Click += new EventHandler(buttonDown_click);
+                        }
+                    }
+                }
+            }
+        }
         public Produktionsreihenfolge()
         {
             InitializeComponent();
@@ -110,84 +194,7 @@ namespace IBSYS2
                     }
             }
 
-            List<Button> button_liste = new List<Button>();
-            tableLayoutPanel.Controls.Clear();
-            tableLayoutPanel.ColumnStyles.Clear();
-            tableLayoutPanel.RowStyles.Clear();
-            tableLayoutPanel.ColumnCount = 5;
-            tableLayoutPanel.RowCount = teile.GetLength(0)+1;
-            tableLayoutPanel.AutoScroll = true;
-            for (int x = 0; x < 5; x++)
-            {
-                //First add a column
-                tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-
-                for (int y = 0; y < teile.GetLength(0)+1; y++)
-                {
-                    Label label = new Label();
-                    Button buttonUp = new Button();
-                    buttonUp.Text = "hoch";
-                    Button buttonDown = new Button();
-                    buttonDown.Text = "runter";
-
-                    //Next, add a row.  Only do this when once, when creating the first column
-                    if (x == 0)
-                    {
-                        tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-                    }
-                    if (y == 0)
-                    {
-                        if (x == 0)
-                        {
-                            label.Text = "Position";
-                        }
-                        else if (x == 1)
-                        {
-                            label.Text = "Teil";
-                        }
-                        else if (x == 2)
-                        {
-                            label.Text = "Menge";
-                        }
-                        else if (x == 3)
-                        {
-                            label.Text = "Sortieren";
-                        }
-                        // keine Ueberschrift fuer Spalte 5
-                        tableLayoutPanel.Controls.Add(label, x, y);
-                    }
-                    else {
-                        int i = y - 1;
-                        if (x == 0)
-                        {
-                            label.Text = y.ToString();
-                            tableLayoutPanel.Controls.Add(label, x, y);
-                        }
-                        else if (x == 1)
-                        {
-                            label.Text = teile_liste[i][0].ToString();
-                            tableLayoutPanel.Controls.Add(label, x, y);
-                        }
-                        else if (x == 2)
-                        {
-                            label.Text = teile_liste[i][1].ToString();
-                            tableLayoutPanel.Controls.Add(label, x, y);
-                        }
-                        else if (x == 3)
-                        {
-                            tableLayoutPanel.Controls.Add(buttonUp, x, y);
-                            buttonUp.Tag = y;
-                            button_liste.Add(buttonUp);
-                            buttonUp.Click += new EventHandler(buttonUp_click);
- 
-                        }
-                        else if (x == 4)
-                        {
-                            tableLayoutPanel.Controls.Add(buttonDown, x, y);
-                        }
-                    }
-              }
-           }
+            tabelle_erstellen(teile_liste);
         }
 
         void buttonUp_click(object sender, EventArgs e)
@@ -202,16 +209,39 @@ namespace IBSYS2
                 int listitem = (int) button.Tag;
                 int teil1 = teile_liste[listitem][0];
                 int menge1 = teile_liste[listitem][1];
-                int teil2 = teile_liste[listitem + 1][0];
-                int menge2 = teile_liste[listitem + 1][1];
+                int teil2 = teile_liste[listitem+1][0];
+                int menge2 = teile_liste[listitem+1][1];
 
                 teile_liste[listitem][0] = teil2;
                 teile_liste[listitem][1] = menge2;
                 teile_liste[listitem+1][0] = teil1;
                 teile_liste[listitem+1][1] = menge1;
+                tabelle_erstellen(teile_liste);
             }
         }
 
+        void buttonDown_click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button.Tag.ToString() == "29")
+            {
+                MessageBox.Show("Bereits auf der letzten Position");
+            }
+            else
+            {
+                int listitem = (int)button.Tag;
+                int teil1 = teile_liste[listitem][0];
+                int menge1 = teile_liste[listitem][1];
+                int teil2 = teile_liste[listitem - 1][0];
+                int menge2 = teile_liste[listitem - 1][1];
+
+                teile_liste[listitem][0] = teil2;
+                teile_liste[listitem][1] = menge2;
+                teile_liste[listitem - 1][0] = teil1;
+                teile_liste[listitem - 1][1] = menge1;
+                tabelle_erstellen(teile_liste);
+            }
+        }
         private void pic_en_Click(object sender, EventArgs e)
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;

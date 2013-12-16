@@ -88,9 +88,10 @@ namespace IBSYS2
                 teile_liste.Add(new List<int>());
                 teile_liste[x].Add(teile[x, 0]);
                 teile_liste[x].Add(teile[x, 1]);
-                MessageBox.Show("" + teile_liste[x][0]);
             }
-                tableLayoutPanel.Controls.Clear();
+
+            List<Button> button_liste = new List<Button>();
+            tableLayoutPanel.Controls.Clear();
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
             tableLayoutPanel.ColumnCount = 5;
@@ -101,13 +102,14 @@ namespace IBSYS2
                 //First add a column
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                for (int y = 0; y < teile.GetLength(0)+1; y++)
+                for (int y = 0; y < teile.GetLength(0); y++)
                 {
                     Label label = new Label();
                     Button buttonUp = new Button();
                     buttonUp.Text = "hoch";
                     Button buttonDown = new Button();
                     buttonDown.Text = "runter";
+
                     //Next, add a row.  Only do this when once, when creating the first column
                     if (x == 0)
                     {
@@ -143,17 +145,21 @@ namespace IBSYS2
                         }
                         else if (x == 1)
                         {
-                            label.Text = teile[i, 0].ToString();
+                            label.Text = teile_liste[i][0].ToString();
                             tableLayoutPanel.Controls.Add(label, x, y);
                         }
                         else if (x == 2)
                         {
-                            label.Text = teile[i, 1].ToString();
+                            label.Text = teile_liste[i][1].ToString();
                             tableLayoutPanel.Controls.Add(label, x, y);
                         }
                         else if (x == 3)
                         {
                             tableLayoutPanel.Controls.Add(buttonUp, x, y);
+                            buttonUp.Tag = y;
+                            button_liste.Add(buttonUp);
+                            buttonUp.Click += new EventHandler(buttonUp_click);
+ 
                         }
                         else if (x == 4)
                         {
@@ -162,6 +168,12 @@ namespace IBSYS2
                     }
               }
            }
+        }
+
+        void buttonUp_click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            MessageBox.Show("Button:" + " " + button.Tag);
         }
 
         private void pic_en_Click(object sender, EventArgs e)

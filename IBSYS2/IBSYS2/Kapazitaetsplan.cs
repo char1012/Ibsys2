@@ -18,6 +18,8 @@ namespace IBSYS2
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         // Listen zum Speichern der Startwerte (Aenderungen nachvollziehen + Feststellen, ob initiale Belegung)
         private int[] schichten;
+        // Liste, um zu kontrollieren, ob alle Zellen korrekt sind
+        private Boolean[] correct = new Boolean[30] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
 
         public Kapazitaetsplan()
         {
@@ -426,6 +428,7 @@ namespace IBSYS2
             {
                 UT1.Text = "";
                 continue_btn.Enabled = false;
+                correct[0] = false;
             }
             else
             {
@@ -442,21 +445,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP1.Text) <= 1200)
                 {
+                    UP1.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP1.Text) / 5);
                     UT1.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[0] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP1.ForeColor = Color.Red;
+                    UT1.Text = "";
                     continue_btn.Enabled = false;
+                    correct[0] = false;
                 }
             }
         }
@@ -467,6 +470,7 @@ namespace IBSYS2
             {
                 UT2.Text = "";
                 continue_btn.Enabled = false;
+                correct[1] = false;
             }
             else
             {
@@ -483,21 +487,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP2.Text) <= 1200)
                 {
+                    UP2.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP2.Text) / 5);
                     UT2.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[1] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP2.ForeColor = Color.Red;
+                    UT2.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[1] = false;
                 }
             }
         }
@@ -508,6 +512,7 @@ namespace IBSYS2
             {
                 UT3.Text = "";
                 continue_btn.Enabled = false;
+                correct[2] = false;
             }
             else
             {
@@ -524,21 +529,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP3.Text) <= 1200)
                 {
+                    UP3.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP3.Text) / 5);
                     UT3.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[2] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP3.ForeColor = Color.Red;
+                    UT3.Text = "";
                     continue_btn.Enabled = false;
+                    correct[2] = false;
                 }
             }
         }
@@ -549,6 +554,7 @@ namespace IBSYS2
             {
                 UT4.Text = "";
                 continue_btn.Enabled = false;
+                correct[3] = false;
             }
             else
             {
@@ -565,21 +571,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP4.Text) <= 1200)
                 {
+                    UP4.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP4.Text) / 5);
                     UT4.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[3] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP4.ForeColor = Color.Red;
+                    UT4.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[3] = false;
                 }
             }
         }
@@ -590,6 +596,7 @@ namespace IBSYS2
             {
                 UT5.Text = "";
                 continue_btn.Enabled = false;
+                correct[4] = false;
             }
             else
             {
@@ -606,21 +613,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP5.Text) <= 1200)
                 {
+                    UP5.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP5.Text) / 5);
                     UT5.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[4] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP5.ForeColor = Color.Red;
+                    UT5.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[4] = false;
                 }
             }
         }
@@ -631,6 +638,7 @@ namespace IBSYS2
             {
                 UT6.Text = "";
                 continue_btn.Enabled = false;
+                correct[5] = false;
             }
             else
             {
@@ -647,21 +655,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP6.Text) <= 1200)
                 {
+                    UP6.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP6.Text) / 5);
                     UT6.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[5] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP6.ForeColor = Color.Red;
+                    UT6.Text = "";
                     continue_btn.Enabled = false;
+                    correct[5] = false;
                 }
             }
         }
@@ -672,6 +680,7 @@ namespace IBSYS2
             {
                 UT7.Text = "";
                 continue_btn.Enabled = false;
+                correct[6] = false;
             }
             else
             {
@@ -688,21 +697,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP7.Text) <= 1200)
                 {
+                    UP7.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP7.Text) / 5);
                     UT7.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[6] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP7.ForeColor = Color.Red;
+                    UT7.Text = "";
                     continue_btn.Enabled = false;
+                    correct[6] = false;
                 }
             }
         }
@@ -713,6 +722,7 @@ namespace IBSYS2
             {
                 UT8.Text = "";
                 continue_btn.Enabled = false;
+                correct[7] = false;
             }
             else
             {
@@ -729,21 +739,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP8.Text) <= 1200)
                 {
+                    UP8.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP8.Text) / 5);
                     UT8.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[7] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP8.ForeColor = Color.Red;
+                    UT8.Text = "";
                     continue_btn.Enabled = false;
+                    correct[7] = false;
                 }
             }
         }
@@ -754,6 +764,7 @@ namespace IBSYS2
             {
                 UT9.Text = "";
                 continue_btn.Enabled = false;
+                correct[8] = false;
             }
             else
             {
@@ -770,21 +781,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP9.Text) <= 1200)
                 {
+                    UP9.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP9.Text) / 5);
                     UT9.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[8] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP9.ForeColor = Color.Red;
+                    UT9.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[8] = false;
                 }
             }
         }
@@ -795,6 +806,7 @@ namespace IBSYS2
             {
                 UT10.Text = "";
                 continue_btn.Enabled = false;
+                correct[9] = false;
             }
             else
             {
@@ -811,21 +823,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP10.Text) <= 1200)
                 {
+                    UP10.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP10.Text) / 5);
                     UT10.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[9] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP10.ForeColor = Color.Red;
+                    UT10.Text = "";
                     continue_btn.Enabled = false;
+                    correct[9] = false;
                 }
             }
         }
@@ -836,6 +848,7 @@ namespace IBSYS2
             {
                 UT11.Text = "";
                 continue_btn.Enabled = false;
+                correct[10] = false;
             }
             else
             {
@@ -852,21 +865,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP11.Text) <= 1200)
                 {
+                    UP11.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP11.Text) / 5);
                     UT11.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[10] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP11.ForeColor = Color.Red;
+                    UT11.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[10] = false;
                 }
             }
         }
@@ -877,6 +890,7 @@ namespace IBSYS2
             {
                 UT12.Text = "";
                 continue_btn.Enabled = false;
+                correct[11] = false;
             }
             else
             {
@@ -893,21 +907,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP12.Text) <= 1200)
                 {
+                    UP12.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP12.Text) / 5);
                     UT12.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[11] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP12.ForeColor = Color.Red;
+                    UT12.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[11] = false;
                 }
             }
         }
@@ -918,6 +932,7 @@ namespace IBSYS2
             {
                 UT13.Text = "";
                 continue_btn.Enabled = false;
+                correct[12] = false;
             }
             else
             {
@@ -934,21 +949,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP13.Text) <= 1200)
                 {
+                    UP13.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP13.Text) / 5);
                     UT13.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[12] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP13.ForeColor = Color.Red;
+                    UT13.Text = "";
                     continue_btn.Enabled = false;
+                    correct[12] = false;
                 }
             }
         }
@@ -959,6 +974,7 @@ namespace IBSYS2
             {
                 UT14.Text = "";
                 continue_btn.Enabled = false;
+                correct[13] = false;
             }
             else
             {
@@ -975,21 +991,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP14.Text) <= 1200)
                 {
+                    UP14.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP14.Text) / 5);
                     UT14.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[13] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP14.ForeColor = Color.Red;
+                    UT14.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[13] = false;
                 }
             }
         }
@@ -1000,6 +1016,7 @@ namespace IBSYS2
             {
                 UT15.Text = "";
                 continue_btn.Enabled = false;
+                correct[14] = false;
             }
             else
             {
@@ -1016,21 +1033,21 @@ namespace IBSYS2
                 }
                 if (okay == true && Convert.ToInt32(UP15.Text) <= 1200)
                 {
+                    UP15.ForeColor = Color.Black;
                     int zeit = (int)Math.Round(Convert.ToDouble(UP15.Text) / 5);
                     UT15.Text = zeit.ToString();
-                    continue_btn.Enabled = true;
+                    correct[14] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        MessageBox.Show("Es sind nur Werte von 0 bis 1200 zulässig.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Only values ​​0 to 1200 permitted.");
-                    } 
+                    UP15.ForeColor = Color.Red;
+                    UT15.Text = ""; 
                     continue_btn.Enabled = false;
+                    correct[14] = false;
                 }
             }
         }
@@ -1044,7 +1061,11 @@ namespace IBSYS2
             {
                 if (S1.Text == "1" || S1.Text == "2" || S1.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[15] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S1.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1062,6 +1083,7 @@ namespace IBSYS2
                 else if (S1.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[15] = false;
                 }
                 else
                 {
@@ -1072,9 +1094,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S1.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[15] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1088,7 +1114,11 @@ namespace IBSYS2
             {
                 if (S2.Text == "1" || S2.Text == "2" || S2.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[16] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S2.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1106,6 +1136,7 @@ namespace IBSYS2
                 else if (S2.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[16] = false;
                 }
                 else
                 {
@@ -1116,9 +1147,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S2.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[16] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1132,7 +1167,11 @@ namespace IBSYS2
             {
                 if (S3.Text == "1" || S3.Text == "2" || S3.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[17] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S3.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1150,6 +1189,7 @@ namespace IBSYS2
                 else if (S3.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[17] = false;
                 }
                 else
                 {
@@ -1160,9 +1200,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S3.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[17] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1176,7 +1220,11 @@ namespace IBSYS2
             {
                 if (S4.Text == "1" || S4.Text == "2" || S4.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[18] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S4.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1194,6 +1242,7 @@ namespace IBSYS2
                 else if (S4.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[18] = false;
                 }
                 else
                 {
@@ -1204,9 +1253,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S4.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[18] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1220,7 +1273,11 @@ namespace IBSYS2
             {
                 if (S5.Text == "1" || S5.Text == "2" || S5.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[19] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S5.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1238,6 +1295,7 @@ namespace IBSYS2
                 else if (S5.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[19] = false;
                 }
                 else
                 {
@@ -1248,9 +1306,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S5.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[19] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1264,7 +1326,11 @@ namespace IBSYS2
             {
                 if (S6.Text == "1" || S6.Text == "2" || S6.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[20] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S6.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1282,6 +1348,7 @@ namespace IBSYS2
                 else if (S6.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[20] = false;
                 }
                 else
                 {
@@ -1292,9 +1359,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S6.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[20] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1308,7 +1379,11 @@ namespace IBSYS2
             {
                 if (S7.Text == "1" || S7.Text == "2" || S7.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[21] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S7.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1326,6 +1401,7 @@ namespace IBSYS2
                 else if (S7.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[21] = false;
                 }
                 else
                 {
@@ -1336,9 +1412,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S7.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[21] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1352,7 +1432,11 @@ namespace IBSYS2
             {
                 if (S8.Text == "1" || S8.Text == "2" || S8.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[22] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S8.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1370,6 +1454,7 @@ namespace IBSYS2
                 else if (S8.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[22] = false;
                 }
                 else
                 {
@@ -1380,9 +1465,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S8.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[22] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1396,7 +1485,11 @@ namespace IBSYS2
             {
                 if (S9.Text == "1" || S9.Text == "2" || S9.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[23] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S9.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1414,6 +1507,7 @@ namespace IBSYS2
                 else if (S9.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[23] = false;
                 }
                 else
                 {
@@ -1424,9 +1518,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S9.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[23] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1440,7 +1538,11 @@ namespace IBSYS2
             {
                 if (S10.Text == "1" || S10.Text == "2" || S10.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[24] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S10.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1458,6 +1560,7 @@ namespace IBSYS2
                 else if (S10.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[24] = false;
                 }
                 else
                 {
@@ -1468,9 +1571,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S10.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[24] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1484,7 +1591,11 @@ namespace IBSYS2
             {
                 if (S11.Text == "1" || S11.Text == "2" || S11.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[25] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S11.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1502,6 +1613,7 @@ namespace IBSYS2
                 else if (S11.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[25] = false;
                 }
                 else
                 {
@@ -1512,9 +1624,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S11.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[25] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1528,7 +1644,11 @@ namespace IBSYS2
             {
                 if (S12.Text == "1" || S12.Text == "2" || S12.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[26] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S12.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1546,6 +1666,7 @@ namespace IBSYS2
                 else if (S12.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[26] = false;
                 }
                 else
                 {
@@ -1556,9 +1677,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S12.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[26] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1572,7 +1697,11 @@ namespace IBSYS2
             {
                 if (S13.Text == "1" || S13.Text == "2" || S13.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[27] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S13.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1590,6 +1719,7 @@ namespace IBSYS2
                 else if (S13.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[27] = false;
                 }
                 else
                 {
@@ -1600,9 +1730,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S13.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[27] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1616,7 +1750,11 @@ namespace IBSYS2
             {
                 if (S14.Text == "1" || S14.Text == "2" || S14.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[28] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S14.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1634,6 +1772,7 @@ namespace IBSYS2
                 else if (S14.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[28] = false;
                 }
                 else
                 {
@@ -1644,9 +1783,13 @@ namespace IBSYS2
                     else
                     {
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
-                    } 
+                    }
                     S14.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[28] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }
@@ -1660,7 +1803,11 @@ namespace IBSYS2
             {
                 if (S15.Text == "1" || S15.Text == "2" || S15.Text == "3")
                 {
-                    continue_btn.Enabled = true;
+                    correct[29] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S15.Text);
                     // Wenn die Periode nach oben gesetzt wird, soll Ueberstd/Periode auf 0 gesetzt werden
@@ -1678,6 +1825,7 @@ namespace IBSYS2
                 else if (S15.Text == "")
                 {
                     continue_btn.Enabled = false;
+                    correct[29] = false;
                 }
                 else
                 {
@@ -1690,7 +1838,11 @@ namespace IBSYS2
                         MessageBox.Show("Only values ​​1 to 3 permitted.");
                     }
                     S15.Text = alt.ToString();
-                    continue_btn.Enabled = false;
+                    correct[29] = true;
+                    if (!correct.Contains(false))
+                    {
+                        continue_btn.Enabled = true;
+                    }
                 }
             }
         }

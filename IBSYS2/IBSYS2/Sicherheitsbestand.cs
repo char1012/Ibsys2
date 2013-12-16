@@ -18,7 +18,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tP1 = true, tP2 = true, tP3 = true;
+        bool tP1 = false, tP2 = false, tP3 = false;
 
 
         public Sicherheitsbestand()
@@ -304,16 +304,8 @@ namespace IBSYS2
         {
             if (Eingabe_P2.Text == "")
             {
-                Eingabe_P2.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    Eingabe_P2.Text = "Geben Sie einen Wert ein";
-                }
-                else
-                {
-                    Eingabe_P2.Text = "Enter a value";
-                }
-                tP3 = false;
+                eteileberechnen_btn.Enabled = false;
+                tP2 = false;
             }
             else
             {
@@ -352,15 +344,7 @@ namespace IBSYS2
         {
             if (Eingabe_P1.Text == "")
             {
-                Eingabe_P1.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    Eingabe_P1.Text = "Geben Sie einen Wert ein";
-                }
-                else
-                {
-                    Eingabe_P1.Text = "Enter a value";
-                } 
+                eteileberechnen_btn.Enabled = false;
                 tP1 = false;
             }
             else
@@ -400,15 +384,7 @@ namespace IBSYS2
         {
             if (Eingabe_P3.Text == "")
             {
-                Eingabe_P3.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    Eingabe_P3.Text = "Geben Sie einen Wert ein";
-                }
-                else
-                {
-                    Eingabe_P3.Text = "Enter a value";
-                } 
+                eteileberechnen_btn.Enabled = false;
                 tP3 = false;
             }
             else

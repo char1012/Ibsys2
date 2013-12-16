@@ -80,15 +80,17 @@ namespace IBSYS2
             teile[29, 1] = 180;
 
             // TODO: array in eine Produktionsreihenfolge sortieren
-            // Achtung: das obige Array muss in eine zweidimensionale List ueberfuehrt werden,
-            // weil einem Array beim Splitten keine neue Zeile hinzugefuegt werden kann
-
-            // Beispiel fuer eine zweidim. List:
-            // List<List<int>> arbeitsplatz_erzeugnis = new List<List<int>>();
-            // arbeitsplatz_erzeugnis.Add(new List<int>());
-            // arbeitsplatz_erzeugnis[a].Add(Convert.ToInt32(dbReader["Erzeugnis_Teilenummer_FK"]));
-
-            tableLayoutPanel.Controls.Clear();
+  
+            //Array in zweidimensionale Liste überführt
+            List<List<int>> teile_liste = new List<List<int>>();
+            for (int x = 0; x < 29; x++)
+            {
+                teile_liste.Add(new List<int>());
+                teile_liste[x].Add(teile[x, 0]);
+                teile_liste[x].Add(teile[x, 1]);
+                MessageBox.Show("" + teile_liste[x][0]);
+            }
+                tableLayoutPanel.Controls.Clear();
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
             tableLayoutPanel.ColumnCount = 5;

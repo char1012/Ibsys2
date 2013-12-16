@@ -27,9 +27,8 @@ namespace IBSYS2
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[14, 3];
         int[,] kaufauftraege = new int[29, 3];
-
-        //TO DO Periode wird später aus Import geholt
-        int periode = 6;
+        
+        int periode;
 
         // TO DO Listen für Sicherheitsbestand von ETeilen
         List<int> sicherheitsbe = new List<int>();
@@ -48,9 +47,10 @@ namespace IBSYS2
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
-            // TO DO Sicherheitsbestand von ETeilen
-            sicherheitsbe.AddRange(new int[] { 20, 10, 30,15,15,10,25,19,25,16,20,
-                20,10,30,15,15,10,25,19,25,16,20,20,10,30,15,15,10,25,19,25,16,20});
+            for (int i = 3; i < sicherheitsbest.GetLength(0); i++) // bei 3 anfangen, weil dort die E-Teile anfangen
+            {
+                sicherheitsbe.Add(sicherheitsbest[i, 1]);
+            }
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
@@ -64,6 +64,74 @@ namespace IBSYS2
                 ToolTipDE.RemoveAll();
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
             }
+
+            berechneProduktion();
+        }
+
+        public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            // var UserControl kapa= new Kapazitaetsplan();
+            InitializeComponent();
+            continue_btn.Enabled = false;
+
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+
+            for (int i = 3; i < sicherheitsbest.GetLength(0); i++) // bei 3 anfangen, weil dort die E-Teile anfangen
+            {
+                sicherheitsbe.Add(sicherheitsbest[i, 1]);
+            }
+
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            {
+                ToolTipEN.RemoveAll();
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
+            }
+            else
+            {
+                ToolTipDE.RemoveAll();
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
+            }
+
+            // aktPeriode = aktuelle Periode, periode = Periode aus XML (letzte Periode)
+            periode = aktPeriode - 1;
 
             berechneProduktion();
         }
@@ -96,16 +164,14 @@ namespace IBSYS2
         private void berechneProduktion()
         {
             //für aktuelle Periode
-            // TO DO Eingabe Aufträge zukünftig aus ImportPrognose
-            double p1 = 100;
-            double p2 = 100;
-            double p3 = 100;
+            double p1 = auftraege[0] + direktverkaeufe[0];
+            double p2 = auftraege[1] + direktverkaeufe[1];
+            double p3 = auftraege[2] + direktverkaeufe[2];
 
             //+ eingabe Sicherheitsbestand 
-            // TO DO Zukünftig aus Sicherheitsbestand
-            double sp1 = 50;
-            double sp2 = 50;
-            double sp3 = 50;
+            double sp1 = sicherheitsbest[0, 1];
+            double sp2 = sicherheitsbest[1, 1];
+            double sp3 = sicherheitsbest[2, 1];
 
             //- Lagerbestand Vorperiode 
             int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
@@ -155,16 +221,15 @@ namespace IBSYS2
             }
 
             #region Produktion der Prognosen
-            // TO DO Daten aus Import verwenden, dies sind nur Testdaten
-            double prognose1p1 = 200;
-            double prognose1p2 = 250;
-            double prognose1p3 = 100;
-            double prognose2p1 = 150;
-            double prognose2p2 = 100;
-            double prognose2p3 = 300;
-            double prognose3p1 = 250;
-            double prognose3p2 = 150;
-            double prognose3p3 = 300;
+            double prognose1p1 = auftraege[3];
+            double prognose1p2 = auftraege[4];
+            double prognose1p3 = auftraege[5];
+            double prognose2p1 = auftraege[6];
+            double prognose2p2 = auftraege[7];
+            double prognose2p3 = auftraege[8];
+            double prognose3p1 = auftraege[9];
+            double prognose3p2 = auftraege[10];
+            double prognose3p3 = auftraege[11];
 
             string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
             if (prognosep1.StartsWith("-"))

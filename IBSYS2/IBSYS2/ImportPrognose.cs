@@ -401,8 +401,8 @@ namespace IBSYS2
                     direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
 
                     this.Controls.Clear();
-                    UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, null,
-                        null, null, null, null, null);
+                    UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                     this.Controls.Add(sicherheit);
                 }
             }
@@ -430,8 +430,8 @@ namespace IBSYS2
                 direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
 
                 this.Controls.Clear();
-                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, null,
-                        null, null, null, null, null);
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, 
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                 this.Controls.Add(sicherheit);
             }
         }

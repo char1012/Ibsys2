@@ -19,7 +19,6 @@ namespace IBSYS2
         private OleDbConnection myconn;
 
         // Datenweitergabe:
-        // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
@@ -32,6 +31,48 @@ namespace IBSYS2
 
         public Kaufteildisposition()
         {
+            InitializeComponent();
+            continue_btn.Enabled = true; // false, wenn Zellen geleert werden
+            setValues();
+        }
+
+        public Kaufteildisposition(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
             setValues();

@@ -132,7 +132,6 @@
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
-            this.default_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -146,7 +145,7 @@
             // Eingabe_P1
             // 
             this.Eingabe_P1.Location = new System.Drawing.Point(67, 32);
-            this.Eingabe_P1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Eingabe_P1.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P1.Name = "Eingabe_P1";
             this.Eingabe_P1.Size = new System.Drawing.Size(95, 26);
             this.Eingabe_P1.TabIndex = 1;
@@ -155,7 +154,7 @@
             // Eingabe_P2
             // 
             this.Eingabe_P2.Location = new System.Drawing.Point(248, 32);
-            this.Eingabe_P2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Eingabe_P2.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P2.Name = "Eingabe_P2";
             this.Eingabe_P2.Size = new System.Drawing.Size(95, 26);
             this.Eingabe_P2.TabIndex = 2;
@@ -164,7 +163,7 @@
             // Eingabe_P3
             // 
             this.Eingabe_P3.Location = new System.Drawing.Point(436, 32);
-            this.Eingabe_P3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Eingabe_P3.Margin = new System.Windows.Forms.Padding(4);
             this.Eingabe_P3.Name = "Eingabe_P3";
             this.Eingabe_P3.Size = new System.Drawing.Size(95, 26);
             this.Eingabe_P3.TabIndex = 3;
@@ -204,7 +203,7 @@
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
             this.continue_btn.Location = new System.Drawing.Point(1159, 583);
-            this.continue_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continue_btn.Margin = new System.Windows.Forms.Padding(4);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(155, 28);
             this.continue_btn.TabIndex = 7;
@@ -345,7 +344,7 @@
             // 
             this.infoP.Image = ((System.Drawing.Image)(resources.GetObject("infoP.Image")));
             this.infoP.Location = new System.Drawing.Point(587, 11);
-            this.infoP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.infoP.Margin = new System.Windows.Forms.Padding(4);
             this.infoP.Name = "infoP";
             this.infoP.Size = new System.Drawing.Size(60, 50);
             this.infoP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -356,7 +355,7 @@
             // 
             this.eteileberechnen_btn.BackColor = System.Drawing.Color.Lavender;
             this.eteileberechnen_btn.Location = new System.Drawing.Point(672, 282);
-            this.eteileberechnen_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.eteileberechnen_btn.Margin = new System.Windows.Forms.Padding(4);
             this.eteileberechnen_btn.Name = "eteileberechnen_btn";
             this.eteileberechnen_btn.Size = new System.Drawing.Size(155, 28);
             this.eteileberechnen_btn.TabIndex = 57;
@@ -366,7 +365,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.default_btn);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
@@ -486,7 +484,7 @@
             // 
             this.infoE.Image = ((System.Drawing.Image)(resources.GetObject("infoE.Image")));
             this.infoE.Location = new System.Drawing.Point(672, 21);
-            this.infoE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.infoE.Margin = new System.Windows.Forms.Padding(4);
             this.infoE.Name = "infoE";
             this.infoE.Size = new System.Drawing.Size(51, 44);
             this.infoE.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -505,7 +503,7 @@
             // E203
             // 
             this.E203.Location = new System.Drawing.Point(580, 283);
-            this.E203.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E203.Margin = new System.Windows.Forms.Padding(4);
             this.E203.Name = "E203";
             this.E203.Size = new System.Drawing.Size(68, 26);
             this.E203.TabIndex = 78;
@@ -524,7 +522,7 @@
             // E293
             // 
             this.E293.Location = new System.Drawing.Point(437, 283);
-            this.E293.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E293.Margin = new System.Windows.Forms.Padding(4);
             this.E293.Name = "E293";
             this.E293.Size = new System.Drawing.Size(68, 26);
             this.E293.TabIndex = 76;
@@ -533,7 +531,7 @@
             // E303
             // 
             this.E303.Location = new System.Drawing.Point(299, 283);
-            this.E303.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E303.Margin = new System.Windows.Forms.Padding(4);
             this.E303.Name = "E303";
             this.E303.Size = new System.Drawing.Size(68, 26);
             this.E303.TabIndex = 75;
@@ -562,7 +560,7 @@
             // E153
             // 
             this.E153.Location = new System.Drawing.Point(580, 252);
-            this.E153.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E153.Margin = new System.Windows.Forms.Padding(4);
             this.E153.Name = "E153";
             this.E153.Size = new System.Drawing.Size(68, 26);
             this.E153.TabIndex = 72;
@@ -581,7 +579,7 @@
             // E123
             // 
             this.E123.Location = new System.Drawing.Point(437, 252);
-            this.E123.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E123.Margin = new System.Windows.Forms.Padding(4);
             this.E123.Name = "E123";
             this.E123.Size = new System.Drawing.Size(68, 26);
             this.E123.TabIndex = 70;
@@ -590,7 +588,7 @@
             // E173
             // 
             this.E173.Location = new System.Drawing.Point(299, 252);
-            this.E173.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E173.Margin = new System.Windows.Forms.Padding(4);
             this.E173.Name = "E173";
             this.E173.Size = new System.Drawing.Size(68, 26);
             this.E173.TabIndex = 69;
@@ -629,7 +627,7 @@
             // E313
             // 
             this.E313.Location = new System.Drawing.Point(165, 252);
-            this.E313.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E313.Margin = new System.Windows.Forms.Padding(4);
             this.E313.Name = "E313";
             this.E313.Size = new System.Drawing.Size(68, 26);
             this.E313.TabIndex = 65;
@@ -638,7 +636,7 @@
             // E093
             // 
             this.E093.Location = new System.Drawing.Point(580, 222);
-            this.E093.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E093.Margin = new System.Windows.Forms.Padding(4);
             this.E093.Name = "E093";
             this.E093.Size = new System.Drawing.Size(68, 26);
             this.E093.TabIndex = 64;
@@ -657,7 +655,7 @@
             // E063
             // 
             this.E063.Location = new System.Drawing.Point(436, 222);
-            this.E063.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E063.Margin = new System.Windows.Forms.Padding(4);
             this.E063.Name = "E063";
             this.E063.Size = new System.Drawing.Size(68, 26);
             this.E063.TabIndex = 62;
@@ -666,7 +664,7 @@
             // E163
             // 
             this.E163.Location = new System.Drawing.Point(299, 222);
-            this.E163.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E163.Margin = new System.Windows.Forms.Padding(4);
             this.E163.Name = "E163";
             this.E163.Size = new System.Drawing.Size(68, 26);
             this.E163.TabIndex = 61;
@@ -705,7 +703,7 @@
             // E263
             // 
             this.E263.Location = new System.Drawing.Point(165, 222);
-            this.E263.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E263.Margin = new System.Windows.Forms.Padding(4);
             this.E263.Name = "E263";
             this.E263.Size = new System.Drawing.Size(68, 26);
             this.E263.TabIndex = 57;
@@ -714,7 +712,7 @@
             // E192
             // 
             this.E192.Location = new System.Drawing.Point(580, 185);
-            this.E192.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E192.Margin = new System.Windows.Forms.Padding(4);
             this.E192.Name = "E192";
             this.E192.Size = new System.Drawing.Size(68, 26);
             this.E192.TabIndex = 56;
@@ -733,7 +731,7 @@
             // E542
             // 
             this.E542.Location = new System.Drawing.Point(436, 185);
-            this.E542.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E542.Margin = new System.Windows.Forms.Padding(4);
             this.E542.Name = "E542";
             this.E542.Size = new System.Drawing.Size(68, 26);
             this.E542.TabIndex = 54;
@@ -742,7 +740,7 @@
             // E552
             // 
             this.E552.Location = new System.Drawing.Point(299, 185);
-            this.E552.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E552.Margin = new System.Windows.Forms.Padding(4);
             this.E552.Name = "E552";
             this.E552.Size = new System.Drawing.Size(68, 26);
             this.E552.TabIndex = 53;
@@ -771,7 +769,7 @@
             // E142
             // 
             this.E142.Location = new System.Drawing.Point(580, 154);
-            this.E142.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E142.Margin = new System.Windows.Forms.Padding(4);
             this.E142.Name = "E142";
             this.E142.Size = new System.Drawing.Size(68, 26);
             this.E142.TabIndex = 50;
@@ -790,7 +788,7 @@
             // E112
             // 
             this.E112.Location = new System.Drawing.Point(436, 154);
-            this.E112.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E112.Margin = new System.Windows.Forms.Padding(4);
             this.E112.Name = "E112";
             this.E112.Size = new System.Drawing.Size(68, 26);
             this.E112.TabIndex = 48;
@@ -799,7 +797,7 @@
             // E172
             // 
             this.E172.Location = new System.Drawing.Point(299, 154);
-            this.E172.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E172.Margin = new System.Windows.Forms.Padding(4);
             this.E172.Name = "E172";
             this.E172.Size = new System.Drawing.Size(68, 26);
             this.E172.TabIndex = 47;
@@ -838,7 +836,7 @@
             // E562
             // 
             this.E562.Location = new System.Drawing.Point(165, 154);
-            this.E562.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E562.Margin = new System.Windows.Forms.Padding(4);
             this.E562.Name = "E562";
             this.E562.Size = new System.Drawing.Size(68, 26);
             this.E562.TabIndex = 43;
@@ -847,7 +845,7 @@
             // E082
             // 
             this.E082.Location = new System.Drawing.Point(580, 124);
-            this.E082.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E082.Margin = new System.Windows.Forms.Padding(4);
             this.E082.Name = "E082";
             this.E082.Size = new System.Drawing.Size(68, 26);
             this.E082.TabIndex = 42;
@@ -866,7 +864,7 @@
             // E052
             // 
             this.E052.Location = new System.Drawing.Point(436, 124);
-            this.E052.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E052.Margin = new System.Windows.Forms.Padding(4);
             this.E052.Name = "E052";
             this.E052.Size = new System.Drawing.Size(68, 26);
             this.E052.TabIndex = 40;
@@ -875,7 +873,7 @@
             // E162
             // 
             this.E162.Location = new System.Drawing.Point(299, 124);
-            this.E162.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E162.Margin = new System.Windows.Forms.Padding(4);
             this.E162.Name = "E162";
             this.E162.Size = new System.Drawing.Size(68, 26);
             this.E162.TabIndex = 39;
@@ -914,7 +912,7 @@
             // E262
             // 
             this.E262.Location = new System.Drawing.Point(165, 124);
-            this.E262.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E262.Margin = new System.Windows.Forms.Padding(4);
             this.E262.Name = "E262";
             this.E262.Size = new System.Drawing.Size(68, 26);
             this.E262.TabIndex = 35;
@@ -923,7 +921,7 @@
             // E181
             // 
             this.E181.Location = new System.Drawing.Point(580, 86);
-            this.E181.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E181.Margin = new System.Windows.Forms.Padding(4);
             this.E181.Name = "E181";
             this.E181.Size = new System.Drawing.Size(68, 26);
             this.E181.TabIndex = 34;
@@ -942,7 +940,7 @@
             // E491
             // 
             this.E491.Location = new System.Drawing.Point(437, 86);
-            this.E491.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E491.Margin = new System.Windows.Forms.Padding(4);
             this.E491.Name = "E491";
             this.E491.Size = new System.Drawing.Size(68, 26);
             this.E491.TabIndex = 32;
@@ -951,7 +949,7 @@
             // E501
             // 
             this.E501.Location = new System.Drawing.Point(299, 86);
-            this.E501.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E501.Margin = new System.Windows.Forms.Padding(4);
             this.E501.Name = "E501";
             this.E501.Size = new System.Drawing.Size(68, 26);
             this.E501.TabIndex = 31;
@@ -980,7 +978,7 @@
             // E131
             // 
             this.E131.Location = new System.Drawing.Point(580, 55);
-            this.E131.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E131.Margin = new System.Windows.Forms.Padding(4);
             this.E131.Name = "E131";
             this.E131.Size = new System.Drawing.Size(68, 26);
             this.E131.TabIndex = 22;
@@ -999,7 +997,7 @@
             // E101
             // 
             this.E101.Location = new System.Drawing.Point(437, 55);
-            this.E101.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E101.Margin = new System.Windows.Forms.Padding(4);
             this.E101.Name = "E101";
             this.E101.Size = new System.Drawing.Size(68, 26);
             this.E101.TabIndex = 20;
@@ -1008,7 +1006,7 @@
             // E171
             // 
             this.E171.Location = new System.Drawing.Point(299, 55);
-            this.E171.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E171.Margin = new System.Windows.Forms.Padding(4);
             this.E171.Name = "E171";
             this.E171.Size = new System.Drawing.Size(68, 26);
             this.E171.TabIndex = 19;
@@ -1047,7 +1045,7 @@
             // E511
             // 
             this.E511.Location = new System.Drawing.Point(165, 55);
-            this.E511.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E511.Margin = new System.Windows.Forms.Padding(4);
             this.E511.Name = "E511";
             this.E511.Size = new System.Drawing.Size(68, 26);
             this.E511.TabIndex = 15;
@@ -1056,7 +1054,7 @@
             // E071
             // 
             this.E071.Location = new System.Drawing.Point(580, 25);
-            this.E071.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E071.Margin = new System.Windows.Forms.Padding(4);
             this.E071.Name = "E071";
             this.E071.Size = new System.Drawing.Size(68, 26);
             this.E071.TabIndex = 10;
@@ -1075,7 +1073,7 @@
             // E041
             // 
             this.E041.Location = new System.Drawing.Point(437, 25);
-            this.E041.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E041.Margin = new System.Windows.Forms.Padding(4);
             this.E041.Name = "E041";
             this.E041.Size = new System.Drawing.Size(68, 26);
             this.E041.TabIndex = 8;
@@ -1084,7 +1082,7 @@
             // E161
             // 
             this.E161.Location = new System.Drawing.Point(299, 25);
-            this.E161.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E161.Margin = new System.Windows.Forms.Padding(4);
             this.E161.Name = "E161";
             this.E161.Size = new System.Drawing.Size(68, 26);
             this.E161.TabIndex = 7;
@@ -1123,7 +1121,7 @@
             // E261
             // 
             this.E261.Location = new System.Drawing.Point(165, 25);
-            this.E261.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.E261.Margin = new System.Windows.Forms.Padding(4);
             this.E261.Name = "E261";
             this.E261.Size = new System.Drawing.Size(68, 26);
             this.E261.TabIndex = 1;
@@ -1207,7 +1205,7 @@
             // 
             this.btn_back.BackColor = System.Drawing.Color.Lavender;
             this.btn_back.Location = new System.Drawing.Point(25, 583);
-            this.btn_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_back.Margin = new System.Windows.Forms.Padding(4);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(155, 28);
             this.btn_back.TabIndex = 64;
@@ -1219,7 +1217,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(5, 52);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(1316, 75);
             this.pictureBox4.TabIndex = 70;
@@ -1261,18 +1259,6 @@
             this.lbl_Produktionsreihenfolge.TabIndex = 140;
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
             // 
-            // default_btn
-            // 
-            this.default_btn.BackColor = System.Drawing.Color.Lavender;
-            this.default_btn.Location = new System.Drawing.Point(672, 220);
-            this.default_btn.Margin = new System.Windows.Forms.Padding(4);
-            this.default_btn.Name = "default_btn";
-            this.default_btn.Size = new System.Drawing.Size(154, 54);
-            this.default_btn.TabIndex = 83;
-            this.default_btn.Text = "Berechnung wiederherstellen";
-            this.default_btn.UseVisualStyleBackColor = false;
-            this.default_btn.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Sicherheitsbestand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1293,7 +1279,7 @@
             this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.pictureBox4);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Sicherheitsbestand";
             this.Size = new System.Drawing.Size(1333, 615);
             this.groupBox1.ResumeLayout(false);
@@ -1417,6 +1403,5 @@
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
-        private System.Windows.Forms.Button default_btn;
     }
 }

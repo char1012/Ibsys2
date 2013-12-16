@@ -18,14 +18,12 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tP1 = false, tP2 = false, tP3 = false;
-
-
+        bool tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
+        
         public Sicherheitsbestand()
         {
             InitializeComponent();
             continue_btn.Enabled = true;
-            default_btn.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
@@ -422,1287 +420,1320 @@ namespace IBSYS2
 
         private void textBox3_TextChanged(object sender, System.EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E261.Text))
+            if (E261.Text == "")
             {
-                E261.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E261.Text = "Ausstehend";
-                }
-                else
-                {
-                    E261.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE33 = false;
             }
             else
             {
-                try
+                E261.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E261.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E261.Text);
-                    E261.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E261.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E261.Text = "Gültige Zahl";
+                        E261.ForeColor = Color.Red;
+                        okay = false;
+                        tE33 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E261.ForeColor = Color.Black;
+                    tE33 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E261.Text = "Valid number";
+                        continue_btn.Enabled = false;
                     }
-                    return;
                 }
             }
         }
 
         private void E511_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E511.Text))
+            if (E511.Text == "")
             {
-                E511.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E511.Text = "Ausstehend";
-                }
-                else
-                {
-                    E511.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE1 = false;
             }
             else
             {
-                try
+                E511.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E511.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E511.Text);
-                    E511.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E511.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E511.Text = "Gültige Zahl";
+                        E511.ForeColor = Color.Red;
+                        okay = false;
+                        tE1 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E511.ForeColor = Color.Black;
+                    tE1 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E511.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E161_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E161.Text))
+            if (E161.Text == "")
             {
-                E161.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E161.Text = "Ausstehend";
-                }
-                else
-                {
-                    E161.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE2 = false;
             }
             else
             {
-                try
+                E161.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E161.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E161.Text);
-                    E161.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E161.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E161.Text = "Gültige Zahl";
+                        E161.ForeColor = Color.Red;
+                        okay = false;
+                        tE2 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E161.ForeColor = Color.Black;
+                    tE2 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E161.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E171_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E171.Text))
+            if (E171.Text == "")
             {
-                E171.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E171.Text = "Ausstehend";
-                }
-                else
-                {
-                    E171.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE3 = false;
             }
             else
             {
-                try
+                E171.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E171.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E171.Text);
-                    E171.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E171.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E171.Text = "Gültige Zahl";
+                        E171.ForeColor = Color.Red;
+                        okay = false;
+                        tE3 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E171.ForeColor = Color.Black;
+                    tE3 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E171.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E501_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E501.Text))
+            if (E501.Text == "")
             {
-                E501.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E501.Text = "Ausstehend";
-                }
-                else
-                {
-                    E501.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE4 = false;
             }
             else
             {
-                try
+                E501.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E501.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E501.Text);
-                    E501.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E501.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E501.Text = "Gültige Zahl";
+                        E501.ForeColor = Color.Red;
+                        okay = false;
+                        tE4 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E501.ForeColor = Color.Black;
+                    tE4 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E501.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E041_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E041.Text))
+            if (E041.Text == "")
             {
-                E041.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E041.Text = "Ausstehend";
-                }
-                else
-                {
-                    E041.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE5 = false;
             }
             else
             {
-                try
+                E041.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E041.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E041.Text);
-                    E041.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E041.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E041.Text = "Gültige Zahl";
+                        E041.ForeColor = Color.Red;
+                        okay = false;
+                        tE5 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E041.ForeColor = Color.Black;
+                    tE5 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E041.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E101_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E101.Text))
+            if (E101.Text == "")
             {
-                E101.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E101.Text = "Ausstehend";
-                }
-                else
-                {
-                    E101.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE6 = false;
             }
             else
             {
-                try
+                E101.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E101.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E101.Text);
-                    E101.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E101.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E101.Text = "Gültige Zahl";
+                        E101.ForeColor = Color.Red;
+                        okay = false;
+                        tE6 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E101.ForeColor = Color.Black;
+                    tE6 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E101.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E491_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E491.Text))
+            if (E491.Text == "")
             {
-                E491.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E491.Text = "Ausstehend";
-                }
-                else
-                {
-                    E491.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE7 = false;
             }
             else
             {
-                try
+                E491.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E491.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E491.Text);
-                    E491.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E491.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E491.Text = "Gültige Zahl";
+                        E491.ForeColor = Color.Red;
+                        okay = false;
+                        tE7 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E491.ForeColor = Color.Black;
+                    tE7 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E491.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E071_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E071.Text))
+            if (E071.Text == "")
             {
-                E071.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E071.Text = "Ausstehend";
-                }
-                else
-                {
-                    E071.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE8 = false;
             }
             else
             {
-                try
+                E071.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E071.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E071.Text);
-                    E071.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E071.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E071.Text = "Gültige Zahl";
+                        E071.ForeColor = Color.Red;
+                        okay = false;
+                        tE8 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E071.ForeColor = Color.Black;
+                    tE8 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E071.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E131_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E131.Text))
+            if (E131.Text == "")
             {
-                E131.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E131.Text = "Ausstehend";
-                }
-                else
-                {
-                    E131.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE9 = false;
             }
             else
             {
-                try
+                E131.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E131.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E131.Text);
-                    E131.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E131.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E131.Text = "Gültige Zahl";
+                        E131.ForeColor = Color.Red;
+                        okay = false;
+                        tE9 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E131.ForeColor = Color.Black;
+                    tE9 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E131.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E181_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E181.Text))
+            if (E181.Text == "")
             {
-                E181.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E181.Text = "Ausstehend";
-                }
-                else
-                {
-                    E181.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE10 = false;
             }
             else
             {
-                try
+                E181.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E181.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E181.Text);
-                    E181.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E181.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E181.Text = "Gültige Zahl";
+                        E181.ForeColor = Color.Red;
+                        okay = false;
+                        tE10 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E181.ForeColor = Color.Black;
+                    tE10 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E181.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E262_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E262.Text))
+            if (E262.Text == "")
             {
-                E262.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E262.Text = "Ausstehend";
-                }
-                else
-                {
-                    E262.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE11 = false;
             }
             else
             {
-                try
+                E262.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E262.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E262.Text);
-                    E262.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E262.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E262.Text = "Gültige Zahl";
+                        E262.ForeColor = Color.Red;
+                        okay = false;
+                        tE11 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E262.ForeColor = Color.Black;
+                    tE11 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E262.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E562_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E562.Text))
+            if (E562.Text == "")
             {
-                E562.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E562.Text = "Ausstehend";
-                }
-                else
-                {
-                    E562.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE12 = false;
             }
             else
             {
-                try
+                E562.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E562.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E562.Text);
-                    E562.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E562.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E562.Text = "Gültige Zahl";
+                        E562.ForeColor = Color.Red;
+                        okay = false;
+                        tE12 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E562.ForeColor = Color.Black;
+                    tE12 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E562.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E162_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E162.Text))
+            if (E162.Text == "")
             {
-                E162.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E162.Text = "Ausstehend";
-                }
-                else
-                {
-                    E162.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE13 = false;
             }
             else
             {
-                try
+                E162.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E162.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E162.Text);
-                    E162.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E162.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E162.Text = "Gültige Zahl";
+                        E162.ForeColor = Color.Red;
+                        okay = false;
+                        tE13 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E162.ForeColor = Color.Black;
+                    tE13 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E162.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E172_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E172.Text))
+            if (E172.Text == "")
             {
-                E172.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E172.Text = "Ausstehend";
-                }
-                else
-                {
-                    E172.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE14 = false;
             }
             else
             {
-                try
+                E172.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E172.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E172.Text);
-                    E172.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E172.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E172.Text = "Gültige Zahl";
+                        E172.ForeColor = Color.Red;
+                        okay = false;
+                        tE14 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E172.ForeColor = Color.Black;
+                    tE14 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E172.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E552_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E552.Text))
+            if (E552.Text == "")
             {
-                E552.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E552.Text = "Ausstehend";
-                }
-                else
-                {
-                    E552.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE15 = false;
             }
             else
             {
-                try
+                E552.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E552.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E552.Text);
-                    E552.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E552.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E552.Text = "Gültige Zahl";
+                        E552.ForeColor = Color.Red;
+                        okay = false;
+                        tE15 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E552.ForeColor = Color.Black;
+                    tE15 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E552.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E052_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E052.Text))
+            if (E052.Text == "")
             {
-                E052.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E052.Text = "Ausstehend";
-                }
-                else
-                {
-                    E052.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE16 = false;
             }
             else
             {
-                try
+                E052.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E052.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E052.Text);
-                    E052.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E052.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E052.Text = "Gültige Zahl";
+                        E052.ForeColor = Color.Red;
+                        okay = false;
+                        tE16 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E052.ForeColor = Color.Black;
+                    tE16 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E052.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E112_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E112.Text))
+            if (E112.Text == "")
             {
-                E112.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E112.Text = "Ausstehend";
-                }
-                else
-                {
-                    E112.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE17 = false;
             }
             else
             {
-                try
+                E112.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E112.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E112.Text);
-                    E112.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E112.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E112.Text = "Gültige Zahl";
+                        E112.ForeColor = Color.Red;
+                        okay = false;
+                        tE17 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E112.ForeColor = Color.Black;
+                    tE17 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E112.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E542_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E542.Text))
+            if (E542.Text == "")
             {
-                E542.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E542.Text = "Ausstehend";
-                }
-                else
-                {
-                    E542.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE18 = false;
             }
             else
             {
-                try
+                E542.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E542.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E542.Text);
-                    E542.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E542.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E542.Text = "Gültige Zahl";
+                        E542.ForeColor = Color.Red;
+                        okay = false;
+                        tE18 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E542.ForeColor = Color.Black;
+                    tE18 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E542.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E082_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E082.Text))
+            if (E082.Text == "")
             {
-                E082.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E082.Text = "Ausstehend";
-                }
-                else
-                {
-                    E082.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE19 = false;
             }
             else
             {
-                try
+                E082.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E082.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E082.Text);
-                    E082.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E082.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E082.Text = "Gültige Zahl";
+                        E082.ForeColor = Color.Red;
+                        okay = false;
+                        tE19 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E082.ForeColor = Color.Black;
+                    tE19 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E082.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E142_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E142.Text))
+            if (E142.Text == "")
             {
-                E142.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E142.Text = "Ausstehend";
-                }
-                else
-                {
-                    E142.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE20 = false;
             }
             else
             {
-                try
+                E142.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E142.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E142.Text);
-                    E142.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E142.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E142.Text = "Gültige Zahl";
+                        E142.ForeColor = Color.Red;
+                        okay = false;
+                        tE20 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E142.ForeColor = Color.Black;
+                    tE20 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E142.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E192_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E192.Text))
+            if (E192.Text == "")
             {
-                E192.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E192.Text = "Ausstehend";
-                }
-                else
-                {
-                    E192.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE21 = false;
             }
             else
             {
-                try
+                E192.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E192.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E192.Text);
-                    E192.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E192.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E192.Text = "Gültige Zahl";
+                        E192.ForeColor = Color.Red;
+                        okay = false;
+                        tE21 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E192.ForeColor = Color.Black;
+                    tE21 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E192.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E263_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E263.Text))
+            if (E263.Text == "")
             {
-                E263.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E263.Text = "Ausstehend";
-                }
-                else
-                {
-                    E263.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE22 = false;
             }
             else
             {
-                try
+                E263.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E263.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E263.Text);
-                    E263.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E263.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E263.Text = "Gültige Zahl";
+                        E263.ForeColor = Color.Red;
+                        okay = false;
+                        tE22 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E263.ForeColor = Color.Black;
+                    tE22 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E263.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E313_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E313.Text))
+            if (E313.Text == "")
             {
-                E313.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E313.Text = "Ausstehend";
-                }
-                else
-                {
-                    E313.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE23 = false;
             }
             else
             {
-                try
+                E313.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E313.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E313.Text);
-                    E313.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E313.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E313.Text = "Gültige Zahl";
+                        E313.ForeColor = Color.Red;
+                        okay = false;
+                        tE23 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E313.ForeColor = Color.Black;
+                    tE23 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E313.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E163_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E163.Text))
+            if (E163.Text == "")
             {
-                E163.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E163.Text = "Ausstehend";
-                }
-                else
-                {
-                    E163.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE24 = false;
             }
             else
             {
-                try
+                E163.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E163.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E163.Text);
-                    E163.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E163.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E163.Text = "Gültige Zahl";
+                        E163.ForeColor = Color.Red;
+                        okay = false;
+                        tE24 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E163.ForeColor = Color.Black;
+                    tE24 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E163.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E173_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E173.Text))
+            if (E173.Text == "")
             {
-                E173.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E173.Text = "Ausstehend";
-                }
-                else
-                {
-                    E173.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE25 = false;
             }
             else
             {
-                try
+                E173.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E173.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E173.Text);
-                    E173.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E173.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E173.Text = "Gültige Zahl";
+                        E173.ForeColor = Color.Red;
+                        okay = false;
+                        tE25 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E173.ForeColor = Color.Black;
+                    tE25 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E173.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E303_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E303.Text))
+            if (E303.Text == "")
             {
-                E303.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E303.Text = "Ausstehend";
-                }
-                else
-                {
-                    E303.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE26 = false;
             }
             else
             {
-                try
+                E303.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E303.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E303.Text);
-                    E303.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E303.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E303.Text = "Gültige Zahl";
+                        E303.ForeColor = Color.Red;
+                        okay = false;
+                        tE26 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E303.ForeColor = Color.Black;
+                    tE26 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E303.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E063_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E063.Text))
+            if (E063.Text == "")
             {
-                E063.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E063.Text = "Ausstehend";
-                }
-                else
-                {
-                    E063.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE27 = false;
             }
             else
             {
-                try
+                E063.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E063.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E063.Text);
-                    E063.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E063.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E063.Text = "Gültige Zahl";
+                        E063.ForeColor = Color.Red;
+                        okay = false;
+                        tE27 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E063.ForeColor = Color.Black;
+                    tE27 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E063.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E123_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E123.Text))
+            if (E123.Text == "")
             {
-                E123.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E123.Text = "Ausstehend";
-                }
-                else
-                {
-                    E123.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE28 = false;
             }
             else
             {
-                try
+                E123.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E123.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E123.Text);
-                    E123.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E123.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E123.Text = "Gültige Zahl";
+                        E123.ForeColor = Color.Red;
+                        okay = false;
+                        tE28 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E123.ForeColor = Color.Black;
+                    tE28 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E123.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E293_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E293.Text))
+            if (E293.Text == "")
             {
-                E293.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E293.Text = "Ausstehend";
-                }
-                else
-                {
-                    E293.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE29 = false;
             }
             else
             {
-                try
+                E293.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E293.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E293.Text);
-                    E293.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E293.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E293.Text = "Gültige Zahl";
+                        E293.ForeColor = Color.Red;
+                        okay = false;
+                        tE29 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E293.ForeColor = Color.Black;
+                    tE29 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E293.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E093_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E093.Text))
+            if (E093.Text == "")
             {
-                E093.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E093.Text = "Ausstehend";
-                }
-                else
-                {
-                    E093.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE30 = false;
             }
             else
             {
-                try
+                E093.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E093.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E093.Text);
-                    E093.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E093.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E093.Text = "Gültige Zahl";
+                        E093.ForeColor = Color.Red;
+                        okay = false;
+                        tE30 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E093.ForeColor = Color.Black;
+                    tE30 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E093.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E153_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E153.Text))
+            if (E153.Text == "")
             {
-                E153.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E153.Text = "Ausstehend";
-                }
-                else
-                {
-                    E153.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE31 = false;
             }
             else
             {
-                try
+                E153.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E153.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E153.Text);
-                    E153.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E153.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E153.Text = "Gültige Zahl";
+                        E153.ForeColor = Color.Red;
+                        okay = false;
+                        tE31 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E153.ForeColor = Color.Black;
+                    tE31 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E153.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
 
         private void E203_TextChanged(object sender, EventArgs e)
         {
-            double number = 0;
-            if (String.IsNullOrEmpty(E203.Text))
+            if (E203.Text == "")
             {
-                E203.ForeColor = Color.Red;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    E203.Text = "Ausstehend";
-                }
-                else
-                {
-                    E203.Text = "Outstanding";
-                }
+                continue_btn.Enabled = false;
+                tE32 = false;
             }
             else
             {
-                try
+                E203.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in E203.Text.ToCharArray())
                 {
-                    number = Convert.ToDouble(E203.Text);
-                    E203.ForeColor = Color.Black;
-
-                }
-                catch
-                {
-                    E203.ForeColor = Color.Red;
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
                     {
-                        E203.Text = "Gültige Zahl";
+                        E203.ForeColor = Color.Red;
+                        okay = false;
+                        tE32 = false;
+                        continue_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    E203.ForeColor = Color.Black;
+                    tE32 = true;
+                    if (tE1 & tE2 & tE3 & tE4 & tE5 & tE6 & tE7 & tE8 & tE9 & tE10 & tE11 & tE12 & tE13 & tE14 & tE15 & tE16 & tE17 & tE18 & tE19 & tE20 & tE21 & tE22 & tE23 & tE24 & tE25 & tE26 & tE27 & tE28 & tE29 & tE30 & tE31 & tE32 & tE33)
+                    {
+                        continue_btn.Enabled = true;
                     }
                     else
                     {
-                        E203.Text = "Valid number";
-                    } 
-                    return;
+                        continue_btn.Enabled = false;
+                    }
                 }
             }
         }
@@ -1724,7 +1755,6 @@ namespace IBSYS2
                 eteileberechnen_btn.Text = (Sprachen.EN_BTN_ETEILEBERECHNEN);
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
                 btn_back.Text = (Sprachen.EN_BTN_BACK);
-                default_btn.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_GROUPBOX1);
@@ -1755,7 +1785,6 @@ namespace IBSYS2
                 eteileberechnen_btn.Text = (Sprachen.DE_BTN_ETEILEBERECHNEN);
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 btn_back.Text = (Sprachen.DE_BTN_BACK);
-                default_btn.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_GROUPBOX1);
@@ -1796,9 +1825,32 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
-            UserControl prod = new Produktion();
-            this.Controls.Add(prod);
+
+            if (E041.Text == "0" | E052.Text == "0" | E063.Text == "0" | E071.Text == "0" | E082.Text == "0" | E093.Text == "0" | E101.Text == "0" | E112.Text == "0" | E123.Text == "0" | E131.Text == "0" | E142.Text == "0" | E153.Text == "0" | E161.Text == "0" | E162.Text == "0" | E163.Text == "0" | E171.Text == "0" | E172.Text == "0" | E173.Text == "0" | E181.Text == "0" | E192.Text == "0" | E203.Text == "0" | E261.Text == "0" | E262.Text == "0" | E263.Text == "0" | E293.Text == "0" | E303.Text == "0" | E313.Text == "0" | E491.Text == "0" | E501.Text == "0" | E511.Text == "0" | E542.Text == "0" | E552.Text == "0" | E562.Text == "0")
+            {
+                valueZero();
+                DialogResult dialogResult;
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                {
+                    dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                }
+                else
+                {
+                    dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
+                }
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Controls.Clear();
+                    UserControl prod = new Produktion();
+                    this.Controls.Add(prod);
+                }
+            }
+            else
+            {
+                this.Controls.Clear();
+                UserControl prod = new Produktion();
+                this.Controls.Add(prod);
+            }
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
@@ -1853,30 +1905,137 @@ namespace IBSYS2
             {
                 Eingabe_P3.ForeColor = Color.Red;
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (Eingabe_P1.Text == "0" | Eingabe_P2.Text == "0" | Eingabe_P3.Text == "0")
+            if (E041.Text == "0")
             {
-                valueZero();
-                DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
-                }
-                else
-                {
-                    dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
-                }
-                if (dialogResult == DialogResult.Yes)
-                {
-                    berechnen();
-                }
+                E041.ForeColor = Color.Red;
             }
-            else
+            if (E052.Text == "0")
             {
-                berechnen();
+                E052.ForeColor = Color.Red;
+            }
+            if (E063.Text == "0")
+            {
+                E063.ForeColor = Color.Red;
+            }
+            if (E071.Text == "0")
+            {
+                E071.ForeColor = Color.Red;
+            }
+            if (E082.Text == "0")
+            {
+                E082.ForeColor = Color.Red;
+            }
+            if (E093.Text == "0")
+            {
+                E093.ForeColor = Color.Red;
+            }
+            if (E101.Text == "0")
+            {
+                E101.ForeColor = Color.Red;
+            }
+            if (E112.Text == "0")
+            {
+                E112.ForeColor = Color.Red;
+            }
+            if (E123.Text == "0")
+            {
+                E123.ForeColor = Color.Red;
+            }
+            if (E131.Text == "0")
+            {
+                E131.ForeColor = Color.Red;
+            }
+            if (E142.Text == "0")
+            {
+                E142.ForeColor = Color.Red;
+            }
+            if (E153.Text == "0")
+            {
+                E153.ForeColor = Color.Red;
+            }
+            if (E161.Text == "0")
+            {
+                E161.ForeColor = Color.Red;
+            }
+            if (E162.Text == "0")
+            {
+                E162.ForeColor = Color.Red;
+            }
+            if (E163.Text == "0")
+            {
+                E163.ForeColor = Color.Red;
+            }
+            if (E171.Text == "0")
+            {
+                E171.ForeColor = Color.Red;
+            }
+            if (E172.Text == "0")
+            {
+                E172.ForeColor = Color.Red;
+            }
+            if (E173.Text == "0")
+            {
+                E173.ForeColor = Color.Red;
+            }
+            if (E181.Text == "0")
+            {
+                E181.ForeColor = Color.Red;
+            }
+            if (E192.Text == "0")
+            {
+                E192.ForeColor = Color.Red;
+            }
+            if (E203.Text == "0")
+            {
+                E203.ForeColor = Color.Red;
+            }
+            if (E261.Text == "0")
+            {
+                E261.ForeColor = Color.Red;
+            }
+            if (E262.Text == "0")
+            {
+                E262.ForeColor = Color.Red;
+            }
+            if (E263.Text == "0")
+            {
+                E263.ForeColor = Color.Red;
+            }
+            if (E293.Text == "0")
+            {
+                E293.ForeColor = Color.Red;
+            }
+            if (E303.Text == "0")
+            {
+                E303.ForeColor = Color.Red;
+            }
+            if (E313.Text == "0")
+            {
+                E313.ForeColor = Color.Red;
+            }
+            if (E491.Text == "0")
+            {
+                E491.ForeColor = Color.Red;
+            }
+            if (E501.Text == "0")
+            {
+                E501.ForeColor = Color.Red;
+            }
+            if (E511.Text == "0")
+            {
+                E511.ForeColor = Color.Red;
+            }
+            if (E542.Text == "0")
+            {
+                E542.ForeColor = Color.Red;
+            }
+            if (E552.Text == "0")
+            {
+                E552.ForeColor = Color.Red;
+            }
+            if (E562.Text == "0")
+            {
+                E562.ForeColor = Color.Red;
             }
         }
     }

@@ -37,6 +37,7 @@ namespace IBSYS2
         List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
         List<List<int>> warteliste_material = new List<List<int>>();
         List<List<int>> bearbeitung = new List<List<int>>();
+        List<List<int>> anfangbestand = new List<List<int>>();
 
         // Array fuer berechnete Produktionsmengen
         int[,] berProduktion = new int[30, 2];
@@ -237,24 +238,46 @@ namespace IBSYS2
             int Bearbeitungp1 = 0;
             int Bearbeitungp2 = 0;
             int Bearbeitungp3 = 0;
+
+
             for (int i = 0; i < teilenummer.Count(); i++)
             {
-                for (int e = 0; e < lagerb.Count; e++)
+                if (aktPeriode != 1)
                 {
-                    if (lagerb[e][0] == 1)
+                    for (int e = 0; e < lagerb.Count; e++)
                     {
-                        lagerbestandp1 = lagerb[e][1];
-                    }
-                    if (lagerb[e][0] == 2)
-                    {
-                        lagerbestandp2 = lagerb[e][1];
-                    }
-                    if (lagerb[e][0] == 3)
-                    {
-                        lagerbestandp3 = lagerb[e][1];
+                        if (lagerb[e][0] == 1)
+                        {
+                            lagerbestandp1 = lagerb[e][1];
+                        }
+                        if (lagerb[e][0] == 2)
+                        {
+                            lagerbestandp2 = lagerb[e][1];
+                        }
+                        if (lagerb[e][0] == 3)
+                        {
+                            lagerbestandp3 = lagerb[e][1];
+                        }
                     }
                 }
-
+                else if (aktPeriode == 1)
+                {
+                    for (int e = 0; e < anfangbestand.Count; e++)
+                    {
+                        if (anfangbestand[e][0] == 1)
+                        {
+                            lagerbestandp1 = anfangbestand[e][1];
+                        }
+                        if (anfangbestand[e][0] == 2)
+                        {
+                            lagerbestandp2 = anfangbestand[e][1];
+                        }
+                        if (anfangbestand[e][0] == 3)
+                        {
+                            lagerbestandp3 = anfangbestand[e][1];
+                        }
+                    }
+                }
                 for (int l = 0; l < wartelisteAr.Count; l++)
                 {
                     if (wartelisteAr[l][0] == 1)
@@ -504,6 +527,18 @@ namespace IBSYS2
                 ++a;
             }
             dbReader.Close();
+
+            a = 0;
+            cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                anfangbestand.Add(new List<int>());
+                anfangbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer"]));
+                anfangbestand[a].Add(Convert.ToInt32(dbReader["Startbestand"]));
+                ++a;
+            }
+            dbReader.Close();
             #endregion
 
             #region Daten zur Berechnung
@@ -663,115 +698,232 @@ namespace IBSYS2
                             }
                             #endregion
                 #region Lagerbestand
-                            for (int l = 0; l < lagerbestand.Count; l++)
+                            if (aktPeriode != 1)
                             {
-                                if (lagerbestand[l][0] == teilenummer[0])
+                                for (int l = 0; l < lagerbestand.Count; l++)
                                 {
-                                    p26 -= lagerbestand[l][1];
+                                    if (lagerbestand[l][0] == teilenummer[0])
+                                    {
+                                        p26 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[1])
+                                    {
+                                        p51 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[2])
+                                    {
+                                        p16 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[3])
+                                    {
+                                        p17 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[4])
+                                    {
+                                        p50 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[5])
+                                    {
+                                        p4 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[6])
+                                    {
+                                        p10 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[7])
+                                    {
+                                        p49 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[8])
+                                    {
+                                        p7 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[9])
+                                    {
+                                        p13 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[10])
+                                    {
+                                        p18 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[11])
+                                    {
+                                        p56 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[12])
+                                    {
+                                        p55 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[13])
+                                    {
+                                        p5 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[14])
+                                    {
+                                        p11 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[15])
+                                    {
+                                        p54 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[16])
+                                    {
+                                        p8 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[17])
+                                    {
+                                        p14 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[18])
+                                    {
+                                        p19 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[19])
+                                    {
+                                        p31 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[20])
+                                    {
+                                        p30 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[21])
+                                    {
+                                        p6 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[22])
+                                    {
+                                        p12 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[23])
+                                    {
+                                        p29 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[24])
+                                    {
+                                        p9 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[25])
+                                    {
+                                        p15 -= lagerbestand[l][1];
+                                    }
+                                    if (lagerbestand[l][0] == teilenummer[26])
+                                    {
+                                        p20 -= lagerbestand[l][1];
+                                    }
                                 }
-                                if (lagerbestand[l][0] == teilenummer[1])
+                            }
+                            else if (aktPeriode == 1)
+                            {
+                                for (int l = 0; l < anfangbestand.Count; l++)
                                 {
-                                    p51 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[2])
-                                {
-                                    p16 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[3])
-                                {
-                                    p17 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[4])
-                                {
-                                    p50 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[5])
-                                {
-                                    p4 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[6])
-                                {
-                                    p10 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[7])
-                                {
-                                    p49 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[8])
-                                {
-                                    p7 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[9])
-                                {
-                                    p13 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[10])
-                                {
-                                    p18 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[11])
-                                {
-                                    p56 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[12])
-                                {
-                                    p55 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[13])
-                                {
-                                    p5 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[14])
-                                {
-                                    p11 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[15])
-                                {
-                                    p54 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[16])
-                                {
-                                    p8 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[17])
-                                {
-                                    p14 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[18])
-                                {
-                                    p19 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[19])
-                                {
-                                    p31 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[20])
-                                {
-                                    p30 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[21])
-                                {
-                                    p6 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[22])
-                                {
-                                    p12 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[23])
-                                {
-                                    p29 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[24])
-                                {
-                                    p9 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[25])
-                                {
-                                    p15 -= lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[26])
-                                {
-                                    p20 -= lagerbestand[l][1];
+                                    if (anfangbestand[l][0] == teilenummer[0])
+                                    {
+                                        p26 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[1])
+                                    {
+                                        p51 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[2])
+                                    {
+                                        p16 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[3])
+                                    {
+                                        p17 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[4])
+                                    {
+                                        p50 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[5])
+                                    {
+                                        p4 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[6])
+                                    {
+                                        p10 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[7])
+                                    {
+                                        p49 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[8])
+                                    {
+                                        p7 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[9])
+                                    {
+                                        p13 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[10])
+                                    {
+                                        p18 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[11])
+                                    {
+                                        p56 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[12])
+                                    {
+                                        p55 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[13])
+                                    {
+                                        p5 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[14])
+                                    {
+                                        p11 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[15])
+                                    {
+                                        p54 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[16])
+                                    {
+                                        p8 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[17])
+                                    {
+                                        p14 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[18])
+                                    {
+                                        p19 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[19])
+                                    {
+                                        p31 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[20])
+                                    {
+                                        p30 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[21])
+                                    {
+                                        p6 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[22])
+                                    {
+                                        p12 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[23])
+                                    {
+                                        p29 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[24])
+                                    {
+                                        p9 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[25])
+                                    {
+                                        p15 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[26])
+                                    {
+                                        p20 -= anfangbestand[l][1];
+                                    }
                                 }
                             }
                             #endregion

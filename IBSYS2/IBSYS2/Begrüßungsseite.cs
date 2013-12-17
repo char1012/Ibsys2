@@ -32,12 +32,16 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            label1.Text = "Welcom to the SCMPlus";
+            //Startbutton ist ein Bild, deshalb keine Überstzung möglich, 
+            //Vorschlag: Button auf START umbenennen.
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            label1.Text = "Willkommen beim SCMPlus";
         }
 
 

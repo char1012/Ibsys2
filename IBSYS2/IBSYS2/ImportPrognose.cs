@@ -32,6 +32,7 @@ namespace IBSYS2
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
+        double[,] direktverkäufe = new double[3, 4];
 
         public ImportPrognose(String sprache)
         {
@@ -1224,6 +1225,12 @@ namespace IBSYS2
 
                 }
             }
+        }
+
+        private void btn_direktverkäufe_Click(object sender, EventArgs e)
+        {
+            Direktverkäufe direktverkaeufe = new Direktverkäufe(direktverkäufe,sprache);
+            direktverkaeufe.Show();
         }
 
     }

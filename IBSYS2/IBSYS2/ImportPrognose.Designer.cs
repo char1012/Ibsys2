@@ -196,6 +196,7 @@
             this.btn_direktverkäufe.TabIndex = 58;
             this.btn_direktverkäufe.Text = "Direktverkäufe";
             this.btn_direktverkäufe.UseVisualStyleBackColor = false;
+            this.btn_direktverkäufe.Click += new System.EventHandler(this.btn_direktverkäufe_Click);
             // 
             // lbl_optional
             // 

@@ -16,6 +16,8 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private String sprache = "de";
+        int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
+                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
         // Datenweitergabe:
         int aktPeriode;
@@ -32,10 +34,11 @@ namespace IBSYS2
 
         List<int> sicherheitsbe = new List<int>();
 
-        List<int> lagerbestand = new List<int>();
-        List<int> bearbeitung = new List<int>();
-        List<int> wartelisteAr = new List<int>();
-        List<int> wartelisteMa = new List<int>();
+        List<List<int>> lagerbestand = new List<List<int>>();
+        List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
+        List<List<int>> warteliste_material = new List<List<int>>();
+        List<List<int>> bearbeitung = new List<List<int>>();
+        List<List<int>> anfangbestand = new List<List<int>>();
 
         // Array fuer berechnete Produktionsmengen
         int[,] berProduktion = new int[30, 2];
@@ -51,6 +54,7 @@ namespace IBSYS2
         {
             InitializeComponent();
             continue_btn.Enabled = false;
+            back.Enabled = false;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -73,7 +77,6 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
             }
 
-            berechneProduktion();
             ProduktionETeile();
         }
 
@@ -121,10 +124,10 @@ namespace IBSYS2
                 this.kaufauftraege = kaufauftraege;
             }
 
-            // var UserControl kapa= new Kapazitaetsplan();
             InitializeComponent();
             continue_btn.Enabled = false;
             sprachen();
+            back.Enabled = false;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -179,7 +182,6 @@ namespace IBSYS2
             // sonst neu berechnen
             else
             {
-                berechneProduktion();
                 ProduktionETeile();
             }
         }
@@ -202,15 +204,18 @@ namespace IBSYS2
             if(weiter == true)
             {
                 continue_btn.Enabled = true;
+                back.Enabled = true;
             }
             else
             {
                 continue_btn.Enabled = false;
+                back.Enabled = false;
             }
         }
 
-        private void berechneProduktion()
+        private void berechneProduktion(List<List<int>> lagerb, List<List<int>> wartelisteAr, List<List<int>> wartelisteMa, List<List<int>> bearbeitung)
         {
+            
             //für aktuelle Periode
             double p1 = auftraege[0] + direktverkaeufe[0, 1];
             double p2 = auftraege[1] + direktverkaeufe[1, 1];
@@ -222,29 +227,116 @@ namespace IBSYS2
             double sp3 = sicherheitsbest[2, 1];
 
             //- Lagerbestand Vorperiode 
-            int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp2 = Daten("2", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp3 = Daten("3", "Bestand", "Teilenummer_FK", "Lager", periode);
+            int lagerbestandp1 = 0;
+            int lagerbestandp2 = 0;
+            int lagerbestandp3 = 0;
             
             //- Aufträge in Warteschlange 
-            int WartelisteMap1 = Daten("1", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteMap2 = Daten("2", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteMap3 = Daten("3", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteAr1 = Daten("1", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int WartelisteAr2 = Daten("2", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int WartelisteAr3 = Daten("3", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
+            int WartelisteMap1 = 0;
+            int WartelisteMap2 = 0;
+            int WartelisteMap3 = 0;
+            int WartelisteAr1 = 0;
+            int WartelisteAr2 = 0;
+            int WartelisteAr3 = 0;
             
-            //- Aufträge in Bearbeitung
-            int Bearbeitungp1 = Daten("1", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int Bearbeitungp2 = Daten("2", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int Bearbeitungp3 = Daten("3", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
+            int Bearbeitungp1 = 0;
+            int Bearbeitungp2 = 0;
+            int Bearbeitungp3 = 0;
+
+
+            for (int i = 0; i < teilenummer.Count(); i++)
+            {
+                if (aktPeriode != 1)
+                {
+                    for (int e = 0; e < lagerb.Count; e++)
+                    {
+                        if (lagerb[e][0] == 1)
+                        {
+                            lagerbestandp1 = lagerb[e][1];
+                        }
+                        if (lagerb[e][0] == 2)
+                        {
+                            lagerbestandp2 = lagerb[e][1];
+                        }
+                        if (lagerb[e][0] == 3)
+                        {
+                            lagerbestandp3 = lagerb[e][1];
+                        }
+                    }
+                }
+                else if (aktPeriode == 1)
+                {
+                    for (int e = 0; e < anfangbestand.Count; e++)
+                    {
+                        if (anfangbestand[e][0] == 1)
+                        {
+                            lagerbestandp1 = anfangbestand[e][1];
+                        }
+                        if (anfangbestand[e][0] == 2)
+                        {
+                            lagerbestandp2 = anfangbestand[e][1];
+                        }
+                        if (anfangbestand[e][0] == 3)
+                        {
+                            lagerbestandp3 = anfangbestand[e][1];
+                        }
+                    }
+                }
+                for (int l = 0; l < wartelisteAr.Count; l++)
+                {
+                    if (wartelisteAr[l][0] == 1)
+                    {
+                        WartelisteAr1 = wartelisteAr[l][1];
+                    }
+                    if (wartelisteAr[l][0] == 2)
+                    {
+                        WartelisteAr2 = wartelisteAr[l][1];
+                    }
+                    if (wartelisteAr[l][0] == 3)
+                    {
+                        WartelisteAr3 = wartelisteAr[l][1];
+                    }
+                }
+
+                for (int a = 0; a < wartelisteMa.Count; a++)
+                {
+                    if (wartelisteMa[a][0] == 1)
+                    {
+                        WartelisteMap1 = wartelisteMa[a][1];
+                    }
+                    if (wartelisteMa[a][0] == 2)
+                    {
+                        WartelisteMap2 = wartelisteAr[a][1];
+                    }
+                    if (wartelisteAr[a][0] == 3)
+                    {
+                        WartelisteMap3 = wartelisteAr[a][1];
+                    }
+                }
+
+                for (int w = 0; w < bearbeitung.Count; w++)
+                {
+                    if (bearbeitung[w][0] == 1)
+                    {
+                        Bearbeitungp1 = bearbeitung[w][1];
+                    }
+                    if (bearbeitung[w][0] == 2)
+                    {
+                        Bearbeitungp2 = bearbeitung[w][1];
+                    }
+                    if (bearbeitung[w][0] == 3)
+                    {
+                        Bearbeitungp3 = bearbeitung[w][1];
+                    }
+                }
+            } 
 
            // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
             string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
             string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
             string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
             
-            if (prod1.StartsWith("-"))
+                if (prod1.StartsWith("-") || prod1 == null)
             {
                 textBox1.Text = "0";
             }
@@ -331,6 +423,7 @@ namespace IBSYS2
 
             #endregion
 
+            
         }
 
         public int[,] ProduktionETeile()
@@ -392,7 +485,6 @@ namespace IBSYS2
 
             #region Daten aus DB
             int a = 0;
-            List<List<int>> lagerbestand = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -405,7 +497,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -418,7 +509,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> warteliste_material = new List<List<int>>();
             cmd.CommandText = @"SELECT Fehlteil_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -431,7 +521,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> bearbeitung = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -439,6 +528,18 @@ namespace IBSYS2
                 bearbeitung.Add(new List<int>());
                 bearbeitung[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
                 bearbeitung[a].Add(Convert.ToInt32(dbReader["Menge"]));
+                ++a;
+            }
+            dbReader.Close();
+
+            a = 0;
+            cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
+            dbReader = cmd.ExecuteReader();
+            while (dbReader.Read())
+            {
+                anfangbestand.Add(new List<int>());
+                anfangbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer"]));
+                anfangbestand[a].Add(Convert.ToInt32(dbReader["Startbestand"]));
                 ++a;
             }
             dbReader.Close();
@@ -484,8 +585,6 @@ namespace IBSYS2
             p15 = p29 + sicherheitsbest[14, 1];
             p20 = p29 + sicherheitsbest[19, 1];
             #endregion
-            int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
-                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
             for (int i = 0; i < teilenummer.Count(); i++)
             {
@@ -603,6 +702,8 @@ namespace IBSYS2
                             }
                             #endregion
                 #region Lagerbestand
+                            if (aktPeriode != 1)
+                            {
                             for (int l = 0; l < lagerbestand.Count; l++)
                             {
                                 if (lagerbestand[l][0] == teilenummer[0])
@@ -712,6 +813,121 @@ namespace IBSYS2
                                 if (lagerbestand[l][0] == teilenummer[26])
                                 {
                                     p20 -= lagerbestand[l][1];
+                                }
+                            }
+                            }
+                            else if (aktPeriode == 1)
+                            {
+                                for (int l = 0; l < anfangbestand.Count; l++)
+                                {
+                                    if (anfangbestand[l][0] == teilenummer[0])
+                                    {
+                                        p26 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[1])
+                                    {
+                                        p51 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[2])
+                                    {
+                                        p16 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[3])
+                                    {
+                                        p17 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[4])
+                                    {
+                                        p50 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[5])
+                                    {
+                                        p4 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[6])
+                                    {
+                                        p10 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[7])
+                                    {
+                                        p49 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[8])
+                                    {
+                                        p7 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[9])
+                                    {
+                                        p13 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[10])
+                                    {
+                                        p18 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[11])
+                                    {
+                                        p56 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[12])
+                                    {
+                                        p55 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[13])
+                                    {
+                                        p5 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[14])
+                                    {
+                                        p11 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[15])
+                                    {
+                                        p54 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[16])
+                                    {
+                                        p8 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[17])
+                                    {
+                                        p14 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[18])
+                                    {
+                                        p19 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[19])
+                                    {
+                                        p31 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[20])
+                                    {
+                                        p30 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[21])
+                                    {
+                                        p6 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[22])
+                                    {
+                                        p12 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[23])
+                                    {
+                                        p29 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[24])
+                                    {
+                                        p9 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[25])
+                                    {
+                                        p15 -= anfangbestand[l][1];
+                                    }
+                                    if (anfangbestand[l][0] == teilenummer[26])
+                                    {
+                                        p20 -= anfangbestand[l][1];
+                                    }
                                 }
                             }
                             #endregion
@@ -995,35 +1211,9 @@ namespace IBSYS2
             berProduktion[29, 0] = 56;
             berProduktion[29, 1] = p56;
 
+            berechneProduktion(lagerbestand, warteliste_arbeitsplatz, warteliste_material, bearbeitung);
             return berProduktion;
 
-        }
-
-        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
-        {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = myconn;
-            try
-            {
-                myconn.Open();
-            }
-            catch (Exception)
-            {
-                myconn.Close();
-                myconn.Open();
-            }
-            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
-            OleDbDataReader dr = cmd.ExecuteReader();
-            int laa = 0;
-            while (dr.Read())
-            {
-                laa = Convert.ToInt32(dr[spalte]);
-                return laa;
-            }
-            dr.Close();
-            myconn.Close();
-            return laa;
         }
 
         #region textBoxen
@@ -1597,7 +1787,7 @@ namespace IBSYS2
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            berechneProduktion();
+            berechneProduktion(lagerbestand,warteliste_arbeitsplatz,warteliste_material,bearbeitung);
         }
 
         public void sprachen()
@@ -1671,7 +1861,7 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();
+            sprachen(); 
             sprache = "en";
         }
 
@@ -1679,7 +1869,7 @@ namespace IBSYS2
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();
+            sprachen(); 
             sprache = "de";
         }
 

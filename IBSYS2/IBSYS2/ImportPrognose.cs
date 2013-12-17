@@ -12,10 +12,6 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Resources;
 using Visiblox.Charts;
-using System.Windows;
-using System.Windows.Forms;
-
-
 
 namespace IBSYS2
 {
@@ -190,6 +186,7 @@ namespace IBSYS2
                 button2.Enabled = true;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -410,7 +407,7 @@ namespace IBSYS2
                     {
                         if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                         {
-                            MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                            System.Windows.MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
                         }
                         else
                         {

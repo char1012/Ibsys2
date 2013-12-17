@@ -16,8 +16,6 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private String sprache = "de";
-        int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
-                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
         // Datenweitergabe:
         int aktPeriode;
@@ -29,16 +27,15 @@ namespace IBSYS2
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
-        
+
         int periode;
 
         List<int> sicherheitsbe = new List<int>();
 
-        List<List<int>> lagerbestand = new List<List<int>>();
-        List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
-        List<List<int>> warteliste_material = new List<List<int>>();
-        List<List<int>> bearbeitung = new List<List<int>>();
-        List<List<int>> anfangbestand = new List<List<int>>();
+        List<int> lagerbestand = new List<int>();
+        List<int> bearbeitung = new List<int>();
+        List<int> wartelisteAr = new List<int>();
+        List<int> wartelisteMa = new List<int>();
 
         // Array fuer berechnete Produktionsmengen
         int[,] berProduktion = new int[30, 2];
@@ -55,7 +52,6 @@ namespace IBSYS2
             InitializeComponent();
             continue_btn.Enabled = false;
             back.Enabled = false;
-
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
@@ -77,6 +73,7 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
             }
 
+            berechneProduktion();
             ProduktionETeile();
         }
 
@@ -124,6 +121,7 @@ namespace IBSYS2
                 this.kaufauftraege = kaufauftraege;
             }
 
+            // var UserControl kapa= new Kapazitaetsplan();
             InitializeComponent();
             continue_btn.Enabled = false;
             sprachen();
@@ -182,6 +180,7 @@ namespace IBSYS2
             // sonst neu berechnen
             else
             {
+                berechneProduktion();
                 ProduktionETeile();
             }
         }
@@ -194,14 +193,14 @@ namespace IBSYS2
                 if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "" || this.Controls.Find("textBox" + i.ToString(), true)[0].ForeColor == Color.Red)
                 {
                     weiter = false;
-                    
+
                 }
                 else
                 {
                     continue;
                 }
             }
-            if(weiter == true)
+            if (weiter == true)
             {
                 continue_btn.Enabled = true;
                 back.Enabled = true;
@@ -209,13 +208,12 @@ namespace IBSYS2
             else
             {
                 continue_btn.Enabled = false;
-                back.Enabled = false;
+                back.Enabled = true;
             }
         }
 
-        private void berechneProduktion(List<List<int>> lagerb, List<List<int>> wartelisteAr, List<List<int>> wartelisteMa, List<List<int>> bearbeitung)
+        private void berechneProduktion()
         {
-            
             //für aktuelle Periode
             double p1 = auftraege[0] + direktverkaeufe[0, 1];
             double p2 = auftraege[1] + direktverkaeufe[1, 1];
@@ -227,116 +225,29 @@ namespace IBSYS2
             double sp3 = sicherheitsbest[2, 1];
 
             //- Lagerbestand Vorperiode 
-            int lagerbestandp1 = 0;
-            int lagerbestandp2 = 0;
-            int lagerbestandp3 = 0;
-            
+            int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
+            int lagerbestandp2 = Daten("2", "Bestand", "Teilenummer_FK", "Lager", periode);
+            int lagerbestandp3 = Daten("3", "Bestand", "Teilenummer_FK", "Lager", periode);
+
             //- Aufträge in Warteschlange 
-            int WartelisteMap1 = 0;
-            int WartelisteMap2 = 0;
-            int WartelisteMap3 = 0;
-            int WartelisteAr1 = 0;
-            int WartelisteAr2 = 0;
-            int WartelisteAr3 = 0;
-            
-            int Bearbeitungp1 = 0;
-            int Bearbeitungp2 = 0;
-            int Bearbeitungp3 = 0;
+            int WartelisteMap1 = Daten("1", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
+            int WartelisteMap2 = Daten("2", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
+            int WartelisteMap3 = Daten("3", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
+            int WartelisteAr1 = Daten("1", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
+            int WartelisteAr2 = Daten("2", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
+            int WartelisteAr3 = Daten("3", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
 
+            //- Aufträge in Bearbeitung
+            int Bearbeitungp1 = Daten("1", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
+            int Bearbeitungp2 = Daten("2", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
+            int Bearbeitungp3 = Daten("3", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
 
-            for (int i = 0; i < teilenummer.Count(); i++)
-            {
-                if (aktPeriode != 1)
-                {
-                    for (int e = 0; e < lagerb.Count; e++)
-                    {
-                        if (lagerb[e][0] == 1)
-                        {
-                            lagerbestandp1 = lagerb[e][1];
-                        }
-                        if (lagerb[e][0] == 2)
-                        {
-                            lagerbestandp2 = lagerb[e][1];
-                        }
-                        if (lagerb[e][0] == 3)
-                        {
-                            lagerbestandp3 = lagerb[e][1];
-                        }
-                    }
-                }
-                else if (aktPeriode == 1)
-                {
-                    for (int e = 0; e < anfangbestand.Count; e++)
-                    {
-                        if (anfangbestand[e][0] == 1)
-                        {
-                            lagerbestandp1 = anfangbestand[e][1];
-                        }
-                        if (anfangbestand[e][0] == 2)
-                        {
-                            lagerbestandp2 = anfangbestand[e][1];
-                        }
-                        if (anfangbestand[e][0] == 3)
-                        {
-                            lagerbestandp3 = anfangbestand[e][1];
-                        }
-                    }
-                }
-                for (int l = 0; l < wartelisteAr.Count; l++)
-                {
-                    if (wartelisteAr[l][0] == 1)
-                    {
-                        WartelisteAr1 = wartelisteAr[l][1];
-                    }
-                    if (wartelisteAr[l][0] == 2)
-                    {
-                        WartelisteAr2 = wartelisteAr[l][1];
-                    }
-                    if (wartelisteAr[l][0] == 3)
-                    {
-                        WartelisteAr3 = wartelisteAr[l][1];
-                    }
-                }
-
-                for (int a = 0; a < wartelisteMa.Count; a++)
-                {
-                    if (wartelisteMa[a][0] == 1)
-                    {
-                        WartelisteMap1 = wartelisteMa[a][1];
-                    }
-                    if (wartelisteMa[a][0] == 2)
-                    {
-                        WartelisteMap2 = wartelisteAr[a][1];
-                    }
-                    if (wartelisteAr[a][0] == 3)
-                    {
-                        WartelisteMap3 = wartelisteAr[a][1];
-                    }
-                }
-            
-                for (int w = 0; w < bearbeitung.Count; w++)
-                {
-                    if (bearbeitung[w][0] == 1)
-                    {
-                        Bearbeitungp1 = bearbeitung[w][1];
-                    }
-                    if (bearbeitung[w][0] == 2)
-                    {
-                        Bearbeitungp2 = bearbeitung[w][1];
-                    }
-                    if (bearbeitung[w][0] == 3)
-                    {
-                        Bearbeitungp3 = bearbeitung[w][1];
-                    }
-                }
-            } 
-
-           // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
+            // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
             string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
             string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
             string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
-            
-                if (prod1.StartsWith("-") || prod1 == null)
+
+            if (prod1.StartsWith("-"))
             {
                 textBox1.Text = "0";
             }
@@ -418,12 +329,11 @@ namespace IBSYS2
             {
                 textBox5.Text = prognosep3;
                 textBox9.Text = prognosep3;
-                textBox12.Text = prognosep3; 
+                textBox12.Text = prognosep3;
             }
 
             #endregion
 
-            
         }
 
         public int[,] ProduktionETeile()
@@ -482,14 +392,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                }
                 myconn.Close();
                 myconn.Open();
             }
@@ -497,6 +399,7 @@ namespace IBSYS2
 
             #region Daten aus DB
             int a = 0;
+            List<List<int>> lagerbestand = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -509,6 +412,7 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
+            List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -534,6 +438,7 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
+            List<List<int>> bearbeitung = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -541,18 +446,6 @@ namespace IBSYS2
                 bearbeitung.Add(new List<int>());
                 bearbeitung[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
                 bearbeitung[a].Add(Convert.ToInt32(dbReader["Menge"]));
-                ++a;
-            }
-            dbReader.Close();
-
-            a = 0;
-            cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
-            dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                anfangbestand.Add(new List<int>());
-                anfangbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer"]));
-                anfangbestand[a].Add(Convert.ToInt32(dbReader["Startbestand"]));
                 ++a;
             }
             dbReader.Close();
@@ -613,672 +506,557 @@ namespace IBSYS2
             p15 = 0;
             p20 = 0;
             #endregion
+            int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
+                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
-                #region Bearbeitung
-                            for (int e = 0; e < bearbeitung.Count; e++)
-                            {
-                                if (bearbeitung[e][0] == teilenummer[0])
-                                {
-                                    p26 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[1])
-                                {
-                                    p51 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[2])
-                                {
-                                    p16 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[3])
-                                {
-                                    p17 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[4])
-                                {
-                                    p50 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[5])
-                                {
-                                    p4 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[6])
-                                {
-                                    p10 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[7])
-                                {
-                                    p49 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[8])
-                                {
-                                    p7 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[9])
-                                {
-                                    p13 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[10])
-                                {
-                                    p18 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[11])
-                                {
-                                    p56 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[12])
-                                {
-                                    p55 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[13])
-                                {
-                                    p5 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[14])
-                                {
-                                    p11 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[15])
-                                {
-                                    p54 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[16])
-                                {
-                                    p8 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[17])
-                                {
-                                    p14 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[18])
-                                {
-                                    p19 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[19])
-                                {
-                                    p31 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[20])
-                                {
-                                    p30 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[21])
-                                {
-                                    p6 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[22])
-                                {
-                                    p12 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[23])
-                                {
-                                    p29 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[24])
-                                {
-                                    p9 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[25])
-                                {
-                                    p15 += bearbeitung[e][1];
-                                }
-                                if (bearbeitung[e][0] == teilenummer[26])
-                                {
-                                    p20 += bearbeitung[e][1];
-                                }
-                            }
-                            #endregion
-                #region Lagerbestand
-                            if (aktPeriode != 1)
-                            {
-                            for (int l = 0; l < lagerbestand.Count; l++)
-                            {
-                                if (lagerbestand[l][0] == teilenummer[0])
-                                {
-                                    p26 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[1])
-                                {
-                                    p51 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[2])
-                                {
-                                    p16 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[3])
-                                {
-                                    p17 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[4])
-                                {
-                                    p50 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[5])
-                                {
-                                    p4 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[6])
-                                {
-                                    p10 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[7])
-                                {
-                                    p49 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[8])
-                                {
-                                    p7 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[9])
-                                {
-                                    p13 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[10])
-                                {
-                                    p18 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[11])
-                                {
-                                    p56 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[12])
-                                {
-                                    p55 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[13])
-                                {
-                                    p5 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[14])
-                                {
-                                    p11 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[15])
-                                {
-                                    p54 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[16])
-                                {
-                                    p8 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[17])
-                                {
-                                    p14 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[18])
-                                {
-                                    p19 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[19])
-                                {
-                                    p31 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[20])
-                                {
-                                    p30 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[21])
-                                {
-                                    p6 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[22])
-                                {
-                                    p12 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[23])
-                                {
-                                    p29 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[24])
-                                {
-                                    p9 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[25])
-                                {
-                                    p15 += lagerbestand[l][1];
-                                }
-                                if (lagerbestand[l][0] == teilenummer[26])
-                                {
-                                    p20 += lagerbestand[l][1];
-                                }
-                            }
-                            }
-                            else if (aktPeriode == 1)
-                            {
-                                for (int l = 0; l < anfangbestand.Count; l++)
-                                {
-                                    if (anfangbestand[l][0] == teilenummer[0])
-                                    {
-                                        p26 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[1])
-                                    {
-                                        p51 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[2])
-                                    {
-                                        p16 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[3])
-                                    {
-                                        p17 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[4])
-                                    {
-                                        p50 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[5])
-                                    {
-                                        p4 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[6])
-                                    {
-                                        p10 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[7])
-                                    {
-                                        p49 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[8])
-                                    {
-                                        p7 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[9])
-                                    {
-                                        p13 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[10])
-                                    {
-                                        p18 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[11])
-                                    {
-                                        p56 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[12])
-                                    {
-                                        p55 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[13])
-                                    {
-                                        p5 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[14])
-                                    {
-                                        p11 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[15])
-                                    {
-                                        p54 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[16])
-                                    {
-                                        p8 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[17])
-                                    {
-                                        p14 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[18])
-                                    {
-                                        p19 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[19])
-                                    {
-                                        p31 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[20])
-                                    {
-                                        p30 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[21])
-                                    {
-                                        p6 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[22])
-                                    {
-                                        p12 -= anfangbestand[l][1];
-                            }
-                                    if (anfangbestand[l][0] == teilenummer[23])
-                                    {
-                                        p29 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[24])
-                                    {
-                                        p9 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[25])
-                                    {
-                                        p15 -= anfangbestand[l][1];
-                                    }
-                                    if (anfangbestand[l][0] == teilenummer[26])
-                                    {
-                                        p20 -= anfangbestand[l][1];
-                                    }
-                                }
-                            }
-                            #endregion
-                #region Wartelisten
-                            for (int k = 0; k < warteliste_material.Count; k++)
-                            {
-                                if(warteliste_material[k][0] == 1)
-                                {
-                                    ws1 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == 2)
-                                {
-                                    ws2 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == 3)
-                                {
-                                    ws3 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[0])
-                                {
-                                    p26 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[1])
-                                {
-                                    p51 += warteliste_material[k][1];
-                                    ws51 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[2])
-                                {
-                                    p16 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[3])
-                                {
-                                    p17 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[4])
-                                {
-                                    p50 += warteliste_material[k][1];
-                                    ws50 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[5])
-                                {
-                                    p4 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[6])
-                                {
-                                    p10 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[7])
-                                {
-                                    p49 += warteliste_material[k][1];
-                                    ws49 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[8])
-                                {
-                                    p7 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[9])
-                                {
-                                    p13 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[10])
-                                {
-                                    p18 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[11])
-                                {
-                                    p56 += warteliste_material[k][1];
-                                    ws56 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[12])
-                                {
-                                    p55 += warteliste_material[k][1];
-                                    ws55 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[13])
-                                {
-                                    p5 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[14])
-                                {
-                                    p11 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[15])
-                                {
-                                    p54 += warteliste_material[k][1];
-                                    ws54 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[16])
-                                {
-                                    p8 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[17])
-                                {
-                                    p14 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[18])
-                                {
-                                    p19 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[19])
-                                {
-                                    p31 += warteliste_material[k][1];
-                                    ws31 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[20])
-                                {
-                                    p30 += warteliste_material[k][1];
-                                    ws30 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[21])
-                                {
-                                    p6 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[22])
-                                {
-                                    p12 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[23])
-                                {
-                                    p29 += warteliste_material[k][1];
-                                    ws29 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[24])
-                                {
-                                    p9 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[25])
-                                {
-                                    p15 += warteliste_material[k][1];
-                                }
-                                if (warteliste_material[k][0] == teilenummer[26])
-                                {
-                                    p20 += warteliste_material[k][1];
-                                }
-                            }
-                            for (int m = 0; m < warteliste_arbeitsplatz.Count; m++)
-                            {
-                                if (warteliste_arbeitsplatz[m][0] == 1)
-                                {
-                                    ws1 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == 2)
-                                {
-                                    ws2 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == 3)
-                                {
-                                    ws3 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[0])
-                                {
-                                    p26 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[1])
-                                {
-                                    p51 += warteliste_arbeitsplatz[m][1];
-                                    ws51 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[2])
-                                {
-                                    p16 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[3])
-                                {
-                                    p17 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[4])
-                                {
-                                    p50 += warteliste_arbeitsplatz[m][1];
-                                    ws50 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[5])
-                                {
-                                    p4 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[6])
-                                {
-                                    p10 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[7])
-                                {
-                                    p49 += warteliste_arbeitsplatz[m][1];
-                                    ws49 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[8])
-                                {
-                                    p7 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[9])
-                                {
-                                    p13 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[10])
-                                {
-                                    p18 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[11])
-                                {
-                                    p56 += warteliste_arbeitsplatz[m][1];
-                                    ws56 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[12])
-                                {
-                                    p55 += warteliste_arbeitsplatz[m][1];
-                                    ws55 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[13])
-                                {
-                                    p5 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[14])
-                                {
-                                    p11 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[15])
-                                {
-                                    p54 += warteliste_arbeitsplatz[m][1];
-                                    ws54 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[16])
-                                {
-                                    p8 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[17])
-                                {
-                                    p14 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[18])
-                                {
-                                    p19 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[19])
-                                {
-                                    p31 += warteliste_arbeitsplatz[m][1];
-                                    ws31 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[20])
-                                {
-                                    p30 += warteliste_arbeitsplatz[m][1];
-                                    ws30 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[21])
-                                {
-                                    p6 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[22])
-                                {
-                                    p12 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[23])
-                                {
-                                    p29 += warteliste_arbeitsplatz[m][1];
-                                    ws29 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[24])
-                                {
-                                    p9 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[25])
-                                {
-                                    p15 += warteliste_arbeitsplatz[m][1];
-                                }
-                                if (warteliste_arbeitsplatz[m][0] == teilenummer[26])
-                                {
-                                    p20 += warteliste_arbeitsplatz[m][1];
-                                }
-                            }
-                            #endregion
+            #region Bearbeitung
+            for (int e = 0; e < bearbeitung.Count; e++)
+            {
+                if (bearbeitung[e][0] == teilenummer[0])
+                {
+                    p26 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[1])
+                {
+                    p51 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[2])
+                {
+                    p16 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[3])
+                {
+                    p17 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[4])
+                {
+                    p50 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[5])
+                {
+                    p4 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[6])
+                {
+                    p10 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[7])
+                {
+                    p49 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[8])
+                {
+                    p7 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[9])
+                {
+                    p13 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[10])
+                {
+                    p18 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[11])
+                {
+                    p56 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[12])
+                {
+                    p55 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[13])
+                {
+                    p5 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[14])
+                {
+                    p11 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[15])
+                {
+                    p54 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[16])
+                {
+                    p8 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[17])
+                {
+                    p14 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[18])
+                {
+                    p19 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[19])
+                {
+                    p31 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[20])
+                {
+                    p30 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[21])
+                {
+                    p6 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[22])
+                {
+                    p12 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[23])
+                {
+                    p29 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[24])
+                {
+                    p9 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[25])
+                {
+                    p15 += bearbeitung[e][1];
+                }
+                if (bearbeitung[e][0] == teilenummer[26])
+                {
+                    p20 += bearbeitung[e][1];
+                }
+            }
+            #endregion
+            #region Lagerbestand
+            for (int l = 0; l < lagerbestand.Count; l++)
+            {
+                if (lagerbestand[l][0] == teilenummer[0])
+                {
+                    p26 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[1])
+                {
+                    p51 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[2])
+                {
+                    p16 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[3])
+                {
+                    p17 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[4])
+                {
+                    p50 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[5])
+                {
+                    p4 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[6])
+                {
+                    p10 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[7])
+                {
+                    p49 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[8])
+                {
+                    p7 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[9])
+                {
+                    p13 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[10])
+                {
+                    p18 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[11])
+                {
+                    p56 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[12])
+                {
+                    p55 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[13])
+                {
+                    p5 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[14])
+                {
+                    p11 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[15])
+                {
+                    p54 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[16])
+                {
+                    p8 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[17])
+                {
+                    p14 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[18])
+                {
+                    p19 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[19])
+                {
+                    p31 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[20])
+                {
+                    p30 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[21])
+                {
+                    p6 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[22])
+                {
+                    p12 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[23])
+                {
+                    p29 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[24])
+                {
+                    p9 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[25])
+                {
+                    p15 += lagerbestand[l][1];
+                }
+                if (lagerbestand[l][0] == teilenummer[26])
+                {
+                    p20 += lagerbestand[l][1];
+                }
+            }
+            #endregion
+            #region Wartelisten
+            for (int k = 0; k < warteliste_material.Count; k++)
+            {
+                if (warteliste_material[k][0] == 1)
+                {
+                    ws1 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == 2)
+                {
+                    ws2 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == 3)
+                {
+                    ws3 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[0])
+                {
+                    p26 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[1])
+                {
+                    p51 += warteliste_material[k][1];
+                    ws51 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[2])
+                {
+                    p16 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[3])
+                {
+                    p17 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[4])
+                {
+                    p50 += warteliste_material[k][1];
+                    ws50 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[5])
+                {
+                    p4 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[6])
+                {
+                    p10 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[7])
+                {
+                    p49 += warteliste_material[k][1];
+                    ws49 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[8])
+                {
+                    p7 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[9])
+                {
+                    p13 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[10])
+                {
+                    p18 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[11])
+                {
+                    p56 += warteliste_material[k][1];
+                    ws56 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[12])
+                {
+                    p55 += warteliste_material[k][1];
+                    ws55 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[13])
+                {
+                    p5 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[14])
+                {
+                    p11 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[15])
+                {
+                    p54 += warteliste_material[k][1];
+                    ws54 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[16])
+                {
+                    p8 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[17])
+                {
+                    p14 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[18])
+                {
+                    p19 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[19])
+                {
+                    p31 += warteliste_material[k][1];
+                    ws31 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[20])
+                {
+                    p30 += warteliste_material[k][1];
+                    ws30 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[21])
+                {
+                    p6 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[22])
+                {
+                    p12 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[23])
+                {
+                    p29 += warteliste_material[k][1];
+                    ws29 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[24])
+                {
+                    p9 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[25])
+                {
+                    p15 += warteliste_material[k][1];
+                }
+                if (warteliste_material[k][0] == teilenummer[26])
+                {
+                    p20 += warteliste_material[k][1];
+                }
+            }
+            for (int m = 0; m < warteliste_arbeitsplatz.Count; m++)
+            {
+                if (warteliste_arbeitsplatz[m][0] == 1)
+                {
+                    ws1 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == 2)
+                {
+                    ws2 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == 3)
+                {
+                    ws3 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[0])
+                {
+                    p26 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[1])
+                {
+                    p51 += warteliste_arbeitsplatz[m][1];
+                    ws51 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[2])
+                {
+                    p16 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[3])
+                {
+                    p17 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[4])
+                {
+                    p50 += warteliste_arbeitsplatz[m][1];
+                    ws50 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[5])
+                {
+                    p4 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[6])
+                {
+                    p10 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[7])
+                {
+                    p49 += warteliste_arbeitsplatz[m][1];
+                    ws49 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[8])
+                {
+                    p7 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[9])
+                {
+                    p13 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[10])
+                {
+                    p18 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[11])
+                {
+                    p56 += warteliste_arbeitsplatz[m][1];
+                    ws56 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[12])
+                {
+                    p55 += warteliste_arbeitsplatz[m][1];
+                    ws55 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[13])
+                {
+                    p5 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[14])
+                {
+                    p11 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[15])
+                {
+                    p54 += warteliste_arbeitsplatz[m][1];
+                    ws54 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[16])
+                {
+                    p8 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[17])
+                {
+                    p14 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[18])
+                {
+                    p19 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[19])
+                {
+                    p31 += warteliste_arbeitsplatz[m][1];
+                    ws31 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[20])
+                {
+                    p30 += warteliste_arbeitsplatz[m][1];
+                    ws30 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[21])
+                {
+                    p6 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[22])
+                {
+                    p12 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[23])
+                {
+                    p29 += warteliste_arbeitsplatz[m][1];
+                    ws29 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[24])
+                {
+                    p9 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[25])
+                {
+                    p15 += warteliste_arbeitsplatz[m][1];
+                }
+                if (warteliste_arbeitsplatz[m][0] == teilenummer[26])
+                {
+                    p20 += warteliste_arbeitsplatz[m][1];
+                }
+            }
+            #endregion
 
-                            int p161 = 0;
-                            int p162 = 0;
-                            int p163 = 0;
-                            int p171 = 0;
-                            int p172 = 0;
-                            int p173 = 0;
-                            int p261 = 0;
-                            int p262 = 0;
-                            int p263 = 0;
+            int p161 = 0;
+            int p162 = 0;
+            int p163 = 0;
+            int p171 = 0;
+            int p172 = 0;
+            int p173 = 0;
+            int p261 = 0;
+            int p262 = 0;
+            int p263 = 0;
 
-                            // Beispiel 26: Prod P1 + Warteliste P1 + Sicherheitsbest. - (Lager + Bearb. + Listen)
-                            p261 = berProduktion[0, 1] + ws1 + sicherheitsbest[20, 2] - (p26/3);
-                            p51 = berProduktion[0, 1] + ws1 + sicherheitsbest[26, 1] - p51;
+            // Beispiel 26: Prod P1 + Warteliste P1 + Sicherheitsbest. - (Lager + Bearb. + Listen)
+            p261 = berProduktion[0, 1] + ws1 + sicherheitsbest[20, 2] - (p26 / 3);
+            p51 = berProduktion[0, 1] + ws1 + sicherheitsbest[26, 1] - p51;
 
-                            p161 = p51 + ws51 + sicherheitsbest[15, 2] - (p16/3);
-                            p171 = p51 + ws51 + sicherheitsbest[16, 2] - (p17/3);
-                            p50 = p51 + ws51 + sicherheitsbest[25, 1] - p50;
+            p161 = p51 + ws51 + sicherheitsbest[15, 2] - (p16 / 3);
+            p171 = p51 + ws51 + sicherheitsbest[16, 2] - (p17 / 3);
+            p50 = p51 + ws51 + sicherheitsbest[25, 1] - p50;
 
-                            p4 = p50 + ws50 + sicherheitsbest[3, 1] - p4;
-                            p10 = p50 + ws50 + sicherheitsbest[9, 1] - p10;
-                            p49 = p50 + ws50 + sicherheitsbest[24, 1] - p49;
+            p4 = p50 + ws50 + sicherheitsbest[3, 1] - p4;
+            p10 = p50 + ws50 + sicherheitsbest[9, 1] - p10;
+            p49 = p50 + ws50 + sicherheitsbest[24, 1] - p49;
 
-                            p7 = p49 + ws49 + sicherheitsbest[6, 1] - p7;
-                            p13 = p49 + ws49 + sicherheitsbest[12, 1] - p13;
-                            p18 = p49 + ws49 + sicherheitsbest[17, 1] - p18;
+            p7 = p49 + ws49 + sicherheitsbest[6, 1] - p7;
+            p13 = p49 + ws49 + sicherheitsbest[12, 1] - p13;
+            p18 = p49 + ws49 + sicherheitsbest[17, 1] - p18;
 
-                            p262 = berProduktion[1, 1] + ws2 + sicherheitsbest[20, 3] - (p26/3);
-                            p56 = berProduktion[1, 1] + ws2 + sicherheitsbest[29, 1] - p56;
+            p262 = berProduktion[1, 1] + ws2 + sicherheitsbest[20, 3] - (p26 / 3);
+            p56 = berProduktion[1, 1] + ws2 + sicherheitsbest[29, 1] - p56;
 
-                            p162 = p56 + ws56 + sicherheitsbest[15, 3] - (p16/3);
-                            p172 = p56 + ws56 + sicherheitsbest[16, 3] - (p17/3);
-                            p55 = p56 + ws56 + sicherheitsbest[28, 1] - p55;
+            p162 = p56 + ws56 + sicherheitsbest[15, 3] - (p16 / 3);
+            p172 = p56 + ws56 + sicherheitsbest[16, 3] - (p17 / 3);
+            p55 = p56 + ws56 + sicherheitsbest[28, 1] - p55;
 
-                            p5 = p55 + ws55 + sicherheitsbest[4, 1] - p5;
-                            p11 = p55 + ws55 + sicherheitsbest[10, 1] - p11;
-                            p54 = p55 + ws55 + sicherheitsbest[27, 1] - p54;
+            p5 = p55 + ws55 + sicherheitsbest[4, 1] - p5;
+            p11 = p55 + ws55 + sicherheitsbest[10, 1] - p11;
+            p54 = p55 + ws55 + sicherheitsbest[27, 1] - p54;
 
-                            p8 = p54 + ws54 + sicherheitsbest[7, 1] - p8;
-                            p14 = p54 + ws54 + sicherheitsbest[13, 1] - p14;
-                            p19 = p54 + ws54 + sicherheitsbest[18, 1] - p19;
+            p8 = p54 + ws54 + sicherheitsbest[7, 1] - p8;
+            p14 = p54 + ws54 + sicherheitsbest[13, 1] - p14;
+            p19 = p54 + ws54 + sicherheitsbest[18, 1] - p19;
 
-                            p263 = berProduktion[2, 1] + ws3 + sicherheitsbest[20, 4] - (p26/3);
-                            p31 = berProduktion[2, 1] + ws3 + sicherheitsbest[23, 1] - p31;
+            p263 = berProduktion[2, 1] + ws3 + sicherheitsbest[20, 4] - (p26 / 3);
+            p31 = berProduktion[2, 1] + ws3 + sicherheitsbest[23, 1] - p31;
 
-                            p163 = p31 + ws31 + sicherheitsbest[15, 4] - (p16 / 3);
-                            p173 = p31 + ws31 + sicherheitsbest[16, 4] - (p17 / 3);
-                            p30 = p31 + ws31 + sicherheitsbest[22, 1] - p30;
+            p163 = p31 + ws31 + sicherheitsbest[15, 4] - (p16 / 3);
+            p173 = p31 + ws31 + sicherheitsbest[16, 4] - (p17 / 3);
+            p30 = p31 + ws31 + sicherheitsbest[22, 1] - p30;
 
-                            p6 = p30 + ws30 + sicherheitsbest[5, 1] - p6;
-                            p12 = p30 + ws30 + sicherheitsbest[11, 1] - p12;
-                            p29 = p30 + ws30 + sicherheitsbest[21, 1] - p29;
+            p6 = p30 + ws30 + sicherheitsbest[5, 1] - p6;
+            p12 = p30 + ws30 + sicherheitsbest[11, 1] - p12;
+            p29 = p30 + ws30 + sicherheitsbest[21, 1] - p29;
 
-                            p9 = p29 + ws29 + sicherheitsbest[8, 1] - p9;
-                            p15 = p29 + ws29 + sicherheitsbest[14, 1] - p15;
-                            p20 = p29 + ws29 + sicherheitsbest[19, 1] - p20;
+            p9 = p29 + ws29 + sicherheitsbest[8, 1] - p9;
+            p15 = p29 + ws29 + sicherheitsbest[14, 1] - p15;
+            p20 = p29 + ws29 + sicherheitsbest[19, 1] - p20;
 
             // Achtung: nur 10er-Losungen erlaubt
             berProduktion[3, 0] = 4;
@@ -1336,9 +1114,35 @@ namespace IBSYS2
             berProduktion[29, 0] = 56;
             berProduktion[29, 1] = p56;
 
-            berechneProduktion(lagerbestand, warteliste_arbeitsplatz, warteliste_material, bearbeitung);
             return berProduktion;
 
+        }
+
+        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
+        {
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = myconn;
+            try
+            {
+                myconn.Open();
+            }
+            catch (Exception)
+            {
+                myconn.Close();
+                myconn.Open();
+            }
+            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
+            OleDbDataReader dr = cmd.ExecuteReader();
+            int laa = 0;
+            while (dr.Read())
+            {
+                laa = Convert.ToInt32(dr[spalte]);
+                return laa;
+            }
+            dr.Close();
+            myconn.Close();
+            return laa;
         }
 
         #region textBoxen
@@ -1352,10 +1156,10 @@ namespace IBSYS2
             {
                 textBox1.ForeColor = Color.Black;
                 bool okay = true;
-                
+
                 foreach (char c in textBox1.Text.ToCharArray())
                 {
-                    
+
                     if (!digits.Contains<char>(c))
                     {
                         textBox1.ForeColor = Color.Red;
@@ -1365,7 +1169,7 @@ namespace IBSYS2
                 }
                 if (okay == true)
                 {
-                    textBox1.ForeColor = Color.Black;;
+                    textBox1.ForeColor = Color.Black; ;
                 }
             }
             check();
@@ -1671,10 +1475,10 @@ namespace IBSYS2
             {
                 textBox12.ForeColor = Color.Black;
                 bool okay = true;
-                
+
                 foreach (char c in textBox12.Text.ToCharArray())
                 {
-                    
+
                     if (!digits.Contains<char>(c))
                     {
                         textBox12.ForeColor = Color.Red;
@@ -1688,7 +1492,7 @@ namespace IBSYS2
                 }
             }
             check();
-        } 
+        }
 
         #endregion
 
@@ -1896,7 +1700,7 @@ namespace IBSYS2
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
                 sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
-        } 
+        }
         #endregion
 
         private void ETeile_Click(object sender, EventArgs e)
@@ -1912,7 +1716,7 @@ namespace IBSYS2
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            berechneProduktion(lagerbestand,warteliste_arbeitsplatz,warteliste_material,bearbeitung);
+            berechneProduktion();
         }
 
         public void sprachen()
@@ -1947,7 +1751,6 @@ namespace IBSYS2
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
                 ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
-
             }
             else
             {
@@ -1986,7 +1789,7 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
             sprache = "en";
         }
 
@@ -1994,7 +1797,7 @@ namespace IBSYS2
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
             sprache = "de";
         }
 

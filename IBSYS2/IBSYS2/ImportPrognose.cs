@@ -32,7 +32,6 @@ namespace IBSYS2
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
-        double[,] direktverkäufe = new double[3, 4];
 
         public ImportPrognose(String sprache)
         {
@@ -175,9 +174,9 @@ namespace IBSYS2
 
         //----------------------------
 
-        public void Direktverkäufe(double[,] direktverkäufe)
+        public void Direktverkaeufe(double[,] direktverkaeufe)
         {
-            this.direktverkaeufe = direktverkäufe;
+            this.direktverkaeufe = direktverkaeufe;
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -188,6 +187,10 @@ namespace IBSYS2
                 button2.Enabled = true;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
+
+            // int periode fuer Datenweitergabe fuellen
+            String[] strings = comboBox1.Text.Split((new Char[] { ' ' }));
+            aktPeriode = Convert.ToInt32(strings[1]);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1304,8 +1307,8 @@ namespace IBSYS2
 
         private void btn_direktverkäufe_Click(object sender, EventArgs e)
         {
-            Direktverkäufe direktverkaeufe = new Direktverkäufe(direktverkäufe,sprache);
-            direktverkaeufe.Show();
+            Direktverkäufe direktverkaeufeForm = new Direktverkäufe(direktverkaeufe, sprache);
+            direktverkaeufeForm.Show();
         }
 
     }

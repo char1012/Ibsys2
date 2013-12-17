@@ -22,10 +22,10 @@ namespace IBSYS2
         int[] direktverkaeufe = new int[3];
         int[,] sicherheitsbest = new int[30, 2];
         int[,] produktion = new int[30, 2];
-        int[] produktionProg = new int[9];
+        int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 3];
-        int[,] kaufauftraege = new int[29, 3];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
         
         int periode;
 
@@ -70,7 +70,7 @@ namespace IBSYS2
         }
 
         public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
@@ -687,7 +687,90 @@ namespace IBSYS2
                     {
                         // Datenweitergabe
 
-                        produktion = berProduktion;
+                        produktion = berProduktion; // alle Produktionsmengen
+                        // wegen fehlender E-Teile, simulieren:
+                        // dieser Teil kommt also spaeter weg
+                        produktion[0, 0] = 1;
+                        produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                        produktion[1, 0] = 2;
+                        produktion[1, 1] = 190;
+                        produktion[2, 0] = 3;
+                        produktion[2, 1] = 160;
+                        produktion[3, 0] = 4;
+                        produktion[3, 1] = 60;
+                        produktion[4, 0] = 5;
+                        produktion[4, 1] = 160;
+                        produktion[5, 0] = 6;
+                        produktion[5, 1] = 0;
+                        produktion[6, 0] = 7;
+                        produktion[6, 1] = 50;
+                        produktion[7, 0] = 8;
+                        produktion[7, 1] = 150;
+                        produktion[8, 0] = 9;
+                        produktion[8, 1] = 0;
+                        produktion[9, 0] = 10;
+                        produktion[9, 1] = 60;
+                        produktion[10, 0] = 11;
+                        produktion[10, 1] = 160;
+                        produktion[11, 0] = 12;
+                        produktion[11, 1] = 0;
+                        produktion[12, 0] = 13;
+                        produktion[12, 1] = 50;
+                        produktion[13, 0] = 14;
+                        produktion[13, 1] = 150;
+                        produktion[14, 0] = 15;
+                        produktion[14, 1] = 0;
+                        produktion[15, 0] = 16;
+                        produktion[15, 1] = 20 + 130 + 90;
+                        produktion[16, 0] = 17;
+                        produktion[16, 1] = 20 + 130 + 90;
+                        produktion[17, 0] = 18;
+                        produktion[17, 1] = 50;
+                        produktion[18, 0] = 19;
+                        produktion[18, 1] = 150;
+                        produktion[19, 0] = 20;
+                        produktion[19, 1] = 0;
+                        produktion[20, 0] = 26;
+                        produktion[20, 1] = 50 + 160 + 130;
+                        produktion[21, 0] = 29;
+                        produktion[21, 1] = 0;
+                        produktion[22, 0] = 30;
+                        produktion[22, 1] = 0;
+                        produktion[23, 0] = 31;
+                        produktion[23, 1] = 70;
+                        produktion[24, 0] = 49;
+                        produktion[24, 1] = 60;
+                        produktion[25, 0] = 50;
+                        produktion[25, 1] = 70;
+                        produktion[26, 0] = 51;
+                        produktion[26, 1] = 80;
+                        produktion[27, 0] = 54;
+                        produktion[27, 1] = 160;
+                        produktion[28, 0] = 55;
+                        produktion[28, 1] = 170;
+                        produktion[29, 0] = 56;
+                        produktion[29, 1] = 180;
+
+                        // P1, P2 und P3 nochmal auslesen
+                        produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+                        produktionProg[0, 0] = 1;
+                        produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                        produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                        produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                        produktionProg[1, 0] = 2;
+                        produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                        produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                        produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                        produktionProg[2, 0] = 3;
+                        produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                        produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                        produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                        produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
@@ -703,7 +786,90 @@ namespace IBSYS2
                     {
                         // Datenweitergabe
 
-                        produktion = berProduktion;
+                        produktion = berProduktion; // alle Produktionsmengen
+                        // wegen fehlender E-Teile, simulieren:
+                        // dieser Teil kommt also spaeter weg
+                        produktion[0, 0] = 1;
+                        produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                        produktion[1, 0] = 2;
+                        produktion[1, 1] = 190;
+                        produktion[2, 0] = 3;
+                        produktion[2, 1] = 160;
+                        produktion[3, 0] = 4;
+                        produktion[3, 1] = 60;
+                        produktion[4, 0] = 5;
+                        produktion[4, 1] = 160;
+                        produktion[5, 0] = 6;
+                        produktion[5, 1] = 0;
+                        produktion[6, 0] = 7;
+                        produktion[6, 1] = 50;
+                        produktion[7, 0] = 8;
+                        produktion[7, 1] = 150;
+                        produktion[8, 0] = 9;
+                        produktion[8, 1] = 0;
+                        produktion[9, 0] = 10;
+                        produktion[9, 1] = 60;
+                        produktion[10, 0] = 11;
+                        produktion[10, 1] = 160;
+                        produktion[11, 0] = 12;
+                        produktion[11, 1] = 0;
+                        produktion[12, 0] = 13;
+                        produktion[12, 1] = 50;
+                        produktion[13, 0] = 14;
+                        produktion[13, 1] = 150;
+                        produktion[14, 0] = 15;
+                        produktion[14, 1] = 0;
+                        produktion[15, 0] = 16;
+                        produktion[15, 1] = 20 + 130 + 90;
+                        produktion[16, 0] = 17;
+                        produktion[16, 1] = 20 + 130 + 90;
+                        produktion[17, 0] = 18;
+                        produktion[17, 1] = 50;
+                        produktion[18, 0] = 19;
+                        produktion[18, 1] = 150;
+                        produktion[19, 0] = 20;
+                        produktion[19, 1] = 0;
+                        produktion[20, 0] = 26;
+                        produktion[20, 1] = 50 + 160 + 130;
+                        produktion[21, 0] = 29;
+                        produktion[21, 1] = 0;
+                        produktion[22, 0] = 30;
+                        produktion[22, 1] = 0;
+                        produktion[23, 0] = 31;
+                        produktion[23, 1] = 70;
+                        produktion[24, 0] = 49;
+                        produktion[24, 1] = 60;
+                        produktion[25, 0] = 50;
+                        produktion[25, 1] = 70;
+                        produktion[26, 0] = 51;
+                        produktion[26, 1] = 80;
+                        produktion[27, 0] = 54;
+                        produktion[27, 1] = 160;
+                        produktion[28, 0] = 55;
+                        produktion[28, 1] = 170;
+                        produktion[29, 0] = 56;
+                        produktion[29, 1] = 180;
+
+                        // P1, P2 und P3 nochmal auslesen
+                        produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+                        produktionProg[0, 0] = 1;
+                        produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                        produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                        produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                        produktionProg[1, 0] = 2;
+                        produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                        produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                        produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                        produktionProg[2, 0] = 3;
+                        produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                        produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                        produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                        produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,

@@ -26,10 +26,10 @@ namespace IBSYS2
         int[] direktverkaeufe = new int[3];
         int[,] sicherheitsbest = new int[30, 2];
         int[,] produktion = new int[30, 2];
-        int[] produktionProg = new int[9];
+        int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 3];
-        int[,] kaufauftraege = new int[29, 3];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
 
         public Sicherheitsbestand()
         {
@@ -59,7 +59,7 @@ namespace IBSYS2
         }
 
         public Sicherheitsbestand(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)

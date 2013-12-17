@@ -24,10 +24,10 @@ namespace IBSYS2
         int[] direktverkaeufe = new int[3];
         int[,] sicherheitsbest = new int[30, 2];
         int[,] produktion = new int[30, 2];
-        int[] produktionProg = new int[9];
+        int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 3];
-        int[,] kaufauftraege = new int[29, 3];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
 
         public Kaufteildisposition()
         {
@@ -37,7 +37,7 @@ namespace IBSYS2
         }
 
         public Kaufteildisposition(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
@@ -81,24 +81,8 @@ namespace IBSYS2
         public void setValues()
         {
             // Werte simulieren
-            int periode = 6;
+            int periode = aktPeriode - 1;
             //Produktion der P-Teile fuer die aktuelle und drei weitere Perioden
-            int[,] produktion = new int[3, 5];
-            produktion[0, 0] = 1;
-            produktion[0, 1] = 90;
-            produktion[0, 2] = 160;
-            produktion[0, 3] = 160;
-            produktion[0, 4] = 150;
-            produktion[1, 0] = 2;
-            produktion[1, 1] = 190;
-            produktion[1, 2] = 160;
-            produktion[1, 3] = 160;
-            produktion[1, 4] = 150;
-            produktion[2, 0] = 3;
-            produktion[2, 1] = 160;
-            produktion[2, 2] = 160;
-            produktion[2, 3] = 160;
-            produktion[2, 4] = 200;
 
             // DB-Verbindung herstellen
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -152,7 +136,7 @@ namespace IBSYS2
             int[,] bestand = calculateBestand(periode);
 
             // Methode calculateVerbrauch rufen
-            int[,] verbrauch = calculateVerbrauch(produktion);
+            int[,] verbrauch = calculateVerbrauch(produktionProg);
 
             // berechnen, wie lange das Lager noch reicht
             double[,] reichweite = calculateReichweite(bestand, verbrauch);
@@ -360,7 +344,7 @@ namespace IBSYS2
             return teile;
         }
 
-        private int[,] calculateVerbrauch(int[,] produktion)
+        private int[,] calculateVerbrauch(int[,] produktionProg)
         {
             int[,] verbrauch = new int[29, 5];
 
@@ -385,17 +369,17 @@ namespace IBSYS2
             {
                 verbrauch[i, 0] = verwendung[i, 0];
                 verbrauch[i, 1] = // Verbrauch aktuelle Periode
-                    (produktion[0, 1] * verwendung[i, 1]) + (produktion[1, 1] * verwendung[i, 2])
-                    + (produktion[2, 1] * verwendung[i, 3]);
+                    (produktionProg[0, 1] * verwendung[i, 1]) + (produktionProg[1, 1] * verwendung[i, 2])
+                    + (produktionProg[2, 1] * verwendung[i, 3]);
                 verbrauch[i, 2] = // Verbrauch Periode akt+1
-                    (produktion[0, 2] * verwendung[i, 1]) + (produktion[1, 2] * verwendung[i, 2])
-                    + (produktion[2, 2] * verwendung[i, 3]);
+                    (produktionProg[0, 2] * verwendung[i, 1]) + (produktionProg[1, 2] * verwendung[i, 2])
+                    + (produktionProg[2, 2] * verwendung[i, 3]);
                 verbrauch[i, 3] = // Verbrauch Periode akt+2
-                    (produktion[0, 3] * verwendung[i, 1]) + (produktion[1, 3] * verwendung[i, 2])
-                    + (produktion[2, 3] * verwendung[i, 3]);
+                    (produktionProg[0, 3] * verwendung[i, 1]) + (produktionProg[1, 3] * verwendung[i, 2])
+                    + (produktionProg[2, 3] * verwendung[i, 3]);
                 verbrauch[i, 4] = // Verbrauch Periode akt+3
-                    (produktion[0, 4] * verwendung[i, 1]) + (produktion[1, 4] * verwendung[i, 2])
-                    + (produktion[2, 4] * verwendung[i, 3]);
+                    (produktionProg[0, 4] * verwendung[i, 1]) + (produktionProg[1, 4] * verwendung[i, 2])
+                    + (produktionProg[2, 4] * verwendung[i, 3]);
             }
 
             return verbrauch;
@@ -444,8 +428,81 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl ergebnis = new Ergebnis();
+            UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(ergebnis);
         }
 

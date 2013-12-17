@@ -18,10 +18,13 @@ namespace IBSYS2
         int[] direktverkaeufe = new int[3];
         int[,] sicherheitsbest = new int[30, 2];
         int[,] produktion = new int[30, 2];
-        int[] produktionProg = new int[9];
+        int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 3];
-        int[,] kaufauftraege = new int[29, 3];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
+        // hier lokal die Prodreihenfolge speichern - fuer dich Lukas
+        int[,] berProduktionsreihenfolge = new int[30, 2];
 
         public Produktionsreihenfolge()
         {
@@ -200,7 +203,7 @@ namespace IBSYS2
         }
 
         public Produktionsreihenfolge(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
@@ -236,9 +239,10 @@ namespace IBSYS2
                 this.kaufauftraege = kaufauftraege;
             }
 
+            InitializeComponent();
             // TODO Sabrina: hier den Code aus dem anderen Konstruktor einfuegen, wenn fertig
             // zum testen:
-            prodReihenfolge = produktion;
+            berProduktionsreihenfolge = produktion;
         }
 
         void buttonUp_click(object sender, EventArgs e)
@@ -304,9 +308,14 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+            this.Controls.Add(kapaplan);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)

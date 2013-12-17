@@ -74,6 +74,14 @@ namespace IBSYS2
             }
 
             InitializeComponent();
+
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage();
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             result();
 
             // Einkaufsauftraege
@@ -168,6 +176,8 @@ namespace IBSYS2
                 }
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         public void result()

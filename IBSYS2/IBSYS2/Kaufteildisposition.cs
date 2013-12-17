@@ -108,6 +108,13 @@ namespace IBSYS2
                 myconn.Open();
             }
 
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage();
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             // Spalte Diskont
             //1.  Dicountmengen ermitteln
             int a = 0;
@@ -223,6 +230,8 @@ namespace IBSYS2
                 }
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         // Methode, um Bestand (Anfangsbest. + eingeh. Best. - noch zu entnehmen) zu ermitteln

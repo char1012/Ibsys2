@@ -117,6 +117,13 @@ namespace IBSYS2
 
         public void setValues()
         {
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage();
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             int periode = aktPeriode - 1; // Periode des xmls
             int[,] teile = produktion; // Produktion
 
@@ -197,6 +204,8 @@ namespace IBSYS2
                 schichten[i] = schicht; // Startwert der Zeile Schichten speichern
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         public int[] calculate(int periode, int[,] teile)

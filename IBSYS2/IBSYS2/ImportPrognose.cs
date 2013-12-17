@@ -48,6 +48,7 @@ namespace IBSYS2
             //}
             //// ------------------
             button2.Enabled = false;
+            lbl_Sicherheitsbestand.Enabled = false;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -359,6 +360,8 @@ namespace IBSYS2
                                 {
                                     continue_btn.Enabled = true;
                                     btn_direktverkäufe.Enabled = true;
+                                    lbl_Sicherheitsbestand.Enabled = true;
+
                                 }
                             }
                             else
@@ -390,6 +393,7 @@ namespace IBSYS2
                                 {
                                     continue_btn.Enabled = true;
                                     btn_direktverkäufe.Enabled = true;
+                                    lbl_Sicherheitsbestand.Enabled = true;
                                 }
                                 myconn.Close();
                             }
@@ -413,8 +417,6 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
-            // Achtung: in button2_click wird der continue_btn bereits enabled,
-            // obwohl noch keine Eingabe in den Textfeldern vorgenommen wurde
             if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" | textBox5.Text == "0" | textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
             {
                 valueZero();
@@ -525,10 +527,13 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)  
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
+
                     }
                 }
             }
@@ -566,10 +571,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -607,10 +614,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -648,10 +657,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -689,10 +700,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -730,10 +743,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -771,10 +786,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -812,10 +829,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -853,10 +872,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -894,10 +915,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -935,10 +958,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -976,10 +1001,12 @@ namespace IBSYS2
                     if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
                     {
                         continue_btn.Enabled = true;
+                        lbl_Sicherheitsbestand.Enabled = true;
                     }
                     else
                     {
                         continue_btn.Enabled = false;
+                        lbl_Sicherheitsbestand.Enabled = false;
                     }
                 }
             }
@@ -1124,26 +1151,74 @@ namespace IBSYS2
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
+            if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
+            {
+                continue_btn.Enabled = true;
+                lbl_Sicherheitsbestand.Enabled = true;
 
-            // auftraege fuellen
-            auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
-            auftraege[1] = Convert.ToInt32(textBox2.Text);
-            auftraege[2] = Convert.ToInt32(textBox3.Text);
-            auftraege[3] = Convert.ToInt32(textBox4.Text);
-            auftraege[4] = Convert.ToInt32(textBox5.Text);
-            auftraege[5] = Convert.ToInt32(textBox6.Text);
-            auftraege[6] = Convert.ToInt32(textBox7.Text);
-            auftraege[7] = Convert.ToInt32(textBox8.Text);
-            auftraege[8] = Convert.ToInt32(textBox9.Text);
-            auftraege[9] = Convert.ToInt32(textBox10.Text);
-            auftraege[10] = Convert.ToInt32(textBox11.Text);
-            auftraege[11] = Convert.ToInt32(textBox12.Text);
+                if (tb_aktP1.Text == "0" | textBox2.Text == "0" | textBox3.Text == "0" | textBox4.Text == "0" | textBox5.Text == "0" | textBox6.Text == "0" | textBox7.Text == "0" | textBox8.Text == "0" | textBox9.Text == "0" | textBox10.Text == "0" | textBox11.Text == "0" | textBox12.Text == "0")
+                {
+                    valueZero();
+                    DialogResult dialogResult;
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache != "en")
+                    {
+                        dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
+                    }
+                    else
+                    {
+                        dialogResult = MessageBox.Show("In your entries are still some fields with the input 0. Is this correct?", "Do you want to continue?", MessageBoxButtons.YesNo);
+                    }
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        // Datenweitergabe
 
-            this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(sicherheit);
+                        // auftraege fuellen
+                        auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                        auftraege[1] = Convert.ToInt32(textBox2.Text);
+                        auftraege[2] = Convert.ToInt32(textBox3.Text);
+                        auftraege[3] = Convert.ToInt32(textBox4.Text);
+                        auftraege[4] = Convert.ToInt32(textBox5.Text);
+                        auftraege[5] = Convert.ToInt32(textBox6.Text);
+                        auftraege[6] = Convert.ToInt32(textBox7.Text);
+                        auftraege[7] = Convert.ToInt32(textBox8.Text);
+                        auftraege[8] = Convert.ToInt32(textBox9.Text);
+                        auftraege[9] = Convert.ToInt32(textBox10.Text);
+                        auftraege[10] = Convert.ToInt32(textBox11.Text);
+                        auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+                        this.Controls.Clear();
+                        UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                        this.Controls.Add(sicherheit);
+                    }
+                }
+                else
+                {
+                    // auftraege fuellen
+                    auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                    auftraege[1] = Convert.ToInt32(textBox2.Text);
+                    auftraege[2] = Convert.ToInt32(textBox3.Text);
+                    auftraege[3] = Convert.ToInt32(textBox4.Text);
+                    auftraege[4] = Convert.ToInt32(textBox5.Text);
+                    auftraege[5] = Convert.ToInt32(textBox6.Text);
+                    auftraege[6] = Convert.ToInt32(textBox7.Text);
+                    auftraege[7] = Convert.ToInt32(textBox8.Text);
+                    auftraege[8] = Convert.ToInt32(textBox9.Text);
+                    auftraege[9] = Convert.ToInt32(textBox10.Text);
+                    auftraege[10] = Convert.ToInt32(textBox11.Text);
+                    auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+                    this.Controls.Clear();
+                    UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                    this.Controls.Add(sicherheit);
+                }
+            }
+            else
+            {
+                continue_btn.Enabled = false;
+                lbl_Sicherheitsbestand.Enabled = false;
+            }
         }
 
         private void clear_btn_Click(object sender, EventArgs e)

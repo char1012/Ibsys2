@@ -108,7 +108,6 @@
             this.lbl_Produktion.Size = new System.Drawing.Size(84, 19);
             this.lbl_Produktion.TabIndex = 37;
             this.lbl_Produktion.Text = "Produktion";
-            this.lbl_Produktion.Click += new System.EventHandler(this.lbl_Produktion_Click);
             // 
             // lbl_Kapazitaetsplan
             // 
@@ -197,7 +196,6 @@
             this.btn_direktverkäufe.TabIndex = 58;
             this.btn_direktverkäufe.Text = "Direktverkäufe";
             this.btn_direktverkäufe.UseVisualStyleBackColor = false;
-            this.btn_direktverkäufe.Click += new System.EventHandler(this.btn_direktverkäufe_Click);
             // 
             // lbl_optional
             // 

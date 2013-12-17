@@ -222,7 +222,7 @@ namespace IBSYS2
                 }
                 textBox1.Text = neu1;
             }
-            
+
             String s2 = storevalues[1].ToString();
             int count2 = s2.Length;
             if (count1 > 3)
@@ -281,7 +281,7 @@ namespace IBSYS2
             // Array fuer Anfangslagerwert, Endlagerwert und Mittelwert
             int[] storevalue = new int[3];
             // Array fuer Teilewerte
-            double[,] teilewerte = new double[59, 2];
+            double[,] teilewerte = new double[59,2];
             
             // DB-Verbindung
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -313,7 +313,7 @@ namespace IBSYS2
 
             // Gesamtwert und einzelne Tageswerte berechnen (fuer Mittelwert-Berechnung)
             int endwert = storevalue[0];
-            int[] tageswerte = new int[5] { 0, 0, 0, 0, 0 };
+            int[] tageswerte = new int[5]{0,0,0,0,0};
 
             // Teilewert ermitteln
             cmd.CommandText = @"SELECT Teilenummer_FK, Teilewert FROM Lager WHERE Periode = " + periode + ";";
@@ -423,14 +423,14 @@ namespace IBSYS2
             // 3. verkaufte Endprodukte abziehen (unter Annahme, dass Verkauf planmaessig stattfindet)
             // 1/5 der Endprodukte gehen pro Tag ab
             double wertVerkaeufe = 0;
-            for (int i = 0; i < 3; i++) // nur die ersten drei in auftraege
+            for(int i = 0; i < 3; i++) // nur die ersten drei in auftraege
             {
                 for (int no = 0; no < teilewerte.GetLength(0); no++)
                 {
-                    if (teilewerte[no, 0] == (i + 1))
+                    if (teilewerte[no,0] == (i+1))
                     {
                         wertVerkaeufe += (auftraege[i] * teilewerte[no,1]); // Menge mit Wert multiplizieren und dazurechnen
-                        wertVerkaeufe += (direktverkaeufe[i] * teilewerte[no, 1]);
+                        wertVerkaeufe += (direktverkaeufe[i, 1] * teilewerte[no, 1]);
                     }
                 }
             }
@@ -456,7 +456,7 @@ namespace IBSYS2
             {
                 for (int no = 0; no < teilewerte.GetLength(0); no++)
                 {
-                    if (teilewerte[no, 0] == Convert.ToInt32(dbReader["K_Teil"]))
+                    if (teilewerte[no,0] == Convert.ToInt32(dbReader["K_Teil"]))
                     {
                         int menge = (Convert.ToInt32(dbReader["P1"]) * prod1)
                             + (Convert.ToInt32(dbReader["P2"]) * prod2) 
@@ -510,14 +510,14 @@ namespace IBSYS2
             tageswerte[0] += storevalue[0];
             for (int i = 1; i < tageswerte.Length; i++)
             {
-                tageswerte[i] += tageswerte[i - 1];
+                tageswerte[i] += tageswerte[i-1];
             }
             // endgueltigen Wert festhalten
             endwert = Convert.ToInt32(endwert + wertBestellungen + wertProduktion - wertVerkaeufe - wertVerwendung);
             storevalue[1] = endwert;
 
             // c) geschatzter Mittelwert berechnen - wichtig, weil sprungfixe Kosten aus Basis des Mittelwertes berechnet werden
-            storevalue[2] = tageswerte.Sum() / 5;
+            storevalue[2] = tageswerte.Sum() / 5;  
 
             return storevalue;
         }

@@ -171,18 +171,16 @@
             // 
             // groupBox2
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.KapazitätArbeitsplatz,
-            this.Schichten,
-            this.Überstunden});
-            this.dataGridView3.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView3.Location = new System.Drawing.Point(14, 24);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(240, 111);
-            this.dataGridView3.TabIndex = 142;
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox2.Location = new System.Drawing.Point(54, 128);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(250, 289);
+            this.groupBox2.TabIndex = 145;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Einkaufsaufträge";
             // 
             // label5
             // 
@@ -406,23 +404,29 @@
             this.Lagerwerte.TabStop = false;
             this.Lagerwerte.Text = "Lagerwerte";
             // 
-            // Lageranfangswert
+            // textBox3
             // 
-            this.Lageranfangswert.AutoSize = true;
-            this.Lageranfangswert.Location = new System.Drawing.Point(15, 24);
-            this.Lageranfangswert.Name = "Lageranfangswert";
-            this.Lageranfangswert.Size = new System.Drawing.Size(66, 13);
-            this.Lageranfangswert.TabIndex = 0;
-            this.Lageranfangswert.Text = "Anfangswert";
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(88, 70);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(57, 20);
+            this.textBox3.TabIndex = 5;
             // 
-            // Lagerzwischenwert
+            // textBox2
             // 
-            this.Lagerzwischenwert.AutoSize = true;
-            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
-            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
-            this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
-            this.Lagerzwischenwert.TabIndex = 1;
-            this.Lagerzwischenwert.Text = "Zwischenwert";
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(88, 46);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(57, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(88, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(57, 20);
+            this.textBox1.TabIndex = 3;
             // 
             // Lagerendwert
             // 
@@ -435,10 +439,12 @@
             // 
             // Lagerzwischenwert
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(57, 20);
-            this.textBox2.TabIndex = 4;
+            this.Lagerzwischenwert.AutoSize = true;
+            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
+            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
+            this.Lagerzwischenwert.Size = new System.Drawing.Size(52, 13);
+            this.Lagerzwischenwert.TabIndex = 1;
+            this.Lagerzwischenwert.Text = "Mittelwert";
             // 
             // Lageranfangswert
             // 

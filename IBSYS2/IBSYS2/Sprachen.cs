@@ -145,6 +145,19 @@ namespace IBSYS2
         public static String DE_ER_GROUPBOX2 = "Einkaufsaufträge";
         public static String DE_ER_GROUPBOX3 = "Produktionsaufträge";
         public static String DE_ER_GROUPBOX4 = "Produktionskapazitäten";
+        public static String DE_ER_LAGERWERT = "Lagerwert";
+
+        // Label
+        public static String DE_ER_TEIL = "Teil";
+        public static String DE_ER_MENGE = "Menge";
+        public static String DE_ER_BESTART = "Best.art";
+        public static String DE_ER_ARBEITSPLATZ = "Arbeitsplatz";
+        public static String DE_ER_SCHICHTEN = "Schichten";
+        public static String DE_ER_UEBERSTUNDEN = "Überst.";
+        public static String DE_ER_DAY = "(min./Tag)";
+        public static String DE_ER_ANFANGSWERT = "Anfangswert";
+        public static String DE_ER_MITTELWERT = "Mittelwert";
+        public static String DE_ER_ENDWERT = "Endwert";
 
         /*--------------------------------------------------------------------------------------------------------*/
         /*---------------------ENGLISH----------------------------------------------------------------------------*/
@@ -283,5 +296,18 @@ namespace IBSYS2
         public static String EN_ER_GROUPBOX2 = "Purchase orders";
         public static String EN_ER_GROUPBOX3 = "Production orders";
         public static String EN_ER_GROUPBOX4 = "Production capacity";
+        public static String EN_ER_LAGERWERT = "Stock value";
+
+        // Label
+        public static String EN_ER_TEIL = "Part";
+        public static String EN_ER_MENGE = "Amount";
+        public static String EN_ER_BESTART = "Order type";
+        public static String EN_ER_ARBEITSPLATZ = "Workplace";
+        public static String EN_ER_SCHICHTEN = "Shift";
+        public static String EN_ER_UEBERSTUNDEN = "Overtime";
+        public static String EN_ER_DAY = "(min./day)";
+        public static String EN_ER_ANFANGSWERT = "Initial value";
+        public static String EN_ER_MITTELWERT = "Average";
+        public static String EN_ER_ENDWERT = "Final value";
     }
 }

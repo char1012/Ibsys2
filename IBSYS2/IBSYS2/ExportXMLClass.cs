@@ -22,8 +22,30 @@ namespace IBSYS2
          * * workingtimelist: an welchem Arbeitsplatz mit welcher Schicht mit wieviel Überstunden in Minuten gearbeitet wird
          * */
 
-
+        //orderlist = kaufautraege, 6 dimensional, item 0o, 4und5, überall wo prod / ord menge null ist, nicht eintragen
+        //productionlist = prodReihenfolge, 0, 1, überall wo prod / ord menge null ist, nicht eintragen
+        //woringtimelist = kapaztät
+        //für kapazität prüfen, ob id = 5, falls der Fall, gesamte Zeile löschen
+        //sellwish = auftraege, ersten drei einträge fürP1-P3
+        //selldirect = selldirect
         //Übergabe von mehrdimensionalen Array der anderen Parteien
+
+        // Brotkrumenleiste noch verhindern (Vor und zurückgehen)
+        // Bei falscher Eingabe in Felder Text noch rausnehmen
+        // Präsentation Jan
+        // Doku unter Kap. Startseite
+
+                    try
+            {
+                ExportXMLClass exp = new ExportXMLClass();
+                exp.XMLExport();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(""+ex);
+            }
+
+
         public void XMLExport() //OleDbCommand cmd
         {
 

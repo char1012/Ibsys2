@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Windows;
 
 namespace IBSYS2
 {
@@ -19,6 +20,13 @@ namespace IBSYS2
         public Begrüßungsseite()
         {
             InitializeComponent();
+        }
+
+        private void button_charts(object sender, RoutedEventArgs e)
+        {
+
+            BarChartExample NewBarChartExample = BarChartExample.GetInstance();
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -63,5 +71,6 @@ namespace IBSYS2
                 }
             }
         }
+
     }
 }

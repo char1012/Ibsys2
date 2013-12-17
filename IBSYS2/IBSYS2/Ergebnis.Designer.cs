@@ -94,12 +94,12 @@
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             this.back_btn = new System.Windows.Forms.Button();
             this.Lagerwerte = new System.Windows.Forms.GroupBox();
-            this.Lageranfangswert = new System.Windows.Forms.Label();
-            this.Lagerzwischenwert = new System.Windows.Forms.Label();
-            this.Lagerendwert = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Lagerendwert = new System.Windows.Forms.Label();
+            this.Lagerzwischenwert = new System.Windows.Forms.Label();
+            this.Lageranfangswert = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
@@ -249,6 +249,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(240, 111);
             this.dataGridView3.TabIndex = 142;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // KapazitätArbeitsplatz
             // 
@@ -661,23 +662,26 @@
             this.Lagerwerte.TabStop = false;
             this.Lagerwerte.Text = "Lagerwerte";
             // 
-            // Lageranfangswert
+            // textBox3
             // 
-            this.Lageranfangswert.AutoSize = true;
-            this.Lageranfangswert.Location = new System.Drawing.Point(15, 24);
-            this.Lageranfangswert.Name = "Lageranfangswert";
-            this.Lageranfangswert.Size = new System.Drawing.Size(66, 13);
-            this.Lageranfangswert.TabIndex = 0;
-            this.Lageranfangswert.Text = "Anfangswert";
+            this.textBox3.Location = new System.Drawing.Point(94, 70);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(57, 20);
+            this.textBox3.TabIndex = 5;
             // 
-            // Lagerzwischenwert
+            // textBox2
             // 
-            this.Lagerzwischenwert.AutoSize = true;
-            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
-            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
-            this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
-            this.Lagerzwischenwert.TabIndex = 1;
-            this.Lagerzwischenwert.Text = "Zwischenwert";
+            this.textBox2.Location = new System.Drawing.Point(94, 46);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(57, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(94, 21);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(57, 20);
+            this.textBox1.TabIndex = 3;
             // 
             // Lagerendwert
             // 
@@ -688,26 +692,23 @@
             this.Lagerendwert.TabIndex = 2;
             this.Lagerendwert.Text = "Endwert";
             // 
-            // textBox1
+            // Lagerzwischenwert
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(57, 20);
-            this.textBox1.TabIndex = 3;
+            this.Lagerzwischenwert.AutoSize = true;
+            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
+            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
+            this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
+            this.Lagerzwischenwert.TabIndex = 1;
+            this.Lagerzwischenwert.Text = "Zwischenwert";
             // 
-            // textBox2
+            // Lageranfangswert
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(57, 20);
-            this.textBox2.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(94, 70);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(57, 20);
-            this.textBox3.TabIndex = 5;
+            this.Lageranfangswert.AutoSize = true;
+            this.Lageranfangswert.Location = new System.Drawing.Point(15, 24);
+            this.Lageranfangswert.Name = "Lageranfangswert";
+            this.Lageranfangswert.Size = new System.Drawing.Size(66, 13);
+            this.Lageranfangswert.TabIndex = 0;
+            this.Lageranfangswert.Text = "Anfangswert";
             // 
             // pictureBox7
             // 

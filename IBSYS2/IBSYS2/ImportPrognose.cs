@@ -12,6 +12,10 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Resources;
 using Visiblox.Charts;
+using System.Windows;
+using System.Windows.Forms;
+
+
 
 namespace IBSYS2
 {
@@ -86,13 +90,15 @@ namespace IBSYS2
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktionsreihenfolge();
+            //UserControl p = new Produktionsreihenfolge(); 
             //p.Show();
             //ktdispo.ShowDialog();
-            this.Controls.Clear();
+            
+
+            //this.Controls.Clear();
             //UserControl sicherheit = new Sicherheitsbestand();
             //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(p);
+           // this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1227,6 +1233,11 @@ namespace IBSYS2
 
                 }
             }
+        }
+
+        private void lbl_Produktion_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

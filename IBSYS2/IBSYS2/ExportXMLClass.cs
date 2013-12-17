@@ -75,8 +75,8 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("selldirect", null);
             for (int i = 0; i < 3; i++ )
             {
-                if (direktverkaeufe[i, 0] != 0)
-                {
+                //if (direktverkaeufe[i, 0] != 0)
+                //{
                     myXmlTextWriter.WriteStartElement("item", null);
                     for (int x = 0; x < 4; x++)
                     {
@@ -84,11 +84,11 @@ namespace IBSYS2
                         //MessageBox.Show("Selldirect - Feld" + x + ": " + selldirect_Array_Fields[x] + ", Wert: " + Convert.ToString(direktverkaeufe[i, x]));
                     }
                     myXmlTextWriter.WriteEndElement();
-                }
-                else
-                {
-                    //MessageBox.Show("Werte sind null: "+selldirect_Array_Fields[x]+ ", " + direktverkaeufe[i,x]);
-                }
+                //}
+                //else
+                //{
+                //    //MessageBox.Show("Werte sind null: "+selldirect_Array_Fields[x]+ ", " + direktverkaeufe[i,x]);
+                //}
             }
             myXmlTextWriter.WriteEndElement();
 

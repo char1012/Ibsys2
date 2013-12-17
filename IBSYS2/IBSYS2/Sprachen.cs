@@ -65,6 +65,11 @@ namespace IBSYS2
         //Labels
         public static String DE_LBL_KD_MENGE = "Menge";
         public static String DE_LBL_KD_BESTELLART = "Bestellart";
+        public static String DE_LBL_KD_DISKONT = "Diskont";
+        public static String DE_LBL_KD_MM = "Min. Menge";
+        public static String DE_LBL_KD_OP = "Opt. Menge";
+        public static String DE_LBL_KD_BM = "Bestellmenge";
+        public static String DE_LBL_KD_BA = "Bestellart";
 
         //ToolTip
         public static String DE_KD_INFO = " ";
@@ -198,6 +203,11 @@ namespace IBSYS2
         //Labels
         public static String EN_LBL_KD_MENGE = "Amount";
         public static String EN_LBL_KD_BESTELLART = "Order type";
+        public static String EN_LBL_KD_DISKONT ="Diskont";
+        public static String EN_LBL_KD_MM ="min. amount";
+        public static String EN_LBL_KD_OP ="opt. amount";
+        public static String EN_LBL_KD_BM ="Order size";
+        public static String EN_LBL_KD_BA = "Order type";
 
         //ToolTip
         public static String EN_KD_INFO = " ";

@@ -666,6 +666,24 @@ namespace IBSYS2
                 lbl_bestellart2.Text = (Sprachen.EN_LBL_KD_BESTELLART);
                 lbl_bestellart3.Text = (Sprachen.EN_LBL_KD_BESTELLART);
                 */
+                labelDiskont1.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM1.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP1.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM1.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA1.Text = (Sprachen.EN_LBL_KD_BA);
+
+                labelDiskont2.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM2.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP2.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM2.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA2.Text = (Sprachen.EN_LBL_KD_BA);
+
+                labelDiskont3.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM3.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP3.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM3.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA3.Text = (Sprachen.EN_LBL_KD_BA);
+
 
                 //EN Tooltip
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
@@ -699,6 +717,23 @@ namespace IBSYS2
                 lbl_bestellart2.Text = (Sprachen.DE_LBL_KD_BESTELLART);
                 lbl_bestellart3.Text = (Sprachen.DE_LBL_KD_BESTELLART);
                 */
+                labelDiskont1.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM1.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP1.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM1.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA1.Text = (Sprachen.DE_LBL_KD_BA);
+
+                labelDiskont2.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM2.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP2.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM2.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA2.Text = (Sprachen.DE_LBL_KD_BA);
+
+                labelDiskont3.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM3.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP3.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM3.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA3.Text = (Sprachen.DE_LBL_KD_BA);
 
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();

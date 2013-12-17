@@ -60,22 +60,22 @@
         </ControlTemplate>
 
     </UserControl.Resources>
+    <Grid x:Name="RootGrid">
+        <Grid x:Name="LayoutRoot" Background="White">
 
-    <Grid x:Name="LayoutRoot" Background="White">
-
-        <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
-        <charts:Chart x:Name="MainChart" Width="600" Height="350" Title="Vergleiche Produkte" HorizontalAlignment="Center"
+            <!-- Ultimate Trial users should add 'ValidationKey="ENTER TRIAL LICENSE KEY HERE"' to each Chart declaration. -->
+            <charts:Chart x:Name="MainChart" Width="600" Height="350" Title="Vergleiche Produkte" HorizontalAlignment="Center"
                       PlotAreaBorderStyle="{StaticResource NoBorder}" LegendStyle="{StaticResource LegendNoBorder}" LegendPosition="OutsideTopRight" ValidationKey="CJ9aJoOOZR/WShbMjAxNDAxMDZpbmZvQHZpc2libG94LmNvbQ==nmfN8CW46HZUUdlt/H6ijH0mgiVrWdtt4udGt8X4ZGArNzsRrDB6fL2D8uM5ZIICupH7eX7hII6SlI+gwgvuHu0W/pvYFznDFYY9OFyDf2n5HuY2ipvZ5Sv6Ff0DThjTm3bUNdruv7z3Yh58izTDQS+s3si0=FK3nC3fd9nWo+ym17pG67kLlxZrtTvFGNRswBlGlbo6S9lqlQq82NmTVFkLVcoJm86GSbCVzvaObAfqWpLz9r5EjVqmHQQa19hn0N3Zj2u4FnH7Xwjiamyw6xcNSGeXCHrbwNBNCzgstJ7Zi02jS7vIBGQjtwNP3sBS/xnSh22U=BgIAAACkAABSU0ExAAQAAAEAAQDt3S3qxAM8yNEXhGgs3T1PU7cfiXn50OnOOCYImOYRtty7rGuxe91l0HZF7ik22yYSGdbCDHfa8DXgFnUsFykFfHL6KXHNPN+U9Inwlpf0FqFzYyUy4nwsm7MP+Jj38vBiEu2aWZ66eKSH9mxQP5DvAqzwzt0kHwC6YRfIktM2xw==">
 
-            <!--- Add zoom to the chart -->
-            <charts:Chart.Behaviour>
-                <charts:ZoomBehaviour />
-            </charts:Chart.Behaviour>
+                <!--- Add zoom to the chart -->
+                <charts:Chart.Behaviour>
+                    <charts:ZoomBehaviour />
+                </charts:Chart.Behaviour>
 
-            <!-- Define Y axis-->
-            <!-- Note that if no label were to set for the axis this declaration wouldn't be needed, the axis is auto created -->
-            <charts:Chart.YAxis>
-                <charts:CategoryAxis 
+                <!-- Define Y axis-->
+                <!-- Note that if no label were to set for the axis this declaration wouldn't be needed, the axis is auto created -->
+                <charts:Chart.YAxis>
+                    <charts:CategoryAxis 
                                  ShowLabels="True"
                                  ShowGridStripes="False"
                                  ShowMajorGridlines="False"
@@ -83,39 +83,39 @@
                                  AxisLineStyle="{StaticResource CatAxisLine}"
                                  Width="65" />
 
-            </charts:Chart.YAxis>
-            <charts:Chart.XAxis>
-                <charts:LinearAxis Title="Net debt (% of GDP)" ShowMinorTicks="False" LabelFormatString="0'%" />
-            </charts:Chart.XAxis>
+                </charts:Chart.YAxis>
+                <charts:Chart.XAxis>
+                    <charts:LinearAxis Title="Net debt (% of GDP)" ShowMinorTicks="False" LabelFormatString="0'%" />
+                </charts:Chart.XAxis>
 
-            <!-- Defining the 4 Bar series on the chart-->
-            <charts:Chart.Series>
-                <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
-                    <!-- Defining the data source using data binding -->
-                    <charts:BarSeries.DataSeries>
-                        <charts:BindableDataSeries Title="2007" ItemsSource="{StaticResource Y2007}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
-                    </charts:BarSeries.DataSeries>
-                </charts:BarSeries>
-                <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
-                    <!-- Defining the data source using data binding -->
-                    <charts:BarSeries.DataSeries>
-                        <charts:BindableDataSeries Title="2008" ItemsSource="{StaticResource Y2008}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
-                    </charts:BarSeries.DataSeries>
-                </charts:BarSeries>
-                <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
-                    <!-- Defining the data source using data binding -->
-                    <charts:BarSeries.DataSeries >
-                        <charts:BindableDataSeries Title="2009" ItemsSource="{StaticResource Y2009}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
-                    </charts:BarSeries.DataSeries>
-                </charts:BarSeries>
-                <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
-                    <!-- Defining the data source using data binding -->
-                    <charts:BarSeries.DataSeries >
-                        <charts:BindableDataSeries Title="2010" ItemsSource="{StaticResource Y2010}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
-                    </charts:BarSeries.DataSeries>
-                </charts:BarSeries>
-            </charts:Chart.Series>
-        </charts:Chart>
+                <!-- Defining the 4 Bar series on the chart-->
+                <charts:Chart.Series>
+                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
+                        <!-- Defining the data source using data binding -->
+                        <charts:BarSeries.DataSeries>
+                            <charts:BindableDataSeries Title="2007" ItemsSource="{StaticResource Y2007}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
+                        </charts:BarSeries.DataSeries>
+                    </charts:BarSeries>
+                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
+                        <!-- Defining the data source using data binding -->
+                        <charts:BarSeries.DataSeries>
+                            <charts:BindableDataSeries Title="2008" ItemsSource="{StaticResource Y2008}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
+                        </charts:BarSeries.DataSeries>
+                    </charts:BarSeries>
+                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
+                        <!-- Defining the data source using data binding -->
+                        <charts:BarSeries.DataSeries >
+                            <charts:BindableDataSeries Title="2009" ItemsSource="{StaticResource Y2009}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
+                        </charts:BarSeries.DataSeries>
+                    </charts:BarSeries>
+                    <charts:BarSeries ToolTipEnabled="True" ToolTipTemplate="{StaticResource CustomTooltipTemplate}" SelectionMode="Series">
+                        <!-- Defining the data source using data binding -->
+                        <charts:BarSeries.DataSeries >
+                            <charts:BindableDataSeries Title="2010" ItemsSource="{StaticResource Y2010}" XValueBinding="{Binding Path=PercentGDP}" YValueBinding="{Binding Path=Country}"/>
+                        </charts:BarSeries.DataSeries>
+                    </charts:BarSeries>
+                </charts:Chart.Series>
+            </charts:Chart>
+        </Grid>
     </Grid>
-
 </UserControl>

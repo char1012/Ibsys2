@@ -66,6 +66,7 @@
             this.Lagerzwischenwert = new System.Windows.Forms.Label();
             this.Lageranfangswert = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -338,7 +339,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(921, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 149;
@@ -349,9 +350,10 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(955, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
+            this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_de.TabIndex = 148;
             this.pic_de.TabStop = false;
             this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
@@ -545,5 +547,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

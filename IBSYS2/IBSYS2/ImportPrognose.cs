@@ -19,24 +19,25 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
+        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = false;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
-        double[,] direktverkäufe = new double[3, 4];
 
-        public ImportPrognose()
+        public ImportPrognose(String sprache)
         {
             InitializeComponent();
-
+            this.sprache = sprache;
+            sprachen();
 
             ////----------------
             ////Change HighlightedStyle to Normal style and add mouse enter and leave events on series
@@ -48,11 +49,13 @@ namespace IBSYS2
             //// ------------------
             button2.Enabled = false;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal) { 
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache == "de") 
+            { 
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
                 ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
                 ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
@@ -66,8 +69,9 @@ namespace IBSYS2
         }
 
         // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
-        public ImportPrognose(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
@@ -106,6 +110,9 @@ namespace IBSYS2
             InitializeComponent();
             button2.Enabled = false;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
+            this.sprache = sprache;
+            sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -143,8 +150,10 @@ namespace IBSYS2
             // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
-            // XML-Import wird disabled
+            btn_direktverkäufe.Enabled = true;
+            // XML-Import und Datenbank leeren wird disabled
             button2.Enabled = false;
+            clear_btn.Enabled = false;
         }
 
         //--------------------------------
@@ -166,7 +175,7 @@ namespace IBSYS2
 
         public void Direktverkäufe(double[,] direktverkäufe)
         {
-            this.direktverkäufe = direktverkäufe;
+            this.direktverkaeufe = direktverkäufe;
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -176,10 +185,7 @@ namespace IBSYS2
             else
                 button2.Enabled = true;
             continue_btn.Enabled = false;
-
-            // int periode fuer Datenweitergabe fuellen
-            String[] strings = comboBox1.Text.Split((new Char [] {' '}));
-            aktPeriode = Convert.ToInt32(strings[1]);
+            btn_direktverkäufe.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -187,7 +193,7 @@ namespace IBSYS2
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Ergebnis();
+            UserControl p = new Produktionsreihenfolge();
             //p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();
@@ -200,7 +206,7 @@ namespace IBSYS2
         {
             if (comboBox1.SelectedItem == null)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     System.Windows.Forms.MessageBox.Show("Wählen Sie zuerst die Periode aus.", "Keine Periode ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                 }
@@ -213,7 +219,7 @@ namespace IBSYS2
 
             else
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
                 }
@@ -237,14 +243,6 @@ namespace IBSYS2
                         }
                         catch (Exception)
                         {
-                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                            {
-                                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                            }
-                            else
-                            {
-                                System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                            }
                             myconn.Close();
                             myconn.Open();
                         }
@@ -265,7 +263,7 @@ namespace IBSYS2
 
                         if ((ausgewähltePeriode - 1) != period)
                         {
-                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                             {
                                 System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                             }
@@ -288,7 +286,7 @@ namespace IBSYS2
                             {
                                 // Beim Benutzer nachfragen, ob er das wirklich moechte
                                 DialogResult result;
-                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                 {
                                     result = MessageBox.Show("In der Datenbank sind bereits Daten für diese Periode gespeichert.\n"
                                        + "Wollen Sie die gespeicherten Daten überschreiben?\n"
@@ -331,7 +329,7 @@ namespace IBSYS2
                                     dbReader.Close();
 
                                     // Mitteilung einblenden
-                                    ProcessMessage message = new ProcessMessage();
+                                    ProcessMessage message = new ProcessMessage(sprache);
                                     message.Show(this);
                                     message.Location = new Point(500, 300);
                                     message.Update();
@@ -345,7 +343,7 @@ namespace IBSYS2
                                     message.Close();
                                     this.Enabled = true;
 
-                                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                     {
                                         System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
                                     }
@@ -360,12 +358,13 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                             }
                             else
                             {
                                 // Mitteilung einblenden
-                                ProcessMessage message = new ProcessMessage();
+                                ProcessMessage message = new ProcessMessage(sprache);
                                 message.Show(this);
                                 message.Location = new Point(500, 300);
                                 message.Update();
@@ -379,7 +378,7 @@ namespace IBSYS2
                                 message.Close();
                                 this.Enabled = true;
 
-                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                 {
                                     System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
                                 }
@@ -390,6 +389,7 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                                 myconn.Close();
                             }
@@ -397,9 +397,9 @@ namespace IBSYS2
                     }
                     else
                     {
-                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                         {
-                            MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                            System.Windows.MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
                         }
                         else
                         {
@@ -419,7 +419,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache != "en")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }
@@ -447,7 +447,7 @@ namespace IBSYS2
 
                     this.Controls.Clear();
                     UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                     this.Controls.Add(sicherheit);
                 }
             }
@@ -470,8 +470,8 @@ namespace IBSYS2
                 auftraege[11] = Convert.ToInt32(textBox12.Text);
 
                 this.Controls.Clear();
-                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, 
-                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(sicherheit);
             }
         }
@@ -481,6 +481,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
@@ -488,6 +489,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "de";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -496,7 +498,7 @@ namespace IBSYS2
             if (tb_aktP1.Text == "")
             {
                 tb_aktP1.ForeColor = Color.Red;
-                tb_aktP1.Text = "Geben Sie einen Wert ein";
+                //tb_aktP1.Text = "Geben Sie einen Wert ein";
                 tB1 = false;
             }
             else
@@ -537,7 +539,7 @@ namespace IBSYS2
             if (textBox2.Text == "")
             {
                 textBox2.ForeColor = Color.Red;
-                textBox2.Text = "Geben Sie einen Wert ein";
+                //textBox2.Text = "Geben Sie einen Wert ein";
                 tB2 = false;
             }
             else
@@ -578,7 +580,7 @@ namespace IBSYS2
             if (textBox3.Text == "")
             {
                 textBox3.ForeColor = Color.Red;
-                textBox3.Text = "Geben Sie einen Wert ein";
+                //textBox3.Text = "Geben Sie einen Wert ein";
                 tB3 = false;
             }
             else
@@ -619,7 +621,7 @@ namespace IBSYS2
             if (textBox4.Text == "")
             {
                 textBox4.ForeColor = Color.Red;
-                textBox4.Text = "Geben Sie einen Wert ein";
+                //textBox4.Text = "Geben Sie einen Wert ein";
                 tB4 = false;
             }
             else
@@ -660,7 +662,7 @@ namespace IBSYS2
             if (textBox5.Text == "")
             {
                 textBox5.ForeColor = Color.Red;
-                textBox5.Text = "Geben Sie einen Wert ein";
+                //textBox5.Text = "Geben Sie einen Wert ein";
                 tB5 = false;
             }
             else
@@ -701,7 +703,7 @@ namespace IBSYS2
             if (textBox6.Text == "")
             {
                 textBox6.ForeColor = Color.Red;
-                textBox6.Text = "Geben Sie einen Wert ein";
+                //textBox6.Text = "Geben Sie einen Wert ein";
                 tB6 = false;
             }
             else
@@ -742,7 +744,7 @@ namespace IBSYS2
             if (textBox7.Text == "")
             {
                 textBox7.ForeColor = Color.Red;
-                textBox7.Text = "Geben Sie einen Wert ein";
+                //textBox7.Text = "Geben Sie einen Wert ein";
                 tB7 = false;
             }
             else
@@ -783,7 +785,7 @@ namespace IBSYS2
             if (textBox8.Text == "")
             {
                 textBox8.ForeColor = Color.Red;
-                textBox8.Text = "Geben Sie einen Wert ein";
+                //textBox8.Text = "Geben Sie einen Wert ein";
                 tB8 = false;
             }
             else
@@ -824,7 +826,7 @@ namespace IBSYS2
             if (textBox9.Text == "")
             {
                 textBox9.ForeColor = Color.Red;
-                textBox9.Text = "Geben Sie einen Wert ein";
+                //textBox9.Text = "Geben Sie einen Wert ein";
                 tB9 = false;
             }
             else
@@ -865,7 +867,7 @@ namespace IBSYS2
             if (textBox10.Text == "")
             {
                 textBox10.ForeColor = Color.Red;
-                textBox10.Text = "Geben Sie einen Wert ein";
+                //textBox10.Text = "Geben Sie einen Wert ein";
                 tB10 = false;
             }
             else
@@ -906,7 +908,7 @@ namespace IBSYS2
             if (textBox11.Text == "")
             {
                 textBox11.ForeColor = Color.Red;
-                textBox11.Text = "Geben Sie einen Wert ein";
+                //textBox11.Text = "Geben Sie einen Wert ein";
                 tB11 = false;
             }
             else
@@ -947,7 +949,7 @@ namespace IBSYS2
             if (textBox12.Text == "")
             {
                 textBox12.ForeColor = Color.Red;
-                textBox12.Text = "Geben Sie einen Wert ein";
+                //textBox12.Text = "Geben Sie einen Wert ein";
                 tB12 = false;
             }
             else
@@ -1039,7 +1041,7 @@ namespace IBSYS2
        
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1053,8 +1055,9 @@ namespace IBSYS2
                 //EN Buttons
                 clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.EN_BTN_IP_DIREKT);
+
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_IP_GROUPBOX1);
@@ -1091,8 +1094,8 @@ namespace IBSYS2
                 //DE Buttons
                 clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.DE_BTN_IP_DIREKT);
 
 
                 //DE Groupboxen
@@ -1139,7 +1142,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -1147,7 +1150,7 @@ namespace IBSYS2
         {
             // Beim Benutzer nachfragen, ob er das wirklich moechte
             DialogResult result;
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 result = MessageBox.Show("Sind Sie sich sicher, dass Sie die Datenbank leeren möchten?\n"
                     + "Dadurch werden alle importierten Daten unwiderruflich gelöscht.", "Datenbank leeren", MessageBoxButtons.YesNo,
@@ -1175,20 +1178,12 @@ namespace IBSYS2
                 }
                 catch (Exception)
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                    }
                     myconn.Close();
                     myconn.Open();
                 }
 
                 // Mitteilung einblenden
-                ProcessMessage message = new ProcessMessage();
+                ProcessMessage message = new ProcessMessage(sprache);
                 message.Show(this);
                 message.Location = new Point(500, 300);
                 message.Update();
@@ -1219,7 +1214,7 @@ namespace IBSYS2
 
                 message.Close();
                 this.Enabled = true;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     MessageBox.Show("Alle importierten Daten wurden gelöscht.");
                 }
@@ -1229,12 +1224,6 @@ namespace IBSYS2
 
                 }
             }
-        }
-
-        private void btn_direktverkäufe_Click(object sender, EventArgs e)
-        {
-            Direktverkäufe direktverkaeufe = new Direktverkäufe(direktverkäufe);
-            direktverkaeufe.Show();
         }
 
     }

@@ -120,13 +120,6 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.E261 = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Ausgabe_P3 = new System.Windows.Forms.TextBox();
-            this.Ausgabe_P2 = new System.Windows.Forms.TextBox();
-            this.Ausgabe_P1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.btn_back = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pic_en = new System.Windows.Forms.PictureBox();
@@ -136,7 +129,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoE)).BeginInit();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
@@ -1127,80 +1119,6 @@
             this.E261.TabIndex = 1;
             this.E261.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.Ausgabe_P3);
-            this.groupBox2.Controls.Add(this.Ausgabe_P2);
-            this.groupBox2.Controls.Add(this.Ausgabe_P1);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(921, 250);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(140, 130);
-            this.groupBox2.TabIndex = 59;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Produktion";
-            // 
-            // Ausgabe_P3
-            // 
-            this.Ausgabe_P3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ausgabe_P3.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Ausgabe_P3.Location = new System.Drawing.Point(45, 90);
-            this.Ausgabe_P3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Ausgabe_P3.Name = "Ausgabe_P3";
-            this.Ausgabe_P3.Size = new System.Drawing.Size(87, 22);
-            this.Ausgabe_P3.TabIndex = 5;
-            // 
-            // Ausgabe_P2
-            // 
-            this.Ausgabe_P2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ausgabe_P2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Ausgabe_P2.Location = new System.Drawing.Point(45, 60);
-            this.Ausgabe_P2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Ausgabe_P2.Name = "Ausgabe_P2";
-            this.Ausgabe_P2.Size = new System.Drawing.Size(87, 22);
-            this.Ausgabe_P2.TabIndex = 4;
-            // 
-            // Ausgabe_P1
-            // 
-            this.Ausgabe_P1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ausgabe_P1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Ausgabe_P1.Location = new System.Drawing.Point(45, 27);
-            this.Ausgabe_P1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Ausgabe_P1.Name = "Ausgabe_P1";
-            this.Ausgabe_P1.Size = new System.Drawing.Size(87, 22);
-            this.Ausgabe_P1.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "P3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "P2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "P1";
-            // 
             // btn_back
             // 
             this.btn_back.BackColor = System.Drawing.Color.Lavender;
@@ -1267,7 +1185,6 @@
             this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btn_back);
@@ -1288,8 +1205,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoE)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
@@ -1382,13 +1297,6 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox E261;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox Ausgabe_P3;
-        private System.Windows.Forms.TextBox Ausgabe_P2;
-        private System.Windows.Forms.TextBox Ausgabe_P1;
         private System.Windows.Forms.PictureBox infoE;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;

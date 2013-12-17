@@ -15,18 +15,19 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private String sprache = "de";
         int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
                 55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
         
         int periode;
@@ -65,7 +66,7 @@ namespace IBSYS2
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache == "de")
             {
                 ToolTipEN.RemoveAll();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
@@ -84,9 +85,11 @@ namespace IBSYS2
             this.sicherheitsbest = sicherheitsbe;
         }
 
-        public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        public Produktion(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -123,6 +126,7 @@ namespace IBSYS2
 
             InitializeComponent();
             continue_btn.Enabled = false;
+            sprachen();
             back.Enabled = false;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -135,7 +139,7 @@ namespace IBSYS2
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
             {
                 ToolTipEN.RemoveAll();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
@@ -213,9 +217,9 @@ namespace IBSYS2
         {
             
             //für aktuelle Periode
-            double p1 = auftraege[0] + direktverkaeufe[0];
-            double p2 = auftraege[1] + direktverkaeufe[1];
-            double p3 = auftraege[2] + direktverkaeufe[2];
+            double p1 = auftraege[0] + direktverkaeufe[0, 1];
+            double p2 = auftraege[1] + direktverkaeufe[1, 1];
+            double p3 = auftraege[2] + direktverkaeufe[2, 1];
 
             //+ eingabe Sicherheitsbestand 
             double sp1 = sicherheitsbest[0, 1];
@@ -226,7 +230,7 @@ namespace IBSYS2
             int lagerbestandp1 = 0;
             int lagerbestandp2 = 0;
             int lagerbestandp3 = 0;
-
+            
             //- Aufträge in Warteschlange 
             int WartelisteMap1 = 0;
             int WartelisteMap2 = 0;
@@ -234,7 +238,7 @@ namespace IBSYS2
             int WartelisteAr1 = 0;
             int WartelisteAr2 = 0;
             int WartelisteAr3 = 0;
-
+            
             int Bearbeitungp1 = 0;
             int Bearbeitungp2 = 0;
             int Bearbeitungp3 = 0;
@@ -327,101 +331,101 @@ namespace IBSYS2
                 }
             } 
 
-                // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
-                string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
-                string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
-                string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
-
+           // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
+            string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
+            string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
+            string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
+            
                 if (prod1.StartsWith("-") || prod1 == null)
-                {
-                    textBox1.Text = "0";
-                }
-                else
-                {
-                    textBox1.Text = prod1;
-                }
-                if (prod2.StartsWith("-"))
-                {
-                    textBox2.Text = "0";
-                }
-                else
-                {
-                    textBox2.Text = prod2;
-                }
-                if (prod3.StartsWith("-"))
-                {
-                    textBox3.Text = "0";
-                }
-                else
-                {
-                    textBox3.Text = prod3;
-                }
+            {
+                textBox1.Text = "0";
+            }
+            else
+            {
+                textBox1.Text = prod1;
+            }
+            if (prod2.StartsWith("-"))
+            {
+                textBox2.Text = "0";
+            }
+            else
+            {
+                textBox2.Text = prod2;
+            }
+            if (prod3.StartsWith("-"))
+            {
+                textBox3.Text = "0";
+            }
+            else
+            {
+                textBox3.Text = prod3;
+            }
 
-                berProduktion[0, 0] = 1;
-                berProduktion[0, 1] = Convert.ToInt32(prod1);
-                berProduktion[1, 0] = 2;
-                berProduktion[1, 1] = Convert.ToInt32(prod2);
-                berProduktion[2, 0] = 3;
-                berProduktion[2, 1] = Convert.ToInt32(prod3);
+            berProduktion[0, 0] = 1;
+            berProduktion[0, 1] = Convert.ToInt32(prod1);
+            berProduktion[1, 0] = 2;
+            berProduktion[1, 1] = Convert.ToInt32(prod2);
+            berProduktion[2, 0] = 3;
+            berProduktion[2, 1] = Convert.ToInt32(prod3);
 
-                #region Produktion der Prognosen
-                double prognose1p1 = auftraege[3];
-                double prognose1p2 = auftraege[4];
-                double prognose1p3 = auftraege[5];
-                double prognose2p1 = auftraege[6];
-                double prognose2p2 = auftraege[7];
-                double prognose2p3 = auftraege[8];
-                double prognose3p1 = auftraege[9];
-                double prognose3p2 = auftraege[10];
-                double prognose3p3 = auftraege[11];
+            #region Produktion der Prognosen
+            double prognose1p1 = auftraege[3];
+            double prognose1p2 = auftraege[4];
+            double prognose1p3 = auftraege[5];
+            double prognose2p1 = auftraege[6];
+            double prognose2p2 = auftraege[7];
+            double prognose2p3 = auftraege[8];
+            double prognose3p1 = auftraege[9];
+            double prognose3p2 = auftraege[10];
+            double prognose3p3 = auftraege[11];
 
-                string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
-                if (prognosep1.StartsWith("-"))
-                {
-                    textBox6.Text = "0";
-                    textBox7.Text = "0";
-                    textBox10.Text = "0";
-                }
-                else
-                {
-                    textBox6.Text = prognosep1;
-                    textBox7.Text = prognosep1;
-                    textBox10.Text = prognosep1;
-                }
+            string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
+            if (prognosep1.StartsWith("-"))
+            {
+                textBox6.Text = "0";
+                textBox7.Text = "0";
+                textBox10.Text = "0";
+            }
+            else
+            {
+                textBox6.Text = prognosep1;
+                textBox7.Text = prognosep1;
+                textBox10.Text = prognosep1;
+            }
 
-                string prognosep2 = Convert.ToInt32((prognose1p2 + prognose2p2 + prognose3p2) / 3 * 1.1).ToString();
-                if (prognosep2.StartsWith("-"))
-                {
-                    textBox4.Text = "0";
-                    textBox8.Text = "0";
-                    textBox11.Text = "0";
-                }
-                else
-                {
-                    textBox4.Text = prognosep2;
-                    textBox8.Text = prognosep2;
-                    textBox11.Text = prognosep2;
-                }
+            string prognosep2 = Convert.ToInt32((prognose1p2 + prognose2p2 + prognose3p2) / 3 * 1.1).ToString();
+            if (prognosep2.StartsWith("-"))
+            {
+                textBox4.Text = "0";
+                textBox8.Text = "0";
+                textBox11.Text = "0";
+            }
+            else
+            {
+                textBox4.Text = prognosep2;
+                textBox8.Text = prognosep2;
+                textBox11.Text = prognosep2;
+            }
 
-                string prognosep3 = Convert.ToInt32((prognose1p3 + prognose2p3 + prognose3p3) / 3 * 1.1).ToString();
-                if (prognosep3.StartsWith("-"))
-                {
-                    textBox5.Text = "0";
-                    textBox9.Text = "0";
-                    textBox12.Text = "0";
-                }
-                else
-                {
-                    textBox5.Text = prognosep3;
-                    textBox9.Text = prognosep3;
-                    textBox12.Text = prognosep3;
-                }
+            string prognosep3 = Convert.ToInt32((prognose1p3 + prognose2p3 + prognose3p3) / 3 * 1.1).ToString();
+            if (prognosep3.StartsWith("-"))
+            {
+                textBox5.Text = "0";
+                textBox9.Text = "0";
+                textBox12.Text = "0";
+            }
+            else
+            {
+                textBox5.Text = prognosep3;
+                textBox9.Text = prognosep3;
+                textBox12.Text = prognosep3; 
+            }
 
-                #endregion
+            #endregion
 
             
         }
- 
+
         public int[,] ProduktionETeile()
         {
             int p26;
@@ -542,8 +546,8 @@ namespace IBSYS2
             #endregion
 
             #region Daten zur Berechnung
-            p26 = auftraege[0] + direktverkaeufe[0] + sicherheitsbest[20, 1];
-            p51 = auftraege[0] + direktverkaeufe[0] + sicherheitsbest[26, 1];
+            p26 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]) + sicherheitsbest[20, 1];
+            p51 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]) + sicherheitsbest[26, 1];
 
             p16 = p51 + sicherheitsbest[15, 1];
             p17 = p51 + sicherheitsbest[16, 1];
@@ -557,7 +561,7 @@ namespace IBSYS2
             p13 = p49 + sicherheitsbest[12, 1];
             p18 = p49 + sicherheitsbest[17, 1];
 
-            p56 = auftraege[1] + direktverkaeufe[1] + sicherheitsbest[29, 1];
+            p56 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]) + sicherheitsbest[29, 1];
 
             p55 = p56 + sicherheitsbest[28, 1];
 
@@ -569,7 +573,7 @@ namespace IBSYS2
             p14 = p54 + sicherheitsbest[13, 1];
             p19 = p54 + sicherheitsbest[18, 1];
 
-            p31 = auftraege[2] + direktverkaeufe[2] + sicherheitsbest[23, 1];
+            p31 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]) + sicherheitsbest[23, 1];
 
             p30 = p31 + sicherheitsbest[22, 1];
 
@@ -700,117 +704,117 @@ namespace IBSYS2
                 #region Lagerbestand
                             if (aktPeriode != 1)
                             {
-                                for (int l = 0; l < lagerbestand.Count; l++)
+                            for (int l = 0; l < lagerbestand.Count; l++)
+                            {
+                                if (lagerbestand[l][0] == teilenummer[0])
                                 {
-                                    if (lagerbestand[l][0] == teilenummer[0])
-                                    {
-                                        p26 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[1])
-                                    {
-                                        p51 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[2])
-                                    {
-                                        p16 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[3])
-                                    {
-                                        p17 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[4])
-                                    {
-                                        p50 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[5])
-                                    {
-                                        p4 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[6])
-                                    {
-                                        p10 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[7])
-                                    {
-                                        p49 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[8])
-                                    {
-                                        p7 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[9])
-                                    {
-                                        p13 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[10])
-                                    {
-                                        p18 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[11])
-                                    {
-                                        p56 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[12])
-                                    {
-                                        p55 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[13])
-                                    {
-                                        p5 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[14])
-                                    {
-                                        p11 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[15])
-                                    {
-                                        p54 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[16])
-                                    {
-                                        p8 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[17])
-                                    {
-                                        p14 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[18])
-                                    {
-                                        p19 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[19])
-                                    {
-                                        p31 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[20])
-                                    {
-                                        p30 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[21])
-                                    {
-                                        p6 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[22])
-                                    {
-                                        p12 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[23])
-                                    {
-                                        p29 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[24])
-                                    {
-                                        p9 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[25])
-                                    {
-                                        p15 -= lagerbestand[l][1];
-                                    }
-                                    if (lagerbestand[l][0] == teilenummer[26])
-                                    {
-                                        p20 -= lagerbestand[l][1];
-                                    }
+                                    p26 -= lagerbestand[l][1];
                                 }
+                                if (lagerbestand[l][0] == teilenummer[1])
+                                {
+                                    p51 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[2])
+                                {
+                                    p16 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[3])
+                                {
+                                    p17 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[4])
+                                {
+                                    p50 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[5])
+                                {
+                                    p4 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[6])
+                                {
+                                    p10 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[7])
+                                {
+                                    p49 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[8])
+                                {
+                                    p7 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[9])
+                                {
+                                    p13 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[10])
+                                {
+                                    p18 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[11])
+                                {
+                                    p56 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[12])
+                                {
+                                    p55 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[13])
+                                {
+                                    p5 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[14])
+                                {
+                                    p11 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[15])
+                                {
+                                    p54 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[16])
+                                {
+                                    p8 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[17])
+                                {
+                                    p14 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[18])
+                                {
+                                    p19 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[19])
+                                {
+                                    p31 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[20])
+                                {
+                                    p30 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[21])
+                                {
+                                    p6 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[22])
+                                {
+                                    p12 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[23])
+                                {
+                                    p29 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[24])
+                                {
+                                    p9 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[25])
+                                {
+                                    p15 -= lagerbestand[l][1];
+                                }
+                                if (lagerbestand[l][0] == teilenummer[26])
+                                {
+                                    p20 -= lagerbestand[l][1];
+                                }
+                            }
                             }
                             else if (aktPeriode == 1)
                             {
@@ -1571,8 +1575,25 @@ namespace IBSYS2
             {
                 if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "0")
                 {
-                    string message = "Sie haben mindestens an einer Stelle angegeben, dass Sie nichts produzieren wollen. Sind Sie sich sicher?";
-                    string caption = "Sind Sie sich sicher?";
+                    string message;
+                    if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
+                    {
+                        message = "Sie haben mindestens an einer Stelle angegeben, dass Sie nichts produzieren wollen. Sind Sie sich sicher?";
+                    }
+                    else
+                    {
+                        message = "At one point you want to produce anything. Are you sure?";
+                    }
+
+                    string caption;
+                    if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
+                    {
+                        caption = "Sind Sie sich sicher?";
+                    }
+                    else
+                    {
+                        caption = "Are you sure?";
+                    }
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
 
@@ -1607,7 +1628,7 @@ namespace IBSYS2
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                         this.Controls.Add(prodreihe);
                         break;
                     }
@@ -1644,7 +1665,7 @@ namespace IBSYS2
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                         this.Controls.Add(prodreihe);
                     }
                     else { continue; }
@@ -1655,22 +1676,100 @@ namespace IBSYS2
 
         private void back_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            produktion = berProduktion; // alle Produktionsmengen
+
+            // P1, P2 und P3 nochmal auslesen
+            produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+            produktionProg[0, 0] = 1;
+            produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+            produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+            produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+            produktionProg[1, 0] = 2;
+            produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+            produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+            produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+            produktionProg[2, 0] = 3;
+            produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+            produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+            produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+            produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            produktion = berProduktion; // alle Produktionsmengen
+
+            // P1, P2 und P3 nochmal auslesen
+            produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+            produktionProg[0, 0] = 1;
+            produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+            produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+            produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+            produktionProg[1, 0] = 2;
+            produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+            produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+            produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+            produktionProg[2, 0] = 3;
+            produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+            produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+            produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+            produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            produktion = berProduktion; // alle Produktionsmengen
+
+            // P1, P2 und P3 nochmal auslesen
+            produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+            produktionProg[0, 0] = 1;
+            produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+            produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+            produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+            produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+            produktionProg[1, 0] = 2;
+            produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+            produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+            produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+            produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+            produktionProg[2, 0] = 3;
+            produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+            produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+            produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+            produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         } 
         #endregion
@@ -1678,7 +1777,7 @@ namespace IBSYS2
         private void ETeile_Click(object sender, EventArgs e)
         {
             backupProduktion = berProduktion;
-            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest);
+            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest, sprache);
             eteile.Show();
         }
 
@@ -1693,7 +1792,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "en")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1723,6 +1822,7 @@ namespace IBSYS2
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
                 ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
+
             }
             else
             {
@@ -1762,6 +1862,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen(); 
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
@@ -1769,6 +1870,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen(); 
+            sprache = "de";
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
@@ -1802,7 +1904,7 @@ namespace IBSYS2
 
                 this.Controls.Clear();
                 UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(prodreihe);
             }
         }

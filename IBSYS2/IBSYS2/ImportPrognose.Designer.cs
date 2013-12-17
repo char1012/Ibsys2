@@ -38,6 +38,7 @@
             this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
             this.lbl_Ergebnis = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_direktverkäufe = new System.Windows.Forms.Button();
             this.lbl_optional = new System.Windows.Forms.Label();
             this.lbl_schritt3 = new System.Windows.Forms.Label();
             this.lbl_schritt2 = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.lbl_periodeX = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.continue_btn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
@@ -73,7 +73,6 @@
             this.lbl_Startseite = new System.Windows.Forms.Label();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             this.clear_btn = new System.Windows.Forms.Button();
-            this.btn_direktverkäufe = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -186,6 +185,17 @@
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Import der XML-Datei und Prognose - Zusätzliche Lieferanfragen (optional)";
+            // 
+            // btn_direktverkäufe
+            // 
+            this.btn_direktverkäufe.BackColor = System.Drawing.Color.Lavender;
+            this.btn_direktverkäufe.ForeColor = System.Drawing.Color.Black;
+            this.btn_direktverkäufe.Location = new System.Drawing.Point(125, 259);
+            this.btn_direktverkäufe.Name = "btn_direktverkäufe";
+            this.btn_direktverkäufe.Size = new System.Drawing.Size(102, 23);
+            this.btn_direktverkäufe.TabIndex = 58;
+            this.btn_direktverkäufe.Text = "Direktverkäufe";
+            this.btn_direktverkäufe.UseVisualStyleBackColor = false;
             // 
             // lbl_optional
             // 
@@ -372,7 +382,7 @@
             // lbl_aktuellePeriode
             // 
             this.lbl_aktuellePeriode.AutoSize = true;
-            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 103);
+            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 106);
             this.lbl_aktuellePeriode.Name = "lbl_aktuellePeriode";
             this.lbl_aktuellePeriode.Size = new System.Drawing.Size(98, 14);
             this.lbl_aktuellePeriode.TabIndex = 40;
@@ -455,16 +465,6 @@
             this.continue_btn.UseVisualStyleBackColor = false;
             this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(56, 449);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 23);
-            this.button1.TabIndex = 56;
-            this.button1.Text = "Sprung";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
@@ -531,18 +531,6 @@
             this.clear_btn.UseVisualStyleBackColor = false;
             this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
-            // btn_direktverkäufe
-            // 
-            this.btn_direktverkäufe.BackColor = System.Drawing.Color.Lavender;
-            this.btn_direktverkäufe.ForeColor = System.Drawing.Color.Black;
-            this.btn_direktverkäufe.Location = new System.Drawing.Point(125, 259);
-            this.btn_direktverkäufe.Name = "btn_direktverkäufe";
-            this.btn_direktverkäufe.Size = new System.Drawing.Size(102, 23);
-            this.btn_direktverkäufe.TabIndex = 58;
-            this.btn_direktverkäufe.Text = "Direktverkäufe";
-            this.btn_direktverkäufe.UseVisualStyleBackColor = false;
-            this.btn_direktverkäufe.Click += new System.EventHandler(this.btn_direktverkäufe_Click);
-            // 
             // ImportPrognose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -553,7 +541,6 @@
             this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lbl_Ergebnis);
             this.Controls.Add(this.lbl_Kaufteiledisposition);
@@ -611,7 +598,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label lbl_schritt2;
         private System.Windows.Forms.Label lbl_schritt1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lbl_optional;

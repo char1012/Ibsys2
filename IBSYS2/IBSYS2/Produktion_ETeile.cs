@@ -14,16 +14,18 @@ namespace IBSYS2
     public partial class Produktion_ETeile : Form
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         int[,] sicherheitsbe = new int[30, 2];
         int[,] berProduktion = new int[30, 2];
 
         int[,] backupProduktion = new int[30, 2];
 
-        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest)
+        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest, String sprache)
         {
-
+            this.sprache = sprache;
             InitializeComponent();
+            sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
@@ -1140,7 +1142,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "en")
             {
                 button2.Text = Sprachen.EN_BTN_DEFAULT;
                 groupBox1.Text = Sprachen.EN_PRE_GB_ETEILE;
@@ -1157,15 +1159,16 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "de";
         }
-
     }
 }

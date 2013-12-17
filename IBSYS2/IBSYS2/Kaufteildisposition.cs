@@ -22,7 +22,7 @@ namespace IBSYS2
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];

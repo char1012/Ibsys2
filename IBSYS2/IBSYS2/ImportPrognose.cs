@@ -25,7 +25,7 @@ namespace IBSYS2
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
@@ -140,9 +140,13 @@ namespace IBSYS2
             txt_zLAP2.Text = direktverkaeufe[1].ToString();
             txt_zLAP3.Text = direktverkaeufe[2].ToString();
 
+            comboBox1.Text = "Periode " + aktPeriode;
+
             // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
+            // XML-Import wird disabled
+            button2.Enabled = false;
         }
 
         //--------------------------------

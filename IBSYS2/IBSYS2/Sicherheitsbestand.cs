@@ -19,7 +19,18 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         bool tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
-        
+
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
         public Sicherheitsbestand()
         {
             InitializeComponent();
@@ -40,6 +51,68 @@ namespace IBSYS2
             }
             textfeldSperren();
             
+            Ausgabe_P1.Enabled = false;
+            Ausgabe_P2.Enabled = false;
+            Ausgabe_P3.Enabled = false;
+            continue_btn.Enabled = false;
+            eteileberechnen_btn.Enabled = false;
+        }
+
+        public Sicherheitsbestand(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            InitializeComponent();
+            continue_btn.Enabled = true;
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
+            {
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
+                ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
+                ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+            }
+            textfeldSperren();
+
             Ausgabe_P1.Enabled = false;
             Ausgabe_P2.Enabled = false;
             Ausgabe_P3.Enabled = false;
@@ -77,81 +150,84 @@ namespace IBSYS2
             double gLagerbestandP1 = Convert.ToDouble(Eingabe_P1.Text);
             double gLagerbestandP2 = Convert.ToDouble(Eingabe_P2.Text);
             double gLagerbestandP3 = Convert.ToDouble(Eingabe_P3.Text);
-            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(gLagerbestandP1, "1");
+            int mengeP1 = auftraege[0] + direktverkaeufe[0]; // Direktverkauefe auf normale auftraege schlagen
+            int mengeP2 = auftraege[1] + direktverkaeufe[1];
+            int mengeP3 = auftraege[2] + direktverkaeufe[2];
+            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
             Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(gLagerbestandP2, "2");
+            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
             Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(gLagerbestandP3, "3");
+            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
             Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
 
-            double gLE26P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E261.Text = Convert.ToString(gLE26P1);
-            double gLE51P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE51P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E511.Text = Convert.ToString(gLE51P1);
-            double gLE16P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE16P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E161.Text = Convert.ToString(gLE16P1);
-            double gLE17P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE17P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E171.Text = Convert.ToString(gLE17P1);
-            double gLE50P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE50P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E501.Text = Convert.ToString(gLE50P1);
-            double gLE4P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE4P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E041.Text = Convert.ToString(gLE4P1);
-            double gLE10P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE10P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E101.Text = Convert.ToString(gLE10P1);
-            double gLE49P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE49P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E491.Text = Convert.ToString(gLE49P1);
-            double gLE7P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE7P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E071.Text = Convert.ToString(gLE7P1);
-            double gLE13P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE13P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E131.Text = Convert.ToString(gLE13P1);
-            double gLE18P1 = geplanterLagerbestand(sicherheitsbestandP1, 100);
+            double gLE18P1 = geplanterLagerbestand(gLagerbestandP1, 100);
             E181.Text = Convert.ToString(gLE18P1);
 
-            double gLE26P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE26P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E262.Text = Convert.ToString(gLE26P2);
-            double gLE56P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE56P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E562.Text = Convert.ToString(gLE56P2);
-            double gLE16P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE16P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E162.Text = Convert.ToString(gLE16P2);
-            double gLE17P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE17P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E172.Text = Convert.ToString(gLE17P2);
-            double gLE55P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE55P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E552.Text = Convert.ToString(gLE55P2);
-            double gLE5P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE5P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E052.Text = Convert.ToString(gLE5P2);
-            double gLE11P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE11P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E112.Text = Convert.ToString(gLE11P2);
-            double gLE54P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE54P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E542.Text = Convert.ToString(gLE54P2);
-            double gLE8P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE8P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E082.Text = Convert.ToString(gLE8P2);
-            double gLE14P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE14P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E142.Text = Convert.ToString(gLE14P2);
-            double gLE19P2 = geplanterLagerbestand(sicherheitsbestandP2, 100);
+            double gLE19P2 = geplanterLagerbestand(gLagerbestandP2, 100);
             E192.Text = Convert.ToString(gLE19P2);
 
-            double gLE26P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE26P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E263.Text = Convert.ToString(gLE26P3);
-            double gLE31P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE31P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E313.Text = Convert.ToString(gLE31P3);
-            double gLE16P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE16P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E163.Text = Convert.ToString(gLE16P3);
-            double gLE17P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE17P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E173.Text = Convert.ToString(gLE17P3);
-            double gLE30P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE30P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E303.Text = Convert.ToString(gLE30P3);
-            double gLE6P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE6P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E063.Text = Convert.ToString(gLE6P3);
-            double gLE12P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE12P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E123.Text = Convert.ToString(gLE12P3);
-            double gLE29P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE29P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E293.Text = Convert.ToString(gLE29P3);
-            double gLE9P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE9P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E093.Text = Convert.ToString(gLE9P3);
-            double gLE15P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE15P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E153.Text = Convert.ToString(gLE15P3);
-            double gLE20P3 = geplanterLagerbestand(sicherheitsbestandP3, 100);
+            double gLE20P3 = geplanterLagerbestand(gLagerbestandP3, 100);
             E203.Text = Convert.ToString(gLE20P3);
 
             textfeldFreigeben();
@@ -165,10 +241,8 @@ namespace IBSYS2
             return geplanterLagerbestand;
         }
 
-        public double sicherheitsbestandBerechnen(double gLagerbestand, string teilenummer_FK)
+        public double sicherheitsbestandBerechnen(int prognose, double gLagerbestand, string teilenummer_FK)
         {
-            //TODO Wird zukünftig aus ersterm Schritt übergeben (Prognose)
-            int prognose = 100;
             double sicherheitsbestand = 0;
             int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
             int wMatMenge = datenHolen(teilenummer_FK, "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material");
@@ -1840,15 +1914,151 @@ namespace IBSYS2
                 }
                 if (dialogResult == DialogResult.Yes)
                 {
+                    // Datenweitergabe
+
+                    // sicherheitsbest fuellen
+                    sicherheitsbest[0, 0] = 1;
+                    sicherheitsbest[0, 1] = Convert.ToInt32(Eingabe_P1.Text);
+                    sicherheitsbest[1, 0] = 2;
+                    sicherheitsbest[1, 1] = Convert.ToInt32(Eingabe_P2.Text);
+                    sicherheitsbest[2, 0] = 3;
+                    sicherheitsbest[2, 1] = Convert.ToInt32(Eingabe_P3.Text);
+                    sicherheitsbest[3, 0] = 4;
+                    sicherheitsbest[3, 1] = Convert.ToInt32(E041.Text);
+                    sicherheitsbest[4, 0] = 5;
+                    sicherheitsbest[4, 1] = Convert.ToInt32(E052.Text);
+                    sicherheitsbest[5, 0] = 6;
+                    sicherheitsbest[5, 1] = Convert.ToInt32(E063.Text);
+                    sicherheitsbest[6, 0] = 7;
+                    sicherheitsbest[6, 1] = Convert.ToInt32(E071.Text);
+                    sicherheitsbest[7, 0] = 8;
+                    sicherheitsbest[7, 1] = Convert.ToInt32(E082.Text);
+                    sicherheitsbest[8, 0] = 9;
+                    sicherheitsbest[8, 1] = Convert.ToInt32(E093.Text);
+                    sicherheitsbest[9, 0] = 10;
+                    sicherheitsbest[9, 1] = Convert.ToInt32(E101.Text);
+                    sicherheitsbest[10, 0] = 11;
+                    sicherheitsbest[10, 1] = Convert.ToInt32(E112.Text);
+                    sicherheitsbest[11, 0] = 12;
+                    sicherheitsbest[11, 1] = Convert.ToInt32(E123.Text);
+                    sicherheitsbest[12, 0] = 13;
+                    sicherheitsbest[12, 1] = Convert.ToInt32(E131.Text);
+                    sicherheitsbest[13, 0] = 14;
+                    sicherheitsbest[13, 1] = Convert.ToInt32(E142.Text);
+                    sicherheitsbest[14, 0] = 15;
+                    sicherheitsbest[14, 1] = Convert.ToInt32(E153.Text);
+                    int wert16 = Convert.ToInt32(E161.Text) + Convert.ToInt32(E162.Text) + Convert.ToInt32(E163.Text);
+                    sicherheitsbest[15, 0] = 16;
+                    sicherheitsbest[15, 1] = wert16;
+                    int wert17 = Convert.ToInt32(E171.Text) + Convert.ToInt32(E172.Text) + Convert.ToInt32(E173.Text);
+                    sicherheitsbest[16, 0] = 17;
+                    sicherheitsbest[16, 1] = wert17;
+                    sicherheitsbest[17, 0] = 18;
+                    sicherheitsbest[17, 1] = Convert.ToInt32(E181.Text);
+                    sicherheitsbest[18, 0] = 19;
+                    sicherheitsbest[18, 1] = Convert.ToInt32(E192.Text);
+                    sicherheitsbest[19, 0] = 20;
+                    sicherheitsbest[19, 1] = Convert.ToInt32(E203.Text);
+                    int wert26 = Convert.ToInt32(E261.Text) + Convert.ToInt32(E262.Text) + Convert.ToInt32(E263.Text);
+                    sicherheitsbest[20, 0] = 26;
+                    sicherheitsbest[20, 1] = wert26;
+                    sicherheitsbest[21, 0] = 29;
+                    sicherheitsbest[21, 1] = Convert.ToInt32(E293.Text);
+                    sicherheitsbest[22, 0] = 30;
+                    sicherheitsbest[22, 1] = Convert.ToInt32(E303.Text);
+                    sicherheitsbest[23, 0] = 31;
+                    sicherheitsbest[23, 1] = Convert.ToInt32(E313.Text);
+                    sicherheitsbest[24, 0] = 49;
+                    sicherheitsbest[24, 1] = Convert.ToInt32(E491.Text);
+                    sicherheitsbest[25, 0] = 50;
+                    sicherheitsbest[25, 1] = Convert.ToInt32(E501.Text);
+                    sicherheitsbest[26, 0] = 51;
+                    sicherheitsbest[26, 1] = Convert.ToInt32(E511.Text);
+                    sicherheitsbest[27, 0] = 54;
+                    sicherheitsbest[27, 1] = Convert.ToInt32(E542.Text);
+                    sicherheitsbest[28, 0] = 55;
+                    sicherheitsbest[28, 1] = Convert.ToInt32(E552.Text);
+                    sicherheitsbest[29, 0] = 56;
+                    sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
+
                     this.Controls.Clear();
-                    UserControl prod = new Produktion();
+                    UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                     this.Controls.Add(prod);
                 }
             }
             else
             {
+                // Datenweitergabe
+
+                // sicherheitsbest fuellen
+                sicherheitsbest[0, 0] = 1;
+                sicherheitsbest[0, 1] = Convert.ToInt32(Eingabe_P1.Text);
+                sicherheitsbest[1, 0] = 2;
+                sicherheitsbest[1, 1] = Convert.ToInt32(Eingabe_P2.Text);
+                sicherheitsbest[2, 0] = 3;
+                sicherheitsbest[2, 1] = Convert.ToInt32(Eingabe_P3.Text);
+                sicherheitsbest[3, 0] = 4;
+                sicherheitsbest[3, 1] = Convert.ToInt32(E041.Text);
+                sicherheitsbest[4, 0] = 5;
+                sicherheitsbest[4, 1] = Convert.ToInt32(E052.Text);
+                sicherheitsbest[5, 0] = 6;
+                sicherheitsbest[5, 1] = Convert.ToInt32(E063.Text);
+                sicherheitsbest[6, 0] = 7;
+                sicherheitsbest[6, 1] = Convert.ToInt32(E071.Text);
+                sicherheitsbest[7, 0] = 8;
+                sicherheitsbest[7, 1] = Convert.ToInt32(E082.Text);
+                sicherheitsbest[8, 0] = 9;
+                sicherheitsbest[8, 1] = Convert.ToInt32(E093.Text);
+                sicherheitsbest[9, 0] = 10;
+                sicherheitsbest[9, 1] = Convert.ToInt32(E101.Text);
+                sicherheitsbest[10, 0] = 11;
+                sicherheitsbest[10, 1] = Convert.ToInt32(E112.Text);
+                sicherheitsbest[11, 0] = 12;
+                sicherheitsbest[11, 1] = Convert.ToInt32(E123.Text);
+                sicherheitsbest[12, 0] = 13;
+                sicherheitsbest[12, 1] = Convert.ToInt32(E131.Text);
+                sicherheitsbest[13, 0] = 14;
+                sicherheitsbest[13, 1] = Convert.ToInt32(E142.Text);
+                sicherheitsbest[14, 0] = 15;
+                sicherheitsbest[14, 1] = Convert.ToInt32(E153.Text);
+                int wert16 = Convert.ToInt32(E161.Text) + Convert.ToInt32(E162.Text) + Convert.ToInt32(E163.Text);
+                sicherheitsbest[15, 0] = 16;
+                sicherheitsbest[15, 1] = wert16;
+                int wert17 = Convert.ToInt32(E171.Text) + Convert.ToInt32(E172.Text) + Convert.ToInt32(E173.Text);
+                sicherheitsbest[16, 0] = 17;
+                sicherheitsbest[16, 1] = wert17;
+                sicherheitsbest[17, 0] = 18;
+                sicherheitsbest[17, 1] = Convert.ToInt32(E181.Text);
+                sicherheitsbest[18, 0] = 19;
+                sicherheitsbest[18, 1] = Convert.ToInt32(E192.Text);
+                sicherheitsbest[19, 0] = 20;
+                sicherheitsbest[19, 1] = Convert.ToInt32(E203.Text);
+                int wert26 = Convert.ToInt32(E261.Text) + Convert.ToInt32(E262.Text) + Convert.ToInt32(E263.Text);
+                sicherheitsbest[20, 0] = 26;
+                sicherheitsbest[20, 1] = wert26;
+                sicherheitsbest[21, 0] = 29;
+                sicherheitsbest[21, 1] = Convert.ToInt32(E293.Text);
+                sicherheitsbest[22, 0] = 30;
+                sicherheitsbest[22, 1] = Convert.ToInt32(E303.Text);
+                sicherheitsbest[23, 0] = 31;
+                sicherheitsbest[23, 1] = Convert.ToInt32(E313.Text);
+                sicherheitsbest[24, 0] = 49;
+                sicherheitsbest[24, 1] = Convert.ToInt32(E491.Text);
+                sicherheitsbest[25, 0] = 50;
+                sicherheitsbest[25, 1] = Convert.ToInt32(E501.Text);
+                sicherheitsbest[26, 0] = 51;
+                sicherheitsbest[26, 1] = Convert.ToInt32(E511.Text);
+                sicherheitsbest[27, 0] = 54;
+                sicherheitsbest[27, 1] = Convert.ToInt32(E542.Text);
+                sicherheitsbest[28, 0] = 55;
+                sicherheitsbest[28, 1] = Convert.ToInt32(E552.Text);
+                sicherheitsbest[29, 0] = 56;
+                sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
+
                 this.Controls.Clear();
-                UserControl prod = new Produktion();
+                UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                 this.Controls.Add(prod);
             }
         }
@@ -1883,8 +2093,76 @@ namespace IBSYS2
                     {
                         if (continue_btn.Enabled == true)
                         {
+                            // Datenweitergabe
+
+                            // sicherheitsbest fuellen
+                            sicherheitsbest[0, 0] = 1;
+                            sicherheitsbest[0, 1] = Convert.ToInt32(Eingabe_P1.Text);
+                            sicherheitsbest[1, 0] = 2;
+                            sicherheitsbest[1, 1] = Convert.ToInt32(Eingabe_P2.Text);
+                            sicherheitsbest[2, 0] = 3;
+                            sicherheitsbest[2, 1] = Convert.ToInt32(Eingabe_P3.Text);
+                            sicherheitsbest[3, 0] = 4;
+                            sicherheitsbest[3, 1] = Convert.ToInt32(E041.Text);
+                            sicherheitsbest[4, 0] = 5;
+                            sicherheitsbest[4, 1] = Convert.ToInt32(E052.Text);
+                            sicherheitsbest[5, 0] = 6;
+                            sicherheitsbest[5, 1] = Convert.ToInt32(E063.Text);
+                            sicherheitsbest[6, 0] = 7;
+                            sicherheitsbest[6, 1] = Convert.ToInt32(E071.Text);
+                            sicherheitsbest[7, 0] = 8;
+                            sicherheitsbest[7, 1] = Convert.ToInt32(E082.Text);
+                            sicherheitsbest[8, 0] = 9;
+                            sicherheitsbest[8, 1] = Convert.ToInt32(E093.Text);
+                            sicherheitsbest[9, 0] = 10;
+                            sicherheitsbest[9, 1] = Convert.ToInt32(E101.Text);
+                            sicherheitsbest[10, 0] = 11;
+                            sicherheitsbest[10, 1] = Convert.ToInt32(E112.Text);
+                            sicherheitsbest[11, 0] = 12;
+                            sicherheitsbest[11, 1] = Convert.ToInt32(E123.Text);
+                            sicherheitsbest[12, 0] = 13;
+                            sicherheitsbest[12, 1] = Convert.ToInt32(E131.Text);
+                            sicherheitsbest[13, 0] = 14;
+                            sicherheitsbest[13, 1] = Convert.ToInt32(E142.Text);
+                            sicherheitsbest[14, 0] = 15;
+                            sicherheitsbest[14, 1] = Convert.ToInt32(E153.Text);
+                            int wert16 = Convert.ToInt32(E161.Text) + Convert.ToInt32(E162.Text) + Convert.ToInt32(E163.Text);
+                            sicherheitsbest[15, 0] = 16;
+                            sicherheitsbest[15, 1] = wert16;
+                            int wert17 = Convert.ToInt32(E171.Text) + Convert.ToInt32(E172.Text) + Convert.ToInt32(E173.Text);
+                            sicherheitsbest[16, 0] = 17;
+                            sicherheitsbest[16, 1] = wert17;
+                            sicherheitsbest[17, 0] = 18;
+                            sicherheitsbest[17, 1] = Convert.ToInt32(E181.Text);
+                            sicherheitsbest[18, 0] = 19;
+                            sicherheitsbest[18, 1] = Convert.ToInt32(E192.Text);
+                            sicherheitsbest[19, 0] = 20;
+                            sicherheitsbest[19, 1] = Convert.ToInt32(E203.Text);
+                            int wert26 = Convert.ToInt32(E261.Text) + Convert.ToInt32(E262.Text) + Convert.ToInt32(E263.Text);
+                            sicherheitsbest[20, 0] = 26;
+                            sicherheitsbest[20, 1] = wert26;
+                            sicherheitsbest[21, 0] = 29;
+                            sicherheitsbest[21, 1] = Convert.ToInt32(E293.Text);
+                            sicherheitsbest[22, 0] = 30;
+                            sicherheitsbest[22, 1] = Convert.ToInt32(E303.Text);
+                            sicherheitsbest[23, 0] = 31;
+                            sicherheitsbest[23, 1] = Convert.ToInt32(E313.Text);
+                            sicherheitsbest[24, 0] = 49;
+                            sicherheitsbest[24, 1] = Convert.ToInt32(E491.Text);
+                            sicherheitsbest[25, 0] = 50;
+                            sicherheitsbest[25, 1] = Convert.ToInt32(E501.Text);
+                            sicherheitsbest[26, 0] = 51;
+                            sicherheitsbest[26, 1] = Convert.ToInt32(E511.Text);
+                            sicherheitsbest[27, 0] = 54;
+                            sicherheitsbest[27, 1] = Convert.ToInt32(E542.Text);
+                            sicherheitsbest[28, 0] = 55;
+                            sicherheitsbest[28, 1] = Convert.ToInt32(E552.Text);
+                            sicherheitsbest[29, 0] = 56;
+                            sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
+
                             this.Controls.Clear();
-                            UserControl prod = new Produktion();
+                            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                             this.Controls.Add(prod);
                         }
                     }

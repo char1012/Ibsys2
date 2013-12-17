@@ -21,10 +21,21 @@ namespace IBSYS2
         // Liste, um zu kontrollieren, ob alle Zellen korrekt sind
         private Boolean[] correct = new Boolean[30] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
 
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
         public Kapazitaetsplan()
         {
             InitializeComponent();
-            continue_btn.Enabled = true; // false, wenn Zellen geleert werden
+            setButtons(true); // false, wenn Zellen geleert werden
             setValues();
             if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
             {
@@ -39,73 +50,75 @@ namespace IBSYS2
 
         }
 
+        public Kapazitaetsplan(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            InitializeComponent();
+            setButtons(true);
+            setValues();
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            {
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
+            }
+        }
+
+        public void setButtons(Boolean b)
+        {
+            back_btn.Enabled = b;
+            continue_btn.Enabled = b;
+            lbl_Startseite.Enabled = b;
+            lbl_Sicherheitsbestand.Enabled = b;
+            lbl_Produktion.Enabled = b;
+            lbl_Produktionsreihenfolge.Enabled = b;
+            lbl_Kapazitaetsplan.Enabled = b;
+            lbl_Kaufteiledisposition.Enabled = b;
+            lbl_Ergebnis.Enabled = b;
+        }
+
         public void setValues()
         {
-            // Diese Methode wird in Zukunft von Produktion.cs mit den Parametern
-            // int periode und eines zweidimensionales int-Array (Teilenummer, Produktionsmenge) aufgerufen.
-            // Diese Werte werden momentan simuliert.
-            int periode = 6; // Periode des xmls
-            int[,] teile = new int[30, 2];
-            teile[0, 0] = 1;
-            teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
-            teile[1, 0] = 2;
-            teile[1, 1] = 190;
-            teile[2, 0] = 3;
-            teile[2, 1] = 160;
-            teile[3, 0] = 4;
-            teile[3, 1] = 60;
-            teile[4, 0] = 5;
-            teile[4, 1] = 160;
-            teile[5, 0] = 6;
-            teile[5, 1] = -110;
-            teile[6, 0] = 7;
-            teile[6, 1] = 50;
-            teile[7, 0] = 8;
-            teile[7, 1] = 150;
-            teile[8, 0] = 9;
-            teile[8, 1] = -200;
-            teile[9, 0] = 10;
-            teile[9, 1] = 60;
-            teile[10, 0] = 11;
-            teile[10, 1] = 160;
-            teile[11, 0] = 12;
-            teile[11, 1] = -110;
-            teile[12, 0] = 13;
-            teile[12, 1] = 50;
-            teile[13, 0] = 14;
-            teile[13, 1] = 150;
-            teile[14, 0] = 15;
-            teile[14, 1] = -200;
-            teile[15, 0] = 16;
-            teile[15, 1] = 20 + 130 + 90;
-            teile[16, 0] = 17;
-            teile[16, 1] = 20 + 130 + 90;
-            teile[17, 0] = 18;
-            teile[17, 1] = 50;
-            teile[18, 0] = 19;
-            teile[18, 1] = 150;
-            teile[19, 0] = 20;
-            teile[19, 1] = -200;
-            teile[20, 0] = 26;
-            teile[20, 1] = 50 + 160 + 130;
-            teile[21, 0] = 29;
-            teile[21, 1] = -110;
-            teile[22, 0] = 30;
-            teile[22, 1] = -20;
-            teile[23, 0] = 31;
-            teile[23, 1] = 70;
-            teile[24, 0] = 49;
-            teile[24, 1] = 60;
-            teile[25, 0] = 50;
-            teile[25, 1] = 70;
-            teile[26, 0] = 51;
-            teile[26, 1] = 80;
-            teile[27, 0] = 54;
-            teile[27, 1] = 160;
-            teile[28, 0] = 55;
-            teile[28, 1] = 170;
-            teile[29, 0] = 56;
-            teile[29, 1] = 180;
+            int periode = aktPeriode - 1; // Periode des xmls
+            int[,] teile = produktion; // Produktion
 
             // Methode zur Berechnung der Werte aufrufen
             int[] plaetze = calculate(periode, teile);
@@ -178,7 +191,7 @@ namespace IBSYS2
                 else if (Convert.ToInt32(kText.Text) > 7200) // Wenn mehr als 3 Schichten benoetigt werden
                 {
                     schicht = 3;
-                    this.Controls.Find("S" + s.ToString(), true)[0].ForeColor = Color.Red;
+                    this.Controls.Find("S" + s.ToString(), true)[0].BackColor = Color.Red;
                 }
                 this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
                 schichten[i] = schicht; // Startwert der Zeile Schichten speichern
@@ -417,8 +430,22 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl kaufteile = new Kaufteildisposition();
+            UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(kaufteile);
         }
 
@@ -427,7 +454,7 @@ namespace IBSYS2
             if (UP1.Text == "")
             {
                 UT1.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[0] = false;
             }
             else
@@ -451,14 +478,14 @@ namespace IBSYS2
                     correct[0] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP1.ForeColor = Color.Red;
                     UT1.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[0] = false;
                 }
             }
@@ -469,7 +496,7 @@ namespace IBSYS2
             if (UP2.Text == "")
             {
                 UT2.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[1] = false;
             }
             else
@@ -493,14 +520,14 @@ namespace IBSYS2
                     correct[1] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP2.ForeColor = Color.Red;
                     UT2.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[1] = false;
                 }
             }
@@ -511,7 +538,7 @@ namespace IBSYS2
             if (UP3.Text == "")
             {
                 UT3.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[2] = false;
             }
             else
@@ -535,14 +562,14 @@ namespace IBSYS2
                     correct[2] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP3.ForeColor = Color.Red;
                     UT3.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[2] = false;
                 }
             }
@@ -553,7 +580,7 @@ namespace IBSYS2
             if (UP4.Text == "")
             {
                 UT4.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[3] = false;
             }
             else
@@ -577,14 +604,14 @@ namespace IBSYS2
                     correct[3] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP4.ForeColor = Color.Red;
                     UT4.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[3] = false;
                 }
             }
@@ -595,7 +622,7 @@ namespace IBSYS2
             if (UP5.Text == "")
             {
                 UT5.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[4] = false;
             }
             else
@@ -619,14 +646,14 @@ namespace IBSYS2
                     correct[4] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP5.ForeColor = Color.Red;
                     UT5.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[4] = false;
                 }
             }
@@ -637,7 +664,7 @@ namespace IBSYS2
             if (UP6.Text == "")
             {
                 UT6.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[5] = false;
             }
             else
@@ -661,14 +688,14 @@ namespace IBSYS2
                     correct[5] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP6.ForeColor = Color.Red;
                     UT6.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[5] = false;
                 }
             }
@@ -679,7 +706,7 @@ namespace IBSYS2
             if (UP7.Text == "")
             {
                 UT7.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[6] = false;
             }
             else
@@ -703,14 +730,14 @@ namespace IBSYS2
                     correct[6] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP7.ForeColor = Color.Red;
                     UT7.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[6] = false;
                 }
             }
@@ -721,7 +748,7 @@ namespace IBSYS2
             if (UP8.Text == "")
             {
                 UT8.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[7] = false;
             }
             else
@@ -745,14 +772,14 @@ namespace IBSYS2
                     correct[7] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP8.ForeColor = Color.Red;
                     UT8.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[7] = false;
                 }
             }
@@ -763,7 +790,7 @@ namespace IBSYS2
             if (UP9.Text == "")
             {
                 UT9.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[8] = false;
             }
             else
@@ -787,14 +814,14 @@ namespace IBSYS2
                     correct[8] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP9.ForeColor = Color.Red;
                     UT9.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[8] = false;
                 }
             }
@@ -805,7 +832,7 @@ namespace IBSYS2
             if (UP10.Text == "")
             {
                 UT10.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[9] = false;
             }
             else
@@ -829,14 +856,14 @@ namespace IBSYS2
                     correct[9] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP10.ForeColor = Color.Red;
                     UT10.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[9] = false;
                 }
             }
@@ -847,7 +874,7 @@ namespace IBSYS2
             if (UP11.Text == "")
             {
                 UT11.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[10] = false;
             }
             else
@@ -871,14 +898,14 @@ namespace IBSYS2
                     correct[10] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP11.ForeColor = Color.Red;
                     UT11.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[10] = false;
                 }
             }
@@ -889,7 +916,7 @@ namespace IBSYS2
             if (UP12.Text == "")
             {
                 UT12.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[11] = false;
             }
             else
@@ -913,14 +940,14 @@ namespace IBSYS2
                     correct[11] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP12.ForeColor = Color.Red;
                     UT12.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[11] = false;
                 }
             }
@@ -931,7 +958,7 @@ namespace IBSYS2
             if (UP13.Text == "")
             {
                 UT13.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[12] = false;
             }
             else
@@ -955,14 +982,14 @@ namespace IBSYS2
                     correct[12] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP13.ForeColor = Color.Red;
                     UT13.Text = "";
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[12] = false;
                 }
             }
@@ -973,7 +1000,7 @@ namespace IBSYS2
             if (UP14.Text == "")
             {
                 UT14.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[13] = false;
             }
             else
@@ -997,14 +1024,14 @@ namespace IBSYS2
                     correct[13] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP14.ForeColor = Color.Red;
                     UT14.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[13] = false;
                 }
             }
@@ -1015,7 +1042,7 @@ namespace IBSYS2
             if (UP15.Text == "")
             {
                 UT15.Text = "";
-                continue_btn.Enabled = false;
+                setButtons(false);
                 correct[14] = false;
             }
             else
@@ -1039,14 +1066,14 @@ namespace IBSYS2
                     correct[14] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
                 else
                 {
                     UP15.ForeColor = Color.Red;
                     UT15.Text = ""; 
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[14] = false;
                 }
             }
@@ -1064,7 +1091,7 @@ namespace IBSYS2
                     correct[15] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S1.Text);
@@ -1082,7 +1109,7 @@ namespace IBSYS2
                 }
                 else if (S1.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[15] = false;
                 }
                 else
@@ -1099,7 +1126,7 @@ namespace IBSYS2
                     correct[15] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1117,7 +1144,7 @@ namespace IBSYS2
                     correct[16] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S2.Text);
@@ -1135,7 +1162,7 @@ namespace IBSYS2
                 }
                 else if (S2.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[16] = false;
                 }
                 else
@@ -1152,7 +1179,7 @@ namespace IBSYS2
                     correct[16] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1170,7 +1197,7 @@ namespace IBSYS2
                     correct[17] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S3.Text);
@@ -1188,7 +1215,7 @@ namespace IBSYS2
                 }
                 else if (S3.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[17] = false;
                 }
                 else
@@ -1205,7 +1232,7 @@ namespace IBSYS2
                     correct[17] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1223,7 +1250,7 @@ namespace IBSYS2
                     correct[18] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S4.Text);
@@ -1241,7 +1268,7 @@ namespace IBSYS2
                 }
                 else if (S4.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[18] = false;
                 }
                 else
@@ -1258,7 +1285,7 @@ namespace IBSYS2
                     correct[18] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1276,7 +1303,7 @@ namespace IBSYS2
                     correct[19] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S5.Text);
@@ -1294,7 +1321,7 @@ namespace IBSYS2
                 }
                 else if (S5.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[19] = false;
                 }
                 else
@@ -1311,7 +1338,7 @@ namespace IBSYS2
                     correct[19] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1329,7 +1356,7 @@ namespace IBSYS2
                     correct[20] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S6.Text);
@@ -1347,7 +1374,7 @@ namespace IBSYS2
                 }
                 else if (S6.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[20] = false;
                 }
                 else
@@ -1364,7 +1391,7 @@ namespace IBSYS2
                     correct[20] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1382,7 +1409,7 @@ namespace IBSYS2
                     correct[21] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S7.Text);
@@ -1400,7 +1427,7 @@ namespace IBSYS2
                 }
                 else if (S7.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[21] = false;
                 }
                 else
@@ -1417,7 +1444,7 @@ namespace IBSYS2
                     correct[21] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1435,7 +1462,7 @@ namespace IBSYS2
                     correct[22] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S8.Text);
@@ -1453,7 +1480,7 @@ namespace IBSYS2
                 }
                 else if (S8.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[22] = false;
                 }
                 else
@@ -1470,7 +1497,7 @@ namespace IBSYS2
                     correct[22] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1488,7 +1515,7 @@ namespace IBSYS2
                     correct[23] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S9.Text);
@@ -1506,7 +1533,7 @@ namespace IBSYS2
                 }
                 else if (S9.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[23] = false;
                 }
                 else
@@ -1523,7 +1550,7 @@ namespace IBSYS2
                     correct[23] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1541,7 +1568,7 @@ namespace IBSYS2
                     correct[24] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S10.Text);
@@ -1559,7 +1586,7 @@ namespace IBSYS2
                 }
                 else if (S10.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[24] = false;
                 }
                 else
@@ -1576,7 +1603,7 @@ namespace IBSYS2
                     correct[24] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1594,7 +1621,7 @@ namespace IBSYS2
                     correct[25] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S11.Text);
@@ -1612,7 +1639,7 @@ namespace IBSYS2
                 }
                 else if (S11.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[25] = false;
                 }
                 else
@@ -1629,7 +1656,7 @@ namespace IBSYS2
                     correct[25] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1647,7 +1674,7 @@ namespace IBSYS2
                     correct[26] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S12.Text);
@@ -1665,7 +1692,7 @@ namespace IBSYS2
                 }
                 else if (S12.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[26] = false;
                 }
                 else
@@ -1682,7 +1709,7 @@ namespace IBSYS2
                     correct[26] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1700,7 +1727,7 @@ namespace IBSYS2
                     correct[27] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S13.Text);
@@ -1718,7 +1745,7 @@ namespace IBSYS2
                 }
                 else if (S13.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[27] = false;
                 }
                 else
@@ -1735,7 +1762,7 @@ namespace IBSYS2
                     correct[27] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1753,7 +1780,7 @@ namespace IBSYS2
                     correct[28] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S14.Text);
@@ -1771,7 +1798,7 @@ namespace IBSYS2
                 }
                 else if (S14.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[28] = false;
                 }
                 else
@@ -1788,7 +1815,7 @@ namespace IBSYS2
                     correct[28] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1806,7 +1833,7 @@ namespace IBSYS2
                     correct[29] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                     // Wert der Zeile Ueberstd/Periode anpassen (loest autom. Aenderung der Zeile Ueberstd/Tag aus)
                     int neu = Convert.ToInt32(S15.Text);
@@ -1824,7 +1851,7 @@ namespace IBSYS2
                 }
                 else if (S15.Text == "")
                 {
-                    continue_btn.Enabled = false;
+                    setButtons(false);
                     correct[29] = false;
                 }
                 else
@@ -1841,7 +1868,7 @@ namespace IBSYS2
                     correct[29] = true;
                     if (!correct.Contains(false))
                     {
-                        continue_btn.Enabled = true;
+                        setButtons(true);
                     }
                 }
             }
@@ -1960,8 +1987,22 @@ namespace IBSYS2
 
         private void lbl_Kaufteiledisposition_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl kaufteile = new Kaufteildisposition();
+            UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(kaufteile);
         }
 

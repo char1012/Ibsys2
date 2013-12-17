@@ -21,6 +21,17 @@ namespace IBSYS2
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
 
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
         public ImportPrognose()
         {
             InitializeComponent();
@@ -53,6 +64,64 @@ namespace IBSYS2
             }
         }
 
+        // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
+        public ImportPrognose(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            InitializeComponent();
+            button2.Enabled = false;
+            continue_btn.Enabled = false;
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            {
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+            }
+            else
+            {
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                ToolTipEN.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+            }
+        }
 
         //--------------------------------
         ///// Mouse has entered one of the bar datapoints - set cursor to hand
@@ -79,6 +148,10 @@ namespace IBSYS2
             else
                 button2.Enabled = true;
             continue_btn.Enabled = false;
+
+            // int periode fuer Datenweitergabe fuellen
+            String[] strings = comboBox1.Text.Split((new Char [] {' '}));
+            aktPeriode = Convert.ToInt32(strings[1]);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,7 +159,7 @@ namespace IBSYS2
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktionsreihenfolge();
+            UserControl p = new Ergebnis();
             //p.Show();
             //ktdispo.ShowDialog();
             this.Controls.Clear();
@@ -306,63 +379,59 @@ namespace IBSYS2
                 }
                 if (dialogResult == DialogResult.Yes)
                 {
-                    // Uebergabe:
-                    // aktuelle Periode (Integer)
-                    // 12 Integer fuer die Auftraege
-                    // 3 Integer fuer Zusatzauftraege
-                    // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
-                    int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
-                    int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
-                    int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
-                    int aPP1 = Convert.ToInt32(tb_aktP1.Text);
-                    int aPP2 = Convert.ToInt32(textBox2.Text);
-                    int aPP3 = Convert.ToInt32(textBox3.Text);
-                    int p2P1 = Convert.ToInt32(textBox4.Text);
-                    int p2P2 = Convert.ToInt32(textBox5.Text);
-                    int p2P3 = Convert.ToInt32(textBox6.Text);
-                    int p3P1 = Convert.ToInt32(textBox7.Text);
-                    int p3P2 = Convert.ToInt32(textBox8.Text);
-                    int p3P3 = Convert.ToInt32(textBox9.Text);
-                    int p4P1 = Convert.ToInt32(textBox10.Text);
-                    int p4P2 = Convert.ToInt32(textBox11.Text);
-                    int p4P3 = Convert.ToInt32(textBox12.Text);
-                    int mengeP1 = zLAP1 + aPP1;
-                    int mengeP2 = zLAP2 + aPP2;
-                    int mengeP3 = zLAP3 + aPP3;
+                    // Datenweitergabe
+
+                    // auftraege fuellen
+                    auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                    auftraege[1] = Convert.ToInt32(textBox2.Text);
+                    auftraege[2] = Convert.ToInt32(textBox3.Text);
+                    auftraege[3] = Convert.ToInt32(textBox4.Text);
+                    auftraege[4] = Convert.ToInt32(textBox5.Text);
+                    auftraege[5] = Convert.ToInt32(textBox6.Text);
+                    auftraege[6] = Convert.ToInt32(textBox7.Text);
+                    auftraege[7] = Convert.ToInt32(textBox8.Text);
+                    auftraege[8] = Convert.ToInt32(textBox9.Text);
+                    auftraege[9] = Convert.ToInt32(textBox10.Text);
+                    auftraege[10] = Convert.ToInt32(textBox11.Text);
+                    auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+                    // direktverkaeufe fuellen
+                    direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
+                    direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
+                    direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
 
                     this.Controls.Clear();
-                    UserControl sicherheit = new Sicherheitsbestand();
+                    UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                     this.Controls.Add(sicherheit);
                 }
             }
             else
             {
-                // Uebergabe:
-                // aktuelle Periode (Integer)
-                // 12 Integer fuer die Auftraege
-                // 3 Integer fuer Zusatzauftraege
-                // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
-                int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
-                int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
-                int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
-                int aPP1 = Convert.ToInt32(tb_aktP1.Text);
-                int aPP2 = Convert.ToInt32(textBox2.Text);
-                int aPP3 = Convert.ToInt32(textBox3.Text);
-                int p2P1 = Convert.ToInt32(textBox4.Text);
-                int p2P2 = Convert.ToInt32(textBox5.Text);
-                int p2P3 = Convert.ToInt32(textBox6.Text);
-                int p3P1 = Convert.ToInt32(textBox7.Text);
-                int p3P2 = Convert.ToInt32(textBox8.Text);
-                int p3P3 = Convert.ToInt32(textBox9.Text);
-                int p4P1 = Convert.ToInt32(textBox10.Text);
-                int p4P2 = Convert.ToInt32(textBox11.Text);
-                int p4P3 = Convert.ToInt32(textBox12.Text);
-                int mengeP1 = zLAP1 + aPP1;
-                int mengeP2 = zLAP2 + aPP2;
-                int mengeP3 = zLAP3 + aPP3;
+                // Datenweitergabe
+
+                // auftraege fuellen
+                auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                auftraege[1] = Convert.ToInt32(textBox2.Text);
+                auftraege[2] = Convert.ToInt32(textBox3.Text);
+                auftraege[3] = Convert.ToInt32(textBox4.Text);
+                auftraege[4] = Convert.ToInt32(textBox5.Text);
+                auftraege[5] = Convert.ToInt32(textBox6.Text);
+                auftraege[6] = Convert.ToInt32(textBox7.Text);
+                auftraege[7] = Convert.ToInt32(textBox8.Text);
+                auftraege[8] = Convert.ToInt32(textBox9.Text);
+                auftraege[9] = Convert.ToInt32(textBox10.Text);
+                auftraege[10] = Convert.ToInt32(textBox11.Text);
+                auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+                // direktverkaeufe fuellen
+                direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
+                direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
+                direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
 
                 this.Controls.Clear();
-                UserControl sicherheit = new Sicherheitsbestand();
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, 
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                 this.Controls.Add(sicherheit);
             }
         }
@@ -1137,8 +1206,30 @@ namespace IBSYS2
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // auftraege fuellen
+            auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+            auftraege[1] = Convert.ToInt32(textBox2.Text);
+            auftraege[2] = Convert.ToInt32(textBox3.Text);
+            auftraege[3] = Convert.ToInt32(textBox4.Text);
+            auftraege[4] = Convert.ToInt32(textBox5.Text);
+            auftraege[5] = Convert.ToInt32(textBox6.Text);
+            auftraege[6] = Convert.ToInt32(textBox7.Text);
+            auftraege[7] = Convert.ToInt32(textBox8.Text);
+            auftraege[8] = Convert.ToInt32(textBox9.Text);
+            auftraege[9] = Convert.ToInt32(textBox10.Text);
+            auftraege[10] = Convert.ToInt32(textBox11.Text);
+            auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+            // direktverkaeufe fuellen
+            direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
+            direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
+            direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(sicherheit);
         }
 

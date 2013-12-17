@@ -62,8 +62,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Visiblox.Charts">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Visiblox\Visiblox Charts v4.0.7\Ultimate\Wpf\3.5\Visiblox.Charts.dll</HintPath>
+    <Reference Include="Visiblox.Charts, Version=4.0.7.108, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Visiblox\Visiblox Charts v4.0.7\Ultimate\Wpf\3.5\Visiblox.Charts.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

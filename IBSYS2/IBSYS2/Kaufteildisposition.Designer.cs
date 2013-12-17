@@ -34,16 +34,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -53,12 +58,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.lbl_menge1 = new System.Windows.Forms.Label();
+            this.labelMM1 = new System.Windows.Forms.Label();
             this.M1 = new System.Windows.Forms.TextBox();
             this.M2 = new System.Windows.Forms.TextBox();
             this.M3 = new System.Windows.Forms.TextBox();
@@ -125,10 +125,10 @@
             this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
             this.lbl_Startseite = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
+            this.labelBA3 = new System.Windows.Forms.Label();
+            this.labelBM3 = new System.Windows.Forms.Label();
+            this.labelOP3 = new System.Windows.Forms.Label();
+            this.labelMM3 = new System.Windows.Forms.Label();
             this.BM29 = new System.Windows.Forms.TextBox();
             this.BM28 = new System.Windows.Forms.TextBox();
             this.BM27 = new System.Windows.Forms.TextBox();
@@ -147,7 +147,7 @@
             this.O23 = new System.Windows.Forms.TextBox();
             this.O22 = new System.Windows.Forms.TextBox();
             this.O21 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
+            this.labelDiskont3 = new System.Windows.Forms.Label();
             this.D29 = new System.Windows.Forms.TextBox();
             this.D28 = new System.Windows.Forms.TextBox();
             this.D27 = new System.Windows.Forms.TextBox();
@@ -157,7 +157,7 @@
             this.D23 = new System.Windows.Forms.TextBox();
             this.D22 = new System.Windows.Forms.TextBox();
             this.D21 = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
+            this.labelBA2 = new System.Windows.Forms.Label();
             this.BM20 = new System.Windows.Forms.TextBox();
             this.BM19 = new System.Windows.Forms.TextBox();
             this.BM18 = new System.Windows.Forms.TextBox();
@@ -168,8 +168,8 @@
             this.BM13 = new System.Windows.Forms.TextBox();
             this.BM12 = new System.Windows.Forms.TextBox();
             this.BM11 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.labelBM2 = new System.Windows.Forms.Label();
+            this.labelOP2 = new System.Windows.Forms.Label();
             this.O20 = new System.Windows.Forms.TextBox();
             this.O19 = new System.Windows.Forms.TextBox();
             this.O18 = new System.Windows.Forms.TextBox();
@@ -180,8 +180,8 @@
             this.O13 = new System.Windows.Forms.TextBox();
             this.O12 = new System.Windows.Forms.TextBox();
             this.O11 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.labelMM2 = new System.Windows.Forms.Label();
+            this.labelDiskont2 = new System.Windows.Forms.Label();
             this.D20 = new System.Windows.Forms.TextBox();
             this.D19 = new System.Windows.Forms.TextBox();
             this.D18 = new System.Windows.Forms.TextBox();
@@ -192,7 +192,7 @@
             this.D13 = new System.Windows.Forms.TextBox();
             this.D12 = new System.Windows.Forms.TextBox();
             this.D11 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelBA1 = new System.Windows.Forms.Label();
             this.BM10 = new System.Windows.Forms.TextBox();
             this.BM9 = new System.Windows.Forms.TextBox();
             this.BM8 = new System.Windows.Forms.TextBox();
@@ -203,8 +203,8 @@
             this.BM3 = new System.Windows.Forms.TextBox();
             this.BM2 = new System.Windows.Forms.TextBox();
             this.BM1 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelBM1 = new System.Windows.Forms.Label();
+            this.labelOP1 = new System.Windows.Forms.Label();
             this.O10 = new System.Windows.Forms.TextBox();
             this.O9 = new System.Windows.Forms.TextBox();
             this.O8 = new System.Windows.Forms.TextBox();
@@ -215,7 +215,7 @@
             this.O3 = new System.Windows.Forms.TextBox();
             this.O2 = new System.Windows.Forms.TextBox();
             this.O1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelDiskont1 = new System.Windows.Forms.Label();
             this.D10 = new System.Windows.Forms.TextBox();
             this.D9 = new System.Windows.Forms.TextBox();
             this.D8 = new System.Windows.Forms.TextBox();
@@ -289,255 +289,255 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "25";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(11, 188);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(19, 14);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "27";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(11, 188);
+            this.label7.Location = new System.Drawing.Point(12, 213);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(19, 14);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "27";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 213);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(19, 14);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "28";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(269, 136);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(19, 14);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "38";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(269, 161);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(19, 14);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "39";
+            this.label7.TabIndex = 8;
+            this.label7.Text = "28";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(12, 239);
+            this.label14.Location = new System.Drawing.Point(269, 136);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(19, 14);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "32";
+            this.label14.TabIndex = 10;
+            this.label14.Text = "38";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(12, 265);
+            this.label15.Location = new System.Drawing.Point(269, 161);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(19, 14);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "33";
+            this.label15.TabIndex = 11;
+            this.label15.Text = "39";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 239);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(19, 14);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "32";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 265);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(19, 14);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "33";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(11, 291);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 14);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "34";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(269, 58);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(19, 14);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "35";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(269, 84);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(19, 14);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "36";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(269, 110);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(19, 14);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "37";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(11, 291);
+            this.label16.Location = new System.Drawing.Point(269, 186);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(19, 14);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "34";
+            this.label16.TabIndex = 21;
+            this.label16.Text = "40";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(269, 58);
+            this.label17.Location = new System.Drawing.Point(269, 210);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(19, 14);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "35";
+            this.label17.TabIndex = 22;
+            this.label17.Text = "41";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(269, 84);
+            this.label18.Location = new System.Drawing.Point(269, 239);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(19, 14);
-            this.label18.TabIndex = 18;
-            this.label18.Text = "36";
+            this.label18.TabIndex = 23;
+            this.label18.Text = "42";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(269, 110);
+            this.label19.Location = new System.Drawing.Point(269, 265);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(19, 14);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "37";
+            this.label19.TabIndex = 24;
+            this.label19.Text = "43";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(269, 291);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(19, 14);
+            this.label20.TabIndex = 25;
+            this.label20.Text = "44";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(269, 186);
+            this.label21.Location = new System.Drawing.Point(529, 57);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(19, 14);
-            this.label21.TabIndex = 21;
-            this.label21.Text = "40";
+            this.label21.TabIndex = 26;
+            this.label21.Text = "45";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(269, 210);
+            this.label22.Location = new System.Drawing.Point(529, 83);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(19, 14);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "41";
+            this.label22.TabIndex = 27;
+            this.label22.Text = "46";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(269, 239);
+            this.label23.Location = new System.Drawing.Point(529, 109);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(19, 14);
-            this.label23.TabIndex = 23;
-            this.label23.Text = "42";
+            this.label23.TabIndex = 28;
+            this.label23.Text = "47";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(269, 265);
+            this.label24.Location = new System.Drawing.Point(529, 134);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(19, 14);
-            this.label24.TabIndex = 24;
-            this.label24.Text = "43";
+            this.label24.TabIndex = 29;
+            this.label24.Text = "48";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(269, 291);
+            this.label25.Location = new System.Drawing.Point(529, 160);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(19, 14);
-            this.label25.TabIndex = 25;
-            this.label25.Text = "44";
+            this.label25.TabIndex = 33;
+            this.label25.Text = "52";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(529, 57);
+            this.label26.Location = new System.Drawing.Point(529, 187);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(19, 14);
-            this.label26.TabIndex = 26;
-            this.label26.Text = "45";
+            this.label26.TabIndex = 34;
+            this.label26.Text = "53";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(529, 83);
+            this.label27.Location = new System.Drawing.Point(529, 212);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(19, 14);
-            this.label27.TabIndex = 27;
-            this.label27.Text = "46";
+            this.label27.TabIndex = 38;
+            this.label27.Text = "57";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(529, 109);
+            this.label28.Location = new System.Drawing.Point(529, 238);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(19, 14);
-            this.label28.TabIndex = 28;
-            this.label28.Text = "47";
+            this.label28.TabIndex = 39;
+            this.label28.Text = "58";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(529, 134);
+            this.label29.Location = new System.Drawing.Point(529, 264);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(19, 14);
-            this.label29.TabIndex = 29;
-            this.label29.Text = "48";
+            this.label29.TabIndex = 40;
+            this.label29.Text = "59";
             // 
-            // label33
+            // labelMM1
             // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(529, 160);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(19, 14);
-            this.label33.TabIndex = 33;
-            this.label33.Text = "52";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(529, 187);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(19, 14);
-            this.label34.TabIndex = 34;
-            this.label34.Text = "53";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(529, 212);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(19, 14);
-            this.label38.TabIndex = 38;
-            this.label38.Text = "57";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(529, 238);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(19, 14);
-            this.label39.TabIndex = 39;
-            this.label39.Text = "58";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(529, 264);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(19, 14);
-            this.label40.TabIndex = 40;
-            this.label40.Text = "59";
-            // 
-            // lbl_menge1
-            // 
-            this.lbl_menge1.AutoSize = true;
-            this.lbl_menge1.Font = new System.Drawing.Font("Calibri", 6F);
-            this.lbl_menge1.Location = new System.Drawing.Point(71, 36);
-            this.lbl_menge1.Name = "lbl_menge1";
-            this.lbl_menge1.Size = new System.Drawing.Size(45, 10);
-            this.lbl_menge1.TabIndex = 41;
-            this.lbl_menge1.Text = "Min. Menge";
+            this.labelMM1.AutoSize = true;
+            this.labelMM1.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelMM1.Location = new System.Drawing.Point(71, 36);
+            this.labelMM1.Name = "labelMM1";
+            this.labelMM1.Size = new System.Drawing.Size(45, 10);
+            this.labelMM1.TabIndex = 41;
+            this.labelMM1.Text = "Min. Menge";
             // 
             // M1
             // 
@@ -1122,10 +1122,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label37);
-            this.groupBox1.Controls.Add(this.label41);
-            this.groupBox1.Controls.Add(this.label42);
-            this.groupBox1.Controls.Add(this.label43);
+            this.groupBox1.Controls.Add(this.labelBA3);
+            this.groupBox1.Controls.Add(this.labelBM3);
+            this.groupBox1.Controls.Add(this.labelOP3);
+            this.groupBox1.Controls.Add(this.labelMM3);
             this.groupBox1.Controls.Add(this.BM29);
             this.groupBox1.Controls.Add(this.BM28);
             this.groupBox1.Controls.Add(this.BM27);
@@ -1144,7 +1144,7 @@
             this.groupBox1.Controls.Add(this.O23);
             this.groupBox1.Controls.Add(this.O22);
             this.groupBox1.Controls.Add(this.O21);
-            this.groupBox1.Controls.Add(this.label36);
+            this.groupBox1.Controls.Add(this.labelDiskont3);
             this.groupBox1.Controls.Add(this.D29);
             this.groupBox1.Controls.Add(this.D28);
             this.groupBox1.Controls.Add(this.D27);
@@ -1154,7 +1154,7 @@
             this.groupBox1.Controls.Add(this.D23);
             this.groupBox1.Controls.Add(this.D22);
             this.groupBox1.Controls.Add(this.D21);
-            this.groupBox1.Controls.Add(this.label35);
+            this.groupBox1.Controls.Add(this.labelBA2);
             this.groupBox1.Controls.Add(this.BM20);
             this.groupBox1.Controls.Add(this.BM19);
             this.groupBox1.Controls.Add(this.BM18);
@@ -1165,8 +1165,8 @@
             this.groupBox1.Controls.Add(this.BM13);
             this.groupBox1.Controls.Add(this.BM12);
             this.groupBox1.Controls.Add(this.BM11);
-            this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.labelBM2);
+            this.groupBox1.Controls.Add(this.labelOP2);
             this.groupBox1.Controls.Add(this.O20);
             this.groupBox1.Controls.Add(this.O19);
             this.groupBox1.Controls.Add(this.O18);
@@ -1177,8 +1177,8 @@
             this.groupBox1.Controls.Add(this.O13);
             this.groupBox1.Controls.Add(this.O12);
             this.groupBox1.Controls.Add(this.O11);
-            this.groupBox1.Controls.Add(this.label30);
-            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.labelMM2);
+            this.groupBox1.Controls.Add(this.labelDiskont2);
             this.groupBox1.Controls.Add(this.D20);
             this.groupBox1.Controls.Add(this.D19);
             this.groupBox1.Controls.Add(this.D18);
@@ -1189,7 +1189,7 @@
             this.groupBox1.Controls.Add(this.D13);
             this.groupBox1.Controls.Add(this.D12);
             this.groupBox1.Controls.Add(this.D11);
-            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.labelBA1);
             this.groupBox1.Controls.Add(this.BM10);
             this.groupBox1.Controls.Add(this.BM9);
             this.groupBox1.Controls.Add(this.BM8);
@@ -1200,8 +1200,8 @@
             this.groupBox1.Controls.Add(this.BM3);
             this.groupBox1.Controls.Add(this.BM2);
             this.groupBox1.Controls.Add(this.BM1);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.labelBM1);
+            this.groupBox1.Controls.Add(this.labelOP1);
             this.groupBox1.Controls.Add(this.O10);
             this.groupBox1.Controls.Add(this.O9);
             this.groupBox1.Controls.Add(this.O8);
@@ -1212,7 +1212,7 @@
             this.groupBox1.Controls.Add(this.O3);
             this.groupBox1.Controls.Add(this.O2);
             this.groupBox1.Controls.Add(this.O1);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.labelDiskont1);
             this.groupBox1.Controls.Add(this.D10);
             this.groupBox1.Controls.Add(this.D9);
             this.groupBox1.Controls.Add(this.D8);
@@ -1235,9 +1235,9 @@
             this.groupBox1.Controls.Add(this.M27);
             this.groupBox1.Controls.Add(this.M26);
             this.groupBox1.Controls.Add(this.M25);
-            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.B24);
-            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.M24);
             this.groupBox1.Controls.Add(this.B23);
             this.groupBox1.Controls.Add(this.B17);
@@ -1247,31 +1247,31 @@
             this.groupBox1.Controls.Add(this.M16);
             this.groupBox1.Controls.Add(this.B1);
             this.groupBox1.Controls.Add(this.B2);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.B3);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.B4);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.B5);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.B6);
-            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.B3);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.B4);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.B5);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.B6);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.B7);
             this.groupBox1.Controls.Add(this.B8);
             this.groupBox1.Controls.Add(this.B9);
             this.groupBox1.Controls.Add(this.B10);
             this.groupBox1.Controls.Add(this.B11);
-            this.groupBox1.Controls.Add(this.lbl_menge1);
+            this.groupBox1.Controls.Add(this.labelMM1);
             this.groupBox1.Controls.Add(this.M1);
             this.groupBox1.Controls.Add(this.M2);
             this.groupBox1.Controls.Add(this.M3);
@@ -1299,19 +1299,19 @@
             this.groupBox1.Controls.Add(this.M18);
             this.groupBox1.Controls.Add(this.M17);
             this.groupBox1.Controls.Add(this.M13);
-            this.groupBox1.Controls.Add(this.label40);
-            this.groupBox1.Controls.Add(this.label39);
-            this.groupBox1.Controls.Add(this.M14);
-            this.groupBox1.Controls.Add(this.label38);
-            this.groupBox1.Controls.Add(this.label34);
-            this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.label28);
+            this.groupBox1.Controls.Add(this.M14);
             this.groupBox1.Controls.Add(this.label27);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(61, 138);
             this.groupBox1.Name = "groupBox1";
@@ -1320,45 +1320,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kaufteildisposition";
             // 
-            // label37
+            // labelBA3
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label37.Location = new System.Drawing.Point(730, 33);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(37, 10);
-            this.label37.TabIndex = 241;
-            this.label37.Text = "Bestellart";
+            this.labelBA3.AutoSize = true;
+            this.labelBA3.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBA3.Location = new System.Drawing.Point(730, 33);
+            this.labelBA3.Name = "labelBA3";
+            this.labelBA3.Size = new System.Drawing.Size(37, 10);
+            this.labelBA3.TabIndex = 241;
+            this.labelBA3.Text = "Bestellart";
             // 
-            // label41
+            // labelBM3
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label41.Location = new System.Drawing.Point(678, 33);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(49, 10);
-            this.label41.TabIndex = 240;
-            this.label41.Text = "Bestellmenge";
+            this.labelBM3.AutoSize = true;
+            this.labelBM3.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBM3.Location = new System.Drawing.Point(678, 33);
+            this.labelBM3.Name = "labelBM3";
+            this.labelBM3.Size = new System.Drawing.Size(49, 10);
+            this.labelBM3.TabIndex = 240;
+            this.labelBM3.Text = "Bestellmenge";
             // 
-            // label42
+            // labelOP3
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label42.Location = new System.Drawing.Point(636, 33);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(44, 10);
-            this.label42.TabIndex = 239;
-            this.label42.Text = "Opt. Menge";
+            this.labelOP3.AutoSize = true;
+            this.labelOP3.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelOP3.Location = new System.Drawing.Point(636, 33);
+            this.labelOP3.Name = "labelOP3";
+            this.labelOP3.Size = new System.Drawing.Size(44, 10);
+            this.labelOP3.TabIndex = 239;
+            this.labelOP3.Text = "Opt. Menge";
             // 
-            // label43
+            // labelMM3
             // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label43.Location = new System.Drawing.Point(593, 33);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(45, 10);
-            this.label43.TabIndex = 238;
-            this.label43.Text = "Min. Menge";
+            this.labelMM3.AutoSize = true;
+            this.labelMM3.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelMM3.Location = new System.Drawing.Point(593, 33);
+            this.labelMM3.Name = "labelMM3";
+            this.labelMM3.Size = new System.Drawing.Size(45, 10);
+            this.labelMM3.TabIndex = 238;
+            this.labelMM3.Text = "Min. Menge";
             // 
             // BM29
             // 
@@ -1513,15 +1513,15 @@
             this.O21.Size = new System.Drawing.Size(40, 22);
             this.O21.TabIndex = 218;
             // 
-            // label36
+            // labelDiskont3
             // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label36.Location = new System.Drawing.Point(556, 33);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(30, 10);
-            this.label36.TabIndex = 217;
-            this.label36.Text = "Diskont";
+            this.labelDiskont3.AutoSize = true;
+            this.labelDiskont3.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelDiskont3.Location = new System.Drawing.Point(556, 33);
+            this.labelDiskont3.Name = "labelDiskont3";
+            this.labelDiskont3.Size = new System.Drawing.Size(30, 10);
+            this.labelDiskont3.TabIndex = 217;
+            this.labelDiskont3.Text = "Diskont";
             // 
             // D29
             // 
@@ -1604,15 +1604,15 @@
             this.D21.Size = new System.Drawing.Size(40, 22);
             this.D21.TabIndex = 207;
             // 
-            // label35
+            // labelBA2
             // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label35.Location = new System.Drawing.Point(463, 34);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(37, 10);
-            this.label35.TabIndex = 206;
-            this.label35.Text = "Bestellart";
+            this.labelBA2.AutoSize = true;
+            this.labelBA2.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBA2.Location = new System.Drawing.Point(463, 34);
+            this.labelBA2.Name = "labelBA2";
+            this.labelBA2.Size = new System.Drawing.Size(37, 10);
+            this.labelBA2.TabIndex = 206;
+            this.labelBA2.Text = "Bestellart";
             // 
             // BM20
             // 
@@ -1694,25 +1694,25 @@
             this.BM11.Size = new System.Drawing.Size(40, 22);
             this.BM11.TabIndex = 196;
             // 
-            // label32
+            // labelBM2
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label32.Location = new System.Drawing.Point(411, 34);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(49, 10);
-            this.label32.TabIndex = 195;
-            this.label32.Text = "Bestellmenge";
+            this.labelBM2.AutoSize = true;
+            this.labelBM2.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBM2.Location = new System.Drawing.Point(411, 34);
+            this.labelBM2.Name = "labelBM2";
+            this.labelBM2.Size = new System.Drawing.Size(49, 10);
+            this.labelBM2.TabIndex = 195;
+            this.labelBM2.Text = "Bestellmenge";
             // 
-            // label31
+            // labelOP2
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label31.Location = new System.Drawing.Point(369, 34);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 10);
-            this.label31.TabIndex = 194;
-            this.label31.Text = "Opt. Menge";
+            this.labelOP2.AutoSize = true;
+            this.labelOP2.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelOP2.Location = new System.Drawing.Point(369, 34);
+            this.labelOP2.Name = "labelOP2";
+            this.labelOP2.Size = new System.Drawing.Size(44, 10);
+            this.labelOP2.TabIndex = 194;
+            this.labelOP2.Text = "Opt. Menge";
             // 
             // O20
             // 
@@ -1804,25 +1804,25 @@
             this.O11.Size = new System.Drawing.Size(40, 22);
             this.O11.TabIndex = 184;
             // 
-            // label30
+            // labelMM2
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label30.Location = new System.Drawing.Point(326, 34);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(45, 10);
-            this.label30.TabIndex = 183;
-            this.label30.Text = "Min. Menge";
+            this.labelMM2.AutoSize = true;
+            this.labelMM2.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelMM2.Location = new System.Drawing.Point(326, 34);
+            this.labelMM2.Name = "labelMM2";
+            this.labelMM2.Size = new System.Drawing.Size(45, 10);
+            this.labelMM2.TabIndex = 183;
+            this.labelMM2.Text = "Min. Menge";
             // 
-            // label20
+            // labelDiskont2
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label20.Location = new System.Drawing.Point(291, 34);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(30, 10);
-            this.label20.TabIndex = 182;
-            this.label20.Text = "Diskont";
+            this.labelDiskont2.AutoSize = true;
+            this.labelDiskont2.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelDiskont2.Location = new System.Drawing.Point(291, 34);
+            this.labelDiskont2.Name = "labelDiskont2";
+            this.labelDiskont2.Size = new System.Drawing.Size(30, 10);
+            this.labelDiskont2.TabIndex = 182;
+            this.labelDiskont2.Text = "Diskont";
             // 
             // D20
             // 
@@ -1914,15 +1914,15 @@
             this.D11.Size = new System.Drawing.Size(40, 22);
             this.D11.TabIndex = 172;
             // 
-            // label13
+            // labelBA1
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label13.Location = new System.Drawing.Point(208, 36);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 10);
-            this.label13.TabIndex = 171;
-            this.label13.Text = "Bestellart";
+            this.labelBA1.AutoSize = true;
+            this.labelBA1.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBA1.Location = new System.Drawing.Point(208, 36);
+            this.labelBA1.Name = "labelBA1";
+            this.labelBA1.Size = new System.Drawing.Size(37, 10);
+            this.labelBA1.TabIndex = 171;
+            this.labelBA1.Text = "Bestellart";
             // 
             // BM10
             // 
@@ -2004,25 +2004,25 @@
             this.BM1.Size = new System.Drawing.Size(40, 22);
             this.BM1.TabIndex = 161;
             // 
-            // label12
+            // labelBM1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label12.Location = new System.Drawing.Point(157, 36);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 10);
-            this.label12.TabIndex = 160;
-            this.label12.Text = "Bestellmenge";
+            this.labelBM1.AutoSize = true;
+            this.labelBM1.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelBM1.Location = new System.Drawing.Point(157, 36);
+            this.labelBM1.Name = "labelBM1";
+            this.labelBM1.Size = new System.Drawing.Size(49, 10);
+            this.labelBM1.TabIndex = 160;
+            this.labelBM1.Text = "Bestellmenge";
             // 
-            // label9
+            // labelOP1
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label9.Location = new System.Drawing.Point(115, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 10);
-            this.label9.TabIndex = 159;
-            this.label9.Text = "Opt. Menge";
+            this.labelOP1.AutoSize = true;
+            this.labelOP1.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelOP1.Location = new System.Drawing.Point(115, 36);
+            this.labelOP1.Name = "labelOP1";
+            this.labelOP1.Size = new System.Drawing.Size(44, 10);
+            this.labelOP1.TabIndex = 159;
+            this.labelOP1.Text = "Opt. Menge";
             // 
             // O10
             // 
@@ -2114,15 +2114,15 @@
             this.O1.Size = new System.Drawing.Size(40, 22);
             this.O1.TabIndex = 149;
             // 
-            // label6
+            // labelDiskont1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 6F);
-            this.label6.Location = new System.Drawing.Point(35, 36);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 10);
-            this.label6.TabIndex = 148;
-            this.label6.Text = "Diskont";
+            this.labelDiskont1.AutoSize = true;
+            this.labelDiskont1.Font = new System.Drawing.Font("Calibri", 6F);
+            this.labelDiskont1.Location = new System.Drawing.Point(35, 36);
+            this.labelDiskont1.Name = "labelDiskont1";
+            this.labelDiskont1.Size = new System.Drawing.Size(30, 10);
+            this.labelDiskont1.TabIndex = 148;
+            this.labelDiskont1.Text = "Diskont";
             // 
             // D10
             // 
@@ -2320,16 +2320,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
@@ -2339,12 +2344,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label lbl_menge1;
+        private System.Windows.Forms.Label labelMM1;
         private System.Windows.Forms.TextBox M1;
         private System.Windows.Forms.TextBox M2;
         private System.Windows.Forms.TextBox M3;
@@ -2417,7 +2417,7 @@
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelBA1;
         private System.Windows.Forms.TextBox BM10;
         private System.Windows.Forms.TextBox BM9;
         private System.Windows.Forms.TextBox BM8;
@@ -2428,8 +2428,8 @@
         private System.Windows.Forms.TextBox BM3;
         private System.Windows.Forms.TextBox BM2;
         private System.Windows.Forms.TextBox BM1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelBM1;
+        private System.Windows.Forms.Label labelOP1;
         private System.Windows.Forms.TextBox O10;
         private System.Windows.Forms.TextBox O9;
         private System.Windows.Forms.TextBox O8;
@@ -2440,7 +2440,7 @@
         private System.Windows.Forms.TextBox O3;
         private System.Windows.Forms.TextBox O2;
         private System.Windows.Forms.TextBox O1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelDiskont1;
         private System.Windows.Forms.TextBox D10;
         private System.Windows.Forms.TextBox D9;
         private System.Windows.Forms.TextBox D8;
@@ -2451,7 +2451,7 @@
         private System.Windows.Forms.TextBox D3;
         private System.Windows.Forms.TextBox D2;
         private System.Windows.Forms.TextBox D1;
-        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label labelBA2;
         private System.Windows.Forms.TextBox BM20;
         private System.Windows.Forms.TextBox BM19;
         private System.Windows.Forms.TextBox BM18;
@@ -2462,8 +2462,8 @@
         private System.Windows.Forms.TextBox BM13;
         private System.Windows.Forms.TextBox BM12;
         private System.Windows.Forms.TextBox BM11;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label labelBM2;
+        private System.Windows.Forms.Label labelOP2;
         private System.Windows.Forms.TextBox O20;
         private System.Windows.Forms.TextBox O19;
         private System.Windows.Forms.TextBox O18;
@@ -2474,8 +2474,8 @@
         private System.Windows.Forms.TextBox O13;
         private System.Windows.Forms.TextBox O12;
         private System.Windows.Forms.TextBox O11;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label labelMM2;
+        private System.Windows.Forms.Label labelDiskont2;
         private System.Windows.Forms.TextBox D20;
         private System.Windows.Forms.TextBox D19;
         private System.Windows.Forms.TextBox D18;
@@ -2486,10 +2486,10 @@
         private System.Windows.Forms.TextBox D13;
         private System.Windows.Forms.TextBox D12;
         private System.Windows.Forms.TextBox D11;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label labelBA3;
+        private System.Windows.Forms.Label labelBM3;
+        private System.Windows.Forms.Label labelOP3;
+        private System.Windows.Forms.Label labelMM3;
         private System.Windows.Forms.TextBox BM29;
         private System.Windows.Forms.TextBox BM28;
         private System.Windows.Forms.TextBox BM27;
@@ -2508,7 +2508,7 @@
         private System.Windows.Forms.TextBox O23;
         private System.Windows.Forms.TextBox O22;
         private System.Windows.Forms.TextBox O21;
-        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label labelDiskont3;
         private System.Windows.Forms.TextBox D29;
         private System.Windows.Forms.TextBox D28;
         private System.Windows.Forms.TextBox D27;

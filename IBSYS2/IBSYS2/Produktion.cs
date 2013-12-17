@@ -15,16 +15,29 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        //TO DO Periode wird später aus Import geholt
-        int periode = 6;
 
-        // TO DO Listen für Sicherheitsbestand von ETeilen
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        int[] direktverkaeufe = new int[3];
+        int[,] sicherheitsbest = new int[30, 2];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[14, 5];
+        int[,] kaufauftraege = new int[29, 6];
+        
+        int periode;
+
         List<int> sicherheitsbe = new List<int>();
 
         List<int> lagerbestand = new List<int>();
         List<int> bearbeitung = new List<int>();
         List<int> wartelisteAr = new List<int>();
         List<int> wartelisteMa = new List<int>();
+
+        // Array fuer berechnete Produktionsmengen
+        int[,] berProduktion = new int[30, 2];
 
         public Produktion()
         {
@@ -35,9 +48,10 @@ namespace IBSYS2
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
-            // TO DO Sicherheitsbestand von ETeilen
-            sicherheitsbe.AddRange(new int[] { 20, 10, 30,15,15,10,25,19,25,16,20,
-                20,10,30,15,15,10,25,19,25,16,20,20,10,30,15,15,10,25,19,25,16,20});
+            for (int i = 3; i < sicherheitsbest.GetLength(0); i++) // bei 3 anfangen, weil dort die E-Teile anfangen
+            {
+                sicherheitsbe.Add(sicherheitsbest[i, 1]);
+            }
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
@@ -51,6 +65,74 @@ namespace IBSYS2
                 ToolTipDE.RemoveAll();
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
             }
+
+            berechneProduktion();
+        }
+
+        public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            // var UserControl kapa= new Kapazitaetsplan();
+            InitializeComponent();
+            continue_btn.Enabled = false;
+
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+
+            for (int i = 3; i < sicherheitsbest.GetLength(0); i++) // bei 3 anfangen, weil dort die E-Teile anfangen
+            {
+                sicherheitsbe.Add(sicherheitsbest[i, 1]);
+            }
+
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            {
+                ToolTipEN.RemoveAll();
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
+            }
+            else
+            {
+                ToolTipDE.RemoveAll();
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
+            }
+
+            // aktPeriode = aktuelle Periode, periode = Periode aus XML (letzte Periode)
+            periode = aktPeriode - 1;
 
             berechneProduktion();
         }
@@ -83,16 +165,14 @@ namespace IBSYS2
         private void berechneProduktion()
         {
             //für aktuelle Periode
-            // TO DO Eingabe Aufträge zukünftig aus ImportPrognose
-            double p1 = 100;
-            double p2 = 100;
-            double p3 = 100;
+            double p1 = auftraege[0] + direktverkaeufe[0];
+            double p2 = auftraege[1] + direktverkaeufe[1];
+            double p3 = auftraege[2] + direktverkaeufe[2];
 
             //+ eingabe Sicherheitsbestand 
-            // TO DO Zukünftig aus Sicherheitsbestand
-            double sp1 = 50;
-            double sp2 = 50;
-            double sp3 = 50;
+            double sp1 = sicherheitsbest[0, 1];
+            double sp2 = sicherheitsbest[1, 1];
+            double sp3 = sicherheitsbest[2, 1];
 
             //- Lagerbestand Vorperiode 
             int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
@@ -116,6 +196,7 @@ namespace IBSYS2
             string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
             string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
             string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
+            
             if (prod1.StartsWith("-"))
             {
                 textBox1.Text = "0";
@@ -141,17 +222,18 @@ namespace IBSYS2
                 textBox3.Text = prod3;
             }
 
+            // TODO alle Produktionsmengen berechnen und berProduktion befuellen
+
             #region Produktion der Prognosen
-            // TO DO Daten aus Import verwenden, dies sind nur Testdaten
-            double prognose1p1 = 200;
-            double prognose1p2 = 250;
-            double prognose1p3 = 100;
-            double prognose2p1 = 150;
-            double prognose2p2 = 100;
-            double prognose2p3 = 300;
-            double prognose3p1 = 250;
-            double prognose3p2 = 150;
-            double prognose3p3 = 300;
+            double prognose1p1 = auftraege[3];
+            double prognose1p2 = auftraege[4];
+            double prognose1p3 = auftraege[5];
+            double prognose2p1 = auftraege[6];
+            double prognose2p2 = auftraege[7];
+            double prognose2p3 = auftraege[8];
+            double prognose3p1 = auftraege[9];
+            double prognose3p2 = auftraege[10];
+            double prognose3p3 = auftraege[11];
 
             string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
             if (prognosep1.StartsWith("-"))
@@ -603,8 +685,96 @@ namespace IBSYS2
 
                     if (result == DialogResult.Yes)
                     {
+                        // Datenweitergabe
+
+                        produktion = berProduktion; // alle Produktionsmengen
+                        // wegen fehlender E-Teile, simulieren:
+                        // dieser Teil kommt also spaeter weg
+                        produktion[0, 0] = 1;
+                        produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                        produktion[1, 0] = 2;
+                        produktion[1, 1] = 190;
+                        produktion[2, 0] = 3;
+                        produktion[2, 1] = 160;
+                        produktion[3, 0] = 4;
+                        produktion[3, 1] = 60;
+                        produktion[4, 0] = 5;
+                        produktion[4, 1] = 160;
+                        produktion[5, 0] = 6;
+                        produktion[5, 1] = 0;
+                        produktion[6, 0] = 7;
+                        produktion[6, 1] = 50;
+                        produktion[7, 0] = 8;
+                        produktion[7, 1] = 150;
+                        produktion[8, 0] = 9;
+                        produktion[8, 1] = 0;
+                        produktion[9, 0] = 10;
+                        produktion[9, 1] = 60;
+                        produktion[10, 0] = 11;
+                        produktion[10, 1] = 160;
+                        produktion[11, 0] = 12;
+                        produktion[11, 1] = 0;
+                        produktion[12, 0] = 13;
+                        produktion[12, 1] = 50;
+                        produktion[13, 0] = 14;
+                        produktion[13, 1] = 150;
+                        produktion[14, 0] = 15;
+                        produktion[14, 1] = 0;
+                        produktion[15, 0] = 16;
+                        produktion[15, 1] = 20 + 130 + 90;
+                        produktion[16, 0] = 17;
+                        produktion[16, 1] = 20 + 130 + 90;
+                        produktion[17, 0] = 18;
+                        produktion[17, 1] = 50;
+                        produktion[18, 0] = 19;
+                        produktion[18, 1] = 150;
+                        produktion[19, 0] = 20;
+                        produktion[19, 1] = 0;
+                        produktion[20, 0] = 26;
+                        produktion[20, 1] = 50 + 160 + 130;
+                        produktion[21, 0] = 29;
+                        produktion[21, 1] = 0;
+                        produktion[22, 0] = 30;
+                        produktion[22, 1] = 0;
+                        produktion[23, 0] = 31;
+                        produktion[23, 1] = 70;
+                        produktion[24, 0] = 49;
+                        produktion[24, 1] = 60;
+                        produktion[25, 0] = 50;
+                        produktion[25, 1] = 70;
+                        produktion[26, 0] = 51;
+                        produktion[26, 1] = 80;
+                        produktion[27, 0] = 54;
+                        produktion[27, 1] = 160;
+                        produktion[28, 0] = 55;
+                        produktion[28, 1] = 170;
+                        produktion[29, 0] = 56;
+                        produktion[29, 1] = 180;
+
+                        // P1, P2 und P3 nochmal auslesen
+                        produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+                        produktionProg[0, 0] = 1;
+                        produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                        produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                        produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                        produktionProg[1, 0] = 2;
+                        produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                        produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                        produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                        produktionProg[2, 0] = 3;
+                        produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                        produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                        produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                        produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
                         this.Controls.Clear();
-                        UserControl prodreihe = new Produktionsreihenfolge();
+                        UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                         this.Controls.Add(prodreihe);
                         break;
                     }
@@ -614,8 +784,96 @@ namespace IBSYS2
                 {
                     if (i == 12)
                     {
+                        // Datenweitergabe
+
+                        produktion = berProduktion; // alle Produktionsmengen
+                        // wegen fehlender E-Teile, simulieren:
+                        // dieser Teil kommt also spaeter weg
+                        produktion[0, 0] = 1;
+                        produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                        produktion[1, 0] = 2;
+                        produktion[1, 1] = 190;
+                        produktion[2, 0] = 3;
+                        produktion[2, 1] = 160;
+                        produktion[3, 0] = 4;
+                        produktion[3, 1] = 60;
+                        produktion[4, 0] = 5;
+                        produktion[4, 1] = 160;
+                        produktion[5, 0] = 6;
+                        produktion[5, 1] = 0;
+                        produktion[6, 0] = 7;
+                        produktion[6, 1] = 50;
+                        produktion[7, 0] = 8;
+                        produktion[7, 1] = 150;
+                        produktion[8, 0] = 9;
+                        produktion[8, 1] = 0;
+                        produktion[9, 0] = 10;
+                        produktion[9, 1] = 60;
+                        produktion[10, 0] = 11;
+                        produktion[10, 1] = 160;
+                        produktion[11, 0] = 12;
+                        produktion[11, 1] = 0;
+                        produktion[12, 0] = 13;
+                        produktion[12, 1] = 50;
+                        produktion[13, 0] = 14;
+                        produktion[13, 1] = 150;
+                        produktion[14, 0] = 15;
+                        produktion[14, 1] = 0;
+                        produktion[15, 0] = 16;
+                        produktion[15, 1] = 20 + 130 + 90;
+                        produktion[16, 0] = 17;
+                        produktion[16, 1] = 20 + 130 + 90;
+                        produktion[17, 0] = 18;
+                        produktion[17, 1] = 50;
+                        produktion[18, 0] = 19;
+                        produktion[18, 1] = 150;
+                        produktion[19, 0] = 20;
+                        produktion[19, 1] = 0;
+                        produktion[20, 0] = 26;
+                        produktion[20, 1] = 50 + 160 + 130;
+                        produktion[21, 0] = 29;
+                        produktion[21, 1] = 0;
+                        produktion[22, 0] = 30;
+                        produktion[22, 1] = 0;
+                        produktion[23, 0] = 31;
+                        produktion[23, 1] = 70;
+                        produktion[24, 0] = 49;
+                        produktion[24, 1] = 60;
+                        produktion[25, 0] = 50;
+                        produktion[25, 1] = 70;
+                        produktion[26, 0] = 51;
+                        produktion[26, 1] = 80;
+                        produktion[27, 0] = 54;
+                        produktion[27, 1] = 160;
+                        produktion[28, 0] = 55;
+                        produktion[28, 1] = 170;
+                        produktion[29, 0] = 56;
+                        produktion[29, 1] = 180;
+
+                        // P1, P2 und P3 nochmal auslesen
+                        produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+                        produktionProg[0, 0] = 1;
+                        produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                        produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                        produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                        produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                        produktionProg[1, 0] = 2;
+                        produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                        produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                        produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                        produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                        produktionProg[2, 0] = 3;
+                        produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                        produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                        produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                        produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
                         this.Controls.Clear();
-                        UserControl prodreihe = new Produktionsreihenfolge();
+                        UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                         this.Controls.Add(prodreihe);
                     }
                     else { continue; }
@@ -648,6 +906,7 @@ namespace IBSYS2
 
         private void ETeile_Click(object sender, EventArgs e)
         {
+            // TODO hier zusaetzlich berProduktion uebergeben
             new Produktion_ETeile(periode, textBox1.Text, textBox2.Text, textBox3.Text, sicherheitsbe).Show();
         }
 
@@ -740,8 +999,96 @@ namespace IBSYS2
         {
             if (continue_btn.Enabled == true)
             {
+                // Datenweitergabe
+
+                produktion = berProduktion; // alle Produktionsmengen
+                // wegen fehlender E-Teile, simulieren:
+                // dieser Teil kommt also spaeter weg
+                produktion[0, 0] = 1;
+                produktion[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                produktion[1, 0] = 2;
+                produktion[1, 1] = 190;
+                produktion[2, 0] = 3;
+                produktion[2, 1] = 160;
+                produktion[3, 0] = 4;
+                produktion[3, 1] = 60;
+                produktion[4, 0] = 5;
+                produktion[4, 1] = 160;
+                produktion[5, 0] = 6;
+                produktion[5, 1] = 0;
+                produktion[6, 0] = 7;
+                produktion[6, 1] = 50;
+                produktion[7, 0] = 8;
+                produktion[7, 1] = 150;
+                produktion[8, 0] = 9;
+                produktion[8, 1] = 0;
+                produktion[9, 0] = 10;
+                produktion[9, 1] = 60;
+                produktion[10, 0] = 11;
+                produktion[10, 1] = 160;
+                produktion[11, 0] = 12;
+                produktion[11, 1] = 0;
+                produktion[12, 0] = 13;
+                produktion[12, 1] = 50;
+                produktion[13, 0] = 14;
+                produktion[13, 1] = 150;
+                produktion[14, 0] = 15;
+                produktion[14, 1] = 0;
+                produktion[15, 0] = 16;
+                produktion[15, 1] = 20 + 130 + 90;
+                produktion[16, 0] = 17;
+                produktion[16, 1] = 20 + 130 + 90;
+                produktion[17, 0] = 18;
+                produktion[17, 1] = 50;
+                produktion[18, 0] = 19;
+                produktion[18, 1] = 150;
+                produktion[19, 0] = 20;
+                produktion[19, 1] = 0;
+                produktion[20, 0] = 26;
+                produktion[20, 1] = 50 + 160 + 130;
+                produktion[21, 0] = 29;
+                produktion[21, 1] = 0;
+                produktion[22, 0] = 30;
+                produktion[22, 1] = 0;
+                produktion[23, 0] = 31;
+                produktion[23, 1] = 70;
+                produktion[24, 0] = 49;
+                produktion[24, 1] = 60;
+                produktion[25, 0] = 50;
+                produktion[25, 1] = 70;
+                produktion[26, 0] = 51;
+                produktion[26, 1] = 80;
+                produktion[27, 0] = 54;
+                produktion[27, 1] = 160;
+                produktion[28, 0] = 55;
+                produktion[28, 1] = 170;
+                produktion[29, 0] = 56;
+                produktion[29, 1] = 180;
+
+                // P1, P2 und P3 nochmal auslesen
+                produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+
+                produktionProg[0, 0] = 1;
+                produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                produktionProg[1, 0] = 2;
+                produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                produktionProg[2, 0] = 3;
+                produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+
                 this.Controls.Clear();
-                UserControl prodreihe = new Produktionsreihenfolge();
+                UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                 this.Controls.Add(prodreihe);
             }
         }

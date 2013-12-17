@@ -15,6 +15,8 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
+                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
         // Datenweitergabe:
         int aktPeriode;
@@ -31,10 +33,10 @@ namespace IBSYS2
 
         List<int> sicherheitsbe = new List<int>();
 
-        List<int> lagerbestand = new List<int>();
-        List<int> bearbeitung = new List<int>();
-        List<int> wartelisteAr = new List<int>();
-        List<int> wartelisteMa = new List<int>();
+        List<List<int>> lagerbestand = new List<List<int>>();
+        List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
+        List<List<int>> warteliste_material = new List<List<int>>();
+        List<List<int>> bearbeitung = new List<List<int>>();
 
         // Array fuer berechnete Produktionsmengen
         int[,] berProduktion = new int[30, 2];
@@ -50,6 +52,7 @@ namespace IBSYS2
         {
             InitializeComponent();
             continue_btn.Enabled = false;
+            back.Enabled = false;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -72,7 +75,6 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
             }
 
-            berechneProduktion();
             ProduktionETeile();
         }
 
@@ -118,9 +120,9 @@ namespace IBSYS2
                 this.kaufauftraege = kaufauftraege;
             }
 
-            // var UserControl kapa= new Kapazitaetsplan();
             InitializeComponent();
             continue_btn.Enabled = false;
+            back.Enabled = false;
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -175,7 +177,6 @@ namespace IBSYS2
             // sonst neu berechnen
             else
             {
-                berechneProduktion();
                 ProduktionETeile();
             }
         }
@@ -198,15 +199,18 @@ namespace IBSYS2
             if(weiter == true)
             {
                 continue_btn.Enabled = true;
+                back.Enabled = true;
             }
             else
             {
                 continue_btn.Enabled = false;
+                back.Enabled = false;
             }
         }
 
-        private void berechneProduktion()
+        private void berechneProduktion(List<List<int>> lagerb, List<List<int>> wartelisteAr, List<List<int>> wartelisteMa, List<List<int>> bearbeitung)
         {
+            
             //für aktuelle Periode
             double p1 = auftraege[0] + direktverkaeufe[0];
             double p2 = auftraege[1] + direktverkaeufe[1];
@@ -218,117 +222,183 @@ namespace IBSYS2
             double sp3 = sicherheitsbest[2, 1];
 
             //- Lagerbestand Vorperiode 
-            int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp2 = Daten("2", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp3 = Daten("3", "Bestand", "Teilenummer_FK", "Lager", periode);
-            
+            int lagerbestandp1 = 0;
+            int lagerbestandp2 = 0;
+            int lagerbestandp3 = 0;
+
             //- Aufträge in Warteschlange 
-            int WartelisteMap1 = Daten("1", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteMap2 = Daten("2", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteMap3 = Daten("3", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
-            int WartelisteAr1 = Daten("1", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int WartelisteAr2 = Daten("2", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
-            int WartelisteAr3 = Daten("3", "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz", periode);
+            int WartelisteMap1 = 0;
+            int WartelisteMap2 = 0;
+            int WartelisteMap3 = 0;
+            int WartelisteAr1 = 0;
+            int WartelisteAr2 = 0;
+            int WartelisteAr3 = 0;
+
+            int Bearbeitungp1 = 0;
+            int Bearbeitungp2 = 0;
+            int Bearbeitungp3 = 0;
+            for (int i = 0; i < teilenummer.Count(); i++)
+            {
+                for (int e = 0; e < lagerb.Count; e++)
+                {
+                    if (lagerb[e][0] == 1)
+                    {
+                        lagerbestandp1 = lagerb[e][1];
+                    }
+                    if (lagerb[e][0] == 2)
+                    {
+                        lagerbestandp2 = lagerb[e][1];
+                    }
+                    if (lagerb[e][0] == 3)
+                    {
+                        lagerbestandp3 = lagerb[e][1];
+                    }
+                }
+
+                for (int l = 0; l < wartelisteAr.Count; l++)
+                {
+                    if (wartelisteAr[l][0] == 1)
+                    {
+                        WartelisteAr1 = wartelisteAr[l][1];
+                    }
+                    if (wartelisteAr[l][0] == 2)
+                    {
+                        WartelisteAr2 = wartelisteAr[l][1];
+                    }
+                    if (wartelisteAr[l][0] == 3)
+                    {
+                        WartelisteAr3 = wartelisteAr[l][1];
+                    }
+                }
+
+                for (int a = 0; a < wartelisteMa.Count; a++)
+                {
+                    if (wartelisteMa[a][0] == 1)
+                    {
+                        WartelisteMap1 = wartelisteMa[a][1];
+                    }
+                    if (wartelisteMa[a][0] == 2)
+                    {
+                        WartelisteMap2 = wartelisteAr[a][1];
+                    }
+                    if (wartelisteAr[a][0] == 3)
+                    {
+                        WartelisteMap3 = wartelisteAr[a][1];
+                    }
+                }
+
+                for (int w = 0; w < bearbeitung.Count; w++)
+                {
+                    if (bearbeitung[w][0] == 1)
+                    {
+                        Bearbeitungp1 = bearbeitung[w][1];
+                    }
+                    if (bearbeitung[w][0] == 2)
+                    {
+                        Bearbeitungp2 = bearbeitung[w][1];
+                    }
+                    if (bearbeitung[w][0] == 3)
+                    {
+                        Bearbeitungp3 = bearbeitung[w][1];
+                    }
+                }
+            } 
+
+                // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
+                string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
+                string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
+                string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
+
+                if (prod1.StartsWith("-") || prod1 == null)
+                {
+                    textBox1.Text = "0";
+                }
+                else
+                {
+                    textBox1.Text = prod1;
+                }
+                if (prod2.StartsWith("-"))
+                {
+                    textBox2.Text = "0";
+                }
+                else
+                {
+                    textBox2.Text = prod2;
+                }
+                if (prod3.StartsWith("-"))
+                {
+                    textBox3.Text = "0";
+                }
+                else
+                {
+                    textBox3.Text = prod3;
+                }
+
+                berProduktion[0, 0] = 1;
+                berProduktion[0, 1] = Convert.ToInt32(prod1);
+                berProduktion[1, 0] = 2;
+                berProduktion[1, 1] = Convert.ToInt32(prod2);
+                berProduktion[2, 0] = 3;
+                berProduktion[2, 1] = Convert.ToInt32(prod3);
+
+                #region Produktion der Prognosen
+                double prognose1p1 = auftraege[3];
+                double prognose1p2 = auftraege[4];
+                double prognose1p3 = auftraege[5];
+                double prognose2p1 = auftraege[6];
+                double prognose2p2 = auftraege[7];
+                double prognose2p3 = auftraege[8];
+                double prognose3p1 = auftraege[9];
+                double prognose3p2 = auftraege[10];
+                double prognose3p3 = auftraege[11];
+
+                string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
+                if (prognosep1.StartsWith("-"))
+                {
+                    textBox6.Text = "0";
+                    textBox7.Text = "0";
+                    textBox10.Text = "0";
+                }
+                else
+                {
+                    textBox6.Text = prognosep1;
+                    textBox7.Text = prognosep1;
+                    textBox10.Text = prognosep1;
+                }
+
+                string prognosep2 = Convert.ToInt32((prognose1p2 + prognose2p2 + prognose3p2) / 3 * 1.1).ToString();
+                if (prognosep2.StartsWith("-"))
+                {
+                    textBox4.Text = "0";
+                    textBox8.Text = "0";
+                    textBox11.Text = "0";
+                }
+                else
+                {
+                    textBox4.Text = prognosep2;
+                    textBox8.Text = prognosep2;
+                    textBox11.Text = prognosep2;
+                }
+
+                string prognosep3 = Convert.ToInt32((prognose1p3 + prognose2p3 + prognose3p3) / 3 * 1.1).ToString();
+                if (prognosep3.StartsWith("-"))
+                {
+                    textBox5.Text = "0";
+                    textBox9.Text = "0";
+                    textBox12.Text = "0";
+                }
+                else
+                {
+                    textBox5.Text = prognosep3;
+                    textBox9.Text = prognosep3;
+                    textBox12.Text = prognosep3;
+                }
+
+                #endregion
+
             
-            //- Aufträge in Bearbeitung
-            int Bearbeitungp1 = Daten("1", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int Bearbeitungp2 = Daten("2", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-            int Bearbeitungp3 = Daten("3", "Menge", "Teilenummer_FK", "Bearbeitung", periode);
-
-           // Eingabe Aufträge + eingabe Sicherheitsbestand - Lagerbestand Vorperiode - Aufträge in Warteschlange - Aufträge in Bearbeitung
-            string prod1 = Convert.ToInt32(p1 + sp1 - lagerbestandp1 - WartelisteAr1 - WartelisteMap1 - Bearbeitungp1).ToString();
-            string prod2 = Convert.ToInt32(p2 + sp2 - lagerbestandp2 - WartelisteAr2 - WartelisteMap2 - Bearbeitungp2).ToString();
-            string prod3 = Convert.ToInt32(p3 + sp3 - lagerbestandp3 - WartelisteAr3 - WartelisteMap3 - Bearbeitungp3).ToString();
-            
-            if (prod1.StartsWith("-"))
-            {
-                textBox1.Text = "0";
-            }
-            else
-            {
-                textBox1.Text = prod1;
-            }
-            if (prod2.StartsWith("-"))
-            {
-                textBox2.Text = "0";
-            }
-            else
-            {
-                textBox2.Text = prod2;
-            }
-            if (prod3.StartsWith("-"))
-            {
-                textBox3.Text = "0";
-            }
-            else
-            {
-                textBox3.Text = prod3;
-            }
-
-            berProduktion[0, 0] = 1;
-            berProduktion[0, 1] = Convert.ToInt32(prod1);
-            berProduktion[1, 0] = 2;
-            berProduktion[1, 1] = Convert.ToInt32(prod2);
-            berProduktion[2, 0] = 3;
-            berProduktion[2, 1] = Convert.ToInt32(prod3);
-
-            #region Produktion der Prognosen
-            double prognose1p1 = auftraege[3];
-            double prognose1p2 = auftraege[4];
-            double prognose1p3 = auftraege[5];
-            double prognose2p1 = auftraege[6];
-            double prognose2p2 = auftraege[7];
-            double prognose2p3 = auftraege[8];
-            double prognose3p1 = auftraege[9];
-            double prognose3p2 = auftraege[10];
-            double prognose3p3 = auftraege[11];
-
-            string prognosep1 = Convert.ToInt32((prognose1p1 + prognose2p1 + prognose3p1) / 3 * 1.1).ToString();
-            if (prognosep1.StartsWith("-"))
-            {
-                textBox6.Text = "0";
-                textBox7.Text = "0";
-                textBox10.Text = "0";
-            }
-            else
-            {
-                textBox6.Text = prognosep1;
-                textBox7.Text = prognosep1;
-                textBox10.Text = prognosep1;
-            }
-
-            string prognosep2 = Convert.ToInt32((prognose1p2 + prognose2p2 + prognose3p2) / 3 * 1.1).ToString();
-            if (prognosep2.StartsWith("-"))
-            {
-                textBox4.Text = "0";
-                textBox8.Text = "0";
-                textBox11.Text = "0";
-            }
-            else
-            {
-                textBox4.Text = prognosep2;
-                textBox8.Text = prognosep2;
-                textBox11.Text = prognosep2;
-            }
-
-            string prognosep3 = Convert.ToInt32((prognose1p3 + prognose2p3 + prognose3p3) / 3 * 1.1).ToString();
-            if (prognosep3.StartsWith("-"))
-            {
-                textBox5.Text = "0";
-                textBox9.Text = "0";
-                textBox12.Text = "0";
-            }
-            else
-            {
-                textBox5.Text = prognosep3;
-                textBox9.Text = prognosep3;
-                textBox12.Text = prognosep3; 
-            }
-
-            #endregion
-
         }
-
+ 
         public int[,] ProduktionETeile()
         {
             int p26;
@@ -388,7 +458,6 @@ namespace IBSYS2
 
             #region Daten aus DB
             int a = 0;
-            List<List<int>> lagerbestand = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
             OleDbDataReader dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -401,7 +470,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -414,7 +482,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> warteliste_material = new List<List<int>>();
             cmd.CommandText = @"SELECT Fehlteil_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -427,7 +494,6 @@ namespace IBSYS2
             dbReader.Close();
 
             a = 0;
-            List<List<int>> bearbeitung = new List<List<int>>();
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
             dbReader = cmd.ExecuteReader();
             while (dbReader.Read())
@@ -480,8 +546,6 @@ namespace IBSYS2
             p15 = p29 + sicherheitsbest[14, 1];
             p20 = p29 + sicherheitsbest[19, 1];
             #endregion
-            int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
-                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
 
             for (int i = 0; i < teilenummer.Count(); i++)
             {
@@ -991,43 +1055,9 @@ namespace IBSYS2
             berProduktion[29, 0] = 56;
             berProduktion[29, 1] = p56;
 
+            berechneProduktion(lagerbestand, warteliste_arbeitsplatz, warteliste_material, bearbeitung);
             return berProduktion;
 
-        }
-
-        private int Daten(string teilenummer_FK, string spalte, string spalte1, string tabelle, int periode)
-        {
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = myconn;
-            try
-            {
-                myconn.Open();
-            }
-            catch (Exception)
-            {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
-                myconn.Close();
-                myconn.Open();
-            }
-            cmd.CommandText = @"SELECT * FROM " + tabelle + " WHERE " + spalte1 + " = " + teilenummer_FK + " AND Periode = " + periode;
-            OleDbDataReader dr = cmd.ExecuteReader();
-            int laa = 0;
-            while (dr.Read())
-            {
-                laa = Convert.ToInt32(dr[spalte]);
-                return laa;
-            }
-            dr.Close();
-            myconn.Close();
-            return laa;
         }
 
         #region textBoxen
@@ -1506,7 +1536,7 @@ namespace IBSYS2
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            berechneProduktion();
+            berechneProduktion(lagerbestand,warteliste_arbeitsplatz,warteliste_material,bearbeitung);
         }
 
         public void sprachen()

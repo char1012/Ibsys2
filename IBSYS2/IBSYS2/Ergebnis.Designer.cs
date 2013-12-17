@@ -487,7 +487,6 @@
             this.Controls.Add(this.lbl_Startseite);
             this.Controls.Add(this.End_btn);
             this.Controls.Add(this.pictureBox5);
-            this.Enabled = false;
             this.Name = "Ergebnis";
             this.Size = new System.Drawing.Size(1000, 500);
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).EndInit();

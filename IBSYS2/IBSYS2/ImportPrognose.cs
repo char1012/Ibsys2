@@ -1280,6 +1280,7 @@ namespace IBSYS2
                 // Mitteilung einblenden
                 ProcessMessage message = new ProcessMessage();
                 message.Show(this);
+                message.Location = new Point(500, 300);
                 message.Update();
                 this.Enabled = false;
 

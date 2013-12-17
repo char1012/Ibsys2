@@ -62,7 +62,7 @@ namespace IBSYS2
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache == "de")
             {
                 ToolTipEN.RemoveAll();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
@@ -136,7 +136,7 @@ namespace IBSYS2
 
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
             {
                 ToolTipEN.RemoveAll();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
@@ -1010,14 +1010,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -1393,8 +1385,25 @@ namespace IBSYS2
             {
                 if (this.Controls.Find("textBox" + i.ToString(), true)[0].Text == "0")
                 {
-                    string message = "Sie haben mindestens an einer Stelle angegeben, dass Sie nichts produzieren wollen. Sind Sie sich sicher?";
-                    string caption = "Sind Sie sich sicher?";
+                    string message;
+                    if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
+                    {
+                        message = "Sie haben mindestens an einer Stelle angegeben, dass Sie nichts produzieren wollen. Sind Sie sich sicher?";
+                    }
+                    else
+                    {
+                        message = "At one point you want to produce anything. Are you sure?";
+                    }
+
+                    string caption;
+                    if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache != "en")
+                    {
+                        caption = "Sind Sie sich sicher?";
+                    }
+                    else
+                    {
+                        caption = "Are you sure?";
+                    }
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
 
@@ -1593,7 +1602,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "en")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1662,14 +1671,16 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "de";
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)

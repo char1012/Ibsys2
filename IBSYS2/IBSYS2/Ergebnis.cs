@@ -295,7 +295,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();
                 myconn.Open();
             }
@@ -524,7 +523,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -566,13 +565,17 @@ namespace IBSYS2
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "en";
             sprachen();
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "de";
             sprachen();
         }
 

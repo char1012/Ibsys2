@@ -20,39 +20,24 @@ namespace IBSYS2
         private int[] schichten;
         // Liste, um zu kontrollieren, ob alle Zellen korrekt sind
         private Boolean[] correct = new Boolean[30] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        public Kapazitaetsplan()
+        public Kapazitaetsplan(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
-            InitializeComponent();
-            setButtons(true); // false, wenn Zellen geleert werden
-            setValues();
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-            {
-                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
-                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
-            }
-            else
-            {
-                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
-            }
-
-        }
-
-        public Kapazitaetsplan(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
-        {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -89,8 +74,8 @@ namespace IBSYS2
 
             InitializeComponent();
             setButtons(true);
-            setValues();
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            sprachen();
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
@@ -99,6 +84,51 @@ namespace IBSYS2
             {
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
+            }
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kapazitaet.GetLength(0); i++)
+            {
+                if (kapazitaet[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, Felder fuellen
+            // Kapbedarf trotzdem nochmal berechnen
+            if (bereitsBerechnet == true)
+            {
+                // Mitteilung einblenden
+                ProcessMessage message = new ProcessMessage(sprache);
+                message.Show(this);
+                message.Location = new Point(500, 300);
+                message.Update();
+                this.Enabled = false;
+
+                int periode = aktPeriode - 1; // Periode des xmls
+                int[,] teile = produktion; // Produktion
+
+                // Methode zur Berechnung der Werte aufrufen
+                int[] plaetze = calculate(periode, teile);
+
+                // Zeilen fuellen
+                for (int i = 0; i < plaetze.Length; ++i)
+                {
+                    int k = i + 1;
+                    this.Controls.Find("K" + k.ToString(), true)[0].Text = plaetze[i].ToString();
+                    this.Controls.Find("UP" + k.ToString(), true)[0].Text = kapazitaet[i, 2].ToString();
+                    this.Controls.Find("UT" + k.ToString(), true)[0].Text = kapazitaet[i, 3].ToString();
+                    this.Controls.Find("S" + k.ToString(), true)[0].Text = kapazitaet[i, 4].ToString();
+                }
+
+                message.Close();
+                this.Enabled = true;
+            }
+            // sonst Werte berechnen
+            else
+            {
+                setValues();
             }
         }
 
@@ -117,6 +147,13 @@ namespace IBSYS2
 
         public void setValues()
         {
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             int periode = aktPeriode - 1; // Periode des xmls
             int[,] teile = produktion; // Produktion
 
@@ -197,6 +234,8 @@ namespace IBSYS2
                 schichten[i] = schicht; // Startwert der Zeile Schichten speichern
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         public int[] calculate(int periode, int[,] teile)
@@ -218,14 +257,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -445,7 +476,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
@@ -1114,7 +1145,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1167,7 +1198,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1220,7 +1251,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1273,7 +1304,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1326,7 +1357,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1379,7 +1410,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1432,7 +1463,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1485,7 +1516,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1538,7 +1569,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1591,7 +1622,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1644,7 +1675,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1697,7 +1728,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1750,7 +1781,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1803,7 +1834,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1856,7 +1887,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1875,7 +1906,7 @@ namespace IBSYS2
         }
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1940,48 +1971,120 @@ namespace IBSYS2
         private void pic_en_Click(object sender, EventArgs e){
            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
            pic_de.SizeMode = PictureBoxSizeMode.Normal;
-           sprachen();           
+           sprachen();
+           sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "de";
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
@@ -2002,7 +2105,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 

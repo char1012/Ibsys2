@@ -14,16 +14,17 @@ namespace IBSYS2
     public partial class Ergebnis : UserControl
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         // lokale Information
@@ -36,9 +37,12 @@ namespace IBSYS2
             result();
         }
 
-        public Ergebnis(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        public Ergebnis(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
+
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -74,6 +78,15 @@ namespace IBSYS2
             }
 
             InitializeComponent();
+            sprachen();
+
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             result();
 
             // Einkaufsauftraege
@@ -168,6 +181,8 @@ namespace IBSYS2
                 }
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         public void result()
@@ -176,18 +191,92 @@ namespace IBSYS2
 
             storevalues = calculateStorevalue(periode, auftraege, direktverkaeufe, produktion);
 
-            // Textfelder fuellen
-            textBox1.Text = storevalues[0].ToString();
-            textBox2.Text = storevalues[1].ToString();
-            textBox3.Text = storevalues[2].ToString();
-
-            if (storevalues[1] >= 2500000)
+            if (storevalues[1] >= 250000)
             {
                 textBox2.ForeColor = Color.Red;
             }
+
+            // Strings formatieren
+            String s1 = storevalues[0].ToString();
+            int count1 = s1.Length;
+            if (count1 > 3)
+            {
+                String neu1 = "";
+                if (count1 == 6)
+                {
+                    neu1 += s1.Substring(0, 3);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                else if (count1 == 5)
+                {
+                    neu1 += s1.Substring(0, 2);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                else if (count1 == 4)
+                {
+                    neu1 += s1.Substring(0, 1);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                textBox1.Text = neu1;
+            }
+
+            String s2 = storevalues[1].ToString();
+            int count2 = s2.Length;
+            if (count1 > 3)
+            {
+                String neu2 = "";
+                if (count2 == 6)
+                {
+                    neu2 += s2.Substring(0, 3);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                else if (count2 == 5)
+                {
+                    neu2 += s2.Substring(0, 2);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                else if (count2 == 4)
+                {
+                    neu2 += s2.Substring(0, 1);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                textBox1.Text = neu2;
+            }
+
+            String s3 = storevalues[2].ToString();
+            int count3 = s3.Length;
+            if (count3 > 3)
+            {
+                String neu3 = "";
+                if (count3 == 6)
+                {
+                    neu3 += s3.Substring(0, 3);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                else if (count3 == 5)
+                {
+                    neu3 += s3.Substring(0, 2);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                else if (count3 == 4)
+                {
+                    neu3 += s3.Substring(0, 1);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                textBox1.Text = neu3;
+            }
         }
 
-        private int[] calculateStorevalue(int periode, int[] auftraege, int[] direktverkaeufe, int[,] produktion)
+        private int[] calculateStorevalue(int periode, int[] auftraege, double[,] direktverkaeufe, int[,] produktion)
         {
             // Array fuer Anfangslagerwert, Endlagerwert und Mittelwert
             int[] storevalue = new int[3];
@@ -206,7 +295,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();
                 myconn.Open();
             }
@@ -341,7 +429,7 @@ namespace IBSYS2
                     if (teilewerte[no,0] == (i+1))
                     {
                         wertVerkaeufe += (auftraege[i] * teilewerte[no,1]); // Menge mit Wert multiplizieren und dazurechnen
-                        wertVerkaeufe += (direktverkaeufe[i] * teilewerte[no, 1]);
+                        wertVerkaeufe += (direktverkaeufe[i, 1] * teilewerte[no, 1]);
                     }
                 }
             }
@@ -433,14 +521,9 @@ namespace IBSYS2
             return storevalue;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void sprachen()
         {
-
-        }
-
-        public void sprachen(String sprache)
-        {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -453,11 +536,28 @@ namespace IBSYS2
 
                 //EN Buttons
                 End_btn.Text = (Sprachen.EN_BTN_XML_EXPORT);
+                back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //EN Groupboxen
                 groupBox2.Text = (Sprachen.EN_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.EN_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.EN_ER_GROUPBOX4);
+                Lagerwerte.Text = (Sprachen.EN_ER_LAGERWERT);
+
+                //EN Label
+                label1.Text = (Sprachen.EN_ER_TEIL);
+                label3.Text = (Sprachen.EN_ER_MENGE);
+                label5.Text = (Sprachen.EN_ER_BESTART);
+                label2.Text = (Sprachen.EN_ER_TEIL);
+                label4.Text = (Sprachen.EN_ER_MENGE);
+                label6.Text = (Sprachen.EN_ER_ARBEITSPLATZ);
+                label7.Text = (Sprachen.EN_ER_SCHICHTEN);
+                label8.Text = (Sprachen.EN_ER_UEBERSTUNDEN);
+                label9.Text = (Sprachen.EN_ER_DAY);
+                Lageranfangswert.Text = (Sprachen.EN_ER_ANFANGSWERT);
+                Lagerzwischenwert.Text = (Sprachen.EN_ER_MITTELWERT);
+                Lagerendwert.Text = (Sprachen.EN_ER_ENDWERT);
+
             }
             else
             {
@@ -472,79 +572,117 @@ namespace IBSYS2
 
                 //DE Buttons
                 End_btn.Text = (Sprachen.DE_BTN_XML_EXPORT);
+                back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //DE Groupboxen
                 groupBox2.Text = (Sprachen.DE_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.DE_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.DE_ER_GROUPBOX4);
+                Lagerwerte.Text = (Sprachen.DE_ER_LAGERWERT);
+
+                //EN Label
+                label1.Text = (Sprachen.DE_ER_TEIL);
+                label3.Text = (Sprachen.DE_ER_MENGE);
+                label5.Text = (Sprachen.DE_ER_BESTART);
+                label2.Text = (Sprachen.DE_ER_TEIL);
+                label4.Text = (Sprachen.DE_ER_MENGE);
+                label6.Text = (Sprachen.DE_ER_ARBEITSPLATZ);
+                label7.Text = (Sprachen.DE_ER_SCHICHTEN);
+                label8.Text = (Sprachen.DE_ER_UEBERSTUNDEN);
+                label9.Text = (Sprachen.DE_ER_DAY);
+                Lageranfangswert.Text = (Sprachen.DE_ER_ANFANGSWERT);
+                Lagerzwischenwert.Text = (Sprachen.DE_ER_MITTELWERT);
+                Lagerendwert.Text = (Sprachen.DE_ER_ENDWERT);
             }
         }
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
-            sprachen(sprache);
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "en";
+            sprachen();
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
-            sprachen(sprache);
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "de";
+            sprachen();
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl kaufteile = new Kaufteildisposition();
+            UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
         private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            this.Controls.Add(kapplan);
         }
 
         private void lbl_Kaufteiledisposition_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl kaufteile = new Kaufteildisposition();
+            UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
         private void End_btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hier wird dann exportiert.");
-            // Achtung: Bestellart muss von E/N in 5 = normal und 4 = express geaendert werden
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
+            // TODO - ExportXMLClass aufrufen
+
+            message.Close();
+            this.Enabled = true;
+
+            // TODO - Speicherort fuer XML-Datei auswaehlen lassen
         }
     }
 }

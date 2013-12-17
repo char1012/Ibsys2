@@ -25,12 +25,17 @@ namespace IBSYS2
         public static String DE_BTN_CLEAR = "Datenbank leeren";
         public static String DE_MSG_INFO1 = "Sind Sie sicher, dass Sie die Anwendung schließen möchten?\nDadurch werden alle Änderungen verworfen.";
         public static String DE_MSG_INFO2 = "Anwendung schließen";
+        
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String DE_GB_PR_PROD_SPLITT = "Produktionsreihenfolge und Splittung";
 
         /*---------ImportProgress----------*/
         //Buttons
         public static String DE_BTN_IP_BERECHNUNG_STARTEN = "Berechnung starten";
         public static String DE_BTN_IP_SPRUNG = "Sprung";
         public static String DE_BTN_IP_DATEI_AUSWAEHLEN = "Datei auswählen";
+        public static String DE_BTN_IP_DIREKT = "Direktverkäufe";
 
         //Groupbox
         public static String DE_IP_GROUPBOX1 = "Import der XML-Datei und Prognose - Zusätzliche Lieferanfragen (optional)";
@@ -60,6 +65,11 @@ namespace IBSYS2
         //Labels
         public static String DE_LBL_KD_MENGE = "Menge";
         public static String DE_LBL_KD_BESTELLART = "Bestellart";
+        public static String DE_LBL_KD_DISKONT = "Diskont";
+        public static String DE_LBL_KD_MM = "Min. Menge";
+        public static String DE_LBL_KD_OP = "Opt. Menge";
+        public static String DE_LBL_KD_BM = "Bestellmenge";
+        public static String DE_LBL_KD_BA = "Bestellart";
 
         //ToolTip
         public static String DE_KD_INFO = " ";
@@ -97,11 +107,11 @@ namespace IBSYS2
         //ToolTip
         public static String DE_PR_INFO = "Sie können die hier berechneten Produktionswerte überschreiben. \nUm die Produktion der E-Teile zu überprüfen, klicken Sie auf den Button E-Teile.";
         /*---------Produktion E-Teile----------*/
-        public static String DE_PRE_GB_ETEILE = "Produktion der Eigenprodukte";
+        public static String DE_PRE_GB_ETEILE = "Produktion der E-Teile";
 
         /*---------Sicherheitsbestand----------*/
         //Buttons
-        public static String DE_BTN_ETEILEBERECHNEN = "E-Teile Berechnen";
+        public static String DE_BTN_ETEILEBERECHNEN = "E-Teile berechnen";
         public static String DE_BTN_CONTINUE = "Weiter";
         public static String DE_BTN_BACK = "Zurück"; //Umlaut
 
@@ -115,17 +125,39 @@ namespace IBSYS2
         public static String DE_LABLE9 = "* E-Teile werden zur Weiterberechnung summiert";
 
         //Tooltip
-        public static String DE_INFOP = "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.";
-        public static String DE_INFOE = "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.";
+        public static String DE_INFOP = "Bitte den Sicherheitsbestand für P-Teile eingeben.";
+        public static String DE_INFOE = "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar.\n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden.\n" + "- Um fortzufahren auf 'Fortfahren' klicken.";
+
+        /*---------Direktverkäufe----------*/
+        //Groupbox
+        public static String DE_DV_GROUPBOX1 = "Direktverkäufe";
+
+        //Labels
+        public static String DE_DV_LABEL4 = "Menge";
+        public static String DE_DV_LABEL5 = "Preis";
+        public static String DE_DV_LABEL6 = "Strafbetrag";
 
         /*---------Ergebnis----------*/
         //Buttons
-        public static String DE_BTN_XML_EXPORT = "XML export";
+        public static String DE_BTN_XML_EXPORT = "XML Export";
 
         //Groupbox
         public static String DE_ER_GROUPBOX2 = "Einkaufsaufträge";
         public static String DE_ER_GROUPBOX3 = "Produktionsaufträge";
         public static String DE_ER_GROUPBOX4 = "Produktionskapazitäten";
+        public static String DE_ER_LAGERWERT = "Lagerwert";
+
+        // Label
+        public static String DE_ER_TEIL = "Teil";
+        public static String DE_ER_MENGE = "Menge";
+        public static String DE_ER_BESTART = "Best.art";
+        public static String DE_ER_ARBEITSPLATZ = "Arbeitsplatz";
+        public static String DE_ER_SCHICHTEN = "Schichten";
+        public static String DE_ER_UEBERSTUNDEN = "Überst.";
+        public static String DE_ER_DAY = "(min./Tag)";
+        public static String DE_ER_ANFANGSWERT = "Anfangswert";
+        public static String DE_ER_MITTELWERT = "Mittelwert";
+        public static String DE_ER_ENDWERT = "Endwert";
 
         /*--------------------------------------------------------------------------------------------------------*/
         /*---------------------ENGLISH----------------------------------------------------------------------------*/
@@ -150,6 +182,7 @@ namespace IBSYS2
         public static String EN_BTN_IP_BERECHNUNG_STARTEN = "Calculation Start";
         public static String EN_BTN_IP_SPRUNG = "Jump";
         public static String EN_BTN_IP_DATEI_AUSWAEHLEN = "Data select";
+        public static String EN_BTN_IP_DIREKT = "Direct sales";
 
         //Groupbox
         public static String EN_IP_GROUPBOX1 = "Import of the XML-file and forecast - extra supply query (optional)";
@@ -164,13 +197,17 @@ namespace IBSYS2
         public static String EN_LBL_IP_PERIODEX1 = "Period X+1";
         public static String EN_LBL_IP_PERIODEX2 = "Period X+2";
 
-        //InfoBox
-        public static String EN_IP_INFO = "First of all, select the current period, and then press the provided button to import the XML file. \nAfter that please enter their forecasts for the coming periods. \nYou can then continue editing";
-        public static String EN_IP_INFO_SCHRITT1 = "First, select the current period, and then press the provided button to import the XML file.";
-        public static String EN_IP_INFO_SCHRITT2 = "Now enter the forecasts for the next period.";
+        //InfoBox                          Wählen Sie als erstes die aktuelle Periode aus und betätigen Sie anschließend die bereitgestellte Schaltfläche zum Import der XML-Datei. \nIm Anschluss geben Sie bitte ihre Prognosen für die kommenden Perioden ein. \nAnschließend können Sie mit der Bearbeitung fortfahren.
+        public static String EN_IP_INFO = "First of all, select the current period, and then press the provided button to import the XML file.                                                                         \nAfter that please enter their forecasts for the coming periods.             \nYou can then continue editing                          ";
+        public static String EN_IP_INFO_SCHRITT1 = "First, select the current period, and then press the provided button to import the XML file.                                                                                 ";
+        public static String EN_IP_INFO_SCHRITT2 = "Now enter the forecasts for the next period.                           ";
 
         //ComboBox
         public static String EN_CB_IP_PERIODE_AUSWAEHLEN = "Select the period to edit";
+
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String EN_GB_PR_PROD_SPLITT = "Procuktion sequence and splitting";
 
         /*---------Kaufteiledisposition----------*/
         //Groupboxen
@@ -179,6 +216,11 @@ namespace IBSYS2
         //Labels
         public static String EN_LBL_KD_MENGE = "Amount";
         public static String EN_LBL_KD_BESTELLART = "Order type";
+        public static String EN_LBL_KD_DISKONT ="Diskont";
+        public static String EN_LBL_KD_MM ="min. amount";
+        public static String EN_LBL_KD_OP ="opt. amount";
+        public static String EN_LBL_KD_BM ="Order size";
+        public static String EN_LBL_KD_BA = "Order type";
 
         //ToolTip
         public static String EN_KD_INFO = " ";
@@ -213,29 +255,38 @@ namespace IBSYS2
         public static String EN_PR_GROUPBOX1 = "Production planning";
 
         //ToolTip
-        public static String EN_PR_INFO = " ";
+        public static String EN_PR_INFO = "Here you can overwrite the calculated production values. \nTo check the production of the E-Parts, click on the button 'E-Parts'.                     ";
         /*---------Produktion E-Teile----------*/
-        public static String EN_PRE_GB_ETEILE = "Production of own products";
+        public static String EN_PRE_GB_ETEILE = "Production of E-Parts";
 
 
         /*---------Sicherheitsbestand----------*/
         //Buttons
-        public static String EN_BTN_ETEILEBERECHNEN = "E-Items calculate";
+        public static String EN_BTN_ETEILEBERECHNEN = "E-Parts calculate";
         public static String EN_BTN_CONTINUE = "Continue";
         public static String EN_BTN_BACK = "Back";
 
         //Groupboxen
-        public static String EN_GROUPBOX1 = "P-Items - Safty Stock";
-        public static String EN_GROUPBOX3 = "E-Items - Safty Stock";
+        public static String EN_GROUPBOX1 = "P-Parts - Safty Stock";
+        public static String EN_GROUPBOX3 = "E-Parts - Safty Stock";
         public static String EN_GROUPBOX2 = "Production";
 
         //Labels
         public static String EN_LABEL4 = "You can overwrite the calculated values.";
-        public static String EN_LABLE9 = "* E-Items are summed for further calcualtion.";
+        public static String EN_LABLE9 = "* E-Parts are summed for further calcualtion.";
 
         //Tooltip
-        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Items.";
-        public static String EN_INFOE = "- These fields of safety stocks for the E-Items is not maintainable before calculation of the P-Items. \n "+" - The result showing the security holdings of the E-Items is calculated by the system, but can be changed manually as needed. \n "+" - to continue on 'Continue' button.";
+        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Parts.          ";
+        public static String EN_INFOE = "- These fields of safety stocks for the E-Parts is not maintainable before calculation of the P-Parts.\n " + " - The result showing the security holdings of the E-Parts is calculated by the system, but can be changed manually as needed.                \n " + " - to continue click on 'Continue' button.";
+        
+        /*---------Direktverkäufe----------*/
+        //Groupbox
+        public static String EN_DV_GROUPBOX1 = "Direct sales";
+
+        //Labels
+        public static String EN_DV_LABEL4 = "Amount";
+        public static String EN_DV_LABEL5 = "Price";
+        public static String EN_DV_LABEL6 = "Penalty";
         
         /*---------Ergebnis----------*/
         //Buttons
@@ -245,6 +296,18 @@ namespace IBSYS2
         public static String EN_ER_GROUPBOX2 = "Purchase orders";
         public static String EN_ER_GROUPBOX3 = "Production orders";
         public static String EN_ER_GROUPBOX4 = "Production capacity";
-        public static String EN_ER_GROUPBOX1 = "Direct sales";
+        public static String EN_ER_LAGERWERT = "Stock value";
+
+        // Label
+        public static String EN_ER_TEIL = "Part";
+        public static String EN_ER_MENGE = "Amount";
+        public static String EN_ER_BESTART = "Order type";
+        public static String EN_ER_ARBEITSPLATZ = "Workplace";
+        public static String EN_ER_SCHICHTEN = "Shift";
+        public static String EN_ER_UEBERSTUNDEN = "Overtime";
+        public static String EN_ER_DAY = "(min./day)";
+        public static String EN_ER_ANFANGSWERT = "Initial value";
+        public static String EN_ER_MITTELWERT = "Average";
+        public static String EN_ER_ENDWERT = "Final value";
     }
 }

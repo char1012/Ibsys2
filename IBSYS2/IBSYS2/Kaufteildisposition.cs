@@ -17,16 +17,17 @@ namespace IBSYS2
     public partial class Kaufteildisposition : UserControl
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         public Kaufteildisposition()
@@ -36,9 +37,11 @@ namespace IBSYS2
             setValues();
         }
 
-        public Kaufteildisposition(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+        public Kaufteildisposition(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -75,7 +78,122 @@ namespace IBSYS2
 
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
-            setValues();
+            sprachen();
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kaufauftraege.GetLength(0); i++)
+            {
+                if (kaufauftraege[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, Felder fuellen
+            // die ersten drei Spalten trotzdem nochmal berechnen
+            if (bereitsBerechnet == true)
+            {
+                // Werte simulieren
+                int periode = aktPeriode - 1;
+                //Produktion der P-Teile fuer die aktuelle und drei weitere Perioden
+
+                // DB-Verbindung herstellen
+                string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+                myconn = new OleDbConnection(databasename);
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = myconn;
+                try
+                {
+                    myconn.Open();
+                }
+                catch (Exception)
+                {
+                    myconn.Close();
+                    myconn.Open();
+                }
+
+                // Mitteilung einblenden
+                ProcessMessage message = new ProcessMessage(sprache);
+                message.Show(this);
+                message.Location = new Point(500, 300);
+                message.Update();
+                this.Enabled = false;
+
+                // Spalte Diskont
+                //1.  Dicountmengen ermitteln
+                int a = 0;
+                double[,] teildaten = new double[29, 6];
+                cmd.CommandText = @"SELECT Teilenummer, Startteilewert, Diskontmenge, Bestellkosten, Wiederbeschaffunszeit, Abweichung FROM Teil WHERE Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+                OleDbDataReader dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    teildaten[a, 0] = Convert.ToInt32(dbReader["Teilenummer"]);
+                    teildaten[a, 1] = Convert.ToInt32(dbReader["Diskontmenge"]);
+                    teildaten[a, 2] = Convert.ToInt32(dbReader["Bestellkosten"]);
+                    teildaten[a, 3] = Convert.ToDouble(dbReader["Wiederbeschaffunszeit"]);
+                    teildaten[a, 4] = Convert.ToDouble(dbReader["Abweichung"]);
+                    teildaten[a, 5] = Convert.ToDouble(dbReader["Startteilewert"]);
+                    a++;
+                }
+                dbReader.Close();
+                // 2. Zellen fuellen
+                for (int i = 0; i < teildaten.GetLength(0); ++i)
+                {
+                    int k = i + 1;
+                    this.Controls.Find("D" + k.ToString(), true)[0].Text = teildaten[i, 1].ToString();
+                }
+
+                // Methode calculateBestand rufen
+                int[,] bestand = calculateBestand(periode);
+
+                // Methode calculateVerbrauch rufen
+                int[,] verbrauch = calculateVerbrauch(produktionProg);
+
+                // berechnen, wie lange das Lager noch reicht
+                double[,] reichweite = calculateReichweite(bestand, verbrauch);
+
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+                {
+                    double zeit = teildaten[i, 3] + teildaten[i, 4];
+                    int k = i + 1;
+
+                    // Spalte Mindestmenge fuellen
+                    int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
+                    //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
+                    int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
+                    this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
+
+                    // Spalte optimale Bestellmenge fuellen
+                    // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
+                    int jahresbedarf = 52 * durchschnitt;
+                    double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
+                    this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
+
+                    if (kaufauftraege[i, 4] != 0 || kaufauftraege[i, 5] != 0)
+                    {
+                        this.Controls.Find("BM" + k.ToString(), true)[0].Text = kaufauftraege[i, 4].ToString();
+                        String bestellart = "";
+                        if (kaufauftraege[i, 5] == 4)
+                        {
+                            bestellart = "E";
+                        }
+                        else if (kaufauftraege[i, 5] == 5)
+                        {
+                            bestellart = "N";
+                        }
+                        this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellart;
+                    }
+                }
+
+                message.Close();
+                this.Enabled = true;
+            }
+            // sonst Werte berechnen
+            else
+            {
+                setValues();
+            }
         }
 
         public void setValues()
@@ -96,17 +214,16 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                }
                 myconn.Close();
                 myconn.Open();
             }
+
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
 
             // Spalte Diskont
             //1.  Dicountmengen ermitteln
@@ -160,21 +277,21 @@ namespace IBSYS2
                 int k = i + 1;
                 this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellartString;
 
+                // Spalte Mindestmenge fuellen
+                int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
+                //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
+                int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
+                this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
+
+                // Spalte optimale Bestellmenge fuellen
+                // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
+                int jahresbedarf = 52 * durchschnitt;
+                double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
+                this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
+
                 // nur wenn etwas in Spalte Bestellart steht, die folgenden fuellen:
                 if (bestellartString != "")
                 {
-                    // Spalte Mindestmenge fuellen
-                    int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
-                    //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
-                    int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
-                    this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
-
-                    // Spalte optimale Bestellmenge fuellen
-                    // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
-                    int jahresbedarf = 52 * durchschnitt;
-                    double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
-                    this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
-
                     // Spalte Bestellmenge fuellen
                     double bestellmenge = 0;
 
@@ -223,6 +340,8 @@ namespace IBSYS2
                 }
             }
 
+            message.Close();
+            this.Enabled = true;
         }
 
         // Methode, um Bestand (Anfangsbest. + eingeh. Best. - noch zu entnehmen) zu ermitteln
@@ -502,13 +621,13 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(ergebnis);
         }
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -527,14 +646,23 @@ namespace IBSYS2
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
                 
                 //EN Labels
-                /*
-                lbl_menge1.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_menge2.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_menge3.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_bestellart1.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                */
+                labelDiskont1.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM1.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP1.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM1.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA1.Text = (Sprachen.EN_LBL_KD_BA);
+
+                labelDiskont2.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM2.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP2.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM2.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA2.Text = (Sprachen.EN_LBL_KD_BA);
+
+                labelDiskont3.Text = (Sprachen.EN_LBL_KD_DISKONT);
+                labelMM3.Text = (Sprachen.EN_LBL_KD_MM);
+                labelOP3.Text = (Sprachen.EN_LBL_KD_OP);
+                labelBM3.Text = (Sprachen.EN_LBL_KD_BM);
+                labelBA3.Text = (Sprachen.EN_LBL_KD_BA);
 
                 //EN Tooltip
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
@@ -553,21 +681,30 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
 
                 //DE Buttons
-                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
 
                 //DE Labels
-                /*
-                lbl_menge1.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_menge2.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_menge3.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_bestellart1.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                */
+                labelDiskont1.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM1.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP1.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM1.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA1.Text = (Sprachen.DE_LBL_KD_BA);
+
+                labelDiskont2.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM2.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP2.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM2.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA2.Text = (Sprachen.DE_LBL_KD_BA);
+
+                labelDiskont3.Text = (Sprachen.DE_LBL_KD_DISKONT);
+                labelMM3.Text = (Sprachen.DE_LBL_KD_MM);
+                labelOP3.Text = (Sprachen.DE_LBL_KD_OP);
+                labelBM3.Text = (Sprachen.DE_LBL_KD_BM);
+                labelBA3.Text = (Sprachen.DE_LBL_KD_BA);
 
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -580,56 +717,496 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "de";
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            this.Controls.Add(kapplan);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
         private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            this.Controls.Add(kapplan);
         }
 
         private void lbl_Ergebnis_Click(object sender, EventArgs e)
@@ -708,7 +1285,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(ergebnis);
         }
 

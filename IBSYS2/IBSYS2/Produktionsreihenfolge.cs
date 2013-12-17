@@ -23,7 +23,7 @@ namespace IBSYS2
         int[,] kapazitaet = new int[14, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        // hier lokal die Prodreihenfolge speichern - fuer dich Lukas
+        // hier lokal die Prodreihenfolge speichern - fuer dich Lukas Anmerkung: Später initialisieren sobald Länge von Liste bekannt
         int[,] berProduktionsreihenfolge = new int[30, 2];
 
         List<List<int>> teile_liste = new List<List<int>>();
@@ -89,6 +89,8 @@ namespace IBSYS2
                         {
                             label.Text = teile_liste[i][0].ToString();
                             tableLayoutPanel.Controls.Add(label, x, y);
+                            label.Tag = y;
+                            label.Click += new EventHandler(label_click);
                         }
                         else if (x == 2)
                         {
@@ -209,7 +211,6 @@ namespace IBSYS2
                     }
                 }
             }
-
             tabelle_erstellen(teile_liste);
         }
 
@@ -256,6 +257,14 @@ namespace IBSYS2
             berProduktionsreihenfolge = produktion;
         }
 
+        void label_click(object sender, EventArgs e)
+        {
+            Label button = (Label)sender;
+            int listitem = (int)button.Tag;
+            Splitting split = new Splitting(teile_liste, listitem);
+            split.Show();
+        }
+
         void buttonUp_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -275,7 +284,6 @@ namespace IBSYS2
                 teile_liste[listitem][1] = menge2;
                 teile_liste[listitem - 1][0] = teil1;
                 teile_liste[listitem - 1][1] = menge1;
-                MessageBox.Show("" + teil1 + "" +listitem);
                 tabelle_erstellen(teile_liste);
             }
         }
@@ -283,7 +291,7 @@ namespace IBSYS2
         void buttonDown_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (button.Tag.ToString() == "29")
+            if (button.Tag.ToString() == "30")
             {
                 MessageBox.Show("Bereits auf der letzten Position");
             }
@@ -394,46 +402,10 @@ namespace IBSYS2
             UserControl prod = new Produktion();
             this.Controls.Add(prod);
         }
-        /*
-        private void Plus7_Click(object sender, EventArgs e)
+
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
-            int[] Feld_nummern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56 };
-            int zahl = Convert.ToInt32(P7.Text);
-            if (Convert.ToInt32(P7.Text) < 30)
-            {
-                for (int i = 0; i < 30; i++)
-                {
-                    Control[] found = this.Controls.Find("P" + Feld_nummern[i].ToString(), true);
-                    int InhaltTextbox = Convert.ToInt32(((TextBox)found[0]).Text);
-                    if (InhaltTextbox == zahl + 1)
-                    {
-                        ((TextBox)found[0]).Text = zahl.ToString();
-                    }
-                }
-                P7.Text = (zahl + 1).ToString();
-            }
-            else { int joern1 = 30; } //message
+
         }
-
-        private void Minus7_Click(object sender, EventArgs e)
-        {
-            if (Convert.ToInt32(P7.Text) > 1)
-            {
-                int[] Feld_nummern = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 26, 29, 30, 31, 49, 50, 51, 54, 55, 56 };
-                int zahl = Convert.ToInt32(P7.Text);
-
-                for (int i = 0; i < 30; i++)
-                {
-                    Control[] found = this.Controls.Find("P" + Feld_nummern[i].ToString(), true);
-                    int InhaltTextbox = Convert.ToInt32(((TextBox)found[0]).Text);
-                    if (InhaltTextbox == zahl - 1)
-                    {
-                        ((TextBox)found[0]).Text = zahl.ToString();
-                    }
-                }
-                P7.Text = (zahl - 1).ToString();
-            }
-            else { int joern = 1; }//message
-        }*/
     }
 }

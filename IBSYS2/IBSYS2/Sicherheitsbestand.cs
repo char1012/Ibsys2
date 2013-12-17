@@ -1892,8 +1892,76 @@ namespace IBSYS2
 
         private void btn_back_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // sicherheitsbest fuellen
+            sicherheitsbest[0, 0] = 1;
+            sicherheitsbest[0, 1] = Convert.ToInt32(Eingabe_P1.Text);
+            sicherheitsbest[1, 0] = 2;
+            sicherheitsbest[1, 1] = Convert.ToInt32(Eingabe_P2.Text);
+            sicherheitsbest[2, 0] = 3;
+            sicherheitsbest[2, 1] = Convert.ToInt32(Eingabe_P3.Text);
+            sicherheitsbest[3, 0] = 4;
+            sicherheitsbest[3, 1] = Convert.ToInt32(E041.Text);
+            sicherheitsbest[4, 0] = 5;
+            sicherheitsbest[4, 1] = Convert.ToInt32(E052.Text);
+            sicherheitsbest[5, 0] = 6;
+            sicherheitsbest[5, 1] = Convert.ToInt32(E063.Text);
+            sicherheitsbest[6, 0] = 7;
+            sicherheitsbest[6, 1] = Convert.ToInt32(E071.Text);
+            sicherheitsbest[7, 0] = 8;
+            sicherheitsbest[7, 1] = Convert.ToInt32(E082.Text);
+            sicherheitsbest[8, 0] = 9;
+            sicherheitsbest[8, 1] = Convert.ToInt32(E093.Text);
+            sicherheitsbest[9, 0] = 10;
+            sicherheitsbest[9, 1] = Convert.ToInt32(E101.Text);
+            sicherheitsbest[10, 0] = 11;
+            sicherheitsbest[10, 1] = Convert.ToInt32(E112.Text);
+            sicherheitsbest[11, 0] = 12;
+            sicherheitsbest[11, 1] = Convert.ToInt32(E123.Text);
+            sicherheitsbest[12, 0] = 13;
+            sicherheitsbest[12, 1] = Convert.ToInt32(E131.Text);
+            sicherheitsbest[13, 0] = 14;
+            sicherheitsbest[13, 1] = Convert.ToInt32(E142.Text);
+            sicherheitsbest[14, 0] = 15;
+            sicherheitsbest[14, 1] = Convert.ToInt32(E153.Text);
+            int wert16 = Convert.ToInt32(E161.Text) + Convert.ToInt32(E162.Text) + Convert.ToInt32(E163.Text);
+            sicherheitsbest[15, 0] = 16;
+            sicherheitsbest[15, 1] = wert16;
+            int wert17 = Convert.ToInt32(E171.Text) + Convert.ToInt32(E172.Text) + Convert.ToInt32(E173.Text);
+            sicherheitsbest[16, 0] = 17;
+            sicherheitsbest[16, 1] = wert17;
+            sicherheitsbest[17, 0] = 18;
+            sicherheitsbest[17, 1] = Convert.ToInt32(E181.Text);
+            sicherheitsbest[18, 0] = 19;
+            sicherheitsbest[18, 1] = Convert.ToInt32(E192.Text);
+            sicherheitsbest[19, 0] = 20;
+            sicherheitsbest[19, 1] = Convert.ToInt32(E203.Text);
+            int wert26 = Convert.ToInt32(E261.Text) + Convert.ToInt32(E262.Text) + Convert.ToInt32(E263.Text);
+            sicherheitsbest[20, 0] = 26;
+            sicherheitsbest[20, 1] = wert26;
+            sicherheitsbest[21, 0] = 29;
+            sicherheitsbest[21, 1] = Convert.ToInt32(E293.Text);
+            sicherheitsbest[22, 0] = 30;
+            sicherheitsbest[22, 1] = Convert.ToInt32(E303.Text);
+            sicherheitsbest[23, 0] = 31;
+            sicherheitsbest[23, 1] = Convert.ToInt32(E313.Text);
+            sicherheitsbest[24, 0] = 49;
+            sicherheitsbest[24, 1] = Convert.ToInt32(E491.Text);
+            sicherheitsbest[25, 0] = 50;
+            sicherheitsbest[25, 1] = Convert.ToInt32(E501.Text);
+            sicherheitsbest[26, 0] = 51;
+            sicherheitsbest[26, 1] = Convert.ToInt32(E511.Text);
+            sicherheitsbest[27, 0] = 54;
+            sicherheitsbest[27, 1] = Convert.ToInt32(E542.Text);
+            sicherheitsbest[28, 0] = 55;
+            sicherheitsbest[28, 1] = Convert.ToInt32(E552.Text);
+            sicherheitsbest[29, 0] = 56;
+            sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(import);
         }
 
@@ -2073,8 +2141,76 @@ namespace IBSYS2
                     {
                         if (continue_btn.Enabled == true)
                         {
+                            // Datenweitergabe
+
+                            // sicherheitsbest fuellen
+                            sicherheitsbest[0, 0] = 1;
+                            sicherheitsbest[0, 1] = Convert.ToInt32(Eingabe_P1.Text);
+                            sicherheitsbest[1, 0] = 2;
+                            sicherheitsbest[1, 1] = Convert.ToInt32(Eingabe_P2.Text);
+                            sicherheitsbest[2, 0] = 3;
+                            sicherheitsbest[2, 1] = Convert.ToInt32(Eingabe_P3.Text);
+                            sicherheitsbest[3, 0] = 4;
+                            sicherheitsbest[3, 1] = Convert.ToInt32(E041.Text);
+                            sicherheitsbest[4, 0] = 5;
+                            sicherheitsbest[4, 1] = Convert.ToInt32(E052.Text);
+                            sicherheitsbest[5, 0] = 6;
+                            sicherheitsbest[5, 1] = Convert.ToInt32(E063.Text);
+                            sicherheitsbest[6, 0] = 7;
+                            sicherheitsbest[6, 1] = Convert.ToInt32(E071.Text);
+                            sicherheitsbest[7, 0] = 8;
+                            sicherheitsbest[7, 1] = Convert.ToInt32(E082.Text);
+                            sicherheitsbest[8, 0] = 9;
+                            sicherheitsbest[8, 1] = Convert.ToInt32(E093.Text);
+                            sicherheitsbest[9, 0] = 10;
+                            sicherheitsbest[9, 1] = Convert.ToInt32(E101.Text);
+                            sicherheitsbest[10, 0] = 11;
+                            sicherheitsbest[10, 1] = Convert.ToInt32(E112.Text);
+                            sicherheitsbest[11, 0] = 12;
+                            sicherheitsbest[11, 1] = Convert.ToInt32(E123.Text);
+                            sicherheitsbest[12, 0] = 13;
+                            sicherheitsbest[12, 1] = Convert.ToInt32(E131.Text);
+                            sicherheitsbest[13, 0] = 14;
+                            sicherheitsbest[13, 1] = Convert.ToInt32(E142.Text);
+                            sicherheitsbest[14, 0] = 15;
+                            sicherheitsbest[14, 1] = Convert.ToInt32(E153.Text);
+                            int wert16 = Convert.ToInt32(E161.Text) + Convert.ToInt32(E162.Text) + Convert.ToInt32(E163.Text);
+                            sicherheitsbest[15, 0] = 16;
+                            sicherheitsbest[15, 1] = wert16;
+                            int wert17 = Convert.ToInt32(E171.Text) + Convert.ToInt32(E172.Text) + Convert.ToInt32(E173.Text);
+                            sicherheitsbest[16, 0] = 17;
+                            sicherheitsbest[16, 1] = wert17;
+                            sicherheitsbest[17, 0] = 18;
+                            sicherheitsbest[17, 1] = Convert.ToInt32(E181.Text);
+                            sicherheitsbest[18, 0] = 19;
+                            sicherheitsbest[18, 1] = Convert.ToInt32(E192.Text);
+                            sicherheitsbest[19, 0] = 20;
+                            sicherheitsbest[19, 1] = Convert.ToInt32(E203.Text);
+                            int wert26 = Convert.ToInt32(E261.Text) + Convert.ToInt32(E262.Text) + Convert.ToInt32(E263.Text);
+                            sicherheitsbest[20, 0] = 26;
+                            sicherheitsbest[20, 1] = wert26;
+                            sicherheitsbest[21, 0] = 29;
+                            sicherheitsbest[21, 1] = Convert.ToInt32(E293.Text);
+                            sicherheitsbest[22, 0] = 30;
+                            sicherheitsbest[22, 1] = Convert.ToInt32(E303.Text);
+                            sicherheitsbest[23, 0] = 31;
+                            sicherheitsbest[23, 1] = Convert.ToInt32(E313.Text);
+                            sicherheitsbest[24, 0] = 49;
+                            sicherheitsbest[24, 1] = Convert.ToInt32(E491.Text);
+                            sicherheitsbest[25, 0] = 50;
+                            sicherheitsbest[25, 1] = Convert.ToInt32(E501.Text);
+                            sicherheitsbest[26, 0] = 51;
+                            sicherheitsbest[26, 1] = Convert.ToInt32(E511.Text);
+                            sicherheitsbest[27, 0] = 54;
+                            sicherheitsbest[27, 1] = Convert.ToInt32(E542.Text);
+                            sicherheitsbest[28, 0] = 55;
+                            sicherheitsbest[28, 1] = Convert.ToInt32(E552.Text);
+                            sicherheitsbest[29, 0] = 56;
+                            sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
+
                             this.Controls.Clear();
-                            UserControl import = new ImportPrognose();
+                            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
                             this.Controls.Add(import);
                         }
                     }

@@ -25,6 +25,10 @@ namespace IBSYS2
         public static String DE_BTN_CLEAR = "Datenbank leeren";
         public static String DE_MSG_INFO1 = "Sind Sie sicher, dass Sie die Anwendung schließen möchten?\nDadurch werden alle Änderungen verworfen.";
         public static String DE_MSG_INFO2 = "Anwendung schließen";
+        
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String DE_GB_PR_PROD_SPLITT = "Produktionsreihenfolge und Splittung";
 
         /*---------ImportProgress----------*/
         //Buttons
@@ -182,6 +186,10 @@ namespace IBSYS2
 
         //ComboBox
         public static String EN_CB_IP_PERIODE_AUSWAEHLEN = "Select the period to edit";
+
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String EN_GB_PR_PROD_SPLITT = "Procuktion sequence and splitting";
 
         /*---------Kaufteiledisposition----------*/
         //Groupboxen

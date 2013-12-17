@@ -186,10 +186,20 @@ namespace IBSYS2
                 button2.Enabled = true;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
+        }
 
-            // int periode fuer Datenweitergabe fuellen
-            String[] strings = comboBox1.Text.Split((new Char [] {' '}));
-            aktPeriode = Convert.ToInt32(strings[1]);
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //ExportXMLClass exportXML = new ExportXMLClass();
+            //exportXML.XMLExport();
+           // Kaufteildisposition ktdispo = new Kaufteildisposition();
+            UserControl p = new Produktionsreihenfolge();
+            //p.Show();
+            //ktdispo.ShowDialog();
+            this.Controls.Clear();
+            //UserControl sicherheit = new Sicherheitsbestand();
+            //UserControl ergebnis = new Ergebnis();
+            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -389,7 +399,7 @@ namespace IBSYS2
                     {
                         if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                         {
-                            MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
+                            System.Windows.MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
                         }
                         else
                         {
@@ -1214,12 +1224,6 @@ namespace IBSYS2
 
                 }
             }
-        }
-
-        private void btn_direktverkäufe_Click(object sender, EventArgs e)
-        {
-            Direktverkäufe direktverkaeufeForm = new Direktverkäufe(direktverkaeufe, sprache);
-            direktverkaeufeForm.Show();
         }
 
     }

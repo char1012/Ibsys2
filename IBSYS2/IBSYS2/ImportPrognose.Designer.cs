@@ -196,7 +196,6 @@
             this.btn_direktverkäufe.TabIndex = 58;
             this.btn_direktverkäufe.Text = "Direktverkäufe";
             this.btn_direktverkäufe.UseVisualStyleBackColor = false;
-            this.btn_direktverkäufe.Click += new System.EventHandler(this.btn_direktverkäufe_Click);
             // 
             // lbl_optional
             // 
@@ -383,7 +382,7 @@
             // lbl_aktuellePeriode
             // 
             this.lbl_aktuellePeriode.AutoSize = true;
-            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 103);
+            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 106);
             this.lbl_aktuellePeriode.Name = "lbl_aktuellePeriode";
             this.lbl_aktuellePeriode.Size = new System.Drawing.Size(98, 14);
             this.lbl_aktuellePeriode.TabIndex = 40;

@@ -302,10 +302,21 @@ namespace IBSYS2
                                     dbReader = cmd.ExecuteReader();
                                     dbReader.Close();
 
+                                    // Mitteilung einblenden
+                                    ProcessMessage message = new ProcessMessage();
+                                    message.Show(this);
+                                    message.Location = new Point(500, 300);
+                                    message.Update();
+                                    this.Enabled = false;
+
                                     // XMLReaderClass aufrufen
                                     //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                     XMLReaderClass xmlclass = new XMLReaderClass();
                                     xmlclass.XMLReader(cmd, File);
+
+                                    message.Close();
+                                    this.Enabled = true;
+
                                     if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                                     {
                                         System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
@@ -325,10 +336,21 @@ namespace IBSYS2
                             }
                             else
                             {
+                                // Mitteilung einblenden
+                                ProcessMessage message = new ProcessMessage();
+                                message.Show(this);
+                                message.Location = new Point(500, 300);
+                                message.Update();
+                                this.Enabled = false;
+
                                 myconn.Open();
                                 //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                 XMLReaderClass xmlclass = new XMLReaderClass();
                                 xmlclass.XMLReader(cmd, File);
+
+                                message.Close();
+                                this.Enabled = true;
+
                                 if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                                 {
                                     System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");

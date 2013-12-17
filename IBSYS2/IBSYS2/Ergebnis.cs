@@ -553,8 +553,19 @@ namespace IBSYS2
 
         private void End_btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Hier wird dann exportiert.");
-            // Achtung: Bestellart muss von E/N in 5 = normal und 4 = express geaendert werden
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage();
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
+            // TODO - ExportXMLClass aufrufen
+
+            message.Close();
+            this.Enabled = true;
+
+            // TODO - Speicherort fuer XML-Datei auswaehlen lassen
         }
     }
 }

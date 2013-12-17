@@ -32,33 +32,6 @@ namespace IBSYS2
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        public Sicherheitsbestand()
-        {
-            InitializeComponent();
-            continue_btn.Enabled = true;
-            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
-            myconn = new OleDbConnection(databasename);
-            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
-            {
-                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
-                ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
-                ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
-            }
-            else
-            {
-                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-                ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
-                ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
-            }
-            textfeldSperren();
-            
-            Ausgabe_P1.Enabled = false;
-            Ausgabe_P2.Enabled = false;
-            Ausgabe_P3.Enabled = false;
-            continue_btn.Enabled = false;
-            eteileberechnen_btn.Enabled = false;
-        }
-
         public Sicherheitsbestand(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
@@ -103,7 +76,7 @@ namespace IBSYS2
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
@@ -117,11 +90,12 @@ namespace IBSYS2
             }
             textfeldSperren();
 
-            Ausgabe_P1.Enabled = false;
-            Ausgabe_P2.Enabled = false;
-            Ausgabe_P3.Enabled = false;
+            //Ausgabe_P1.Enabled = false;
+            //Ausgabe_P2.Enabled = false;
+            //Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
+            btn_back.Enabled = false;
 
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < sicherheitsbest.GetLength(0); i++)
@@ -197,12 +171,12 @@ namespace IBSYS2
                             int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
                             int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
                             int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
-                            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
-                            Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-                            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
-                            Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-                            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
-                            Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
+                            //double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
+                            //Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
+                            //double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
+                            //Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
+                            //double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
+                            //Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
                             setButtons(true);
                             textfeldFreigeben();
@@ -229,7 +203,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }
@@ -256,12 +230,12 @@ namespace IBSYS2
             int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
             int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
             int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
-            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
-            Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
-            Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
-            Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
+            //double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
+            //Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
+            //double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
+            //Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
+            //double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
+            //Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
 
             double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, 100);
@@ -346,12 +320,22 @@ namespace IBSYS2
 
         public double sicherheitsbestandBerechnen(int prognose, double gLagerbestand, string teilenummer_FK)
         {
+
             double sicherheitsbestand = 0;
-            int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
+            int lBestand;
+            if (aktPeriode != 1)
+            {
+                lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
+            }
+            else
+            {
+                lBestand = datenHolen(teilenummer_FK, "Startbestand", "Teilenummer", "Teil");
+            }
             int wMatMenge = datenHolen(teilenummer_FK, "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material");
             int wArbMenge = datenHolen(teilenummer_FK, "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz");
             //Sicherheitsbestand = Prognose + geplanterLagerbestand - Lagerbestand - MengeWarteliste_Material - Menge Warteliste_Arbeitsplatz
-            return sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;                  
+            sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;
+            return sicherheitsbestand;                  
         }
 
         public int datenHolen(string teilenummer_FK, string spalte, string spalte1, string tabelle)
@@ -366,14 +350,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -480,6 +456,7 @@ namespace IBSYS2
             if (Eingabe_P2.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP2 = false;
             }
             else
@@ -496,6 +473,7 @@ namespace IBSYS2
                         okay = false;
                         tP2 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -506,10 +484,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -520,6 +500,7 @@ namespace IBSYS2
             if (Eingabe_P1.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP1 = false;
             }
             else
@@ -536,6 +517,7 @@ namespace IBSYS2
                         okay = false;
                         tP1 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -546,10 +528,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -560,6 +544,7 @@ namespace IBSYS2
             if (Eingabe_P3.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP3 = false;
             }
             else
@@ -576,6 +561,7 @@ namespace IBSYS2
                         okay = false;
                         tP3 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -586,10 +572,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -1917,7 +1905,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1936,7 +1924,6 @@ namespace IBSYS2
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_GROUPBOX1);
                 groupBox3.Text = (Sprachen.EN_GROUPBOX3);
-                groupBox2.Text = (Sprachen.EN_GROUPBOX2);
 
                 //EN Labels
                 //label4.Text = (Sprachen.EN_LABEL4);
@@ -1966,7 +1953,6 @@ namespace IBSYS2
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_GROUPBOX1);
                 groupBox3.Text = (Sprachen.DE_GROUPBOX3);
-                groupBox2.Text = (Sprachen.DE_GROUPBOX2);
 
                 //DE Labels
                 //label4.Text = (Sprachen.DE_LABEL4);
@@ -1983,14 +1969,16 @@ namespace IBSYS2
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "de";
         }
 
         private void pic_en_Click(object sender, EventArgs e)
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "en";
         }
 
         private void btn_back_Click(object sender, EventArgs e)
@@ -2084,7 +2072,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }

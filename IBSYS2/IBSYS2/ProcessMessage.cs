@@ -17,6 +17,15 @@ namespace IBSYS2
         public ProcessMessage(String sprache)
         {
             InitializeComponent();
+            if (sprache != "en")
+            {
+                label1.Text = "Einen Moment bitte ...";
+            }
+            else
+            {
+                label1.Text = "One moment please ...";
+
+            }
             this.sprache = sprache;
             // TODO Sprachen();
         }

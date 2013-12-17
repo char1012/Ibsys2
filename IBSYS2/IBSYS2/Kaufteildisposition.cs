@@ -109,14 +109,6 @@ namespace IBSYS2
                 }
                 catch (Exception)
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                    }
                     myconn.Close();
                     myconn.Open();
                 }
@@ -222,14 +214,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                }
                 myconn.Close();
                 myconn.Open();
             }
@@ -643,7 +627,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -662,14 +646,6 @@ namespace IBSYS2
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
                 
                 //EN Labels
-                /*
-                lbl_menge1.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_menge2.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_menge3.Text = (Sprachen.EN_LBL_KD_MENGE);
-                lbl_bestellart1.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.EN_LBL_KD_BESTELLART);
-                */
                 labelDiskont1.Text = (Sprachen.EN_LBL_KD_DISKONT);
                 labelMM1.Text = (Sprachen.EN_LBL_KD_MM);
                 labelOP1.Text = (Sprachen.EN_LBL_KD_OP);
@@ -688,7 +664,6 @@ namespace IBSYS2
                 labelBM3.Text = (Sprachen.EN_LBL_KD_BM);
                 labelBA3.Text = (Sprachen.EN_LBL_KD_BA);
 
-
                 //EN Tooltip
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KD_INFO);
@@ -706,21 +681,13 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
 
                 //DE Buttons
-                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
 
                 //DE Labels
-                /*
-                lbl_menge1.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_menge2.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_menge3.Text = (Sprachen.DE_LBL_KD_MENGE);
-                lbl_bestellart1.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                lbl_bestellart2.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                lbl_bestellart3.Text = (Sprachen.DE_LBL_KD_BESTELLART);
-                */
                 labelDiskont1.Text = (Sprachen.DE_LBL_KD_DISKONT);
                 labelMM1.Text = (Sprachen.DE_LBL_KD_MM);
                 labelOP1.Text = (Sprachen.DE_LBL_KD_OP);
@@ -750,14 +717,16 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "de";
         }
 
         private void back_btn_Click(object sender, EventArgs e)

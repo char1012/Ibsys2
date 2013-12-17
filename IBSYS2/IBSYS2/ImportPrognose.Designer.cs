@@ -383,7 +383,7 @@
             // lbl_aktuellePeriode
             // 
             this.lbl_aktuellePeriode.AutoSize = true;
-            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 103);
+            this.lbl_aktuellePeriode.Location = new System.Drawing.Point(145, 106);
             this.lbl_aktuellePeriode.Name = "lbl_aktuellePeriode";
             this.lbl_aktuellePeriode.Size = new System.Drawing.Size(98, 14);
             this.lbl_aktuellePeriode.TabIndex = 40;

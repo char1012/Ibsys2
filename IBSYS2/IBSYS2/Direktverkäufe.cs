@@ -13,7 +13,7 @@ namespace IBSYS2
     public partial class Direktverkäufe : Form
     {
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        private char[] fordouble = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
+        private char[] fordouble = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ','};
         double[,] direktverkauf = new double[3, 4];
         private String sprache = "de";
 
@@ -52,6 +52,7 @@ namespace IBSYS2
         }
         private void fuelleFelder(double[,] direktverkauf)
         {
+            Console.WriteLine(direktverkauf[0, 1]);
             textBox1.Text = direktverkauf[0, 1].ToString();
             textBox4.Text = direktverkauf[0, 2].ToString();
             textBox7.Text = direktverkauf[0, 3].ToString();
@@ -387,7 +388,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 groupBox1.Text = Sprachen.EN_DV_GROUPBOX1;
                 label4.Text = Sprachen.EN_DV_LABEL4;
@@ -409,6 +410,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "de";
         }
 
         private void pic_en_Click_1(object sender, EventArgs e)
@@ -416,6 +418,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "en";
         }
 
     }

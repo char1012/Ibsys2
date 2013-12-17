@@ -678,7 +678,15 @@ namespace IBSYS2
             this.Enabled = false;
 
             // TODO - ExportXMLClass aufrufen
-
+            try
+            {
+                ExportXMLClass exp = new ExportXMLClass();
+                exp.XMLExport(kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("" + ex);
+            }
             message.Close();
             this.Enabled = true;
 

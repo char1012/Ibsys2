@@ -15,18 +15,19 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        List<int> sicherheitsbe = new List<int>();
+        int[,] sicherheitsbe = new int[30, 2];
         int[,] berProduktion = new int[30, 2];
 
         int[,] backupProduktion = new int[30, 2];
 
-        public Produktion_ETeile(int[,] beProduktion)
+        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest)
         {
 
             InitializeComponent();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
+            this.sicherheitsbe = sicherheitsbest;
             this.berProduktion = beProduktion;
             this.backupProduktion = beProduktion;
 
@@ -1132,7 +1133,7 @@ namespace IBSYS2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Produktion prod = new Produktion();
+            Produktion prod = new Produktion(sicherheitsbe);
             backupProduktion = prod.ProduktionETeile();       
             berechneProduktion(backupProduktion);
         }

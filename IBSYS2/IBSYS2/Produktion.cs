@@ -76,6 +76,11 @@ namespace IBSYS2
             ProduktionETeile();
         }
 
+        public Produktion(int[,] sicherheitsbe)
+        {
+            this.sicherheitsbest = sicherheitsbe;
+        }
+
         public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
@@ -1587,7 +1592,7 @@ namespace IBSYS2
         {
             // TODO hier zusaetzlich berProduktion uebergeben
             backupProduktion = berProduktion;
-            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion);
+            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest);
             eteile.Show();
         }
 

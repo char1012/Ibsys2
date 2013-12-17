@@ -137,9 +137,6 @@ namespace IBSYS2
             textBox10.Text = auftraege[9].ToString();
             textBox11.Text = auftraege[10].ToString();
             textBox12.Text = auftraege[11].ToString();
-            //txt_zLAP1.Text = direktverkaeufe[0].ToString();
-            //txt_zLAP2.Text = direktverkaeufe[1].ToString();
-            //txt_zLAP3.Text = direktverkaeufe[2].ToString();
 
             comboBox1.Text = "Periode " + aktPeriode;
 

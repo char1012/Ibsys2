@@ -25,6 +25,10 @@ namespace IBSYS2
         public static String DE_BTN_CLEAR = "Datenbank leeren";
         public static String DE_MSG_INFO1 = "Sind Sie sicher, dass Sie die Anwendung schließen möchten?\nDadurch werden alle Änderungen verworfen.";
         public static String DE_MSG_INFO2 = "Anwendung schließen";
+        
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String DE_GB_PR_PROD_SPLITT = "Produktionsreihenfolge und Splittung";
 
         /*---------ImportProgress----------*/
         //Buttons
@@ -61,6 +65,11 @@ namespace IBSYS2
         //Labels
         public static String DE_LBL_KD_MENGE = "Menge";
         public static String DE_LBL_KD_BESTELLART = "Bestellart";
+        public static String DE_LBL_KD_DISKONT = "Diskont";
+        public static String DE_LBL_KD_MM = "Min. Menge";
+        public static String DE_LBL_KD_OP = "Opt. Menge";
+        public static String DE_LBL_KD_BM = "Bestellmenge";
+        public static String DE_LBL_KD_BA = "Bestellart";
 
         //ToolTip
         public static String DE_KD_INFO = " ";
@@ -183,6 +192,10 @@ namespace IBSYS2
         //ComboBox
         public static String EN_CB_IP_PERIODE_AUSWAEHLEN = "Select the period to edit";
 
+        /*---------Produktionsreihenfolge----------*/
+        //GroupBox
+        public static String EN_GB_PR_PROD_SPLITT = "Procuktion sequence and splitting";
+
         /*---------Kaufteiledisposition----------*/
         //Groupboxen
         public static String EN_KD_GROUPBOX1 = "Disposition of bought-out components";
@@ -190,6 +203,11 @@ namespace IBSYS2
         //Labels
         public static String EN_LBL_KD_MENGE = "Amount";
         public static String EN_LBL_KD_BESTELLART = "Order type";
+        public static String EN_LBL_KD_DISKONT ="Diskont";
+        public static String EN_LBL_KD_MM ="min. amount";
+        public static String EN_LBL_KD_OP ="opt. amount";
+        public static String EN_LBL_KD_BM ="Order size";
+        public static String EN_LBL_KD_BA = "Order type";
 
         //ToolTip
         public static String EN_KD_INFO = " ";

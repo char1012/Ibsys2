@@ -137,9 +137,9 @@ namespace IBSYS2
             textBox10.Text = auftraege[9].ToString();
             textBox11.Text = auftraege[10].ToString();
             textBox12.Text = auftraege[11].ToString();
-            txt_zLAP1.Text = direktverkaeufe[0].ToString();
-            txt_zLAP2.Text = direktverkaeufe[1].ToString();
-            txt_zLAP3.Text = direktverkaeufe[2].ToString();
+            //txt_zLAP1.Text = direktverkaeufe[0].ToString();
+            //txt_zLAP2.Text = direktverkaeufe[1].ToString();
+            //txt_zLAP3.Text = direktverkaeufe[2].ToString();
 
             comboBox1.Text = "Periode " + aktPeriode;
 
@@ -1058,6 +1058,8 @@ namespace IBSYS2
                 continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
                 button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.EN_BTN_IP_DIREKT);
+
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_IP_GROUPBOX1);
@@ -1096,6 +1098,7 @@ namespace IBSYS2
                 continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
                 button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.DE_BTN_IP_DIREKT);
 
 
                 //DE Groupboxen

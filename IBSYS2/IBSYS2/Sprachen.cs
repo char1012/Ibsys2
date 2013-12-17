@@ -31,6 +31,7 @@ namespace IBSYS2
         public static String DE_BTN_IP_BERECHNUNG_STARTEN = "Berechnung starten";
         public static String DE_BTN_IP_SPRUNG = "Sprung";
         public static String DE_BTN_IP_DATEI_AUSWAEHLEN = "Datei auswählen";
+        public static String DE_BTN_IP_DIREKT = "Direktverkäufe";
 
         //Groupbox
         public static String DE_IP_GROUPBOX1 = "Import der XML-Datei und Prognose - Zusätzliche Lieferanfragen (optional)";
@@ -97,7 +98,7 @@ namespace IBSYS2
         //ToolTip
         public static String DE_PR_INFO = "Sie können die hier berechneten Produktionswerte überschreiben. \nUm die Produktion der E-Teile zu überprüfen, klicken Sie auf den Button E-Teile.";
         /*---------Produktion E-Teile----------*/
-        public static String DE_PRE_GB_ETEILE = "Produktion der Eigenprodukte";
+        public static String DE_PRE_GB_ETEILE = "Direktverkäufe";
 
         /*---------Sicherheitsbestand----------*/
         //Buttons
@@ -159,6 +160,7 @@ namespace IBSYS2
         public static String EN_BTN_IP_BERECHNUNG_STARTEN = "Calculation Start";
         public static String EN_BTN_IP_SPRUNG = "Jump";
         public static String EN_BTN_IP_DATEI_AUSWAEHLEN = "Data select";
+        public static String EN_BTN_IP_DIREKT = "Direct sales";
 
         //Groupbox
         public static String EN_IP_GROUPBOX1 = "Import of the XML-file and forecast - extra supply query (optional)";

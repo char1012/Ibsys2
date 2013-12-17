@@ -12,6 +12,9 @@ namespace IBSYS2
 {
     public partial class Produktionsreihenfolge : UserControl
     {
+        Button buttonUp = new Button();
+        Button buttonDown = new Button();
+
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
@@ -137,9 +140,7 @@ namespace IBSYS2
                 for (int y = 0; y < teile.GetLength(0); y++)
                 {
                     Label label = new Label();
-                    Button buttonUp = new Button();
                     buttonUp.Text = "hoch";
-                    Button buttonDown = new Button();
                     buttonDown.Text = "runter";
 
                     //Next, add a row.  Only do this when once, when creating the first column
@@ -285,6 +286,8 @@ namespace IBSYS2
                 lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
+                buttonDown.Text = "down";
+                buttonUp.Text = "up";
             }
             else
             {
@@ -296,6 +299,10 @@ namespace IBSYS2
                 lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
+
+                buttonDown.Text = "Runter";
+                buttonUp.Text = "Hoch";
+
             }
         }
 

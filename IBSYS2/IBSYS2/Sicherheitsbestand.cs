@@ -90,9 +90,9 @@ namespace IBSYS2
             }
             textfeldSperren();
 
-            Ausgabe_P1.Enabled = false;
-            Ausgabe_P2.Enabled = false;
-            Ausgabe_P3.Enabled = false;
+            //Ausgabe_P1.Enabled = false;
+            //Ausgabe_P2.Enabled = false;
+            //Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
             btn_back.Enabled = false;
@@ -171,12 +171,12 @@ namespace IBSYS2
                             int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
                             int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
                             int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
-                            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
-                            Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-                            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
-                            Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-                            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
-                            Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
+                            //double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
+                            //Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
+                            //double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
+                            //Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
+                            //double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
+                            //Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
                             setButtons(true);
                             textfeldFreigeben();
@@ -231,11 +231,11 @@ namespace IBSYS2
             int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
             int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
             double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
-            Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
-            double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
-            Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
-            double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
-            Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
+            //Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
+            //double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
+            //Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
+            //double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
+            //Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
 
             double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, 100);
@@ -320,12 +320,24 @@ namespace IBSYS2
 
         public double sicherheitsbestandBerechnen(int prognose, double gLagerbestand, string teilenummer_FK)
         {
+
             double sicherheitsbestand = 0;
-            int lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
+            int lBestand;
+            if (aktPeriode != 1)
+            {
+                lBestand = datenHolen(teilenummer_FK, "Bestand", "Teilenummer_FK", "Lager");
+            }
+            else
+            {
+                lBestand = datenHolen(teilenummer_FK, "Startbestand", "Teilenummer", "Teil");
+                MessageBox.Show(lBestand + " :lBestand");
+            }
             int wMatMenge = datenHolen(teilenummer_FK, "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material");
             int wArbMenge = datenHolen(teilenummer_FK, "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz");
             //Sicherheitsbestand = Prognose + geplanterLagerbestand - Lagerbestand - MengeWarteliste_Material - Menge Warteliste_Arbeitsplatz
-            return sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;                  
+            sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;
+            MessageBox.Show(sicherheitsbestand + " = " + prognose + " + " + gLagerbestand + " - " + lBestand + " - " + wMatMenge + " - " + wArbMenge);
+            return sicherheitsbestand;                  
         }
 
         public int datenHolen(string teilenummer_FK, string spalte, string spalte1, string tabelle)
@@ -1922,7 +1934,6 @@ namespace IBSYS2
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_GROUPBOX1);
                 groupBox3.Text = (Sprachen.EN_GROUPBOX3);
-                groupBox2.Text = (Sprachen.EN_GROUPBOX2);
 
                 //EN Labels
                 //label4.Text = (Sprachen.EN_LABEL4);
@@ -1952,7 +1963,6 @@ namespace IBSYS2
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_GROUPBOX1);
                 groupBox3.Text = (Sprachen.DE_GROUPBOX3);
-                groupBox2.Text = (Sprachen.DE_GROUPBOX2);
 
                 //DE Labels
                 //label4.Text = (Sprachen.DE_LABEL4);

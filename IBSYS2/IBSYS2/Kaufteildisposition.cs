@@ -706,7 +706,7 @@ namespace IBSYS2
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
 
                 //DE Buttons
-                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //DE Groupboxen

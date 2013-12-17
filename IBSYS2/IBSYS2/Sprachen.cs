@@ -139,7 +139,7 @@ namespace IBSYS2
 
         /*---------Ergebnis----------*/
         //Buttons
-        public static String DE_BTN_XML_EXPORT = "XML export";
+        public static String DE_BTN_XML_EXPORT = "XML Export";
 
         //Groupbox
         public static String DE_ER_GROUPBOX2 = "Einkaufsaufträge";

@@ -22,7 +22,7 @@ namespace IBSYS2
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
@@ -75,7 +75,117 @@ namespace IBSYS2
 
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
-            setValues();
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kaufauftraege.GetLength(0); i++)
+            {
+                if (kaufauftraege[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, Felder fuellen
+            // die ersten drei Spalten trotzdem nochmal berechnen
+            if (bereitsBerechnet == true)
+            {
+                // Werte simulieren
+                int periode = aktPeriode - 1;
+                //Produktion der P-Teile fuer die aktuelle und drei weitere Perioden
+
+                // DB-Verbindung herstellen
+                string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+                myconn = new OleDbConnection(databasename);
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = myconn;
+                try
+                {
+                    myconn.Open();
+                }
+                catch (Exception)
+                {
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
+                    }
+                    myconn.Close();
+                    myconn.Open();
+                }
+
+                // Mitteilung einblenden
+                ProcessMessage message = new ProcessMessage();
+                message.Show(this);
+                message.Location = new Point(500, 300);
+                message.Update();
+                this.Enabled = false;
+
+                // Spalte Diskont
+                //1.  Dicountmengen ermitteln
+                int a = 0;
+                double[,] teildaten = new double[29, 6];
+                cmd.CommandText = @"SELECT Teilenummer, Startteilewert, Diskontmenge, Bestellkosten, Wiederbeschaffunszeit, Abweichung FROM Teil WHERE Diskontmenge > 0 ORDER BY Teilenummer ASC;";
+                OleDbDataReader dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    teildaten[a, 0] = Convert.ToInt32(dbReader["Teilenummer"]);
+                    teildaten[a, 1] = Convert.ToInt32(dbReader["Diskontmenge"]);
+                    teildaten[a, 2] = Convert.ToInt32(dbReader["Bestellkosten"]);
+                    teildaten[a, 3] = Convert.ToDouble(dbReader["Wiederbeschaffunszeit"]);
+                    teildaten[a, 4] = Convert.ToDouble(dbReader["Abweichung"]);
+                    teildaten[a, 5] = Convert.ToDouble(dbReader["Startteilewert"]);
+                    a++;
+                }
+                dbReader.Close();
+                // 2. Zellen fuellen
+                for (int i = 0; i < teildaten.GetLength(0); ++i)
+                {
+                    int k = i + 1;
+                    this.Controls.Find("D" + k.ToString(), true)[0].Text = teildaten[i, 1].ToString();
+                }
+
+                // Methode calculateBestand rufen
+                int[,] bestand = calculateBestand(periode);
+
+                // Methode calculateVerbrauch rufen
+                int[,] verbrauch = calculateVerbrauch(produktionProg);
+
+                // berechnen, wie lange das Lager noch reicht
+                double[,] reichweite = calculateReichweite(bestand, verbrauch);
+
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+                {
+                    double zeit = teildaten[i, 3] + teildaten[i, 4];
+                    int k = i + 1;
+
+                    // Spalte Mindestmenge fuellen
+                    int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
+                    //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
+                    int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
+                    this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
+
+                    // Spalte optimale Bestellmenge fuellen
+                    // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
+                    int jahresbedarf = 52 * durchschnitt;
+                    double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
+                    this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
+
+                    this.Controls.Find("BM" + k.ToString(), true)[0].Text = kaufauftraege[i, 4].ToString();
+                    this.Controls.Find("B" + k.ToString(), true)[0].Text = kaufauftraege[i, 5].ToString();
+                }
+
+                message.Close();
+                this.Enabled = true;
+            }
+            // sonst Werte berechnen
+            else
+            {
+                setValues();
+            }
         }
 
         public void setValues()
@@ -167,21 +277,21 @@ namespace IBSYS2
                 int k = i + 1;
                 this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellartString;
 
+                // Spalte Mindestmenge fuellen
+                int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
+                //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
+                int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
+                this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
+
+                // Spalte optimale Bestellmenge fuellen
+                // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
+                int jahresbedarf = 52 * durchschnitt;
+                double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
+                this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
+
                 // nur wenn etwas in Spalte Bestellart steht, die folgenden fuellen:
                 if (bestellartString != "")
                 {
-                    // Spalte Mindestmenge fuellen
-                    int durchschnitt = (verbrauch[i, 1] + verbrauch[i, 2] + verbrauch[i, 3] + verbrauch[i, 4]) / 4;
-                    //int mindestbestellwert = Convert.ToInt32(durchschnitt * zeit);
-                    int mindestbestellwert = Convert.ToInt32(Math.Ceiling((durchschnitt * zeit) / 5.0) * 5);
-                    this.Controls.Find("M" + k.ToString(), true)[0].Text = mindestbestellwert.ToString();
-
-                    // Spalte optimale Bestellmenge fuellen
-                    // Wurzel von (200 * Jahresbedarf * Bestellkosten) / (Einstandspreis * LHS)
-                    int jahresbedarf = 52 * durchschnitt;
-                    double optimaleMenge = Math.Round(Math.Sqrt((200 * jahresbedarf * teildaten[i, 2]) / (teildaten[i, 5] * 30)));
-                    this.Controls.Find("O" + k.ToString(), true)[0].Text = optimaleMenge.ToString();
-
                     // Spalte Bestellmenge fuellen
                     double bestellmenge = 0;
 

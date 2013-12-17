@@ -25,7 +25,7 @@ namespace IBSYS2
         int aktPeriode;
         int[] auftraege = new int[12];
         int[] direktverkaeufe = new int[3];
-        int[,] sicherheitsbest = new int[30, 2];
+        int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
@@ -122,6 +122,32 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
                 ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
             }
+
+            // Die Textboxen fuer auftraege und direktverkauefe werden hier mit den
+            // Werten aus den beiden Arrays gefuellt
+            tb_aktP1.Text = auftraege[0].ToString();
+            textBox2.Text = auftraege[1].ToString();
+            textBox3.Text = auftraege[2].ToString();
+            textBox4.Text = auftraege[3].ToString();
+            textBox5.Text = auftraege[4].ToString();
+            textBox6.Text = auftraege[5].ToString();
+            textBox7.Text = auftraege[6].ToString();
+            textBox8.Text = auftraege[7].ToString();
+            textBox9.Text = auftraege[8].ToString();
+            textBox10.Text = auftraege[9].ToString();
+            textBox11.Text = auftraege[10].ToString();
+            textBox12.Text = auftraege[11].ToString();
+            txt_zLAP1.Text = direktverkaeufe[0].ToString();
+            txt_zLAP2.Text = direktverkaeufe[1].ToString();
+            txt_zLAP3.Text = direktverkaeufe[2].ToString();
+
+            comboBox1.Text = "Periode " + aktPeriode;
+
+            // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
+            // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
+            continue_btn.Enabled = true;
+            // XML-Import wird disabled
+            button2.Enabled = false;
         }
 
         //--------------------------------

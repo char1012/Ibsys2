@@ -1206,8 +1206,30 @@ namespace IBSYS2
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // auftraege fuellen
+            auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+            auftraege[1] = Convert.ToInt32(textBox2.Text);
+            auftraege[2] = Convert.ToInt32(textBox3.Text);
+            auftraege[3] = Convert.ToInt32(textBox4.Text);
+            auftraege[4] = Convert.ToInt32(textBox5.Text);
+            auftraege[5] = Convert.ToInt32(textBox6.Text);
+            auftraege[6] = Convert.ToInt32(textBox7.Text);
+            auftraege[7] = Convert.ToInt32(textBox8.Text);
+            auftraege[8] = Convert.ToInt32(textBox9.Text);
+            auftraege[9] = Convert.ToInt32(textBox10.Text);
+            auftraege[10] = Convert.ToInt32(textBox11.Text);
+            auftraege[11] = Convert.ToInt32(textBox12.Text);
+
+            // direktverkaeufe fuellen
+            direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
+            direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
+            direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(sicherheit);
         }
 

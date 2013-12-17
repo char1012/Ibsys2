@@ -428,10 +428,7 @@ namespace IBSYS2
             storevalue[1] = endwert;
 
             // c) geschatzter Mittelwert berechnen - wichtig, weil sprungfixe Kosten aus Basis des Mittelwertes berechnet werden
-            storevalue[2] = tageswerte.Sum() / 5;
-
-            MessageBox.Show(wertBestellungen + " " + wertProduktion + " " + wertVerkaeufe + " " + wertVerwendung);  
-            MessageBox.Show(storevalue[0] + " " + storevalue[1] + " " + storevalue[2]);    
+            storevalue[2] = tageswerte.Sum() / 5;  
 
             return storevalue;
         }

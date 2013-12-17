@@ -334,9 +334,14 @@ namespace IBSYS2
 
         private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+            this.Controls.Add(kapaplan);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)

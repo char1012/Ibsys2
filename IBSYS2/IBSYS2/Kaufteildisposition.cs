@@ -634,8 +634,81 @@ namespace IBSYS2
 
         private void lbl_Ergebnis_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                int k = i + 1;
+
+                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 0] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 1] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 2] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 3] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                }
+
+                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                if (wert == "")
+                {
+                    kaufauftraege[i, 4] = 0;
+                }
+                else
+                {
+                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                }
+
+                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                if (bestellart == "E")
+                {
+                    kaufauftraege[i, 5] = 4;
+                }
+                else if (bestellart == "N")
+                {
+                    kaufauftraege[i, 5] = 5;
+                }
+                else
+                {
+                    kaufauftraege[i, 5] = 0;
+                }
+            }
+
             this.Controls.Clear();
-            UserControl ergebnis = new Ergebnis();
+            UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(ergebnis);
         }
 

@@ -33,24 +33,6 @@ namespace IBSYS2
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        public Kapazitaetsplan()
-        {
-            InitializeComponent();
-            setButtons(true); // false, wenn Zellen geleert werden
-            setValues();
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-            {
-                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
-                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
-            }
-            else
-            {
-                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
-            }
-
-        }
-
         public Kapazitaetsplan(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
@@ -93,7 +75,7 @@ namespace IBSYS2
             InitializeComponent();
             setButtons(true);
             sprachen();
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_KP_INFO);
@@ -275,14 +257,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -1171,7 +1145,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1224,7 +1198,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1277,7 +1251,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1330,7 +1304,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1383,7 +1357,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1436,7 +1410,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1489,7 +1463,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1542,7 +1516,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1595,7 +1569,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1648,7 +1622,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1701,7 +1675,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1754,7 +1728,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1807,7 +1781,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1860,7 +1834,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1913,7 +1887,7 @@ namespace IBSYS2
                 }
                 else
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                     {
                         MessageBox.Show("Es sind nur Werte von 1 bis 3 zulässig.");
                     }
@@ -1932,7 +1906,7 @@ namespace IBSYS2
         }
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1997,14 +1971,16 @@ namespace IBSYS2
         private void pic_en_Click(object sender, EventArgs e){
            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
            pic_de.SizeMode = PictureBoxSizeMode.Normal;
-           sprachen();           
+           sprachen();
+           sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "de";
         }
 
         private void back_btn_Click(object sender, EventArgs e)

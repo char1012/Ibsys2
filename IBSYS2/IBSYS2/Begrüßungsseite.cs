@@ -51,7 +51,7 @@ namespace IBSYS2
         private void Begrüßungsseite_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "de")
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 DialogResult result2 = MessageBox.Show(Sprachen.DE_MSG_INFO1, Sprachen.DE_MSG_INFO2, MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);

@@ -286,19 +286,21 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen();  
+            sprachen();
+            sprache = "de";
         }
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "en")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);

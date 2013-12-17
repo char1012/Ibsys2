@@ -54,7 +54,7 @@ namespace IBSYS2
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal | sprache == "de") 
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache == "de") 
             { 
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
                 ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
@@ -206,7 +206,7 @@ namespace IBSYS2
         {
             if (comboBox1.SelectedItem == null)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     System.Windows.Forms.MessageBox.Show("Wählen Sie zuerst die Periode aus.", "Keine Periode ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                 }
@@ -219,7 +219,7 @@ namespace IBSYS2
 
             else
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     openFileDialog1.Title = "Wählen Sie Ihre XML-Datei aus";
                 }
@@ -243,14 +243,6 @@ namespace IBSYS2
                         }
                         catch (Exception)
                         {
-                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                            {
-                                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                            }
-                            else
-                            {
-                                System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                            }
                             myconn.Close();
                             myconn.Open();
                         }
@@ -271,7 +263,7 @@ namespace IBSYS2
 
                         if ((ausgewähltePeriode - 1) != period)
                         {
-                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                             {
                                 System.Windows.Forms.MessageBox.Show("Die ausgewählte Datei stimmt nicht mit ihrer ausgewählten Periode überein. Für die Berechnung der neuen Periode wird das XML-File der vergangenen Periode benötigt.", "Falsche Periode/Datei ausgewählt", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
                             }
@@ -294,7 +286,7 @@ namespace IBSYS2
                             {
                                 // Beim Benutzer nachfragen, ob er das wirklich moechte
                                 DialogResult result;
-                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                 {
                                     result = MessageBox.Show("In der Datenbank sind bereits Daten für diese Periode gespeichert.\n"
                                        + "Wollen Sie die gespeicherten Daten überschreiben?\n"
@@ -351,7 +343,7 @@ namespace IBSYS2
                                     message.Close();
                                     this.Enabled = true;
 
-                                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                     {
                                         System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
                                     }
@@ -386,7 +378,7 @@ namespace IBSYS2
                                 message.Close();
                                 this.Enabled = true;
 
-                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                                 {
                                     System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
                                 }
@@ -405,7 +397,7 @@ namespace IBSYS2
                     }
                     else
                     {
-                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                        if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                         {
                             System.Windows.MessageBox.Show("Wählen Sie eine *.XML-Datei für den Import der Daten aus. \nDiese können Sie unter scsim herunterladen.", "Falsches Format");
                         }
@@ -427,7 +419,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache != "en")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }
@@ -1158,7 +1150,7 @@ namespace IBSYS2
         {
             // Beim Benutzer nachfragen, ob er das wirklich moechte
             DialogResult result;
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 result = MessageBox.Show("Sind Sie sich sicher, dass Sie die Datenbank leeren möchten?\n"
                     + "Dadurch werden alle importierten Daten unwiderruflich gelöscht.", "Datenbank leeren", MessageBoxButtons.YesNo,
@@ -1186,14 +1178,6 @@ namespace IBSYS2
                 }
                 catch (Exception)
                 {
-                    if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                    }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                    }
                     myconn.Close();
                     myconn.Open();
                 }
@@ -1230,7 +1214,7 @@ namespace IBSYS2
 
                 message.Close();
                 this.Enabled = true;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     MessageBox.Show("Alle importierten Daten wurden gelöscht.");
                 }

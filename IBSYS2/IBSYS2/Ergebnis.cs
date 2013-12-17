@@ -295,7 +295,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnungsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
                 myconn.Close();
                 myconn.Open();
             }
@@ -524,7 +523,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (sprache != "de")
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -537,11 +536,28 @@ namespace IBSYS2
 
                 //EN Buttons
                 End_btn.Text = (Sprachen.EN_BTN_XML_EXPORT);
+                back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //EN Groupboxen
                 groupBox2.Text = (Sprachen.EN_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.EN_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.EN_ER_GROUPBOX4);
+                Lagerwerte.Text = (Sprachen.EN_ER_LAGERWERT);
+
+                //EN Label
+                label1.Text = (Sprachen.EN_ER_TEIL);
+                label3.Text = (Sprachen.EN_ER_MENGE);
+                label5.Text = (Sprachen.EN_ER_BESTART);
+                label2.Text = (Sprachen.EN_ER_TEIL);
+                label4.Text = (Sprachen.EN_ER_MENGE);
+                label6.Text = (Sprachen.EN_ER_ARBEITSPLATZ);
+                label7.Text = (Sprachen.EN_ER_SCHICHTEN);
+                label8.Text = (Sprachen.EN_ER_UEBERSTUNDEN);
+                label9.Text = (Sprachen.EN_ER_DAY);
+                Lageranfangswert.Text = (Sprachen.EN_ER_ANFANGSWERT);
+                Lagerzwischenwert.Text = (Sprachen.EN_ER_MITTELWERT);
+                Lagerendwert.Text = (Sprachen.EN_ER_ENDWERT);
+
             }
             else
             {
@@ -556,23 +572,43 @@ namespace IBSYS2
 
                 //DE Buttons
                 End_btn.Text = (Sprachen.DE_BTN_XML_EXPORT);
+                back_btn.Text = (Sprachen.DE_BTN_BACK);
 
                 //DE Groupboxen
                 groupBox2.Text = (Sprachen.DE_ER_GROUPBOX2);
                 groupBox3.Text = (Sprachen.DE_ER_GROUPBOX3);
                 groupBox4.Text = (Sprachen.DE_ER_GROUPBOX4);
+                Lagerwerte.Text = (Sprachen.DE_ER_LAGERWERT);
+
+                //EN Label
+                label1.Text = (Sprachen.DE_ER_TEIL);
+                label3.Text = (Sprachen.DE_ER_MENGE);
+                label5.Text = (Sprachen.DE_ER_BESTART);
+                label2.Text = (Sprachen.DE_ER_TEIL);
+                label4.Text = (Sprachen.DE_ER_MENGE);
+                label6.Text = (Sprachen.DE_ER_ARBEITSPLATZ);
+                label7.Text = (Sprachen.DE_ER_SCHICHTEN);
+                label8.Text = (Sprachen.DE_ER_UEBERSTUNDEN);
+                label9.Text = (Sprachen.DE_ER_DAY);
+                Lageranfangswert.Text = (Sprachen.DE_ER_ANFANGSWERT);
+                Lagerzwischenwert.Text = (Sprachen.DE_ER_MITTELWERT);
+                Lagerendwert.Text = (Sprachen.DE_ER_ENDWERT);
             }
         }
 
         private void pic_en_Click(object sender, EventArgs e)
         {
-            string sprache = "en";
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "en";
             sprachen();
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
-            string sprache = "de";
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprache = "de";
             sprachen();
         }
 

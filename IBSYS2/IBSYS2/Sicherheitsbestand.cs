@@ -76,7 +76,7 @@ namespace IBSYS2
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage | sprache == "de")
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage & sprache == "de")
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
@@ -203,7 +203,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }
@@ -230,7 +230,7 @@ namespace IBSYS2
             int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
             int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
             int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
-            double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
+            //double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
             //Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
             //double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
             //Ausgabe_P2.Text = Convert.ToString(sicherheitsbestandP2);
@@ -330,13 +330,11 @@ namespace IBSYS2
             else
             {
                 lBestand = datenHolen(teilenummer_FK, "Startbestand", "Teilenummer", "Teil");
-                MessageBox.Show(lBestand + " :lBestand");
             }
             int wMatMenge = datenHolen(teilenummer_FK, "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material");
             int wArbMenge = datenHolen(teilenummer_FK, "Menge", "Teilenummer_FK", "Warteliste_Arbeitsplatz");
             //Sicherheitsbestand = Prognose + geplanterLagerbestand - Lagerbestand - MengeWarteliste_Material - Menge Warteliste_Arbeitsplatz
             sicherheitsbestand = prognose + gLagerbestand - lBestand - wMatMenge - wArbMenge;
-            MessageBox.Show(sicherheitsbestand + " = " + prognose + " + " + gLagerbestand + " - " + lBestand + " - " + wMatMenge + " - " + wArbMenge);
             return sicherheitsbestand;                  
         }
 
@@ -352,14 +350,6 @@ namespace IBSYS2
             }
             catch (Exception)
             {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                } 
                 myconn.Close();
                 myconn.Open();
             }
@@ -2082,7 +2072,7 @@ namespace IBSYS2
             {
                 valueZero();
                 DialogResult dialogResult;
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage & sprache == "de")
                 {
                     dialogResult = MessageBox.Show("In Ihren Eingaben sind noch einige Felder mit der Eingabe 0. Ist dies gewollt?", "Wollen Sie fortfahren?", MessageBoxButtons.YesNo);
                 }

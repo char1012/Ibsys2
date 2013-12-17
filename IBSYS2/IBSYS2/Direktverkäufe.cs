@@ -387,7 +387,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 groupBox1.Text = Sprachen.EN_DV_GROUPBOX1;
                 label4.Text = Sprachen.EN_DV_LABEL4;
@@ -409,6 +409,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "de";
         }
 
         private void pic_en_Click_1(object sender, EventArgs e)
@@ -416,6 +417,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "en";
         }
 
     }

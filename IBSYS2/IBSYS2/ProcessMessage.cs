@@ -12,9 +12,13 @@ namespace IBSYS2
 {
     public partial class ProcessMessage : Form
     {
-        public ProcessMessage()
+        private String sprache = "de";
+
+        public ProcessMessage(String sprache)
         {
             InitializeComponent();
+            this.sprache = sprache;
+            // TODO Sprachen();
         }
     }
 }

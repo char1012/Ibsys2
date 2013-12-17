@@ -15,6 +15,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
@@ -82,8 +83,10 @@ namespace IBSYS2
         }
 
         public Produktion(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -121,6 +124,7 @@ namespace IBSYS2
             // var UserControl kapa= new Kapazitaetsplan();
             InitializeComponent();
             continue_btn.Enabled = false;
+            sprachen();
 
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -1425,7 +1429,7 @@ namespace IBSYS2
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                         this.Controls.Add(prodreihe);
                         break;
                     }
@@ -1462,7 +1466,7 @@ namespace IBSYS2
 
                         this.Controls.Clear();
                         UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                            sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                         this.Controls.Add(prodreihe);
                     }
                     else { continue; }
@@ -1500,7 +1504,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -1533,7 +1537,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -1566,7 +1570,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         } 
         #endregion
@@ -1574,7 +1578,7 @@ namespace IBSYS2
         private void ETeile_Click(object sender, EventArgs e)
         {
             backupProduktion = berProduktion;
-            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest);
+            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest, sprache);
             eteile.Show();
         }
 
@@ -1698,7 +1702,7 @@ namespace IBSYS2
 
                 this.Controls.Clear();
                 UserControl prodreihe = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(prodreihe);
             }
         }

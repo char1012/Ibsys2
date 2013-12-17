@@ -20,6 +20,7 @@ namespace IBSYS2
         private int[] schichten;
         // Liste, um zu kontrollieren, ob alle Zellen korrekt sind
         private Boolean[] correct = new Boolean[30] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true };
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
@@ -51,8 +52,10 @@ namespace IBSYS2
         }
 
         public Kapazitaetsplan(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -89,6 +92,7 @@ namespace IBSYS2
 
             InitializeComponent();
             setButtons(true);
+            sprachen();
             if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -114,7 +118,7 @@ namespace IBSYS2
             if (bereitsBerechnet == true)
             {
                 // Mitteilung einblenden
-                ProcessMessage message = new ProcessMessage();
+                ProcessMessage message = new ProcessMessage(sprache);
                 message.Show(this);
                 message.Location = new Point(500, 300);
                 message.Update();
@@ -162,7 +166,7 @@ namespace IBSYS2
         public void setValues()
         {
             // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage();
+            ProcessMessage message = new ProcessMessage(sprache);
             message.Show(this);
             message.Location = new Point(500, 300);
             message.Update();
@@ -498,7 +502,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
@@ -2020,7 +2024,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
@@ -2041,7 +2045,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
@@ -2062,7 +2066,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -2083,7 +2087,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
@@ -2104,7 +2108,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
@@ -2125,7 +2129,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 

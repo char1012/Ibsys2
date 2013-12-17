@@ -19,6 +19,7 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         bool tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
@@ -59,8 +60,10 @@ namespace IBSYS2
         }
 
         public Sicherheitsbestand(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -96,6 +99,7 @@ namespace IBSYS2
             }
 
             InitializeComponent();
+            sprachen();
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -2069,7 +2073,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
@@ -2168,7 +2172,7 @@ namespace IBSYS2
 
                     this.Controls.Clear();
                     UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                     this.Controls.Add(prod);
                 }
             }
@@ -2252,7 +2256,7 @@ namespace IBSYS2
 
                 this.Controls.Clear();
                 UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(prod);
             }
         }
@@ -2345,7 +2349,7 @@ namespace IBSYS2
 
                             this.Controls.Clear();
                             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                             this.Controls.Add(import);
                         }
                     }
@@ -2442,7 +2446,7 @@ namespace IBSYS2
 
                             this.Controls.Clear();
                             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                             this.Controls.Add(prod);
                         }
                     }

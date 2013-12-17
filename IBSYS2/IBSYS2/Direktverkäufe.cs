@@ -15,9 +15,13 @@ namespace IBSYS2
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         private char[] fordouble = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'};
         double[,] direktverkauf = new double[3, 4];
-        public Direktverkäufe(double[,] direkt)
+        private String sprache = "de";
+
+        public Direktverkäufe(double[,] direkt, String sprache)
         {
             InitializeComponent();
+            this.sprache = sprache;
+            sprachen();
             this.direktverkauf = direkt;
             fuelleFelder(direktverkauf);
         }
@@ -111,7 +115,7 @@ namespace IBSYS2
                 direktverkauf[2, 3] = Convert.ToDouble(textBox9.Text);
             }
             else { direktverkauf[2, 3] = 0; }
-            ImportPrognose import = new ImportPrognose();
+            ImportPrognose import = new ImportPrognose(sprache);
             import.Direktverkäufe(direktverkauf);
             this.Close();
         }

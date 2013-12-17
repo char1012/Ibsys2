@@ -14,16 +14,18 @@ namespace IBSYS2
     public partial class Produktion_ETeile : Form
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         int[,] sicherheitsbe = new int[30, 2];
         int[,] berProduktion = new int[30, 2];
 
         int[,] backupProduktion = new int[30, 2];
 
-        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest)
+        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest, String sprache)
         {
-
+            this.sprache = sprache;
             InitializeComponent();
+            sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 

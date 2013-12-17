@@ -89,7 +89,6 @@ namespace IBSYS2
 
             InitializeComponent();
             setButtons(true);
-            setValues();
             if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -99,6 +98,51 @@ namespace IBSYS2
             {
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
                 ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_KP_INFO);
+            }
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kapazitaet.GetLength(0); i++)
+            {
+                if (kapazitaet[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, Felder fuellen
+            // Kapbedarf trotzdem nochmal berechnen
+            if (bereitsBerechnet == true)
+            {
+                // Mitteilung einblenden
+                ProcessMessage message = new ProcessMessage();
+                message.Show(this);
+                message.Location = new Point(500, 300);
+                message.Update();
+                this.Enabled = false;
+
+                int periode = aktPeriode - 1; // Periode des xmls
+                int[,] teile = produktion; // Produktion
+
+                // Methode zur Berechnung der Werte aufrufen
+                int[] plaetze = calculate(periode, teile);
+
+                // Zeilen fuellen
+                for (int i = 0; i < plaetze.Length; ++i)
+                {
+                    int k = i + 1;
+                    this.Controls.Find("K" + k.ToString(), true)[0].Text = plaetze[i].ToString();
+                    this.Controls.Find("UP" + k.ToString(), true)[0].Text = kapazitaet[i, 2].ToString();
+                    this.Controls.Find("UT" + k.ToString(), true)[0].Text = kapazitaet[i, 3].ToString();
+                    this.Controls.Find("S" + k.ToString(), true)[0].Text = kapazitaet[i, 4].ToString();
+                }
+
+                message.Close();
+                this.Enabled = true;
+            }
+            // sonst Werte berechnen
+            else
+            {
+                setValues();
             }
         }
 

@@ -146,8 +146,38 @@ namespace IBSYS2
             // aktPeriode = aktuelle Periode, periode = Periode aus XML (letzte Periode)
             periode = aktPeriode - 1;
 
-            berechneProduktion();
-            ProduktionETeile();
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < produktion.GetLength(0); i++)
+            {
+                if (produktion[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // Wenn produktion bereits Werte enthaelt, sollen diese in berProduktion eingespeist werden
+            if (bereitsBerechnet == true)
+            {
+                berProduktion = produktion; // fuer die E-Teile
+                textBox1.Text = produktionProg[0, 1].ToString();
+                textBox2.Text = produktionProg[1, 1].ToString();
+                textBox3.Text = produktionProg[2, 1].ToString();
+                textBox6.Text = produktionProg[0, 2].ToString();
+                textBox4.Text = produktionProg[1, 2].ToString();
+                textBox5.Text = produktionProg[2, 2].ToString();
+                textBox7.Text = produktionProg[0, 3].ToString();
+                textBox8.Text = produktionProg[1, 3].ToString();
+                textBox9.Text = produktionProg[2, 3].ToString();
+                textBox10.Text = produktionProg[0, 4].ToString();
+                textBox11.Text = produktionProg[1, 4].ToString();
+                textBox12.Text = produktionProg[2, 4].ToString();
+            }
+            // sonst neu berechnen
+            else
+            {
+                berechneProduktion();
+                ProduktionETeile();
+            }
         }
 
         private void check()

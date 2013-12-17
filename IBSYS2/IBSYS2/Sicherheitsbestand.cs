@@ -119,8 +119,7 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
 
-            // Die Textboxen fuer auftraege und direktverkauefe werden hier mit den
-            // Werten aus den beiden Arrays gefuellt
+            // TextBoxen fuellen, fuer den Fall, dass bereits Werte enthalten sind
             Eingabe_P1.Text = sicherheitsbest[0, 1].ToString();
             Eingabe_P2.Text = sicherheitsbest[1, 1].ToString();
             Eingabe_P3.Text = sicherheitsbest[2, 1].ToString();

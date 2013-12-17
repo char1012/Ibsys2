@@ -52,7 +52,8 @@ namespace IBSYS2
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal) { 
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal | sprache == "de") 
+            { 
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
                 ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
                 ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
@@ -473,6 +474,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
@@ -480,6 +482,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "de";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -1031,7 +1034,7 @@ namespace IBSYS2
        
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);

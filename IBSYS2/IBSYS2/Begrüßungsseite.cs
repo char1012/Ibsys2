@@ -35,6 +35,7 @@ namespace IBSYS2
             label1.Text = "Welcom to the SCMPlus";
             //Startbutton ist ein Bild, deshalb keine Überstzung möglich, 
             //Vorschlag: Button auf START umbenennen.
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
@@ -42,13 +43,14 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             label1.Text = "Willkommen beim SCMPlus";
+            sprache = "de";
         }
 
 
         private void Begrüßungsseite_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage | sprache == "de")
             {
                 DialogResult result2 = MessageBox.Show(Sprachen.DE_MSG_INFO1, Sprachen.DE_MSG_INFO2, MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);

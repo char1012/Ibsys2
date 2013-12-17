@@ -1619,6 +1619,7 @@ namespace IBSYS2
                 //DE Tooltip
                 System.Windows.Forms.ToolTip ToolTipP = new System.Windows.Forms.ToolTip();
                 ToolTipP.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
+
             }
             else
             {

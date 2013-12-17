@@ -125,7 +125,7 @@ namespace IBSYS2
         public static String DE_LABLE9 = "* E-Teile werden zur Weiterberechnung summiert";
 
         //Tooltip
-        public static String DE_INFOP = "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.";
+        public static String DE_INFOP = "Bitte den Sicherheitsbestand für P-Teile eingeben.";
         public static String DE_INFOE = "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar.\n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden.\n" + "- Um fortzufahren auf 'Fortfahren' klicken.";
 
         /*---------Direktverkäufe----------*/
@@ -263,7 +263,7 @@ namespace IBSYS2
         public static String EN_LABLE9 = "* E-Items are summed for further calcualtion.";
 
         //Tooltip
-        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Items.                                       ";
+        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Items.          ";
         public static String EN_INFOE = "- These fields of safety stocks for the E-Items is not maintainable before calculation of the P-Items.\n " + " - The result showing the security holdings of the E-Items is calculated by the system, but can be changed manually as needed.                \n " + " - to continue click on 'Continue' button.";
         
         /*---------Direktverkäufe----------*/

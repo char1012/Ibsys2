@@ -31,33 +31,6 @@ namespace IBSYS2
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        public Sicherheitsbestand()
-        {
-            InitializeComponent();
-            continue_btn.Enabled = true;
-            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
-            myconn = new OleDbConnection(databasename);
-            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
-            {
-                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
-                ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
-                ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
-            }
-            else
-            {
-                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-                ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
-                ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
-            }
-            textfeldSperren();
-            
-            Ausgabe_P1.Enabled = false;
-            Ausgabe_P2.Enabled = false;
-            Ausgabe_P3.Enabled = false;
-            continue_btn.Enabled = false;
-            eteileberechnen_btn.Enabled = false;
-        }
-
         public Sicherheitsbestand(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
@@ -99,7 +72,7 @@ namespace IBSYS2
             continue_btn.Enabled = true;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
-            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage | sprache == "de")
             {
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
@@ -118,6 +91,7 @@ namespace IBSYS2
             Ausgabe_P3.Enabled = false;
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
+            btn_back.Enabled = false;
 
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < sicherheitsbest.GetLength(0); i++)
@@ -476,6 +450,7 @@ namespace IBSYS2
             if (Eingabe_P2.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP2 = false;
             }
             else
@@ -492,6 +467,7 @@ namespace IBSYS2
                         okay = false;
                         tP2 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -502,10 +478,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -516,6 +494,7 @@ namespace IBSYS2
             if (Eingabe_P1.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP1 = false;
             }
             else
@@ -532,6 +511,7 @@ namespace IBSYS2
                         okay = false;
                         tP1 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -542,10 +522,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -556,6 +538,7 @@ namespace IBSYS2
             if (Eingabe_P3.Text == "")
             {
                 eteileberechnen_btn.Enabled = false;
+                btn_back.Enabled = false;
                 tP3 = false;
             }
             else
@@ -572,6 +555,7 @@ namespace IBSYS2
                         okay = false;
                         tP3 = false;
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                         break;
                     }
                 }
@@ -582,10 +566,12 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3)
                     {
                         eteileberechnen_btn.Enabled = true;
+                        btn_back.Enabled = true;
                     }
                     else
                     {
                         eteileberechnen_btn.Enabled = false;
+                        btn_back.Enabled = false;
                     }
                 }
             }
@@ -1913,7 +1899,7 @@ namespace IBSYS2
 
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1979,14 +1965,16 @@ namespace IBSYS2
         {
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "de";
         }
 
         private void pic_en_Click(object sender, EventArgs e)
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            sprachen(); 
+            sprachen();
+            sprache = "en";
         }
 
         private void btn_back_Click(object sender, EventArgs e)

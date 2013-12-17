@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Data.OleDb;
 using System.Xml.Linq;
+using System.Windows;
 
 namespace IBSYS2
 {
@@ -66,7 +67,7 @@ namespace IBSYS2
                 myXmlTextWriter.WriteStartElement("item", null);
                 for (int t = 0; t < 2; t++)
                 {
-                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], sellwish_Array_Values[i,t]);
+                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], Convert.ToString(prodReihenfolge[i,t]));
                 }
                 myXmlTextWriter.WriteEndElement();
             }
@@ -74,18 +75,25 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("selldirect", null);
             for (int i = 0; i < 3; i++ )
             {
-                myXmlTextWriter.WriteStartElement("item", null);
-                for (int x = 0; x<4;x++)
+                if (direktverkaeufe[i, 0] != 0)
                 {
-                    myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i,x]));//selldirect_Array_Values[i, x]);
+                    myXmlTextWriter.WriteStartElement("item", null);
+                    for (int x = 0; x < 4; x++)
+                    {
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));//selldirect_Array_Values[i, x]);
+                        //MessageBox.Show("Selldirect - Feld" + x + ": " + selldirect_Array_Fields[x] + ", Wert: " + Convert.ToString(direktverkaeufe[i, x]));
+                    }
+                    myXmlTextWriter.WriteEndElement();
                 }
-                myXmlTextWriter.WriteEndElement();
+                else
+                {
+                    //MessageBox.Show("Werte sind null: "+selldirect_Array_Fields[x]+ ", " + direktverkaeufe[i,x]);
+                }
             }
             myXmlTextWriter.WriteEndElement();
 
             myXmlTextWriter.WriteStartElement("orderlist", null);
-            System.Windows.Forms.MessageBox.Show(orderlist_Array_Values.Length + " Länge");
-            for (int i = 0; i < (orderlist_Array_Values.Length/3); i++)
+            for (int i = 0; i < (kaufauftraege.Length/6); i++)
             {
                 myXmlTextWriter.WriteStartElement("order", null);
                 for (int x = 0; x < 3; x++)
@@ -93,17 +101,20 @@ namespace IBSYS2
                     if (x == 0)
                     {
                         myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 0]));//orderlist_Array_Values[i, x]);
+                        //MessageBox.Show("orderlist - "+i+" Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 0]));
                     }
                     else if (x == 1)
                     {
                         if (kaufauftraege[i, 4] != 0)
                         {
                             myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 4]));//orderlist_Array_Values[i, x]);
+                            //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 4]));
                         }
                     }
                     else if (x == 2)
                     {
                         myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 5]));//orderlist_Array_Values[i, x]);
+                        //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 5]));
                     }
                     else
                     { }
@@ -111,26 +122,32 @@ namespace IBSYS2
                 myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();
-
+            //prodReihenfolge
             myXmlTextWriter.WriteStartElement("productionlist", null);
-            for (int i = 0; i < prodReihenfolge.Length; i++)
+            for (int i = 0; i < (prodReihenfolge.Length/2); i++)
             {
                 myXmlTextWriter.WriteStartElement("production", null);
-                myXmlTextWriter.WriteAttributeString("article", art[i]);
-                myXmlTextWriter.WriteAttributeString("quantity", "Wert muss übergeben werden");
+                myXmlTextWriter.WriteAttributeString("article", Convert.ToString(prodReihenfolge[i,0]));//art[i]);
+                myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(prodReihenfolge[i, 1]));
+                //MessageBox.Show("article: " + Convert.ToString(prodReihenfolge[i, 0]) + ", quantity: "+Convert.ToString(prodReihenfolge[i,1]));
 
                 myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();
-
+            //kapazitaet
             myXmlTextWriter.WriteStartElement("workingtimelist", null);
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < (kapazitaet.Length/5); i++)
             {
-                myXmlTextWriter.WriteStartElement("workingtime", null);
-                myXmlTextWriter.WriteAttributeString("station", art[i]);
-                myXmlTextWriter.WriteAttributeString("shift", "Wert muss übergeben werden");
-                myXmlTextWriter.WriteAttributeString("overtime", "Wert muss übergeben werden");
-                myXmlTextWriter.WriteEndElement();
+                if (kapazitaet[i, 0] != 5)
+                {
+                    
+                    myXmlTextWriter.WriteStartElement("workingtime", null);
+                    myXmlTextWriter.WriteAttributeString("station", Convert.ToString(kapazitaet[i, 0]));//art[i]);
+                    myXmlTextWriter.WriteAttributeString("shift", Convert.ToString(kapazitaet[i, 1]));
+                    myXmlTextWriter.WriteAttributeString("overtime", Convert.ToString(kapazitaet[i, 2]));
+                    myXmlTextWriter.WriteEndElement();
+                    //MessageBox.Show("workingtimelist - station: " + Convert.ToString(kapazitaet[i, 0]) + ", shift " + Convert.ToString(kapazitaet[i, 1]) + ", overtime " + Convert.ToString(kapazitaet[i, 2]));
+                }
             }
 
             myXmlTextWriter.WriteEndElement();

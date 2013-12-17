@@ -23,7 +23,7 @@ namespace IBSYS2
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
@@ -58,7 +58,7 @@ namespace IBSYS2
             eteileberechnen_btn.Enabled = false;
         }
 
-        public Sicherheitsbestand(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+        public Sicherheitsbestand(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
@@ -190,9 +190,9 @@ namespace IBSYS2
                             double gLagerbestandP1 = Convert.ToDouble(Eingabe_P1.Text);
                             double gLagerbestandP2 = Convert.ToDouble(Eingabe_P2.Text);
                             double gLagerbestandP3 = Convert.ToDouble(Eingabe_P3.Text);
-                            int mengeP1 = auftraege[0] + direktverkaeufe[0]; // Direktverkauefe auf normale auftraege schlagen
-                            int mengeP2 = auftraege[1] + direktverkaeufe[1];
-                            int mengeP3 = auftraege[2] + direktverkaeufe[2];
+                            int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
+                            int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
+                            int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
                             double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
                             Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
                             double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");
@@ -249,9 +249,9 @@ namespace IBSYS2
             double gLagerbestandP1 = Convert.ToDouble(Eingabe_P1.Text);
             double gLagerbestandP2 = Convert.ToDouble(Eingabe_P2.Text);
             double gLagerbestandP3 = Convert.ToDouble(Eingabe_P3.Text);
-            int mengeP1 = auftraege[0] + direktverkaeufe[0]; // Direktverkauefe auf normale auftraege schlagen
-            int mengeP2 = auftraege[1] + direktverkaeufe[1];
-            int mengeP3 = auftraege[2] + direktverkaeufe[2];
+            int mengeP1 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]); // Direktverkauefe auf normale auftraege schlagen
+            int mengeP2 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]);
+            int mengeP3 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]);
             double sicherheitsbestandP1 = sicherheitsbestandBerechnen(mengeP1, gLagerbestandP1, "1");
             Ausgabe_P1.Text = Convert.ToString(sicherheitsbestandP1);
             double sicherheitsbestandP2 = sicherheitsbestandBerechnen(mengeP2, gLagerbestandP2, "2");

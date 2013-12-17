@@ -19,7 +19,7 @@ namespace IBSYS2
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
@@ -81,7 +81,7 @@ namespace IBSYS2
             this.sicherheitsbest = sicherheitsbe;
         }
 
-        public Produktion(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+        public Produktion(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
@@ -208,9 +208,9 @@ namespace IBSYS2
         private void berechneProduktion()
         {
             //für aktuelle Periode
-            double p1 = auftraege[0] + direktverkaeufe[0];
-            double p2 = auftraege[1] + direktverkaeufe[1];
-            double p3 = auftraege[2] + direktverkaeufe[2];
+            double p1 = auftraege[0] + direktverkaeufe[0, 1];
+            double p2 = auftraege[1] + direktverkaeufe[1, 1];
+            double p3 = auftraege[2] + direktverkaeufe[2, 1];
 
             //+ eingabe Sicherheitsbestand 
             double sp1 = sicherheitsbest[0, 1];
@@ -441,8 +441,8 @@ namespace IBSYS2
             #endregion
 
             #region Daten zur Berechnung
-            p26 = auftraege[0] + direktverkaeufe[0] + sicherheitsbest[20, 1];
-            p51 = auftraege[0] + direktverkaeufe[0] + sicherheitsbest[26, 1];
+            p26 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]) + sicherheitsbest[20, 1];
+            p51 = auftraege[0] + Convert.ToInt32(direktverkaeufe[0, 1]) + sicherheitsbest[26, 1];
 
             p16 = p51 + sicherheitsbest[15, 1];
             p17 = p51 + sicherheitsbest[16, 1];
@@ -456,7 +456,7 @@ namespace IBSYS2
             p13 = p49 + sicherheitsbest[12, 1];
             p18 = p49 + sicherheitsbest[17, 1];
 
-            p56 = auftraege[1] + direktverkaeufe[1] + sicherheitsbest[29, 1];
+            p56 = auftraege[1] + Convert.ToInt32(direktverkaeufe[1, 1]) + sicherheitsbest[29, 1];
 
             p55 = p56 + sicherheitsbest[28, 1];
 
@@ -468,7 +468,7 @@ namespace IBSYS2
             p14 = p54 + sicherheitsbest[13, 1];
             p19 = p54 + sicherheitsbest[18, 1];
 
-            p31 = auftraege[2] + direktverkaeufe[2] + sicherheitsbest[23, 1];
+            p31 = auftraege[2] + Convert.ToInt32(direktverkaeufe[2, 1]) + sicherheitsbest[23, 1];
 
             p30 = p31 + sicherheitsbest[22, 1];
 

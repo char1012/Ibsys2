@@ -21,7 +21,7 @@ namespace IBSYS2
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
@@ -36,7 +36,7 @@ namespace IBSYS2
             setValues();
         }
 
-        public Kaufteildisposition(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+        public Kaufteildisposition(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;

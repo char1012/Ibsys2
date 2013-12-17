@@ -35,15 +35,15 @@ namespace IBSYS2
         // Präsentation Jan
         // Doku unter Kap. Startseite
 
-                    try
-            {
-                ExportXMLClass exp = new ExportXMLClass();
-                exp.XMLExport();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(""+ex);
-            }
+            //        try
+            //{
+            //    ExportXMLClass exp = new ExportXMLClass();
+            //    exp.XMLExport();
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(""+ex);
+            //}
 
 
         public void XMLExport() //OleDbCommand cmd

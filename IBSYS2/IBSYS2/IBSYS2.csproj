@@ -75,6 +75,12 @@
     <Compile Include="Begrüßungsseite.Designer.cs">
       <DependentUpon>Begrüßungsseite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Direktverkäufe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direktverkäufe.Designer.cs">
+      <DependentUpon>Direktverkäufe.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExportXMLClass.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -140,6 +146,9 @@
     <Compile Include="XMLReaderClass.cs" />
     <EmbeddedResource Include="Begrüßungsseite.resx">
       <DependentUpon>Begrüßungsseite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direktverkäufe.resx">
+      <DependentUpon>Direktverkäufe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ergebnis.resx">
       <DependentUpon>Ergebnis.cs</DependentUpon>

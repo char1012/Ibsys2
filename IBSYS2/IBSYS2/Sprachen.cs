@@ -118,6 +118,15 @@ namespace IBSYS2
         public static String DE_INFOP = "Bitte den Sicherheitsbestand eingeben, welcher für die P-Teile gehalten werden soll.";
         public static String DE_INFOE = "- Diese Felder der Sicherheitsbestände für die E-Teile ist vor Berechnung der P-Teile nicht pflegbar. \n" + "- Das Ergbenis der Sicherheitsbestände der E-Teile wird vom System berechnet, können aber nach Bedarf händisch nachgefplegt werden. \n" + "- Um fortzufahren auf 'Fortfahren' klicken.";
 
+        /*---------Direktverkäufe----------*/
+        //Groupbox
+        public static String DE_DV_GROUPBOX1 = "Direktverkäufe";
+
+        //Labels
+        public static String DE_DV_LABEL4 = "Menge";
+        public static String DE_DV_LABEL5 = "Preis";
+        public static String DE_DV_LABEL6 = "Strafbetrag";
+
         /*---------Ergebnis----------*/
         //Buttons
         public static String DE_BTN_XML_EXPORT = "XML export";
@@ -236,6 +245,15 @@ namespace IBSYS2
         //Tooltip
         public static String EN_INFOP = "Please enter the Safty-Stock for the P-Items.";
         public static String EN_INFOE = "- These fields of safety stocks for the E-Items is not maintainable before calculation of the P-Items. \n "+" - The result showing the security holdings of the E-Items is calculated by the system, but can be changed manually as needed. \n "+" - to continue on 'Continue' button.";
+
+        /*---------Direktverkäufe----------*/
+        //Groupbox
+        public static String EN_DV_GROUPBOX1 = "Direct sales";
+
+        //Labels
+        public static String EN_DV_LABEL4 = "Amount";
+        public static String EN_DV_LABEL5 = "Price";
+        public static String EN_DV_LABEL6 = "Penalty";
         
         /*---------Ergebnis----------*/
         //Buttons
@@ -245,6 +263,5 @@ namespace IBSYS2
         public static String EN_ER_GROUPBOX2 = "Purchase orders";
         public static String EN_ER_GROUPBOX3 = "Production orders";
         public static String EN_ER_GROUPBOX4 = "Production capacity";
-        public static String EN_ER_GROUPBOX1 = "Direct sales";
     }
 }

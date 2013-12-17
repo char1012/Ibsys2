@@ -31,6 +31,7 @@ namespace IBSYS2
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[14, 5];
         int[,] kaufauftraege = new int[29, 6];
+        double[,] direktverkäufe = new double[3, 4];
 
         public ImportPrognose()
         {
@@ -140,6 +141,10 @@ namespace IBSYS2
 
         //----------------------------
 
+        public void Direktverkäufe(double[,] direktverkäufe)
+        {
+            this.direktverkäufe = direktverkäufe;
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             String text = comboBox1.Text;
@@ -417,11 +422,6 @@ namespace IBSYS2
                     auftraege[10] = Convert.ToInt32(textBox11.Text);
                     auftraege[11] = Convert.ToInt32(textBox12.Text);
 
-                    // direktverkaeufe fuellen
-                    direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
-                    direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
-                    direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
-
                     this.Controls.Clear();
                     UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
                         sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
@@ -445,11 +445,6 @@ namespace IBSYS2
                 auftraege[9] = Convert.ToInt32(textBox10.Text);
                 auftraege[10] = Convert.ToInt32(textBox11.Text);
                 auftraege[11] = Convert.ToInt32(textBox12.Text);
-
-                // direktverkaeufe fuellen
-                direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
-                direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
-                direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
 
                 this.Controls.Clear();
                 UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, 
@@ -965,131 +960,6 @@ namespace IBSYS2
             }
         }
 
-
-
-        private void txt_zLAP1_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP1.Text == "")
-            {
-                txt_zLAP1.ForeColor = Color.Red;
-                txt_zLAP1.Text = "Geben Sie einen Wert ein";
-                tB13 = false;
-            }
-            else
-            {
-                txt_zLAP1.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP1.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP1.ForeColor = Color.Red;
-                        okay = false;
-                        tB13 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP1.ForeColor = Color.Black;
-                    tB13 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
-        private void txt_zLAP2_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP2.Text == "")
-            {
-                txt_zLAP2.ForeColor = Color.Red;
-                txt_zLAP2.Text = "Geben Sie einen Wert ein";
-                tB14 = false;
-            }
-            else
-            {
-                txt_zLAP2.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP2.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP2.ForeColor = Color.Red;
-                        okay = false;
-                        tB14 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP2.ForeColor = Color.Black;
-                    tB14 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
-        private void txt_zLAP3_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP3.Text == "")
-            {
-                txt_zLAP3.ForeColor = Color.Red;
-                txt_zLAP3.Text = "Geben Sie einen Wert ein";
-                tB15 = false;
-            }
-            else
-            {
-                txt_zLAP3.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP3.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP3.ForeColor = Color.Red;
-                        okay = false;
-                        tB15 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP3.ForeColor = Color.Black;
-                    tB15 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
         private void valueZero()
         {
             if (tb_aktP1.Text == "0")
@@ -1244,11 +1114,6 @@ namespace IBSYS2
             auftraege[10] = Convert.ToInt32(textBox11.Text);
             auftraege[11] = Convert.ToInt32(textBox12.Text);
 
-            // direktverkaeufe fuellen
-            direktverkaeufe[0] = Convert.ToInt32(txt_zLAP1.Text);
-            direktverkaeufe[1] = Convert.ToInt32(txt_zLAP2.Text);
-            direktverkaeufe[2] = Convert.ToInt32(txt_zLAP3.Text);
-
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
                 sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
@@ -1341,6 +1206,12 @@ namespace IBSYS2
 
                 }
             }
+        }
+
+        private void btn_direktverkäufe_Click(object sender, EventArgs e)
+        {
+            Direktverkäufe direktverkaeufe = new Direktverkäufe(direktverkäufe);
+            direktverkaeufe.Show();
         }
 
     }

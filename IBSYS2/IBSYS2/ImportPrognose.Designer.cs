@@ -38,12 +38,6 @@
             this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
             this.lbl_Ergebnis = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txt_zLAP3 = new System.Windows.Forms.TextBox();
-            this.txt_zLAP2 = new System.Windows.Forms.TextBox();
-            this.txt_zLAP1 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.lbl_optional = new System.Windows.Forms.Label();
             this.lbl_schritt3 = new System.Windows.Forms.Label();
             this.lbl_schritt2 = new System.Windows.Forms.Label();
@@ -79,6 +73,7 @@
             this.lbl_Startseite = new System.Windows.Forms.Label();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
             this.clear_btn = new System.Windows.Forms.Button();
+            this.btn_direktverkäufe = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -155,12 +150,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.txt_zLAP3);
-            this.groupBox1.Controls.Add(this.txt_zLAP2);
-            this.groupBox1.Controls.Add(this.txt_zLAP1);
-            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.btn_direktverkäufe);
             this.groupBox1.Controls.Add(this.lbl_optional);
             this.groupBox1.Controls.Add(this.lbl_schritt3);
             this.groupBox1.Controls.Add(this.lbl_schritt2);
@@ -196,63 +186,6 @@
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Import der XML-Datei und Prognose - Zusätzliche Lieferanfragen (optional)";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(376, 256);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 14);
-            this.label17.TabIndex = 63;
-            this.label17.Text = "P3";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(251, 256);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(19, 14);
-            this.label16.TabIndex = 62;
-            this.label16.Text = "P2";
-            // 
-            // txt_zLAP3
-            // 
-            this.txt_zLAP3.BackColor = System.Drawing.Color.White;
-            this.txt_zLAP3.Location = new System.Drawing.Point(400, 253);
-            this.txt_zLAP3.Name = "txt_zLAP3";
-            this.txt_zLAP3.Size = new System.Drawing.Size(96, 22);
-            this.txt_zLAP3.TabIndex = 61;
-            this.txt_zLAP3.Text = "0";
-            this.txt_zLAP3.TextChanged += new System.EventHandler(this.txt_zLAP3_TextChanged);
-            // 
-            // txt_zLAP2
-            // 
-            this.txt_zLAP2.BackColor = System.Drawing.Color.White;
-            this.txt_zLAP2.Location = new System.Drawing.Point(274, 253);
-            this.txt_zLAP2.Name = "txt_zLAP2";
-            this.txt_zLAP2.Size = new System.Drawing.Size(96, 22);
-            this.txt_zLAP2.TabIndex = 60;
-            this.txt_zLAP2.Text = "0";
-            this.txt_zLAP2.TextChanged += new System.EventHandler(this.txt_zLAP2_TextChanged);
-            // 
-            // txt_zLAP1
-            // 
-            this.txt_zLAP1.BackColor = System.Drawing.Color.White;
-            this.txt_zLAP1.Location = new System.Drawing.Point(147, 254);
-            this.txt_zLAP1.Name = "txt_zLAP1";
-            this.txt_zLAP1.Size = new System.Drawing.Size(96, 22);
-            this.txt_zLAP1.TabIndex = 59;
-            this.txt_zLAP1.Text = "0";
-            this.txt_zLAP1.TextChanged += new System.EventHandler(this.txt_zLAP1_TextChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(122, 256);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 14);
-            this.label15.TabIndex = 58;
-            this.label15.Text = "P1";
             // 
             // lbl_optional
             // 
@@ -598,6 +531,18 @@
             this.clear_btn.UseVisualStyleBackColor = false;
             this.clear_btn.Click += new System.EventHandler(this.clear_btn_Click);
             // 
+            // btn_direktverkäufe
+            // 
+            this.btn_direktverkäufe.BackColor = System.Drawing.Color.Lavender;
+            this.btn_direktverkäufe.ForeColor = System.Drawing.Color.Black;
+            this.btn_direktverkäufe.Location = new System.Drawing.Point(125, 259);
+            this.btn_direktverkäufe.Name = "btn_direktverkäufe";
+            this.btn_direktverkäufe.Size = new System.Drawing.Size(102, 23);
+            this.btn_direktverkäufe.TabIndex = 58;
+            this.btn_direktverkäufe.Text = "Direktverkäufe";
+            this.btn_direktverkäufe.UseVisualStyleBackColor = false;
+            this.btn_direktverkäufe.Click += new System.EventHandler(this.btn_direktverkäufe_Click);
+            // 
             // ImportPrognose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,17 +616,12 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lbl_optional;
         private System.Windows.Forms.Label lbl_schritt3;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txt_zLAP3;
-        private System.Windows.Forms.TextBox txt_zLAP2;
-        private System.Windows.Forms.TextBox txt_zLAP1;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.Label lbl_Startseite;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
         private System.Windows.Forms.Button clear_btn;
+        private System.Windows.Forms.Button btn_direktverkäufe;
     }
 }
 

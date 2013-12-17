@@ -680,8 +680,15 @@ namespace IBSYS2
             // TODO - ExportXMLClass aufrufen
             try
             {
-                ExportXMLClass exp = new ExportXMLClass();
-                exp.XMLExport(kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
+                System.Windows.Forms.FolderBrowserDialog objDialog = new FolderBrowserDialog();
+                if (objDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    String pfad = objDialog.SelectedPath;
+                    MessageBox.Show("Neuer Pfad: " + objDialog.SelectedPath);
+                    ExportXMLClass exp = new ExportXMLClass();
+                    exp.XMLExport(pfad,kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
+                    MessageBox.Show("Die Datei wurde exportiert und ist verfügbar unter: "+pfad, "Export erfolgt");
+                }
             }
             catch (Exception ex)
             {

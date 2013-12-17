@@ -31,7 +31,7 @@ namespace IBSYS2
         //selldirect = selldirect
 
 
-        public void XMLExport(int[,] kaufauftraege,int[,] prodReihenfolge,int[,] kapazitaet,int[] auftraege,double[,] direktverkaeufe) //OleDbCommand cmd
+        public void XMLExport(String pfad,int[,] kaufauftraege,int[,] prodReihenfolge,int[,] kapazitaet,int[] auftraege,double[,] direktverkaeufe) //OleDbCommand cmd
         {
             XmlDocument doc = new XmlDocument();
             XmlNode myRoot; //, myNode;
@@ -51,7 +51,7 @@ namespace IBSYS2
             String[] orderlist_Array_Fields = {"article", "quantity", "modus" };
             String[,] orderlist_Array_Values = {{"25", "3600", "5"}, {"32", "3730", "5"},{"33", "820", "4"},{"34", "23300", "4"},{"36", "625", "5"}};
 
-            XmlTextWriter myXmlTextWriter = new XmlTextWriter(@"C:\XML\TestAppendXML1.xml", null);
+            XmlTextWriter myXmlTextWriter = new XmlTextWriter(pfad+@"\TestAppendXML1.xml", null);
             myXmlTextWriter.Formatting = Formatting.Indented;
 
             myXmlTextWriter.WriteStartElement("input");

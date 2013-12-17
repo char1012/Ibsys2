@@ -47,7 +47,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(234, 106);
             this.Controls.Add(this.label1);
-            this.Location = new System.Drawing.Point(400, 300);
             this.Name = "ProcessMessage";
             this.ResumeLayout(false);
             this.PerformLayout();

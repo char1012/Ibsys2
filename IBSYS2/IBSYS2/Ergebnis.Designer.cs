@@ -37,57 +37,22 @@
             this.lbl_Kapazitaetsplan = new System.Windows.Forms.Label();
             this.lbl_Kaufteiledisposition = new System.Windows.Forms.Label();
             this.lbl_Ergebnis = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.ProduktionTeilenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProduktionAnzahl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kapazitaetsplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.KapazitätArbeitsplatz = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Schichten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Überstunden = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.EinkaufTeilenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EinkaufAnzahl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Express = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.autoSizeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.autoSizeModeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.autoValidateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.borderStyleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.autoScrollDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.autoScrollMarginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.autoScrollMinSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accessibleDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accessibleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accessibleRoleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.allowDropDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.anchorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backColorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.backgroundImageDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.backgroundImageLayoutDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.causesValidationDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.contextMenuStripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cursorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataBindingsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.fontDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.foreColorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.marginDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maximumSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minimumSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rightToLeftDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabIndexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabStopDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.useWaitCursorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.visibleDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.paddingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imeModeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -101,10 +66,7 @@
             this.Lagerzwischenwert = new System.Windows.Forms.Label();
             this.Lageranfangswert = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -203,39 +165,11 @@
             this.lbl_Ergebnis.TabIndex = 139;
             this.lbl_Ergebnis.Text = "Ergebnis";
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProduktionTeilenr,
-            this.ProduktionAnzahl});
-            this.dataGridView2.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView2.Location = new System.Drawing.Point(17, 24);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(143, 234);
-            this.dataGridView2.TabIndex = 141;
-            // 
-            // ProduktionTeilenr
-            // 
-            this.ProduktionTeilenr.HeaderText = "Teilenr.";
-            this.ProduktionTeilenr.Name = "ProduktionTeilenr";
-            this.ProduktionTeilenr.ReadOnly = true;
-            this.ProduktionTeilenr.Width = 50;
-            // 
-            // ProduktionAnzahl
-            // 
-            this.ProduktionAnzahl.HeaderText = "Anzahl";
-            this.ProduktionAnzahl.Name = "ProduktionAnzahl";
-            this.ProduktionAnzahl.ReadOnly = true;
-            this.ProduktionAnzahl.Width = 50;
-            // 
             // kapazitaetsplanBindingSource
             // 
             this.kapazitaetsplanBindingSource.DataSource = typeof(IBSYS2.Kapazitaetsplan);
             // 
-            // dataGridView3
+            // groupBox2
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
@@ -249,348 +183,158 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(240, 111);
             this.dataGridView3.TabIndex = 142;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
-            // KapazitätArbeitsplatz
-            // 
-            this.KapazitätArbeitsplatz.HeaderText = "Arbeitsplatz";
-            this.KapazitätArbeitsplatz.Name = "KapazitätArbeitsplatz";
-            this.KapazitätArbeitsplatz.ReadOnly = true;
-            this.KapazitätArbeitsplatz.Width = 65;
-            // 
-            // Schichten
-            // 
-            this.Schichten.HeaderText = "Schichten";
-            this.Schichten.Name = "Schichten";
-            this.Schichten.ReadOnly = true;
-            this.Schichten.Width = 60;
-            // 
-            // Überstunden
-            // 
-            this.Überstunden.HeaderText = "Überstunden (Min./Tag)";
-            this.Überstunden.Name = "Überstunden";
-            this.Überstunden.ReadOnly = true;
-            this.Überstunden.Width = 70;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AutoGenerateColumns = false;
-            this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EinkaufTeilenr,
-            this.EinkaufAnzahl,
-            this.Express,
-            this.autoSizeDataGridViewCheckBoxColumn,
-            this.autoSizeModeDataGridViewTextBoxColumn,
-            this.autoValidateDataGridViewTextBoxColumn,
-            this.borderStyleDataGridViewTextBoxColumn,
-            this.autoScrollDataGridViewCheckBoxColumn,
-            this.autoScrollMarginDataGridViewTextBoxColumn,
-            this.autoScrollMinSizeDataGridViewTextBoxColumn,
-            this.accessibleDescriptionDataGridViewTextBoxColumn,
-            this.accessibleNameDataGridViewTextBoxColumn,
-            this.accessibleRoleDataGridViewTextBoxColumn,
-            this.allowDropDataGridViewCheckBoxColumn,
-            this.anchorDataGridViewTextBoxColumn,
-            this.backColorDataGridViewTextBoxColumn,
-            this.backgroundImageDataGridViewImageColumn,
-            this.backgroundImageLayoutDataGridViewTextBoxColumn,
-            this.causesValidationDataGridViewCheckBoxColumn,
-            this.contextMenuStripDataGridViewTextBoxColumn,
-            this.cursorDataGridViewTextBoxColumn,
-            this.dataBindingsDataGridViewTextBoxColumn,
-            this.dockDataGridViewTextBoxColumn,
-            this.enabledDataGridViewCheckBoxColumn,
-            this.fontDataGridViewTextBoxColumn,
-            this.foreColorDataGridViewTextBoxColumn,
-            this.locationDataGridViewTextBoxColumn,
-            this.marginDataGridViewTextBoxColumn,
-            this.maximumSizeDataGridViewTextBoxColumn,
-            this.minimumSizeDataGridViewTextBoxColumn,
-            this.rightToLeftDataGridViewTextBoxColumn,
-            this.sizeDataGridViewTextBoxColumn,
-            this.tabIndexDataGridViewTextBoxColumn,
-            this.tabStopDataGridViewCheckBoxColumn,
-            this.tagDataGridViewTextBoxColumn,
-            this.useWaitCursorDataGridViewCheckBoxColumn,
-            this.visibleDataGridViewCheckBoxColumn,
-            this.paddingDataGridViewTextBoxColumn,
-            this.imeModeDataGridViewTextBoxColumn});
-            this.dataGridView4.DataSource = this.kapazitaetsplanBindingSource;
-            this.dataGridView4.GridColor = System.Drawing.Color.CornflowerBlue;
-            this.dataGridView4.Location = new System.Drawing.Point(18, 24);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(199, 234);
-            this.dataGridView4.TabIndex = 143;
-            // 
-            // EinkaufTeilenr
-            // 
-            this.EinkaufTeilenr.HeaderText = "Teilenr.";
-            this.EinkaufTeilenr.Name = "EinkaufTeilenr";
-            this.EinkaufTeilenr.ReadOnly = true;
-            this.EinkaufTeilenr.Width = 50;
-            // 
-            // EinkaufAnzahl
-            // 
-            this.EinkaufAnzahl.HeaderText = "Anzahl";
-            this.EinkaufAnzahl.Name = "EinkaufAnzahl";
-            this.EinkaufAnzahl.ReadOnly = true;
-            this.EinkaufAnzahl.Width = 50;
-            // 
-            // Express
-            // 
-            this.Express.HeaderText = "Express";
-            this.Express.Name = "Express";
-            this.Express.ReadOnly = true;
-            this.Express.Width = 50;
-            // 
-            // autoSizeDataGridViewCheckBoxColumn
-            // 
-            this.autoSizeDataGridViewCheckBoxColumn.DataPropertyName = "AutoSize";
-            this.autoSizeDataGridViewCheckBoxColumn.HeaderText = "AutoSize";
-            this.autoSizeDataGridViewCheckBoxColumn.Name = "autoSizeDataGridViewCheckBoxColumn";
-            // 
-            // autoSizeModeDataGridViewTextBoxColumn
-            // 
-            this.autoSizeModeDataGridViewTextBoxColumn.DataPropertyName = "AutoSizeMode";
-            this.autoSizeModeDataGridViewTextBoxColumn.HeaderText = "AutoSizeMode";
-            this.autoSizeModeDataGridViewTextBoxColumn.Name = "autoSizeModeDataGridViewTextBoxColumn";
-            // 
-            // autoValidateDataGridViewTextBoxColumn
-            // 
-            this.autoValidateDataGridViewTextBoxColumn.DataPropertyName = "AutoValidate";
-            this.autoValidateDataGridViewTextBoxColumn.HeaderText = "AutoValidate";
-            this.autoValidateDataGridViewTextBoxColumn.Name = "autoValidateDataGridViewTextBoxColumn";
-            // 
-            // borderStyleDataGridViewTextBoxColumn
-            // 
-            this.borderStyleDataGridViewTextBoxColumn.DataPropertyName = "BorderStyle";
-            this.borderStyleDataGridViewTextBoxColumn.HeaderText = "BorderStyle";
-            this.borderStyleDataGridViewTextBoxColumn.Name = "borderStyleDataGridViewTextBoxColumn";
-            // 
-            // autoScrollDataGridViewCheckBoxColumn
-            // 
-            this.autoScrollDataGridViewCheckBoxColumn.DataPropertyName = "AutoScroll";
-            this.autoScrollDataGridViewCheckBoxColumn.HeaderText = "AutoScroll";
-            this.autoScrollDataGridViewCheckBoxColumn.Name = "autoScrollDataGridViewCheckBoxColumn";
-            // 
-            // autoScrollMarginDataGridViewTextBoxColumn
-            // 
-            this.autoScrollMarginDataGridViewTextBoxColumn.DataPropertyName = "AutoScrollMargin";
-            this.autoScrollMarginDataGridViewTextBoxColumn.HeaderText = "AutoScrollMargin";
-            this.autoScrollMarginDataGridViewTextBoxColumn.Name = "autoScrollMarginDataGridViewTextBoxColumn";
-            // 
-            // autoScrollMinSizeDataGridViewTextBoxColumn
-            // 
-            this.autoScrollMinSizeDataGridViewTextBoxColumn.DataPropertyName = "AutoScrollMinSize";
-            this.autoScrollMinSizeDataGridViewTextBoxColumn.HeaderText = "AutoScrollMinSize";
-            this.autoScrollMinSizeDataGridViewTextBoxColumn.Name = "autoScrollMinSizeDataGridViewTextBoxColumn";
-            // 
-            // accessibleDescriptionDataGridViewTextBoxColumn
-            // 
-            this.accessibleDescriptionDataGridViewTextBoxColumn.DataPropertyName = "AccessibleDescription";
-            this.accessibleDescriptionDataGridViewTextBoxColumn.HeaderText = "AccessibleDescription";
-            this.accessibleDescriptionDataGridViewTextBoxColumn.Name = "accessibleDescriptionDataGridViewTextBoxColumn";
-            // 
-            // accessibleNameDataGridViewTextBoxColumn
-            // 
-            this.accessibleNameDataGridViewTextBoxColumn.DataPropertyName = "AccessibleName";
-            this.accessibleNameDataGridViewTextBoxColumn.HeaderText = "AccessibleName";
-            this.accessibleNameDataGridViewTextBoxColumn.Name = "accessibleNameDataGridViewTextBoxColumn";
-            // 
-            // accessibleRoleDataGridViewTextBoxColumn
-            // 
-            this.accessibleRoleDataGridViewTextBoxColumn.DataPropertyName = "AccessibleRole";
-            this.accessibleRoleDataGridViewTextBoxColumn.HeaderText = "AccessibleRole";
-            this.accessibleRoleDataGridViewTextBoxColumn.Name = "accessibleRoleDataGridViewTextBoxColumn";
-            // 
-            // allowDropDataGridViewCheckBoxColumn
-            // 
-            this.allowDropDataGridViewCheckBoxColumn.DataPropertyName = "AllowDrop";
-            this.allowDropDataGridViewCheckBoxColumn.HeaderText = "AllowDrop";
-            this.allowDropDataGridViewCheckBoxColumn.Name = "allowDropDataGridViewCheckBoxColumn";
-            // 
-            // anchorDataGridViewTextBoxColumn
-            // 
-            this.anchorDataGridViewTextBoxColumn.DataPropertyName = "Anchor";
-            this.anchorDataGridViewTextBoxColumn.HeaderText = "Anchor";
-            this.anchorDataGridViewTextBoxColumn.Name = "anchorDataGridViewTextBoxColumn";
-            // 
-            // backColorDataGridViewTextBoxColumn
-            // 
-            this.backColorDataGridViewTextBoxColumn.DataPropertyName = "BackColor";
-            this.backColorDataGridViewTextBoxColumn.HeaderText = "BackColor";
-            this.backColorDataGridViewTextBoxColumn.Name = "backColorDataGridViewTextBoxColumn";
-            // 
-            // backgroundImageDataGridViewImageColumn
-            // 
-            this.backgroundImageDataGridViewImageColumn.DataPropertyName = "BackgroundImage";
-            this.backgroundImageDataGridViewImageColumn.HeaderText = "BackgroundImage";
-            this.backgroundImageDataGridViewImageColumn.Name = "backgroundImageDataGridViewImageColumn";
-            // 
-            // backgroundImageLayoutDataGridViewTextBoxColumn
-            // 
-            this.backgroundImageLayoutDataGridViewTextBoxColumn.DataPropertyName = "BackgroundImageLayout";
-            this.backgroundImageLayoutDataGridViewTextBoxColumn.HeaderText = "BackgroundImageLayout";
-            this.backgroundImageLayoutDataGridViewTextBoxColumn.Name = "backgroundImageLayoutDataGridViewTextBoxColumn";
-            // 
-            // causesValidationDataGridViewCheckBoxColumn
-            // 
-            this.causesValidationDataGridViewCheckBoxColumn.DataPropertyName = "CausesValidation";
-            this.causesValidationDataGridViewCheckBoxColumn.HeaderText = "CausesValidation";
-            this.causesValidationDataGridViewCheckBoxColumn.Name = "causesValidationDataGridViewCheckBoxColumn";
-            // 
-            // contextMenuStripDataGridViewTextBoxColumn
-            // 
-            this.contextMenuStripDataGridViewTextBoxColumn.DataPropertyName = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.HeaderText = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.Name = "contextMenuStripDataGridViewTextBoxColumn";
-            // 
-            // cursorDataGridViewTextBoxColumn
-            // 
-            this.cursorDataGridViewTextBoxColumn.DataPropertyName = "Cursor";
-            this.cursorDataGridViewTextBoxColumn.HeaderText = "Cursor";
-            this.cursorDataGridViewTextBoxColumn.Name = "cursorDataGridViewTextBoxColumn";
-            // 
-            // dataBindingsDataGridViewTextBoxColumn
-            // 
-            this.dataBindingsDataGridViewTextBoxColumn.DataPropertyName = "DataBindings";
-            this.dataBindingsDataGridViewTextBoxColumn.HeaderText = "DataBindings";
-            this.dataBindingsDataGridViewTextBoxColumn.Name = "dataBindingsDataGridViewTextBoxColumn";
-            this.dataBindingsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dockDataGridViewTextBoxColumn
-            // 
-            this.dockDataGridViewTextBoxColumn.DataPropertyName = "Dock";
-            this.dockDataGridViewTextBoxColumn.HeaderText = "Dock";
-            this.dockDataGridViewTextBoxColumn.Name = "dockDataGridViewTextBoxColumn";
-            // 
-            // enabledDataGridViewCheckBoxColumn
-            // 
-            this.enabledDataGridViewCheckBoxColumn.DataPropertyName = "Enabled";
-            this.enabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
-            this.enabledDataGridViewCheckBoxColumn.Name = "enabledDataGridViewCheckBoxColumn";
-            // 
-            // fontDataGridViewTextBoxColumn
-            // 
-            this.fontDataGridViewTextBoxColumn.DataPropertyName = "Font";
-            this.fontDataGridViewTextBoxColumn.HeaderText = "Font";
-            this.fontDataGridViewTextBoxColumn.Name = "fontDataGridViewTextBoxColumn";
-            // 
-            // foreColorDataGridViewTextBoxColumn
-            // 
-            this.foreColorDataGridViewTextBoxColumn.DataPropertyName = "ForeColor";
-            this.foreColorDataGridViewTextBoxColumn.HeaderText = "ForeColor";
-            this.foreColorDataGridViewTextBoxColumn.Name = "foreColorDataGridViewTextBoxColumn";
-            // 
-            // locationDataGridViewTextBoxColumn
-            // 
-            this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
-            this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
-            this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
-            // 
-            // marginDataGridViewTextBoxColumn
-            // 
-            this.marginDataGridViewTextBoxColumn.DataPropertyName = "Margin";
-            this.marginDataGridViewTextBoxColumn.HeaderText = "Margin";
-            this.marginDataGridViewTextBoxColumn.Name = "marginDataGridViewTextBoxColumn";
-            // 
-            // maximumSizeDataGridViewTextBoxColumn
-            // 
-            this.maximumSizeDataGridViewTextBoxColumn.DataPropertyName = "MaximumSize";
-            this.maximumSizeDataGridViewTextBoxColumn.HeaderText = "MaximumSize";
-            this.maximumSizeDataGridViewTextBoxColumn.Name = "maximumSizeDataGridViewTextBoxColumn";
-            // 
-            // minimumSizeDataGridViewTextBoxColumn
-            // 
-            this.minimumSizeDataGridViewTextBoxColumn.DataPropertyName = "MinimumSize";
-            this.minimumSizeDataGridViewTextBoxColumn.HeaderText = "MinimumSize";
-            this.minimumSizeDataGridViewTextBoxColumn.Name = "minimumSizeDataGridViewTextBoxColumn";
-            // 
-            // rightToLeftDataGridViewTextBoxColumn
-            // 
-            this.rightToLeftDataGridViewTextBoxColumn.DataPropertyName = "RightToLeft";
-            this.rightToLeftDataGridViewTextBoxColumn.HeaderText = "RightToLeft";
-            this.rightToLeftDataGridViewTextBoxColumn.Name = "rightToLeftDataGridViewTextBoxColumn";
-            // 
-            // sizeDataGridViewTextBoxColumn
-            // 
-            this.sizeDataGridViewTextBoxColumn.DataPropertyName = "Size";
-            this.sizeDataGridViewTextBoxColumn.HeaderText = "Size";
-            this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
-            // 
-            // tabIndexDataGridViewTextBoxColumn
-            // 
-            this.tabIndexDataGridViewTextBoxColumn.DataPropertyName = "TabIndex";
-            this.tabIndexDataGridViewTextBoxColumn.HeaderText = "TabIndex";
-            this.tabIndexDataGridViewTextBoxColumn.Name = "tabIndexDataGridViewTextBoxColumn";
-            // 
-            // tabStopDataGridViewCheckBoxColumn
-            // 
-            this.tabStopDataGridViewCheckBoxColumn.DataPropertyName = "TabStop";
-            this.tabStopDataGridViewCheckBoxColumn.HeaderText = "TabStop";
-            this.tabStopDataGridViewCheckBoxColumn.Name = "tabStopDataGridViewCheckBoxColumn";
-            // 
-            // tagDataGridViewTextBoxColumn
-            // 
-            this.tagDataGridViewTextBoxColumn.DataPropertyName = "Tag";
-            this.tagDataGridViewTextBoxColumn.HeaderText = "Tag";
-            this.tagDataGridViewTextBoxColumn.Name = "tagDataGridViewTextBoxColumn";
-            // 
-            // useWaitCursorDataGridViewCheckBoxColumn
-            // 
-            this.useWaitCursorDataGridViewCheckBoxColumn.DataPropertyName = "UseWaitCursor";
-            this.useWaitCursorDataGridViewCheckBoxColumn.HeaderText = "UseWaitCursor";
-            this.useWaitCursorDataGridViewCheckBoxColumn.Name = "useWaitCursorDataGridViewCheckBoxColumn";
-            // 
-            // visibleDataGridViewCheckBoxColumn
-            // 
-            this.visibleDataGridViewCheckBoxColumn.DataPropertyName = "Visible";
-            this.visibleDataGridViewCheckBoxColumn.HeaderText = "Visible";
-            this.visibleDataGridViewCheckBoxColumn.Name = "visibleDataGridViewCheckBoxColumn";
-            // 
-            // paddingDataGridViewTextBoxColumn
-            // 
-            this.paddingDataGridViewTextBoxColumn.DataPropertyName = "Padding";
-            this.paddingDataGridViewTextBoxColumn.HeaderText = "Padding";
-            this.paddingDataGridViewTextBoxColumn.Name = "paddingDataGridViewTextBoxColumn";
-            // 
-            // imeModeDataGridViewTextBoxColumn
-            // 
-            this.imeModeDataGridViewTextBoxColumn.DataPropertyName = "ImeMode";
-            this.imeModeDataGridViewTextBoxColumn.HeaderText = "ImeMode";
-            this.imeModeDataGridViewTextBoxColumn.Name = "imeModeDataGridViewTextBoxColumn";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dataGridView2);
-            this.groupBox2.Location = new System.Drawing.Point(54, 128);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(179, 289);
-            this.groupBox2.TabIndex = 145;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Einkaufsaufträge";
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(171, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Best.art";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(105, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Menge";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(39, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Teil";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(16, 48);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(214, 224);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView4);
-            this.groupBox3.Location = new System.Drawing.Point(258, 128);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.tableLayoutPanel2);
+            this.groupBox3.Location = new System.Drawing.Point(320, 128);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(237, 289);
+            this.groupBox3.Size = new System.Drawing.Size(200, 289);
             this.groupBox3.TabIndex = 146;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Produktionsaufträge";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(121, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Menge";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(47, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Teil";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 48);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(167, 222);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dataGridView3);
-            this.groupBox4.Location = new System.Drawing.Point(520, 251);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.tableLayoutPanel3);
+            this.groupBox4.Location = new System.Drawing.Point(536, 128);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(285, 166);
+            this.groupBox4.Size = new System.Drawing.Size(250, 289);
             this.groupBox4.TabIndex = 147;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Produktionskapazitäten";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(168, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 13);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "(min./Tag)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(174, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Überstd.";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(98, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Schichten";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Arbeitsplatz";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(15, 48);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(220, 222);
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // pic_en
             // 
@@ -655,33 +399,30 @@
             this.Lagerwerte.Controls.Add(this.Lagerendwert);
             this.Lagerwerte.Controls.Add(this.Lagerzwischenwert);
             this.Lagerwerte.Controls.Add(this.Lageranfangswert);
-            this.Lagerwerte.Location = new System.Drawing.Point(520, 128);
+            this.Lagerwerte.Location = new System.Drawing.Point(802, 221);
             this.Lagerwerte.Name = "Lagerwerte";
-            this.Lagerwerte.Size = new System.Drawing.Size(185, 100);
+            this.Lagerwerte.Size = new System.Drawing.Size(160, 103);
             this.Lagerwerte.TabIndex = 152;
             this.Lagerwerte.TabStop = false;
             this.Lagerwerte.Text = "Lagerwerte";
             // 
-            // textBox3
+            // Lageranfangswert
             // 
-            this.textBox3.Location = new System.Drawing.Point(94, 70);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(57, 20);
-            this.textBox3.TabIndex = 5;
+            this.Lageranfangswert.AutoSize = true;
+            this.Lageranfangswert.Location = new System.Drawing.Point(15, 24);
+            this.Lageranfangswert.Name = "Lageranfangswert";
+            this.Lageranfangswert.Size = new System.Drawing.Size(66, 13);
+            this.Lageranfangswert.TabIndex = 0;
+            this.Lageranfangswert.Text = "Anfangswert";
             // 
-            // textBox2
+            // Lagerzwischenwert
             // 
-            this.textBox2.Location = new System.Drawing.Point(94, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(57, 20);
-            this.textBox2.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(94, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(57, 20);
-            this.textBox1.TabIndex = 3;
+            this.Lagerzwischenwert.AutoSize = true;
+            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
+            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
+            this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
+            this.Lagerzwischenwert.TabIndex = 1;
+            this.Lagerzwischenwert.Text = "Zwischenwert";
             // 
             // Lagerendwert
             // 
@@ -694,12 +435,10 @@
             // 
             // Lagerzwischenwert
             // 
-            this.Lagerzwischenwert.AutoSize = true;
-            this.Lagerzwischenwert.Location = new System.Drawing.Point(15, 49);
-            this.Lagerzwischenwert.Name = "Lagerzwischenwert";
-            this.Lagerzwischenwert.Size = new System.Drawing.Size(73, 13);
-            this.Lagerzwischenwert.TabIndex = 1;
-            this.Lagerzwischenwert.Text = "Zwischenwert";
+            this.textBox2.Location = new System.Drawing.Point(94, 46);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(57, 20);
+            this.textBox2.TabIndex = 4;
             // 
             // Lageranfangswert
             // 
@@ -713,7 +452,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(736, 151);
+            this.pictureBox7.Location = new System.Drawing.Point(877, 154);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(38, 39);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -744,13 +483,13 @@
             this.Controls.Add(this.pictureBox5);
             this.Name = "Ergebnis";
             this.Size = new System.Drawing.Size(1000, 500);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kapazitaetsplanBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -771,57 +510,10 @@
         private System.Windows.Forms.Label lbl_Kapazitaetsplan;
         private System.Windows.Forms.Label lbl_Kaufteiledisposition;
         private System.Windows.Forms.Label lbl_Ergebnis;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource kapazitaetsplanBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProduktionTeilenr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProduktionAnzahl;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KapazitätArbeitsplatz;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Schichten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Überstunden;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EinkaufTeilenr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EinkaufAnzahl;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Express;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn autoSizeDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn autoSizeModeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn autoValidateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn borderStyleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn autoScrollDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn autoScrollMarginDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn autoScrollMinSizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accessibleDescriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accessibleNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn accessibleRoleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn allowDropDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn anchorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backColorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn backgroundImageDataGridViewImageColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn backgroundImageLayoutDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn causesValidationDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contextMenuStripDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cursorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataBindingsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dockDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn enabledDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fontDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn foreColorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn locationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn marginDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maximumSizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn minimumSizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rightToLeftDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tabIndexDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn tabStopDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tagDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn useWaitCursorDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn visibleDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paddingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn imeModeDataGridViewTextBoxColumn;
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.PictureBox pictureBox5;
@@ -835,5 +527,17 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

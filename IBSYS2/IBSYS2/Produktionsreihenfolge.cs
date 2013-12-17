@@ -12,6 +12,24 @@ namespace IBSYS2
 {
     public partial class Produktionsreihenfolge : UserControl
     {
+        Button buttonUp = new Button();
+        Button buttonDown = new Button();
+        private String sprache = "de";
+
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[15, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
+        // hier lokal die Prodreihenfolge speichern - fuer dich Lukas
+        int[,] berProduktionsreihenfolge = new int[30, 2];
+
         public Produktionsreihenfolge()
         {
             InitializeComponent();
@@ -93,10 +111,10 @@ namespace IBSYS2
             }
 
             //Produktionsreihenfolge in List sortieren 
-            for (int joern = 0; joern < 29; joern++)
+            for (int joern = 0; joern <= 29; joern++)
             {
                 int teil = reihenfolge[joern];
-                for(int fred = 0; fred < 29; fred++)
+                for(int fred = 0; fred <= 29; fred++)
                     {
                         if (teile[fred, 0] == teil)
                         {
@@ -104,7 +122,6 @@ namespace IBSYS2
                             teile_liste.Add(new List<int>());
                             teile_liste[joern].Add(teil);
                             teile_liste[joern].Add(menge);
-                            MessageBox.Show(""+teile_liste[joern][0] + " "+teile_liste[joern][1] );
                         }
                     }
             }
@@ -124,9 +141,7 @@ namespace IBSYS2
                 for (int y = 0; y < teile.GetLength(0); y++)
                 {
                     Label label = new Label();
-                    Button buttonUp = new Button();
                     buttonUp.Text = "hoch";
-                    Button buttonDown = new Button();
                     buttonDown.Text = "runter";
 
                     //Next, add a row.  Only do this when once, when creating the first column
@@ -189,11 +204,82 @@ namespace IBSYS2
            }
         }
 
+        public Produktionsreihenfolge(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
+        {
+            this.sprache = sprache;
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            InitializeComponent();
+            sprachen();
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kapazitaet.GetLength(0); i++)
+            {
+                if (kapazitaet[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, diese uebernehmen
+            if (bereitsBerechnet == true)
+            {
+                berProduktionsreihenfolge = prodReihenfolge;
+            }
+            else
+            {
+                // TODO Sabrina: hier den Code aus dem anderen Konstruktor einfuegen, wenn fertig
+                // zum testen:
+                berProduktionsreihenfolge = produktion;
+            }
+        }
+
         void buttonUp_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            MessageBox.Show("Button:" + " " + button.Tag);
-
+            if (button.Tag.ToString() == "1")
+            {
+                MessageBox.Show("joern");
+            }
+            else
+            {
+                string listitem = button.Tag.ToString();
+                
+            }
         }
 
         private void pic_en_Click(object sender, EventArgs e)
@@ -222,6 +308,16 @@ namespace IBSYS2
                 lbl_Kapazitaetsplan.Text = (Sprachen.EN_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.EN_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.EN_LBL_ERGEBNIS);
+
+                //EN Button
+                btn_back.Text = (Sprachen.EN_BTN_BACK);
+                continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+
+                //GroupBox
+                groupBox1.Text = (Sprachen.EN_GB_PR_PROD_SPLITT);
+
+                buttonDown.Text = "down";
+                buttonUp.Text = "up";
             }
             else
             {
@@ -233,48 +329,89 @@ namespace IBSYS2
                 lbl_Kapazitaetsplan.Text = (Sprachen.DE_LBL_KAPATITAETSPLAN);
                 lbl_Kaufteiledisposition.Text = (Sprachen.DE_LBL_KAUFTEILEDISPOSITION);
                 lbl_Ergebnis.Text = (Sprachen.DE_LBL_ERGEBNIS);
+
+                //EN Button
+                btn_back.Text = (Sprachen.DE_BTN_BACK);
+                continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
+
+                //GroupBox
+                groupBox1.Text = (Sprachen.DE_GB_PR_PROD_SPLITT);
+
+                buttonDown.Text = "Runter";
+                buttonUp.Text = "Hoch";
+
             }
         }
 
         private void btn_back_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            this.Controls.Add(kapaplan);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
         private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl kapazitaet = new Kapazitaetsplan();
-            this.Controls.Add(kapazitaet);
+            UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            this.Controls.Add(kapaplan);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
         /*

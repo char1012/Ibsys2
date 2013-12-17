@@ -14,903 +14,279 @@ namespace IBSYS2
     public partial class Produktion_ETeile : Form
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        int periode;
-        int produktionp1;
-        int produktionp2;
-        int produktionp3;
-        List<int> sicherheitsbe = new List<int>();
+        int[,] sicherheitsbe = new int[30, 2];
+        int[,] berProduktion = new int[30, 2];
 
-        public Produktion_ETeile(int per, string p1, string p2, string p3, List<int> sicherheitsbestand)
+        int[,] backupProduktion = new int[30, 2];
+
+        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest, String sprache)
         {
+            this.sprache = sprache;
             InitializeComponent();
+            sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
 
-            this.periode = per;
-            this.produktionp1 = Convert.ToInt32(p1);
-            this.produktionp2 = Convert.ToInt32(p2);
-            this.produktionp3 = Convert.ToInt32(p3);
-            this.sicherheitsbe = sicherheitsbestand;
+            this.sicherheitsbe = sicherheitsbest;
+            this.berProduktion = beProduktion;
+            this.backupProduktion = beProduktion;
 
             button1.Enabled = false;
 
-            berechneProduktion();
+            berechneProduktion(berProduktion);
         }
 
-        private void berechneProduktion()
+        private void berechneProduktion(int[,] beProduktion)
         {
 
-            int p26;
-            int p51;
-            int p16;
-            int p17;
-            int p50;
-            int p4;
-            int p10;
-            int p49;
-            int p7;
-            int p13;
-            int p18;
-
-            int p56;
-            int p55;
-            int p5;
-            int p11;
-            int p54;
-            int p8;
-            int p14;
-            int p19;
-
-            int p31;
-            int p30;
-            int p6;
-            int p12;
-            int p29;
-            int p9;
-            int p15;
-            int p20;
-
-             #region DB
-            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
-            myconn = new OleDbConnection(databasename);
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = myconn;
-
-            try
-            {
-                myconn.Open();
-            }
-            catch (Exception)
-            {
-                if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
-                {
-                    System.Windows.Forms.MessageBox.Show("DB-Verbindung wurde nicht ordnugnsgemäß geschlossen bei der letzten Verwendung, Verbindung wird neu gestartet, bitte haben Sie einen Moment Geduld.");
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("DB connection was not closed correctly, connection will be restarted, please wait a moment.");
-                }
-                myconn.Close();
-                myconn.Open();
-            } 
-            #endregion
-
-            #region Daten aus DB
-            int a = 0;
-            List<List<int>> lagerbestand = new List<List<int>>();
-            cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                lagerbestand.Add(new List<int>());
-                lagerbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
-                lagerbestand[a].Add(Convert.ToInt32(dbReader["Bestand"]));
-                ++a;
-            }
-            dbReader.Close();
-
-            a = 0;
-            List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
-            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Warteliste_Arbeitsplatz WHERE Periode = " + periode + ";";
-            dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                warteliste_arbeitsplatz.Add(new List<int>());
-                warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
-                warteliste_arbeitsplatz[a].Add(Convert.ToInt32(dbReader["Menge"]));
-                ++a;
-            }
-            dbReader.Close();
-
-            a = 0;
-            List<List<int>> warteliste_material = new List<List<int>>();
-            cmd.CommandText = @"SELECT Fehlteil_Teilenummer_FK, Menge FROM Warteliste_Material WHERE Periode = " + periode + ";";
-            dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                warteliste_material.Add(new List<int>());
-                warteliste_material[a].Add(Convert.ToInt32(dbReader["Fehlteil_Teilenummer_FK"]));
-                warteliste_material[a].Add(Convert.ToInt32(dbReader["Menge"]));
-                ++a;
-            }
-            dbReader.Close();
-
-            a = 0;
-            List<List<int>> bearbeitung = new List<List<int>>();
-            cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bearbeitung WHERE Periode = " + periode + ";";
-            dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
-            {
-                bearbeitung.Add(new List<int>());
-                bearbeitung[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
-                bearbeitung[a].Add(Convert.ToInt32(dbReader["Menge"]));
-                ++a;
-            }
-            dbReader.Close(); 
-            #endregion
-
-            #region Daten zur Berechnung
-		    p26 = produktionp1 + sicherheitsbe[0] + sicherheitsbe[11] + sicherheitsbe[22];
-            p51 = produktionp1 + sicherheitsbe[1];
-
-            p16 = p51 + sicherheitsbe[2] + sicherheitsbe[13] + sicherheitsbe[24];
-            p17 = p51 + sicherheitsbe[3] + sicherheitsbe[14] + sicherheitsbe[25];
-            p50 = p51 + sicherheitsbe[4];
-
-            p4 = p50 + sicherheitsbe[5];
-            p10 = p50 + sicherheitsbe[6];
-            p49 = p50 + sicherheitsbe[7];
-
-            p7 = p49 + sicherheitsbe[8];
-            p13 = p49 + sicherheitsbe[9];
-            p18 = p49 + sicherheitsbe[10];
-
-            p56 = produktionp2 + sicherheitsbe[12];
-
-            p55 = p56 + sicherheitsbe[15];
-
-            p5 = p55 + sicherheitsbe[16];
-            p11 = p55 + sicherheitsbe[17];
-            p54 = p55 + sicherheitsbe[18];
-
-            p8 = p54 + sicherheitsbe[19];
-            p14 = p54 + sicherheitsbe[20];
-            p19 = p54 + sicherheitsbe[21];
-
-            p31 = produktionp3 + sicherheitsbe[23];
-
-            p30 = p31 + sicherheitsbe[26];
-
-            p6 = p30 + sicherheitsbe[27];
-            p12 = p30 + sicherheitsbe[28];
-            p29 = p30 + sicherheitsbe[29];
-
-            p9 = p29 + sicherheitsbe[30];
-            p15 = p29 + sicherheitsbe[31];
-            p20 = p29 + sicherheitsbe[32]; 
-	#endregion
-           
-             int[] teilenummer = new int[]{26,51,16,17,50,4,10,49,7,13,18,56,
-                55,5,11,54,8,14,19,31,30,6,12,29,9,15,20};
-
-             for (int i = 0; i < teilenummer.Count(); i++)
-             {
-                 #region Bearbeitung
-                 for (int e = 0; e < bearbeitung.Count; e++)
-                 {
-                     if (bearbeitung[e][0] == teilenummer[0])
-                     {
-                         p26 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[1])
-                     {
-                         p51 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[2])
-                     {
-                         p16 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[3])
-                     {
-                         p17 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[4])
-                     {
-                         p50 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[5])
-                     {
-                         p4 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[6])
-                     {
-                         p10 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[7])
-                     {
-                         p49 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[8])
-                     {
-                         p7 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[9])
-                     {
-                         p13 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[10])
-                     {
-                         p18 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[11])
-                     {
-                         p56 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[12])
-                     {
-                         p55 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[13])
-                     {
-                         p5 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[14])
-                     {
-                         p11 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[15])
-                     {
-                         p54 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[16])
-                     {
-                         p8 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[17])
-                     {
-                         p14 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[18])
-                     {
-                         p19 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[19])
-                     {
-                         p31 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[20])
-                     {
-                         p30 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[21])
-                     {
-                         p6 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[22])
-                     {
-                         p12 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[23])
-                     {
-                         p29 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[24])
-                     {
-                         p9 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[25])
-                     {
-                         p15 -= bearbeitung[e][1];
-                     }
-                     if (bearbeitung[e][0] == teilenummer[26])
-                     {
-                         p20 -= bearbeitung[e][1];
-                     }
-                 }
-                 #endregion
-                 #region Lagerbestand
-                 for (int l = 0; l < lagerbestand.Count; l++)
-                 {
-                     if (lagerbestand[l][0] == teilenummer[0])
-                     {
-                         p26 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[1])
-                     {
-                         p51 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[2])
-                     {
-                         p16 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[3])
-                     {
-                         p17 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[4])
-                     {
-                         p50 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[5])
-                     {
-                         p4 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[6])
-                     {
-                         p10 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[7])
-                     {
-                         p49 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[8])
-                     {
-                         p7 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[9])
-                     {
-                         p13 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[10])
-                     {
-                         p18 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[11])
-                     {
-                         p56 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[12])
-                     {
-                         p55 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[13])
-                     {
-                         p5 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[14])
-                     {
-                         p11 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[15])
-                     {
-                         p54 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[16])
-                     {
-                         p8 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[17])
-                     {
-                         p14 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[18])
-                     {
-                         p19 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[19])
-                     {
-                         p31 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[20])
-                     {
-                         p30 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[21])
-                     {
-                         p6 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[22])
-                     {
-                         p12 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[23])
-                     {
-                         p29 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[24])
-                     {
-                         p9 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[25])
-                     {
-                         p15 -= lagerbestand[l][1];
-                     }
-                     if (lagerbestand[l][0] == teilenummer[26])
-                     {
-                         p20 -= lagerbestand[l][1];
-                     }
-                 }
-                 #endregion
-                 #region Wartelisten
-                 for (int k = 0; k < warteliste_material.Count; k++)
-                 {
-                     if (warteliste_material[k][0] == teilenummer[0])
-                     {
-                         p26 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[1])
-                     {
-                         p51 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[2])
-                     {
-                         p16 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[3])
-                     {
-                         p17 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[4])
-                     {
-                         p50 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[5])
-                     {
-                         p4 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[6])
-                     {
-                         p10 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[7])
-                     {
-                         p49 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[8])
-                     {
-                         p7 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[9])
-                     {
-                         p13 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[10])
-                     {
-                         p18 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[11])
-                     {
-                         p56 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[12])
-                     {
-                         p55 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[13])
-                     {
-                         p5 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[14])
-                     {
-                         p11 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[15])
-                     {
-                         p54 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[16])
-                     {
-                         p8 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[17])
-                     {
-                         p14 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[18])
-                     {
-                         p19 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[19])
-                     {
-                         p31 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[20])
-                     {
-                         p30 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[21])
-                     {
-                         p6 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[22])
-                     {
-                         p12 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[23])
-                     {
-                         p29 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[24])
-                     {
-                         p9 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[25])
-                     {
-                         p15 -= warteliste_material[k][1];
-                     }
-                     if (warteliste_material[k][0] == teilenummer[26])
-                     {
-                         p20 -= warteliste_material[k][1];
-                     }
-                 }
-                 for (int m = 0; m < warteliste_arbeitsplatz.Count; m++)
-                 {
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[0])
-                     {
-                         p26 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[1])
-                     {
-                         p51 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[2])
-                     {
-                         p16 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[3])
-                     {
-                         p17 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[4])
-                     {
-                         p50 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[5])
-                     {
-                         p4 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[6])
-                     {
-                         p10 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[7])
-                     {
-                         p49 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[8])
-                     {
-                         p7 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[9])
-                     {
-                         p13 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[10])
-                     {
-                         p18 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[11])
-                     {
-                         p56 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[12])
-                     {
-                         p55 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[13])
-                     {
-                         p5 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[14])
-                     {
-                         p11 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[15])
-                     {
-                         p54 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[16])
-                     {
-                         p8 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[17])
-                     {
-                         p14 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[18])
-                     {
-                         p19 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[19])
-                     {
-                         p31 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[20])
-                     {
-                         p30 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[21])
-                     {
-                         p6 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[22])
-                     {
-                         p12 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[23])
-                     {
-                         p29 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[24])
-                     {
-                         p9 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[25])
-                     {
-                         p15 -= warteliste_arbeitsplatz[m][1];
-                     }
-                     if (warteliste_arbeitsplatz[m][0] == teilenummer[26])
-                     {
-                         p20 -= warteliste_arbeitsplatz[m][1];
-                     }
-                 }
-                 #endregion
-
-                 #region In textBox
-                 if (p4.ToString().StartsWith("-"))
+               #region In textBox
+                 if (beProduktion[3, 1].ToString().StartsWith("-"))
                  {
                      textBox1.Text = "0";
                  }
                  else
                  {
-                     textBox1.Text = p4.ToString();
+                     textBox1.Text = beProduktion[3, 1].ToString();
                  }
 
-                 if (p5.ToString().StartsWith("-"))
+                 if (beProduktion[4, 1].ToString().StartsWith("-"))
                  {
                      textBox2.Text = "0";
                  }
                  else
                  {
-                     textBox2.Text = p5.ToString();
+                     textBox2.Text = beProduktion[4, 1].ToString();
                  }
 
-                 if (p6.ToString().StartsWith("-"))
+                 if (beProduktion[5, 1].ToString().StartsWith("-"))
                  {
                      textBox3.Text = "0";
                  }
                  else
                  {
-                     textBox3.Text = p6.ToString();
+                     textBox3.Text = beProduktion[5, 1].ToString();
                  }
 
-                 if (p7.ToString().StartsWith("-"))
+                 if (beProduktion[6, 1].ToString().StartsWith("-"))
                  {
                      textBox4.Text = "0";
                  }
                  else
                  {
-                     textBox4.Text = p7.ToString();
+                     textBox4.Text = beProduktion[6, 1].ToString();
                  }
 
-                 if (p8.ToString().StartsWith("-"))
+                 if (beProduktion[7, 1].ToString().StartsWith("-"))
                  {
                      textBox5.Text = "0";
                  }
                  else
                  {
-                     textBox5.Text = p8.ToString();
+                     textBox5.Text = beProduktion[7, 1].ToString();
                  }
 
-                 if (p9.ToString().StartsWith("-"))
+                 if (beProduktion[8, 1].ToString().StartsWith("-"))
                  {
                      textBox6.Text = "0";
                  }
                  else
                  {
-                     textBox6.Text = p9.ToString();
+                     textBox6.Text = beProduktion[8, 1].ToString();
                  }
 
-                 if (p10.ToString().StartsWith("-"))
+                 if (beProduktion[9, 1].ToString().StartsWith("-"))
                  {
                      textBox7.Text = "0";
                  }
                  else
                  {
-                     textBox7.Text = p10.ToString();
+                     textBox7.Text = beProduktion[9, 1].ToString();
                  }
 
-                 if (p11.ToString().StartsWith("-"))
+                 if (beProduktion[10, 1].ToString().StartsWith("-"))
                  {
                      textBox8.Text = "0";
                  }
                  else
                  {
-                     textBox8.Text = p11.ToString();
+                     textBox8.Text = beProduktion[10, 1].ToString();
                  }
 
-                 if (p12.ToString().StartsWith("-"))
+                 if (beProduktion[11, 1].ToString().StartsWith("-"))
                  {
                      textBox9.Text = "0";
                  }
                  else
                  {
-                     textBox9.Text = p12.ToString();
+                     textBox9.Text = beProduktion[11, 1].ToString();
                  }
 
-                 if (p13.ToString().StartsWith("-"))
+                 if (beProduktion[12, 1].ToString().StartsWith("-"))
                  {
                      textBox10.Text = "0";
                  }
                  else
                  {
-                     textBox10.Text = p13.ToString();
+                     textBox10.Text = beProduktion[12, 1].ToString();
                  }
 
-                 if (p14.ToString().StartsWith("-"))
+                 if (beProduktion[13, 1].ToString().StartsWith("-"))
                  {
                      textBox11.Text = "0";
                  }
                  else
                  {
-                     textBox11.Text = p14.ToString();
+                     textBox11.Text = beProduktion[13, 1].ToString();
                  }
 
-                 if (p15.ToString().StartsWith("-"))
+                 if (beProduktion[14, 1].ToString().StartsWith("-"))
                  {
                      textBox12.Text = "0";
                  }
                  else
                  {
-                     textBox12.Text = p15.ToString();
+                     textBox12.Text = beProduktion[14, 1].ToString();
                  }
 
-                 if (p16.ToString().StartsWith("-"))
+                 if (beProduktion[15, 1].ToString().StartsWith("-"))
                  {
                      textBox13.Text = "0";
                  }
                  else
                  {
-                     textBox13.Text = p16.ToString();
+                     textBox13.Text = beProduktion[15, 1].ToString();
                  }
 
-                 if (p17.ToString().StartsWith("-"))
+                 if (beProduktion[16, 1].ToString().StartsWith("-"))
                  {
                      textBox14.Text = "0";
                  }
                  else
                  {
-                     textBox14.Text = p17.ToString();
+                     textBox14.Text = beProduktion[16, 1].ToString();
                  }
 
-                 if (p17.ToString().StartsWith("-"))
-                 {
-                     textBox14.Text = "0";
-                 }
-                 else
-                 {
-                     textBox14.Text = p17.ToString();
-                 }
-
-                 if (p18.ToString().StartsWith("-"))
+                 if (beProduktion[17, 1].ToString().StartsWith("-"))
                  {
                      textBox15.Text = "0";
                  }
                  else
                  {
-                     textBox15.Text = p18.ToString();
+                     textBox15.Text = beProduktion[17, 1].ToString();
                  }
 
-                 if (p19.ToString().StartsWith("-"))
+                 if (beProduktion[18, 1].ToString().StartsWith("-"))
                  {
                      textBox16.Text = "0";
                  }
                  else
                  {
-                     textBox16.Text = p19.ToString();
+                     textBox16.Text = beProduktion[18, 1].ToString();
                  }
 
-                 if (p20.ToString().StartsWith("-"))
+                 if (beProduktion[19, 1].ToString().StartsWith("-"))
                  {
                      textBox17.Text = "0";
                  }
                  else
                  {
-                     textBox17.Text = p20.ToString();
+                     textBox17.Text = beProduktion[19, 1].ToString();
                  }
 
-                 if (p26.ToString().StartsWith("-"))
+                 if (beProduktion[20, 1].ToString().StartsWith("-"))
                  {
                      textBox18.Text = "0";
                  }
                  else
                  {
-                     textBox18.Text = p26.ToString();
+                     textBox18.Text = beProduktion[20, 1].ToString();
                  }
 
-                 if (p26.ToString().StartsWith("-"))
-                 {
-                     textBox18.Text = "0";
-                 }
-                 else
-                 {
-                     textBox18.Text = p26.ToString();
-                 }
-
-                 if (p29.ToString().StartsWith("-"))
+                 if (beProduktion[21, 1].ToString().StartsWith("-"))
                  {
                      textBox19.Text = "0";
                  }
                  else
                  {
-                     textBox19.Text = p29.ToString();
+                     textBox19.Text = beProduktion[21, 1].ToString();
                  }
 
-                 if (p30.ToString().StartsWith("-"))
+                 if (beProduktion[22, 1].ToString().StartsWith("-"))
                  {
                      textBox20.Text = "0";
                  }
                  else
                  {
-                     textBox20.Text = p30.ToString();
+                     textBox20.Text = beProduktion[22, 1].ToString();
                  }
 
-                 if (p31.ToString().StartsWith("-"))
+                 if (beProduktion[23, 1].ToString().StartsWith("-"))
                  {
                      textBox21.Text = "0";
                  }
                  else
                  {
-                     textBox21.Text = p31.ToString();
+                     textBox21.Text = beProduktion[23, 1].ToString();
                  }
 
-                 if (p49.ToString().StartsWith("-"))
+                 if (beProduktion[24, 1].ToString().StartsWith("-"))
                  {
                      textBox22.Text = "0";
                  }
                  else
                  {
-                     textBox22.Text = p49.ToString();
+                     textBox22.Text = beProduktion[24, 1].ToString();
                  }
 
-                 if (p50.ToString().StartsWith("-"))
+                 if (beProduktion[25, 1].ToString().StartsWith("-"))
                  {
                      textBox23.Text = "0";
                  }
                  else
                  {
-                     textBox23.Text = p50.ToString();
+                     textBox23.Text = beProduktion[25, 1].ToString();
                  }
 
-                 if (p51.ToString().StartsWith("-"))
+                 if (beProduktion[26, 1].ToString().StartsWith("-"))
                  {
                      textBox24.Text = "0";
                  }
                  else
                  {
-                     textBox24.Text = p51.ToString();
+                     textBox24.Text = beProduktion[26, 1].ToString();
                  }
 
-                 if (p54.ToString().StartsWith("-"))
+                 if (beProduktion[27, 1].ToString().StartsWith("-"))
                  {
                      textBox25.Text = "0";
                  }
                  else
                  {
-                     textBox25.Text = p54.ToString();
+                     textBox25.Text = beProduktion[27, 1].ToString();
                  }
 
-                 if (p54.ToString().StartsWith("-"))
+                 if (beProduktion[28, 1].ToString().StartsWith("-"))
                  {
                      textBox26.Text = "0";
                  }
                  else
                  {
-                     textBox26.Text = p54.ToString();
+                     textBox26.Text = beProduktion[28, 1].ToString();
                  }
 
-                 if (p56.ToString().StartsWith("-"))
+                 if (beProduktion[29, 1].ToString().StartsWith("-"))
                  {
                      textBox27.Text = "0";
                  }
                  else
                  {
-                     textBox27.Text = p56.ToString();
+                     textBox27.Text = beProduktion[29, 1].ToString();
                  }
-             }
-            #endregion
+
+                 #endregion
+             
         }
 
         private void check()
@@ -939,6 +315,35 @@ namespace IBSYS2
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            berProduktion[3, 1] = Convert.ToInt32(textBox1.Text);
+            berProduktion[4, 1] = Convert.ToInt32(textBox2.Text);
+            berProduktion[5, 1] = Convert.ToInt32(textBox3.Text);
+            berProduktion[6, 1] = Convert.ToInt32(textBox4.Text);
+            berProduktion[7, 1] = Convert.ToInt32(textBox5.Text);
+            berProduktion[8, 1] = Convert.ToInt32(textBox6.Text);
+            berProduktion[9, 1] = Convert.ToInt32(textBox7.Text);
+            berProduktion[10, 1] = Convert.ToInt32(textBox8.Text);
+            berProduktion[11, 1] = Convert.ToInt32(textBox9.Text); 
+            berProduktion[12, 1] = Convert.ToInt32(textBox10.Text); 
+            berProduktion[13, 1] = Convert.ToInt32(textBox11.Text);
+            berProduktion[14, 1] = Convert.ToInt32(textBox12.Text);
+            berProduktion[15, 1] = Convert.ToInt32(textBox13.Text);
+            berProduktion[16, 1] = Convert.ToInt32(textBox14.Text);
+            berProduktion[17, 1] = Convert.ToInt32(textBox15.Text);
+            berProduktion[18, 1] = Convert.ToInt32(textBox16.Text);
+            berProduktion[19, 1] = Convert.ToInt32(textBox17.Text);
+            berProduktion[20, 1] = Convert.ToInt32(textBox18.Text);
+            berProduktion[21, 1] = Convert.ToInt32(textBox19.Text);
+            berProduktion[22, 1] = Convert.ToInt32(textBox20.Text);
+            berProduktion[23, 1] = Convert.ToInt32(textBox21.Text);
+            berProduktion[24, 1] = Convert.ToInt32(textBox22.Text);
+            berProduktion[25, 1] = Convert.ToInt32(textBox23.Text);
+            berProduktion[26, 1] = Convert.ToInt32(textBox24.Text);
+            berProduktion[27, 1] = Convert.ToInt32(textBox25.Text);
+            berProduktion[28, 1] = Convert.ToInt32(textBox26.Text);
+            berProduktion[29, 1] = Convert.ToInt32(textBox27.Text);
+            Produktion prod = new Produktion();
+            prod.vonProduktionEteile(berProduktion);
             this.Close();
         }
 
@@ -1730,7 +1135,9 @@ namespace IBSYS2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            berechneProduktion();
+            Produktion prod = new Produktion(sicherheitsbe);
+            backupProduktion = prod.ProduktionETeile();       
+            berechneProduktion(backupProduktion);
         }
 
         public void sprachen()

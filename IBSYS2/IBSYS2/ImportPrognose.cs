@@ -24,11 +24,24 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
+        private String sprache = "de";
 
-        public ImportPrognose()
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[15, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
+        public ImportPrognose(String sprache)
         {
             InitializeComponent();
-
+            this.sprache = sprache;
+            sprachen();
 
             ////----------------
             ////Change HighlightedStyle to Normal style and add mouse enter and leave events on series
@@ -40,11 +53,13 @@ namespace IBSYS2
             //// ------------------
             button2.Enabled = false;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
             System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal) { 
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal | sprache == "de") 
+            { 
                 ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
                 ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
                 ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
@@ -57,6 +72,93 @@ namespace IBSYS2
             }
         }
 
+        // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
+        public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
+        {
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
+            InitializeComponent();
+            button2.Enabled = false;
+            continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
+            this.sprache = sprache;
+            sprachen();
+            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+            myconn = new OleDbConnection(databasename);
+            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+            if (pic_de.SizeMode != PictureBoxSizeMode.Normal)
+            {
+                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_IP_INFO);
+                ToolTipDE.SetToolTip(this.lbl_schritt1, Sprachen.DE_IP_INFO_SCHRITT1);
+                ToolTipDE.SetToolTip(this.lbl_schritt2, Sprachen.DE_IP_INFO_SCHRITT2);
+            }
+            else
+            {
+                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_IP_INFO);
+                ToolTipEN.SetToolTip(this.lbl_schritt1, Sprachen.EN_IP_INFO_SCHRITT1);
+                ToolTipEN.SetToolTip(this.lbl_schritt2, Sprachen.EN_IP_INFO_SCHRITT2);
+            }
+
+            // Die Textboxen fuer auftraege und direktverkauefe werden hier mit den
+            // Werten aus den beiden Arrays gefuellt
+            tb_aktP1.Text = auftraege[0].ToString();
+            textBox2.Text = auftraege[1].ToString();
+            textBox3.Text = auftraege[2].ToString();
+            textBox4.Text = auftraege[3].ToString();
+            textBox5.Text = auftraege[4].ToString();
+            textBox6.Text = auftraege[5].ToString();
+            textBox7.Text = auftraege[6].ToString();
+            textBox8.Text = auftraege[7].ToString();
+            textBox9.Text = auftraege[8].ToString();
+            textBox10.Text = auftraege[9].ToString();
+            textBox11.Text = auftraege[10].ToString();
+            textBox12.Text = auftraege[11].ToString();
+
+            comboBox1.Text = "Periode " + aktPeriode;
+
+            // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
+            // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
+            continue_btn.Enabled = true;
+            btn_direktverkäufe.Enabled = true;
+            // XML-Import und Datenbank leeren wird disabled
+            button2.Enabled = false;
+            clear_btn.Enabled = false;
+        }
 
         //--------------------------------
         ///// Mouse has entered one of the bar datapoints - set cursor to hand
@@ -75,6 +177,10 @@ namespace IBSYS2
 
         //----------------------------
 
+        public void Direktverkäufe(double[,] direktverkäufe)
+        {
+            this.direktverkaeufe = direktverkäufe;
+        }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             String text = comboBox1.Text;
@@ -83,22 +189,20 @@ namespace IBSYS2
             else
                 button2.Enabled = true;
             continue_btn.Enabled = false;
-        }
+            btn_direktverkäufe.Enabled = false;
 
         private void button1_Click(object sender, EventArgs e)
         {
             //ExportXMLClass exportXML = new ExportXMLClass();
             //exportXML.XMLExport();
            // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            //UserControl p = new Produktionsreihenfolge(); 
+            UserControl p = new Produktionsreihenfolge();
             //p.Show();
             //ktdispo.ShowDialog();
-            
-
-            //this.Controls.Clear();
+            this.Controls.Clear();
             //UserControl sicherheit = new Sicherheitsbestand();
             //UserControl ergebnis = new Ergebnis();
-           // this.Controls.Add(p);
+            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -235,10 +339,21 @@ namespace IBSYS2
                                     dbReader = cmd.ExecuteReader();
                                     dbReader.Close();
 
+                                    // Mitteilung einblenden
+                                    ProcessMessage message = new ProcessMessage(sprache);
+                                    message.Show(this);
+                                    message.Location = new Point(500, 300);
+                                    message.Update();
+                                    this.Enabled = false;
+
                                     // XMLReaderClass aufrufen
                                     //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                     XMLReaderClass xmlclass = new XMLReaderClass();
                                     xmlclass.XMLReader(cmd, File);
+
+                                    message.Close();
+                                    this.Enabled = true;
+
                                     if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                                     {
                                         System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
@@ -254,14 +369,26 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                             }
                             else
                             {
+                                // Mitteilung einblenden
+                                ProcessMessage message = new ProcessMessage(sprache);
+                                message.Show(this);
+                                message.Location = new Point(500, 300);
+                                message.Update();
+                                this.Enabled = false;
+
                                 myconn.Open();
                                 //Aufruf der Klasse XMLReaderClass mit Verarbeitung des XML-Dokuments
                                 XMLReaderClass xmlclass = new XMLReaderClass();
                                 xmlclass.XMLReader(cmd, File);
+
+                                message.Close();
+                                this.Enabled = true;
+
                                 if (pic_de.SizeMode == PictureBoxSizeMode.StretchImage)
                                 {
                                     System.Windows.Forms.MessageBox.Show("Die Dateien wurden erfolgreich importiert, vielen Dank für ihre Geduld.", "XML-Datensatz eingelesen");
@@ -273,6 +400,7 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                                 myconn.Close();
                             }
@@ -312,63 +440,49 @@ namespace IBSYS2
                 }
                 if (dialogResult == DialogResult.Yes)
                 {
-                    // Uebergabe:
-                    // aktuelle Periode (Integer)
-                    // 12 Integer fuer die Auftraege
-                    // 3 Integer fuer Zusatzauftraege
-                    // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
-                    int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
-                    int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
-                    int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
-                    int aPP1 = Convert.ToInt32(tb_aktP1.Text);
-                    int aPP2 = Convert.ToInt32(textBox2.Text);
-                    int aPP3 = Convert.ToInt32(textBox3.Text);
-                    int p2P1 = Convert.ToInt32(textBox4.Text);
-                    int p2P2 = Convert.ToInt32(textBox5.Text);
-                    int p2P3 = Convert.ToInt32(textBox6.Text);
-                    int p3P1 = Convert.ToInt32(textBox7.Text);
-                    int p3P2 = Convert.ToInt32(textBox8.Text);
-                    int p3P3 = Convert.ToInt32(textBox9.Text);
-                    int p4P1 = Convert.ToInt32(textBox10.Text);
-                    int p4P2 = Convert.ToInt32(textBox11.Text);
-                    int p4P3 = Convert.ToInt32(textBox12.Text);
-                    int mengeP1 = zLAP1 + aPP1;
-                    int mengeP2 = zLAP2 + aPP2;
-                    int mengeP3 = zLAP3 + aPP3;
+                    // Datenweitergabe
+
+                    // auftraege fuellen
+                    auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                    auftraege[1] = Convert.ToInt32(textBox2.Text);
+                    auftraege[2] = Convert.ToInt32(textBox3.Text);
+                    auftraege[3] = Convert.ToInt32(textBox4.Text);
+                    auftraege[4] = Convert.ToInt32(textBox5.Text);
+                    auftraege[5] = Convert.ToInt32(textBox6.Text);
+                    auftraege[6] = Convert.ToInt32(textBox7.Text);
+                    auftraege[7] = Convert.ToInt32(textBox8.Text);
+                    auftraege[8] = Convert.ToInt32(textBox9.Text);
+                    auftraege[9] = Convert.ToInt32(textBox10.Text);
+                    auftraege[10] = Convert.ToInt32(textBox11.Text);
+                    auftraege[11] = Convert.ToInt32(textBox12.Text);
 
                     this.Controls.Clear();
-                    UserControl sicherheit = new Sicherheitsbestand();
+                    UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                     this.Controls.Add(sicherheit);
                 }
             }
             else
             {
-                // Uebergabe:
-                // aktuelle Periode (Integer)
-                // 12 Integer fuer die Auftraege
-                // 3 Integer fuer Zusatzauftraege
-                // fuer Produktion etc. normale und Zusatzauftraege zusammen rechnen
-                int zLAP1 = Convert.ToInt32(txt_zLAP1.Text);
-                int zLAP2 = Convert.ToInt32(txt_zLAP2.Text);
-                int zLAP3 = Convert.ToInt32(txt_zLAP3.Text);
-                int aPP1 = Convert.ToInt32(tb_aktP1.Text);
-                int aPP2 = Convert.ToInt32(textBox2.Text);
-                int aPP3 = Convert.ToInt32(textBox3.Text);
-                int p2P1 = Convert.ToInt32(textBox4.Text);
-                int p2P2 = Convert.ToInt32(textBox5.Text);
-                int p2P3 = Convert.ToInt32(textBox6.Text);
-                int p3P1 = Convert.ToInt32(textBox7.Text);
-                int p3P2 = Convert.ToInt32(textBox8.Text);
-                int p3P3 = Convert.ToInt32(textBox9.Text);
-                int p4P1 = Convert.ToInt32(textBox10.Text);
-                int p4P2 = Convert.ToInt32(textBox11.Text);
-                int p4P3 = Convert.ToInt32(textBox12.Text);
-                int mengeP1 = zLAP1 + aPP1;
-                int mengeP2 = zLAP2 + aPP2;
-                int mengeP3 = zLAP3 + aPP3;
+                // Datenweitergabe
+
+                // auftraege fuellen
+                auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+                auftraege[1] = Convert.ToInt32(textBox2.Text);
+                auftraege[2] = Convert.ToInt32(textBox3.Text);
+                auftraege[3] = Convert.ToInt32(textBox4.Text);
+                auftraege[4] = Convert.ToInt32(textBox5.Text);
+                auftraege[5] = Convert.ToInt32(textBox6.Text);
+                auftraege[6] = Convert.ToInt32(textBox7.Text);
+                auftraege[7] = Convert.ToInt32(textBox8.Text);
+                auftraege[8] = Convert.ToInt32(textBox9.Text);
+                auftraege[9] = Convert.ToInt32(textBox10.Text);
+                auftraege[10] = Convert.ToInt32(textBox11.Text);
+                auftraege[11] = Convert.ToInt32(textBox12.Text);
 
                 this.Controls.Clear();
-                UserControl sicherheit = new Sicherheitsbestand();
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(sicherheit);
             }
         }
@@ -378,6 +492,7 @@ namespace IBSYS2
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "en";
         }
 
         private void pic_de_Click(object sender, EventArgs e)
@@ -385,6 +500,7 @@ namespace IBSYS2
             pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_en.SizeMode = PictureBoxSizeMode.Normal;
             sprachen();
+            sprache = "de";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -880,131 +996,6 @@ namespace IBSYS2
             }
         }
 
-
-
-        private void txt_zLAP1_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP1.Text == "")
-            {
-                txt_zLAP1.ForeColor = Color.Red;
-                txt_zLAP1.Text = "Geben Sie einen Wert ein";
-                tB13 = false;
-            }
-            else
-            {
-                txt_zLAP1.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP1.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP1.ForeColor = Color.Red;
-                        okay = false;
-                        tB13 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP1.ForeColor = Color.Black;
-                    tB13 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
-        private void txt_zLAP2_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP2.Text == "")
-            {
-                txt_zLAP2.ForeColor = Color.Red;
-                txt_zLAP2.Text = "Geben Sie einen Wert ein";
-                tB14 = false;
-            }
-            else
-            {
-                txt_zLAP2.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP2.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP2.ForeColor = Color.Red;
-                        okay = false;
-                        tB14 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP2.ForeColor = Color.Black;
-                    tB14 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
-        private void txt_zLAP3_TextChanged(object sender, EventArgs e)
-        {
-            if (txt_zLAP3.Text == "")
-            {
-                txt_zLAP3.ForeColor = Color.Red;
-                txt_zLAP3.Text = "Geben Sie einen Wert ein";
-                tB15 = false;
-            }
-            else
-            {
-                txt_zLAP3.ForeColor = Color.Black;
-                bool okay = true;
-                // neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
-                foreach (char c in txt_zLAP3.Text.ToCharArray())
-                {
-                    // sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
-                    if (!digits.Contains<char>(c))
-                    {
-                        txt_zLAP3.ForeColor = Color.Red;
-                        okay = false;
-                        tB15 = false;
-                        continue_btn.Enabled = false;
-                        break;
-                    }
-                }
-                if (okay == true)
-                {
-                    txt_zLAP3.ForeColor = Color.Black;
-                    tB15 = true;
-                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected)
-                    {
-                        continue_btn.Enabled = true;
-                    }
-                    else
-                    {
-                        continue_btn.Enabled = false;
-                    }
-                }
-            }
-        }
-
         private void valueZero()
         {
             if (tb_aktP1.Text == "0")
@@ -1061,7 +1052,7 @@ namespace IBSYS2
        
         public void sprachen()
         {
-            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage)
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
             {
                 //EN Brotkrumenleiste
                 lbl_Startseite.Text = (Sprachen.EN_LBL_STARTSEITE);
@@ -1075,8 +1066,9 @@ namespace IBSYS2
                 //EN Buttons
                 clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.EN_BTN_IP_DIREKT);
+
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_IP_GROUPBOX1);
@@ -1113,8 +1105,8 @@ namespace IBSYS2
                 //DE Buttons
                 clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
+                btn_direktverkäufe.Text = (Sprachen.DE_BTN_IP_DIREKT);
 
 
                 //DE Groupboxen
@@ -1143,8 +1135,25 @@ namespace IBSYS2
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // auftraege fuellen
+            auftraege[0] = Convert.ToInt32(tb_aktP1.Text);
+            auftraege[1] = Convert.ToInt32(textBox2.Text);
+            auftraege[2] = Convert.ToInt32(textBox3.Text);
+            auftraege[3] = Convert.ToInt32(textBox4.Text);
+            auftraege[4] = Convert.ToInt32(textBox5.Text);
+            auftraege[5] = Convert.ToInt32(textBox6.Text);
+            auftraege[6] = Convert.ToInt32(textBox7.Text);
+            auftraege[7] = Convert.ToInt32(textBox8.Text);
+            auftraege[8] = Convert.ToInt32(textBox9.Text);
+            auftraege[9] = Convert.ToInt32(textBox10.Text);
+            auftraege[10] = Convert.ToInt32(textBox11.Text);
+            auftraege[11] = Convert.ToInt32(textBox12.Text);
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -1193,8 +1202,9 @@ namespace IBSYS2
                 }
 
                 // Mitteilung einblenden
-                ProcessMessage message = new ProcessMessage();
+                ProcessMessage message = new ProcessMessage(sprache);
                 message.Show(this);
+                message.Location = new Point(500, 300);
                 message.Update();
                 this.Enabled = false;
 
@@ -1233,11 +1243,6 @@ namespace IBSYS2
 
                 }
             }
-        }
-
-        private void lbl_Produktion_Click(object sender, EventArgs e)
-        {
-
         }
 
     }

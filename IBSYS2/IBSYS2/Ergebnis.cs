@@ -128,7 +128,7 @@ namespace IBSYS2
                     tableLayoutPanel1.Controls.Add(label, x, y);
                 }
             }
-
+            
             // Produktionsauftraege
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.RowStyles.Clear();
@@ -222,7 +222,7 @@ namespace IBSYS2
                 }
                 textBox1.Text = neu1;
             }
-
+            
             String s2 = storevalues[1].ToString();
             int count2 = s2.Length;
             if (count1 > 3)
@@ -282,7 +282,7 @@ namespace IBSYS2
             int[] storevalue = new int[3];
             // Array fuer Teilewerte
             double[,] teilewerte = new double[59, 2];
-
+            
             // DB-Verbindung
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
@@ -429,8 +429,8 @@ namespace IBSYS2
                 {
                     if (teilewerte[no, 0] == (i + 1))
                     {
-                        wertVerkaeufe += (auftraege[i] * teilewerte[no, 1]); // Menge mit Wert multiplizieren und dazurechnen
-                        wertVerkaeufe += (direktverkaeufe[i, 1] * teilewerte[no, 1]);
+                        wertVerkaeufe += (auftraege[i] * teilewerte[no,1]); // Menge mit Wert multiplizieren und dazurechnen
+                        wertVerkaeufe += (direktverkaeufe[i] * teilewerte[no, 1]);
                     }
                 }
             }
@@ -459,7 +459,7 @@ namespace IBSYS2
                     if (teilewerte[no, 0] == Convert.ToInt32(dbReader["K_Teil"]))
                     {
                         int menge = (Convert.ToInt32(dbReader["P1"]) * prod1)
-                            + (Convert.ToInt32(dbReader["P2"]) * prod2)
+                            + (Convert.ToInt32(dbReader["P2"]) * prod2) 
                             + (Convert.ToInt32(dbReader["P3"]) * prod3);
                         wertVerwendung += (menge * teilewerte[no, 1]);
                     }
@@ -503,7 +503,7 @@ namespace IBSYS2
             // tageswerte berechnen
             for (int i = 0; i < tageswerte.Length; i++)
             {
-                tageswerte[i] = Convert.ToInt32(tageswerte[i] + (wertBestellungen / 5) + (wertProduktion / 5)
+                tageswerte[i] = Convert.ToInt32(tageswerte[i] + (wertBestellungen / 5) + (wertProduktion / 5) 
                     - (wertVerkaeufe / 5) - (wertVerwendung / 5));
             }
             // tageswerte berichtigen (bis jetzt nur der Zugang pro Tag, ab jetzt der totale Wert)

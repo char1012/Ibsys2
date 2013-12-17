@@ -19,7 +19,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
+        bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = false;
         private String sprache = "de";
 
         // Datenweitergabe:
@@ -498,7 +498,7 @@ namespace IBSYS2
             if (tb_aktP1.Text == "")
             {
                 tb_aktP1.ForeColor = Color.Red;
-                tb_aktP1.Text = "Geben Sie einen Wert ein";
+                //tb_aktP1.Text = "Geben Sie einen Wert ein";
                 tB1 = false;
             }
             else
@@ -539,7 +539,7 @@ namespace IBSYS2
             if (textBox2.Text == "")
             {
                 textBox2.ForeColor = Color.Red;
-                textBox2.Text = "Geben Sie einen Wert ein";
+                //textBox2.Text = "Geben Sie einen Wert ein";
                 tB2 = false;
             }
             else
@@ -580,7 +580,7 @@ namespace IBSYS2
             if (textBox3.Text == "")
             {
                 textBox3.ForeColor = Color.Red;
-                textBox3.Text = "Geben Sie einen Wert ein";
+                //textBox3.Text = "Geben Sie einen Wert ein";
                 tB3 = false;
             }
             else
@@ -621,7 +621,7 @@ namespace IBSYS2
             if (textBox4.Text == "")
             {
                 textBox4.ForeColor = Color.Red;
-                textBox4.Text = "Geben Sie einen Wert ein";
+                //textBox4.Text = "Geben Sie einen Wert ein";
                 tB4 = false;
             }
             else
@@ -662,7 +662,7 @@ namespace IBSYS2
             if (textBox5.Text == "")
             {
                 textBox5.ForeColor = Color.Red;
-                textBox5.Text = "Geben Sie einen Wert ein";
+                //textBox5.Text = "Geben Sie einen Wert ein";
                 tB5 = false;
             }
             else
@@ -703,7 +703,7 @@ namespace IBSYS2
             if (textBox6.Text == "")
             {
                 textBox6.ForeColor = Color.Red;
-                textBox6.Text = "Geben Sie einen Wert ein";
+                //textBox6.Text = "Geben Sie einen Wert ein";
                 tB6 = false;
             }
             else
@@ -744,7 +744,7 @@ namespace IBSYS2
             if (textBox7.Text == "")
             {
                 textBox7.ForeColor = Color.Red;
-                textBox7.Text = "Geben Sie einen Wert ein";
+                //textBox7.Text = "Geben Sie einen Wert ein";
                 tB7 = false;
             }
             else
@@ -785,7 +785,7 @@ namespace IBSYS2
             if (textBox8.Text == "")
             {
                 textBox8.ForeColor = Color.Red;
-                textBox8.Text = "Geben Sie einen Wert ein";
+                //textBox8.Text = "Geben Sie einen Wert ein";
                 tB8 = false;
             }
             else
@@ -826,7 +826,7 @@ namespace IBSYS2
             if (textBox9.Text == "")
             {
                 textBox9.ForeColor = Color.Red;
-                textBox9.Text = "Geben Sie einen Wert ein";
+                //textBox9.Text = "Geben Sie einen Wert ein";
                 tB9 = false;
             }
             else
@@ -867,7 +867,7 @@ namespace IBSYS2
             if (textBox10.Text == "")
             {
                 textBox10.ForeColor = Color.Red;
-                textBox10.Text = "Geben Sie einen Wert ein";
+                //textBox10.Text = "Geben Sie einen Wert ein";
                 tB10 = false;
             }
             else
@@ -908,7 +908,7 @@ namespace IBSYS2
             if (textBox11.Text == "")
             {
                 textBox11.ForeColor = Color.Red;
-                textBox11.Text = "Geben Sie einen Wert ein";
+                //textBox11.Text = "Geben Sie einen Wert ein";
                 tB11 = false;
             }
             else
@@ -949,7 +949,7 @@ namespace IBSYS2
             if (textBox12.Text == "")
             {
                 textBox12.ForeColor = Color.Red;
-                textBox12.Text = "Geben Sie einen Wert ein";
+                //textBox12.Text = "Geben Sie einen Wert ein";
                 tB12 = false;
             }
             else

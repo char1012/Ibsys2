@@ -18,7 +18,7 @@ namespace IBSYS2
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
@@ -36,7 +36,7 @@ namespace IBSYS2
             result();
         }
 
-        public Ergebnis(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+        public Ergebnis(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
@@ -197,7 +197,7 @@ namespace IBSYS2
             }
         }
 
-        private int[] calculateStorevalue(int periode, int[] auftraege, int[] direktverkaeufe, int[,] produktion)
+        private int[] calculateStorevalue(int periode, int[] auftraege, double[,] direktverkaeufe, int[,] produktion)
         {
             // Array fuer Anfangslagerwert, Endlagerwert und Mittelwert
             int[] storevalue = new int[3];
@@ -351,7 +351,7 @@ namespace IBSYS2
                     if (teilewerte[no,0] == (i+1))
                     {
                         wertVerkaeufe += (auftraege[i] * teilewerte[no,1]); // Menge mit Wert multiplizieren und dazurechnen
-                        wertVerkaeufe += (direktverkaeufe[i] * teilewerte[no, 1]);
+                        wertVerkaeufe += (direktverkaeufe[i, 1] * teilewerte[no, 1]);
                     }
                 }
             }

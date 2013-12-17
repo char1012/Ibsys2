@@ -109,7 +109,7 @@
             this.textBox9.Location = new System.Drawing.Point(239, 134);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(57, 20);
-            this.textBox9.TabIndex = 11;
+            this.textBox9.TabIndex = 9;
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // textBox8
@@ -117,7 +117,7 @@
             this.textBox8.Location = new System.Drawing.Point(239, 94);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(57, 20);
-            this.textBox8.TabIndex = 10;
+            this.textBox8.TabIndex = 6;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // textBox7
@@ -125,7 +125,7 @@
             this.textBox7.Location = new System.Drawing.Point(239, 55);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(57, 20);
-            this.textBox7.TabIndex = 9;
+            this.textBox7.TabIndex = 3;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // textBox6
@@ -141,7 +141,7 @@
             this.textBox5.Location = new System.Drawing.Point(150, 94);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(57, 20);
-            this.textBox5.TabIndex = 7;
+            this.textBox5.TabIndex = 5;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // textBox4
@@ -149,7 +149,7 @@
             this.textBox4.Location = new System.Drawing.Point(150, 55);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(57, 20);
-            this.textBox4.TabIndex = 6;
+            this.textBox4.TabIndex = 2;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox3
@@ -157,7 +157,7 @@
             this.textBox3.Location = new System.Drawing.Point(61, 134);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(57, 20);
-            this.textBox3.TabIndex = 5;
+            this.textBox3.TabIndex = 7;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox2
@@ -173,7 +173,7 @@
             this.textBox1.Location = new System.Drawing.Point(61, 55);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(57, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label3
@@ -209,7 +209,7 @@
             this.button1.Location = new System.Drawing.Point(356, 259);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 10;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);

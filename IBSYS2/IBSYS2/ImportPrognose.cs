@@ -24,14 +24,13 @@ namespace IBSYS2
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
-        int[] direktverkaeufe = new int[3];
+        double[,] direktverkaeufe = new double[3, 4];
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
-        double[,] direktverkäufe = new double[3, 4];
 
         public ImportPrognose()
         {
@@ -48,6 +47,7 @@ namespace IBSYS2
             //// ------------------
             button2.Enabled = false;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -66,7 +66,7 @@ namespace IBSYS2
         }
 
         // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
-        public ImportPrognose(int aktPeriode, int[] auftraege, int[] direktverkaeufe, int[,] sicherheitsbest,
+        public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.aktPeriode = aktPeriode;
@@ -106,6 +106,7 @@ namespace IBSYS2
             InitializeComponent();
             button2.Enabled = false;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -143,6 +144,7 @@ namespace IBSYS2
             // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
+            btn_direktverkäufe.Enabled = true;
             // XML-Import und Datenbank leeren wird disabled
             button2.Enabled = false;
             clear_btn.Enabled = false;
@@ -167,7 +169,7 @@ namespace IBSYS2
 
         public void Direktverkäufe(double[,] direktverkäufe)
         {
-            this.direktverkäufe = direktverkäufe;
+            this.direktverkaeufe = direktverkäufe;
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -177,24 +179,11 @@ namespace IBSYS2
             else
                 button2.Enabled = true;
             continue_btn.Enabled = false;
+            btn_direktverkäufe.Enabled = false;
 
             // int periode fuer Datenweitergabe fuellen
             String[] strings = comboBox1.Text.Split((new Char [] {' '}));
             aktPeriode = Convert.ToInt32(strings[1]);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //ExportXMLClass exportXML = new ExportXMLClass();
-            //exportXML.XMLExport();
-           // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Ergebnis();
-            //p.Show();
-            //ktdispo.ShowDialog();
-            this.Controls.Clear();
-            //UserControl sicherheit = new Sicherheitsbestand();
-            //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -361,6 +350,7 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                             }
                             else
@@ -391,6 +381,7 @@ namespace IBSYS2
                                 if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & fileselected) // 
                                 {
                                     continue_btn.Enabled = true;
+                                    btn_direktverkäufe.Enabled = true;
                                 }
                                 myconn.Close();
                             }
@@ -1054,7 +1045,6 @@ namespace IBSYS2
                 //EN Buttons
                 clear_btn.Text = (Sprachen.EN_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.EN_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.EN_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.EN_BTN_IP_DATEI_AUSWAEHLEN);
                 btn_direktverkäufe.Text = (Sprachen.EN_BTN_IP_DIREKT);
 
@@ -1094,7 +1084,6 @@ namespace IBSYS2
                 //DE Buttons
                 clear_btn.Text = (Sprachen.DE_BTN_CLEAR);
                 continue_btn.Text = (Sprachen.DE_BTN_IP_BERECHNUNG_STARTEN);
-                button1.Text = (Sprachen.DE_BTN_IP_SPRUNG);
                 button2.Text = (Sprachen.DE_BTN_IP_DATEI_AUSWAEHLEN);
                 btn_direktverkäufe.Text = (Sprachen.DE_BTN_IP_DIREKT);
 
@@ -1237,8 +1226,8 @@ namespace IBSYS2
 
         private void btn_direktverkäufe_Click(object sender, EventArgs e)
         {
-            Direktverkäufe direktverkaeufe = new Direktverkäufe(direktverkäufe);
-            direktverkaeufe.Show();
+            Direktverkäufe direktverkaeufeForm = new Direktverkäufe(direktverkaeufe);
+            direktverkaeufeForm.Show();
         }
 
     }

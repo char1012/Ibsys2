@@ -20,6 +20,7 @@ namespace IBSYS2
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         bool tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, fileselected = true;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
@@ -32,10 +33,11 @@ namespace IBSYS2
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
-        public ImportPrognose()
+        public ImportPrognose(String sprache)
         {
             InitializeComponent();
-
+            this.sprache = sprache;
+            sprachen();
 
             ////----------------
             ////Change HighlightedStyle to Normal style and add mouse enter and leave events on series
@@ -68,7 +70,8 @@ namespace IBSYS2
 
         // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
         public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
@@ -108,6 +111,8 @@ namespace IBSYS2
             button2.Enabled = false;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
+            this.sprache = sprache;
+            sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
             myconn = new OleDbConnection(databasename);
             System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
@@ -322,7 +327,7 @@ namespace IBSYS2
                                     dbReader.Close();
 
                                     // Mitteilung einblenden
-                                    ProcessMessage message = new ProcessMessage();
+                                    ProcessMessage message = new ProcessMessage(sprache);
                                     message.Show(this);
                                     message.Location = new Point(500, 300);
                                     message.Update();
@@ -357,7 +362,7 @@ namespace IBSYS2
                             else
                             {
                                 // Mitteilung einblenden
-                                ProcessMessage message = new ProcessMessage();
+                                ProcessMessage message = new ProcessMessage(sprache);
                                 message.Show(this);
                                 message.Location = new Point(500, 300);
                                 message.Update();
@@ -440,7 +445,7 @@ namespace IBSYS2
 
                     this.Controls.Clear();
                     UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                        sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                     this.Controls.Add(sicherheit);
                 }
             }
@@ -463,8 +468,8 @@ namespace IBSYS2
                 auftraege[11] = Convert.ToInt32(textBox12.Text);
 
                 this.Controls.Clear();
-                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe, 
-                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
                 this.Controls.Add(sicherheit);
             }
         }
@@ -1135,7 +1140,7 @@ namespace IBSYS2
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -1184,7 +1189,7 @@ namespace IBSYS2
                 }
 
                 // Mitteilung einblenden
-                ProcessMessage message = new ProcessMessage();
+                ProcessMessage message = new ProcessMessage(sprache);
                 message.Show(this);
                 message.Location = new Point(500, 300);
                 message.Update();
@@ -1229,7 +1234,7 @@ namespace IBSYS2
 
         private void btn_direktverkäufe_Click(object sender, EventArgs e)
         {
-            Direktverkäufe direktverkaeufeForm = new Direktverkäufe(direktverkaeufe);
+            Direktverkäufe direktverkaeufeForm = new Direktverkäufe(direktverkaeufe, sprache);
             direktverkaeufeForm.Show();
         }
 

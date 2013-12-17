@@ -15,6 +15,7 @@ namespace IBSYS2
     public partial class Begrüßungsseite : Form
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
 
         public Begrüßungsseite()
         {
@@ -24,7 +25,7 @@ namespace IBSYS2
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(sprache);
             this.Controls.Add(import);
         }
 

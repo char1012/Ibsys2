@@ -14,6 +14,7 @@ namespace IBSYS2
     public partial class Ergebnis : UserControl
     {
         private OleDbConnection myconn;
+        private String sprache = "de";
 
         // Datenweitergabe:
         int aktPeriode;
@@ -37,8 +38,11 @@ namespace IBSYS2
         }
 
         public Ergebnis(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            String sprache)
         {
+            this.sprache = sprache;
+
             this.aktPeriode = aktPeriode;
             if (auftraege != null)
             {
@@ -74,9 +78,10 @@ namespace IBSYS2
             }
 
             InitializeComponent();
+            sprachen();
 
             // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage();
+            ProcessMessage message = new ProcessMessage(sprache);
             message.Show(this);
             message.Location = new Point(500, 300);
             message.Update();
@@ -186,14 +191,88 @@ namespace IBSYS2
 
             storevalues = calculateStorevalue(periode, auftraege, direktverkaeufe, produktion);
 
-            // Textfelder fuellen
-            textBox1.Text = storevalues[0].ToString();
-            textBox2.Text = storevalues[1].ToString();
-            textBox3.Text = storevalues[2].ToString();
-
-            if (storevalues[1] >= 2500000)
+            if (storevalues[1] >= 250000)
             {
                 textBox2.ForeColor = Color.Red;
+            }
+
+            // Strings formatieren
+            String s1 = storevalues[0].ToString();
+            int count1 = s1.Length;
+            if (count1 > 3)
+            {
+                String neu1 = "";
+                if (count1 == 6)
+                {
+                    neu1 += s1.Substring(0, 3);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                else if (count1 == 5)
+                {
+                    neu1 += s1.Substring(0, 2);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                else if (count1 == 4)
+                {
+                    neu1 += s1.Substring(0, 1);
+                    neu1 += ".";
+                    neu1 += s1.Substring(3, 3);
+                }
+                textBox1.Text = neu1;
+            }
+
+            String s2 = storevalues[1].ToString();
+            int count2 = s2.Length;
+            if (count1 > 3)
+            {
+                String neu2 = "";
+                if (count2 == 6)
+                {
+                    neu2 += s2.Substring(0, 3);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                else if (count2 == 5)
+                {
+                    neu2 += s2.Substring(0, 2);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                else if (count2 == 4)
+                {
+                    neu2 += s2.Substring(0, 1);
+                    neu2 += ".";
+                    neu2 += s2.Substring(3, 3);
+                }
+                textBox1.Text = neu2;
+            }
+
+            String s3 = storevalues[2].ToString();
+            int count3 = s3.Length;
+            if (count3 > 3)
+            {
+                String neu3 = "";
+                if (count3 == 6)
+                {
+                    neu3 += s3.Substring(0, 3);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                else if (count3 == 5)
+                {
+                    neu3 += s3.Substring(0, 2);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                else if (count3 == 4)
+                {
+                    neu3 += s3.Substring(0, 1);
+                    neu3 += ".";
+                    neu3 += s3.Substring(3, 3);
+                }
+                textBox1.Text = neu3;
             }
         }
 
@@ -443,12 +522,7 @@ namespace IBSYS2
             return storevalue;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        public void sprachen(String sprache)
+        public void sprachen()
         {
             if (sprache != "de")
             {
@@ -493,20 +567,20 @@ namespace IBSYS2
         private void pic_en_Click(object sender, EventArgs e)
         {
             string sprache = "en";
-            sprachen(sprache);
+            sprachen();
         }
 
         private void pic_de_Click(object sender, EventArgs e)
         {
             string sprache = "de";
-            sprachen(sprache);
+            sprachen();
         }
 
         private void back_btn_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
@@ -514,7 +588,7 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(import);
         }
 
@@ -522,7 +596,7 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(sicherheit);
         }
 
@@ -530,7 +604,7 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prod);
         }
 
@@ -538,7 +612,7 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(prodreihenfolge);
         }
 
@@ -546,7 +620,7 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kapplan);
         }
 
@@ -554,14 +628,14 @@ namespace IBSYS2
         {
             this.Controls.Clear();
             UserControl kaufteile = new Kaufteildisposition(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(kaufteile);
         }
 
         private void End_btn_Click(object sender, EventArgs e)
         {
             // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage();
+            ProcessMessage message = new ProcessMessage(sprache);
             message.Show(this);
             message.Location = new Point(500, 300);
             message.Update();

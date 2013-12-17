@@ -265,16 +265,17 @@ namespace IBSYS2
             }
             else
             {
-                int listitem = (int)button.Tag;
+                int listitem = (int)button.Tag - 1;
                 int teil1 = teile_liste[listitem][0];
                 int menge1 = teile_liste[listitem][1];
-                int teil2 = teile_liste[listitem + 1][0];
-                int menge2 = teile_liste[listitem + 1][1];
+                int teil2 = teile_liste[listitem - 1][0];
+                int menge2 = teile_liste[listitem - 1][1];
 
                 teile_liste[listitem][0] = teil2;
                 teile_liste[listitem][1] = menge2;
-                teile_liste[listitem + 1][0] = teil1;
-                teile_liste[listitem + 1][1] = menge1;
+                teile_liste[listitem - 1][0] = teil1;
+                teile_liste[listitem - 1][1] = menge1;
+                MessageBox.Show("" + teil1 + "" +listitem);
                 tabelle_erstellen(teile_liste);
             }
         }

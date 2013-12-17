@@ -29,7 +29,7 @@ namespace IBSYS2
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         public ImportPrognose()
@@ -145,8 +145,9 @@ namespace IBSYS2
             // der continue_btn wird enabled, da der Import des XMLs nicht mehr noetig ist
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
-            // XML-Import wird disabled
+            // XML-Import und Datenbank leeren wird disabled
             button2.Enabled = false;
+            clear_btn.Enabled = false;
         }
 
         //--------------------------------

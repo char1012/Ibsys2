@@ -29,7 +29,7 @@ namespace IBSYS2
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         public Kapazitaetsplan()
@@ -2005,36 +2005,106 @@ namespace IBSYS2
 
         private void back_btn_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(prodreihenfolge);
         }
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(sicherheit);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(prod);
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            // Werte aus TextBoxen in kapazitaet auslesen
+            for (int i = 0; i < kapazitaet.GetLength(0); ++i)
+            {
+                int k = i + 1;
+                kapazitaet[i, 0] = k;
+                kapazitaet[i, 1] = Convert.ToInt32(this.Controls.Find("K" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 2] = Convert.ToInt32(this.Controls.Find("UP" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 3] = Convert.ToInt32(this.Controls.Find("UT" + k.ToString(), true)[0].Text);
+                kapazitaet[i, 4] = Convert.ToInt32(this.Controls.Find("S" + k.ToString(), true)[0].Text);
+            }
+
             this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge();
+            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(prodreihenfolge);
         }
 

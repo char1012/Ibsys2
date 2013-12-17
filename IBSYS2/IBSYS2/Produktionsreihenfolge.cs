@@ -20,7 +20,7 @@ namespace IBSYS2
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
         int[,] prodReihenfolge = new int[30, 2];
-        int[,] kapazitaet = new int[14, 5];
+        int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         // hier lokal die Prodreihenfolge speichern - fuer dich Lukas
@@ -240,9 +240,27 @@ namespace IBSYS2
             }
 
             InitializeComponent();
-            // TODO Sabrina: hier den Code aus dem anderen Konstruktor einfuegen, wenn fertig
-            // zum testen:
-            berProduktionsreihenfolge = produktion;
+
+            Boolean bereitsBerechnet = false;
+            for (int i = 0; i < kapazitaet.GetLength(0); i++)
+            {
+                if (kapazitaet[i, 1] > 0)
+                {
+                    bereitsBerechnet = true;
+                    break;
+                }
+            }
+            // wenn bereits Werte vorhanden sind, diese uebernehmen
+            if (bereitsBerechnet == true)
+            {
+                berProduktionsreihenfolge = prodReihenfolge;
+            }
+            else
+            {
+                // TODO Sabrina: hier den Code aus dem anderen Konstruktor einfuegen, wenn fertig
+                // zum testen:
+                berProduktionsreihenfolge = produktion;
+            }
         }
 
         void buttonUp_click(object sender, EventArgs e)
@@ -301,8 +319,13 @@ namespace IBSYS2
 
         private void btn_back_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(prod);
         }
 
@@ -320,15 +343,25 @@ namespace IBSYS2
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl import = new ImportPrognose();
+            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand();
+            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(sicherheit);
         }
 
@@ -346,8 +379,13 @@ namespace IBSYS2
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
+            // Datenweitergabe
+
+            prodReihenfolge = berProduktionsreihenfolge;
+
             this.Controls.Clear();
-            UserControl prod = new Produktion();
+            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             this.Controls.Add(prod);
         }
         /*

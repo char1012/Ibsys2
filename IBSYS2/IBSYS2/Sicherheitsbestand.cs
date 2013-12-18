@@ -237,81 +237,84 @@ namespace IBSYS2
             //double sicherheitsbestandP3 = sicherheitsbestandBerechnen(mengeP3, gLagerbestandP3, "3");
             //Ausgabe_P3.Text = Convert.ToString(sicherheitsbestandP3);
 
+            double verP1 = Convert.ToDouble(verhP1.Text);
+            double verP2 = Convert.ToDouble(verhP2.Text);
+            double verP3 = Convert.ToDouble(verhP3.Text);
 
-            double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E261.Text = Convert.ToString(gLE26P1);
-            double gLE51P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE51P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E511.Text = Convert.ToString(gLE51P1);
-            double gLE16P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE16P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E161.Text = Convert.ToString(gLE16P1);
-            double gLE17P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE17P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E171.Text = Convert.ToString(gLE17P1);
-            double gLE50P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE50P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E501.Text = Convert.ToString(gLE50P1);
-            double gLE4P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE4P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E041.Text = Convert.ToString(gLE4P1);
-            double gLE10P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE10P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E101.Text = Convert.ToString(gLE10P1);
-            double gLE49P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE49P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E491.Text = Convert.ToString(gLE49P1);
-            double gLE7P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE7P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E071.Text = Convert.ToString(gLE7P1);
-            double gLE13P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE13P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E131.Text = Convert.ToString(gLE13P1);
-            double gLE18P1 = geplanterLagerbestand(gLagerbestandP1, 100);
+            double gLE18P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
             E181.Text = Convert.ToString(gLE18P1);
 
-            double gLE26P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE26P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E262.Text = Convert.ToString(gLE26P2);
-            double gLE56P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE56P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E562.Text = Convert.ToString(gLE56P2);
-            double gLE16P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE16P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E162.Text = Convert.ToString(gLE16P2);
-            double gLE17P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE17P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E172.Text = Convert.ToString(gLE17P2);
-            double gLE55P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE55P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E552.Text = Convert.ToString(gLE55P2);
-            double gLE5P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE5P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E052.Text = Convert.ToString(gLE5P2);
-            double gLE11P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE11P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E112.Text = Convert.ToString(gLE11P2);
-            double gLE54P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE54P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E542.Text = Convert.ToString(gLE54P2);
-            double gLE8P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE8P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E082.Text = Convert.ToString(gLE8P2);
-            double gLE14P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE14P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E142.Text = Convert.ToString(gLE14P2);
-            double gLE19P2 = geplanterLagerbestand(gLagerbestandP2, 100);
+            double gLE19P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
             E192.Text = Convert.ToString(gLE19P2);
 
-            double gLE26P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE26P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E263.Text = Convert.ToString(gLE26P3);
-            double gLE31P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE31P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E313.Text = Convert.ToString(gLE31P3);
-            double gLE16P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE16P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E163.Text = Convert.ToString(gLE16P3);
-            double gLE17P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE17P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E173.Text = Convert.ToString(gLE17P3);
-            double gLE30P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE30P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E303.Text = Convert.ToString(gLE30P3);
-            double gLE6P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE6P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E063.Text = Convert.ToString(gLE6P3);
-            double gLE12P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE12P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E123.Text = Convert.ToString(gLE12P3);
-            double gLE29P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE29P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E293.Text = Convert.ToString(gLE29P3);
-            double gLE9P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE9P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E093.Text = Convert.ToString(gLE9P3);
-            double gLE15P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE15P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E153.Text = Convert.ToString(gLE15P3);
-            double gLE20P3 = geplanterLagerbestand(gLagerbestandP3, 100);
+            double gLE20P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
             E203.Text = Convert.ToString(gLE20P3);
 
             textfeldFreigeben();
 
             continue_btn.Enabled = true;
         }
-        public double geplanterLagerbestand(double sicherheitsbestand, int ver)
+        public double geplanterLagerbestand(double sicherheitsbestand, double ver)
         {
             double geplanterLagerbestand = 0.0;
             geplanterLagerbestand = (sicherheitsbestand / 100) * ver;

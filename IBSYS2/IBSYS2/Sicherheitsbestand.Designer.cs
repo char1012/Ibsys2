@@ -125,6 +125,9 @@
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
+            this.verhP1 = new System.Windows.Forms.TextBox();
+            this.verhP2 = new System.Windows.Forms.TextBox();
+            this.verhP3 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -357,6 +360,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.verhP3);
+            this.groupBox3.Controls.Add(this.verhP2);
+            this.groupBox3.Controls.Add(this.verhP1);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
@@ -444,7 +450,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label12.Location = new System.Drawing.Point(20, 139);
+            this.label12.Location = new System.Drawing.Point(6, 124);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(85, 55);
             this.label12.TabIndex = 82;
@@ -455,7 +461,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label11.Location = new System.Drawing.Point(20, 238);
+            this.label11.Location = new System.Drawing.Point(6, 222);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(85, 55);
             this.label11.TabIndex = 81;
@@ -466,7 +472,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label10.Location = new System.Drawing.Point(20, 41);
+            this.label10.Location = new System.Drawing.Point(6, 25);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 55);
             this.label10.TabIndex = 80;
@@ -475,7 +481,7 @@
             // infoE
             // 
             this.infoE.Image = ((System.Drawing.Image)(resources.GetObject("infoE.Image")));
-            this.infoE.Location = new System.Drawing.Point(672, 21);
+            this.infoE.Location = new System.Drawing.Point(711, 17);
             this.infoE.Margin = new System.Windows.Forms.Padding(4);
             this.infoE.Name = "infoE";
             this.infoE.Size = new System.Drawing.Size(51, 44);
@@ -1177,6 +1183,33 @@
             this.lbl_Produktionsreihenfolge.TabIndex = 140;
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
             // 
+            // verhP1
+            // 
+            this.verhP1.Location = new System.Drawing.Point(7, 82);
+            this.verhP1.Margin = new System.Windows.Forms.Padding(4);
+            this.verhP1.Name = "verhP1";
+            this.verhP1.Size = new System.Drawing.Size(54, 26);
+            this.verhP1.TabIndex = 85;
+            this.verhP1.Text = "100";
+            // 
+            // verhP2
+            // 
+            this.verhP2.Location = new System.Drawing.Point(7, 180);
+            this.verhP2.Margin = new System.Windows.Forms.Padding(4);
+            this.verhP2.Name = "verhP2";
+            this.verhP2.Size = new System.Drawing.Size(54, 26);
+            this.verhP2.TabIndex = 86;
+            this.verhP2.Text = "100";
+            // 
+            // verhP3
+            // 
+            this.verhP3.Location = new System.Drawing.Point(7, 279);
+            this.verhP3.Margin = new System.Windows.Forms.Padding(4);
+            this.verhP3.Name = "verhP3";
+            this.verhP3.Size = new System.Drawing.Size(54, 26);
+            this.verhP3.TabIndex = 87;
+            this.verhP3.Text = "100";
+            // 
             // Sicherheitsbestand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1311,5 +1344,8 @@
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.Label lbl_Produktionsreihenfolge;
+        private System.Windows.Forms.TextBox verhP3;
+        private System.Windows.Forms.TextBox verhP2;
+        private System.Windows.Forms.TextBox verhP1;
     }
 }

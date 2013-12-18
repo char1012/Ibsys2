@@ -17,7 +17,7 @@ namespace IBSYS2
         public static String DE_LBL_PRODUKTION = "Produktion";
         public static String DE_LBL_PRODUKTIONSREIHENFOLGE = "Produktionsreihenfolge";
         public static String DE_LBL_KAPATITAETSPLAN = "Kapazitätsplan"; //Umlaut
-        public static String DE_LBL_KAUFTEILEDISPOSITION = "Kaufteildisposition";
+        public static String DE_LBL_KAUFTEILEDISPOSITION = "        Kaufteildisposition";
         public static String DE_LBL_ERGEBNIS = "Ergebnis";
 
         /*---------Begruessungsseite----------*/
@@ -164,7 +164,7 @@ namespace IBSYS2
         /*--------------------------------------------------------------------------------------------------------*/
         // Brotkrumenleiste
         public static String EN_LBL_STARTSEITE = "Homepage";
-        public static String EN_LBL_SICHERHEITSBESTAND = "Safty Stock";
+        public static String EN_LBL_SICHERHEITSBESTAND = "      Safty Stock";
         public static String EN_LBL_PRODUKTIONSREIHENFOLGE = "Production sequence";
         public static String EN_LBL_PRODUKTION = "Production";
         public static String EN_LBL_KAPATITAETSPLAN = "Capacity Plan";

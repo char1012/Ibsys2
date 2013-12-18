@@ -2111,9 +2111,9 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
                 ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
 
-                lbl_ver1.Text = "Ratio";
-                lbl_ver2.Text = "Ratio";
-                lbl_ver3.Text = "Ratio";
+                lbl_ver1.Text = "Ratio in %";
+                lbl_ver2.Text = "Ratio in %";
+                lbl_ver3.Text = "Ratio in %";
             }
             else
             {
@@ -2144,9 +2144,9 @@ namespace IBSYS2
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
                 ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
 
-                lbl_ver1.Text = "Verhältnis";
-                lbl_ver2.Text = "Verhältnis";
-                lbl_ver3.Text = "Verhältnis";
+                lbl_ver1.Text = "Verhältnis in %";
+                lbl_ver2.Text = "Verhältnis in %";
+                lbl_ver3.Text = "Verhältnis in %";
             }
         }
 

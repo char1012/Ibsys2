@@ -67,22 +67,6 @@ namespace IBSYS2
                     }
                     if (y == 0)
                     {
-                        if (x == 0)
-                        {
-                            label.Text = "Position";
-                        }
-                        else if (x == 1)
-                        {
-                            label.Text = "Teil";
-                        }
-                        else if (x == 2)
-                        {
-                            label.Text = "Menge";
-                        }
-                        else if (x == 3)
-                        {
-                            label.Text = "Sortieren";
-                        }
                         // keine Ueberschrift fuer Spalte 5
                         tableLayoutPanel.Controls.Add(label, x, y);
                     }

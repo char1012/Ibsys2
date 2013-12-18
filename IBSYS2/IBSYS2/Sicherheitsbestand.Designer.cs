@@ -483,7 +483,7 @@
             // 
             // verhP3
             // 
-            this.verhP3.Location = new System.Drawing.Point(212, 253);
+            this.verhP3.Location = new System.Drawing.Point(229, 252);
             this.verhP3.Margin = new System.Windows.Forms.Padding(4);
             this.verhP3.Name = "verhP3";
             this.verhP3.Size = new System.Drawing.Size(96, 26);
@@ -493,7 +493,7 @@
             // 
             // verhP2
             // 
-            this.verhP2.Location = new System.Drawing.Point(213, 154);
+            this.verhP2.Location = new System.Drawing.Point(230, 153);
             this.verhP2.Margin = new System.Windows.Forms.Padding(4);
             this.verhP2.Name = "verhP2";
             this.verhP2.Size = new System.Drawing.Size(95, 26);
@@ -503,7 +503,7 @@
             // 
             // verhP1
             // 
-            this.verhP1.Location = new System.Drawing.Point(213, 56);
+            this.verhP1.Location = new System.Drawing.Point(230, 55);
             this.verhP1.Margin = new System.Windows.Forms.Padding(4);
             this.verhP1.Name = "verhP1";
             this.verhP1.Size = new System.Drawing.Size(95, 26);

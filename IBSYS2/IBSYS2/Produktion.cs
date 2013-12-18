@@ -218,7 +218,7 @@ namespace IBSYS2
                     myconn.Open();
                 }
 
-                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = P;";
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = 'P';";
                 OleDbDataReader dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
@@ -425,7 +425,7 @@ namespace IBSYS2
             }
             else
             {
-                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = E;";
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = 'E';";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {

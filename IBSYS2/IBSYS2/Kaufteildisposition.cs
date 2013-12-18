@@ -377,7 +377,7 @@ namespace IBSYS2
             }
             else
             {
-                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = K ORDER BY Teilenummer ASC;";
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = 'K' ORDER BY Teilenummer ASC;";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {

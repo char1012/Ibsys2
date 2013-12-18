@@ -16,6 +16,12 @@ namespace IBSYS2
 {
     public partial class Kaufteildisposition : UserControl
     {
+        // Tooltip:
+        // Die Mindestmenge zeigt, wieviel Sie mindestens bestellen muessen, dass die Menge für die Wiederbeschaffungszeit reicht.
+        // Die optimale Bestellmenge richtet sich nach der Formel zur optimalen Bestellmenge und stellt die kostengünstigste Bestellmenge dar.
+        // Sie müssen jedoch beachten, dass diese Formel nicht die sprungfixen Lagerhaltungskosten einkalkuliert.
+        // Als Bestellart können Sie entweder N(ormal) oder E(xpress) eingeben.
+
         private OleDbConnection myconn;
         private String sprache = "de";
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };

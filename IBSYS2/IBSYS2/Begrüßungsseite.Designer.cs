@@ -34,18 +34,23 @@
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Logo
             // 
             this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
-            this.Logo.Location = new System.Drawing.Point(875, 461);
+            this.Logo.Location = new System.Drawing.Point(823, 436);
             this.Logo.Name = "Logo";
-            this.Logo.Size = new System.Drawing.Size(125, 51);
+            this.Logo.Size = new System.Drawing.Size(178, 76);
             this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Logo.TabIndex = 85;
             this.Logo.TabStop = false;
@@ -54,7 +59,7 @@
             // 
             this.Starten.Image = ((System.Drawing.Image)(resources.GetObject("Starten.Image")));
             this.Starten.InitialImage = null;
-            this.Starten.Location = new System.Drawing.Point(369, 201);
+            this.Starten.Location = new System.Drawing.Point(371, 214);
             this.Starten.Name = "Starten";
             this.Starten.Size = new System.Drawing.Size(237, 182);
             this.Starten.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -89,12 +94,52 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(196, 72);
+            this.label1.Location = new System.Drawing.Point(196, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(612, 65);
             this.label1.TabIndex = 152;
             this.label1.Text = "Willkommen beim SCMPlus";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(9, 487);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(234, 16);
+            this.linkLabel1.TabIndex = 153;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "http://www.iwi.hs-karlsruhe.de/scs/start";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(960, 459);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 25);
+            this.label2.TabIndex = 154;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(845, 473);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 20);
+            this.label3.TabIndex = 155;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(729, 465);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(97, 37);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 156;
+            this.pictureBox1.TabStop = false;
             // 
             // Begrüßungsseite
             // 
@@ -102,6 +147,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(999, 512);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
@@ -115,14 +164,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.Starten)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        private void label1_Click(object sender, System.EventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -132,5 +177,9 @@
         private System.Windows.Forms.PictureBox pic_en;
         private System.Windows.Forms.PictureBox pic_de;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

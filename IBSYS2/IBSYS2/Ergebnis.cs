@@ -251,7 +251,7 @@ namespace IBSYS2
                 textBox2.Text = neu2;
             }
 
-            String s3 = storevalues[2].ToString(); // Endwert
+            String s3 = storevalues[1].ToString(); // Endwert
             int count3 = s3.Length;
             if (count3 > 3)
             {

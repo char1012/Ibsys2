@@ -359,17 +359,32 @@ namespace IBSYS2
             cmd3.CommandType = CommandType.Text;
             cmd3.Connection = myconn;
 
+            OleDbDataReader dbReader;
+
             // 1. Anfangsbestand aus DB lesen
             int a = 0;
-            cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE Teilenummer_FK IN (SELECT Teilenummer FROM Teil WHERE Diskontmenge > 0) AND Periode = " + periode + " ORDER BY Teilenummer_FK ASC;";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
+            if (aktPeriode > 1)
             {
-                teile[a, 0] = Convert.ToInt32(dbReader["Teilenummer_FK"]);
-                teile[a, 1] += Convert.ToInt32(dbReader["Bestand"]);
-                a++;
+                cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE Teilenummer_FK IN (SELECT Teilenummer FROM Teil WHERE Diskontmenge > 0) AND Periode = " + periode + " ORDER BY Teilenummer_FK ASC;";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    teile[a, 0] = Convert.ToInt32(dbReader["Teilenummer_FK"]);
+                    teile[a, 1] += Convert.ToInt32(dbReader["Bestand"]);
+                    a++;
+                }
+                dbReader.Close();
             }
-            dbReader.Close();
+            else
+            {
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = K ORDER BY Teilenummer ASC;";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+
+                }
+                dbReader.Close();
+            }
 
             // 2. noch eingehende Bestellungen aus der DB lesen
             cmd.CommandText = @"SELECT Teilenummer_FK, Menge FROM Bestellung WHERE Eingegangen = False AND Periode = " + periode + " ORDER BY Teilenummer_FK ASC;";

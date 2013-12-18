@@ -182,11 +182,17 @@ namespace IBSYS2
         {
             String text = comboBox1.Text;
             if (text == "Periode 1")
+            {
                 button2.Enabled = false;
+                continue_btn.Enabled = true;
+                btn_direktverkäufe.Enabled = true;
+            }
             else
+            {
                 button2.Enabled = true;
-            continue_btn.Enabled = false;
-            btn_direktverkäufe.Enabled = false;
+                continue_btn.Enabled = false;
+                btn_direktverkäufe.Enabled = false;
+            }
 
             // int periode fuer Datenweitergabe fuellen
             String[] strings = comboBox1.Text.Split((new Char[] { ' ' }));

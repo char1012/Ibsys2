@@ -47,41 +47,6 @@ namespace IBSYS2
             set { backupProduktion = value; }
         }
 
-        public Produktion()
-        {
-            InitializeComponent();
-            continue_btn.Enabled = false;
-            back.Enabled = false;
-            string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
-            myconn = new OleDbConnection(databasename);
-
-            for (int i = 3; i < sicherheitsbest.GetLength(0); i++) // bei 3 anfangen, weil dort die E-Teile anfangen
-            {
-                sicherheitsbe.Add(sicherheitsbest[i, 1]);
-            }
-
-            System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
-            System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
-            if (pic_de.SizeMode != PictureBoxSizeMode.Normal & sprache == "de")
-            {
-                ToolTipEN.RemoveAll();
-                ToolTipDE.SetToolTip(this.pictureBox7, Sprachen.DE_PR_INFO);
-            }
-            else
-            {
-                ToolTipDE.RemoveAll();
-                ToolTipEN.SetToolTip(this.pictureBox7, Sprachen.EN_PR_INFO);
-            }
-
-            berechneProduktion();
-            ProduktionETeile();
-        }
-
-        public Produktion(int[,] sicherheitsbe)
-        {
-            this.sicherheitsbest = sicherheitsbe;
-        }
-
         public Produktion(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
             int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
@@ -224,10 +189,54 @@ namespace IBSYS2
             double sp2 = sicherheitsbest[1, 1];
             double sp3 = sicherheitsbest[2, 1];
 
+            int lagerbestandp1 = 0;
+            int lagerbestandp2 = 0;
+            int lagerbestandp3 = 0;
+
             //- Lagerbestand Vorperiode 
-            int lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp2 = Daten("2", "Bestand", "Teilenummer_FK", "Lager", periode);
-            int lagerbestandp3 = Daten("3", "Bestand", "Teilenummer_FK", "Lager", periode);
+            if (aktPeriode > 1)
+            {
+                lagerbestandp1 = Daten("1", "Bestand", "Teilenummer_FK", "Lager", periode);
+                lagerbestandp2 = Daten("2", "Bestand", "Teilenummer_FK", "Lager", periode);
+                lagerbestandp3 = Daten("3", "Bestand", "Teilenummer_FK", "Lager", periode);
+            }
+            else
+            {
+                string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
+                myconn = new OleDbConnection(databasename);
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = myconn;
+
+                try
+                {
+                    myconn.Open();
+                }
+                catch (Exception)
+                {
+                    myconn.Close();
+                    myconn.Open();
+                }
+
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = P;";
+                OleDbDataReader dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 1)
+                    {
+                        lagerbestandp1 = Convert.ToInt32(dbReader["Startbestand"]);
+                    }
+                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 2)
+                    {
+                        lagerbestandp2 = Convert.ToInt32(dbReader["Startbestand"]);
+                    }
+                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 3)
+                    {
+                        lagerbestandp3 = Convert.ToInt32(dbReader["Startbestand"]);
+                    }
+                }
+                dbReader.Close();
+            }
 
             //- Aufträge in Warteschlange 
             int WartelisteMap1 = Daten("1", "Menge", "Fehlteil_Teilenummer_FK", "Warteliste_Material", periode);
@@ -385,6 +394,7 @@ namespace IBSYS2
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = myconn;
+            OleDbDataReader dbReader;
 
             try
             {
@@ -400,16 +410,32 @@ namespace IBSYS2
             #region Daten aus DB
             int a = 0;
             List<List<int>> lagerbestand = new List<List<int>>();
-            cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read())
+            if (aktPeriode > 1)
             {
-                lagerbestand.Add(new List<int>());
-                lagerbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
-                lagerbestand[a].Add(Convert.ToInt32(dbReader["Bestand"]));
-                ++a;
+                cmd.CommandText = @"SELECT Teilenummer_FK, Bestand FROM Lager WHERE periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    lagerbestand.Add(new List<int>());
+                    lagerbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer_FK"]));
+                    lagerbestand[a].Add(Convert.ToInt32(dbReader["Bestand"]));
+                    ++a;
+                }
+                dbReader.Close();
             }
-            dbReader.Close();
+            else
+            {
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil WHERE Art = E;";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    lagerbestand.Add(new List<int>());
+                    lagerbestand[a].Add(Convert.ToInt32(dbReader["Teilenummer"]));
+                    lagerbestand[a].Add(Convert.ToInt32(dbReader["Startbestand"]));
+                    ++a;
+                }
+                dbReader.Close();
+            }
 
             a = 0;
             List<List<int>> warteliste_arbeitsplatz = new List<List<int>>();
@@ -1706,7 +1732,9 @@ namespace IBSYS2
         private void ETeile_Click(object sender, EventArgs e)
         {
             backupProduktion = berProduktion;
-            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sicherheitsbest, sprache);
+            Produktion_ETeile eteile = new Produktion_ETeile(berProduktion, sprache,
+                aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
             eteile.Show();
         }
 

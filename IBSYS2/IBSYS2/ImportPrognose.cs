@@ -109,7 +109,6 @@ namespace IBSYS2
             }
 
             InitializeComponent();
-            button2.Enabled = false;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
             this.sprache = sprache;
@@ -363,6 +362,9 @@ namespace IBSYS2
                                         System.Windows.Forms.MessageBox.Show("The files were imported successfully, thank you for your patience.", "XML-dataset imported");
                                     }
                                     myconn.Close();
+
+                                    button2.Enabled = false;
+                                    clear_btn.Enabled = false;
                                 }
 
                                 //Aufruf Funktion Validierung Werte in Feldern enthalten?
@@ -406,6 +408,9 @@ namespace IBSYS2
                                     lbl_Sicherheitsbestand.Enabled = true;
                                 }
                                 myconn.Close();
+
+                                button2.Enabled = false;
+                                clear_btn.Enabled = false;
                             }
                         }
                     }

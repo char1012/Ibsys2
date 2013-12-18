@@ -220,6 +220,7 @@ namespace IBSYS2
                     neu1 += ".";
                     neu1 += s1.Substring(3, 3);
                 }
+                neu1 += " €";
                 textBox1.Text = neu1;
             }
 
@@ -246,7 +247,8 @@ namespace IBSYS2
                     neu2 += ".";
                     neu2 += s2.Substring(3, 3);
                 }
-                textBox1.Text = neu2;
+                neu2 += " €";
+                textBox2.Text = neu2;
             }
 
             String s3 = storevalues[2].ToString();
@@ -272,7 +274,8 @@ namespace IBSYS2
                     neu3 += ".";
                     neu3 += s3.Substring(3, 3);
                 }
-                textBox1.Text = neu3;
+                neu3 += " €";
+                textBox3.Text = neu3;
             }
         }
 

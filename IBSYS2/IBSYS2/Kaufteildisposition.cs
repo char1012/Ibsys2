@@ -381,7 +381,9 @@ namespace IBSYS2
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
-
+                    teile[a, 0] = Convert.ToInt32(dbReader["Teilenummer"]);
+                    teile[a, 1] += Convert.ToInt32(dbReader["Startbestand"]);
+                    a++;
                 }
                 dbReader.Close();
             }

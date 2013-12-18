@@ -12,30 +12,80 @@ namespace IBSYS2
 {
     public partial class Splitting : Form
     {
+
+        // Datenweitergabe:
+        private String sprache = "de";
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[15, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
+
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         List<List<int>> teile_liste1 = new List<List<int>>();
         int position;
 
-        public void splitting(List<List<int>> teile_liste1, int y)
+        public void splitting(List<List<int>> teile_liste1, int position)
         {
             int VLE_teil = teile_liste1[teile_liste1.Count - 1][0];
             int VLE_menge = teile_liste1[teile_liste1.Count - 1][1];
             teile_liste1.Add(new List<int>()); //Liste ein Element hinzufügen
             teile_liste1[teile_liste1.Count - 1].Add(VLE_teil);
             teile_liste1[teile_liste1.Count - 1].Add(VLE_menge);
-            for (int x = teile_liste1.Count - 1; x > y; x--)
+            for (int x = teile_liste1.Count - 1; x > position; x--)
             {
                 teile_liste1[x][0] = teile_liste1[x - 1][0];
                 teile_liste1[x][1] = teile_liste1[x - 1][1];
             }
-            teile_liste1[y - 1][1] = Convert.ToInt32(Splitting1.Text);
-            teile_liste1[y][1] = Convert.ToInt32(Splitting2.Text);
+            teile_liste1[position][1] = Convert.ToInt32(Splitting1.Text);
+            teile_liste1[position+1][1] = Convert.ToInt32(Splitting2.Text);
 
         }
 
-        public Splitting(List<List<int>> teile_liste, int y)
+        public Splitting(List<List<int>> teile_liste, int y, String sprache, int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
-            int position = y - 1;
+            this.sprache = sprache;
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+            this.position = y - 1;
+            //position = y - 1;
             InitializeComponent();
             teile_liste1 = teile_liste;
             Menge.Text = teile_liste1[position][1].ToString();
@@ -85,6 +135,7 @@ namespace IBSYS2
                     else
                     {
                         Splitting2.Text = (Convert.ToInt32(Menge.Text) - Convert.ToInt32(Splitting1.Text)).ToString();
+                        continue_btn.Enabled = true;
                     }
                 }
             }            
@@ -98,6 +149,10 @@ namespace IBSYS2
         private void continue_btn_Click(object sender, EventArgs e)
         {
             splitting(teile_liste1, position);
+            Produktionsreihenfolge prodrei = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+            prodrei.vonSplitnachReihenfolge(teile_liste1);
+            this.Close();
         }
     }
 }

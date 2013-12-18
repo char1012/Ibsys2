@@ -228,7 +228,7 @@ namespace IBSYS2
                 else if (Convert.ToInt32(kText.Text) > 7200) // Wenn mehr als 3 Schichten benoetigt werden
                 {
                     schicht = 3;
-                    this.Controls.Find("S" + s.ToString(), true)[0].BackColor = Color.Red;
+                    this.Controls.Find("S" + s.ToString(), true)[0].BackColor = System.Drawing.ColorTranslator.FromHtml("#f09c9c");
                 }
                 this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
                 schichten[i] = schicht; // Startwert der Zeile Schichten speichern

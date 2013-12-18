@@ -302,14 +302,31 @@ namespace IBSYS2
                 myconn.Open();
             }
 
+            OleDbDataReader dbReader;
+
             // a) Anfangslagerwert aus der DB lesen
-            cmd.CommandText = @"SELECT Aktueller_Lagerbestand FROM Informationen WHERE Periode = " + periode + ";";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read()) // hier sollte nur eine Zeile herauskommen
+            if (aktPeriode > 1)
             {
-                storevalue[0] = Convert.ToInt32(dbReader["Aktueller_Lagerbestand"]);
+                cmd.CommandText = @"SELECT Aktueller_Lagerbestand FROM Informationen WHERE Periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read()) // hier sollte nur eine Zeile herauskommen
+                {
+                    storevalue[0] = Convert.ToInt32(dbReader["Aktueller_Lagerbestand"]);
+                }
+                dbReader.Close();
             }
-            dbReader.Close();
+            else
+            {
+                double wert = 0.0;
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand, Startteilewert FROM Teil;";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    wert += Convert.ToDouble(dbReader["Startbestand"]) * Convert.ToDouble(dbReader["Startteilewert"]);
+                }
+                dbReader.Close();
+                storevalue[0] = Convert.ToInt32(wert);
+            }
 
             // b) geschaetzter Endlagerwert berechnen
 
@@ -334,12 +351,12 @@ namespace IBSYS2
             }
             else
             {
-                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
+                cmd.CommandText = @"SELECT Teilenummer, Startteilewert FROM Teil;";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
                     teilewerte[n, 0] = Convert.ToDouble(dbReader["Teilenummer"]);
-                    teilewerte[n, 1] = Convert.ToDouble(dbReader["Startbestand"]);
+                    teilewerte[n, 1] = Convert.ToDouble(dbReader["Startteilewert"]);
                     n++;
                 }
                 dbReader.Close();

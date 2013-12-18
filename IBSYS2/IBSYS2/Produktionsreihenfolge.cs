@@ -31,7 +31,12 @@ namespace IBSYS2
         int[,] berProduktionsreihenfolge = new int[30, 2];
 
         List<List<int>> teile_liste = new List<List<int>>();
-        int[,] teile = new int[30, 2];
+
+        public void vonSplitnachReihenfolge(List<List<int>> teile_liste1)
+        {
+            this.teile_liste = teile_liste1;
+            tabelle_erstellen(teile_liste);
+        }
 
         public void tabelle_erstellen(List<List<int>> teile_liste)
         {
@@ -40,14 +45,14 @@ namespace IBSYS2
             tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
             tableLayoutPanel.ColumnCount = 5;
-            tableLayoutPanel.RowCount = teile.GetLength(0) + 1;
+            tableLayoutPanel.RowCount = teile_liste.Count + 1;
             tableLayoutPanel.AutoScroll = true;
             for (int x = 0; x < 5; x++)
             {
                 //First add a column
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                for (int y = 0; y < teile.GetLength(0) + 1; y++)
+                for (int y = 0; y < teile_liste.Count + 1; y++)
                 {
                     Label label = new Label();
                     Button buttonUp = new Button();
@@ -124,7 +129,6 @@ namespace IBSYS2
         public Produktionsreihenfolge()
         {
             InitializeComponent();
-
         }
 
         public Produktionsreihenfolge(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
@@ -166,6 +170,7 @@ namespace IBSYS2
                 this.kaufauftraege = kaufauftraege;
             }
 
+
             InitializeComponent();
             sprachen();
 
@@ -177,9 +182,9 @@ namespace IBSYS2
             this.Enabled = false;
 
             Boolean bereitsBerechnet = false;
-            for (int i = 0; i < kapazitaet.GetLength(0); i++)
+            for (int i = 0; i < prodReihenfolge.GetLength(0); i++)
             {
-                if (kapazitaet[i, 1] > 0)
+                if (prodReihenfolge[i, 1] > 0)
                 {
                     bereitsBerechnet = true;
                     break;
@@ -188,82 +193,14 @@ namespace IBSYS2
             // wenn bereits Werte vorhanden sind, diese uebernehmen
             if (bereitsBerechnet == true)
             {
+                // TODO teile_liste fuellen mit Werten aus prodReihenfolge
                 berProduktionsreihenfolge = prodReihenfolge;
             }
             else
             {
-                // simulieren
-                int[,] teile = new int[30, 2];
-                teile[0, 0] = 1;
-                teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
-                teile[1, 0] = 2;
-                teile[1, 1] = 190;
-                teile[2, 0] = 3;
-                teile[2, 1] = 160;
-                teile[3, 0] = 4;
-                teile[3, 1] = 60;
-                teile[4, 0] = 5;
-                teile[4, 1] = 160;
-                teile[5, 0] = 6;
-                teile[5, 1] = -110;
-                teile[6, 0] = 7;
-                teile[6, 1] = 50;
-                teile[7, 0] = 8;
-                teile[7, 1] = 150;
-                teile[8, 0] = 9;
-                teile[8, 1] = -200;
-                teile[9, 0] = 10;
-                teile[9, 1] = 60;
-                teile[10, 0] = 11;
-                teile[10, 1] = 160;
-                teile[11, 0] = 12;
-                teile[11, 1] = -110;
-                teile[12, 0] = 13;
-                teile[12, 1] = 50;
-                teile[13, 0] = 14;
-                teile[13, 1] = 150;
-                teile[14, 0] = 15;
-                teile[14, 1] = -200;
-                teile[15, 0] = 16;
-                teile[15, 1] = 20 + 130 + 90;
-                teile[16, 0] = 17;
-                teile[16, 1] = 20 + 130 + 90;
-                teile[17, 0] = 18;
-                teile[17, 1] = 50;
-                teile[18, 0] = 19;
-                teile[18, 1] = 150;
-                teile[19, 0] = 20;
-                teile[19, 1] = -200;
-                teile[20, 0] = 26;
-                teile[20, 1] = 50 + 160 + 130;
-                teile[21, 0] = 29;
-                teile[21, 1] = -110;
-                teile[22, 0] = 30;
-                teile[22, 1] = -20;
-                teile[23, 0] = 31;
-                teile[23, 1] = 70;
-                teile[24, 0] = 49;
-                teile[24, 1] = 60;
-                teile[25, 0] = 50;
-                teile[25, 1] = 70;
-                teile[26, 0] = 51;
-                teile[26, 1] = 80;
-                teile[27, 0] = 54;
-                teile[27, 1] = 160;
-                teile[28, 0] = 55;
-                teile[28, 1] = 170;
-                teile[29, 0] = 56;
-                teile[29, 1] = 180;
-
+                int[,] teile = produktion;
                 //Array in Liste
-                List<List<int>> teile_liste_unsortiert = new List<List<int>>();
                 int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
-                for (int x = 0; x < 29; x++)
-                {
-                    teile_liste_unsortiert.Add(new List<int>());
-                    teile_liste_unsortiert[x].Add(teile[x, 0]);
-                    teile_liste_unsortiert[x].Add(teile[x, 1]);
-                }
 
                 //Produktionsreihenfolge in List sortieren 
                 for (int joern = 0; joern <= 29; joern++)
@@ -282,7 +219,7 @@ namespace IBSYS2
                 }
                 tabelle_erstellen(teile_liste);
 
-                berProduktionsreihenfolge = produktion;
+                // teile_liste => prodReihenfolge
             }
 
             message.Close();
@@ -293,7 +230,7 @@ namespace IBSYS2
         {
             Label button = (Label)sender;
             int listitem = (int)button.Tag;
-            Splitting split = new Splitting(teile_liste, listitem);
+            Splitting split = new Splitting(teile_liste, listitem, sprache, this);
             split.Show();
         }
 
@@ -323,7 +260,7 @@ namespace IBSYS2
         void buttonDown_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (button.Tag.ToString() == "30")
+            if (Convert.ToInt32(button.Tag) == teile_liste.Count)
             {
                 MessageBox.Show("Bereits auf der letzten Position");
             }

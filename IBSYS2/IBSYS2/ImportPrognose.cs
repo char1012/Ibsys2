@@ -185,6 +185,8 @@ namespace IBSYS2
                 button2.Enabled = false;
                 continue_btn.Enabled = true;
                 btn_direktverkäufe.Enabled = true;
+                clear_btn.Enabled = false;
+                fileselected = true;
             }
             else
             {
@@ -196,20 +198,6 @@ namespace IBSYS2
             // int periode fuer Datenweitergabe fuellen
             String[] strings = comboBox1.Text.Split((new Char[] { ' ' }));
             aktPeriode = Convert.ToInt32(strings[1]);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //ExportXMLClass exportXML = new ExportXMLClass();
-            //exportXML.XMLExport();
-           // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktionsreihenfolge();
-            //p.Show();
-            //ktdispo.ShowDialog();
-            this.Controls.Clear();
-            //UserControl sicherheit = new Sicherheitsbestand();
-            //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)

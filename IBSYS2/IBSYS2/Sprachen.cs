@@ -85,7 +85,7 @@ namespace IBSYS2
         public static String DE_LBL_KD_INFO = "Die hier berechneten Werte können von Ihnen überschrieben werden.";
         public static String DE_LBL_KD_KBEDARF = "Kapazitätsbedarf";
         public static String DE_LBL_KD_UEBERSTUNDENP = "Überstunden/Periode";
-        public static String DE_LBL_KD_UEBERSTUNDENT = "UeberstundenTag";
+        public static String DE_LBL_KD_UEBERSTUNDENT = "Überstunden/Tag";
         public static String DE_LBL_KD_SCHICHTEN = "Schichten";
 
         //ToolTip

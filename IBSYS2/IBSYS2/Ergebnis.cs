@@ -555,7 +555,7 @@ namespace IBSYS2
 
                 //EN Buttons
                 End_btn.Text = (Sprachen.EN_BTN_XML_EXPORT);
-                back_btn.Text = (Sprachen.DE_BTN_BACK);
+                back_btn.Text = (Sprachen.EN_BTN_BACK);
 
                 //EN Groupboxen
                 groupBox2.Text = (Sprachen.EN_ER_GROUPBOX2);

@@ -33,7 +33,7 @@ namespace IBSYS2
         {
             pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
             pic_de.SizeMode = PictureBoxSizeMode.Normal;
-            label1.Text = "Welcom to the SCMPlus";
+            label1.Text = " Welcome to the SCMPlus";
             //Startbutton ist ein Bild, deshalb keine Überstzung möglich, 
             //Vorschlag: Button auf START umbenennen.
             sprache = "en";
@@ -69,6 +69,12 @@ namespace IBSYS2
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.iwi.hs-karlsruhe.de/scs/start");
+
         }
 
     }

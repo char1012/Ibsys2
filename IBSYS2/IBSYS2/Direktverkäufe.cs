@@ -117,7 +117,7 @@ namespace IBSYS2
             }
             else { direktverkauf[2, 3] = 0; }
             ImportPrognose import = new ImportPrognose(sprache);
-            import.Direktverkäufe(direktverkauf);
+            import.Direktverkaeufe(direktverkauf);
             this.Close();
         }
 

@@ -55,17 +55,18 @@ namespace IBSYS2
             this.Cursor = Cursors.Arrow;
         }
 
-        private void button_newCharts(object sender, RoutedEventArgs e)
-        {
-            BarChartExample lala = BarChartExample.GetInstance();
-            lala.Closed += new EventHandler(
-                                delegate(object obj, EventArgs args)
-                                {
-                                    lala.deleteInstance();
-                                });
-            lala.Show();
-            lala.Focus();
-        }
+        //Listener setzen durch Einfügen Button in welche Form?
+        //private void button_newCharts(object sender, RoutedEventArgs e)
+        //{
+        //    BarChartExample lala = BarChartExample.GetInstance();
+        //    lala.Closed += new EventHandler(
+        //                        delegate(object obj, EventArgs args)
+        //                        {
+        //                            lala.deleteInstance();
+        //                        });
+        //    lala.Show();
+        //    lala.Focus();
+        //}
 
         internal static BarChartExample GetInstance()
         {

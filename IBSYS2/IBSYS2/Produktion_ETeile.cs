@@ -19,11 +19,57 @@ namespace IBSYS2
         int[,] sicherheitsbe = new int[30, 2];
         int[,] berProduktion = new int[30, 2];
 
+        // Datenweitergabe:
+        int aktPeriode;
+        int[] auftraege = new int[12];
+        double[,] direktverkaeufe = new double[3, 4];
+        int[,] sicherheitsbest = new int[30, 5];
+        int[,] produktion = new int[30, 2];
+        int[,] produktionProg = new int[3, 5];
+        int[,] prodReihenfolge = new int[30, 2];
+        int[,] kapazitaet = new int[15, 5];
+        int[,] kaufauftraege = new int[29, 6];
+
         int[,] backupProduktion = new int[30, 2];
 
-        public Produktion_ETeile(int[,] beProduktion, int[,] sicherheitsbest, String sprache)
+        public Produktion_ETeile(int[,] beProduktion, String sprache, int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
+            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege)
         {
             this.sprache = sprache;
+            this.aktPeriode = aktPeriode;
+            if (auftraege != null)
+            {
+                this.auftraege = auftraege;
+            }
+            if (direktverkaeufe != null)
+            {
+                this.direktverkaeufe = direktverkaeufe;
+            }
+            if (sicherheitsbest != null)
+            {
+                this.sicherheitsbest = sicherheitsbest;
+            }
+            if (produktion != null)
+            {
+                this.produktion = produktion;
+            }
+            if (produktionProg != null)
+            {
+                this.produktionProg = produktionProg;
+            }
+            if (prodReihenfolge != null)
+            {
+                this.prodReihenfolge = prodReihenfolge;
+            }
+            if (kapazitaet != null)
+            {
+                this.kapazitaet = kapazitaet;
+            }
+            if (kaufauftraege != null)
+            {
+                this.kaufauftraege = kaufauftraege;
+            }
+
             InitializeComponent();
             sprachen();
             string databasename = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=IBSYS_DB.accdb";
@@ -342,7 +388,8 @@ namespace IBSYS2
             berProduktion[27, 1] = Convert.ToInt32(textBox25.Text);
             berProduktion[28, 1] = Convert.ToInt32(textBox26.Text);
             berProduktion[29, 1] = Convert.ToInt32(textBox27.Text);
-            Produktion prod = new Produktion();
+            Produktion prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             prod.vonProduktionEteile(berProduktion);
             this.Close();
         }
@@ -1135,7 +1182,8 @@ namespace IBSYS2
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Produktion prod = new Produktion(sicherheitsbe);
+            Produktion prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             backupProduktion = prod.ProduktionETeile();       
             berechneProduktion(backupProduktion);
         }

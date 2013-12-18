@@ -185,6 +185,8 @@ namespace IBSYS2
                 button2.Enabled = false;
                 continue_btn.Enabled = true;
                 btn_direktverkäufe.Enabled = true;
+                clear_btn.Enabled = false;
+                fileselected = true;
             }
             else
             {

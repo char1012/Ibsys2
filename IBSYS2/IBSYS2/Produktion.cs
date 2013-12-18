@@ -232,15 +232,15 @@ namespace IBSYS2
                 OleDbDataReader dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
-                    if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 1)
+                    if (Convert.ToInt32(dbReader["Teilenummer"]) == 1)
                     {
                         lagerbestandp1 = Convert.ToInt32(dbReader["Startbestand"]);
                     }
-                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 2)
+                    else if (Convert.ToInt32(dbReader["Teilenummer"]) == 2)
                     {
                         lagerbestandp2 = Convert.ToInt32(dbReader["Startbestand"]);
                     }
-                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 3)
+                    else if (Convert.ToInt32(dbReader["Teilenummer"]) == 3)
                     {
                         lagerbestandp3 = Convert.ToInt32(dbReader["Startbestand"]);
                     }

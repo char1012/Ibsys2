@@ -314,12 +314,13 @@ namespace IBSYS2
             int endwert = storevalue[0];
             int[] tageswerte = new int[5]{0,0,0,0,0};
 
+            int n = 0;
+
             // Teilewert ermitteln
             if (aktPeriode > 1)
             {
                 cmd.CommandText = @"SELECT Teilenummer_FK, Teilewert FROM Lager WHERE Periode = " + periode + ";";
                 dbReader = cmd.ExecuteReader();
-                int n = 0;
                 while (dbReader.Read())
                 {
                     teilewerte[n, 0] = Convert.ToDouble(dbReader["Teilenummer_FK"]);
@@ -332,7 +333,6 @@ namespace IBSYS2
             {
                 cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
                 dbReader = cmd.ExecuteReader();
-                int n = 0;
                 while (dbReader.Read())
                 {
                     teilewerte[n, 0] = Convert.ToDouble(dbReader["Teilenummer"]);

@@ -200,20 +200,6 @@ namespace IBSYS2
             aktPeriode = Convert.ToInt32(strings[1]);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //ExportXMLClass exportXML = new ExportXMLClass();
-            //exportXML.XMLExport();
-           // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktionsreihenfolge();
-            //p.Show();
-            //ktdispo.ShowDialog();
-            this.Controls.Clear();
-            //UserControl sicherheit = new Sicherheitsbestand();
-            //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(p);
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem == null)

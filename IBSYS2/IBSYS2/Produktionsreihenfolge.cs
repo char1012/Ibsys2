@@ -31,8 +31,6 @@ namespace IBSYS2
         int[,] berProduktionsreihenfolge = new int[30, 2];
 
         List<List<int>> teile_liste = new List<List<int>>();
-        int[,] teile = new int[30,2];
-        int position = -1;
 
         public void vonSplitnachReihenfolge(List<List<int>> teile_liste1)
         {
@@ -202,14 +200,7 @@ namespace IBSYS2
             {
                 int[,] teile = produktion;
                 //Array in Liste
-                List<List<int>> teile_liste_unsortiert = new List<List<int>>();
                 int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
-                for (int x = 0; x < 29; x++)
-                {
-                    teile_liste_unsortiert.Add(new List<int>());
-                    teile_liste_unsortiert[x].Add(teile[x, 0]);
-                    teile_liste_unsortiert[x].Add(teile[x, 1]);
-                }
 
                 //Produktionsreihenfolge in List sortieren 
                 for (int joern = 0; joern <= 29; joern++)
@@ -239,7 +230,7 @@ namespace IBSYS2
         {
             Label button = (Label)sender;
             int listitem = (int)button.Tag;
-            Splitting split = new Splitting(teile_liste, listitem, sprache, aktPeriode, auftraege, direktverkaeufe,sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege);
+            Splitting split = new Splitting(teile_liste, listitem, sprache, this);
             split.Show();
         }
 

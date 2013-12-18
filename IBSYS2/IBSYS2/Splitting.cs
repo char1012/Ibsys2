@@ -29,6 +29,7 @@ namespace IBSYS2
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         List<List<int>> teile_liste1 = new List<List<int>>();
         int position;
+        UserControl prodReihenfolgeForm;
 
         public void splitting(List<List<int>> teile_liste1, int position)
         {
@@ -45,6 +46,20 @@ namespace IBSYS2
             teile_liste1[position][1] = Convert.ToInt32(Splitting1.Text);
             teile_liste1[position+1][1] = Convert.ToInt32(Splitting2.Text);
 
+        }
+
+        public Splitting(List<List<int>> teile_liste, int y, String sprache, UserControl prodReihenfolge)
+        {
+            this.sprache = sprache;
+            this.position = y - 1;
+            this.prodReihenfolgeForm = prodReihenfolge;
+            //position = y - 1;
+            InitializeComponent();
+            teile_liste1 = teile_liste;
+            Menge.Text = teile_liste1[position][1].ToString();
+            NR.Text = teile_liste1[position][0].ToString();
+            Splitting1.Text = (teile_liste1[position][1] / 2).ToString();
+            Splitting2.Text = (teile_liste1[position][1] / 2).ToString();
         }
 
         public Splitting(List<List<int>> teile_liste, int y, String sprache, int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
@@ -149,9 +164,8 @@ namespace IBSYS2
         private void continue_btn_Click(object sender, EventArgs e)
         {
             splitting(teile_liste1, position);
-            Produktionsreihenfolge prodrei = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            prodrei.vonSplitnachReihenfolge(teile_liste1);
+            Produktionsreihenfolge rf = (Produktionsreihenfolge) prodReihenfolgeForm;
+            rf.vonSplitnachReihenfolge(teile_liste1);
             this.Close();
         }
     }

@@ -169,6 +169,13 @@ namespace IBSYS2
             InitializeComponent();
             sprachen();
 
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < kapazitaet.GetLength(0); i++)
             {
@@ -277,6 +284,9 @@ namespace IBSYS2
 
                 berProduktionsreihenfolge = produktion;
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         void label_click(object sender, EventArgs e)

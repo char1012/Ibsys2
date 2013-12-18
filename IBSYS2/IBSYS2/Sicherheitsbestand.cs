@@ -18,7 +18,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
+        bool tv1 = true, tv2 = true, tv3 = true, tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
         private String sprache = "de";
 
         // Datenweitergabe:
@@ -96,6 +96,13 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
             btn_back.Enabled = false;
+
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
 
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < sicherheitsbest.GetLength(0); i++)
@@ -185,8 +192,10 @@ namespace IBSYS2
                     }
                 }
 
-
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         public void setButtons(Boolean b)
@@ -242,72 +251,105 @@ namespace IBSYS2
             double verP3 = Convert.ToDouble(verhP3.Text);
 
             double gLE26P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE26P1 = Math.Round(gLE26P1, 0);
             E261.Text = Convert.ToString(gLE26P1);
             double gLE51P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE51P1 = Math.Round(gLE51P1, 0);
             E511.Text = Convert.ToString(gLE51P1);
             double gLE16P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE16P1 = Math.Round(gLE16P1, 0);
             E161.Text = Convert.ToString(gLE16P1);
             double gLE17P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE17P1 = Math.Round(gLE17P1, 0);
             E171.Text = Convert.ToString(gLE17P1);
             double gLE50P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE50P1 = Math.Round(gLE50P1, 0);
             E501.Text = Convert.ToString(gLE50P1);
             double gLE4P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE4P1 = Math.Round(gLE4P1, 0);
             E041.Text = Convert.ToString(gLE4P1);
             double gLE10P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE10P1 = Math.Round(gLE10P1, 0);
             E101.Text = Convert.ToString(gLE10P1);
             double gLE49P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE49P1 = Math.Round(gLE49P1, 0);
             E491.Text = Convert.ToString(gLE49P1);
             double gLE7P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE7P1 = Math.Round(gLE7P1, 0);
             E071.Text = Convert.ToString(gLE7P1);
             double gLE13P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE13P1 = Math.Round(gLE13P1, 0);
             E131.Text = Convert.ToString(gLE13P1);
             double gLE18P1 = geplanterLagerbestand(gLagerbestandP1, verP1);
+            gLE18P1 = Math.Round(gLE18P1, 0);
             E181.Text = Convert.ToString(gLE18P1);
 
             double gLE26P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE26P2 = Math.Round(gLE26P2, 0);
             E262.Text = Convert.ToString(gLE26P2);
             double gLE56P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE56P2 = Math.Round(gLE56P2, 0);
             E562.Text = Convert.ToString(gLE56P2);
             double gLE16P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE16P2 = Math.Round(gLE16P2, 0);
             E162.Text = Convert.ToString(gLE16P2);
             double gLE17P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE17P2 = Math.Round(gLE17P2, 0);
             E172.Text = Convert.ToString(gLE17P2);
             double gLE55P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE55P2 = Math.Round(gLE55P2, 0);
             E552.Text = Convert.ToString(gLE55P2);
             double gLE5P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE5P2 = Math.Round(gLE5P2, 0);
             E052.Text = Convert.ToString(gLE5P2);
             double gLE11P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE11P2 = Math.Round(gLE11P2, 0);
             E112.Text = Convert.ToString(gLE11P2);
             double gLE54P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE54P2 = Math.Round(gLE54P2, 0);
             E542.Text = Convert.ToString(gLE54P2);
             double gLE8P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE8P2 = Math.Round(gLE8P2, 0);
             E082.Text = Convert.ToString(gLE8P2);
             double gLE14P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE14P2 = Math.Round(gLE14P2, 0);
             E142.Text = Convert.ToString(gLE14P2);
             double gLE19P2 = geplanterLagerbestand(gLagerbestandP2, verP2);
+            gLE19P2 = Math.Round(gLE19P2, 0);
             E192.Text = Convert.ToString(gLE19P2);
 
             double gLE26P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE26P3 = Math.Round(gLE26P3, 0);
             E263.Text = Convert.ToString(gLE26P3);
             double gLE31P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE31P3 = Math.Round(gLE31P3, 0);
             E313.Text = Convert.ToString(gLE31P3);
             double gLE16P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE16P3 = Math.Round(gLE16P3, 0);
             E163.Text = Convert.ToString(gLE16P3);
             double gLE17P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE17P3 = Math.Round(gLE17P3, 0);
             E173.Text = Convert.ToString(gLE17P3);
             double gLE30P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE30P3 = Math.Round(gLE30P3, 0);
             E303.Text = Convert.ToString(gLE30P3);
             double gLE6P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE6P3 = Math.Round(gLE6P3, 0);
             E063.Text = Convert.ToString(gLE6P3);
             double gLE12P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE12P3 = Math.Round(gLE6P3, 0);
             E123.Text = Convert.ToString(gLE12P3);
             double gLE29P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE29P3 = Math.Round(gLE29P3, 0);
             E293.Text = Convert.ToString(gLE29P3);
             double gLE9P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE9P3 = Math.Round(gLE9P3, 0);
             E093.Text = Convert.ToString(gLE9P3);
             double gLE15P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE15P3 = Math.Round(gLE15P3, 0);
             E153.Text = Convert.ToString(gLE15P3);
             double gLE20P3 = geplanterLagerbestand(gLagerbestandP3, verP3);
+            gLE20P3 = Math.Round(gLE20P3, 0);
             E203.Text = Convert.ToString(gLE20P3);
 
             textfeldFreigeben();
@@ -484,7 +526,7 @@ namespace IBSYS2
                 {
                     Eingabe_P2.ForeColor = Color.Black;
                     tP2 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -528,7 +570,7 @@ namespace IBSYS2
                 {
                     Eingabe_P1.ForeColor = Color.Black;
                     tP1 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -572,7 +614,7 @@ namespace IBSYS2
                 {
                     Eingabe_P3.ForeColor = Color.Black;
                     tP3 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -821,6 +863,138 @@ namespace IBSYS2
                     else
                     {
                         continue_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP1_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP1.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv3 = false;
+            }
+            else
+            {
+                verhP1.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP1.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP1.ForeColor = Color.Red;
+                        okay = false;
+                        tv3 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP1.ForeColor = Color.Black;
+                    tv3 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        eteileberechnen_btn.Enabled = false;
+                        continue_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP2_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP2.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv2 = false;
+            }
+            else
+            {
+                verhP2.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP2.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP2.ForeColor = Color.Red;
+                        okay = false;
+                        tv2 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP2.ForeColor = Color.Black;
+                    tv2 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP3_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP3.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv3 = false;
+            }
+            else
+            {
+                verhP3.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP3.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP3.ForeColor = Color.Red;
+                        okay = false;
+                        tv3 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP3.ForeColor = Color.Black;
+                    tv3 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
                     }
                 }
             }
@@ -1936,6 +2110,10 @@ namespace IBSYS2
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
                 ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
                 ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+
+                lbl_ver1.Text = "Ratio";
+                lbl_ver2.Text = "Ratio";
+                lbl_ver3.Text = "Ratio";
             }
             else
             {
@@ -1965,6 +2143,10 @@ namespace IBSYS2
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
                 ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+
+                lbl_ver1.Text = "Verhältnis";
+                lbl_ver2.Text = "Verhältnis";
+                lbl_ver3.Text = "Verhältnis";
             }
         }
 
@@ -2591,5 +2773,7 @@ namespace IBSYS2
                 E562.ForeColor = Color.Red;
             }
         }
+
+
     }
 }

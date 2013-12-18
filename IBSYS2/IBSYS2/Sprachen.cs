@@ -276,8 +276,8 @@ namespace IBSYS2
         public static String EN_LABLE9 = "* E-Parts are summed for further calcualtion.";
 
         //Tooltip
-        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Parts.          ";
-        public static String EN_INFOE = "- These fields of safety stocks for the E-Parts is not maintainable before calculation of the P-Parts.\n " + " - The result showing the security holdings of the E-Parts is calculated by the system, but can be changed manually as needed.                \n " + " - to continue click on 'Continue' button.";
+        public static String EN_INFOP = "Please enter the Safty-Stock for the P-Parts.           ";
+        public static String EN_INFOE = "- These fields of safety stocks for the E-Parts is not maintainable before calculation of the P-Parts.\n " + " - The result showing the security holdings of the E-Parts is calculated by the system, but can be changed manually as needed.                 \n " + " - to continue click on 'Continue' button.";
         
         /*---------Direktverkäufe----------*/
         //Groupbox

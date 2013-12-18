@@ -125,97 +125,6 @@ namespace IBSYS2
         {
             InitializeComponent();
 
-            // simulieren
-            int[,] teile = new int[30, 2];
-            teile[0, 0] = 1;
-            teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
-            teile[1, 0] = 2;
-            teile[1, 1] = 190;
-            teile[2, 0] = 3;
-            teile[2, 1] = 160;
-            teile[3, 0] = 4;
-            teile[3, 1] = 60;
-            teile[4, 0] = 5;
-            teile[4, 1] = 160;
-            teile[5, 0] = 6;
-            teile[5, 1] = -110;
-            teile[6, 0] = 7;
-            teile[6, 1] = 50;
-            teile[7, 0] = 8;
-            teile[7, 1] = 150;
-            teile[8, 0] = 9;
-            teile[8, 1] = -200;
-            teile[9, 0] = 10;
-            teile[9, 1] = 60;
-            teile[10, 0] = 11;
-            teile[10, 1] = 160;
-            teile[11, 0] = 12;
-            teile[11, 1] = -110;
-            teile[12, 0] = 13;
-            teile[12, 1] = 50;
-            teile[13, 0] = 14;
-            teile[13, 1] = 150;
-            teile[14, 0] = 15;
-            teile[14, 1] = -200;
-            teile[15, 0] = 16;
-            teile[15, 1] = 20 + 130 + 90;
-            teile[16, 0] = 17;
-            teile[16, 1] = 20 + 130 + 90;
-            teile[17, 0] = 18;
-            teile[17, 1] = 50;
-            teile[18, 0] = 19;
-            teile[18, 1] = 150;
-            teile[19, 0] = 20;
-            teile[19, 1] = -200;
-            teile[20, 0] = 26;
-            teile[20, 1] = 50 + 160 + 130;
-            teile[21, 0] = 29;
-            teile[21, 1] = -110;
-            teile[22, 0] = 30;
-            teile[22, 1] = -20;
-            teile[23, 0] = 31;
-            teile[23, 1] = 70;
-            teile[24, 0] = 49;
-            teile[24, 1] = 60;
-            teile[25, 0] = 50;
-            teile[25, 1] = 70;
-            teile[26, 0] = 51;
-            teile[26, 1] = 80;
-            teile[27, 0] = 54;
-            teile[27, 1] = 160;
-            teile[28, 0] = 55;
-            teile[28, 1] = 170;
-            teile[29, 0] = 56;
-            teile[29, 1] = 180;
-
-            // TODO: array in eine Produktionsreihenfolge sortieren
-
-            //Array in Liste
-            List<List<int>> teile_liste_unsortiert = new List<List<int>>();
-            int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
-            for (int x = 0; x < 29; x++)
-            {
-                teile_liste_unsortiert.Add(new List<int>());
-                teile_liste_unsortiert[x].Add(teile[x, 0]);
-                teile_liste_unsortiert[x].Add(teile[x, 1]);
-            }
-
-            //Produktionsreihenfolge in List sortieren 
-            for (int joern = 0; joern <= 29; joern++)
-            {
-                int teil = reihenfolge[joern];
-                for (int fred = 0; fred <= 29; fred++)
-                {
-                    if (teile[fred, 0] == teil)
-                    {
-                        int menge = teile[fred, 1];
-                        teile_liste.Add(new List<int>());
-                        teile_liste[joern].Add(teil);
-                        teile_liste[joern].Add(menge);
-                    }
-                }
-            }
-            tabelle_erstellen(teile_liste);
         }
 
         public Produktionsreihenfolge(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
@@ -283,8 +192,96 @@ namespace IBSYS2
             }
             else
             {
-                // TODO Sabrina: hier den Code aus dem anderen Konstruktor einfuegen, wenn fertig
-                // zum testen:
+                // simulieren
+                int[,] teile = new int[30, 2];
+                teile[0, 0] = 1;
+                teile[0, 1] = 90; // Teil p1 mit 90 Stueck Produktion
+                teile[1, 0] = 2;
+                teile[1, 1] = 190;
+                teile[2, 0] = 3;
+                teile[2, 1] = 160;
+                teile[3, 0] = 4;
+                teile[3, 1] = 60;
+                teile[4, 0] = 5;
+                teile[4, 1] = 160;
+                teile[5, 0] = 6;
+                teile[5, 1] = -110;
+                teile[6, 0] = 7;
+                teile[6, 1] = 50;
+                teile[7, 0] = 8;
+                teile[7, 1] = 150;
+                teile[8, 0] = 9;
+                teile[8, 1] = -200;
+                teile[9, 0] = 10;
+                teile[9, 1] = 60;
+                teile[10, 0] = 11;
+                teile[10, 1] = 160;
+                teile[11, 0] = 12;
+                teile[11, 1] = -110;
+                teile[12, 0] = 13;
+                teile[12, 1] = 50;
+                teile[13, 0] = 14;
+                teile[13, 1] = 150;
+                teile[14, 0] = 15;
+                teile[14, 1] = -200;
+                teile[15, 0] = 16;
+                teile[15, 1] = 20 + 130 + 90;
+                teile[16, 0] = 17;
+                teile[16, 1] = 20 + 130 + 90;
+                teile[17, 0] = 18;
+                teile[17, 1] = 50;
+                teile[18, 0] = 19;
+                teile[18, 1] = 150;
+                teile[19, 0] = 20;
+                teile[19, 1] = -200;
+                teile[20, 0] = 26;
+                teile[20, 1] = 50 + 160 + 130;
+                teile[21, 0] = 29;
+                teile[21, 1] = -110;
+                teile[22, 0] = 30;
+                teile[22, 1] = -20;
+                teile[23, 0] = 31;
+                teile[23, 1] = 70;
+                teile[24, 0] = 49;
+                teile[24, 1] = 60;
+                teile[25, 0] = 50;
+                teile[25, 1] = 70;
+                teile[26, 0] = 51;
+                teile[26, 1] = 80;
+                teile[27, 0] = 54;
+                teile[27, 1] = 160;
+                teile[28, 0] = 55;
+                teile[28, 1] = 170;
+                teile[29, 0] = 56;
+                teile[29, 1] = 180;
+
+                //Array in Liste
+                List<List<int>> teile_liste_unsortiert = new List<List<int>>();
+                int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
+                for (int x = 0; x < 29; x++)
+                {
+                    teile_liste_unsortiert.Add(new List<int>());
+                    teile_liste_unsortiert[x].Add(teile[x, 0]);
+                    teile_liste_unsortiert[x].Add(teile[x, 1]);
+                }
+
+                //Produktionsreihenfolge in List sortieren 
+                for (int joern = 0; joern <= 29; joern++)
+                {
+                    int teil = reihenfolge[joern];
+                    for (int fred = 0; fred <= 29; fred++)
+                    {
+                        if (teile[fred, 0] == teil)
+                        {
+                            int menge = teile[fred, 1];
+                            teile_liste.Add(new List<int>());
+                            teile_liste[joern].Add(teil);
+                            teile_liste[joern].Add(menge);
+                        }
+                    }
+                }
+                tabelle_erstellen(teile_liste);
+
                 berProduktionsreihenfolge = produktion;
             }
 

@@ -33,8 +33,8 @@
             this.Splitting2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.continue_btn = new System.Windows.Forms.Button();
+            this.abr_btn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.Menge = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -54,13 +54,16 @@
             this.Splitting1.Name = "Splitting1";
             this.Splitting1.Size = new System.Drawing.Size(54, 20);
             this.Splitting1.TabIndex = 1;
+            this.Splitting1.TextChanged += new System.EventHandler(this.Splitting1_TextChanged);
             // 
             // Splitting2
             // 
             this.Splitting2.Location = new System.Drawing.Point(140, 115);
             this.Splitting2.Name = "Splitting2";
+            this.Splitting2.ReadOnly = true;
             this.Splitting2.Size = new System.Drawing.Size(54, 20);
             this.Splitting2.TabIndex = 2;
+            this.Splitting2.TextChanged += new System.EventHandler(this.Splitting2_TextChanged);
             // 
             // label2
             // 
@@ -80,23 +83,25 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "die Produktion für das Teil splitten wollen";
             // 
-            // button1
+            // continue_btn
             // 
-            this.button1.Location = new System.Drawing.Point(158, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Bestätigen";
-            this.button1.UseVisualStyleBackColor = true;
+            this.continue_btn.Location = new System.Drawing.Point(158, 157);
+            this.continue_btn.Name = "continue_btn";
+            this.continue_btn.Size = new System.Drawing.Size(75, 23);
+            this.continue_btn.TabIndex = 5;
+            this.continue_btn.Text = "Bestätigen";
+            this.continue_btn.UseVisualStyleBackColor = true;
+            this.continue_btn.Click += new System.EventHandler(this.continue_btn_Click);
             // 
-            // button2
+            // abr_btn
             // 
-            this.button2.Location = new System.Drawing.Point(35, 157);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Abbruch";
-            this.button2.UseVisualStyleBackColor = true;
+            this.abr_btn.Location = new System.Drawing.Point(35, 157);
+            this.abr_btn.Name = "abr_btn";
+            this.abr_btn.Size = new System.Drawing.Size(65, 23);
+            this.abr_btn.TabIndex = 6;
+            this.abr_btn.Text = "Abbruch";
+            this.abr_btn.UseVisualStyleBackColor = true;
+            this.abr_btn.Click += new System.EventHandler(this.abr_btn_Click);
             // 
             // label4
             // 
@@ -122,8 +127,8 @@
             this.ClientSize = new System.Drawing.Size(252, 192);
             this.Controls.Add(this.Menge);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.abr_btn);
+            this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Splitting2);
@@ -143,8 +148,8 @@
         private System.Windows.Forms.TextBox Splitting2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button continue_btn;
+        private System.Windows.Forms.Button abr_btn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox Menge;
     }

@@ -575,7 +575,7 @@
             this.M1.Enabled = false;
             this.M1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M1.Location = new System.Drawing.Point(105, 66);
-            this.M1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M1.Margin = new System.Windows.Forms.Padding(4);
             this.M1.Name = "M1";
             this.M1.Size = new System.Drawing.Size(52, 26);
             this.M1.TabIndex = 43;
@@ -585,7 +585,7 @@
             this.M2.Enabled = false;
             this.M2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M2.Location = new System.Drawing.Point(105, 98);
-            this.M2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M2.Margin = new System.Windows.Forms.Padding(4);
             this.M2.Name = "M2";
             this.M2.Size = new System.Drawing.Size(52, 26);
             this.M2.TabIndex = 44;
@@ -595,7 +595,7 @@
             this.M3.Enabled = false;
             this.M3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M3.Location = new System.Drawing.Point(105, 130);
-            this.M3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M3.Margin = new System.Windows.Forms.Padding(4);
             this.M3.Name = "M3";
             this.M3.Size = new System.Drawing.Size(52, 26);
             this.M3.TabIndex = 45;
@@ -605,7 +605,7 @@
             this.M4.Enabled = false;
             this.M4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M4.Location = new System.Drawing.Point(105, 162);
-            this.M4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M4.Margin = new System.Windows.Forms.Padding(4);
             this.M4.Name = "M4";
             this.M4.Size = new System.Drawing.Size(52, 26);
             this.M4.TabIndex = 46;
@@ -615,7 +615,7 @@
             this.M5.Enabled = false;
             this.M5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M5.Location = new System.Drawing.Point(105, 194);
-            this.M5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M5.Margin = new System.Windows.Forms.Padding(4);
             this.M5.Name = "M5";
             this.M5.Size = new System.Drawing.Size(52, 26);
             this.M5.TabIndex = 47;
@@ -625,7 +625,7 @@
             this.M6.Enabled = false;
             this.M6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M6.Location = new System.Drawing.Point(105, 226);
-            this.M6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M6.Margin = new System.Windows.Forms.Padding(4);
             this.M6.Name = "M6";
             this.M6.Size = new System.Drawing.Size(52, 26);
             this.M6.TabIndex = 49;
@@ -635,7 +635,7 @@
             this.M7.Enabled = false;
             this.M7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M7.Location = new System.Drawing.Point(105, 257);
-            this.M7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M7.Margin = new System.Windows.Forms.Padding(4);
             this.M7.Name = "M7";
             this.M7.Size = new System.Drawing.Size(52, 26);
             this.M7.TabIndex = 50;
@@ -645,7 +645,7 @@
             this.M8.Enabled = false;
             this.M8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M8.Location = new System.Drawing.Point(105, 288);
-            this.M8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M8.Margin = new System.Windows.Forms.Padding(4);
             this.M8.Name = "M8";
             this.M8.Size = new System.Drawing.Size(52, 26);
             this.M8.TabIndex = 54;
@@ -655,7 +655,7 @@
             this.M9.Enabled = false;
             this.M9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M9.Location = new System.Drawing.Point(105, 320);
-            this.M9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M9.Margin = new System.Windows.Forms.Padding(4);
             this.M9.Name = "M9";
             this.M9.Size = new System.Drawing.Size(52, 26);
             this.M9.TabIndex = 55;
@@ -665,7 +665,7 @@
             this.M10.Enabled = false;
             this.M10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M10.Location = new System.Drawing.Point(105, 352);
-            this.M10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M10.Margin = new System.Windows.Forms.Padding(4);
             this.M10.Name = "M10";
             this.M10.Size = new System.Drawing.Size(52, 26);
             this.M10.TabIndex = 56;
@@ -675,7 +675,7 @@
             this.M11.Enabled = false;
             this.M11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M11.Location = new System.Drawing.Point(445, 65);
-            this.M11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M11.Margin = new System.Windows.Forms.Padding(4);
             this.M11.Name = "M11";
             this.M11.Size = new System.Drawing.Size(52, 26);
             this.M11.TabIndex = 57;
@@ -685,7 +685,7 @@
             this.M12.Enabled = false;
             this.M12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M12.Location = new System.Drawing.Point(445, 97);
-            this.M12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M12.Margin = new System.Windows.Forms.Padding(4);
             this.M12.Name = "M12";
             this.M12.Size = new System.Drawing.Size(52, 26);
             this.M12.TabIndex = 58;
@@ -695,7 +695,7 @@
             this.M13.Enabled = false;
             this.M13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M13.Location = new System.Drawing.Point(445, 129);
-            this.M13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M13.Margin = new System.Windows.Forms.Padding(4);
             this.M13.Name = "M13";
             this.M13.Size = new System.Drawing.Size(52, 26);
             this.M13.TabIndex = 59;
@@ -705,7 +705,7 @@
             this.M14.Enabled = false;
             this.M14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M14.Location = new System.Drawing.Point(445, 161);
-            this.M14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M14.Margin = new System.Windows.Forms.Padding(4);
             this.M14.Name = "M14";
             this.M14.Size = new System.Drawing.Size(52, 26);
             this.M14.TabIndex = 60;
@@ -715,7 +715,7 @@
             this.M15.Enabled = false;
             this.M15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M15.Location = new System.Drawing.Point(445, 193);
-            this.M15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M15.Margin = new System.Windows.Forms.Padding(4);
             this.M15.Name = "M15";
             this.M15.Size = new System.Drawing.Size(52, 26);
             this.M15.TabIndex = 61;
@@ -725,7 +725,7 @@
             this.M16.Enabled = false;
             this.M16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M16.Location = new System.Drawing.Point(445, 223);
-            this.M16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M16.Margin = new System.Windows.Forms.Padding(4);
             this.M16.Name = "M16";
             this.M16.Size = new System.Drawing.Size(52, 26);
             this.M16.TabIndex = 62;
@@ -735,7 +735,7 @@
             this.M17.Enabled = false;
             this.M17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M17.Location = new System.Drawing.Point(445, 256);
-            this.M17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M17.Margin = new System.Windows.Forms.Padding(4);
             this.M17.Name = "M17";
             this.M17.Size = new System.Drawing.Size(52, 26);
             this.M17.TabIndex = 63;
@@ -745,7 +745,7 @@
             this.M18.Enabled = false;
             this.M18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M18.Location = new System.Drawing.Point(445, 288);
-            this.M18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M18.Margin = new System.Windows.Forms.Padding(4);
             this.M18.Name = "M18";
             this.M18.Size = new System.Drawing.Size(52, 26);
             this.M18.TabIndex = 64;
@@ -755,7 +755,7 @@
             this.M19.Enabled = false;
             this.M19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M19.Location = new System.Drawing.Point(445, 320);
-            this.M19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M19.Margin = new System.Windows.Forms.Padding(4);
             this.M19.Name = "M19";
             this.M19.Size = new System.Drawing.Size(52, 26);
             this.M19.TabIndex = 65;
@@ -765,7 +765,7 @@
             this.M20.Enabled = false;
             this.M20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M20.Location = new System.Drawing.Point(445, 352);
-            this.M20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M20.Margin = new System.Windows.Forms.Padding(4);
             this.M20.Name = "M20";
             this.M20.Size = new System.Drawing.Size(52, 26);
             this.M20.TabIndex = 66;
@@ -775,7 +775,7 @@
             this.M21.Enabled = false;
             this.M21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M21.Location = new System.Drawing.Point(800, 64);
-            this.M21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M21.Margin = new System.Windows.Forms.Padding(4);
             this.M21.Name = "M21";
             this.M21.Size = new System.Drawing.Size(52, 26);
             this.M21.TabIndex = 67;
@@ -785,7 +785,7 @@
             this.M22.Enabled = false;
             this.M22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M22.Location = new System.Drawing.Point(800, 96);
-            this.M22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M22.Margin = new System.Windows.Forms.Padding(4);
             this.M22.Name = "M22";
             this.M22.Size = new System.Drawing.Size(52, 26);
             this.M22.TabIndex = 68;
@@ -795,7 +795,7 @@
             this.M23.Enabled = false;
             this.M23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M23.Location = new System.Drawing.Point(800, 128);
-            this.M23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M23.Margin = new System.Windows.Forms.Padding(4);
             this.M23.Name = "M23";
             this.M23.Size = new System.Drawing.Size(52, 26);
             this.M23.TabIndex = 69;
@@ -805,7 +805,7 @@
             this.M24.Enabled = false;
             this.M24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M24.Location = new System.Drawing.Point(800, 159);
-            this.M24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M24.Margin = new System.Windows.Forms.Padding(4);
             this.M24.Name = "M24";
             this.M24.Size = new System.Drawing.Size(52, 26);
             this.M24.TabIndex = 70;
@@ -815,7 +815,7 @@
             this.M25.Enabled = false;
             this.M25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M25.Location = new System.Drawing.Point(800, 191);
-            this.M25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M25.Margin = new System.Windows.Forms.Padding(4);
             this.M25.Name = "M25";
             this.M25.Size = new System.Drawing.Size(52, 26);
             this.M25.TabIndex = 74;
@@ -825,7 +825,7 @@
             this.M26.Enabled = false;
             this.M26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M26.Location = new System.Drawing.Point(800, 224);
-            this.M26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M26.Margin = new System.Windows.Forms.Padding(4);
             this.M26.Name = "M26";
             this.M26.Size = new System.Drawing.Size(52, 26);
             this.M26.TabIndex = 75;
@@ -835,7 +835,7 @@
             this.M27.Enabled = false;
             this.M27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M27.Location = new System.Drawing.Point(800, 255);
-            this.M27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M27.Margin = new System.Windows.Forms.Padding(4);
             this.M27.Name = "M27";
             this.M27.Size = new System.Drawing.Size(52, 26);
             this.M27.TabIndex = 79;
@@ -845,7 +845,7 @@
             this.M28.Enabled = false;
             this.M28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M28.Location = new System.Drawing.Point(800, 287);
-            this.M28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M28.Margin = new System.Windows.Forms.Padding(4);
             this.M28.Name = "M28";
             this.M28.Size = new System.Drawing.Size(52, 26);
             this.M28.TabIndex = 80;
@@ -855,7 +855,7 @@
             this.M29.Enabled = false;
             this.M29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.M29.Location = new System.Drawing.Point(800, 319);
-            this.M29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.M29.Margin = new System.Windows.Forms.Padding(4);
             this.M29.Name = "M29";
             this.M29.Size = new System.Drawing.Size(52, 26);
             this.M29.TabIndex = 81;
@@ -864,7 +864,7 @@
             // 
             this.B29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B29.Location = new System.Drawing.Point(976, 316);
-            this.B29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B29.Margin = new System.Windows.Forms.Padding(4);
             this.B29.Name = "B29";
             this.B29.Size = new System.Drawing.Size(43, 26);
             this.B29.TabIndex = 120;
@@ -874,7 +874,7 @@
             // 
             this.B28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B28.Location = new System.Drawing.Point(976, 284);
-            this.B28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B28.Margin = new System.Windows.Forms.Padding(4);
             this.B28.Name = "B28";
             this.B28.Size = new System.Drawing.Size(43, 26);
             this.B28.TabIndex = 119;
@@ -884,7 +884,7 @@
             // 
             this.B27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B27.Location = new System.Drawing.Point(976, 252);
-            this.B27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B27.Margin = new System.Windows.Forms.Padding(4);
             this.B27.Name = "B27";
             this.B27.Size = new System.Drawing.Size(43, 26);
             this.B27.TabIndex = 118;
@@ -894,7 +894,7 @@
             // 
             this.B26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B26.Location = new System.Drawing.Point(976, 221);
-            this.B26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B26.Margin = new System.Windows.Forms.Padding(4);
             this.B26.Name = "B26";
             this.B26.Size = new System.Drawing.Size(43, 26);
             this.B26.TabIndex = 114;
@@ -904,7 +904,7 @@
             // 
             this.B25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B25.Location = new System.Drawing.Point(976, 188);
-            this.B25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B25.Margin = new System.Windows.Forms.Padding(4);
             this.B25.Name = "B25";
             this.B25.Size = new System.Drawing.Size(43, 26);
             this.B25.TabIndex = 113;
@@ -914,7 +914,7 @@
             // 
             this.B24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B24.Location = new System.Drawing.Point(976, 156);
-            this.B24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B24.Margin = new System.Windows.Forms.Padding(4);
             this.B24.Name = "B24";
             this.B24.Size = new System.Drawing.Size(43, 26);
             this.B24.TabIndex = 109;
@@ -924,7 +924,7 @@
             // 
             this.B23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B23.Location = new System.Drawing.Point(976, 124);
-            this.B23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B23.Margin = new System.Windows.Forms.Padding(4);
             this.B23.Name = "B23";
             this.B23.Size = new System.Drawing.Size(43, 26);
             this.B23.TabIndex = 108;
@@ -934,7 +934,7 @@
             // 
             this.B22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B22.Location = new System.Drawing.Point(976, 94);
-            this.B22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B22.Margin = new System.Windows.Forms.Padding(4);
             this.B22.Name = "B22";
             this.B22.Size = new System.Drawing.Size(43, 26);
             this.B22.TabIndex = 107;
@@ -944,7 +944,7 @@
             // 
             this.B21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B21.Location = new System.Drawing.Point(976, 62);
-            this.B21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B21.Margin = new System.Windows.Forms.Padding(4);
             this.B21.Name = "B21";
             this.B21.Size = new System.Drawing.Size(43, 26);
             this.B21.TabIndex = 106;
@@ -954,7 +954,7 @@
             // 
             this.B20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B20.Location = new System.Drawing.Point(621, 352);
-            this.B20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B20.Margin = new System.Windows.Forms.Padding(4);
             this.B20.Name = "B20";
             this.B20.Size = new System.Drawing.Size(43, 26);
             this.B20.TabIndex = 105;
@@ -964,7 +964,7 @@
             // 
             this.B19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B19.Location = new System.Drawing.Point(621, 320);
-            this.B19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B19.Margin = new System.Windows.Forms.Padding(4);
             this.B19.Name = "B19";
             this.B19.Size = new System.Drawing.Size(43, 26);
             this.B19.TabIndex = 104;
@@ -974,7 +974,7 @@
             // 
             this.B18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B18.Location = new System.Drawing.Point(621, 288);
-            this.B18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B18.Margin = new System.Windows.Forms.Padding(4);
             this.B18.Name = "B18";
             this.B18.Size = new System.Drawing.Size(43, 26);
             this.B18.TabIndex = 103;
@@ -984,7 +984,7 @@
             // 
             this.B17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B17.Location = new System.Drawing.Point(621, 256);
-            this.B17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B17.Margin = new System.Windows.Forms.Padding(4);
             this.B17.Name = "B17";
             this.B17.Size = new System.Drawing.Size(43, 26);
             this.B17.TabIndex = 102;
@@ -994,7 +994,7 @@
             // 
             this.B16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B16.Location = new System.Drawing.Point(621, 223);
-            this.B16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B16.Margin = new System.Windows.Forms.Padding(4);
             this.B16.Name = "B16";
             this.B16.Size = new System.Drawing.Size(43, 26);
             this.B16.TabIndex = 101;
@@ -1004,7 +1004,7 @@
             // 
             this.B15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B15.Location = new System.Drawing.Point(621, 192);
-            this.B15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B15.Margin = new System.Windows.Forms.Padding(4);
             this.B15.Name = "B15";
             this.B15.Size = new System.Drawing.Size(43, 26);
             this.B15.TabIndex = 100;
@@ -1014,7 +1014,7 @@
             // 
             this.B14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B14.Location = new System.Drawing.Point(621, 161);
-            this.B14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B14.Margin = new System.Windows.Forms.Padding(4);
             this.B14.Name = "B14";
             this.B14.Size = new System.Drawing.Size(43, 26);
             this.B14.TabIndex = 99;
@@ -1024,7 +1024,7 @@
             // 
             this.B13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B13.Location = new System.Drawing.Point(621, 129);
-            this.B13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B13.Margin = new System.Windows.Forms.Padding(4);
             this.B13.Name = "B13";
             this.B13.Size = new System.Drawing.Size(43, 26);
             this.B13.TabIndex = 98;
@@ -1034,7 +1034,7 @@
             // 
             this.B12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B12.Location = new System.Drawing.Point(621, 97);
-            this.B12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B12.Margin = new System.Windows.Forms.Padding(4);
             this.B12.Name = "B12";
             this.B12.Size = new System.Drawing.Size(43, 26);
             this.B12.TabIndex = 97;
@@ -1044,7 +1044,7 @@
             // 
             this.B11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B11.Location = new System.Drawing.Point(621, 65);
-            this.B11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B11.Margin = new System.Windows.Forms.Padding(4);
             this.B11.Name = "B11";
             this.B11.Size = new System.Drawing.Size(43, 26);
             this.B11.TabIndex = 96;
@@ -1054,7 +1054,7 @@
             // 
             this.B10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B10.Location = new System.Drawing.Point(281, 353);
-            this.B10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B10.Margin = new System.Windows.Forms.Padding(4);
             this.B10.Name = "B10";
             this.B10.Size = new System.Drawing.Size(43, 26);
             this.B10.TabIndex = 95;
@@ -1064,7 +1064,7 @@
             // 
             this.B9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B9.Location = new System.Drawing.Point(281, 321);
-            this.B9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B9.Margin = new System.Windows.Forms.Padding(4);
             this.B9.Name = "B9";
             this.B9.Size = new System.Drawing.Size(43, 26);
             this.B9.TabIndex = 94;
@@ -1074,7 +1074,7 @@
             // 
             this.B8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B8.Location = new System.Drawing.Point(281, 289);
-            this.B8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B8.Margin = new System.Windows.Forms.Padding(4);
             this.B8.Name = "B8";
             this.B8.Size = new System.Drawing.Size(43, 26);
             this.B8.TabIndex = 93;
@@ -1084,7 +1084,7 @@
             // 
             this.B7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B7.Location = new System.Drawing.Point(281, 257);
-            this.B7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B7.Margin = new System.Windows.Forms.Padding(4);
             this.B7.Name = "B7";
             this.B7.Size = new System.Drawing.Size(43, 26);
             this.B7.TabIndex = 89;
@@ -1094,7 +1094,7 @@
             // 
             this.B6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B6.Location = new System.Drawing.Point(281, 226);
-            this.B6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B6.Margin = new System.Windows.Forms.Padding(4);
             this.B6.Name = "B6";
             this.B6.Size = new System.Drawing.Size(43, 26);
             this.B6.TabIndex = 88;
@@ -1104,7 +1104,7 @@
             // 
             this.B5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B5.Location = new System.Drawing.Point(281, 194);
-            this.B5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B5.Margin = new System.Windows.Forms.Padding(4);
             this.B5.Name = "B5";
             this.B5.Size = new System.Drawing.Size(43, 26);
             this.B5.TabIndex = 86;
@@ -1114,7 +1114,7 @@
             // 
             this.B4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B4.Location = new System.Drawing.Point(281, 162);
-            this.B4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B4.Margin = new System.Windows.Forms.Padding(4);
             this.B4.Name = "B4";
             this.B4.Size = new System.Drawing.Size(43, 26);
             this.B4.TabIndex = 85;
@@ -1124,7 +1124,7 @@
             // 
             this.B3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B3.Location = new System.Drawing.Point(281, 130);
-            this.B3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B3.Margin = new System.Windows.Forms.Padding(4);
             this.B3.Name = "B3";
             this.B3.Size = new System.Drawing.Size(43, 26);
             this.B3.TabIndex = 84;
@@ -1134,7 +1134,7 @@
             // 
             this.B2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B2.Location = new System.Drawing.Point(281, 98);
-            this.B2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B2.Margin = new System.Windows.Forms.Padding(4);
             this.B2.Name = "B2";
             this.B2.Size = new System.Drawing.Size(43, 26);
             this.B2.TabIndex = 83;
@@ -1144,7 +1144,7 @@
             // 
             this.B1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.B1.Location = new System.Drawing.Point(281, 66);
-            this.B1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.B1.Margin = new System.Windows.Forms.Padding(4);
             this.B1.Name = "B1";
             this.B1.Size = new System.Drawing.Size(43, 26);
             this.B1.TabIndex = 82;
@@ -1154,7 +1154,7 @@
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
             this.continue_btn.Location = new System.Drawing.Point(1213, 567);
-            this.continue_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continue_btn.Margin = new System.Windows.Forms.Padding(4);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(100, 28);
             this.continue_btn.TabIndex = 121;
@@ -1247,6 +1247,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.default_btn);
             this.groupBox1.Controls.Add(this.labelBA3);
             this.groupBox1.Controls.Add(this.labelBM3);
             this.groupBox1.Controls.Add(this.labelOP3);
@@ -1439,9 +1440,9 @@
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(81, 170);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1184, 390);
             this.groupBox1.TabIndex = 135;
             this.groupBox1.TabStop = false;
@@ -1495,7 +1496,7 @@
             // 
             this.BM29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM29.Location = new System.Drawing.Point(917, 316);
-            this.BM29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM29.Margin = new System.Windows.Forms.Padding(4);
             this.BM29.Name = "BM29";
             this.BM29.Size = new System.Drawing.Size(52, 26);
             this.BM29.TabIndex = 237;
@@ -1505,7 +1506,7 @@
             // 
             this.BM28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM28.Location = new System.Drawing.Point(917, 284);
-            this.BM28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM28.Margin = new System.Windows.Forms.Padding(4);
             this.BM28.Name = "BM28";
             this.BM28.Size = new System.Drawing.Size(52, 26);
             this.BM28.TabIndex = 236;
@@ -1515,7 +1516,7 @@
             // 
             this.BM27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM27.Location = new System.Drawing.Point(917, 252);
-            this.BM27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM27.Margin = new System.Windows.Forms.Padding(4);
             this.BM27.Name = "BM27";
             this.BM27.Size = new System.Drawing.Size(52, 26);
             this.BM27.TabIndex = 235;
@@ -1525,7 +1526,7 @@
             // 
             this.BM26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM26.Location = new System.Drawing.Point(917, 222);
-            this.BM26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM26.Margin = new System.Windows.Forms.Padding(4);
             this.BM26.Name = "BM26";
             this.BM26.Size = new System.Drawing.Size(52, 26);
             this.BM26.TabIndex = 234;
@@ -1535,7 +1536,7 @@
             // 
             this.BM25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM25.Location = new System.Drawing.Point(917, 190);
-            this.BM25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM25.Margin = new System.Windows.Forms.Padding(4);
             this.BM25.Name = "BM25";
             this.BM25.Size = new System.Drawing.Size(52, 26);
             this.BM25.TabIndex = 233;
@@ -1545,7 +1546,7 @@
             // 
             this.BM24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM24.Location = new System.Drawing.Point(917, 158);
-            this.BM24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM24.Margin = new System.Windows.Forms.Padding(4);
             this.BM24.Name = "BM24";
             this.BM24.Size = new System.Drawing.Size(52, 26);
             this.BM24.TabIndex = 232;
@@ -1555,7 +1556,7 @@
             // 
             this.BM23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM23.Location = new System.Drawing.Point(917, 126);
-            this.BM23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM23.Margin = new System.Windows.Forms.Padding(4);
             this.BM23.Name = "BM23";
             this.BM23.Size = new System.Drawing.Size(52, 26);
             this.BM23.TabIndex = 231;
@@ -1565,7 +1566,7 @@
             // 
             this.BM22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM22.Location = new System.Drawing.Point(917, 94);
-            this.BM22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM22.Margin = new System.Windows.Forms.Padding(4);
             this.BM22.Name = "BM22";
             this.BM22.Size = new System.Drawing.Size(52, 26);
             this.BM22.TabIndex = 230;
@@ -1575,7 +1576,7 @@
             // 
             this.BM21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM21.Location = new System.Drawing.Point(917, 62);
-            this.BM21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM21.Margin = new System.Windows.Forms.Padding(4);
             this.BM21.Name = "BM21";
             this.BM21.Size = new System.Drawing.Size(52, 26);
             this.BM21.TabIndex = 229;
@@ -1586,7 +1587,7 @@
             this.O29.Enabled = false;
             this.O29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O29.Location = new System.Drawing.Point(857, 316);
-            this.O29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O29.Margin = new System.Windows.Forms.Padding(4);
             this.O29.Name = "O29";
             this.O29.Size = new System.Drawing.Size(52, 26);
             this.O29.TabIndex = 226;
@@ -1596,7 +1597,7 @@
             this.O28.Enabled = false;
             this.O28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O28.Location = new System.Drawing.Point(857, 284);
-            this.O28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O28.Margin = new System.Windows.Forms.Padding(4);
             this.O28.Name = "O28";
             this.O28.Size = new System.Drawing.Size(52, 26);
             this.O28.TabIndex = 225;
@@ -1606,7 +1607,7 @@
             this.O27.Enabled = false;
             this.O27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O27.Location = new System.Drawing.Point(857, 252);
-            this.O27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O27.Margin = new System.Windows.Forms.Padding(4);
             this.O27.Name = "O27";
             this.O27.Size = new System.Drawing.Size(52, 26);
             this.O27.TabIndex = 224;
@@ -1616,7 +1617,7 @@
             this.O26.Enabled = false;
             this.O26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O26.Location = new System.Drawing.Point(857, 222);
-            this.O26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O26.Margin = new System.Windows.Forms.Padding(4);
             this.O26.Name = "O26";
             this.O26.Size = new System.Drawing.Size(52, 26);
             this.O26.TabIndex = 223;
@@ -1626,7 +1627,7 @@
             this.O25.Enabled = false;
             this.O25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O25.Location = new System.Drawing.Point(857, 190);
-            this.O25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O25.Margin = new System.Windows.Forms.Padding(4);
             this.O25.Name = "O25";
             this.O25.Size = new System.Drawing.Size(52, 26);
             this.O25.TabIndex = 222;
@@ -1636,7 +1637,7 @@
             this.O24.Enabled = false;
             this.O24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O24.Location = new System.Drawing.Point(857, 158);
-            this.O24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O24.Margin = new System.Windows.Forms.Padding(4);
             this.O24.Name = "O24";
             this.O24.Size = new System.Drawing.Size(52, 26);
             this.O24.TabIndex = 221;
@@ -1646,7 +1647,7 @@
             this.O23.Enabled = false;
             this.O23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O23.Location = new System.Drawing.Point(857, 126);
-            this.O23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O23.Margin = new System.Windows.Forms.Padding(4);
             this.O23.Name = "O23";
             this.O23.Size = new System.Drawing.Size(52, 26);
             this.O23.TabIndex = 220;
@@ -1656,7 +1657,7 @@
             this.O22.Enabled = false;
             this.O22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O22.Location = new System.Drawing.Point(857, 94);
-            this.O22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O22.Margin = new System.Windows.Forms.Padding(4);
             this.O22.Name = "O22";
             this.O22.Size = new System.Drawing.Size(52, 26);
             this.O22.TabIndex = 219;
@@ -1666,7 +1667,7 @@
             this.O21.Enabled = false;
             this.O21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O21.Location = new System.Drawing.Point(857, 62);
-            this.O21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O21.Margin = new System.Windows.Forms.Padding(4);
             this.O21.Name = "O21";
             this.O21.Size = new System.Drawing.Size(52, 26);
             this.O21.TabIndex = 218;
@@ -1687,7 +1688,7 @@
             this.D29.Enabled = false;
             this.D29.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D29.Location = new System.Drawing.Point(739, 319);
-            this.D29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D29.Margin = new System.Windows.Forms.Padding(4);
             this.D29.Name = "D29";
             this.D29.Size = new System.Drawing.Size(52, 26);
             this.D29.TabIndex = 215;
@@ -1697,7 +1698,7 @@
             this.D28.Enabled = false;
             this.D28.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D28.Location = new System.Drawing.Point(739, 287);
-            this.D28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D28.Margin = new System.Windows.Forms.Padding(4);
             this.D28.Name = "D28";
             this.D28.Size = new System.Drawing.Size(52, 26);
             this.D28.TabIndex = 214;
@@ -1707,7 +1708,7 @@
             this.D27.Enabled = false;
             this.D27.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D27.Location = new System.Drawing.Point(739, 255);
-            this.D27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D27.Margin = new System.Windows.Forms.Padding(4);
             this.D27.Name = "D27";
             this.D27.Size = new System.Drawing.Size(52, 26);
             this.D27.TabIndex = 213;
@@ -1717,7 +1718,7 @@
             this.D26.Enabled = false;
             this.D26.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D26.Location = new System.Drawing.Point(739, 224);
-            this.D26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D26.Margin = new System.Windows.Forms.Padding(4);
             this.D26.Name = "D26";
             this.D26.Size = new System.Drawing.Size(52, 26);
             this.D26.TabIndex = 212;
@@ -1727,7 +1728,7 @@
             this.D25.Enabled = false;
             this.D25.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D25.Location = new System.Drawing.Point(739, 192);
-            this.D25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D25.Margin = new System.Windows.Forms.Padding(4);
             this.D25.Name = "D25";
             this.D25.Size = new System.Drawing.Size(52, 26);
             this.D25.TabIndex = 211;
@@ -1737,7 +1738,7 @@
             this.D24.Enabled = false;
             this.D24.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D24.Location = new System.Drawing.Point(739, 160);
-            this.D24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D24.Margin = new System.Windows.Forms.Padding(4);
             this.D24.Name = "D24";
             this.D24.Size = new System.Drawing.Size(52, 26);
             this.D24.TabIndex = 210;
@@ -1747,7 +1748,7 @@
             this.D23.Enabled = false;
             this.D23.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D23.Location = new System.Drawing.Point(739, 128);
-            this.D23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D23.Margin = new System.Windows.Forms.Padding(4);
             this.D23.Name = "D23";
             this.D23.Size = new System.Drawing.Size(52, 26);
             this.D23.TabIndex = 209;
@@ -1757,7 +1758,7 @@
             this.D22.Enabled = false;
             this.D22.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D22.Location = new System.Drawing.Point(739, 96);
-            this.D22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D22.Margin = new System.Windows.Forms.Padding(4);
             this.D22.Name = "D22";
             this.D22.Size = new System.Drawing.Size(52, 26);
             this.D22.TabIndex = 208;
@@ -1767,7 +1768,7 @@
             this.D21.Enabled = false;
             this.D21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D21.Location = new System.Drawing.Point(739, 63);
-            this.D21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D21.Margin = new System.Windows.Forms.Padding(4);
             this.D21.Name = "D21";
             this.D21.Size = new System.Drawing.Size(52, 26);
             this.D21.TabIndex = 207;
@@ -1787,7 +1788,7 @@
             // 
             this.BM20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM20.Location = new System.Drawing.Point(563, 352);
-            this.BM20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM20.Margin = new System.Windows.Forms.Padding(4);
             this.BM20.Name = "BM20";
             this.BM20.Size = new System.Drawing.Size(52, 26);
             this.BM20.TabIndex = 205;
@@ -1797,7 +1798,7 @@
             // 
             this.BM19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM19.Location = new System.Drawing.Point(563, 319);
-            this.BM19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM19.Margin = new System.Windows.Forms.Padding(4);
             this.BM19.Name = "BM19";
             this.BM19.Size = new System.Drawing.Size(52, 26);
             this.BM19.TabIndex = 204;
@@ -1807,7 +1808,7 @@
             // 
             this.BM18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM18.Location = new System.Drawing.Point(563, 287);
-            this.BM18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM18.Margin = new System.Windows.Forms.Padding(4);
             this.BM18.Name = "BM18";
             this.BM18.Size = new System.Drawing.Size(52, 26);
             this.BM18.TabIndex = 203;
@@ -1817,7 +1818,7 @@
             // 
             this.BM17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM17.Location = new System.Drawing.Point(563, 255);
-            this.BM17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM17.Margin = new System.Windows.Forms.Padding(4);
             this.BM17.Name = "BM17";
             this.BM17.Size = new System.Drawing.Size(52, 26);
             this.BM17.TabIndex = 202;
@@ -1827,7 +1828,7 @@
             // 
             this.BM16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM16.Location = new System.Drawing.Point(563, 224);
-            this.BM16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM16.Margin = new System.Windows.Forms.Padding(4);
             this.BM16.Name = "BM16";
             this.BM16.Size = new System.Drawing.Size(52, 26);
             this.BM16.TabIndex = 201;
@@ -1837,7 +1838,7 @@
             // 
             this.BM15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM15.Location = new System.Drawing.Point(563, 192);
-            this.BM15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM15.Margin = new System.Windows.Forms.Padding(4);
             this.BM15.Name = "BM15";
             this.BM15.Size = new System.Drawing.Size(52, 26);
             this.BM15.TabIndex = 200;
@@ -1847,7 +1848,7 @@
             // 
             this.BM14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM14.Location = new System.Drawing.Point(563, 160);
-            this.BM14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM14.Margin = new System.Windows.Forms.Padding(4);
             this.BM14.Name = "BM14";
             this.BM14.Size = new System.Drawing.Size(52, 26);
             this.BM14.TabIndex = 199;
@@ -1857,7 +1858,7 @@
             // 
             this.BM13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM13.Location = new System.Drawing.Point(563, 128);
-            this.BM13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM13.Margin = new System.Windows.Forms.Padding(4);
             this.BM13.Name = "BM13";
             this.BM13.Size = new System.Drawing.Size(52, 26);
             this.BM13.TabIndex = 198;
@@ -1867,7 +1868,7 @@
             // 
             this.BM12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM12.Location = new System.Drawing.Point(563, 96);
-            this.BM12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM12.Margin = new System.Windows.Forms.Padding(4);
             this.BM12.Name = "BM12";
             this.BM12.Size = new System.Drawing.Size(52, 26);
             this.BM12.TabIndex = 197;
@@ -1877,7 +1878,7 @@
             // 
             this.BM11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM11.Location = new System.Drawing.Point(563, 64);
-            this.BM11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM11.Margin = new System.Windows.Forms.Padding(4);
             this.BM11.Name = "BM11";
             this.BM11.Size = new System.Drawing.Size(52, 26);
             this.BM11.TabIndex = 196;
@@ -1910,7 +1911,7 @@
             this.O20.Enabled = false;
             this.O20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O20.Location = new System.Drawing.Point(503, 350);
-            this.O20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O20.Margin = new System.Windows.Forms.Padding(4);
             this.O20.Name = "O20";
             this.O20.Size = new System.Drawing.Size(52, 26);
             this.O20.TabIndex = 193;
@@ -1920,7 +1921,7 @@
             this.O19.Enabled = false;
             this.O19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O19.Location = new System.Drawing.Point(503, 318);
-            this.O19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O19.Margin = new System.Windows.Forms.Padding(4);
             this.O19.Name = "O19";
             this.O19.Size = new System.Drawing.Size(52, 26);
             this.O19.TabIndex = 192;
@@ -1930,7 +1931,7 @@
             this.O18.Enabled = false;
             this.O18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O18.Location = new System.Drawing.Point(503, 286);
-            this.O18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O18.Margin = new System.Windows.Forms.Padding(4);
             this.O18.Name = "O18";
             this.O18.Size = new System.Drawing.Size(52, 26);
             this.O18.TabIndex = 191;
@@ -1940,7 +1941,7 @@
             this.O17.Enabled = false;
             this.O17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O17.Location = new System.Drawing.Point(503, 254);
-            this.O17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O17.Margin = new System.Windows.Forms.Padding(4);
             this.O17.Name = "O17";
             this.O17.Size = new System.Drawing.Size(52, 26);
             this.O17.TabIndex = 190;
@@ -1950,7 +1951,7 @@
             this.O16.Enabled = false;
             this.O16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O16.Location = new System.Drawing.Point(503, 223);
-            this.O16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O16.Margin = new System.Windows.Forms.Padding(4);
             this.O16.Name = "O16";
             this.O16.Size = new System.Drawing.Size(52, 26);
             this.O16.TabIndex = 189;
@@ -1960,7 +1961,7 @@
             this.O15.Enabled = false;
             this.O15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O15.Location = new System.Drawing.Point(503, 191);
-            this.O15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O15.Margin = new System.Windows.Forms.Padding(4);
             this.O15.Name = "O15";
             this.O15.Size = new System.Drawing.Size(52, 26);
             this.O15.TabIndex = 188;
@@ -1970,7 +1971,7 @@
             this.O14.Enabled = false;
             this.O14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O14.Location = new System.Drawing.Point(503, 159);
-            this.O14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O14.Margin = new System.Windows.Forms.Padding(4);
             this.O14.Name = "O14";
             this.O14.Size = new System.Drawing.Size(52, 26);
             this.O14.TabIndex = 187;
@@ -1980,7 +1981,7 @@
             this.O13.Enabled = false;
             this.O13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O13.Location = new System.Drawing.Point(503, 127);
-            this.O13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O13.Margin = new System.Windows.Forms.Padding(4);
             this.O13.Name = "O13";
             this.O13.Size = new System.Drawing.Size(52, 26);
             this.O13.TabIndex = 186;
@@ -1990,7 +1991,7 @@
             this.O12.Enabled = false;
             this.O12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O12.Location = new System.Drawing.Point(503, 95);
-            this.O12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O12.Margin = new System.Windows.Forms.Padding(4);
             this.O12.Name = "O12";
             this.O12.Size = new System.Drawing.Size(52, 26);
             this.O12.TabIndex = 185;
@@ -2000,7 +2001,7 @@
             this.O11.Enabled = false;
             this.O11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O11.Location = new System.Drawing.Point(503, 63);
-            this.O11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O11.Margin = new System.Windows.Forms.Padding(4);
             this.O11.Name = "O11";
             this.O11.Size = new System.Drawing.Size(52, 26);
             this.O11.TabIndex = 184;
@@ -2032,7 +2033,7 @@
             this.D20.Enabled = false;
             this.D20.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D20.Location = new System.Drawing.Point(385, 352);
-            this.D20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D20.Margin = new System.Windows.Forms.Padding(4);
             this.D20.Name = "D20";
             this.D20.Size = new System.Drawing.Size(52, 26);
             this.D20.TabIndex = 181;
@@ -2042,7 +2043,7 @@
             this.D19.Enabled = false;
             this.D19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D19.Location = new System.Drawing.Point(385, 320);
-            this.D19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D19.Margin = new System.Windows.Forms.Padding(4);
             this.D19.Name = "D19";
             this.D19.Size = new System.Drawing.Size(52, 26);
             this.D19.TabIndex = 180;
@@ -2052,7 +2053,7 @@
             this.D18.Enabled = false;
             this.D18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D18.Location = new System.Drawing.Point(385, 288);
-            this.D18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D18.Margin = new System.Windows.Forms.Padding(4);
             this.D18.Name = "D18";
             this.D18.Size = new System.Drawing.Size(52, 26);
             this.D18.TabIndex = 179;
@@ -2062,7 +2063,7 @@
             this.D17.Enabled = false;
             this.D17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D17.Location = new System.Drawing.Point(385, 256);
-            this.D17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D17.Margin = new System.Windows.Forms.Padding(4);
             this.D17.Name = "D17";
             this.D17.Size = new System.Drawing.Size(52, 26);
             this.D17.TabIndex = 178;
@@ -2072,7 +2073,7 @@
             this.D16.Enabled = false;
             this.D16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D16.Location = new System.Drawing.Point(385, 225);
-            this.D16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D16.Margin = new System.Windows.Forms.Padding(4);
             this.D16.Name = "D16";
             this.D16.Size = new System.Drawing.Size(52, 26);
             this.D16.TabIndex = 177;
@@ -2082,7 +2083,7 @@
             this.D15.Enabled = false;
             this.D15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D15.Location = new System.Drawing.Point(385, 193);
-            this.D15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D15.Margin = new System.Windows.Forms.Padding(4);
             this.D15.Name = "D15";
             this.D15.Size = new System.Drawing.Size(52, 26);
             this.D15.TabIndex = 176;
@@ -2092,7 +2093,7 @@
             this.D14.Enabled = false;
             this.D14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D14.Location = new System.Drawing.Point(385, 161);
-            this.D14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D14.Margin = new System.Windows.Forms.Padding(4);
             this.D14.Name = "D14";
             this.D14.Size = new System.Drawing.Size(52, 26);
             this.D14.TabIndex = 175;
@@ -2102,7 +2103,7 @@
             this.D13.Enabled = false;
             this.D13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D13.Location = new System.Drawing.Point(385, 129);
-            this.D13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D13.Margin = new System.Windows.Forms.Padding(4);
             this.D13.Name = "D13";
             this.D13.Size = new System.Drawing.Size(52, 26);
             this.D13.TabIndex = 174;
@@ -2112,7 +2113,7 @@
             this.D12.Enabled = false;
             this.D12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D12.Location = new System.Drawing.Point(385, 97);
-            this.D12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D12.Margin = new System.Windows.Forms.Padding(4);
             this.D12.Name = "D12";
             this.D12.Size = new System.Drawing.Size(52, 26);
             this.D12.TabIndex = 173;
@@ -2122,7 +2123,7 @@
             this.D11.Enabled = false;
             this.D11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D11.Location = new System.Drawing.Point(385, 64);
-            this.D11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D11.Margin = new System.Windows.Forms.Padding(4);
             this.D11.Name = "D11";
             this.D11.Size = new System.Drawing.Size(52, 26);
             this.D11.TabIndex = 172;
@@ -2142,7 +2143,7 @@
             // 
             this.BM10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM10.Location = new System.Drawing.Point(223, 354);
-            this.BM10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM10.Margin = new System.Windows.Forms.Padding(4);
             this.BM10.Name = "BM10";
             this.BM10.Size = new System.Drawing.Size(52, 26);
             this.BM10.TabIndex = 170;
@@ -2152,7 +2153,7 @@
             // 
             this.BM9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM9.Location = new System.Drawing.Point(223, 321);
-            this.BM9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM9.Margin = new System.Windows.Forms.Padding(4);
             this.BM9.Name = "BM9";
             this.BM9.Size = new System.Drawing.Size(52, 26);
             this.BM9.TabIndex = 169;
@@ -2162,7 +2163,7 @@
             // 
             this.BM8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM8.Location = new System.Drawing.Point(223, 289);
-            this.BM8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM8.Margin = new System.Windows.Forms.Padding(4);
             this.BM8.Name = "BM8";
             this.BM8.Size = new System.Drawing.Size(52, 26);
             this.BM8.TabIndex = 168;
@@ -2172,7 +2173,7 @@
             // 
             this.BM7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM7.Location = new System.Drawing.Point(223, 257);
-            this.BM7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM7.Margin = new System.Windows.Forms.Padding(4);
             this.BM7.Name = "BM7";
             this.BM7.Size = new System.Drawing.Size(52, 26);
             this.BM7.TabIndex = 167;
@@ -2182,7 +2183,7 @@
             // 
             this.BM6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM6.Location = new System.Drawing.Point(223, 226);
-            this.BM6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM6.Margin = new System.Windows.Forms.Padding(4);
             this.BM6.Name = "BM6";
             this.BM6.Size = new System.Drawing.Size(52, 26);
             this.BM6.TabIndex = 166;
@@ -2192,7 +2193,7 @@
             // 
             this.BM5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM5.Location = new System.Drawing.Point(223, 194);
-            this.BM5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM5.Margin = new System.Windows.Forms.Padding(4);
             this.BM5.Name = "BM5";
             this.BM5.Size = new System.Drawing.Size(52, 26);
             this.BM5.TabIndex = 165;
@@ -2202,7 +2203,7 @@
             // 
             this.BM4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM4.Location = new System.Drawing.Point(223, 162);
-            this.BM4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM4.Margin = new System.Windows.Forms.Padding(4);
             this.BM4.Name = "BM4";
             this.BM4.Size = new System.Drawing.Size(52, 26);
             this.BM4.TabIndex = 164;
@@ -2212,7 +2213,7 @@
             // 
             this.BM3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM3.Location = new System.Drawing.Point(223, 130);
-            this.BM3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM3.Margin = new System.Windows.Forms.Padding(4);
             this.BM3.Name = "BM3";
             this.BM3.Size = new System.Drawing.Size(52, 26);
             this.BM3.TabIndex = 163;
@@ -2222,7 +2223,7 @@
             // 
             this.BM2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM2.Location = new System.Drawing.Point(223, 98);
-            this.BM2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM2.Margin = new System.Windows.Forms.Padding(4);
             this.BM2.Name = "BM2";
             this.BM2.Size = new System.Drawing.Size(52, 26);
             this.BM2.TabIndex = 162;
@@ -2232,7 +2233,7 @@
             // 
             this.BM1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BM1.Location = new System.Drawing.Point(223, 66);
-            this.BM1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BM1.Margin = new System.Windows.Forms.Padding(4);
             this.BM1.Name = "BM1";
             this.BM1.Size = new System.Drawing.Size(52, 26);
             this.BM1.TabIndex = 161;
@@ -2265,7 +2266,7 @@
             this.O10.Enabled = false;
             this.O10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O10.Location = new System.Drawing.Point(163, 353);
-            this.O10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O10.Margin = new System.Windows.Forms.Padding(4);
             this.O10.Name = "O10";
             this.O10.Size = new System.Drawing.Size(52, 26);
             this.O10.TabIndex = 158;
@@ -2275,7 +2276,7 @@
             this.O9.Enabled = false;
             this.O9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O9.Location = new System.Drawing.Point(163, 321);
-            this.O9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O9.Margin = new System.Windows.Forms.Padding(4);
             this.O9.Name = "O9";
             this.O9.Size = new System.Drawing.Size(52, 26);
             this.O9.TabIndex = 157;
@@ -2285,7 +2286,7 @@
             this.O8.Enabled = false;
             this.O8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O8.Location = new System.Drawing.Point(163, 289);
-            this.O8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O8.Margin = new System.Windows.Forms.Padding(4);
             this.O8.Name = "O8";
             this.O8.Size = new System.Drawing.Size(52, 26);
             this.O8.TabIndex = 156;
@@ -2295,7 +2296,7 @@
             this.O7.Enabled = false;
             this.O7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O7.Location = new System.Drawing.Point(163, 257);
-            this.O7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O7.Margin = new System.Windows.Forms.Padding(4);
             this.O7.Name = "O7";
             this.O7.Size = new System.Drawing.Size(52, 26);
             this.O7.TabIndex = 155;
@@ -2305,7 +2306,7 @@
             this.O6.Enabled = false;
             this.O6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O6.Location = new System.Drawing.Point(163, 226);
-            this.O6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O6.Margin = new System.Windows.Forms.Padding(4);
             this.O6.Name = "O6";
             this.O6.Size = new System.Drawing.Size(52, 26);
             this.O6.TabIndex = 154;
@@ -2315,7 +2316,7 @@
             this.O5.Enabled = false;
             this.O5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O5.Location = new System.Drawing.Point(163, 194);
-            this.O5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O5.Margin = new System.Windows.Forms.Padding(4);
             this.O5.Name = "O5";
             this.O5.Size = new System.Drawing.Size(52, 26);
             this.O5.TabIndex = 153;
@@ -2325,7 +2326,7 @@
             this.O4.Enabled = false;
             this.O4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O4.Location = new System.Drawing.Point(163, 162);
-            this.O4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O4.Margin = new System.Windows.Forms.Padding(4);
             this.O4.Name = "O4";
             this.O4.Size = new System.Drawing.Size(52, 26);
             this.O4.TabIndex = 152;
@@ -2335,7 +2336,7 @@
             this.O3.Enabled = false;
             this.O3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O3.Location = new System.Drawing.Point(163, 130);
-            this.O3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O3.Margin = new System.Windows.Forms.Padding(4);
             this.O3.Name = "O3";
             this.O3.Size = new System.Drawing.Size(52, 26);
             this.O3.TabIndex = 151;
@@ -2345,7 +2346,7 @@
             this.O2.Enabled = false;
             this.O2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O2.Location = new System.Drawing.Point(163, 98);
-            this.O2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O2.Margin = new System.Windows.Forms.Padding(4);
             this.O2.Name = "O2";
             this.O2.Size = new System.Drawing.Size(52, 26);
             this.O2.TabIndex = 150;
@@ -2355,7 +2356,7 @@
             this.O1.Enabled = false;
             this.O1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.O1.Location = new System.Drawing.Point(163, 66);
-            this.O1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.O1.Margin = new System.Windows.Forms.Padding(4);
             this.O1.Name = "O1";
             this.O1.Size = new System.Drawing.Size(52, 26);
             this.O1.TabIndex = 149;
@@ -2376,7 +2377,7 @@
             this.D10.Enabled = false;
             this.D10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D10.Location = new System.Drawing.Point(44, 354);
-            this.D10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D10.Margin = new System.Windows.Forms.Padding(4);
             this.D10.Name = "D10";
             this.D10.Size = new System.Drawing.Size(52, 26);
             this.D10.TabIndex = 147;
@@ -2386,7 +2387,7 @@
             this.D9.Enabled = false;
             this.D9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D9.Location = new System.Drawing.Point(44, 322);
-            this.D9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D9.Margin = new System.Windows.Forms.Padding(4);
             this.D9.Name = "D9";
             this.D9.Size = new System.Drawing.Size(52, 26);
             this.D9.TabIndex = 146;
@@ -2396,7 +2397,7 @@
             this.D8.Enabled = false;
             this.D8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D8.Location = new System.Drawing.Point(44, 290);
-            this.D8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D8.Margin = new System.Windows.Forms.Padding(4);
             this.D8.Name = "D8";
             this.D8.Size = new System.Drawing.Size(52, 26);
             this.D8.TabIndex = 145;
@@ -2406,7 +2407,7 @@
             this.D7.Enabled = false;
             this.D7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D7.Location = new System.Drawing.Point(44, 258);
-            this.D7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D7.Margin = new System.Windows.Forms.Padding(4);
             this.D7.Name = "D7";
             this.D7.Size = new System.Drawing.Size(52, 26);
             this.D7.TabIndex = 144;
@@ -2416,7 +2417,7 @@
             this.D6.Enabled = false;
             this.D6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D6.Location = new System.Drawing.Point(44, 228);
-            this.D6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D6.Margin = new System.Windows.Forms.Padding(4);
             this.D6.Name = "D6";
             this.D6.Size = new System.Drawing.Size(52, 26);
             this.D6.TabIndex = 143;
@@ -2426,7 +2427,7 @@
             this.D5.Enabled = false;
             this.D5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D5.Location = new System.Drawing.Point(44, 196);
-            this.D5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D5.Margin = new System.Windows.Forms.Padding(4);
             this.D5.Name = "D5";
             this.D5.Size = new System.Drawing.Size(52, 26);
             this.D5.TabIndex = 142;
@@ -2436,7 +2437,7 @@
             this.D4.Enabled = false;
             this.D4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D4.Location = new System.Drawing.Point(44, 164);
-            this.D4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D4.Margin = new System.Windows.Forms.Padding(4);
             this.D4.Name = "D4";
             this.D4.Size = new System.Drawing.Size(52, 26);
             this.D4.TabIndex = 141;
@@ -2446,7 +2447,7 @@
             this.D3.Enabled = false;
             this.D3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D3.Location = new System.Drawing.Point(44, 132);
-            this.D3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D3.Margin = new System.Windows.Forms.Padding(4);
             this.D3.Name = "D3";
             this.D3.Size = new System.Drawing.Size(52, 26);
             this.D3.TabIndex = 140;
@@ -2456,7 +2457,7 @@
             this.D2.Enabled = false;
             this.D2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D2.Location = new System.Drawing.Point(44, 100);
-            this.D2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D2.Margin = new System.Windows.Forms.Padding(4);
             this.D2.Name = "D2";
             this.D2.Size = new System.Drawing.Size(52, 26);
             this.D2.TabIndex = 139;
@@ -2466,7 +2467,7 @@
             this.D1.Enabled = false;
             this.D1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.D1.Location = new System.Drawing.Point(44, 66);
-            this.D1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.D1.Margin = new System.Windows.Forms.Padding(4);
             this.D1.Name = "D1";
             this.D1.Size = new System.Drawing.Size(52, 26);
             this.D1.TabIndex = 138;
@@ -2475,7 +2476,7 @@
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(1084, 26);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(51, 48);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -2486,7 +2487,7 @@
             // 
             this.back_btn.BackColor = System.Drawing.Color.Lavender;
             this.back_btn.Location = new System.Drawing.Point(24, 567);
-            this.back_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.back_btn.Margin = new System.Windows.Forms.Padding(4);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(100, 28);
             this.back_btn.TabIndex = 83;
@@ -2544,9 +2545,9 @@
             // default_btn
             // 
             this.default_btn.BackColor = System.Drawing.Color.Lavender;
-            this.default_btn.Location = new System.Drawing.Point(699, 461);
+            this.default_btn.Location = new System.Drawing.Point(949, 354);
             this.default_btn.Name = "default_btn";
-            this.default_btn.Size = new System.Drawing.Size(196, 23);
+            this.default_btn.Size = new System.Drawing.Size(228, 28);
             this.default_btn.TabIndex = 144;
             this.default_btn.Text = "Berechnung wiederherstellen";
             this.default_btn.UseVisualStyleBackColor = false;
@@ -2558,7 +2559,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.default_btn);
             this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
@@ -2572,7 +2572,7 @@
             this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Kaufteildisposition";
             this.Size = new System.Drawing.Size(1333, 615);
             this.groupBox1.ResumeLayout(false);

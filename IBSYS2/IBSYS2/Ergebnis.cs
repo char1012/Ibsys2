@@ -193,7 +193,7 @@ namespace IBSYS2
 
             if (storevalues[2] >= 250000)
             {
-                textBox2.BackColor = Color.Red;
+                textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml("#f09c9c");
             }
 
             // Strings formatieren
@@ -689,21 +689,12 @@ namespace IBSYS2
 
         private void End_btn_Click(object sender, EventArgs e)
         {
-            // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage(sprache);
-            message.Show(this);
-            message.Location = new Point(500, 300);
-            message.Update();
-            this.Enabled = false;
-
-            // TODO - ExportXMLClass aufrufen
             try
             {
                 System.Windows.Forms.FolderBrowserDialog objDialog = new FolderBrowserDialog();
                 if (objDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     String pfad = objDialog.SelectedPath;
-                    MessageBox.Show("Neuer Pfad: " + objDialog.SelectedPath);
                     ExportXMLClass exp = new ExportXMLClass();
                     exp.XMLExport(pfad,kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
                     MessageBox.Show("Die Datei wurde exportiert und ist verfügbar unter: "+pfad, "Export erfolgt");
@@ -713,10 +704,6 @@ namespace IBSYS2
             {
                 MessageBox.Show("" + ex);
             }
-            message.Close();
-            this.Enabled = true;
-
-            // TODO - Speicherort fuer XML-Datei auswaehlen lassen
         }
     }
 }

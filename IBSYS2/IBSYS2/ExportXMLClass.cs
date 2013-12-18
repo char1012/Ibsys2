@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Data.OleDb;
 using System.Xml.Linq;
+using System.Threading;
+using System.Globalization;
 
 namespace IBSYS2
 {
@@ -79,7 +81,20 @@ namespace IBSYS2
                 myXmlTextWriter.WriteStartElement("item", null);
                 for (int x = 0; x < 4; x++)
                 {
-                    myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));//selldirect_Array_Values[i, x]);
+                    if (x == 0)
+                    {
+                        direktverkaeufe[i, x] = i + 1;
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));
+                    }
+                    else if (x == 2 || x == 3)
+                    {
+                        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], direktverkaeufe[i, x].ToString("F"));
+                    }
+                    else
+                    {
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));//selldirect_Array_Values[i, x]);
+                    }
                     //MessageBox.Show("Selldirect - Feld" + x + ": " + selldirect_Array_Fields[x] + ", Wert: " + Convert.ToString(direktverkaeufe[i, x]));
                 }
                 myXmlTextWriter.WriteEndElement();

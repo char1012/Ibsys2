@@ -16,6 +16,12 @@ namespace IBSYS2
 {
     public partial class Kaufteildisposition : UserControl
     {
+        // Tooltip:
+        // Die Mindestmenge zeigt, wieviel Sie mindestens bestellen muessen, dass die Menge für die Wiederbeschaffungszeit reicht.
+        // Die optimale Bestellmenge richtet sich nach der Formel zur optimalen Bestellmenge und stellt die kostengünstigste Bestellmenge dar.
+        // Sie müssen jedoch beachten, dass diese Formel nicht die sprungfixen Lagerhaltungskosten einkalkuliert.
+        // Als Bestellart können Sie entweder N(ormal) oder E(xpress) eingeben.
+
         private OleDbConnection myconn;
         private String sprache = "de";
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -582,6 +588,8 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+
+
             // Datenweitergabe
 
             // Werte aus TextBoxen in kapazitaet auslesen
@@ -653,11 +661,30 @@ namespace IBSYS2
                     kaufauftraege[i, 5] = 0;
                 }
             }
+            bool t = true;
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                if (kaufauftraege[i, 4] != 0 & kaufauftraege[i, 5] == 0)
+                {
+                    t = false;
+                }
+                else if (kaufauftraege[i, 4] == 0 & kaufauftraege[i, 5] != 0)
+                {
+                    t = false;
+                }
+            }
 
-            this.Controls.Clear();
-            UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(ergebnis);
+            if (t == true)
+            {
+                this.Controls.Clear();
+                UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(ergebnis);
+            }
+            else
+            {
+                MessageBox.Show("Ein Wert fehlt! Bitte prüfen Sie Ihre Eingaben.");
+            }
         }
 
         public void sprachen()
@@ -676,6 +703,7 @@ namespace IBSYS2
                 //EN Buttons
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.EN_BTN_BACK);
+                default_btn.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
@@ -718,6 +746,7 @@ namespace IBSYS2
                 //DE Buttons
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.DE_BTN_BACK);
+                default_btn.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
@@ -1341,6 +1370,7 @@ namespace IBSYS2
                         back_btn.Enabled = false;
                         break;
                     }
+
                 }
                 if (okay == true)
                 {

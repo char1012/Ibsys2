@@ -18,7 +18,7 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        bool tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
+        bool tv1 = true, tv2 = true, tv3 = true, tP1 = false, tP2 = false, tP3 = false, tE1 = false, tE2 = false, tE3 = false, tE4 = false, tE5 = false, tE6 = false, tE7 = false, tE8 = false, tE9 = false, tE10 = false, tE11 = false, tE12 = false, tE13 = false, tE14 = false, tE15 = false, tE16 = false, tE17 = false, tE18 = false, tE19 = false, tE20 = false, tE21 = false, tE22 = false, tE23 = false, tE24 = false, tE25 = false, tE26 = false, tE27 = false, tE28 = false, tE29 = false, tE30 = false, tE31 = false, tE32 = false, tE33 = false;
         private String sprache = "de";
 
         // Datenweitergabe:
@@ -484,7 +484,7 @@ namespace IBSYS2
                 {
                     Eingabe_P2.ForeColor = Color.Black;
                     tP2 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -528,7 +528,7 @@ namespace IBSYS2
                 {
                     Eingabe_P1.ForeColor = Color.Black;
                     tP1 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -572,7 +572,7 @@ namespace IBSYS2
                 {
                     Eingabe_P3.ForeColor = Color.Black;
                     tP3 = true;
-                    if (tP1 & tP2 & tP3)
+                    if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
                         btn_back.Enabled = true;
@@ -821,6 +821,138 @@ namespace IBSYS2
                     else
                     {
                         continue_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP1_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP1.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv3 = false;
+            }
+            else
+            {
+                verhP1.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP1.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP1.ForeColor = Color.Red;
+                        okay = false;
+                        tv3 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP1.ForeColor = Color.Black;
+                    tv3 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        eteileberechnen_btn.Enabled = false;
+                        continue_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP2_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP2.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv2 = false;
+            }
+            else
+            {
+                verhP2.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP2.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP2.ForeColor = Color.Red;
+                        okay = false;
+                        tv2 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP2.ForeColor = Color.Black;
+                    tv2 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void verhP3_TextChanged(object sender, EventArgs e)
+        {
+            if (verhP3.Text == "")
+            {
+                continue_btn.Enabled = false;
+                eteileberechnen_btn.Enabled = false;
+                tv3 = false;
+            }
+            else
+            {
+                verhP3.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in verhP3.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        verhP3.ForeColor = Color.Red;
+                        okay = false;
+                        tv3 = false;
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    verhP3.ForeColor = Color.Black;
+                    tv3 = true;
+                    if (tv1 & tv2 & tv3 & tP1 & tP2 & tP3)
+                    {
+                        continue_btn.Enabled = true;
+                        eteileberechnen_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        eteileberechnen_btn.Enabled = false;
                     }
                 }
             }
@@ -1936,6 +2068,10 @@ namespace IBSYS2
                 System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
                 ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
                 ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
+
+                lbl_ver1.Text = "Ratio";
+                lbl_ver2.Text = "Ratio";
+                lbl_ver3.Text = "Ratio";
             }
             else
             {
@@ -1965,6 +2101,10 @@ namespace IBSYS2
                 System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
                 ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
+
+                lbl_ver1.Text = "Verhältnis";
+                lbl_ver2.Text = "Verhältnis";
+                lbl_ver3.Text = "Verhältnis";
             }
         }
 
@@ -2591,5 +2731,7 @@ namespace IBSYS2
                 E562.ForeColor = Color.Red;
             }
         }
+
+
     }
 }

@@ -97,6 +97,13 @@ namespace IBSYS2
             eteileberechnen_btn.Enabled = false;
             btn_back.Enabled = false;
 
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < sicherheitsbest.GetLength(0); i++)
             {
@@ -185,8 +192,10 @@ namespace IBSYS2
                     }
                 }
 
-
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         public void setButtons(Boolean b)

@@ -116,6 +116,13 @@ namespace IBSYS2
             // aktPeriode = aktuelle Periode, periode = Periode aus XML (letzte Periode)
             periode = aktPeriode - 1;
 
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < produktion.GetLength(0); i++)
             {
@@ -148,6 +155,9 @@ namespace IBSYS2
                 berechneProduktion();
                 ProduktionETeile();
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         private void check()

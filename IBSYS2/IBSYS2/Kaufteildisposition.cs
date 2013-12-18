@@ -186,6 +186,12 @@ namespace IBSYS2
                         }
                         this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellart;
                     }
+                    else
+                    {
+                        // um eventuell vorhandene Werte zu loeschen
+                        this.Controls.Find("BM" + k.ToString(), true)[0].Text = "";
+                        this.Controls.Find("B" + k.ToString(), true)[0].Text = "";
+                    }
                 }
 
                 message.Close();
@@ -275,6 +281,11 @@ namespace IBSYS2
                 {
                     bestellartString = "N";
                 }
+                else
+                {
+                    // um eventuell vorhandene Werte zu loeschen
+                    bestellartString = "";
+                }
                 bestellart[i, 1] = bestellartString;
                 int k = i + 1;
                 this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellartString;
@@ -340,6 +351,11 @@ namespace IBSYS2
                     
                     this.Controls.Find("BM" + k.ToString(), true)[0].Text = bestellmenge.ToString();
                 }
+                else
+                {
+                    // um eventuell vorhandene Werte zu loeschen
+                    this.Controls.Find("BM" + k.ToString(), true)[0].Text = "";
+            }
             }
 
             message.Close();
@@ -3372,6 +3388,11 @@ namespace IBSYS2
                     back_btn.Enabled = false;
                 }
             }  
+        }
+
+        private void default_btn_Click(object sender, EventArgs e)
+        {
+            setValues();
         }
 
     }

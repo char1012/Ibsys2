@@ -232,6 +232,7 @@
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
+            this.default_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
@@ -2540,12 +2541,24 @@
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
             this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
             // 
+            // default_btn
+            // 
+            this.default_btn.BackColor = System.Drawing.Color.Lavender;
+            this.default_btn.Location = new System.Drawing.Point(699, 461);
+            this.default_btn.Name = "default_btn";
+            this.default_btn.Size = new System.Drawing.Size(196, 23);
+            this.default_btn.TabIndex = 144;
+            this.default_btn.Text = "Berechnung wiederherstellen";
+            this.default_btn.UseVisualStyleBackColor = false;
+            this.default_btn.Click += new System.EventHandler(this.default_btn_Click);
+            // 
             // Kaufteildisposition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.default_btn);
             this.Controls.Add(this.lbl_Produktionsreihenfolge);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
@@ -2778,5 +2791,6 @@
         private System.Windows.Forms.TextBox D23;
         private System.Windows.Forms.TextBox D22;
         private System.Windows.Forms.TextBox D21;
+        private System.Windows.Forms.Button default_btn;
     }
 }

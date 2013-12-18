@@ -191,13 +191,13 @@ namespace IBSYS2
 
             storevalues = calculateStorevalue(periode, auftraege, direktverkaeufe, produktion);
 
-            if (storevalues[1] >= 250000)
+            if (storevalues[2] >= 250000)
             {
-                textBox2.ForeColor = Color.Red;
+                textBox2.BackColor = Color.Red;
             }
 
             // Strings formatieren
-            String s1 = storevalues[0].ToString();
+            String s1 = storevalues[0].ToString(); // Anfangswert
             int count1 = s1.Length;
             if (count1 > 3)
             {
@@ -220,10 +220,11 @@ namespace IBSYS2
                     neu1 += ".";
                     neu1 += s1.Substring(3, 3);
                 }
+                neu1 += " €";
                 textBox1.Text = neu1;
             }
 
-            String s2 = storevalues[1].ToString();
+            String s2 = storevalues[2].ToString(); // Mittelwert
             int count2 = s2.Length;
             if (count1 > 3)
             {
@@ -246,10 +247,11 @@ namespace IBSYS2
                     neu2 += ".";
                     neu2 += s2.Substring(3, 3);
                 }
-                textBox1.Text = neu2;
+                neu2 += " €";
+                textBox2.Text = neu2;
             }
 
-            String s3 = storevalues[2].ToString();
+            String s3 = storevalues[2].ToString(); // Endwert
             int count3 = s3.Length;
             if (count3 > 3)
             {
@@ -272,7 +274,8 @@ namespace IBSYS2
                     neu3 += ".";
                     neu3 += s3.Substring(3, 3);
                 }
-                textBox1.Text = neu3;
+                neu3 += " €";
+                textBox3.Text = neu3;
             }
         }
 

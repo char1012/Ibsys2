@@ -125,6 +125,7 @@
             this.lbl_Sicherheitsbestand = new System.Windows.Forms.Label();
             this.lbl_Startseite = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.default_btn = new System.Windows.Forms.Button();
             this.labelBA3 = new System.Windows.Forms.Label();
             this.labelBM3 = new System.Windows.Forms.Label();
             this.labelOP3 = new System.Windows.Forms.Label();
@@ -232,7 +233,6 @@
             this.pic_de = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Produktionsreihenfolge = new System.Windows.Forms.Label();
-            this.default_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
@@ -867,7 +867,7 @@
             this.B29.Margin = new System.Windows.Forms.Padding(4);
             this.B29.Name = "B29";
             this.B29.Size = new System.Drawing.Size(43, 26);
-            this.B29.TabIndex = 120;
+            this.B29.TabIndex = 58;
             this.B29.TextChanged += new System.EventHandler(this.B29_TextChanged);
             // 
             // B28
@@ -877,7 +877,7 @@
             this.B28.Margin = new System.Windows.Forms.Padding(4);
             this.B28.Name = "B28";
             this.B28.Size = new System.Drawing.Size(43, 26);
-            this.B28.TabIndex = 119;
+            this.B28.TabIndex = 56;
             this.B28.TextChanged += new System.EventHandler(this.B28_TextChanged);
             // 
             // B27
@@ -887,7 +887,7 @@
             this.B27.Margin = new System.Windows.Forms.Padding(4);
             this.B27.Name = "B27";
             this.B27.Size = new System.Drawing.Size(43, 26);
-            this.B27.TabIndex = 118;
+            this.B27.TabIndex = 54;
             this.B27.TextChanged += new System.EventHandler(this.B27_TextChanged);
             // 
             // B26
@@ -897,7 +897,7 @@
             this.B26.Margin = new System.Windows.Forms.Padding(4);
             this.B26.Name = "B26";
             this.B26.Size = new System.Drawing.Size(43, 26);
-            this.B26.TabIndex = 114;
+            this.B26.TabIndex = 52;
             this.B26.TextChanged += new System.EventHandler(this.B26_TextChanged);
             // 
             // B25
@@ -907,7 +907,7 @@
             this.B25.Margin = new System.Windows.Forms.Padding(4);
             this.B25.Name = "B25";
             this.B25.Size = new System.Drawing.Size(43, 26);
-            this.B25.TabIndex = 113;
+            this.B25.TabIndex = 50;
             this.B25.TextChanged += new System.EventHandler(this.B25_TextChanged);
             // 
             // B24
@@ -917,7 +917,7 @@
             this.B24.Margin = new System.Windows.Forms.Padding(4);
             this.B24.Name = "B24";
             this.B24.Size = new System.Drawing.Size(43, 26);
-            this.B24.TabIndex = 109;
+            this.B24.TabIndex = 48;
             this.B24.TextChanged += new System.EventHandler(this.B24_TextChanged);
             // 
             // B23
@@ -927,7 +927,7 @@
             this.B23.Margin = new System.Windows.Forms.Padding(4);
             this.B23.Name = "B23";
             this.B23.Size = new System.Drawing.Size(43, 26);
-            this.B23.TabIndex = 108;
+            this.B23.TabIndex = 46;
             this.B23.TextChanged += new System.EventHandler(this.B23_TextChanged);
             // 
             // B22
@@ -937,7 +937,7 @@
             this.B22.Margin = new System.Windows.Forms.Padding(4);
             this.B22.Name = "B22";
             this.B22.Size = new System.Drawing.Size(43, 26);
-            this.B22.TabIndex = 107;
+            this.B22.TabIndex = 44;
             this.B22.TextChanged += new System.EventHandler(this.B22_TextChanged);
             // 
             // B21
@@ -947,7 +947,7 @@
             this.B21.Margin = new System.Windows.Forms.Padding(4);
             this.B21.Name = "B21";
             this.B21.Size = new System.Drawing.Size(43, 26);
-            this.B21.TabIndex = 106;
+            this.B21.TabIndex = 42;
             this.B21.TextChanged += new System.EventHandler(this.B21_TextChanged);
             // 
             // B20
@@ -957,7 +957,7 @@
             this.B20.Margin = new System.Windows.Forms.Padding(4);
             this.B20.Name = "B20";
             this.B20.Size = new System.Drawing.Size(43, 26);
-            this.B20.TabIndex = 105;
+            this.B20.TabIndex = 40;
             this.B20.TextChanged += new System.EventHandler(this.B20_TextChanged);
             // 
             // B19
@@ -967,7 +967,7 @@
             this.B19.Margin = new System.Windows.Forms.Padding(4);
             this.B19.Name = "B19";
             this.B19.Size = new System.Drawing.Size(43, 26);
-            this.B19.TabIndex = 104;
+            this.B19.TabIndex = 38;
             this.B19.TextChanged += new System.EventHandler(this.B19_TextChanged);
             // 
             // B18
@@ -977,7 +977,7 @@
             this.B18.Margin = new System.Windows.Forms.Padding(4);
             this.B18.Name = "B18";
             this.B18.Size = new System.Drawing.Size(43, 26);
-            this.B18.TabIndex = 103;
+            this.B18.TabIndex = 36;
             this.B18.TextChanged += new System.EventHandler(this.B18_TextChanged);
             // 
             // B17
@@ -987,7 +987,7 @@
             this.B17.Margin = new System.Windows.Forms.Padding(4);
             this.B17.Name = "B17";
             this.B17.Size = new System.Drawing.Size(43, 26);
-            this.B17.TabIndex = 102;
+            this.B17.TabIndex = 34;
             this.B17.TextChanged += new System.EventHandler(this.B17_TextChanged);
             // 
             // B16
@@ -997,7 +997,7 @@
             this.B16.Margin = new System.Windows.Forms.Padding(4);
             this.B16.Name = "B16";
             this.B16.Size = new System.Drawing.Size(43, 26);
-            this.B16.TabIndex = 101;
+            this.B16.TabIndex = 32;
             this.B16.TextChanged += new System.EventHandler(this.B16_TextChanged);
             // 
             // B15
@@ -1007,7 +1007,7 @@
             this.B15.Margin = new System.Windows.Forms.Padding(4);
             this.B15.Name = "B15";
             this.B15.Size = new System.Drawing.Size(43, 26);
-            this.B15.TabIndex = 100;
+            this.B15.TabIndex = 30;
             this.B15.TextChanged += new System.EventHandler(this.B15_TextChanged);
             // 
             // B14
@@ -1017,7 +1017,7 @@
             this.B14.Margin = new System.Windows.Forms.Padding(4);
             this.B14.Name = "B14";
             this.B14.Size = new System.Drawing.Size(43, 26);
-            this.B14.TabIndex = 99;
+            this.B14.TabIndex = 28;
             this.B14.TextChanged += new System.EventHandler(this.B14_TextChanged);
             // 
             // B13
@@ -1027,7 +1027,7 @@
             this.B13.Margin = new System.Windows.Forms.Padding(4);
             this.B13.Name = "B13";
             this.B13.Size = new System.Drawing.Size(43, 26);
-            this.B13.TabIndex = 98;
+            this.B13.TabIndex = 26;
             this.B13.TextChanged += new System.EventHandler(this.B13_TextChanged);
             // 
             // B12
@@ -1037,7 +1037,7 @@
             this.B12.Margin = new System.Windows.Forms.Padding(4);
             this.B12.Name = "B12";
             this.B12.Size = new System.Drawing.Size(43, 26);
-            this.B12.TabIndex = 97;
+            this.B12.TabIndex = 24;
             this.B12.TextChanged += new System.EventHandler(this.B12_TextChanged);
             // 
             // B11
@@ -1047,7 +1047,7 @@
             this.B11.Margin = new System.Windows.Forms.Padding(4);
             this.B11.Name = "B11";
             this.B11.Size = new System.Drawing.Size(43, 26);
-            this.B11.TabIndex = 96;
+            this.B11.TabIndex = 22;
             this.B11.TextChanged += new System.EventHandler(this.B11_TextChanged);
             // 
             // B10
@@ -1057,7 +1057,7 @@
             this.B10.Margin = new System.Windows.Forms.Padding(4);
             this.B10.Name = "B10";
             this.B10.Size = new System.Drawing.Size(43, 26);
-            this.B10.TabIndex = 95;
+            this.B10.TabIndex = 20;
             this.B10.TextChanged += new System.EventHandler(this.B10_TextChanged);
             // 
             // B9
@@ -1067,7 +1067,7 @@
             this.B9.Margin = new System.Windows.Forms.Padding(4);
             this.B9.Name = "B9";
             this.B9.Size = new System.Drawing.Size(43, 26);
-            this.B9.TabIndex = 94;
+            this.B9.TabIndex = 18;
             this.B9.TextChanged += new System.EventHandler(this.B9_TextChanged);
             // 
             // B8
@@ -1077,7 +1077,7 @@
             this.B8.Margin = new System.Windows.Forms.Padding(4);
             this.B8.Name = "B8";
             this.B8.Size = new System.Drawing.Size(43, 26);
-            this.B8.TabIndex = 93;
+            this.B8.TabIndex = 16;
             this.B8.TextChanged += new System.EventHandler(this.B8_TextChanged);
             // 
             // B7
@@ -1087,7 +1087,7 @@
             this.B7.Margin = new System.Windows.Forms.Padding(4);
             this.B7.Name = "B7";
             this.B7.Size = new System.Drawing.Size(43, 26);
-            this.B7.TabIndex = 89;
+            this.B7.TabIndex = 14;
             this.B7.TextChanged += new System.EventHandler(this.B7_TextChanged);
             // 
             // B6
@@ -1097,7 +1097,7 @@
             this.B6.Margin = new System.Windows.Forms.Padding(4);
             this.B6.Name = "B6";
             this.B6.Size = new System.Drawing.Size(43, 26);
-            this.B6.TabIndex = 88;
+            this.B6.TabIndex = 12;
             this.B6.TextChanged += new System.EventHandler(this.B6_TextChanged);
             // 
             // B5
@@ -1107,7 +1107,7 @@
             this.B5.Margin = new System.Windows.Forms.Padding(4);
             this.B5.Name = "B5";
             this.B5.Size = new System.Drawing.Size(43, 26);
-            this.B5.TabIndex = 86;
+            this.B5.TabIndex = 10;
             this.B5.TextChanged += new System.EventHandler(this.B5_TextChanged);
             // 
             // B4
@@ -1117,7 +1117,7 @@
             this.B4.Margin = new System.Windows.Forms.Padding(4);
             this.B4.Name = "B4";
             this.B4.Size = new System.Drawing.Size(43, 26);
-            this.B4.TabIndex = 85;
+            this.B4.TabIndex = 8;
             this.B4.TextChanged += new System.EventHandler(this.B4_TextChanged);
             // 
             // B3
@@ -1127,7 +1127,7 @@
             this.B3.Margin = new System.Windows.Forms.Padding(4);
             this.B3.Name = "B3";
             this.B3.Size = new System.Drawing.Size(43, 26);
-            this.B3.TabIndex = 84;
+            this.B3.TabIndex = 6;
             this.B3.TextChanged += new System.EventHandler(this.B3_TextChanged);
             // 
             // B2
@@ -1137,7 +1137,7 @@
             this.B2.Margin = new System.Windows.Forms.Padding(4);
             this.B2.Name = "B2";
             this.B2.Size = new System.Drawing.Size(43, 26);
-            this.B2.TabIndex = 83;
+            this.B2.TabIndex = 4;
             this.B2.TextChanged += new System.EventHandler(this.B2_TextChanged);
             // 
             // B1
@@ -1147,7 +1147,7 @@
             this.B1.Margin = new System.Windows.Forms.Padding(4);
             this.B1.Name = "B1";
             this.B1.Size = new System.Drawing.Size(43, 26);
-            this.B1.TabIndex = 82;
+            this.B1.TabIndex = 2;
             this.B1.TextChanged += new System.EventHandler(this.B1_TextChanged);
             // 
             // continue_btn
@@ -1448,6 +1448,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kaufteildisposition";
             // 
+            // default_btn
+            // 
+            this.default_btn.BackColor = System.Drawing.Color.Lavender;
+            this.default_btn.Location = new System.Drawing.Point(907, 354);
+            this.default_btn.Name = "default_btn";
+            this.default_btn.Size = new System.Drawing.Size(270, 28);
+            this.default_btn.TabIndex = 144;
+            this.default_btn.Text = "Berechnung wiederherstellen";
+            this.default_btn.UseVisualStyleBackColor = false;
+            this.default_btn.Click += new System.EventHandler(this.default_btn_Click);
+            // 
             // labelBA3
             // 
             this.labelBA3.AutoSize = true;
@@ -1499,7 +1510,7 @@
             this.BM29.Margin = new System.Windows.Forms.Padding(4);
             this.BM29.Name = "BM29";
             this.BM29.Size = new System.Drawing.Size(52, 26);
-            this.BM29.TabIndex = 237;
+            this.BM29.TabIndex = 57;
             this.BM29.TextChanged += new System.EventHandler(this.BM29_TextChanged);
             // 
             // BM28
@@ -1509,7 +1520,7 @@
             this.BM28.Margin = new System.Windows.Forms.Padding(4);
             this.BM28.Name = "BM28";
             this.BM28.Size = new System.Drawing.Size(52, 26);
-            this.BM28.TabIndex = 236;
+            this.BM28.TabIndex = 55;
             this.BM28.TextChanged += new System.EventHandler(this.BM28_TextChanged);
             // 
             // BM27
@@ -1519,7 +1530,7 @@
             this.BM27.Margin = new System.Windows.Forms.Padding(4);
             this.BM27.Name = "BM27";
             this.BM27.Size = new System.Drawing.Size(52, 26);
-            this.BM27.TabIndex = 235;
+            this.BM27.TabIndex = 53;
             this.BM27.TextChanged += new System.EventHandler(this.BM27_TextChanged);
             // 
             // BM26
@@ -1529,7 +1540,7 @@
             this.BM26.Margin = new System.Windows.Forms.Padding(4);
             this.BM26.Name = "BM26";
             this.BM26.Size = new System.Drawing.Size(52, 26);
-            this.BM26.TabIndex = 234;
+            this.BM26.TabIndex = 51;
             this.BM26.TextChanged += new System.EventHandler(this.BM26_TextChanged);
             // 
             // BM25
@@ -1539,7 +1550,7 @@
             this.BM25.Margin = new System.Windows.Forms.Padding(4);
             this.BM25.Name = "BM25";
             this.BM25.Size = new System.Drawing.Size(52, 26);
-            this.BM25.TabIndex = 233;
+            this.BM25.TabIndex = 49;
             this.BM25.TextChanged += new System.EventHandler(this.BM25_TextChanged);
             // 
             // BM24
@@ -1549,7 +1560,7 @@
             this.BM24.Margin = new System.Windows.Forms.Padding(4);
             this.BM24.Name = "BM24";
             this.BM24.Size = new System.Drawing.Size(52, 26);
-            this.BM24.TabIndex = 232;
+            this.BM24.TabIndex = 47;
             this.BM24.TextChanged += new System.EventHandler(this.BM24_TextChanged);
             // 
             // BM23
@@ -1559,7 +1570,7 @@
             this.BM23.Margin = new System.Windows.Forms.Padding(4);
             this.BM23.Name = "BM23";
             this.BM23.Size = new System.Drawing.Size(52, 26);
-            this.BM23.TabIndex = 231;
+            this.BM23.TabIndex = 45;
             this.BM23.TextChanged += new System.EventHandler(this.BM23_TextChanged);
             // 
             // BM22
@@ -1569,7 +1580,7 @@
             this.BM22.Margin = new System.Windows.Forms.Padding(4);
             this.BM22.Name = "BM22";
             this.BM22.Size = new System.Drawing.Size(52, 26);
-            this.BM22.TabIndex = 230;
+            this.BM22.TabIndex = 43;
             this.BM22.TextChanged += new System.EventHandler(this.BM22_TextChanged);
             // 
             // BM21
@@ -1579,7 +1590,7 @@
             this.BM21.Margin = new System.Windows.Forms.Padding(4);
             this.BM21.Name = "BM21";
             this.BM21.Size = new System.Drawing.Size(52, 26);
-            this.BM21.TabIndex = 229;
+            this.BM21.TabIndex = 41;
             this.BM21.TextChanged += new System.EventHandler(this.BM21_TextChanged);
             // 
             // O29
@@ -1791,7 +1802,7 @@
             this.BM20.Margin = new System.Windows.Forms.Padding(4);
             this.BM20.Name = "BM20";
             this.BM20.Size = new System.Drawing.Size(52, 26);
-            this.BM20.TabIndex = 205;
+            this.BM20.TabIndex = 39;
             this.BM20.TextChanged += new System.EventHandler(this.BM20_TextChanged);
             // 
             // BM19
@@ -1801,7 +1812,7 @@
             this.BM19.Margin = new System.Windows.Forms.Padding(4);
             this.BM19.Name = "BM19";
             this.BM19.Size = new System.Drawing.Size(52, 26);
-            this.BM19.TabIndex = 204;
+            this.BM19.TabIndex = 37;
             this.BM19.TextChanged += new System.EventHandler(this.BM19_TextChanged);
             // 
             // BM18
@@ -1811,7 +1822,7 @@
             this.BM18.Margin = new System.Windows.Forms.Padding(4);
             this.BM18.Name = "BM18";
             this.BM18.Size = new System.Drawing.Size(52, 26);
-            this.BM18.TabIndex = 203;
+            this.BM18.TabIndex = 35;
             this.BM18.TextChanged += new System.EventHandler(this.BM18_TextChanged);
             // 
             // BM17
@@ -1821,7 +1832,7 @@
             this.BM17.Margin = new System.Windows.Forms.Padding(4);
             this.BM17.Name = "BM17";
             this.BM17.Size = new System.Drawing.Size(52, 26);
-            this.BM17.TabIndex = 202;
+            this.BM17.TabIndex = 33;
             this.BM17.TextChanged += new System.EventHandler(this.BM17_TextChanged);
             // 
             // BM16
@@ -1831,7 +1842,7 @@
             this.BM16.Margin = new System.Windows.Forms.Padding(4);
             this.BM16.Name = "BM16";
             this.BM16.Size = new System.Drawing.Size(52, 26);
-            this.BM16.TabIndex = 201;
+            this.BM16.TabIndex = 31;
             this.BM16.TextChanged += new System.EventHandler(this.BM16_TextChanged);
             // 
             // BM15
@@ -1841,7 +1852,7 @@
             this.BM15.Margin = new System.Windows.Forms.Padding(4);
             this.BM15.Name = "BM15";
             this.BM15.Size = new System.Drawing.Size(52, 26);
-            this.BM15.TabIndex = 200;
+            this.BM15.TabIndex = 29;
             this.BM15.TextChanged += new System.EventHandler(this.BM15_TextChanged);
             // 
             // BM14
@@ -1851,7 +1862,7 @@
             this.BM14.Margin = new System.Windows.Forms.Padding(4);
             this.BM14.Name = "BM14";
             this.BM14.Size = new System.Drawing.Size(52, 26);
-            this.BM14.TabIndex = 199;
+            this.BM14.TabIndex = 27;
             this.BM14.TextChanged += new System.EventHandler(this.BM14_TextChanged);
             // 
             // BM13
@@ -1861,7 +1872,7 @@
             this.BM13.Margin = new System.Windows.Forms.Padding(4);
             this.BM13.Name = "BM13";
             this.BM13.Size = new System.Drawing.Size(52, 26);
-            this.BM13.TabIndex = 198;
+            this.BM13.TabIndex = 25;
             this.BM13.TextChanged += new System.EventHandler(this.BM13_TextChanged);
             // 
             // BM12
@@ -1871,7 +1882,7 @@
             this.BM12.Margin = new System.Windows.Forms.Padding(4);
             this.BM12.Name = "BM12";
             this.BM12.Size = new System.Drawing.Size(52, 26);
-            this.BM12.TabIndex = 197;
+            this.BM12.TabIndex = 23;
             this.BM12.TextChanged += new System.EventHandler(this.BM12_TextChanged);
             // 
             // BM11
@@ -1881,7 +1892,7 @@
             this.BM11.Margin = new System.Windows.Forms.Padding(4);
             this.BM11.Name = "BM11";
             this.BM11.Size = new System.Drawing.Size(52, 26);
-            this.BM11.TabIndex = 196;
+            this.BM11.TabIndex = 21;
             this.BM11.TextChanged += new System.EventHandler(this.BM11_TextChanged);
             // 
             // labelBM2
@@ -2146,7 +2157,7 @@
             this.BM10.Margin = new System.Windows.Forms.Padding(4);
             this.BM10.Name = "BM10";
             this.BM10.Size = new System.Drawing.Size(52, 26);
-            this.BM10.TabIndex = 170;
+            this.BM10.TabIndex = 19;
             this.BM10.TextChanged += new System.EventHandler(this.BM10_TextChanged);
             // 
             // BM9
@@ -2156,7 +2167,7 @@
             this.BM9.Margin = new System.Windows.Forms.Padding(4);
             this.BM9.Name = "BM9";
             this.BM9.Size = new System.Drawing.Size(52, 26);
-            this.BM9.TabIndex = 169;
+            this.BM9.TabIndex = 17;
             this.BM9.TextChanged += new System.EventHandler(this.BM9_TextChanged);
             // 
             // BM8
@@ -2166,7 +2177,7 @@
             this.BM8.Margin = new System.Windows.Forms.Padding(4);
             this.BM8.Name = "BM8";
             this.BM8.Size = new System.Drawing.Size(52, 26);
-            this.BM8.TabIndex = 168;
+            this.BM8.TabIndex = 15;
             this.BM8.TextChanged += new System.EventHandler(this.BM8_TextChanged);
             // 
             // BM7
@@ -2176,7 +2187,7 @@
             this.BM7.Margin = new System.Windows.Forms.Padding(4);
             this.BM7.Name = "BM7";
             this.BM7.Size = new System.Drawing.Size(52, 26);
-            this.BM7.TabIndex = 167;
+            this.BM7.TabIndex = 13;
             this.BM7.TextChanged += new System.EventHandler(this.BM7_TextChanged);
             // 
             // BM6
@@ -2186,7 +2197,7 @@
             this.BM6.Margin = new System.Windows.Forms.Padding(4);
             this.BM6.Name = "BM6";
             this.BM6.Size = new System.Drawing.Size(52, 26);
-            this.BM6.TabIndex = 166;
+            this.BM6.TabIndex = 11;
             this.BM6.TextChanged += new System.EventHandler(this.BM6_TextChanged);
             // 
             // BM5
@@ -2196,7 +2207,7 @@
             this.BM5.Margin = new System.Windows.Forms.Padding(4);
             this.BM5.Name = "BM5";
             this.BM5.Size = new System.Drawing.Size(52, 26);
-            this.BM5.TabIndex = 165;
+            this.BM5.TabIndex = 9;
             this.BM5.TextChanged += new System.EventHandler(this.BM5_TextChanged);
             // 
             // BM4
@@ -2206,7 +2217,7 @@
             this.BM4.Margin = new System.Windows.Forms.Padding(4);
             this.BM4.Name = "BM4";
             this.BM4.Size = new System.Drawing.Size(52, 26);
-            this.BM4.TabIndex = 164;
+            this.BM4.TabIndex = 7;
             this.BM4.TextChanged += new System.EventHandler(this.BM4_TextChanged);
             // 
             // BM3
@@ -2216,7 +2227,7 @@
             this.BM3.Margin = new System.Windows.Forms.Padding(4);
             this.BM3.Name = "BM3";
             this.BM3.Size = new System.Drawing.Size(52, 26);
-            this.BM3.TabIndex = 163;
+            this.BM3.TabIndex = 5;
             this.BM3.TextChanged += new System.EventHandler(this.BM3_TextChanged);
             // 
             // BM2
@@ -2226,7 +2237,7 @@
             this.BM2.Margin = new System.Windows.Forms.Padding(4);
             this.BM2.Name = "BM2";
             this.BM2.Size = new System.Drawing.Size(52, 26);
-            this.BM2.TabIndex = 162;
+            this.BM2.TabIndex = 3;
             this.BM2.TextChanged += new System.EventHandler(this.BM2_TextChanged);
             // 
             // BM1
@@ -2236,7 +2247,7 @@
             this.BM1.Margin = new System.Windows.Forms.Padding(4);
             this.BM1.Name = "BM1";
             this.BM1.Size = new System.Drawing.Size(52, 26);
-            this.BM1.TabIndex = 161;
+            this.BM1.TabIndex = 1;
             this.BM1.TextChanged += new System.EventHandler(this.BM1_TextChanged);
             // 
             // labelBM1
@@ -2541,17 +2552,6 @@
             this.lbl_Produktionsreihenfolge.TabIndex = 143;
             this.lbl_Produktionsreihenfolge.Text = "Produktionsreihenfolge";
             this.lbl_Produktionsreihenfolge.Click += new System.EventHandler(this.lbl_Produktionsreihenfolge_Click);
-            // 
-            // default_btn
-            // 
-            this.default_btn.BackColor = System.Drawing.Color.Lavender;
-            this.default_btn.Location = new System.Drawing.Point(949, 354);
-            this.default_btn.Name = "default_btn";
-            this.default_btn.Size = new System.Drawing.Size(228, 28);
-            this.default_btn.TabIndex = 144;
-            this.default_btn.Text = "Berechnung wiederherstellen";
-            this.default_btn.UseVisualStyleBackColor = false;
-            this.default_btn.Click += new System.EventHandler(this.default_btn_Click);
             // 
             // Kaufteildisposition
             // 

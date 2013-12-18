@@ -53,7 +53,7 @@
             // Starten
             // 
             this.Starten.Image = ((System.Drawing.Image)(resources.GetObject("Starten.Image")));
-            this.Starten.InitialImage = ((System.Drawing.Image)(resources.GetObject("Starten.InitialImage")));
+            this.Starten.InitialImage = null;
             this.Starten.Location = new System.Drawing.Point(369, 201);
             this.Starten.Name = "Starten";
             this.Starten.Size = new System.Drawing.Size(237, 182);
@@ -66,7 +66,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(924, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 151;
@@ -77,7 +77,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(958, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

@@ -42,12 +42,12 @@
             this.btn_back = new System.Windows.Forms.Button();
             this.continue_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_default = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btn_default = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
@@ -58,7 +58,7 @@
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(8, 52);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(1316, 80);
             this.pictureBox4.TabIndex = 71;
@@ -186,7 +186,7 @@
             // 
             this.btn_back.BackColor = System.Drawing.Color.Lavender;
             this.btn_back.Location = new System.Drawing.Point(25, 583);
-            this.btn_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_back.Margin = new System.Windows.Forms.Padding(4);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(155, 28);
             this.btn_back.TabIndex = 148;
@@ -198,7 +198,7 @@
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
             this.continue_btn.Location = new System.Drawing.Point(1159, 583);
-            this.continue_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continue_btn.Margin = new System.Windows.Forms.Padding(4);
             this.continue_btn.Name = "continue_btn";
             this.continue_btn.Size = new System.Drawing.Size(155, 28);
             this.continue_btn.TabIndex = 149;
@@ -208,24 +208,45 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.btn_default);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tableLayoutPanel);
             this.groupBox1.Location = new System.Drawing.Point(39, 153);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1257, 378);
             this.groupBox1.TabIndex = 150;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Produktionsreihenfolge und Splittung";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(307, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 17);
+            this.label2.TabIndex = 152;
+            this.label2.Text = "Teil";
+            // 
+            // btn_default
+            // 
+            this.btn_default.Location = new System.Drawing.Point(978, 343);
+            this.btn_default.Name = "btn_default";
+            this.btn_default.Size = new System.Drawing.Size(263, 28);
+            this.btn_default.TabIndex = 151;
+            this.btn_default.Text = "Berechnung wiederherstellen";
+            this.btn_default.UseVisualStyleBackColor = true;
+            this.btn_default.Click += new System.EventHandler(this.btn_default_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(231, 38);
+            this.label1.Location = new System.Drawing.Point(163, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 17);
@@ -235,30 +256,21 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(502, 31);
+            this.label4.Location = new System.Drawing.Point(585, 25);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(66, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Sortieren";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(380, 31);
+            this.label3.Location = new System.Drawing.Point(441, 25);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Menge";
-            // 
-            // label2
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(669, 38);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Sortieren";
             // 
             // tableLayoutPanel
             // 
@@ -270,26 +282,15 @@
             this.tableLayoutPanel.RowCount = 2;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(588, 256);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(947, 292);
             this.tableLayoutPanel.TabIndex = 1;
             this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
-            // 
-            // btn_default
-            // 
-            this.btn_default.Location = new System.Drawing.Point(675, 459);
-            this.btn_default.Name = "btn_default";
-            this.btn_default.Size = new System.Drawing.Size(168, 23);
-            this.btn_default.TabIndex = 151;
-            this.btn_default.Text = "Berechnung wiederherstellen";
-            this.btn_default.UseVisualStyleBackColor = true;
-            this.btn_default.Click += new System.EventHandler(this.btn_default_Click);
             // 
             // Produktionsreihenfolge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.btn_default);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.btn_back);
@@ -303,7 +304,7 @@
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
             this.Controls.Add(this.pictureBox4);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Produktionsreihenfolge";
             this.Size = new System.Drawing.Size(1333, 615);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -334,8 +335,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_default;
+        private System.Windows.Forms.Label label2;
     }
 }

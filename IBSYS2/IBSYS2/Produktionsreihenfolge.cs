@@ -307,12 +307,17 @@ namespace IBSYS2
                 //EN Button
                 btn_back.Text = (Sprachen.EN_BTN_BACK);
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                btn_default.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //GroupBox
                 groupBox1.Text = (Sprachen.EN_GB_PR_PROD_SPLITT);
 
                 buttonDown.Text = "down";
                 buttonUp.Text = "up";
+                label1.Text = "Position";
+                label2.Text = "Part";
+                label3.Text = "Amount";
+                label4.Text = "Sort";
             }
             else
             {
@@ -328,12 +333,17 @@ namespace IBSYS2
                 //EN Button
                 btn_back.Text = (Sprachen.DE_BTN_BACK);
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
+                btn_default.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //GroupBox
                 groupBox1.Text = (Sprachen.DE_GB_PR_PROD_SPLITT);
 
                 buttonDown.Text = "Runter";
                 buttonUp.Text = "Hoch";
+                label1.Text = "Position";
+                label2.Text = "Teil";
+                label3.Text = "Menge";
+                label4.Text = "Sortieren";
 
             }
         }

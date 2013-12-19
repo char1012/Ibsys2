@@ -165,7 +165,7 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(175, 77);
+            this.textBox11.Location = new System.Drawing.Point(175, 81);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(45, 20);
             this.textBox11.TabIndex = 10;
@@ -401,7 +401,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(146, 80);
+            this.label11.Location = new System.Drawing.Point(146, 84);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 13);
             this.label11.TabIndex = 38;
@@ -566,7 +566,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(548, 9);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 142;
@@ -577,7 +577,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(582, 9);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

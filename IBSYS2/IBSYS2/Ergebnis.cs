@@ -713,7 +713,7 @@ namespace IBSYS2
                 {
                     String pfad = objDialog.SelectedPath;
                     ExportXMLClass exp = new ExportXMLClass();
-                    exp.XMLExport(pfad,kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
+                    exp.XMLExport(pfad, kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe, aktPeriode);
                     MessageBox.Show("Die Datei wurde exportiert und ist verfügbar unter: "+pfad, "Export erfolgt");
                 }
             }

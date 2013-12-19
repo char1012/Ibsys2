@@ -32,7 +32,7 @@ namespace IBSYS2
         //selldirect = selldirect
 
 
-        public void XMLExport(String pfad, int[,] kaufauftraege, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[] auftraege, double[,] direktverkaeufe) //OleDbCommand cmd
+        public void XMLExport(String pfad, int[,] kaufauftraege, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[] auftraege, double[,] direktverkaeufe, int aktPeriode) //OleDbCommand cmd
         {
             XmlDocument doc = new XmlDocument();
             XmlNode myRoot; //, myNode;
@@ -52,7 +52,7 @@ namespace IBSYS2
             String[] orderlist_Array_Fields = { "article", "quantity", "modus" };
             String[,] orderlist_Array_Values = { { "25", "3600", "5" }, { "32", "3730", "5" }, { "33", "820", "4" }, { "34", "23300", "4" }, { "36", "625", "5" } };
 
-            XmlTextWriter myXmlTextWriter = new XmlTextWriter(pfad + @"\TestAppendXML1.xml", null);
+            XmlTextWriter myXmlTextWriter = new XmlTextWriter(pfad + @"\242_2_"+aktPeriode+"input.xml", null);
             myXmlTextWriter.Formatting = Formatting.Indented;
 
             myXmlTextWriter.WriteStartElement("input");
@@ -97,7 +97,7 @@ namespace IBSYS2
                     else if (x == 2 || x == 3)
                     {
                         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
-                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], direktverkaeufe[i, x].ToString("F"));
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], direktverkaeufe[i, x].ToString("F1"));
                     }
                     else
                     {
@@ -117,11 +117,15 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("orderlist", null);
             for (int i = 0; i < (kaufauftraege.Length / 6); i++)
             {
-                for (int x = 0; x < 3; x++)
+                if (kaufauftraege[i, 5] != 0)
                 {
-                    if (kaufauftraege[i, 5] != 0)
+                    myXmlTextWriter.WriteStartElement("order", null);
+
+                    for (int x = 0; x < 3; x++)
                     {
-                        myXmlTextWriter.WriteStartElement("order", null);
+
+                        //if (kaufauftraege[i, 5] != 0)
+                        //{
                         if (x == 0)
                         {
                             myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 0]));//orderlist_Array_Values[i, x]);
@@ -142,8 +146,8 @@ namespace IBSYS2
                         }
                         else
                         { }
-                        myXmlTextWriter.WriteEndElement();
                     }
+                    myXmlTextWriter.WriteEndElement();
                 }
             }
             myXmlTextWriter.WriteEndElement();
@@ -170,8 +174,8 @@ namespace IBSYS2
 
                     myXmlTextWriter.WriteStartElement("workingtime", null);
                     myXmlTextWriter.WriteAttributeString("station", Convert.ToString(kapazitaet[i, 0]));//art[i]);
-                    myXmlTextWriter.WriteAttributeString("shift", Convert.ToString(kapazitaet[i, 1]));
-                    myXmlTextWriter.WriteAttributeString("overtime", Convert.ToString(kapazitaet[i, 2]));
+                    myXmlTextWriter.WriteAttributeString("shift", Convert.ToString(kapazitaet[i, 4]));
+                    myXmlTextWriter.WriteAttributeString("overtime", Convert.ToString(kapazitaet[i, 3]));
                     myXmlTextWriter.WriteEndElement();
                     //MessageBox.Show("workingtimelist - station: " + Convert.ToString(kapazitaet[i, 0]) + ", shift " + Convert.ToString(kapazitaet[i, 1]) + ", overtime " + Convert.ToString(kapazitaet[i, 2]));
                 }

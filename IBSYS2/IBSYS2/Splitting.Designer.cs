@@ -36,22 +36,22 @@
             this.lbl_teil = new System.Windows.Forms.Label();
             this.Menge = new System.Windows.Forms.TextBox();
             this.gp_sp = new System.Windows.Forms.GroupBox();
-            this.NR = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.infoP = new System.Windows.Forms.PictureBox();
+            this.NR = new System.Windows.Forms.Label();
             this.pic_en = new System.Windows.Forms.PictureBox();
             this.pic_de = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gp_sp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Splitting1
             // 
             this.Splitting1.Location = new System.Drawing.Point(177, 34);
-            this.Splitting1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Splitting1.Margin = new System.Windows.Forms.Padding(4);
             this.Splitting1.Name = "Splitting1";
             this.Splitting1.Size = new System.Drawing.Size(71, 22);
             this.Splitting1.TabIndex = 1;
@@ -60,7 +60,7 @@
             // Splitting2
             // 
             this.Splitting2.Location = new System.Drawing.Point(177, 75);
-            this.Splitting2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Splitting2.Margin = new System.Windows.Forms.Padding(4);
             this.Splitting2.Name = "Splitting2";
             this.Splitting2.ReadOnly = true;
             this.Splitting2.Size = new System.Drawing.Size(71, 22);
@@ -70,10 +70,10 @@
             // continue_btn
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
-            this.continue_btn.Location = new System.Drawing.Point(236, 235);
-            this.continue_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.continue_btn.Location = new System.Drawing.Point(220, 235);
+            this.continue_btn.Margin = new System.Windows.Forms.Padding(4);
             this.continue_btn.Name = "continue_btn";
-            this.continue_btn.Size = new System.Drawing.Size(100, 28);
+            this.continue_btn.Size = new System.Drawing.Size(155, 28);
             this.continue_btn.TabIndex = 5;
             this.continue_btn.Text = "OK";
             this.continue_btn.UseVisualStyleBackColor = false;
@@ -82,10 +82,10 @@
             // abr_btn
             // 
             this.abr_btn.BackColor = System.Drawing.Color.Lavender;
-            this.abr_btn.Location = new System.Drawing.Point(141, 235);
-            this.abr_btn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.abr_btn.Location = new System.Drawing.Point(27, 235);
+            this.abr_btn.Margin = new System.Windows.Forms.Padding(4);
             this.abr_btn.Name = "abr_btn";
-            this.abr_btn.Size = new System.Drawing.Size(87, 28);
+            this.abr_btn.Size = new System.Drawing.Size(155, 28);
             this.abr_btn.TabIndex = 6;
             this.abr_btn.Text = "Abbruch";
             this.abr_btn.UseVisualStyleBackColor = false;
@@ -104,7 +104,7 @@
             // Menge
             // 
             this.Menge.Location = new System.Drawing.Point(62, 58);
-            this.Menge.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Menge.Margin = new System.Windows.Forms.Padding(4);
             this.Menge.Name = "Menge";
             this.Menge.ReadOnly = true;
             this.Menge.Size = new System.Drawing.Size(52, 22);
@@ -121,10 +121,31 @@
             this.gp_sp.Controls.Add(this.NR);
             this.gp_sp.Location = new System.Drawing.Point(27, 51);
             this.gp_sp.Name = "gp_sp";
-            this.gp_sp.Size = new System.Drawing.Size(309, 142);
+            this.gp_sp.Size = new System.Drawing.Size(349, 142);
             this.gp_sp.TabIndex = 9;
             this.gp_sp.TabStop = false;
             this.gp_sp.Text = "Splittung";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(116, 28);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(58, 79);
+            this.pictureBox1.TabIndex = 142;
+            this.pictureBox1.TabStop = false;
+            // 
+            // infoP
+            // 
+            this.infoP.Image = ((System.Drawing.Image)(resources.GetObject("infoP.Image")));
+            this.infoP.Location = new System.Drawing.Point(276, 37);
+            this.infoP.Margin = new System.Windows.Forms.Padding(4);
+            this.infoP.Name = "infoP";
+            this.infoP.Size = new System.Drawing.Size(45, 43);
+            this.infoP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.infoP.TabIndex = 85;
+            this.infoP.TabStop = false;
             // 
             // NR
             // 
@@ -135,17 +156,6 @@
             this.NR.Size = new System.Drawing.Size(28, 17);
             this.NR.TabIndex = 0;
             this.NR.Text = "NR";
-            // 
-            // infoP
-            // 
-            this.infoP.Image = ((System.Drawing.Image)(resources.GetObject("infoP.Image")));
-            this.infoP.Location = new System.Drawing.Point(256, 47);
-            this.infoP.Margin = new System.Windows.Forms.Padding(4);
-            this.infoP.Name = "infoP";
-            this.infoP.Size = new System.Drawing.Size(45, 43);
-            this.infoP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.infoP.TabIndex = 85;
-            this.infoP.TabStop = false;
             // 
             // pic_en
             // 
@@ -170,37 +180,27 @@
             this.pic_de.TabStop = false;
             this.pic_de.Click += new System.EventHandler(this.pic_de_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(116, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 79);
-            this.pictureBox1.TabIndex = 142;
-            this.pictureBox1.TabStop = false;
-            // 
             // Splitting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(361, 283);
+            this.ClientSize = new System.Drawing.Size(388, 283);
             this.Controls.Add(this.pic_en);
             this.Controls.Add(this.pic_de);
             this.Controls.Add(this.continue_btn);
             this.Controls.Add(this.gp_sp);
             this.Controls.Add(this.abr_btn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Splitting";
             this.Text = "SCMPlus";
             this.gp_sp.ResumeLayout(false);
             this.gp_sp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_en)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_de)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -1153,10 +1153,10 @@
             // continue_btn
             // 
             this.continue_btn.BackColor = System.Drawing.Color.Lavender;
-            this.continue_btn.Location = new System.Drawing.Point(1213, 567);
+            this.continue_btn.Location = new System.Drawing.Point(1159, 583);
             this.continue_btn.Margin = new System.Windows.Forms.Padding(4);
             this.continue_btn.Name = "continue_btn";
-            this.continue_btn.Size = new System.Drawing.Size(100, 28);
+            this.continue_btn.Size = new System.Drawing.Size(155, 28);
             this.continue_btn.TabIndex = 121;
             this.continue_btn.Text = "Weiter";
             this.continue_btn.UseVisualStyleBackColor = false;
@@ -1453,7 +1453,7 @@
             this.default_btn.BackColor = System.Drawing.Color.Lavender;
             this.default_btn.Location = new System.Drawing.Point(907, 354);
             this.default_btn.Name = "default_btn";
-            this.default_btn.Size = new System.Drawing.Size(270, 28);
+            this.default_btn.Size = new System.Drawing.Size(263, 28);
             this.default_btn.TabIndex = 144;
             this.default_btn.Text = "Berechnung wiederherstellen";
             this.default_btn.UseVisualStyleBackColor = false;
@@ -2497,10 +2497,10 @@
             // back_btn
             // 
             this.back_btn.BackColor = System.Drawing.Color.Lavender;
-            this.back_btn.Location = new System.Drawing.Point(24, 567);
+            this.back_btn.Location = new System.Drawing.Point(25, 583);
             this.back_btn.Margin = new System.Windows.Forms.Padding(4);
             this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(100, 28);
+            this.back_btn.Size = new System.Drawing.Size(155, 28);
             this.back_btn.TabIndex = 83;
             this.back_btn.Text = "Zurück";
             this.back_btn.UseVisualStyleBackColor = false;

@@ -26,6 +26,7 @@ namespace IBSYS2
         List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
+        int blub = 0;
 
         // hier lokal die Prodreihenfolge speichern - fuer dich Lukas Anmerkung: Später initialisieren sobald Länge von Liste bekannt
         int[,] berProduktionsreihenfolge = new int[30, 2];
@@ -197,10 +198,17 @@ namespace IBSYS2
                         {
                             if (teile[fred, 0] == teil)
                             {
-                                int menge = teile[fred, 1];
-                                teile_liste.Add(new List<int>());
-                                teile_liste[joern].Add(teil);
-                                teile_liste[joern].Add(menge);
+                                if (teile[fred, 1] != 0)
+                                {
+                                    int menge = teile[fred, 1];
+                                    teile_liste.Add(new List<int>());
+                                    teile_liste[joern-blub].Add(teil);
+                                    teile_liste[joern-blub].Add(menge);
+                                }
+                                else
+                                {
+                                    blub++;
+                                }
                             }
                         }
                     }

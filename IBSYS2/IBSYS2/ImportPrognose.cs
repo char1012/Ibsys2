@@ -29,7 +29,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -71,7 +71,7 @@ namespace IBSYS2
 
         // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
         public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.aktPeriode = aktPeriode;

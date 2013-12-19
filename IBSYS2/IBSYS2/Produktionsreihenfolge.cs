@@ -23,7 +23,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -116,7 +116,7 @@ namespace IBSYS2
         }
 
         public Produktionsreihenfolge(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -166,9 +166,9 @@ namespace IBSYS2
             this.Enabled = false;
 
             Boolean bereitsBerechnet = false;
-            for (int i = 0; i < prodReihenfolge.GetLength(0); i++)
+            for (int i = 0; i < prodReihenfolge.Count; i++)
             {
-                if (prodReihenfolge[i, 1] > 0)
+                if (prodReihenfolge[i][1] > 0)
                 {
                     bereitsBerechnet = true;
                     break;
@@ -177,8 +177,8 @@ namespace IBSYS2
             // wenn bereits Werte vorhanden sind, diese uebernehmen
             if (bereitsBerechnet == true)
             {
-                // TODO teile_liste fuellen mit Werten aus prodReihenfolge
-                berProduktionsreihenfolge = prodReihenfolge;
+                teile_liste = prodReihenfolge;
+                tabelle_erstellen(teile_liste);
             }
             else
             {
@@ -202,8 +202,6 @@ namespace IBSYS2
                     }
                 }
                 tabelle_erstellen(teile_liste);
-
-                // teile_liste => prodReihenfolge
             }
 
             message.Close();
@@ -331,7 +329,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
@@ -343,7 +341,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
@@ -355,7 +353,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
@@ -367,7 +365,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
@@ -379,7 +377,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
@@ -391,7 +389,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = berProduktionsreihenfolge;
+            prodReihenfolge = teile_liste;
 
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,

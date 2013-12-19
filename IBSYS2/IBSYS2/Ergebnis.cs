@@ -23,7 +23,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -38,7 +38,7 @@ namespace IBSYS2
         }
 
         public Ergebnis(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -132,21 +132,21 @@ namespace IBSYS2
             // Produktionsauftraege
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.RowStyles.Clear();
-            tableLayoutPanel2.RowCount = prodReihenfolge.GetLength(0);
+            tableLayoutPanel2.RowCount = prodReihenfolge.Count;
             tableLayoutPanel2.AutoScroll = true;
             for (int x = 0; x < 2; x++)
             {
-                for (int y = 0; y < prodReihenfolge.GetLength(0); y++)
+                for (int y = 0; y < prodReihenfolge.Count; y++)
                 {
                     Label label = new Label();
 
                     if (x == 0)
                     {
-                        label.Text = prodReihenfolge[y, 0].ToString();
+                        label.Text = prodReihenfolge[y][0].ToString();
                     }
                     else if (x == 1)
                     {
-                        label.Text = prodReihenfolge[y, 1].ToString();
+                        label.Text = prodReihenfolge[y][1].ToString();
                     }
 
                     tableLayoutPanel2.Controls.Add(label, x, y);

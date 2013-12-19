@@ -74,12 +74,14 @@ namespace IBSYS2
             else { direktverkauf[0, 1] = 0; }
             if (textBox4.Text != "")
             {
-                direktverkauf[0, 2] = Convert.ToDouble(textBox4.Text);
+                double zahl = Convert.ToDouble(textBox4.Text);
+                direktverkauf[0, 2] = Math.Round(zahl, 1);
             }
             else { direktverkauf[0, 2] = 0; }
             if (textBox7.Text != "")
             {
-                direktverkauf[0, 3] = Convert.ToDouble(textBox7.Text);
+                double zahl = Convert.ToDouble(textBox7.Text);
+                direktverkauf[0, 3] = Math.Round(zahl, 1);
             }
             else { direktverkauf[0, 3] = 0; }
 
@@ -91,29 +93,33 @@ namespace IBSYS2
             else { direktverkauf[1, 1] = 0; }
             if (textBox5.Text != "")
             {
-                direktverkauf[1, 2] = Convert.ToDouble(textBox5.Text);
+                double zahl = Convert.ToDouble(textBox5.Text);
+                direktverkauf[1, 2] = Math.Round(zahl, 1);
             }
             else { direktverkauf[1, 2] = 0; }
-            if (textBox4.Text != "")
+            if (textBox8.Text != "")
             {
-                direktverkauf[1, 3] = Convert.ToDouble(textBox8.Text);
+                double zahl = Convert.ToDouble(textBox8.Text);
+                direktverkauf[1, 3] = Math.Round(zahl, 1);
             }
             else { direktverkauf[1, 3] = 0; }
 
             direktverkauf[1, 0] = 3;
-            if (textBox2.Text != "")
+            if (textBox3.Text != "")
             {
                 direktverkauf[2, 1] = Convert.ToDouble(textBox3.Text);
             }
             else { direktverkauf[2, 1] = 0; }
-            if (textBox5.Text != "")
+            if (textBox6.Text != "")
             {
-                direktverkauf[2, 2] = Convert.ToDouble(textBox6.Text);
+                double zahl = Convert.ToDouble(textBox6.Text);
+                direktverkauf[2, 2] = Math.Round(zahl, 1);
             }
             else { direktverkauf[2, 2] = 0; }
-            if (textBox8.Text != "")
+            if (textBox9.Text != "")
             {
-                direktverkauf[2, 3] = Convert.ToDouble(textBox9.Text);
+                double zahl = Convert.ToDouble(textBox9.Text);
+                direktverkauf[2, 3] = Math.Round(zahl, 1);
             }
             else { direktverkauf[2, 3] = 0; }
             ImportPrognose import = new ImportPrognose(sprache);

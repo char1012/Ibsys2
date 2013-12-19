@@ -44,6 +44,7 @@ namespace IBSYS2
 
         public void tabelle_erstellen(List<List<int>> teile_liste)
         {
+            tableLayoutPanel.Visible = false;
             List<Button> button_liste = new List<Button>();
             tableLayoutPanel.Controls.Clear();
             tableLayoutPanel.RowStyles.Clear();
@@ -110,6 +111,7 @@ namespace IBSYS2
                     }
                 }
             }
+            tableLayoutPanel.Visible = true;
         }
 
         public Produktionsreihenfolge()

@@ -67,7 +67,7 @@
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
             this.pic_de.Location = new System.Drawing.Point(955, 10);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(30, 19);
             this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -79,7 +79,7 @@
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
             this.pic_en.Location = new System.Drawing.Point(921, 10);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(30, 19);
             this.pic_en.TabIndex = 140;
@@ -206,7 +206,7 @@
             this.groupBox1.Controls.Add(this.tableLayoutPanel);
             this.groupBox1.Location = new System.Drawing.Point(29, 124);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(943, 307);
+            this.groupBox1.Size = new System.Drawing.Size(943, 319);
             this.groupBox1.TabIndex = 150;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Produktionsreihenfolge und Splittung";
@@ -222,13 +222,14 @@
             // 
             // btn_default
             // 
+            this.btn_default.BackColor = System.Drawing.Color.Lavender;
             this.btn_default.Location = new System.Drawing.Point(734, 279);
-            this.btn_default.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_default.Margin = new System.Windows.Forms.Padding(2);
             this.btn_default.Name = "btn_default";
             this.btn_default.Size = new System.Drawing.Size(197, 23);
             this.btn_default.TabIndex = 151;
             this.btn_default.Text = "Berechnung wiederherstellen";
-            this.btn_default.UseVisualStyleBackColor = true;
+            this.btn_default.UseVisualStyleBackColor = false;
             this.btn_default.Click += new System.EventHandler(this.btn_default_Click);
             // 
             // label1
@@ -269,7 +270,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.03454F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.37996F));
             this.tableLayoutPanel.Location = new System.Drawing.Point(170, 37);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 2;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));

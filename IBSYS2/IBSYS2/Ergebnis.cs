@@ -212,13 +212,13 @@ namespace IBSYS2
                 {
                     neu1 += s1.Substring(0, 2);
                     neu1 += ".";
-                    neu1 += s1.Substring(3, 3);
+                    neu1 += s1.Substring(2, 3);
                 }
                 else if (count1 == 4)
                 {
                     neu1 += s1.Substring(0, 1);
                     neu1 += ".";
-                    neu1 += s1.Substring(3, 3);
+                    neu1 += s1.Substring(1, 3);
                 }
                 neu1 += " €";
                 textBox1.Text = neu1;
@@ -239,13 +239,13 @@ namespace IBSYS2
                 {
                     neu2 += s2.Substring(0, 2);
                     neu2 += ".";
-                    neu2 += s2.Substring(3, 3);
+                    neu2 += s2.Substring(2, 3);
                 }
                 else if (count2 == 4)
                 {
                     neu2 += s2.Substring(0, 1);
                     neu2 += ".";
-                    neu2 += s2.Substring(3, 3);
+                    neu2 += s2.Substring(1, 3);
                 }
                 neu2 += " €";
                 textBox2.Text = neu2;
@@ -266,13 +266,13 @@ namespace IBSYS2
                 {
                     neu3 += s3.Substring(0, 2);
                     neu3 += ".";
-                    neu3 += s3.Substring(3, 3);
+                    neu3 += s3.Substring(2, 3);
                 }
                 else if (count3 == 4)
                 {
                     neu3 += s3.Substring(0, 1);
                     neu3 += ".";
-                    neu3 += s3.Substring(3, 3);
+                    neu3 += s3.Substring(1, 3);
                 }
                 neu3 += " €";
                 textBox3.Text = neu3;

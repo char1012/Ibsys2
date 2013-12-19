@@ -879,482 +879,500 @@ namespace IBSYS2
 
         private void lbl_Startseite_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(import);
             }
-
-            this.Controls.Clear();
-            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(import);
         }
 
         private void lbl_Sicherheitsbestand_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(sicherheit);
             }
-
-            this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(sicherheit);
         }
 
         private void lbl_Produktion_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(prod);
             }
-
-            this.Controls.Clear();
-            UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(prod);
         }
 
         private void lbl_Produktionsreihenfolge_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(prodreihenfolge);
             }
-
-            this.Controls.Clear();
-            UserControl prodreihenfolge = new Produktionsreihenfolge(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(prodreihenfolge);
         }
 
         private void lbl_Kapazitaetsplan_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(kapplan);
             }
-
-            this.Controls.Clear();
-            UserControl kapplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(kapplan);
         }
 
         private void lbl_Ergebnis_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
-
-            // Werte aus TextBoxen in kapazitaet auslesen
-            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            if (continue_btn.Enabled == true)
             {
-                int k = i + 1;
+                // Datenweitergabe
 
-                String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
-                if (wert == "")
+                // Werte aus TextBoxen in kapazitaet auslesen
+                for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
                 {
-                    kaufauftraege[i, 0] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    int k = i + 1;
+
+                    String wert = this.Controls.Find("label" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 0] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 0] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 1] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 1] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 2] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 2] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 3] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 3] = Convert.ToInt32(wert);
+                    }
+
+                    wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
+                    if (wert == "")
+                    {
+                        kaufauftraege[i, 4] = 0;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 4] = Convert.ToInt32(wert);
+                    }
+
+                    String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
+                    if (bestellart == "E")
+                    {
+                        kaufauftraege[i, 5] = 4;
+                    }
+                    else if (bestellart == "N")
+                    {
+                        kaufauftraege[i, 5] = 5;
+                    }
+                    else
+                    {
+                        kaufauftraege[i, 5] = 0;
+                    }
                 }
 
-                wert = this.Controls.Find("D" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 1] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 1] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("M" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 2] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 2] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("O" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 3] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 3] = Convert.ToInt32(wert);
-                }
-
-                wert = this.Controls.Find("BM" + k.ToString(), true)[0].Text;
-                if (wert == "")
-                {
-                    kaufauftraege[i, 4] = 0;
-                }
-                else
-                {
-                    kaufauftraege[i, 4] = Convert.ToInt32(wert);
-                }
-
-                String bestellart = this.Controls.Find("B" + k.ToString(), true)[0].Text;
-                if (bestellart == "E")
-                {
-                    kaufauftraege[i, 5] = 4;
-                }
-                else if (bestellart == "N")
-                {
-                    kaufauftraege[i, 5] = 5;
-                }
-                else
-                {
-                    kaufauftraege[i, 5] = 0;
-                }
+                this.Controls.Clear();
+                UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(ergebnis);
             }
-
-            this.Controls.Clear();
-            UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(ergebnis);
         }
 
         private void BM1_TextChanged(object sender, EventArgs e)

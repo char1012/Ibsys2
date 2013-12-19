@@ -183,7 +183,7 @@ namespace IBSYS2
             else
             {
                 continue_btn.Enabled = false;
-                back.Enabled = true;
+                back.Enabled = false;
             }
         }
 
@@ -1677,68 +1677,74 @@ namespace IBSYS2
 
         private void label6_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
+            if (continue_btn.Enabled == true)
+            {
+                // Datenweitergabe
 
-            produktion = berProduktion; // alle Produktionsmengen
+                produktion = berProduktion; // alle Produktionsmengen
 
-            // P1, P2 und P3 nochmal auslesen
-            produktion[0, 1] = Convert.ToInt32(textBox1.Text);
-            produktion[1, 1] = Convert.ToInt32(textBox2.Text);
-            produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+                // P1, P2 und P3 nochmal auslesen
+                produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktion[2, 1] = Convert.ToInt32(textBox3.Text);
 
-            produktionProg[0, 0] = 1;
-            produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
-            produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
-            produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
-            produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
-            produktionProg[1, 0] = 2;
-            produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
-            produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
-            produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
-            produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
-            produktionProg[2, 0] = 3;
-            produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
-            produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
-            produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
-            produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+                produktionProg[0, 0] = 1;
+                produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                produktionProg[1, 0] = 2;
+                produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                produktionProg[2, 0] = 3;
+                produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
 
-            this.Controls.Clear();
-            UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(sicherheit);
+                this.Controls.Clear();
+                UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(sicherheit);
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            // Datenweitergabe
+            if (continue_btn.Enabled == true)
+            {
+                // Datenweitergabe
 
-            produktion = berProduktion; // alle Produktionsmengen
+                produktion = berProduktion; // alle Produktionsmengen
 
-            // P1, P2 und P3 nochmal auslesen
-            produktion[0, 1] = Convert.ToInt32(textBox1.Text);
-            produktion[1, 1] = Convert.ToInt32(textBox2.Text);
-            produktion[2, 1] = Convert.ToInt32(textBox3.Text);
+                // P1, P2 und P3 nochmal auslesen
+                produktion[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktion[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktion[2, 1] = Convert.ToInt32(textBox3.Text);
 
-            produktionProg[0, 0] = 1;
-            produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
-            produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
-            produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
-            produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
-            produktionProg[1, 0] = 2;
-            produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
-            produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
-            produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
-            produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
-            produktionProg[2, 0] = 3;
-            produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
-            produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
-            produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
-            produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
+                produktionProg[0, 0] = 1;
+                produktionProg[0, 1] = Convert.ToInt32(textBox1.Text);
+                produktionProg[0, 2] = Convert.ToInt32(textBox6.Text);
+                produktionProg[0, 3] = Convert.ToInt32(textBox7.Text);
+                produktionProg[0, 4] = Convert.ToInt32(textBox10.Text);
+                produktionProg[1, 0] = 2;
+                produktionProg[1, 1] = Convert.ToInt32(textBox2.Text);
+                produktionProg[1, 2] = Convert.ToInt32(textBox4.Text);
+                produktionProg[1, 3] = Convert.ToInt32(textBox8.Text);
+                produktionProg[1, 4] = Convert.ToInt32(textBox11.Text);
+                produktionProg[2, 0] = 3;
+                produktionProg[2, 1] = Convert.ToInt32(textBox3.Text);
+                produktionProg[2, 2] = Convert.ToInt32(textBox5.Text);
+                produktionProg[2, 3] = Convert.ToInt32(textBox9.Text);
+                produktionProg[2, 4] = Convert.ToInt32(textBox12.Text);
 
-            this.Controls.Clear();
-            UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(import);
+                this.Controls.Clear();
+                UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(import);
+            }
         }
         #endregion
 

@@ -151,6 +151,7 @@ namespace IBSYS2
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
             btn_direktverkäufe.Enabled = true;
+            lbl_Sicherheitsbestand.Enabled = true;
             // XML-Import, Periode und Datenbank leeren wird disabled
             button2.Enabled = false;
             clear_btn.Enabled = false;

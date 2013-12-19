@@ -12,6 +12,7 @@ namespace IBSYS2
 {
     public partial class Splitting : Form
     {
+        
 
         // Datenweitergabe:
         private String sprache = "de";
@@ -44,7 +45,7 @@ namespace IBSYS2
                 teile_liste1[x][1] = teile_liste1[x - 1][1];
             }
             teile_liste1[position][1] = Convert.ToInt32(Splitting1.Text);
-            teile_liste1[position+1][1] = Convert.ToInt32(Splitting2.Text);
+            teile_liste1[position + 1][1] = Convert.ToInt32(Splitting2.Text);
 
         }
 
@@ -55,6 +56,7 @@ namespace IBSYS2
             this.prodReihenfolgeForm = prodReihenfolge;
             //position = y - 1;
             InitializeComponent();
+            sprachen();
             teile_liste1 = teile_liste;
             Menge.Text = teile_liste1[position][1].ToString();
             NR.Text = teile_liste1[position][0].ToString();
@@ -107,6 +109,16 @@ namespace IBSYS2
             NR.Text = teile_liste1[position][0].ToString();
             Splitting1.Text = (teile_liste1[position][1] / 2).ToString();
             Splitting2.Text = (teile_liste1[position][1] / 2).ToString();
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage & sprache == "de")
+            {
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.infoP, "Bitte geben Sie die Aufteilung an, wie Sie die Produktion für das Teil splitten wollen.");
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.infoP, "Please enter the division, how do you split the production for the part.");
+            }
         }
 
         private void Splitting2_TextChanged(object sender, EventArgs e)
@@ -153,7 +165,7 @@ namespace IBSYS2
                         continue_btn.Enabled = true;
                     }
                 }
-            }            
+            }
         }
 
         private void abr_btn_Click(object sender, EventArgs e)
@@ -164,9 +176,41 @@ namespace IBSYS2
         private void continue_btn_Click(object sender, EventArgs e)
         {
             splitting(teile_liste1, position);
-            Produktionsreihenfolge rf = (Produktionsreihenfolge) prodReihenfolgeForm;
+            Produktionsreihenfolge rf = (Produktionsreihenfolge)prodReihenfolgeForm;
             rf.vonSplitnachReihenfolge(teile_liste1);
             this.Close();
+        }
+
+        private void pic_en_Click(object sender, EventArgs e)
+        {
+            pic_en.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_de.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();
+            sprache = "en";
+        }
+
+        private void pic_de_Click(object sender, EventArgs e)
+        {
+            pic_de.SizeMode = PictureBoxSizeMode.StretchImage;
+            pic_en.SizeMode = PictureBoxSizeMode.Normal;
+            sprachen();
+            sprache = "de";
+        }
+
+        public void sprachen()
+        {
+            if (pic_en.SizeMode == PictureBoxSizeMode.StretchImage | sprache != "de")
+            {
+                gp_sp.Text = "Splitting";
+                lbl_teil.Text = "Part";
+                abr_btn.Text = "Cancel";
+            }
+            else
+            {
+                gp_sp.Text = "Splitting";
+                lbl_teil.Text = "Teil";
+                abr_btn.Text = "Abbrechen";
+            }
         }
     }
 }

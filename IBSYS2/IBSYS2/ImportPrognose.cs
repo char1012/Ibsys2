@@ -151,9 +151,10 @@ namespace IBSYS2
             // (dieser Konstruktor wird naemlich nur von Forms weiter hinten aufgerufen)
             continue_btn.Enabled = true;
             btn_direktverkäufe.Enabled = true;
-            // XML-Import und Datenbank leeren wird disabled
+            // XML-Import, Periode und Datenbank leeren wird disabled
             button2.Enabled = false;
             clear_btn.Enabled = false;
+            comboBox1.Enabled = false;
         }
 
         //--------------------------------
@@ -353,6 +354,7 @@ namespace IBSYS2
 
                                     button2.Enabled = false;
                                     clear_btn.Enabled = false;
+                                    comboBox1.Enabled = false;
                                 }
 
                                 //Aufruf Funktion Validierung Werte in Feldern enthalten?
@@ -399,6 +401,7 @@ namespace IBSYS2
 
                                 button2.Enabled = false;
                                 clear_btn.Enabled = false;
+                                comboBox1.Enabled = false;
                             }
                         }
                     }

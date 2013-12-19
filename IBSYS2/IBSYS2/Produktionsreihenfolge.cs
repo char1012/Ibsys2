@@ -31,7 +31,6 @@ namespace IBSYS2
         // hier lokal die Prodreihenfolge speichern - fuer dich Lukas Anmerkung: Später initialisieren sobald Länge von Liste bekannt
         int[,] berProduktionsreihenfolge = new int[30, 2];
 
-        List<List<int>> teile_liste = new List<List<int>>();
         List<List<int>> teile_liste_change = new List<List<int>>();
         List<List<int>> save_teile_liste = new List<List<int>>();
 
@@ -42,22 +41,30 @@ namespace IBSYS2
             tabelle_erstellen(teile_liste_change);
         }
 
-        public void tabelle_erstellen(List<List<int>> teile_liste)
+        public void tabelle_erstellen(List<List<int>> teile_liste1)
         {
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             tableLayoutPanel.Visible = false;
             List<Button> button_liste = new List<Button>();
             tableLayoutPanel.Controls.Clear();
             tableLayoutPanel.RowStyles.Clear();
-            tableLayoutPanel.RowCount = teile_liste.Count + 1;
+            tableLayoutPanel.RowCount = teile_liste1.Count + 1;
             tableLayoutPanel.AutoScroll = true;
             for (int x = 0; x < 5; x++)
             {
                 //First add a column
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                for (int y = 1; y < teile_liste.Count + 1; y++)
+                for (int y = 1; y < teile_liste1.Count + 1; y++)
                 {
                     Label label = new Label();
+                    LinkLabel linkLabel = new LinkLabel();
                     Button buttonUp = new Button();
                     buttonUp.Text = "hoch";
                     Button buttonDown = new Button();
@@ -83,14 +90,14 @@ namespace IBSYS2
                         }
                         else if (x == 1)
                         {
-                            label.Text = teile_liste[i][0].ToString();
-                            tableLayoutPanel.Controls.Add(label, x, y);
-                            label.Tag = y;
-                            label.Click += new EventHandler(label_click);
+                            linkLabel.Text = teile_liste1[i][0].ToString();
+                            tableLayoutPanel.Controls.Add(linkLabel, x, y);
+                            linkLabel.Tag = y;
+                            linkLabel.Click += new EventHandler(label_click);
                         }
                         else if (x == 2)
                         {
-                            label.Text = teile_liste[i][1].ToString();
+                            label.Text = teile_liste1[i][1].ToString();
                             tableLayoutPanel.Controls.Add(label, x, y);
                         }
                         else if (x == 3)
@@ -112,6 +119,8 @@ namespace IBSYS2
                 }
             }
             tableLayoutPanel.Visible = true;
+            message.Close();
+            this.Enabled = true;
         }
 
         public Produktionsreihenfolge()
@@ -162,13 +171,6 @@ namespace IBSYS2
             InitializeComponent();
             sprachen();
 
-            // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage(sprache);
-            message.Show(this);
-            message.Location = new Point(500, 300);
-            message.Update();
-            this.Enabled = false;
-
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < prodReihenfolge.Count; i++)
             {
@@ -181,12 +183,14 @@ namespace IBSYS2
             // wenn bereits Werte vorhanden sind, diese uebernehmen
             if (bereitsBerechnet == true)
             {
-                teile_liste_change = prodReihenfolge;
+                this.teile_liste_change = prodReihenfolge;
+                this.save_teile_liste = prodReihenfolge;
                 tabelle_erstellen(teile_liste_change);
             }
             else
             {
                 int[,] teile = produktion;
+                List<List<int>> teile_liste = new List<List<int>>();
                 //Array in Liste
                 int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
 
@@ -216,9 +220,6 @@ namespace IBSYS2
                 this.save_teile_liste = teile_liste;
                 tabelle_erstellen(teile_liste_change);
             }
-
-            message.Close();
-            this.Enabled = true;
         }
 
         void label_click(object sender, EventArgs e)

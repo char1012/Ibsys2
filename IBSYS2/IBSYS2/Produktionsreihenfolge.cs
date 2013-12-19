@@ -46,9 +46,7 @@ namespace IBSYS2
         {
             List<Button> button_liste = new List<Button>();
             tableLayoutPanel.Controls.Clear();
-            tableLayoutPanel.ColumnStyles.Clear();
             tableLayoutPanel.RowStyles.Clear();
-            tableLayoutPanel.ColumnCount = 5;
             tableLayoutPanel.RowCount = teile_liste.Count + 1;
             tableLayoutPanel.AutoScroll = true;
             for (int x = 0; x < 5; x++)

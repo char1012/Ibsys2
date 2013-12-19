@@ -207,7 +207,7 @@ namespace IBSYS2
 
         /*---------Produktionsreihenfolge----------*/
         //GroupBox
-        public static String EN_GB_PR_PROD_SPLITT = "Procuktion sequence and splitting";
+        public static String EN_GB_PR_PROD_SPLITT = "Production sequence and splitting";
 
         /*---------Kaufteiledisposition----------*/
         //Groupboxen

@@ -26,16 +26,20 @@ namespace IBSYS2
         List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
+        int blub = 0;
 
         // hier lokal die Prodreihenfolge speichern - fuer dich Lukas Anmerkung: Später initialisieren sobald Länge von Liste bekannt
         int[,] berProduktionsreihenfolge = new int[30, 2];
 
         List<List<int>> teile_liste = new List<List<int>>();
+        List<List<int>> teile_liste_change = new List<List<int>>();
+        List<List<int>> save_teile_liste = new List<List<int>>();
+
 
         public void vonSplitnachReihenfolge(List<List<int>> teile_liste1)
         {
-            this.teile_liste = teile_liste1;
-            tabelle_erstellen(teile_liste);
+            this.teile_liste_change = teile_liste1;
+            tabelle_erstellen(teile_liste_change);
         }
 
         public void tabelle_erstellen(List<List<int>> teile_liste)
@@ -177,8 +181,8 @@ namespace IBSYS2
             // wenn bereits Werte vorhanden sind, diese uebernehmen
             if (bereitsBerechnet == true)
             {
-                teile_liste = prodReihenfolge;
-                tabelle_erstellen(teile_liste);
+                teile_liste_change = prodReihenfolge;
+                tabelle_erstellen(teile_liste_change);
             }
             else
             {
@@ -186,22 +190,31 @@ namespace IBSYS2
                 //Array in Liste
                 int[] reihenfolge = { 7, 13, 18, 8, 14, 19, 9, 15, 20, 49, 4, 10, 54, 5, 11, 29, 6, 12, 16, 17, 50, 55, 30, 26, 51, 56, 31, 1, 2, 3 };
 
-                //Produktionsreihenfolge in List sortieren 
-                for (int joern = 0; joern <= 29; joern++)
-                {
-                    int teil = reihenfolge[joern];
-                    for (int fred = 0; fred <= 29; fred++)
+                    //Produktionsreihenfolge in List sortieren 
+                    for (int joern = 0; joern <= 29; joern++)
                     {
-                        if (teile[fred, 0] == teil)
+                        int teil = reihenfolge[joern];
+                        for (int fred = 0; fred <= 29; fred++)
                         {
-                            int menge = teile[fred, 1];
-                            teile_liste.Add(new List<int>());
-                            teile_liste[joern].Add(teil);
-                            teile_liste[joern].Add(menge);
+                            if (teile[fred, 0] == teil)
+                            {
+                                if (teile[fred, 1] != 0)
+                                {
+                                    int menge = teile[fred, 1];
+                                    teile_liste.Add(new List<int>());
+                                    teile_liste[joern-blub].Add(teil);
+                                    teile_liste[joern-blub].Add(menge);
+                                }
+                                else
+                                {
+                                    blub++;
+                                }
+                            }
                         }
                     }
-                }
-                tabelle_erstellen(teile_liste);
+                this.teile_liste_change = teile_liste;
+                this.save_teile_liste = teile_liste;
+                tabelle_erstellen(teile_liste_change);
             }
 
             message.Close();
@@ -212,7 +225,7 @@ namespace IBSYS2
         {
             Label button = (Label)sender;
             int listitem = (int)button.Tag;
-            Splitting split = new Splitting(teile_liste, listitem, sprache, this);
+            Splitting split = new Splitting(teile_liste_change, listitem, sprache, this);
             split.Show();
         }
 
@@ -226,39 +239,39 @@ namespace IBSYS2
             else
             {
                 int listitem = (int)button.Tag - 1;
-                int teil1 = teile_liste[listitem][0];
-                int menge1 = teile_liste[listitem][1];
-                int teil2 = teile_liste[listitem - 1][0];
-                int menge2 = teile_liste[listitem - 1][1];
+                int teil1 = teile_liste_change[listitem][0];
+                int menge1 = teile_liste_change[listitem][1];
+                int teil2 = teile_liste_change[listitem - 1][0];
+                int menge2 = teile_liste_change[listitem - 1][1];
 
-                teile_liste[listitem][0] = teil2;
-                teile_liste[listitem][1] = menge2;
-                teile_liste[listitem - 1][0] = teil1;
-                teile_liste[listitem - 1][1] = menge1;
-                tabelle_erstellen(teile_liste);
+                teile_liste_change[listitem][0] = teil2;
+                teile_liste_change[listitem][1] = menge2;
+                teile_liste_change[listitem - 1][0] = teil1;
+                teile_liste_change[listitem - 1][1] = menge1;
+                tabelle_erstellen(teile_liste_change);
             }
         }
 
         void buttonDown_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (Convert.ToInt32(button.Tag) == teile_liste.Count)
+            if (Convert.ToInt32(button.Tag) == teile_liste_change.Count)
             {
                 MessageBox.Show("Bereits auf der letzten Position");
             }
             else
             {
                 int listitem = (int)button.Tag;
-                int teil1 = teile_liste[listitem][0];
-                int menge1 = teile_liste[listitem][1];
-                int teil2 = teile_liste[listitem - 1][0];
-                int menge2 = teile_liste[listitem - 1][1];
+                int teil1 = teile_liste_change[listitem][0];
+                int menge1 = teile_liste_change[listitem][1];
+                int teil2 = teile_liste_change[listitem - 1][0];
+                int menge2 = teile_liste_change[listitem - 1][1];
 
-                teile_liste[listitem][0] = teil2;
-                teile_liste[listitem][1] = menge2;
-                teile_liste[listitem - 1][0] = teil1;
-                teile_liste[listitem - 1][1] = menge1;
-                tabelle_erstellen(teile_liste);
+                teile_liste_change[listitem][0] = teil2;
+                teile_liste_change[listitem][1] = menge2;
+                teile_liste_change[listitem - 1][0] = teil1;
+                teile_liste_change[listitem - 1][1] = menge1;
+                tabelle_erstellen(teile_liste_change);
             }
         }
 
@@ -294,12 +307,17 @@ namespace IBSYS2
                 //EN Button
                 btn_back.Text = (Sprachen.EN_BTN_BACK);
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
+                btn_default.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //GroupBox
                 groupBox1.Text = (Sprachen.EN_GB_PR_PROD_SPLITT);
 
                 buttonDown.Text = "down";
                 buttonUp.Text = "up";
+                label1.Text = "Position";
+                label2.Text = "Part";
+                label3.Text = "Amount";
+                label4.Text = "Sort";
             }
             else
             {
@@ -315,12 +333,17 @@ namespace IBSYS2
                 //EN Button
                 btn_back.Text = (Sprachen.DE_BTN_BACK);
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
+                btn_default.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //GroupBox
                 groupBox1.Text = (Sprachen.DE_GB_PR_PROD_SPLITT);
 
                 buttonDown.Text = "Runter";
                 buttonUp.Text = "Hoch";
+                label1.Text = "Position";
+                label2.Text = "Teil";
+                label3.Text = "Menge";
+                label4.Text = "Sortieren";
 
             }
         }
@@ -329,7 +352,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
@@ -341,7 +364,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
@@ -353,7 +376,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl import = new ImportPrognose(aktPeriode, auftraege, direktverkaeufe,
@@ -365,7 +388,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl sicherheit = new Sicherheitsbestand(aktPeriode, auftraege, direktverkaeufe,
@@ -377,7 +400,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl kapaplan = new Kapazitaetsplan(aktPeriode, auftraege, direktverkaeufe,
@@ -389,7 +412,7 @@ namespace IBSYS2
         {
             // Datenweitergabe
 
-            prodReihenfolge = teile_liste;
+            prodReihenfolge = teile_liste_change;
 
             this.Controls.Clear();
             UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
@@ -400,6 +423,11 @@ namespace IBSYS2
         private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btn_default_Click(object sender, EventArgs e)
+        {
+            tabelle_erstellen(save_teile_liste);
         }
     }
 }

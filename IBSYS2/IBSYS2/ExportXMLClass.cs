@@ -65,12 +65,20 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("sellwish", null);
             for (int i = 0; i < 3; i++)
             {
-                myXmlTextWriter.WriteStartElement("item", null);
-                for (int t = 0; t < 2; t++)
+                try
                 {
-                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], Convert.ToString(prodReihenfolge[i][t]));
+                    myXmlTextWriter.WriteStartElement("item", null);
+                    //for (int t = 0; t < 2; t++)
+                    //{
+                    myXmlTextWriter.WriteAttributeString("article", "" + (i+1));
+                    myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(auftraege[i]));
+                    //}
+                    myXmlTextWriter.WriteEndElement();
                 }
-                myXmlTextWriter.WriteEndElement();
+                catch(Exception ex)
+                {
+
+                }
             }
             myXmlTextWriter.WriteEndElement();
             myXmlTextWriter.WriteStartElement("selldirect", null);
@@ -112,26 +120,29 @@ namespace IBSYS2
                 myXmlTextWriter.WriteStartElement("order", null);
                 for (int x = 0; x < 3; x++)
                 {
-                    if (x == 0)
+                    if (kaufauftraege[i, 5] != 0)
                     {
-                        myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 0]));//orderlist_Array_Values[i, x]);
-                        //MessageBox.Show("orderlist - "+i+" Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 0]));
-                    }
-                    else if (x == 1)
-                    {
-                        if (kaufauftraege[i, 4] != 0)
+                        if (x == 0)
                         {
-                            myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 4]));//orderlist_Array_Values[i, x]);
-                            //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 4]));
+                            myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 0]));//orderlist_Array_Values[i, x]);
+                            //MessageBox.Show("orderlist - "+i+" Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 0]));
                         }
+                        else if (x == 1)
+                        {
+                            if (kaufauftraege[i, 4] != 0)
+                            {
+                                myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 4]));//orderlist_Array_Values[i, x]);
+                                //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 4]));
+                            }
+                        }
+                        else if (x == 2)
+                        {
+                            myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 5]));//orderlist_Array_Values[i, x]);
+                            //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 5]));
+                        }
+                        else
+                        { }
                     }
-                    else if (x == 2)
-                    {
-                        myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 5]));//orderlist_Array_Values[i, x]);
-                        //MessageBox.Show("orderlist - " + i + " Feld: " + orderlist_Array_Fields[x] + ", Wert: " + Convert.ToString(kaufauftraege[i, 5]));
-                    }
-                    else
-                    { }
                 }
                 myXmlTextWriter.WriteEndElement();
             }
@@ -140,12 +151,14 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("productionlist", null);
             for (int i = 0; i < (prodReihenfolge.Count); i++)
             {
-                myXmlTextWriter.WriteStartElement("production", null);
-                myXmlTextWriter.WriteAttributeString("article", Convert.ToString(prodReihenfolge[i][0]));//art[i]);
-                myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(prodReihenfolge[i][1]));
-                //MessageBox.Show("article: " + Convert.ToString(prodReihenfolge[i, 0]) + ", quantity: "+Convert.ToString(prodReihenfolge[i,1]));
-
-                myXmlTextWriter.WriteEndElement();
+                if (prodReihenfolge[i][1] != 0)
+                {
+                    myXmlTextWriter.WriteStartElement("production", null);
+                    myXmlTextWriter.WriteAttributeString("article", Convert.ToString(prodReihenfolge[i][0]));//art[i]);
+                    myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(prodReihenfolge[i][1]));
+                    myXmlTextWriter.WriteEndElement();
+                    //MessageBox.Show("article: " + Convert.ToString(prodReihenfolge[i, 0]) + ", quantity: "+Convert.ToString(prodReihenfolge[i,1]));
+                }
             }
             myXmlTextWriter.WriteEndElement();
             //kapazitaet

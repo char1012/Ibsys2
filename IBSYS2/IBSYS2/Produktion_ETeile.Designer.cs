@@ -175,8 +175,7 @@
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(233, 95);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox11.Location = new System.Drawing.Point(175, 81);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(59, 22);
             this.textBox11.TabIndex = 10;
@@ -439,8 +438,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(195, 98);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(146, 84);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(33, 17);
             this.label11.TabIndex = 38;
@@ -621,8 +619,8 @@
             // pic_en
             // 
             this.pic_en.Image = ((System.Drawing.Image)(resources.GetObject("pic_en.Image")));
-            this.pic_en.Location = new System.Drawing.Point(731, 11);
-            this.pic_en.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pic_en.Location = new System.Drawing.Point(548, 9);
+            this.pic_en.Margin = new System.Windows.Forms.Padding(2);
             this.pic_en.Name = "pic_en";
             this.pic_en.Size = new System.Drawing.Size(40, 23);
             this.pic_en.TabIndex = 142;
@@ -632,8 +630,8 @@
             // pic_de
             // 
             this.pic_de.Image = ((System.Drawing.Image)(resources.GetObject("pic_de.Image")));
-            this.pic_de.Location = new System.Drawing.Point(776, 11);
-            this.pic_de.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pic_de.Location = new System.Drawing.Point(582, 9);
+            this.pic_de.Margin = new System.Windows.Forms.Padding(2);
             this.pic_de.Name = "pic_de";
             this.pic_de.Size = new System.Drawing.Size(40, 23);
             this.pic_de.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

@@ -353,7 +353,7 @@ namespace IBSYS2
             E203.Text = Convert.ToString(gLE20P3);
 
             textfeldFreigeben();
-
+            btn_back.Enabled = true;
             continue_btn.Enabled = true;
         }
         public double geplanterLagerbestand(double sicherheitsbestand, double ver)
@@ -529,7 +529,6 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
-                        btn_back.Enabled = true;
                     }
                     else
                     {
@@ -573,7 +572,6 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
-                        btn_back.Enabled = true;
                     }
                     else
                     {
@@ -617,7 +615,6 @@ namespace IBSYS2
                     if (tP1 & tP2 & tP3 & tv1 & tv2 & tv3)
                     {
                         eteileberechnen_btn.Enabled = true;
-                        btn_back.Enabled = true;
                     }
                     else
                     {
@@ -2343,6 +2340,7 @@ namespace IBSYS2
                     sicherheitsbest[29, 0] = 56;
                     sicherheitsbest[29, 1] = Convert.ToInt32(E562.Text);
 
+                    
                     this.Controls.Clear();
                     UserControl prod = new Produktion(aktPeriode, auftraege, direktverkaeufe,
                         sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);

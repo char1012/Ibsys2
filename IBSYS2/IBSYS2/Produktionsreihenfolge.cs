@@ -184,7 +184,12 @@ namespace IBSYS2
             if (bereitsBerechnet == true)
             {
                 this.teile_liste_change = prodReihenfolge;
-                this.save_teile_liste = prodReihenfolge;
+                for (int i = 0; i < prodReihenfolge.Count; i++)
+                {
+                    this.save_teile_liste.Add(new List<int>());
+                    this.save_teile_liste[i].Add(prodReihenfolge[i][0]);
+                    this.save_teile_liste[i].Add(prodReihenfolge[i][1]);
+                }
                 tabelle_erstellen(teile_liste_change);
             }
             else
@@ -217,7 +222,12 @@ namespace IBSYS2
                         }
                     }
                 this.teile_liste_change = teile_liste;
-                this.save_teile_liste = teile_liste;
+                for (int i = 0; i < teile_liste.Count; i++)
+                {
+                    this.save_teile_liste.Add(new List<int>());
+                    this.save_teile_liste[i].Add(teile_liste[i][0]);
+                    this.save_teile_liste[i].Add(teile_liste[i][1]);
+                }
                 tabelle_erstellen(teile_liste_change);
             }
         }

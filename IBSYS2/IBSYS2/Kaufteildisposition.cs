@@ -2414,6 +2414,15 @@ namespace IBSYS2
             B1.ForeColor = Color.Black;
             bool okay = true;
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            if (B1.TextLength != 1)
+            {
+                B1.ForeColor = Color.Red;
+                okay = false;
+                tB1 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
+
             foreach (char c in B1.Text.ToCharArray())
             {
                 //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
@@ -2449,6 +2458,14 @@ namespace IBSYS2
             B2.ForeColor = Color.Black;
             bool okay = true;
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            if (B2.TextLength != 1)
+            {
+                B2.ForeColor = Color.Red;
+                okay = false;
+                tB2 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             foreach (char c in B2.Text.ToCharArray())
             {
                 //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
@@ -2483,6 +2500,14 @@ namespace IBSYS2
         {
             B3.ForeColor = Color.Black;
             bool okay = true;
+            if (B3.TextLength != 1)
+            {
+                B3.ForeColor = Color.Red;
+                okay = false;
+                tB3 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B3.Text.ToCharArray())
             {
@@ -2518,6 +2543,14 @@ namespace IBSYS2
         {
             B4.ForeColor = Color.Black;
             bool okay = true;
+            if (B4.TextLength != 1)
+            {
+                B4.ForeColor = Color.Red;
+                okay = false;
+                tB4 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B4.Text.ToCharArray())
             {
@@ -2553,6 +2586,14 @@ namespace IBSYS2
         {
             B5.ForeColor = Color.Black;
             bool okay = true;
+            if (B5.TextLength != 1)
+            {
+                B5.ForeColor = Color.Red;
+                okay = false;
+                tB5 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B5.Text.ToCharArray())
             {
@@ -2588,6 +2629,14 @@ namespace IBSYS2
         {
             B6.ForeColor = Color.Black;
             bool okay = true;
+            if (B6.TextLength != 1)
+            {
+                B6.ForeColor = Color.Red;
+                okay = false;
+                tB6 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B6.Text.ToCharArray())
             {
@@ -2623,6 +2672,14 @@ namespace IBSYS2
         {
             B7.ForeColor = Color.Black;
             bool okay = true;
+            if (B7.TextLength != 1)
+            {
+                B7.ForeColor = Color.Red;
+                okay = false;
+                tB7 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B7.Text.ToCharArray())
             {
@@ -2658,6 +2715,14 @@ namespace IBSYS2
         {
             B8.ForeColor = Color.Black;
             bool okay = true;
+            if (B8.TextLength != 1)
+            {
+                B8.ForeColor = Color.Red;
+                okay = false;
+                tB8 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B8.Text.ToCharArray())
             {
@@ -2693,6 +2758,14 @@ namespace IBSYS2
         {
             B9.ForeColor = Color.Black;
             bool okay = true;
+            if (B9.TextLength != 1)
+            {
+                B9.ForeColor = Color.Red;
+                okay = false;
+                tB9 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B9.Text.ToCharArray())
             {
@@ -2728,6 +2801,14 @@ namespace IBSYS2
         {
             B10.ForeColor = Color.Black;
             bool okay = true;
+            if (B10.TextLength != 1)
+            {
+                B10.ForeColor = Color.Red;
+                okay = false;
+                tB10 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B10.Text.ToCharArray())
             {
@@ -2763,6 +2844,14 @@ namespace IBSYS2
         {
             B11.ForeColor = Color.Black;
             bool okay = true;
+            if (B11.TextLength != 1)
+            {
+                B11.ForeColor = Color.Red;
+                okay = false;
+                tB11 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B11.Text.ToCharArray())
             {
@@ -2798,6 +2887,14 @@ namespace IBSYS2
         {
             B12.ForeColor = Color.Black;
             bool okay = true;
+            if (B12.TextLength != 1)
+            {
+                B12.ForeColor = Color.Red;
+                okay = false;
+                tB12 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B12.Text.ToCharArray())
             {
@@ -2833,6 +2930,14 @@ namespace IBSYS2
         {
             B13.ForeColor = Color.Black;
             bool okay = true;
+            if (B13.TextLength != 1)
+            {
+                B13.ForeColor = Color.Red;
+                okay = false;
+                tB13 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B13.Text.ToCharArray())
             {
@@ -2868,6 +2973,14 @@ namespace IBSYS2
         {
             B14.ForeColor = Color.Black;
             bool okay = true;
+            if (B14.TextLength != 1)
+            {
+                B14.ForeColor = Color.Red;
+                okay = false;
+                tB14 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B14.Text.ToCharArray())
             {
@@ -2903,6 +3016,14 @@ namespace IBSYS2
         {
             B15.ForeColor = Color.Black;
             bool okay = true;
+            if (B15.TextLength != 1)
+            {
+                B15.ForeColor = Color.Red;
+                okay = false;
+                tB15 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B15.Text.ToCharArray())
             {
@@ -2938,6 +3059,14 @@ namespace IBSYS2
         {
             B16.ForeColor = Color.Black;
             bool okay = true;
+            if (B16.TextLength != 1)
+            {
+                B16.ForeColor = Color.Red;
+                okay = false;
+                tB16 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B16.Text.ToCharArray())
             {
@@ -2973,6 +3102,14 @@ namespace IBSYS2
         {
             B17.ForeColor = Color.Black;
             bool okay = true;
+            if (B17.TextLength != 1)
+            {
+                B17.ForeColor = Color.Red;
+                okay = false;
+                tB17 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B17.Text.ToCharArray())
             {
@@ -3008,6 +3145,14 @@ namespace IBSYS2
         {
             B18.ForeColor = Color.Black;
             bool okay = true;
+            if (B18.TextLength != 1)
+            {
+                B18.ForeColor = Color.Red;
+                okay = false;
+                tB18 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B18.Text.ToCharArray())
             {
@@ -3043,6 +3188,14 @@ namespace IBSYS2
         {
             B19.ForeColor = Color.Black;
             bool okay = true;
+            if (B19.TextLength != 1)
+            {
+                B19.ForeColor = Color.Red;
+                okay = false;
+                tB19 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B19.Text.ToCharArray())
             {
@@ -3078,6 +3231,14 @@ namespace IBSYS2
         {
             B20.ForeColor = Color.Black;
             bool okay = true;
+            if (B20.TextLength != 1)
+            {
+                B20.ForeColor = Color.Red;
+                okay = false;
+                tB20 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B20.Text.ToCharArray())
             {
@@ -3113,6 +3274,14 @@ namespace IBSYS2
         {
             B21.ForeColor = Color.Black;
             bool okay = true;
+            if (B21.TextLength != 1)
+            {
+                B21.ForeColor = Color.Red;
+                okay = false;
+                tB21 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B21.Text.ToCharArray())
             {
@@ -3148,6 +3317,14 @@ namespace IBSYS2
         {
             B22.ForeColor = Color.Black;
             bool okay = true;
+            if (B22.TextLength != 1)
+            {
+                B22.ForeColor = Color.Red;
+                okay = false;
+                tB22 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B22.Text.ToCharArray())
             {
@@ -3183,6 +3360,14 @@ namespace IBSYS2
         {
             B23.ForeColor = Color.Black;
             bool okay = true;
+            if (B23.TextLength != 1)
+            {
+                B23.ForeColor = Color.Red;
+                okay = false;
+                tB23 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B23.Text.ToCharArray())
             {
@@ -3218,6 +3403,14 @@ namespace IBSYS2
         {
             B24.ForeColor = Color.Black;
             bool okay = true;
+            if (B24.TextLength != 1)
+            {
+                B24.ForeColor = Color.Red;
+                okay = false;
+                tB24 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B24.Text.ToCharArray())
             {
@@ -3253,6 +3446,14 @@ namespace IBSYS2
         {
             B25.ForeColor = Color.Black;
             bool okay = true;
+            if (B25.TextLength != 1)
+            {
+                B25.ForeColor = Color.Red;
+                okay = false;
+                tB25 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B25.Text.ToCharArray())
             {
@@ -3288,6 +3489,14 @@ namespace IBSYS2
         {
             B26.ForeColor = Color.Black;
             bool okay = true;
+            if (B26.TextLength != 1)
+            {
+                B26.ForeColor = Color.Red;
+                okay = false;
+                tB26 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B26.Text.ToCharArray())
             {
@@ -3323,6 +3532,14 @@ namespace IBSYS2
         {
             B27.ForeColor = Color.Black;
             bool okay = true;
+            if (B27.TextLength != 1)
+            {
+                B27.ForeColor = Color.Red;
+                okay = false;
+                tB27 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B27.Text.ToCharArray())
             {
@@ -3358,6 +3575,14 @@ namespace IBSYS2
         {
             B28.ForeColor = Color.Black;
             bool okay = true;
+            if (B28.TextLength != 1)
+            {
+                B28.ForeColor = Color.Red;
+                okay = false;
+                tB28 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B28.Text.ToCharArray())
             {
@@ -3393,6 +3618,14 @@ namespace IBSYS2
         {
             B29.ForeColor = Color.Black;
             bool okay = true;
+            if (B29.TextLength != 1)
+            {
+                B29.ForeColor = Color.Red;
+                okay = false;
+                tB29 = false;
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+            }
             //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
             foreach (char c in B29.Text.ToCharArray())
             {

@@ -117,11 +117,11 @@ namespace IBSYS2
             myXmlTextWriter.WriteStartElement("orderlist", null);
             for (int i = 0; i < (kaufauftraege.Length / 6); i++)
             {
-                myXmlTextWriter.WriteStartElement("order", null);
                 for (int x = 0; x < 3; x++)
                 {
                     if (kaufauftraege[i, 5] != 0)
                     {
+                        myXmlTextWriter.WriteStartElement("order", null);
                         if (x == 0)
                         {
                             myXmlTextWriter.WriteAttributeString(orderlist_Array_Fields[x], Convert.ToString(kaufauftraege[i, 0]));//orderlist_Array_Values[i, x]);
@@ -142,9 +142,9 @@ namespace IBSYS2
                         }
                         else
                         { }
+                        myXmlTextWriter.WriteEndElement();
                     }
                 }
-                myXmlTextWriter.WriteEndElement();
             }
             myXmlTextWriter.WriteEndElement();
             //prodReihenfolge

@@ -17,7 +17,7 @@ namespace IBSYS2
         public static String DE_LBL_PRODUKTION = "Produktion";
         public static String DE_LBL_PRODUKTIONSREIHENFOLGE = "Produktionsreihenfolge";
         public static String DE_LBL_KAPATITAETSPLAN = "Kapazitätsplan"; //Umlaut
-        public static String DE_LBL_KAUFTEILEDISPOSITION = "Kaufteildisposition";
+        public static String DE_LBL_KAUFTEILEDISPOSITION = "        Kaufteildisposition";
         public static String DE_LBL_ERGEBNIS = "Ergebnis";
 
         /*---------Begruessungsseite----------*/
@@ -72,8 +72,8 @@ namespace IBSYS2
         public static String DE_LBL_KD_BA = "Bestellart";
 
         //ToolTip
-        public static String DE_KD_INFO = " ";
-
+        public static String DE_KD_INFO = "Die Mindestmenge zeigt, wieviel Sie mindestens bestellen muessen, dass die Menge für die Wiederbeschaffungszeit reicht.\n Die optimale Bestellmenge richtet sich nach der Formel zur optimalen Bestellmenge und stellt die kostengünstigste Bestellmenge dar.\n Sie müssen jedoch beachten, dass diese Formel nicht die sprungfixen Lagerhaltungskosten einkalkuliert. Als Bestellart können Sie entweder N(ormal) oder E(xpress) eingeben.";
+        
         /*---------Kapazitätsplan----------*/
         //Button
         public static String DE_BTN_DEFAULT = "Berechnung wiederherstellen";
@@ -85,7 +85,7 @@ namespace IBSYS2
         public static String DE_LBL_KD_INFO = "Die hier berechneten Werte können von Ihnen überschrieben werden.";
         public static String DE_LBL_KD_KBEDARF = "Kapazitätsbedarf";
         public static String DE_LBL_KD_UEBERSTUNDENP = "Überstunden/Periode";
-        public static String DE_LBL_KD_UEBERSTUNDENT = "UeberstundenTag";
+        public static String DE_LBL_KD_UEBERSTUNDENT = "Überstunden/Tag";
         public static String DE_LBL_KD_SCHICHTEN = "Schichten";
 
         //ToolTip
@@ -164,7 +164,7 @@ namespace IBSYS2
         /*--------------------------------------------------------------------------------------------------------*/
         // Brotkrumenleiste
         public static String EN_LBL_STARTSEITE = "Homepage";
-        public static String EN_LBL_SICHERHEITSBESTAND = "Safty Stock";
+        public static String EN_LBL_SICHERHEITSBESTAND = "      Safty Stock";
         public static String EN_LBL_PRODUKTIONSREIHENFOLGE = "Production sequence";
         public static String EN_LBL_PRODUKTION = "Production";
         public static String EN_LBL_KAPATITAETSPLAN = "Capacity Plan";
@@ -223,7 +223,7 @@ namespace IBSYS2
         public static String EN_LBL_KD_BA = "Order type";
 
         //ToolTip
-        public static String EN_KD_INFO = " ";
+        public static String EN_KD_INFO = "The minimum amount shows you how much you have to order, that the amount of the replenishment lead time is sufficient. \n The optimal order quantity is determined by the formula for the optimal order quantity and represents as the most cost-effective ordering. \n You have to note that this formula is not fixed-step storage costs factored. As an order type, you can enter either N (ormal) or E (xpress).";
 
         /*---------Kapazitätsplan----------*/
         //Button

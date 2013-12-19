@@ -397,7 +397,7 @@ namespace IBSYS2
             }
             else
             {
-                groupBox1.Text = Sprachen.DE_PRE_GB_ETEILE;
+                groupBox1.Text = Sprachen.DE_DV_GROUPBOX1;
                 label4.Text = Sprachen.DE_DV_LABEL4;
                 label5.Text = Sprachen.DE_DV_LABEL5;
                 label6.Text = Sprachen.DE_DV_LABEL6;

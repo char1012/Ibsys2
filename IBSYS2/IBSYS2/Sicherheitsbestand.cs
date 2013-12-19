@@ -28,12 +28,12 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         public Sicherheitsbestand(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -96,6 +96,13 @@ namespace IBSYS2
             continue_btn.Enabled = false;
             eteileberechnen_btn.Enabled = false;
             btn_back.Enabled = false;
+
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
 
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < sicherheitsbest.GetLength(0); i++)
@@ -185,8 +192,10 @@ namespace IBSYS2
                     }
                 }
 
-
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         public void setButtons(Boolean b)
@@ -2102,9 +2111,9 @@ namespace IBSYS2
                 ToolTipEN.SetToolTip(this.infoP, Sprachen.EN_INFOP);
                 ToolTipEN.SetToolTip(this.infoE, Sprachen.EN_INFOE);
 
-                lbl_ver1.Text = "Ratio";
-                lbl_ver2.Text = "Ratio";
-                lbl_ver3.Text = "Ratio";
+                lbl_ver1.Text = "Ratio in %";
+                lbl_ver2.Text = "Ratio in %";
+                lbl_ver3.Text = "Ratio in %";
             }
             else
             {
@@ -2135,9 +2144,9 @@ namespace IBSYS2
                 ToolTipDE.SetToolTip(this.infoP, Sprachen.DE_INFOP);
                 ToolTipDE.SetToolTip(this.infoE, Sprachen.DE_INFOE);
 
-                lbl_ver1.Text = "Verhältnis";
-                lbl_ver2.Text = "Verhältnis";
-                lbl_ver3.Text = "Verhältnis";
+                lbl_ver1.Text = "Verhältnis in %";
+                lbl_ver2.Text = "Verhältnis in %";
+                lbl_ver3.Text = "Verhältnis in %";
             }
         }
 

@@ -23,7 +23,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -38,7 +38,7 @@ namespace IBSYS2
         }
 
         public Ergebnis(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -132,21 +132,21 @@ namespace IBSYS2
             // Produktionsauftraege
             tableLayoutPanel2.Controls.Clear();
             tableLayoutPanel2.RowStyles.Clear();
-            tableLayoutPanel2.RowCount = prodReihenfolge.GetLength(0);
+            tableLayoutPanel2.RowCount = prodReihenfolge.Count;
             tableLayoutPanel2.AutoScroll = true;
             for (int x = 0; x < 2; x++)
             {
-                for (int y = 0; y < prodReihenfolge.GetLength(0); y++)
+                for (int y = 0; y < prodReihenfolge.Count; y++)
                 {
                     Label label = new Label();
 
                     if (x == 0)
                     {
-                        label.Text = prodReihenfolge[y, 0].ToString();
+                        label.Text = prodReihenfolge[y][0].ToString();
                     }
                     else if (x == 1)
                     {
-                        label.Text = prodReihenfolge[y, 1].ToString();
+                        label.Text = prodReihenfolge[y][1].ToString();
                     }
 
                     tableLayoutPanel2.Controls.Add(label, x, y);
@@ -191,13 +191,13 @@ namespace IBSYS2
 
             storevalues = calculateStorevalue(periode, auftraege, direktverkaeufe, produktion);
 
-            if (storevalues[1] >= 250000)
+            if (storevalues[2] >= 250000)
             {
-                textBox2.ForeColor = Color.Red;
+                textBox2.BackColor = System.Drawing.ColorTranslator.FromHtml("#f09c9c");
             }
 
             // Strings formatieren
-            String s1 = storevalues[0].ToString();
+            String s1 = storevalues[0].ToString(); // Anfangswert
             int count1 = s1.Length;
             if (count1 > 3)
             {
@@ -220,10 +220,11 @@ namespace IBSYS2
                     neu1 += ".";
                     neu1 += s1.Substring(3, 3);
                 }
+                neu1 += " €";
                 textBox1.Text = neu1;
             }
 
-            String s2 = storevalues[1].ToString();
+            String s2 = storevalues[2].ToString(); // Mittelwert
             int count2 = s2.Length;
             if (count1 > 3)
             {
@@ -246,10 +247,11 @@ namespace IBSYS2
                     neu2 += ".";
                     neu2 += s2.Substring(3, 3);
                 }
-                textBox1.Text = neu2;
+                neu2 += " €";
+                textBox2.Text = neu2;
             }
 
-            String s3 = storevalues[2].ToString();
+            String s3 = storevalues[1].ToString(); // Endwert
             int count3 = s3.Length;
             if (count3 > 3)
             {
@@ -272,7 +274,8 @@ namespace IBSYS2
                     neu3 += ".";
                     neu3 += s3.Substring(3, 3);
                 }
-                textBox1.Text = neu3;
+                neu3 += " €";
+                textBox3.Text = neu3;
             }
         }
 
@@ -299,14 +302,31 @@ namespace IBSYS2
                 myconn.Open();
             }
 
+            OleDbDataReader dbReader;
+
             // a) Anfangslagerwert aus der DB lesen
-            cmd.CommandText = @"SELECT Aktueller_Lagerbestand FROM Informationen WHERE Periode = " + periode + ";";
-            OleDbDataReader dbReader = cmd.ExecuteReader();
-            while (dbReader.Read()) // hier sollte nur eine Zeile herauskommen
+            if (aktPeriode > 1)
             {
-                storevalue[0] = Convert.ToInt32(dbReader["Aktueller_Lagerbestand"]);
+                cmd.CommandText = @"SELECT Aktueller_Lagerbestand FROM Informationen WHERE Periode = " + periode + ";";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read()) // hier sollte nur eine Zeile herauskommen
+                {
+                    storevalue[0] = Convert.ToInt32(dbReader["Aktueller_Lagerbestand"]);
+                }
+                dbReader.Close();
             }
-            dbReader.Close();
+            else
+            {
+                double wert = 0.0;
+                cmd.CommandText = @"SELECT Teilenummer, Startbestand, Startteilewert FROM Teil;";
+                dbReader = cmd.ExecuteReader();
+                while (dbReader.Read())
+                {
+                    wert += Convert.ToDouble(dbReader["Startbestand"]) * Convert.ToDouble(dbReader["Startteilewert"]);
+                }
+                dbReader.Close();
+                storevalue[0] = Convert.ToInt32(wert);
+            }
 
             // b) geschaetzter Endlagerwert berechnen
 
@@ -331,12 +351,12 @@ namespace IBSYS2
             }
             else
             {
-                cmd.CommandText = @"SELECT Teilenummer, Startbestand FROM Teil;";
+                cmd.CommandText = @"SELECT Teilenummer, Startteilewert FROM Teil;";
                 dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
                     teilewerte[n, 0] = Convert.ToDouble(dbReader["Teilenummer"]);
-                    teilewerte[n, 1] = Convert.ToDouble(dbReader["Startbestand"]);
+                    teilewerte[n, 1] = Convert.ToDouble(dbReader["Startteilewert"]);
                     n++;
                 }
                 dbReader.Close();
@@ -552,7 +572,7 @@ namespace IBSYS2
 
                 //EN Buttons
                 End_btn.Text = (Sprachen.EN_BTN_XML_EXPORT);
-                back_btn.Text = (Sprachen.DE_BTN_BACK);
+                back_btn.Text = (Sprachen.EN_BTN_BACK);
 
                 //EN Groupboxen
                 groupBox2.Text = (Sprachen.EN_ER_GROUPBOX2);
@@ -686,21 +706,12 @@ namespace IBSYS2
 
         private void End_btn_Click(object sender, EventArgs e)
         {
-            // Mitteilung einblenden
-            ProcessMessage message = new ProcessMessage(sprache);
-            message.Show(this);
-            message.Location = new Point(500, 300);
-            message.Update();
-            this.Enabled = false;
-
-            // TODO - ExportXMLClass aufrufen
             try
             {
                 System.Windows.Forms.FolderBrowserDialog objDialog = new FolderBrowserDialog();
                 if (objDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     String pfad = objDialog.SelectedPath;
-                    MessageBox.Show("Neuer Pfad: " + objDialog.SelectedPath);
                     ExportXMLClass exp = new ExportXMLClass();
                     exp.XMLExport(pfad,kaufauftraege, prodReihenfolge, kapazitaet, auftraege, direktverkaeufe);
                     MessageBox.Show("Die Datei wurde exportiert und ist verfügbar unter: "+pfad, "Export erfolgt");
@@ -710,10 +721,6 @@ namespace IBSYS2
             {
                 MessageBox.Show("" + ex);
             }
-            message.Close();
-            this.Enabled = true;
-
-            // TODO - Speicherort fuer XML-Datei auswaehlen lassen
         }
     }
 }

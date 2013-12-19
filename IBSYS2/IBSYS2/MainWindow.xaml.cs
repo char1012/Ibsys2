@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Windows.Input;
 using Visiblox.Charts;
 using System.Windows;
+using System.Resources;
 
 
 namespace IBSYS2

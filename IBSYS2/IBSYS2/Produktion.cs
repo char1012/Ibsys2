@@ -24,7 +24,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -48,7 +48,7 @@ namespace IBSYS2
         }
 
         public Produktion(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -116,6 +116,13 @@ namespace IBSYS2
             // aktPeriode = aktuelle Periode, periode = Periode aus XML (letzte Periode)
             periode = aktPeriode - 1;
 
+            // Mitteilung einblenden
+            ProcessMessage message = new ProcessMessage(sprache);
+            message.Show(this);
+            message.Location = new Point(500, 300);
+            message.Update();
+            this.Enabled = false;
+
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < produktion.GetLength(0); i++)
             {
@@ -148,6 +155,9 @@ namespace IBSYS2
                 berechneProduktion();
                 ProduktionETeile();
             }
+
+            message.Close();
+            this.Enabled = true;
         }
 
         private void check()
@@ -222,15 +232,15 @@ namespace IBSYS2
                 OleDbDataReader dbReader = cmd.ExecuteReader();
                 while (dbReader.Read())
                 {
-                    if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 1)
+                    if (Convert.ToInt32(dbReader["Teilenummer"]) == 1)
                     {
                         lagerbestandp1 = Convert.ToInt32(dbReader["Startbestand"]);
                     }
-                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 2)
+                    else if (Convert.ToInt32(dbReader["Teilenummer"]) == 2)
                     {
                         lagerbestandp2 = Convert.ToInt32(dbReader["Startbestand"]);
                     }
-                    else if (Convert.ToInt32(dbReader["Teilenummer_FK"]) == 3)
+                    else if (Convert.ToInt32(dbReader["Teilenummer"]) == 3)
                     {
                         lagerbestandp3 = Convert.ToInt32(dbReader["Startbestand"]);
                     }

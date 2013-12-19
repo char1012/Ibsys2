@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Data.OleDb;
 using System.Xml.Linq;
+using System.Threading;
+using System.Globalization;
 
 namespace IBSYS2
 {
@@ -30,7 +32,7 @@ namespace IBSYS2
         //selldirect = selldirect
 
 
-        public void XMLExport(String pfad, int[,] kaufauftraege, int[,] prodReihenfolge, int[,] kapazitaet, int[] auftraege, double[,] direktverkaeufe) //OleDbCommand cmd
+        public void XMLExport(String pfad, int[,] kaufauftraege, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[] auftraege, double[,] direktverkaeufe) //OleDbCommand cmd
         {
             XmlDocument doc = new XmlDocument();
             XmlNode myRoot; //, myNode;
@@ -66,7 +68,7 @@ namespace IBSYS2
                 myXmlTextWriter.WriteStartElement("item", null);
                 for (int t = 0; t < 2; t++)
                 {
-                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], Convert.ToString(prodReihenfolge[i, t]));
+                    myXmlTextWriter.WriteAttributeString(sellwish_Array_Fields[t], Convert.ToString(prodReihenfolge[i][t]));
                 }
                 myXmlTextWriter.WriteEndElement();
             }
@@ -79,7 +81,20 @@ namespace IBSYS2
                 myXmlTextWriter.WriteStartElement("item", null);
                 for (int x = 0; x < 4; x++)
                 {
-                    myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));//selldirect_Array_Values[i, x]);
+                    if (x == 0)
+                    {
+                        direktverkaeufe[i, x] = i + 1;
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));
+                    }
+                    else if (x == 2 || x == 3)
+                    {
+                        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], direktverkaeufe[i, x].ToString("F"));
+                    }
+                    else
+                    {
+                        myXmlTextWriter.WriteAttributeString(selldirect_Array_Fields[x], Convert.ToString(direktverkaeufe[i, x]));//selldirect_Array_Values[i, x]);
+                    }
                     //MessageBox.Show("Selldirect - Feld" + x + ": " + selldirect_Array_Fields[x] + ", Wert: " + Convert.ToString(direktverkaeufe[i, x]));
                 }
                 myXmlTextWriter.WriteEndElement();
@@ -123,11 +138,11 @@ namespace IBSYS2
             myXmlTextWriter.WriteEndElement();
             //prodReihenfolge
             myXmlTextWriter.WriteStartElement("productionlist", null);
-            for (int i = 0; i < (prodReihenfolge.Length / 2); i++)
+            for (int i = 0; i < (prodReihenfolge.Count); i++)
             {
                 myXmlTextWriter.WriteStartElement("production", null);
-                myXmlTextWriter.WriteAttributeString("article", Convert.ToString(prodReihenfolge[i, 0]));//art[i]);
-                myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(prodReihenfolge[i, 1]));
+                myXmlTextWriter.WriteAttributeString("article", Convert.ToString(prodReihenfolge[i][0]));//art[i]);
+                myXmlTextWriter.WriteAttributeString("quantity", Convert.ToString(prodReihenfolge[i][1]));
                 //MessageBox.Show("article: " + Convert.ToString(prodReihenfolge[i, 0]) + ", quantity: "+Convert.ToString(prodReihenfolge[i,1]));
 
                 myXmlTextWriter.WriteEndElement();

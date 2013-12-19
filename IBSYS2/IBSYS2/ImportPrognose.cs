@@ -29,7 +29,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -71,7 +71,7 @@ namespace IBSYS2
 
         // zweiter Konstruktor mit Werten, wenn von einer Form weiter hinten aufgerufen
         public ImportPrognose(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.aktPeriode = aktPeriode;
@@ -109,7 +109,6 @@ namespace IBSYS2
             }
 
             InitializeComponent();
-            button2.Enabled = false;
             continue_btn.Enabled = false;
             btn_direktverkäufe.Enabled = false;
             this.sprache = sprache;
@@ -186,6 +185,7 @@ namespace IBSYS2
                 button2.Enabled = false;
                 continue_btn.Enabled = true;
                 btn_direktverkäufe.Enabled = true;
+                clear_btn.Enabled = false;
                 fileselected = true;
             }
             else
@@ -198,20 +198,6 @@ namespace IBSYS2
             // int periode fuer Datenweitergabe fuellen
             String[] strings = comboBox1.Text.Split((new Char[] { ' ' }));
             aktPeriode = Convert.ToInt32(strings[1]);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //ExportXMLClass exportXML = new ExportXMLClass();
-            //exportXML.XMLExport();
-           // Kaufteildisposition ktdispo = new Kaufteildisposition();
-            UserControl p = new Produktionsreihenfolge();
-            //p.Show();
-            //ktdispo.ShowDialog();
-            this.Controls.Clear();
-            //UserControl sicherheit = new Sicherheitsbestand();
-            //UserControl ergebnis = new Ergebnis();
-            this.Controls.Add(p);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -364,6 +350,9 @@ namespace IBSYS2
                                         System.Windows.Forms.MessageBox.Show("The files were imported successfully, thank you for your patience.", "XML-dataset imported");
                                     }
                                     myconn.Close();
+
+                                    button2.Enabled = false;
+                                    clear_btn.Enabled = false;
                                 }
 
                                 //Aufruf Funktion Validierung Werte in Feldern enthalten?
@@ -407,6 +396,9 @@ namespace IBSYS2
                                     lbl_Sicherheitsbestand.Enabled = true;
                                 }
                                 myconn.Close();
+
+                                button2.Enabled = false;
+                                clear_btn.Enabled = false;
                             }
                         }
                     }

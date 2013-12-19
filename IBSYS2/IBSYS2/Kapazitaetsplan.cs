@@ -29,12 +29,12 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
         public Kapazitaetsplan(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -228,7 +228,7 @@ namespace IBSYS2
                 else if (Convert.ToInt32(kText.Text) > 7200) // Wenn mehr als 3 Schichten benoetigt werden
                 {
                     schicht = 3;
-                    this.Controls.Find("S" + s.ToString(), true)[0].BackColor = Color.Red;
+                    this.Controls.Find("S" + s.ToString(), true)[0].BackColor = System.Drawing.ColorTranslator.FromHtml("#f09c9c");
                 }
                 this.Controls.Find("S" + s.ToString(), true)[0].Text = schicht.ToString();
                 schichten[i] = schicht; // Startwert der Zeile Schichten speichern

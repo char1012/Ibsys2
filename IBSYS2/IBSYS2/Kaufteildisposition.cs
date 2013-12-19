@@ -18,7 +18,9 @@ namespace IBSYS2
     {
         private OleDbConnection myconn;
         private String sprache = "de";
-
+        private char[] digits = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private char[] letters = new char[] { 'E', 'N' };
+        bool tBM1 = true, tBM2 = true, tBM3 = true, tBM4 = true, tBM5 = true, tBM6 = true, tBM7 = true, tBM8 = true, tBM9 = true, tBM10 = true, tBM11 = true, tBM12 = true, tBM13 = true, tBM14 = true, tBM15 = true, tBM16 = true, tBM17 = true, tBM18 = true, tBM19 = true, tBM20 = true, tBM21 = true, tBM22 = true, tBM23 = true, tBM24 = true, tBM25 = true, tBM26 = true, tBM27 = true, tBM28 = true, tBM29 = true, tB1 = true, tB2 = true, tB3 = true, tB4 = true, tB5 = true, tB6 = true, tB7 = true, tB8 = true, tB9 = true, tB10 = true, tB11 = true, tB12 = true, tB13 = true, tB14 = true, tB15 = true, tB16 = true, tB17 = true, tB18 = true, tB19 = true, tB20 = true, tB21 = true, tB22 = true, tB23 = true, tB24 = true, tB25 = true, tB26 = true, tB27 = true, tB28 = true, tB29 = true;
         // Datenweitergabe:
         int aktPeriode;
         int[] auftraege = new int[12];
@@ -26,7 +28,7 @@ namespace IBSYS2
         int[,] sicherheitsbest = new int[30, 5];
         int[,] produktion = new int[30, 2];
         int[,] produktionProg = new int[3, 5];
-        int[,] prodReihenfolge = new int[30, 2];
+        List<List<int>> prodReihenfolge = new List<List<int>>();
         int[,] kapazitaet = new int[15, 5];
         int[,] kaufauftraege = new int[29, 6];
 
@@ -38,7 +40,7 @@ namespace IBSYS2
         }
 
         public Kaufteildisposition(int aktPeriode, int[] auftraege, double[,] direktverkaeufe, int[,] sicherheitsbest,
-            int[,] produktion, int[,] produktionProg, int[,] prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
+            int[,] produktion, int[,] produktionProg, List<List<int>> prodReihenfolge, int[,] kapazitaet, int[,] kaufauftraege,
             String sprache)
         {
             this.sprache = sprache;
@@ -79,6 +81,16 @@ namespace IBSYS2
             InitializeComponent();
             continue_btn.Enabled = true; // false, wenn Zellen geleert werden
             sprachen();
+            if (pic_en.SizeMode != PictureBoxSizeMode.StretchImage & sprache == "de")
+            {
+                System.Windows.Forms.ToolTip ToolTipDE = new System.Windows.Forms.ToolTip();
+                ToolTipDE.SetToolTip(this.pictureBox1, Sprachen.DE_KD_INFO);
+            }
+            else
+            {
+                System.Windows.Forms.ToolTip ToolTipEN = new System.Windows.Forms.ToolTip();
+                ToolTipEN.SetToolTip(this.pictureBox1, Sprachen.EN_KD_INFO);
+            }
 
             Boolean bereitsBerechnet = false;
             for (int i = 0; i < kaufauftraege.GetLength(0); i++)
@@ -184,6 +196,12 @@ namespace IBSYS2
                         }
                         this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellart;
                     }
+                    else
+                    {
+                        // um eventuell vorhandene Werte zu loeschen
+                        this.Controls.Find("BM" + k.ToString(), true)[0].Text = "";
+                        this.Controls.Find("B" + k.ToString(), true)[0].Text = "";
+                    }
                 }
 
                 message.Close();
@@ -273,6 +291,11 @@ namespace IBSYS2
                 {
                     bestellartString = "N";
                 }
+                else
+                {
+                    // um eventuell vorhandene Werte zu loeschen
+                    bestellartString = "";
+                }
                 bestellart[i, 1] = bestellartString;
                 int k = i + 1;
                 this.Controls.Find("B" + k.ToString(), true)[0].Text = bestellartString;
@@ -338,6 +361,11 @@ namespace IBSYS2
                     
                     this.Controls.Find("BM" + k.ToString(), true)[0].Text = bestellmenge.ToString();
                 }
+                else
+                {
+                    // um eventuell vorhandene Werte zu loeschen
+                    this.Controls.Find("BM" + k.ToString(), true)[0].Text = "";
+            }
             }
 
             message.Close();
@@ -564,6 +592,8 @@ namespace IBSYS2
 
         private void continue_btn_Click(object sender, EventArgs e)
         {
+
+
             // Datenweitergabe
 
             // Werte aus TextBoxen in kapazitaet auslesen
@@ -635,11 +665,30 @@ namespace IBSYS2
                     kaufauftraege[i, 5] = 0;
                 }
             }
+            bool t = true;
+            for (int i = 0; i < kaufauftraege.GetLength(0); ++i)
+            {
+                if (kaufauftraege[i, 4] != 0 & kaufauftraege[i, 5] == 0)
+                {
+                    t = false;
+                }
+                else if (kaufauftraege[i, 4] == 0 & kaufauftraege[i, 5] != 0)
+                {
+                    t = false;
+                }
+            }
 
-            this.Controls.Clear();
-            UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
-                sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
-            this.Controls.Add(ergebnis);
+            if (t == true)
+            {
+                this.Controls.Clear();
+                UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
+                    sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
+                this.Controls.Add(ergebnis);
+            }
+            else
+            {
+                MessageBox.Show("Ein Wert fehlt! Bitte prüfen Sie Ihre Eingaben.");
+            }
         }
 
         public void sprachen()
@@ -658,6 +707,7 @@ namespace IBSYS2
                 //EN Buttons
                 continue_btn.Text = (Sprachen.EN_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.EN_BTN_BACK);
+                default_btn.Text = (Sprachen.EN_BTN_DEFAULT);
 
                 //EN Groupboxen
                 groupBox1.Text = (Sprachen.EN_KD_GROUPBOX1);
@@ -700,6 +750,7 @@ namespace IBSYS2
                 //DE Buttons
                 continue_btn.Text = (Sprachen.DE_BTN_CONTINUE);
                 back_btn.Text = (Sprachen.DE_BTN_BACK);
+                default_btn.Text = (Sprachen.DE_BTN_DEFAULT);
 
                 //DE Groupboxen
                 groupBox1.Text = (Sprachen.DE_KD_GROUPBOX1);
@@ -1304,6 +1355,2078 @@ namespace IBSYS2
             UserControl ergebnis = new Ergebnis(aktPeriode, auftraege, direktverkaeufe,
                 sicherheitsbest, produktion, produktionProg, prodReihenfolge, kapazitaet, kaufauftraege, sprache);
             this.Controls.Add(ergebnis);
+        }
+
+        private void BM1_TextChanged(object sender, EventArgs e)
+        {
+                BM1.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM1.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM1.ForeColor = Color.Red;
+                        okay = false;
+                        tBM1 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+
+                }
+                if (okay == true)
+                {
+                    BM1.ForeColor = Color.Black;
+                    tBM1 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM2_TextChanged(object sender, EventArgs e)
+        {
+                BM2.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM2.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM2.ForeColor = Color.Red;
+                        okay = false;
+                        tBM2 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM2.ForeColor = Color.Black;
+                    tBM2 = true;
+                    if (tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM3_TextChanged(object sender, EventArgs e)
+        {
+                BM3.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM3.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM3.ForeColor = Color.Red;
+                        okay = false;
+                        tBM3 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM3.ForeColor = Color.Black;
+                    tBM3 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM4_TextChanged(object sender, EventArgs e)
+        {
+            if (BM4.Text == "")
+            {
+                continue_btn.Enabled = false;
+                back_btn.Enabled = false;
+                tBM4 = false;
+            }
+            else
+            {
+                BM4.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM4.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM4.ForeColor = Color.Red;
+                        okay = false;
+                        tBM4 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM4.ForeColor = Color.Black;
+                    tBM4 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void BM5_TextChanged(object sender, EventArgs e)
+        {
+                BM5.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM5.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM5.ForeColor = Color.Red;
+                        okay = false;
+                        tBM5 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM5.ForeColor = Color.Black;
+                    tBM5 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM6_TextChanged(object sender, EventArgs e)
+        {
+                BM6.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM6.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM6.ForeColor = Color.Red;
+                        okay = false;
+                        tBM6 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM6.ForeColor = Color.Black;
+                    tBM6 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM7_TextChanged(object sender, EventArgs e)
+        {
+                BM7.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM7.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM7.ForeColor = Color.Red;
+                        okay = false;
+                        tBM7 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM7.ForeColor = Color.Black;
+                    tBM7 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM8_TextChanged(object sender, EventArgs e)
+        {
+                BM8.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM8.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM8.ForeColor = Color.Red;
+                        okay = false;
+                        tBM8 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM8.ForeColor = Color.Black;
+                    tBM8 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM9_TextChanged(object sender, EventArgs e)
+        {
+                BM9.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM9.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM9.ForeColor = Color.Red;
+                        okay = false;
+                        tBM9 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM9.ForeColor = Color.Black;
+                    tBM9 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM10_TextChanged(object sender, EventArgs e)
+        {
+                BM10.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM10.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM10.ForeColor = Color.Red;
+                        okay = false;
+                        tBM10 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM10.ForeColor = Color.Black;
+                    tBM10 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM11_TextChanged(object sender, EventArgs e)
+        {
+                BM11.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM11.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM11.ForeColor = Color.Red;
+                        okay = false;
+                        tBM11 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM11.ForeColor = Color.Black;
+                    tBM11 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM12_TextChanged(object sender, EventArgs e)
+        {
+                BM12.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM12.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM12.ForeColor = Color.Red;
+                        okay = false;
+                        tBM12 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM12.ForeColor = Color.Black;
+                    tBM12 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM13_TextChanged(object sender, EventArgs e)
+        {
+                BM13.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM13.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM13.ForeColor = Color.Red;
+                        okay = false;
+                        tBM13 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM13.ForeColor = Color.Black;
+                    tBM13 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM14_TextChanged(object sender, EventArgs e)
+        {
+                BM14.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM14.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM14.ForeColor = Color.Red;
+                        okay = false;
+                        tBM14 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM14.ForeColor = Color.Black;
+                    tBM14 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM15_TextChanged(object sender, EventArgs e)
+        {
+                BM15.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM15.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM15.ForeColor = Color.Red;
+                        okay = false;
+                        tBM15 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM15.ForeColor = Color.Black;
+                    tBM15 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM16_TextChanged(object sender, EventArgs e)
+        {
+                BM16.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM16.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM16.ForeColor = Color.Red;
+                        okay = false;
+                        tBM16 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM16.ForeColor = Color.Black;
+                    tBM16 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM17_TextChanged(object sender, EventArgs e)
+        {
+                BM17.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM17.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM17.ForeColor = Color.Red;
+                        okay = false;
+                        tBM17 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM17.ForeColor = Color.Black;
+                    tBM17 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM18_TextChanged(object sender, EventArgs e)
+        {
+                BM18.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM18.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM18.ForeColor = Color.Red;
+                        okay = false;
+                        tBM18 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM18.ForeColor = Color.Black;
+                    tBM18 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM19_TextChanged(object sender, EventArgs e)
+        {
+                BM19.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM19.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM19.ForeColor = Color.Red;
+                        okay = false;
+                        tBM19 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM19.ForeColor = Color.Black;
+                    tBM19 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM20_TextChanged(object sender, EventArgs e)
+        {
+                BM20.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM20.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM20.ForeColor = Color.Red;
+                        okay = false;
+                        tBM20 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM20.ForeColor = Color.Black;
+                    tBM20 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM21_TextChanged(object sender, EventArgs e)
+        {
+                BM21.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM21.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM21.ForeColor = Color.Red;
+                        okay = false;
+                        tBM21 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM21.ForeColor = Color.Black;
+                    tBM21 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM22_TextChanged(object sender, EventArgs e)
+        {
+                BM22.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM22.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM22.ForeColor = Color.Red;
+                        okay = false;
+                        tBM22 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM22.ForeColor = Color.Black;
+                    tBM22 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM23_TextChanged(object sender, EventArgs e)
+        {
+                BM23.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM23.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM23.ForeColor = Color.Red;
+                        okay = false;
+                        tBM23 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM23.ForeColor = Color.Black;
+                    tBM23 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM24_TextChanged(object sender, EventArgs e)
+        {
+                BM24.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM24.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM24.ForeColor = Color.Red;
+                        okay = false;
+                        tBM24 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM24.ForeColor = Color.Black;
+                    tBM24 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                
+            }
+        }
+
+        private void BM25_TextChanged(object sender, EventArgs e)
+        {
+                BM25.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM25.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM25.ForeColor = Color.Red;
+                        okay = false;
+                        tBM25 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM25.ForeColor = Color.Black;
+                    tBM25 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM26_TextChanged(object sender, EventArgs e)
+        {
+                BM26.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM26.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM26.ForeColor = Color.Red;
+                        okay = false;
+                        tBM26 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM26.ForeColor = Color.Black;
+                    tBM26 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM27_TextChanged(object sender, EventArgs e)
+        {
+                BM27.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM27.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM27.ForeColor = Color.Red;
+                        okay = false;
+                        tBM27 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM27.ForeColor = Color.Black;
+                    tBM27 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }
+            
+        }
+
+        private void BM28_TextChanged(object sender, EventArgs e)
+        {
+                BM28.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM28.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM28.ForeColor = Color.Red;
+                        okay = false;
+                        tBM28 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM28.ForeColor = Color.Black;
+                    tBM28 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                
+            }
+        }
+
+        private void BM29_TextChanged(object sender, EventArgs e)
+        {
+                BM29.ForeColor = Color.Black;
+                bool okay = true;
+                //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+                foreach (char c in BM29.Text.ToCharArray())
+                {
+                    //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                    if (!digits.Contains<char>(c))
+                    {
+                        BM29.ForeColor = Color.Red;
+                        okay = false;
+                        tBM29 = false;
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                        break;
+                    }
+                }
+                if (okay == true)
+                {
+                    BM29.ForeColor = Color.Black;
+                    tBM29 = true;
+                    if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                    {
+                        continue_btn.Enabled = true;
+                        back_btn.Enabled = true;
+                    }
+                    else
+                    {
+                        continue_btn.Enabled = false;
+                        back_btn.Enabled = false;
+                    }
+                }            
+        }
+
+        private void B1_TextChanged(object sender, EventArgs e)
+        {
+            B1.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B1.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B1.ForeColor = Color.Red;
+                    okay = false;
+                    tB1 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B1.ForeColor = Color.Black;
+                tB1 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B2_TextChanged(object sender, EventArgs e)
+        {
+            B2.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B2.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B2.ForeColor = Color.Red;
+                    okay = false;
+                    tB2 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B2.ForeColor = Color.Black;
+                tB2 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B3_TextChanged(object sender, EventArgs e)
+        {
+            B3.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B3.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B3.ForeColor = Color.Red;
+                    okay = false;
+                    tB3 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B3.ForeColor = Color.Black;
+                tB3 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B4_TextChanged(object sender, EventArgs e)
+        {
+            B4.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B4.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B4.ForeColor = Color.Red;
+                    okay = false;
+                    tB4 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B4.ForeColor = Color.Black;
+                tB4 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B5_TextChanged(object sender, EventArgs e)
+        {
+            B5.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B5.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B5.ForeColor = Color.Red;
+                    okay = false;
+                    tB5 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B5.ForeColor = Color.Black;
+                tB5 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B6_TextChanged(object sender, EventArgs e)
+        {
+            B6.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B6.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B6.ForeColor = Color.Red;
+                    okay = false;
+                    tB6 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B6.ForeColor = Color.Black;
+                tB6 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B7_TextChanged(object sender, EventArgs e)
+        {
+            B7.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B7.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B7.ForeColor = Color.Red;
+                    okay = false;
+                    tB7 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B7.ForeColor = Color.Black;
+                tB7 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B8_TextChanged(object sender, EventArgs e)
+        {
+            B8.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B8.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B8.ForeColor = Color.Red;
+                    okay = false;
+                    tB8 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B8.ForeColor = Color.Black;
+                tB8 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B9_TextChanged(object sender, EventArgs e)
+        {
+            B9.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B9.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B9.ForeColor = Color.Red;
+                    okay = false;
+                    tB9 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B9.ForeColor = Color.Black;
+                tB9 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B10_TextChanged(object sender, EventArgs e)
+        {
+            B10.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B10.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B10.ForeColor = Color.Red;
+                    okay = false;
+                    tB10 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B10.ForeColor = Color.Black;
+                tB10 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B11_TextChanged(object sender, EventArgs e)
+        {
+            B11.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B11.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B11.ForeColor = Color.Red;
+                    okay = false;
+                    tB11 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B11.ForeColor = Color.Black;
+                tB11 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B12_TextChanged(object sender, EventArgs e)
+        {
+            B12.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B12.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B12.ForeColor = Color.Red;
+                    okay = false;
+                    tB12 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B12.ForeColor = Color.Black;
+                tB12 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B13_TextChanged(object sender, EventArgs e)
+        {
+            B13.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B13.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B13.ForeColor = Color.Red;
+                    okay = false;
+                    tB13 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B13.ForeColor = Color.Black;
+                tB13 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B14_TextChanged(object sender, EventArgs e)
+        {
+            B14.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B14.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B14.ForeColor = Color.Red;
+                    okay = false;
+                    tB14 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B14.ForeColor = Color.Black;
+                tB14 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B15_TextChanged(object sender, EventArgs e)
+        {
+            B15.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B15.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B15.ForeColor = Color.Red;
+                    okay = false;
+                    tB15 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B15.ForeColor = Color.Black;
+                tB15 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B16_TextChanged(object sender, EventArgs e)
+        {
+            B16.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B16.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B16.ForeColor = Color.Red;
+                    okay = false;
+                    tB16 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B16.ForeColor = Color.Black;
+                tB16 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B17_TextChanged(object sender, EventArgs e)
+        {
+            B17.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B17.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B17.ForeColor = Color.Red;
+                    okay = false;
+                    tB17 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B17.ForeColor = Color.Black;
+                tB17 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B18_TextChanged(object sender, EventArgs e)
+        {
+            B18.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B18.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B18.ForeColor = Color.Red;
+                    okay = false;
+                    tB18 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B18.ForeColor = Color.Black;
+                tB18 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B19_TextChanged(object sender, EventArgs e)
+        {
+            B19.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B19.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B19.ForeColor = Color.Red;
+                    okay = false;
+                    tB19 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B19.ForeColor = Color.Black;
+                tB19 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B20_TextChanged(object sender, EventArgs e)
+        {
+            B20.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B20.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B20.ForeColor = Color.Red;
+                    okay = false;
+                    tB20 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B20.ForeColor = Color.Black;
+                tB20 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B21_TextChanged(object sender, EventArgs e)
+        {
+            B21.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B21.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B21.ForeColor = Color.Red;
+                    okay = false;
+                    tB21 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B21.ForeColor = Color.Black;
+                tB21 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B22_TextChanged(object sender, EventArgs e)
+        {
+            B22.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B22.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B22.ForeColor = Color.Red;
+                    okay = false;
+                    tB22 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B22.ForeColor = Color.Black;
+                tB22 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B23_TextChanged(object sender, EventArgs e)
+        {
+            B23.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B23.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B23.ForeColor = Color.Red;
+                    okay = false;
+                    tB23 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B23.ForeColor = Color.Black;
+                tB23 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B24_TextChanged(object sender, EventArgs e)
+        {
+            B24.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B24.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B24.ForeColor = Color.Red;
+                    okay = false;
+                    tB24 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B24.ForeColor = Color.Black;
+                tB24 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B25_TextChanged(object sender, EventArgs e)
+        {
+            B25.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B25.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B25.ForeColor = Color.Red;
+                    okay = false;
+                    tB25 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B25.ForeColor = Color.Black;
+                tB25 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B26_TextChanged(object sender, EventArgs e)
+        {
+            B26.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B26.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B26.ForeColor = Color.Red;
+                    okay = false;
+                    tB26 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B26.ForeColor = Color.Black;
+                tB26 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B27_TextChanged(object sender, EventArgs e)
+        {
+            B27.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B27.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B27.ForeColor = Color.Red;
+                    okay = false;
+                    tB27 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B27.ForeColor = Color.Black;
+                tB27 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B28_TextChanged(object sender, EventArgs e)
+        {
+            B28.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B28.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B28.ForeColor = Color.Red;
+                    okay = false;
+                    tB28 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B28.ForeColor = Color.Black;
+                tB28 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void B29_TextChanged(object sender, EventArgs e)
+        {
+            B29.ForeColor = Color.Black;
+            bool okay = true;
+            //neuer Text darf nur Zeichen aus der Liste digits (in der Klasse deklariert)
+            foreach (char c in B29.Text.ToCharArray())
+            {
+                //sobald es ein unpassendes Zeichen gibt, aufhoeren und Fehlermeldung ausgeben
+                if (!letters.Contains<char>(c))
+                {
+                    B29.ForeColor = Color.Red;
+                    okay = false;
+                    tB29 = false;
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                    break;
+                }
+            }
+            if (okay == true)
+            {
+                B29.ForeColor = Color.Black;
+                tB29 = true;
+                if (tB1 & tB2 & tB3 & tB4 & tB5 & tB6 & tB7 & tB8 & tB9 & tB10 & tB11 & tB12 & tB13 & tB14 & tB15 & tB16 & tB17 & tB18 & tB19 & tB20 & tB21 & tB22 & tB23 & tB24 & tB25 & tB26 & tB27 & tB28 & tB29 & tBM1 & tBM2 & tBM3 & tBM4 & tBM5 & tBM6 & tBM7 & tBM8 & tBM9 & tBM10 & tBM11 & tBM12 & tBM13 & tBM14 & tBM15 & tBM16 & tBM17 & tBM18 & tBM19 & tBM20 & tBM21 & tBM22 & tBM23 & tBM24 & tBM25 & tBM26 & tBM27 & tBM28 & tBM29)
+                {
+                    continue_btn.Enabled = true;
+                    back_btn.Enabled = true;
+                }
+                else
+                {
+                    continue_btn.Enabled = false;
+                    back_btn.Enabled = false;
+                }
+            }  
+        }
+
+        private void default_btn_Click(object sender, EventArgs e)
+        {
+            setValues();
         }
 
     }

@@ -264,7 +264,13 @@
             "Periode 6",
             "Periode 7",
             "Periode 8",
-            "Periode 9"});
+            "Periode 9",
+            "Periode 10",
+            "Periode 11",
+            "Periode 12",
+            "Periode 13",
+            "Periode 14",
+            "Periode 15"});
             this.comboBox1.Location = new System.Drawing.Point(125, 38);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(278, 22);

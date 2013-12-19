@@ -55,7 +55,7 @@ namespace IBSYS2
                 //First add a column
                 tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-                for (int y = 0; y < teile_liste.Count + 1; y++)
+                for (int y = 1; y < teile_liste.Count + 1; y++)
                 {
                     Label label = new Label();
                     Button buttonUp = new Button();
